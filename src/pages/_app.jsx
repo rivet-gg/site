@@ -20,14 +20,50 @@ Router.events.on('hashChangeStart', onRouteChange);
 export default function App({ Component, pageProps }) {
   let router = useRouter();
 
-  let navigation = routes.find((route) => router.pathname.startsWith(route.prefix));
-  if (!navigation) navigation = { feedback: false, pages:[] };
+  let navigation = routes.find(route => router.pathname.startsWith(route.prefix));
+  if (!navigation) navigation = { feedback: false, pages: [] };
 
   let page = navigation.pages.flatMap(x => x.pages).find(page => page.href === router.pathname);
   let title = pageProps.title ?? page?.title ?? null;
   let description = pageProps.description ?? page?.description ?? null;
 
-  console.log('app nav', navigation)
+  navigation.tabs = [
+    {
+      title: 'Overview',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'Matchmaker',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'Serverless Lobbies',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'CDN',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'Identity',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'KV',
+      href: '#',
+      current: true,
+    },
+    {
+      title: 'Cloud',
+      href: '#',
+      current: true,
+    },
+  ];
 
   return (
     <>
