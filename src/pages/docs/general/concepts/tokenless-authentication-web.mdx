@@ -22,19 +22,19 @@ Rivet uses the `Origin` header to find your game's `*.rivet.game` domain or [cus
     ```
 
     You should see a list of regions you have enabled for Rivet Matchmaker.
+
 </Accordion>
 
 ## Security
 
 `Origin` headers cannot be spoofed within a web browser. This means people cannot host copies of your game on their own site.
 
-However, the `Origin` header *can* be spoofed using something like `curl`. Make sure that domain-based authentication is only used on namespaces that are intended to be public.
+However, the `Origin` header _can_ be spoofed using something like `curl`. Make sure that domain-based authentication is only used on namespaces that are intended to be public.
 
 ## Disabling domain-based authentication
 
 If you need to create a private namespace that should not be publicly accessible, you should disable domain-based authentication. Instead, use [public tokens](/general/concepts/handling-game-tokens#public-namespace-tokens) paired with CDN HTTP authentication.
 
-This can be done by navigating to *Developer > My Game > My Namespace* and disabling *Domain-based Authentication*.
+This can be done by navigating to _Developer > My Game > My Namespace_ and disabling _Domain-based Authentication_.
 
 ![Disable domain based auth](/images/disable-domain-based-auth.png)
-

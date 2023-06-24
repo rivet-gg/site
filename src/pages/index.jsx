@@ -1,6 +1,6 @@
-import { formatDate } from '@/lib/formatDate'
-import { generateRssFeed } from '@/lib/generateRssFeed'
-import { getAllArticles } from '@/lib/getAllArticles'
+import { formatDate } from '@/lib/formatDate';
+import { generateRssFeed } from '@/lib/generateRssFeed';
+import { getAllArticles } from '@/lib/getAllArticles';
 
 export default function Index() {
   return <div>Rivet</div>;
@@ -8,14 +8,12 @@ export default function Index() {
 
 export async function getStaticProps() {
   if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed()
+    await generateRssFeed();
   }
 
   return {
     props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component, ...meta }) => meta),
-    },
-  }
+      articles: (await getAllArticles()).slice(0, 4).map(({ component, ...meta }) => meta)
+    }
+  };
 }

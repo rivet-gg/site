@@ -1,6 +1,6 @@
 # Third-Person Template (Unreal Engine)
 
-<Snippet file="wip.mdx" />
+<Snippet file='wip.mdx' />
 
 This guide will walk you through creating and deploying a multiplayer game with Unreal Engine.
 
@@ -18,10 +18,11 @@ Running an Unreal game on Rivet requires building a standalone client and a dedi
     **How does Rivet compare to Epic Online Services and Steam Sockets?**
 
     Rivet is intended to help run authoritative multiplayer servers. We do not support peer-to-peer networking yet.
-	
-	Read more about [authoritative vs peer-to-peer networking](/general/concepts/authoritative-vs-p2p).
 
-    If you want high-performance networking, mobile games, large lobbies, or to prevent cheating, peer-to-peer networking is not a good choice. 
+    Read more about [authoritative vs peer-to-peer networking](/general/concepts/authoritative-vs-p2p).
+
+    If you want high-performance networking, mobile games, large lobbies, or to prevent cheating, peer-to-peer networking is not a good choice.
+
 </Info>
 
 ## Step 1: Prepare Unreal Engine
@@ -72,8 +73,7 @@ Running an Unreal game on Rivet requires building a standalone client and a dedi
 We'll be using the third-person template from Unreal Engine since all of the components come with networking out of the box. These steps also apply to any other networked Unreal Engine game.
 
 <Warning>
-  If you're following this guide on an existing project, ensure that your
-  project is version controlled.
+  If you're following this guide on an existing project, ensure that your project is version controlled.
 </Warning>
 
 ### Create third person template (or bring your project)
@@ -164,72 +164,74 @@ public class MyProject : ModuleRules
 	<Accordion title="Quick iteration: PIE + listen server">
 		This setting is useful for quick iteration.
 
-		Open *Edit > Editor Preferences > Level Editor > Play* and update the following settings:
+    	Open *Edit > Editor Preferences > Level Editor > Play* and update the following settings:
 
-		- **Multiplayer Options > Launch Separate Server**: False
-		- **Multiplayer Options > Launch Separate Server**: False
-		- **Multiplayer Options > Play Net Mode**: Listen Server
-		- **Multiplayer Options > Run Under One Process**: True
-		- **Client > Play Number Of Clients**: >= 2
-		- **Server > Server Map Name Override**: _Empty_
+    	- **Multiplayer Options > Launch Separate Server**: False
+    	- **Multiplayer Options > Launch Separate Server**: False
+    	- **Multiplayer Options > Play Net Mode**: Listen Server
+    	- **Multiplayer Options > Run Under One Process**: True
+    	- **Client > Play Number Of Clients**: >= 2
+    	- **Server > Server Map Name Override**: _Empty_
 
-		<Warning>
-			Be aware that running as a listen server may behave differently than with a dedicated server if [actor authority](https://docs.unrealengine.com/5.1/en-US/networking-overview-for-unreal-engine/#networkroleandauthority) is not handled correctly.
+    	<Warning>
+    		Be aware that running as a listen server may behave differently than with a dedicated server if [actor authority](https://docs.unrealengine.com/5.1/en-US/networking-overview-for-unreal-engine/#networkroleandauthority) is not handled correctly.
 
-			Using a listen server means that all actors have `Role == ROLE_Authority`. In production, actors will have `Role == ROLE_SimulatedProxy`. Read more [here](https://docs.unrealengine.com/5.1/en-US/actor-role-and-remoterole-in-unreal-engine/).
+    		Using a listen server means that all actors have `Role == ROLE_Authority`. In production, actors will have `Role == ROLE_SimulatedProxy`. Read more [here](https://docs.unrealengine.com/5.1/en-US/actor-role-and-remoterole-in-unreal-engine/).
 
-			Check your functionality with PIE + standalone server if you think you might be having issues.
-		</Warning>
+    		Check your functionality with PIE + standalone server if you think you might be having issues.
+    	</Warning>
     </Accordion>
     <Accordion title="Testing authority: PIE + standalone server">
-		This setting is useful for:
+    	This setting is useful for:
 
-		- Testing the offline -> online flow of a user joining a server
-		- Testing actor roles are handled correctly with a dedicated server (i.e. as close to production as possible)
+    	- Testing the offline -> online flow of a user joining a server
+    	- Testing actor roles are handled correctly with a dedicated server (i.e. as close to production as possible)
 
-		Open *Edit > Editor Preferences > Level Editor > Play* and update the following settings:
+    	Open *Edit > Editor Preferences > Level Editor > Play* and update the following settings:
 
-		- **Multiplayer Options > Launch Separate Server**: False
-		- **Multiplayer Options > Play Net Mode**: Standalone
-		- **Multiplayer Options > Run Under One Process**: True
-		- **Client > Play Number Of Clients**: >= 2
-		- **Server > Server Map Name Override**: _Empty_
+    	- **Multiplayer Options > Launch Separate Server**: False
+    	- **Multiplayer Options > Play Net Mode**: Standalone
+    	- **Multiplayer Options > Run Under One Process**: True
+    	- **Client > Play Number Of Clients**: >= 2
+    	- **Server > Server Map Name Override**: _Empty_
     </Accordion>
     <Accordion title="Testing for release: standalone client + standalone server">
-		TODO
+    	TODO
 
-		This is useful for release testing locally.
+    	This is useful for release testing locally.
 
-		- Build debug client
-		- Build debug server
-		- Bake client
-		- Bake server
-		- Open server binary
-		- Open client binary
+    	- Build debug client
+    	- Build debug server
+    	- Bake client
+    	- Bake server
+    	- Open server binary
+    	- Open client binary
     </Accordion>
     <Accordion title="Testing on Rivet's servers: standalone client + Rivet server">
-		TODO
+    	TODO
 
-		This is useful for testing Rivet functionality in production.
+    	This is useful for testing Rivet functionality in production.
 
-		- Publish to Rivet
-		- Use a public token on localhost
-	</Accordion>
+    	- Publish to Rivet
+    	- Use a public token on localhost
+    </Accordion>
+
 </AccordionGroup>
 
 <Accordion title="Why can't I use 'Launch Separate Server'?">
 	Ideally, you would be able to test a dedicated server from Unreal Engine's editor with these settings:
 
-	- **Multiplayer Options > Launch Separate Server**: true
-	- **Multiplayer Options > Play Net Mode**: Standalone
-	- **Multiplayer Options > Run Under One Process**: True
-	- **Server > Server Map Name Override**: /Game/ThirdPerson/Maps/ThirdPersonMap
+    - **Multiplayer Options > Launch Separate Server**: true
+    - **Multiplayer Options > Play Net Mode**: Standalone
+    - **Multiplayer Options > Run Under One Process**: True
+    - **Server > Server Map Name Override**: /Game/ThirdPerson/Maps/ThirdPersonMap
 
-	However, there's a bug in Unreal Engine that causes the spawned standalone clients to use the *Server Map Name Override*, which makes this useless.
+    However, there's a bug in Unreal Engine that causes the spawned standalone clients to use the *Server Map Name Override*, which makes this useless.
 
-	Read more [here](https://www.reddit.com/r/unrealengine/comments/pnquou/question_main_menu_multiplayer/).
+    Read more [here](https://www.reddit.com/r/unrealengine/comments/pnquou/question_main_menu_multiplayer/).
 
-	See also [this trouble shooting section](#standalone-client-automatically-goes-to-the-wrong-map).
+    See also [this trouble shooting section](#standalone-client-automatically-goes-to-the-wrong-map).
+
 </Accordion>
 
 ### Useful commands
@@ -237,12 +239,8 @@ public class MyProject : ModuleRules
 Commands can be ran by pressing <code>`</code>.
 
 <AccordionGroup>
-	<Accordion title="ServerTravel">
-		**TODO**
-	</Accordion>
-	<Accordion title="Open">
-		**TODO**
-	</Accordion>
+  <Accordion title='ServerTravel'>**TODO**</Accordion>
+  <Accordion title='Open'>**TODO**</Accordion>
 </AccordionGroup>
 
 ### Actor roles & authority when running on Rivet
@@ -309,7 +307,8 @@ This issue can be mitigated by running separate processes when testing your game
 <Info>
 	If _Server Map Name Override_ is not empty but grayed out, you need to:
 
-	1. Enable _Multiplayer Options > Launch Separate Server_
-	1. Clear _Server > Server Map Name Override_
-	1. Disable _Multiplayer Options > Launch Separate Server_
+    1. Enable _Multiplayer Options > Launch Separate Server_
+    1. Clear _Server > Server Map Name Override_
+    1. Disable _Multiplayer Options > Launch Separate Server_
+
 </Info>

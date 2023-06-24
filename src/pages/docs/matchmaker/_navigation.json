@@ -2,7 +2,7 @@
   "feedback": true,
   "sidebar": {
     "groups": [
-       {
+      {
         "title": "Concepts",
         "pages": [
           "concepts/finding-lobby",

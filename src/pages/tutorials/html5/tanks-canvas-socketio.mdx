@@ -1,17 +1,29 @@
 # Tanks (TypeScript + Canvas + Socket.io)
 
-<Snippet file="beta-signup.mdx" />
+<Snippet file='beta-signup.mdx' />
 
-<Card title="View on GitHub" icon="github" href="https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio">
-</Card>
+<Card
+  title='View on GitHub'
+  icon='github'
+  href='https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio'
+></Card>
 
-| Language | Rendering | Networking |
-| --- | --- | --- |
-| [TypeScript](https://www.typescriptlang.org/) | [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) | [Socket.io](https://socket.io/)  |
+| Language                                      | Rendering                                                             | Networking                      |
+| --------------------------------------------- | --------------------------------------------------------------------- | ------------------------------- |
+| [TypeScript](https://www.typescriptlang.org/) | [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) | [Socket.io](https://socket.io/) |
 
 The following guide will walk you through integraing and deploying a game with Rivet.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pBE7s-PK0j0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style={{marginLeft: 'auto', marginRight: 'auto'}}></iframe>
+<iframe
+  width='560'
+  height='315'
+  src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0'
+  title='YouTube video player'
+  frameborder='0'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+  allowfullscreen
+  style={{ marginLeft: 'auto', marginRight: 'auto' }}
+></iframe>
 
 ---
 
@@ -31,47 +43,26 @@ This will open your browser to http://localhost:8080. Verify the game works.
 
 ### Initialize project
 
-<Snippet file="install-cli.mdx"></Snippet>
+<Snippet file='install-cli.mdx'></Snippet>
 
 Run the following command to setup your project:
 
 <Tabs>
-    <Tab title="Bash">
-        ```bash
-        rivet init \
-            --recommend \
-            --matchmaker \
-            --matchmaker-port 3000 \
-            --matchmaker-dockerfile Dockerfile \
-            --cdn \
-            --cdn-build-command "npm install && npm run build:client:prod" \
-            --cdn-build-output ./dist/
-        ```
-    </Tab>
-    <Tab title="Powershell">
-        ```powershell
-        rivet init `
-            --recommend `
-            --matchmaker `
-            --matchmaker-port 3000 `
-            --matchmaker-dockerfile Dockerfile `
-            --cdn `
-            --cdn-build-command "npm install && npm run build:client:prod" `
-            --cdn-build-output ./dist/
-        ```
-    </Tab>
-    <Tab title="CMD">
-        ```batch
-        rivet init ^
-            --recommend ^
-            --matchmaker ^
-            --matchmaker-port 3000 ^
-            --matchmaker-dockerfile Dockerfile ^
-            --cdn ^
-            --cdn-build-command "npm install && npm run build:client:prod" ^
-            --cdn-build-output ./dist/
-        ```
-    </Tab>
+  <Tab title='Bash'>
+    ```bash rivet init \ --recommend \ --matchmaker \ --matchmaker-port 3000 \ --matchmaker-dockerfile
+    Dockerfile \ --cdn \ --cdn-build-command "npm install && npm run build:client:prod" \ --cdn-build-output
+    ./dist/ ```
+  </Tab>
+  <Tab title='Powershell'>
+    ```powershell rivet init ` --recommend ` --matchmaker ` --matchmaker-port 3000 ` --matchmaker-dockerfile
+    Dockerfile ` --cdn ` --cdn-build-command "npm install && npm run build:client:prod" ` --cdn-build-output
+    ./dist/ ```
+  </Tab>
+  <Tab title='CMD'>
+    ```batch rivet init ^ --recommend ^ --matchmaker ^ --matchmaker-port 3000 ^ --matchmaker-dockerfile
+    Dockerfile ^ --cdn ^ --cdn-build-command "npm install && npm run build:client:prod" ^ --cdn-build-output
+    ./dist/ ```
+  </Tab>
 </Tabs>
 
 <Accordion title="What did this do?">
@@ -80,6 +71,7 @@ Run the following command to setup your project:
     - Added a development token to your `.env` that lets you develop with Rivet on your local machine
 
     You can also run `rivet init` wihtout any flags to go through the interactive setup process.
+
 </Accordion>
 
 [🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/01-init)
@@ -103,24 +95,24 @@ npm install --save @rivet-gg/api
 Add the following to the top of `client/Client.ts`:
 
 ```typescript client/Client.ts
-import { RivetClient } from "@rivet-gg/api";
+import { RivetClient } from '@rivet-gg/api';
 export const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
 ```
 
-<Snippet file="env-public-token-web.mdx"></Snippet>
+<Snippet file='env-public-token-web.mdx'></Snippet>
 
 Find the `connect` function in `client/Client.ts` and replace it with the following:
 
 ```typescript client/Client.ts
 async function connect(client: Client) {
-    // Find a lobby to connect to on Rivet
-	let res = await RIVET.matchmaker.lobbies.find({ gameModes: ["default"] });
-	let port = res.ports["default"];
+  // Find a lobby to connect to on Rivet
+  let res = await RIVET.matchmaker.lobbies.find({ gameModes: ['default'] });
+  let port = res.ports['default'];
 
-    // Open a new connection to the lobby
-	client.connection = new Connection(client, port.isTls, port.host, {
-		token: res.player.token,
-	});
+  // Open a new connection to the lobby
+  client.connection = new Connection(client, port.isTls, port.host, {
+    token: res.player.token
+  });
 }
 ```
 
@@ -135,29 +127,29 @@ Open the network inspector and reload to see a `POST` request to `https://matchm
 Add the following to the top of `server/index.ts`:
 
 ```typescript server/index.ts
-import { RivetClient } from "@rivet-gg/api";
+import { RivetClient } from '@rivet-gg/api';
 export const RIVET = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
 
 // Notify Rivet that this lobby is ready to accept players
 RIVET.matchmaker.lobbies.ready();
 ```
 
-<Snippet file="env-lobby-token.mdx"></Snippet>
+<Snippet file='env-lobby-token.mdx'></Snippet>
 
 Find the `setupConnection` function in `server/index.ts` and replace it with the following:
 
 ```typescript server/index.ts
 async function setupConnection(socket: Socket) {
-    // Read the token passed to the socket query
-    let playerToken = socket.handshake.query.token as string;
+  // Read the token passed to the socket query
+  let playerToken = socket.handshake.query.token as string;
 
-    // Validate the player token with the matchmaker
-    await RIVET.matchmaker.players.connected({ playerToken });
+  // Validate the player token with the matchmaker
+  await RIVET.matchmaker.players.connected({ playerToken });
 
-    // Remove the player when disconnected
-    socket.on("disconnect", () => RIVET.matchmaker.players.disconnected({ playerToken }));
+  // Remove the player when disconnected
+  socket.on('disconnect', () => RIVET.matchmaker.players.disconnected({ playerToken }));
 
-    new Connection(game, socket);
+  new Connection(game, socket);
 }
 ```
 
@@ -173,11 +165,10 @@ Deploy your game to Rivet with:
 rivet deploy --namespace prod
 ```
 
-<Accordion title="What did this do?">
-    - Build & upload your Docker image for [Rivet Serverless Lobbies](/serverless-lobbies/introduction)
-    - Build & upload your site for [Rivet CDN](/cdn/introduction)
-    - Create a version on Rivet
-    - Deploy the version to the *Production* namespace
+<Accordion title='What did this do?'>
+  - Build & upload your Docker image for [Rivet Serverless Lobbies](/serverless-lobbies/introduction) - Build
+  & upload your site for [Rivet CDN](/cdn/introduction) - Create a version on Rivet - Deploy the version to
+  the *Production* namespace
 </Accordion>
 
 The CLI will print a link ending in `rivet.game`. Share the link with a friend to play your game on Rivet! 🎉

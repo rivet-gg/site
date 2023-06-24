@@ -6,6 +6,7 @@ One of the first choices you have to make when building a multiplayer game is ch
     Rivet is built to manage authoritative multiplayer servers. We do not support peer-to-peer networking at the moment.
 
     We want to help everyone make the right decision on how to build their multiplayer game -- regardless of if they use Rivet. If you believe there is an inaccurate or unfair comparison, please [reach out](https://discord.gg/BG2vqsJczH) or [make a PR](https://github.com/rivet-gg/docs).
+
 </Note>
 
 ---
@@ -21,7 +22,7 @@ Authoritative multiplayer servers are responsible for managing game state and te
 - Fortnite
 - Roblox
 - Rocket League
-- <Tooltip tip="Among Us supports peer-to-peer multiplayer when playing on LAN.">Among Us</Tooltip>
+- <Tooltip tip='Among Us supports peer-to-peer multiplayer when playing on LAN.'>Among Us</Tooltip>
 - Valorant
 - Minecraft
 - Overwatch
@@ -35,13 +36,16 @@ Authoritative multiplayer servers are responsible for managing game state and te
 Peer-to-peer multiplayer consists of one player running a server on their local machine and all other players connecting to their machine.
 
 <Note>
-    There are other models of peer-to-peer networking that don't require one player to act as the server, but we'll keep it simple for this guide.
+  There are other models of peer-to-peer networking that don't require one player to act as the server, but
+  we'll keep it simple for this guide.
 </Note>
 
 **Notable peer-to-peer games:**
 
 - Super Smash Bros
-- <Tooltip tip="The Call of Duty franchise has flip-flopped between peer-to-peer and authoritative.">Call of Duty</Tooltip>
+- <Tooltip tip='The Call of Duty franchise has flip-flopped between peer-to-peer and authoritative.'>
+    Call of Duty
+  </Tooltip>
 - GTA V & RDR 2
 - Destiny
 
@@ -50,7 +54,7 @@ Peer-to-peer multiplayer consists of one player running a server on their local 
 ## TL;DR
 
 <Note>
-    This is not intended to be a tally of which option is better. Focus on which factors are important to you.
+  This is not intended to be a tally of which option is better. Focus on which factors are important to you.
 </Note>
 
 **🤖 Authoritative**
@@ -67,8 +71,12 @@ Peer-to-peer multiplayer consists of one player running a server on their local 
 
 **👯 Peer-to-peer**
 
-- <Tooltip tip="Rivet provides the ability to auto-scale your lobbies and pay based on usage to optimize cost.">Cost</Tooltip>
-- <Tooltip tip="Rivet manages your game infrastructure so maintaining legacy games take no effort.">Maintaining legacy games</Tooltip>
+- <Tooltip tip='Rivet provides the ability to auto-scale your lobbies and pay based on usage to optimize cost.'>
+    Cost
+  </Tooltip>
+- <Tooltip tip='Rivet manages your game infrastructure so maintaining legacy games take no effort.'>
+    Maintaining legacy games
+  </Tooltip>
 
 **🤔 Toss-up**
 
@@ -103,7 +111,9 @@ Peer-to-peer multiplayer removes the need for paying to run a dedicated server f
 However, saving money here limits the reach of your game and leads to a worse gaming experience compared to authoritative networking. Make sure that you are willing to sacrifice your game's experience when choosing to optimize for cost.
 
 <Note>
-    Rivet provides the ability to auto-scale your lobbies and pay based on usage to optimize cost. This helps reduce expenses during off hours, minimizes expenses for running small games, and reduces the overhead of running many game modes.
+  Rivet provides the ability to auto-scale your lobbies and pay based on usage to optimize cost. This helps
+  reduce expenses during off hours, minimizes expenses for running small games, and reduces the overhead of
+  running many game modes.
 </Note>
 
 ### Hack/cheat prevention
@@ -138,7 +148,7 @@ Peer-to-peer networking requires one player to be the host (i.e. act as the serv
 
 There's a common misconception that peer-to-peer networking leads to lower latency because players can be closer to each other than to the server.
 
-In practice, this is rarely true. Internet service providers (ISP) have [peering agreements](https://en.wikipedia.org/wiki/Peering) with each other to exchange internet traffic.  These agreements limit the amount of bandwidth that can be exchanged between each other before throttling connections.  That means that during peak hours, that bandwidth gets saturated and connections between ISPs suffer.
+In practice, this is rarely true. Internet service providers (ISP) have [peering agreements](https://en.wikipedia.org/wiki/Peering) with each other to exchange internet traffic. These agreements limit the amount of bandwidth that can be exchanged between each other before throttling connections. That means that during peak hours, that bandwidth gets saturated and connections between ISPs suffer.
 
 In practice, players are often throttled by these peering agreements resulting in a terrible gameplay experience -- even though they may be geographically very close together.
 
@@ -146,7 +156,7 @@ Worst yet -- some ISPs don't have peering agreements with each other. That means
 
 **How does authoritative networking mitigate ISP peering agreements?**
 
-Cloud providers care about making sure their data centers have the fastest connections. This means they work with ISPs to make sure that traffic is delivered to their data centers optimally. Compared to ISPs who work *against* each other with consumer-hostile peering agreements, this almost always leads to a better networking experience.
+Cloud providers care about making sure their data centers have the fastest connections. This means they work with ISPs to make sure that traffic is delivered to their data centers optimally. Compared to ISPs who work _against_ each other with consumer-hostile peering agreements, this almost always leads to a better networking experience.
 
 **Long-distance routing**
 
@@ -210,7 +220,7 @@ However, many developers believe they have to write their multiplayer server fro
 
 Another big advantage of peer-to-peer games is that many developers believe you don't need to run any servers.
 
-In reality, you need a *bare minimum* a signaling or matchmaking server so players can discover and connect with each other. In addition to that, you likely also need to run a relay/[TURN](https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT) either to prevent IP leakage or prevent your game from being blocked by firewalls.
+In reality, you need a _bare minimum_ a signaling or matchmaking server so players can discover and connect with each other. In addition to that, you likely also need to run a relay/[TURN](https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT) either to prevent IP leakage or prevent your game from being blocked by firewalls.
 
 With peer-to-peer games, you don't have to run your servers.
 
@@ -224,6 +234,7 @@ Building a quality peer-to-peer game means you have to worry about a lot more ed
     Rivet was built to remove the complexity of running authoritative multiplayer games.
 
     If you're considering building a peer-to-peer game because of complexity, [we'd love to chat](https://discord.gg/BG2vqsJczH) to see where we can improve Rivet.
+
 </Note>
 
 ### Firewalls & NAT
@@ -232,7 +243,7 @@ Building a quality peer-to-peer game means you have to worry about a lot more ed
 
 Peer-to-peer multiplayer games require players at arbitrary public IPs to connect to an arbitrary port on each others' machines. It's very common for firewalls to flag this traffic as malicious and prevent players from playing.
 
-[Hole punching](https://en.wikipedia.org/wiki/Hole_punching_(networking)) can be used to work around firewalls, but it doesn't work 100% of the time.
+[Hole punching](<https://en.wikipedia.org/wiki/Hole_punching_(networking)>) can be used to work around firewalls, but it doesn't work 100% of the time.
 
 Authoritative servers can be set up to run on well-known ports with trusted IPs to reduce the number of firewalls that block connections to your game. Firewalls rarely block traffic to popular cloud providers.
 
@@ -247,7 +258,8 @@ Peer-to-peer games often suffer from denial-of-service attacks targeted at the h
 While authoritative game servers are frequently targeted by DoS attacks also, there are a lot of actions that can be taken to mitigate the effects of these attacks.
 
 <Note>
-    Rivet provides many mechanisms to mitigate DDoS attacks against your game. Read more [here](/serverless-lobbies/concepts/ddos).
+  Rivet provides many mechanisms to mitigate DDoS attacks against your game. Read more
+  [here](/serverless-lobbies/concepts/ddos).
 </Note>
 
 ### Privacy
@@ -276,5 +288,5 @@ Peer-to-peer networking is attractive since there are <Tooltip tip="You still ne
     - Managed infrastructure lets developers build and forget
     - Managed CDN for delivering assets
     - Managed SSL removes the need to frequently update certificates
-</Note>
 
+</Note>

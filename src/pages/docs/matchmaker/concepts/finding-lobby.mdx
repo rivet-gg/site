@@ -10,7 +10,6 @@ Rivet Matchmaker will return the lobby in the [closest region](#determining-the-
 
 If you're looking to build competitive matchmaking on top of Rivet, please read [this](/matchmaker/concepts/competitive-matchmaking) first.
 
-
 ## Determining the region
 
 If no region is specificed in [`Lobbies.find`](/matchmaker/api/post-lobbies-find), Rivet will use the GeoIP location provided by Cloudflare to find the nearest datacenter.
@@ -23,7 +22,11 @@ Once the region has been determined, Rivet Matchmaker will filter out full lobbi
 
 This simplified exampe demonstrates how the matchmaker finds the correct lobby to join:
 
-<iframe src="https://replit.com/@NathanRivet/MatchmakerFindLobbyExplanation?embed=true#index.ts" width="100%" height="600" />
+<iframe
+  src='https://replit.com/@NathanRivet/MatchmakerFindLobbyExplanation?embed=true#index.ts'
+  width='100%'
+  height='600'
+/>
 
 ## Providing multiple game modes
 
@@ -43,7 +46,7 @@ Also see [idle lobbies](/matchmaker/concepts/idle-lobbies).
 
 ### The problem
 
-Player counts in a given region usually fluxuate by at least 50% ever day during off hours. Games often feel *more* empty than they actually are as players are leaving the game because there are *more* lobbies with *less* players spread evenly across them.
+Player counts in a given region usually fluxuate by at least 50% ever day during off hours. Games often feel _more_ empty than they actually are as players are leaving the game because there are _more_ lobbies with _less_ players spread evenly across them.
 
 For example:
 
@@ -51,17 +54,16 @@ For example:
 - 2 PM: Now there are **25 players online**, so 2 more lobbies are booted bringing us to **5 lobbies**. Now there are **5 players in each lobby**.
 - 10 PM: Players are going to bed, so there are **10 players online** with **5 lobbies**. Now there are **2 players in each lobby**.
 
-Even though there are twice as many players online at 10 PM as there were at 9 AM, there are *less* players in each lobby.
+Even though there are twice as many players online at 10 PM as there were at 9 AM, there are _less_ players in each lobby.
 
 ### How the matchmaker deals with this
 
 Rivet Matchmaker is designed to mitigate this issue by prioritizing filling a few lobbies instead of spreading players across all lobbies.
 
-Take our example at 10 PM where there are **5 lobbies** with **2 players in each lobby**. If 2 new players come online, they will all be put in the same lobby, so one of the lobbies will have 4 players in it while the rest still have 2 players in them.. 
+Take our example at 10 PM where there are **5 lobbies** with **2 players in each lobby**. If 2 new players come online, they will all be put in the same lobby, so one of the lobbies will have 4 players in it while the rest still have 2 players in them..
 
 ### Auto-merging lobbies
 
 In our example, we still have 4 lobbies with only 2 players online.
 
 We recommend prompting players to find a new lobby when the lobby is almost empty. By having the players in these empty lobbies call [`Lobbies.find`](/matchmaker/api/post-lobbies-find) again, the players will be compacted in fewer, fuller lobbies.
-

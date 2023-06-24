@@ -9,11 +9,11 @@ Game Guard serves two main purposes:
 
 ## Supported protocols
 
-<Snippet file="protocol-support-matrix.mdx" />
+<Snippet file='protocol-support-matrix.mdx' />
 
 ## DDoS mitigation
 
-Game Guard helps mitigate DDoS attacks by 
+Game Guard helps mitigate DDoS attacks by
 
 ### What Game Guard protects your game from
 
@@ -25,7 +25,8 @@ Game Guard protects your game from the following (and more):
 - OSI <Tooltip tip="e.g. TCP, UDP">layer 4</Tooltip> and <Tooltip tip="e.g. WebSocket, HTTP">layer 7</Tooltip> rate limiting
 
 <Tip>
-    Read more about the OSI model [here](https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/).
+  Read more about the OSI model
+  [here](https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/).
 </Tip>
 
 ### Where Game Guard cannot help
@@ -67,6 +68,7 @@ Supporting this yourself requires you to regularly issue and update your own SSL
     - Cloudflare does not respect long-lived WebSockets; players will be disconnected sporadically if connected for a long time
     - Cloudflare proxies game traffic through a different data center than where your game is running
     - Cloudflare adds at least 10 ms latency to your game
+
 </Info>
 
 <Info>
@@ -77,4 +79,5 @@ Supporting this yourself requires you to regularly issue and update your own SSL
     However, when encrypting many packets per second for a real-time game, that performance impact can be noticeable (especially with poorly optimized libraries). We've seen CPU reductions in multiple games that move their SSL termination from the host to Game Guard.
 
     We choose not to advertise this feature yet since we have not published benchmarks to back this up yet, but we belive it's worth mentioning.
+
 </Info>

@@ -1,14 +1,12 @@
 # 2D Bomber (Godot)
 
-<Snippet file="beta-signup.mdx" />
+<Snippet file='beta-signup.mdx' />
 
-<Snippet file="wip.mdx" />
+<Snippet file='wip.mdx' />
 
 This guide will walk you through creating and deploying a multiplayer game with Godot 4.
 
-<Warning>
-  If you are using Godot 3, please be aware that some details may be different.
-</Warning>
+<Warning>If you are using Godot 3, please be aware that some details may be different.</Warning>
 
 ---
 
@@ -22,7 +20,7 @@ Godot supports ENet, WebSocket, and WebRTC transports. We'll be using ENet for t
 
 ## Step 1: Initialize project
 
-<Snippet file="install-cli.mdx"></Snippet>
+<Snippet file='install-cli.mdx'></Snippet>
 
 Clone https://github.com/rivet-gg/example-godot-bomber
 
@@ -75,7 +73,7 @@ Move the code to start the server:
 ```gdscript gamestate.gd
 func start_server():
 	print("Starting server on %s" % DEFAULT_PORT)
-	
+
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(DEFAULT_PORT, MAX_PEERS)
 	multiplayer.set_multiplayer_peer(peer)
@@ -86,7 +84,7 @@ Update `join_game` to ask Rivet which lobby to connect to:
 ```gdscript gamestate.gd
 func join_game(new_player_name):
 	player_name = new_player_name
-	
+
 	RivetClient.find_lobby({
 		"game_modes": ["default"]
 	}, _lobby_found, _lobby_find_failed)
@@ -94,10 +92,10 @@ func join_game(new_player_name):
 
 func _lobby_found(response):
 	RivetHelper.set_player_token(response.player.token)
-	
+
 	var port = response.ports.default
 	print("Connecting to ", port.host)
-	
+
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(port.hostname, port.port)
 	multiplayer.set_multiplayer_peer(peer)
@@ -145,7 +143,7 @@ rivet deploy -n prod
 
 ### Create public token
 
-We've been using development tokens up until this point. Now that our game is deployed, we can create a 
+We've been using development tokens up until this point. Now that our game is deployed, we can create a
 
 Create a public token in the Rivet Dashboard:
 

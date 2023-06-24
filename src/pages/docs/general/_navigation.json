@@ -8,7 +8,13 @@
       },
       {
         "title": "Concepts",
-        "pages": ["concepts/handling-game-tokens", "concepts/dev-tokens", "concepts/tokenless-authentication-web", "concepts/token-types", "concepts/authoritative-vs-p2p"]
+        "pages": [
+          "concepts/handling-game-tokens",
+          "concepts/dev-tokens",
+          "concepts/tokenless-authentication-web",
+          "concepts/token-types",
+          "concepts/authoritative-vs-p2p"
+        ]
       },
       {
         "title": "FAQ",
