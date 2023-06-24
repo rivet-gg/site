@@ -175,15 +175,19 @@ export const Header = forwardRef(function ({ navigation, className }, ref) {
       {navigation.tabs && (
         <div className='h-12 px-6 overflow-x-scroll hide-scrollbar'>
           <nav className='flex h-full space-x-8'>
+            {/* Title */}
+            <div className='text-md font-semibold text-zinc-900 dark:text-white flex items-center'>{navigation.tabsTitle}</div>
+
+            {/* Tabs */}
             {navigation.tabs.map(tab => (
               <a
                 key={tab.title}
                 href={tab.href}
                 className={classNames(
                   tab.current
-                    ? 'text-white'
-                    : 'border-transparent text-zinc-600 hover:border-gray-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white',
-                  'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 text-sm font-medium'
+                    ? 'text-zinc-900 border-zinc-900 dark:text-white dark:border-white'
+                    : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 hover:border-zinc-900 dark:hover:text-white dark:hover:border-white',
+                  'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
                 {tab.title}
