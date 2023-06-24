@@ -148,7 +148,7 @@ export const Header = forwardRef(function ({ navigation, className }, ref) {
           </Link>
 
           <ul role='list' className='flex items-center gap-6'>
-            <TopLevelNavPopover>Developers</TopLevelNavPopover>
+            <TopLevelNavPopover>Products</TopLevelNavPopover>
             <TopLevelNavPopover>Learn</TopLevelNavPopover>
             <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
             <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
