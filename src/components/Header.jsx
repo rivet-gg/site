@@ -103,7 +103,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export const Header = forwardRef(function ({ navigation, className }, ref) {
+export const Header = forwardRef(function Header({ navigation, className }, ref) {
   let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
 

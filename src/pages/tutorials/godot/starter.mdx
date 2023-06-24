@@ -60,7 +60,7 @@ rivet init --recommend
 
 Add the following to the top of `_ready` in `gamestate.gd`:
 
-```gdscript gamestate.gd
+```text gamestate.gd
 func _ready():
 	RivetHelper.start_server.connect(start_server)
 	RivetHelper.setup_multiplayer()
@@ -70,7 +70,7 @@ func _ready():
 
 Move the code to start the server:
 
-```gdscript gamestate.gd
+```text gamestate.gd
 func start_server():
 	print("Starting server on %s" % DEFAULT_PORT)
 
@@ -81,7 +81,7 @@ func start_server():
 
 Update `join_game` to ask Rivet which lobby to connect to:
 
-```gdscript gamestate.gd
+```text gamestate.gd
 func join_game(new_player_name):
 	player_name = new_player_name
 
@@ -151,7 +151,7 @@ Create a public token in the Rivet Dashboard:
 
 Now pass that token to your game by adding the following code to `gamestate.gd`:
 
-```gdscript gamestate.gd
+```text gamestate.gd
 func _ready():
 	# Paste token here
 	RivetClient.set_token("pub_prod.xxxx.xxxx")
