@@ -1,4 +1,4 @@
-import { ResourceGroup, Resource } from '@/components/Resources';
+import { faMagnifyingGlass, faList, faCode } from '@fortawesome/pro-solid-svg-icons';
 
 # Matchmaker
 
@@ -17,32 +17,32 @@ The Rivet Matchmaker is tightly integrated with Serverless Lobbies to automatica
 <ResourceGroup>
   <Resource
     title='How the matchmaker chooses lobbies'
-    icon='magnifying-glass'
-        href='/matchmaker/concepts/finding-lobby'
+    icon={faMagnifyingGlass}
+    href='/matchmaker/concepts/finding-lobby'
   />
   <Resource
     title='Lobby environment variables'
-    icon='list'
+    icon={faList}
         href='/matchmaker/concepts/lobby-env'
   />
   <Resource
     title='matchmaker.lobbies.find'
-    icon='code'
+    icon={faCode}
         href='/matchmaker/api/post-lobbies-find'
   />
   <Resource
     title='matchmaker.players.connected'
-    icon='code'
+    icon={faCode}
         href='/matchmaker/api/post-players-connected'
   />
   <Resource
     title='matchmaker.players.disconnected'
-    icon='code'
+    icon={faCode}
         href='/matchmaker/api/post-players-disconnected'
   />
   <Resource
     title='matchmaker.lobbies.ready'
-    icon='code'
+    icon={faCode}
         href='/matchmaker/api/post-lobbies-ready'
   />
 </ResourceGroup>

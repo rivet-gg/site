@@ -1,9 +1,11 @@
+import { faBookOpen, faPencil, faDeleteLeft } from '@fortawesome/pro-solid-svg-icons';
+
 # Key-Value Database
 
 <Summary>Store persistent database with a realtime, JSON-enabled key-value database.</Summary>
 
 <ResourceGroup>
-  <Resource title='kv.get' icon='book-open' iconType='duotone' href='/kv/api/get-entries' />
-  <Resource title='kv.put' icon='pencil' iconType='duotone' href='/kv/api/put-entries' />
-  <Resource title='kv.delete' icon='delete-left' iconType='duotone' href='/kv/api/delete-entries' />
+  <Resource title='kv.get' icon={faBookOpen} iconType='duotone' href='/kv/api/get-entries' />
+  <Resource title='kv.put' icon={faPencil} iconType='duotone' href='/kv/api/put-entries' />
+  <Resource title='kv.delete' icon={faDeleteLeft} iconType='duotone' href='/kv/api/delete-entries' />
 </ResourceGroup>

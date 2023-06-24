@@ -34,61 +34,6 @@ const patterns = [
   }
 ];
 
-// const resources = [
-//   {
-//     href: '/contacts',
-//     name: 'Contacts',
-//     description:
-//       'Learn about the contact model and how to create, retrieve, update, delete, and list contacts.',
-//     icon: UserIcon,
-//     pattern: {
-//       y: 16,
-//       squares: [
-//         [0, 1],
-//         [1, 3]
-//       ]
-//     }
-//   },
-//   {
-//     href: '/conversations',
-//     name: 'Conversations',
-//     description:
-//       'Learn about the conversation model and how to create, retrieve, update, delete, and list conversations.',
-//     icon: ChatBubbleIcon,
-//     pattern: {
-//       y: -6,
-//       squares: [
-//         [-1, 2],
-//         [1, 3]
-//       ]
-//     }
-//   },
-//   {
-//     href: '/messages',
-//     name: 'Messages',
-//     description:
-//       'Learn about the message model and how to create, retrieve, update, delete, and list messages.',
-//     icon: EnvelopeIcon,
-//     pattern: {
-//       y: 32,
-//       squares: [
-//         [0, 2],
-//         [1, 4]
-//       ]
-//     }
-//   },
-//   {
-//     href: '/groups',
-//     name: 'Groups',
-//     description: 'Learn about the group model and how to create, retrieve, update, delete, and list groups.',
-//     icon: UsersIcon,
-//     pattern: {
-//       y: 22,
-//       squares: [[0, 1]]
-//     }
-//   }
-// ];
-
 function ResourceIcon({ icon }) {
   return (
     <div className='flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-emerald-300/10 dark:group-hover:ring-emerald-400'>
@@ -156,7 +101,7 @@ export function Resource({ children, ...props }) {
             {props.title}
           </Link>
         </h3>
-        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'></p>
+        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p>
       </div>
     </div>
   );

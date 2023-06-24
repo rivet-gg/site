@@ -1,3 +1,5 @@
+import { faCompass, faCode } from '@fortawesome/pro-solid-svg-icons';
+
 # Identity
 
 <Summary>Allow identities to authenticate and play with friends across multiple games.</Summary>
@@ -25,10 +27,10 @@ When integrating Rivet Identities, we provide an identity token. You can use tha
 <ResourceGroup>
   <Resource
     title='Friend discovery mechanisms'
-    icon='compass'
+    icon={faCompass}
         href='/identity/concepts/friend-discovery'
   />
-  <Resource title='identity.setup' icon='code' iconType='duotone' href='/identity/api/post-identities' />
-  <Resource title='identity.events.watch' icon='code' iconType='duotone' href='/identity/api/get-events-live' />
-  <Resource title='identity.links.prepare' icon='code' iconType='duotone' href='/identity/api/post-game-links' />
+  <Resource title='identity.setup' icon={faCode} iconType='duotone' href='/identity/api/post-identities' />
+  <Resource title='identity.events.watch' icon={faCode} iconType='duotone' href='/identity/api/get-events-live' />
+  <Resource title='identity.links.prepare' icon={faCode} iconType='duotone' href='/identity/api/post-game-links' />
 </ResourceGroup>

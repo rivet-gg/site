@@ -1,8 +1,6 @@
 export function Summary({ children }) {
     return (
-        <div>
-            Summary:
-
+        <div className="italic">
             {children}
         </div>
     )

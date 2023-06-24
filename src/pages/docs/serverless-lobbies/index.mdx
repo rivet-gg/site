@@ -1,3 +1,5 @@
+import { faShieldHalved, faPlug, faGlobe, faServer } from '@fortawesome/pro-solid-svg-icons';
+
 # Serverless Lobbies
 
 <Summary>Auto-scaling game lobbies boot up to meet demand.</Summary>
@@ -9,22 +11,22 @@ There is no API for serverless lobbies. Lobbies are created on demand when [matc
 <ResourceGroup>
   <Resource
     title='Rivet Game Guard'
-    icon='shield-halved'
+    icon={faShieldHalved}
         href='/serverless-lobbies/concepts/game-guard'
   />
   <Resource
     title='Supported protocols'
-    icon='plug'
+    icon={faPlug}
         href='/serverless-lobbies/concepts/protocols'
   />
   <Resource
     title='Available regions'
-    icon='globe'
+    icon={faGlobe}
         href='/serverless-lobbies/concepts/available-regions'
   />
   <Resource
     title='Available tiers'
-    icon='server'
+    icon={faServer}
         href='/serverless-lobbies/concepts/available-tiers'
   />
 </ResourceGroup>

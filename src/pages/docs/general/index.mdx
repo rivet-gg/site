@@ -1,4 +1,5 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
+import { faGraduationCap, faBooks, faChessKnight, faServer, faGlobe, faKey } from '@fortawesome/pro-solid-svg-icons';
 
 # Introduction
 
@@ -20,20 +21,20 @@ Simple APIs for serverless lobbies, matchmaking, CDN, and other features managed
 <ResourceGroup>
   <Resource
     title='5 Minute Crash Course'
-    icon='graduation-cap'
+    icon={faGraduationCap}
         href='/general/guides/crash-course'
   />
-  <Resource title='Libraries' icon='books' iconType='duotone' href='/general/libraries' />
-  <Resource title='Matchmaker' icon='chess-knight' iconType='duotone' href='/matchmaker/introduction'>
+  <Resource title='Libraries' icon={faBooks} href='/general/libraries' />
+  <Resource title='Matchmaker' icon={faChessKnight} href='/matchmaker/introduction'>
     Flexible matchmaker for placing players in lobbies with no wait times.
   </Resource>
-  <Resource title='Serverless Lobbies' icon='server' iconType='duotone' href='/serverless-lobbies/introduction'>
+  <Resource title='Serverless Lobbies' icon={faServer} iconType='duotone' href='/serverless-lobbies/introduction'>
     Auto-scaling game lobbies boot up to meet demand.
   </Resource>
-  <Resource title='CDN' icon='globe' iconType='duotone' href='/cdn/introduction'>
+  <Resource title='CDN' icon={faGlobe} href='/cdn/introduction'>
     Versioned CDN lets you host assets and webpages with a provided or custom domain and managed SSL.
   </Resource>
-  <Resource title='Identity' icon='key' iconType='duotone' href='/identity/introduction'>
+  <Resource title='Identity' icon={faKey} href='/identity/introduction'>
     Allow identities to authenticate and play with friends across multiple games.
   </Resource>
 </ResourceGroup>
