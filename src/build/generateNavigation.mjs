@@ -1,17 +1,22 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
-import glob from 'fast-glob'
+import glob from 'fast-glob';
+import path from 'path';
 
 export async function generateNavigation() {
+  let routes = [];
+
+  // Process all navigation in globs
   let navigationFilenames = await glob(['**/_navigation.json'], {
     cwd: 'src/pages'
   });
-
-  let routes = [];
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
     routes.push(await buildRoute(path));
   }
+
+  // Sort by path descending to match most specific first
+  routes.sort((a, b) => b.prefix.length - a.prefix.length);
 
   await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
 }
@@ -19,10 +24,9 @@ export async function generateNavigation() {
 async function buildRoute(path) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
-
   let output = {
     prefix: `/${path}`,
-    feedback: input.feedback ?? false,
+    feedback: input.feedback ?? false
   };
 
   // Sidebar
@@ -54,10 +58,11 @@ async function buildRoute(path) {
   }
 
   // Tabs
-  if (path.startsWith('docs/')) {
-    output.tabs = docsTabs();
-  } else if (path.startsWith('tutorial/')) {
-    output.tabs = tutorialTabs();
+  let pathSplit = path.split('/');
+  if (pathSplit[0] === 'docs') {
+    output.tabs = docsTabs(pathSplit);
+  } else if (pathSplit[0] === 'tutorials') {
+    output.tabs = tutorialTabs(pathSplit);
   } else {
     output.tabs = null;
   }
@@ -65,78 +70,77 @@ async function buildRoute(path) {
   return output;
 }
 
-function docsTabs() {
-return [
+function docsTabs(path) {
+  return [
     {
       title: 'Overview',
-      href: '#',
-      current: true,
+      href: '/docs',
+      current: path.length == 1
     },
     {
       title: 'Matchmaker',
-      href: '#',
-      current: false,
+      href: '/docs/matchmaker',
+      current: path[1] === 'matchmaker'
     },
     {
       title: 'Serverless Lobbies',
-      href: '#',
-      current: false,
+      href: '/docs/serverless-lobbies',
+      current: path[1] === 'serverless-lobbies'
     },
     {
       title: 'CDN',
-      href: '#',
-      current: false,
+      href: '/docs/cdn',
+      current: path[1] === 'cdn'
     },
     {
       title: 'Identity',
-      href: '#',
-      current: false,
+      href: '/docs/identity',
+      current: path[1] === 'identity'
     },
     {
       title: 'KV',
-      href: '#',
-      current: false,
+      href: '/docs/kv',
+      current: path[1] === 'kv'
     },
     {
       title: 'Cloud',
-      href: '#',
-      current: false,
-    },
+      href: '/docs/cloud',
+      current: path[1] === 'cloud'
+    }
   ];
 }
 
-function tutorialTabs() {
-return [
+function tutorialTabs(path) {
+  return [
     {
       title: 'Overview',
-      href: '#',
-      current: true,
+      href: '/tutorials',
+      current: path.length == 1
     },
     {
       title: 'Unity',
-      href: '#',
-      current: false,
+      href: '/tutorials/unity',
+      current: path[1] === 'unity'
     },
     {
       title: 'Unreal Engine',
-      href: '#',
-      current: false,
+      href: '/tutorials/unreal',
+      current: path[1] === 'unreal'
     },
     {
       title: 'Godot',
-      href: '#',
-      current: false,
+      href: '/tutorials/godot',
+      current: path[1] === 'godot'
     },
     {
       title: 'HTML5',
-      href: '#',
-      current: false,
+      href: '/tutorials/html5',
+      current: path[1] === 'html5'
     },
     {
       title: 'Custom',
-      href: '#',
-      current: false,
-    },
+      href: '/tutorials/custom',
+      current: path[1] === 'custom'
+    }
   ];
-
 }
