@@ -2,16 +2,12 @@
   "feedback": true,
   "sidebar": {
     "groups": [
-      {
-        "title": "Overview",
-        "pages": [""]
-      },
-      {
+       {
         "title": "Concepts",
         "pages": [
           "concepts/game-guard",
           "concepts/protocols",
-          "concepts/ports",
+          "concepts/ports"
         ]
       }
     ]

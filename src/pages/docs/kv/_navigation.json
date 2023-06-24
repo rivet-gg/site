@@ -2,10 +2,6 @@
   "feedback": true,
   "sidebar": {
     "groups": [
-      {
-        "title": "Overview",
-        "pages": [""]
-      }
-    ]
+     ]
   }
 }

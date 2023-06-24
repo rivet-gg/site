@@ -27,44 +27,6 @@ export default function App({ Component, pageProps }) {
   let title = pageProps.title ?? page?.title ?? null;
   let description = pageProps.description ?? page?.description ?? null;
 
-  navigation.tabs = [
-    {
-      title: 'Overview',
-      href: '#',
-      current: true,
-    },
-    {
-      title: 'Matchmaker',
-      href: '#',
-      current: false,
-    },
-    {
-      title: 'Serverless Lobbies',
-      href: '#',
-      current: false,
-    },
-    {
-      title: 'CDN',
-      href: '#',
-      current: false,
-    },
-    {
-      title: 'Identity',
-      href: '#',
-      current: false,
-    },
-    {
-      title: 'KV',
-      href: '#',
-      current: false,
-    },
-    {
-      title: 'Cloud',
-      href: '#',
-      current: false,
-    },
-  ];
-
   return (
     <>
       <Head>
