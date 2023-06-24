@@ -23,11 +23,15 @@ export default function App({ Component, pageProps }) {
   let navigation = routes.find((route) => router.pathname.startsWith(route.prefix));
   if (!navigation) navigation = { feedback: true, pages:[]};
 
+  let page = navigation.pages.flatMap(x => x.links).find(page => page.href === router.pathname);
+  let title = pageProps.title ?? page?.title ?? null;
+  let description = pageProps.description ?? page?.description ?? null;
+
   return (
     <>
       <Head>
-        {router.pathname === '/' ? <title>Rivet</title> : <title>{`${pageProps.title} - Rivet`}</title>}
-        <meta name='description' content={pageProps.description} />
+        {title ? <title>{`${title} - Rivet`}</title> : <title>Rivet</title>}
+        <meta name='description' content={description} />
       </Head>
       <MDXProvider components={mdxComponents}>
         <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>

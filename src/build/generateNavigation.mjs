@@ -1,31 +1,37 @@
-import { writeFile, readFile } from 'fs/promises'
+import { writeFile, readFile } from 'fs/promises';
+import { remark } from 'remark';
 
 export async function generateNavigation() {
+  let routes = [await buildRoute('docs'), await buildRoute('tutorials')];
 
-  let routes = [
-    await buildRoute('docs'),
-    await buildRoute('tutorials'),
-  ];
-
-  await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8')
+  await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
 }
 
 async function buildRoute(path) {
   let navigation = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   // Update URLs
-  let outputPages = []
+  let outputPages = [];
   for (let inputSection of navigation.pages) {
     let outputSection = { title: inputSection.title, links: [] };
     outputPages.push(outputSection);
 
     for (let page of inputSection.links) {
       if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
-      let doc = await readFile(`./src/pages/${path}/${page}.mdx`)
+
+      let md = await readFile(`./src/pages/${path}/${page}.mdx`);
+
+      let ast = remark().parse(md);
+      let firstHeading = ast.children.find(node => node.type === 'heading');
+      let title = '?';
+      if (firstHeading) {
+        title = firstHeading.children[0].value;
+      }
+
       outputSection.links.push({
-        title: "Test",
-        href: `/${path}/${page}`,
-      })
+        title,
+        href: `/${path}/${page}`
+      });
     }
   }
 
