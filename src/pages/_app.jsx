@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         {router.pathname === '/' ? (
-          <title>Protocol API Reference</title>
+          <title>Rivet</title>
         ) : (
-          <title>{`${pageProps.title} - Protocol API Reference`}</title>
+          <title>{`${pageProps.title} - Rivet`}</title>
         )}
         <meta name="description" content={pageProps.description} />
       </Head>
