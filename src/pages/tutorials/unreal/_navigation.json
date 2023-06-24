@@ -1,0 +1,11 @@
+{
+  "feedback": true,
+  "sidebar": {
+    "groups": [
+      {
+        "title": "Starter",
+        "pages": ["starter"]
+      }
+    ]
+  }
+}

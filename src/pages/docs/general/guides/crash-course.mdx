@@ -1,0 +1,202 @@
+---
+title: "⏱️ 5 Minute Crash Course"
+---
+
+<Snippet file="beta-signup.mdx" />
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pBE7s-PK0j0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style={{marginLeft: 'auto', marginRight: 'auto'}}></iframe>
+
+## Step 1: Setup project
+
+### Create a game on the Rivet Dashboard
+
+Visit the [Rivet Dashboard](https://hub.rivet.gg/developer/dashboard) to create a new game.
+
+### Install the [Rivet CLI](https://github.com/rivet-gg/cli)
+
+Follow instructions [here](https://github.com/rivet-gg/cli#installing).
+
+<AccordionGroup>
+	<Accordion title="Can I do this with just a GUI?">
+		Yes. Everything in Rivet is built to be able to be access three ways: GUI, CLI, and API.
+
+		We're working on publishing a tutorial for this soon.
+	</Accordion>
+	<Accordion title="Can I automate this with APIs?">
+		Rivet's Cloud API can be managed with your [cloud token](/general/concepts/token-types#cloud). This is the same API we use internally and [in the CLI](https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368).
+
+		A dedicated library and specification will be published soon in order to build your own tooling.
+	</Accordion>
+</AccordionGroup>
+
+### Initialize the project
+
+Open your project's directory in a terminal and run:
+
+```bash
+rivet init --recommend
+```
+
+This will guide you through setting up your project with Rivet.
+
+<Accordion title="What does this do?">
+    - Linked your project to Rivet
+	- Creates `rivet.version.toml` to configure your deployed game. Read more about the Rivet version config [here](/general/concepts/version-config).
+	- Creates a dev token added to your `.env` to tell Rivet to mock API endpoints in development. Read more about dev tokens [here](/general/concepts/dev-tokens).
+</Accordion>
+
+### Write a `Dockerfile` for your server
+
+You'll need a `Dockerfile` to build and run your game server.
+
+<Accordion title="Unfamiliar with Dockerfiles?">
+	- [Boilerplate `Dockerfiles`](https://github.com/gauthamp10/dockerfile-boilerplates) has one already written for you
+	- [Dockerfile Crash Course](https://docker-curriculum.com/#dockerfile) will teach you how to write your own `Dockerfile` quickly
+	- Join our [Discord](https://discord.gg/BG2vqsJczH) and we'll write your `Dockerfile` for you!
+</Accordion>
+
+---
+
+## Step 2: Integrate Rivet Matchmaker
+
+### Install the Rivet library
+
+<Tabs>
+	<Tab title="TypeScript">
+		**Yarn**
+		```bash
+		yarn add @rivet-gg/api
+		```
+
+		**NPM**
+		```bash
+		npm install --save @rivet-gg/api
+		```
+	</Tab>
+	<Tab title="C#">
+		Coming soon
+	</Tab>
+	<Tab title="C++">
+		Coming soon
+	</Tab>
+	<Tab title="Java">
+		Coming soon
+	</Tab>
+	<Tab title="Rust">
+	</Tab>
+</Tabs>
+
+### Update your client
+
+Copy the following pseudocode into the appropriate places in your source:
+
+<Tabs>
+	<Tab title="TypeScript">
+		```typescript
+		import { RivetClient } from "@rivet-gg/api";
+		let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+
+		// Find a lobby (a new lobby will automatically be created on demand if needed)
+		let res = await rivet.matchmaker.lobbies.find({ gameModes: ["default"] });
+
+		// Connect to the lobby (Rivet automatically manages your SSL)
+		let ws = new WebSocket(`wss://${res.ports["default"].host}/?token=${res.player.token}`);
+		```
+
+		<Snippet file="env-public-token-web.mdx"></Snippet>
+	</Tab>
+	<Tab title="C#">
+		Coming soon
+	</Tab>
+	<Tab title="C++">
+		Coming soon
+	</Tab>
+	<Tab title="Java">
+		Coming soon
+	</Tab>
+	<Tab title="Rust">
+		Coming soon
+	</Tab>
+	<Tab title="Raw HTTP">
+		**curl**
+
+		Coming soon
+
+		**HTTPie**
+
+		TOOD
+
+		**Postman**
+
+		Coming soon
+	</Tab>
+</Tabs>
+
+### Update your server
+
+Copy the following pseudocode into the appropriate places in your source:
+
+<Tabs>
+	<Tab title="TypeScript">
+		```typescript
+		// `RIVET_LOBBY_TOKEN` is automatically added to the environment by Rivet.
+		import { RivetClient } from "@rivet-gg/api";
+		let rivet = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
+
+		// Tell Rivet your server is ready. This gives you time to load maps and
+		// other data before accepting players.
+		rivet.matchmaker.lobbies.ready().catch(() => process.exit(1));
+
+		myGameServer.on("connect", await (socket) => {
+			let playerToken = socket.request.query.token;
+			
+			// Notify the matchmaker that the player connected. This can be
+			// called only once per player token. This will throw an error and
+			// close the socket if the player token is already used or invalid.
+			await rivet.matchmaker.players.connected({ playerToken }).catch(err => socket.close());
+
+			socket.on("close", async () => {
+				// Notify the matchmaker that the player disconnected.
+				await rivet.matchmaker.players.disconnected({ playerToken });
+			});
+		});
+		```
+
+		<Snippet file="env-lobby-token.mdx"></Snippet>
+	</Tab>
+	<Tab title="C#">
+		Coming soon
+	</Tab>
+	<Tab title="C++">
+		Coming soon
+	</Tab>
+	<Tab title="Java">
+		Coming soon
+	</Tab>
+	<Tab title="Rust">
+		Coming soon
+	</Tab>
+	<Tab title="Raw HTTP">
+		**curl**
+
+		Coming soon
+
+		**HTTPie**
+
+		TOOD
+
+		**Postman**
+
+		Coming soon
+	</Tab>
+</Tabs>
+
+---
+
+## Step 3: Publish your game
+
+```bash
+rivet deploy --namespace prod
+```
+
+This will print a URL ending in `rivet.game`. If you are hosting your game on Rivet CDN, visit that URL to play your game.

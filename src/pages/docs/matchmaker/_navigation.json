@@ -1,0 +1,20 @@
+{
+  "feedback": true,
+  "sidebar": {
+    "groups": [
+      {
+        "title": "Overview",
+        "pages": [""]
+      },
+      {
+        "title": "Concepts",
+        "pages": [
+          "concepts/finding-lobby",
+          "concepts/lobby-env",
+          "concepts/auto-region-selection",
+          "concepts/competitive-matchmaking"
+        ]
+      }
+    ]
+  }
+}

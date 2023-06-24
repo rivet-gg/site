@@ -1,0 +1,60 @@
+---
+title: "Handling game tokens"
+---
+
+All Rivet API clients accept a `token` parameter upon initialization. This token is used to identify:
+
+- What game & namespace the lobby or game client belongs to and
+- What your API client is allowed to do.
+
+For example:
+
+<Tabs>
+	<Tab title="TypeScript">
+        ```typescript
+		let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+        ```
+	</Tab>
+	<Tab title="C#">
+		Coming soon
+	</Tab>
+	<Tab title="C++">
+		Coming soon
+	</Tab>
+	<Tab title="Java">
+		Coming soon
+	</Tab>
+	<Tab title="Rust">
+        Coming soon
+	</Tab>
+</Tabs>
+
+This document will talk about handling [public](/general/concepts/token-types#namespace-public), [matchmaker lobby](/general/concepts/token-types#matchmaker-lobby), and [development](/general/concepts/token-types#namespace-development) tokens for your game.
+
+## Server-side lobby tokens
+
+All lobby servers running on Rivet are automatically provided a unique [lobby token](/general/concepts/token-types#matchmaker-lobby) in the `RIVET_LOBBY_TOKEN` environment variable. No extra work is required.
+
+<Warning>Make sure that your lobby token is never leaked. It has permission to perform sensitive actions.</Warning>
+
+## Public namespace tokens
+
+If you are building an HTML5 game, skip to [tokenless authentication for web](#tokenless-authentication-for-web).
+
+To connect to your game, you need to generate a [public namespace token](/general/concepts/token-types#namespace-public). Do that by navigating to **Developer > My Game > API > Create Public Token**.
+
+![Create public token](/images/create-public-token.png)
+
+This token needs to be included with the game client.
+
+## Tokenless authentication for web
+
+Rivet can authenticate web browsers without any tokens by what domain API requests are sent from. In this case, no token needs to be provided at all to the API client.
+
+See [here](/general/concepts/tokenless-authentication-web) for more details.
+
+## Development tokens
+
+When developing your game locally, you can still use the Rivet API by using development tokens. These act as real tokens whenever possible and return mock responses when needed.
+
+See [here](/general/concepts/dev-tokens) for more details.
