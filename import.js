@@ -19,9 +19,21 @@ fs.createReadStream(csvPath)
     // download image
     const imageUrl = row['Main Image'];
     if (imageUrl.length == 0) {
-        throw new Error(`No image for ${row['Name']}`);
+      throw new Error(`No image for ${row['Name']}`);
     }
     await downloadImage(imageUrl, `${blogPath}/image.png`);
+
+    const { unified } = await import('unified');
+    const { default: rehypeParse} = await import('rehype-parse');
+    const {default:rehypeRemark} = await import('rehype-remark');
+    const {default:stringify} = await import('remark-stringify');
+
+    const processor = unified()
+      .use(rehypeParse, { fragment: true })
+      .use(rehypeRemark)
+      .use(stringify);
+
+    let mdOutput = await processor.process(row['Post Body']);
 
     // create blog post file
     fs.writeFileSync(
@@ -40,7 +52,7 @@ export const meta = {
 
 export default props => <ArticleLayout image={image} meta={meta} {...props} />;
 
-${/*row['Post Body']*/ "Hell, world!"}
+${mdOutput}
       `
     );
   });

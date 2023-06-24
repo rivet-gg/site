@@ -12,5 +12,36 @@ export const meta = {
 
 export default props => <ArticleLayout image={image} meta={meta} {...props} />;
 
-Hell, world!
+Competitive multiplayer games frequently use UDP sockets and many casual games rely on TCP sockets so they don't have to worry about packet loss.
+
+Previously, Rivet Game Guard supported proxying WebSocket traffic. Starting today, Game Guard also proxies TCP+TLS & UDP traffic out of the box using the same, easy-to-use APIs provided out of the box.
+
+This provides DDoS mitigation out of the box to your game sockets no matter the protocol you use.
+
+‍
+
+**TLS support**
+
+Additionally, Rivet Game Guard enhances TCP socket security with automatic SSL/TLS termination [here](https://docs.rivet.gg/serverless-lobbies/concepts/game-guard#ssl-tls-termination). Now you can get the benefits of TLS certificates without the hassle of frequently updating them.
+
+‍
+
+**What about **[**WebRTC**](https://webrtc.org/)**, **[**ENet**](http://sauerbraten.org/enet/)**, and **[**KCP**](https://github.com/skywind3000/kcp/blob/master/README.en.md)**?**
+
+These protocols are also supported by Game Guard, since these protocols are all built on top of TCP & UDP under the hood.
+
+‍
+
+**How do I add support?**
+
+Adding TCP+TLS & UDP support is as easy as setting *protocol* to *udp*, *tcp\_tls*, or *tcp*.
+
+‍
+
+![](https://uploads-ssl.webflow.com/63c5a99869556daf7e8d7e4c/64168eea36dcd3667de957c7_ray-so-export%20\(15\).png)
+
+‍
+
+Learn more about all of Rivet's supported protocols [here](https://docs.rivet.gg/serverless-lobbies/concepts/protocols).
+
       
