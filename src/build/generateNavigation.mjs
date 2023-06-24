@@ -60,10 +60,10 @@ async function buildRoute(path) {
   // Tabs
   let pathSplit = path.split('/');
   if (pathSplit[0] === 'docs') {
-    output.tabsTitle = "Documentation";
+    output.tabsTitle = 'Documentation';
     output.tabs = docsTabs(pathSplit);
   } else if (pathSplit[0] === 'tutorials') {
-    output.tabsTitle = "Tutorials";
+    output.tabsTitle = 'Tutorials';
     output.tabs = tutorialTabs(pathSplit);
   } else {
     output.tabs = null;

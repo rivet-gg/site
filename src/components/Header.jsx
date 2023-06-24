@@ -23,20 +23,31 @@ import { ModeToggle } from '@/components/ModeToggle';
 import { MobileSearch, Search } from '@/components/Search';
 
 const solutions = [
-  { name: 'Tutorials', description: 'Hands on learning with your engine of choice', href: '/tutorials', icon: ChartPieIcon },
-  { name: 'Documentation', description: 'Read about how to use Rivet\'s services', href: '/docs', icon: CursorArrowRaysIcon },
-]
+  {
+    name: 'Tutorials',
+    description: 'Hands on learning with your engine of choice',
+    href: '/tutorials',
+    icon: ChartPieIcon
+  },
+  {
+    name: 'Documentation',
+    description: "Read about how to use Rivet's services",
+    href: '/docs',
+    icon: CursorArrowRaysIcon
+  }
+];
 const callsToAction = [
   { name: 'YouTube', href: 'https://youtube.com/@rivet-gg', icon: PlayCircleIcon },
-  { name: 'Community', href: '/support', icon: PhoneIcon },
-]
+  { name: 'Community', href: '/support', icon: PhoneIcon }
+];
 
 function TopLevelNavItem({ href, children }) {
   return (
     <li>
       <Link
         href={href}
-        className='text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
+        className='text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+      >
         {children}
       </Link>
     </li>
@@ -46,8 +57,7 @@ function TopLevelNavItem({ href, children }) {
 export function TopLevelNavPopover({ children }) {
   return (
     <Popover className='relative'>
-      <Popover.Button
-        className='inline-flex items-center gap-x-1 text-sm leading-5 -mr-1 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
+      <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
         <span>{children}</span>
         <ChevronDownIcon className='h-5 w-5' aria-hidden='true' />
       </Popover.Button>
@@ -59,7 +69,8 @@ export function TopLevelNavPopover({ children }) {
         enterTo='opacity-100 translate-y-0'
         leave='transition ease-in duration-150'
         leaveFrom='opacity-100 translate-y-0'
-        leaveTo='opacity-0 translate-y-1'>
+        leaveTo='opacity-0 translate-y-1'
+      >
         <Popover.Panel className='absolute z-10 mt-5 flex w-screen max-w-max'>
           <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
             <div className='p-4'>
@@ -86,7 +97,8 @@ export function TopLevelNavPopover({ children }) {
                 <a
                   key={item.name}
                   href={item.href}
-                  className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'>
+                  className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'
+                >
                   <item.icon className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
                   {item.name}
                 </a>
@@ -125,7 +137,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       style={{
         '--bg-opacity-light': bgOpacityLight,
         '--bg-opacity-dark': bgOpacityDark
-      }}>
+      }}
+    >
       {/* Main header */}
       <div className='flex h-14 items-center justify-between gap-12 px-6 lg:z-30'>
         <div
@@ -173,10 +186,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
 
       {/* Tabs */}
       {navigation.tabs && (
-        <div className='h-12 px-6 overflow-x-scroll hide-scrollbar'>
+        <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
           <nav className='flex h-full space-x-8'>
             {/* Title */}
-            <div className='text-md font-semibold text-zinc-900 dark:text-white flex items-center'>{navigation.tabsTitle}</div>
+            <div className='text-md flex items-center font-semibold text-zinc-900 dark:text-white'>
+              {navigation.tabsTitle}
+            </div>
 
             {/* Tabs */}
             {navigation.tabs.map(tab => (
@@ -185,11 +200,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 href={tab.href}
                 className={classNames(
                   tab.current
-                    ? 'text-zinc-900 border-zinc-900 dark:text-white dark:border-white'
-                    : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 hover:border-zinc-900 dark:hover:text-white dark:hover:border-white',
+                    ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
+                    : 'border-transparent text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white',
                   'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
-                aria-current={tab.current ? 'page' : undefined}>
+                aria-current={tab.current ? 'page' : undefined}
+              >
                 {tab.title}
               </a>
             ))}

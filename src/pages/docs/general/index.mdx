@@ -1,5 +1,12 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
-import { faGraduationCap, faBooks, faChessKnight, faServer, faGlobe, faKey } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faGraduationCap,
+  faBooks,
+  faChessKnight,
+  faServer,
+  faGlobe,
+  faKey
+} from '@fortawesome/pro-solid-svg-icons';
 
 # Introduction
 
@@ -19,16 +26,17 @@ Simple APIs for serverless lobbies, matchmaking, CDN, and other features managed
 - No downtime deploys with easy rollbacks
 
 <ResourceGroup>
-  <Resource
-    title='5 Minute Crash Course'
-    icon={faGraduationCap}
-        href='/general/guides/crash-course'
-  />
+  <Resource title='5 Minute Crash Course' icon={faGraduationCap} href='/general/guides/crash-course' />
   <Resource title='Libraries' icon={faBooks} href='/general/libraries' />
   <Resource title='Matchmaker' icon={faChessKnight} href='/matchmaker/introduction'>
     Flexible matchmaker for placing players in lobbies with no wait times.
   </Resource>
-  <Resource title='Serverless Lobbies' icon={faServer} iconType='duotone' href='/serverless-lobbies/introduction'>
+  <Resource
+    title='Serverless Lobbies'
+    icon={faServer}
+    iconType='duotone'
+    href='/serverless-lobbies/introduction'
+  >
     Auto-scaling game lobbies boot up to meet demand.
   </Resource>
   <Resource title='CDN' icon={faGlobe} href='/cdn/introduction'>

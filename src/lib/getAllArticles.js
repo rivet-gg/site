@@ -1,24 +1,22 @@
-import glob from 'fast-glob'
-import * as path from 'path'
+import glob from 'fast-glob';
+import * as path from 'path';
 
 async function importArticle(articleFilename) {
-  let { meta, default: component } = await import(
-    `../pages/blog/${articleFilename}`
-  )
+  let { meta, default: component } = await import(`../pages/blog/${articleFilename}`);
 
   return {
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
     ...meta,
-    component,
-  }
+    component
+  };
 }
 
 export async function getAllArticles() {
   let articleFilenames = await glob(['*.mdx', '*/index.mdx'], {
-    cwd: path.join(process.cwd(), 'src/pages/blog'),
-  })
+    cwd: path.join(process.cwd(), 'src/pages/blog')
+  });
 
-  let articles = await Promise.all(articleFilenames.map(importArticle))
+  let articles = await Promise.all(articleFilenames.map(importArticle));
 
-  return articles.sort((a, z) => new Date(z.date) - new Date(a.date))
+  return articles.sort((a, z) => new Date(z.date) - new Date(a.date));
 }

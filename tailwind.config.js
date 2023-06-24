@@ -37,10 +37,9 @@ module.exports = {
         15: '0.15'
       },
       spacing: {
-        26: '6.5rem',
+        26: '6.5rem'
       }
     }
-
   },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')]
 };

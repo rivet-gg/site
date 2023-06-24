@@ -37,7 +37,10 @@ const patterns = [
 function ResourceIcon({ icon }) {
   return (
     <div className='flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-emerald-300/10 dark:group-hover:ring-emerald-400'>
-      <FontAwesomeIcon icon={icon} className='h-5 w-5 fill-zinc-700/10 stroke-zinc-700 transition-colors duration-300 group-hover:stroke-zinc-900 dark:fill-white/10 dark:stroke-zinc-400 dark:group-hover:fill-emerald-300/10 dark:group-hover:stroke-emerald-400' />
+      <FontAwesomeIcon
+        icon={icon}
+        className='h-5 w-5 fill-zinc-700/10 stroke-zinc-700 transition-colors duration-300 group-hover:stroke-zinc-900 dark:fill-white/10 dark:stroke-zinc-400 dark:group-hover:fill-emerald-300/10 dark:group-hover:stroke-emerald-400'
+      />
     </div>
   );
 }
@@ -63,7 +66,8 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
       />
       <motion.div
         className='absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay transition duration-300 group-hover:opacity-100'
-        style={style}>
+        style={style}
+      >
         <GridPattern
           width={72}
           height={56}
@@ -90,7 +94,8 @@ export function Resource({ children, ...props }) {
     <div
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5'>
+      className='group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5'
+    >
       <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>

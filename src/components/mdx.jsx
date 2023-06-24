@@ -11,7 +11,7 @@ export { Snippet } from '@/components/Snippet';
 export { ResourceGroup, Resource } from '@/components/Resources';
 
 // TODO: Phase this out with our own custom elements
-export * from "@mintlify/components";
+export * from '@mintlify/components';
 
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;

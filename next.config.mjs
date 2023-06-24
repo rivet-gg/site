@@ -23,10 +23,10 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true
-  },
+  }
 };
 
-export default async function() {
+export default async function () {
   await generateNavigation();
 
   return withSearch(withMDX(nextConfig));
