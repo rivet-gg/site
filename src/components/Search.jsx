@@ -103,7 +103,7 @@ function HighlightQuery({ text, query }) {
 }
 
 function SearchResult({ result, resultIndex, autocomplete, collection, query }) {
-    let id = useId();
+  let id = useId();
 
   // TODO: Improve our navigation module for this to work again
   // let sectionTitle = navigation.sidebar.groups.find(section =>
@@ -153,7 +153,6 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
       )}
     </li>
   );
-  
 }
 
 function SearchResults({ autocomplete, query, collection }) {

@@ -60,6 +60,8 @@ export default function (nextConfig = {}) {
               let url = file === 'index.mdx' ? '/' : `/${file.replace(/\.mdx$/, '')}`;
               let mdx = fs.readFileSync(path.join(pagesDir, file), 'utf8');
 
+              // console.log('Processing', url);
+
               let sections = [];
 
               if (cache.get(file)?.[0] === mdx) {
