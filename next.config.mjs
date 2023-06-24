@@ -18,11 +18,12 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   images: {
+    // For static output
     unoptimized: true
   },
   experimental: {
     scrollRestoration: true
-  }
+  },
 };
 
 export default async function() {

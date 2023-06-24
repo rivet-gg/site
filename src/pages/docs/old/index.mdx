@@ -1,5 +1,5 @@
 import { Guides } from '@/components/Guides';
-import { Resources } from '@/components/Resources';
+import { ResourceGroup, Resource } from '@/components/Resources';
 import { HeroPattern } from '@/components/HeroPattern';
 
 export const description =
@@ -31,4 +31,13 @@ To get started, create a new application in your [developer settings](#), then r
 
 <Guides />
 
-<Resources />
+import { ChatBubbleIcon } from '@/components/icons/ChatBubbleIcon';
+import { EnvelopeIcon } from '@/components/icons/EnvelopeIcon';
+import { UserIcon } from '@/components/icons/UserIcon';
+import { UsersIcon } from '@/components/icons/UsersIcon';
+
+<ResourceGroup>
+  <Resource href='/contacts' name='Contacts' icon={UserIcon} />
+  <Resource href='/contacts' name='Contacts' icon={ChatBubbleIcon} />
+  <Resource href='/contacts' name='Contacts' icon={ChatBubbleIcon} />
+</ResourceGroup>

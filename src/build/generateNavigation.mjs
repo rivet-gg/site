@@ -75,9 +75,9 @@ async function buildRoute(path) {
 function docsTabs(path) {
   return [
     {
-      title: 'Overview',
-      href: '/docs',
-      current: path.length == 1
+      title: 'General',
+      href: '/docs/general',
+      current: path[1] === 'general'
     },
     {
       title: 'Matchmaker',
@@ -115,7 +115,7 @@ function docsTabs(path) {
 function tutorialTabs(path) {
   return [
     {
-      title: 'Overview',
+      title: 'Introduction',
       href: '/tutorials',
       current: path.length == 1
     },
