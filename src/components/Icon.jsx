@@ -35,7 +35,7 @@ export function Icon({ color = 'blue', icon, className, ...props }) {
       className={clsx(className, iconStyles[color])}
       {...props}
     >
-      <IconComponent id={id} color={color} />
+      {IconComponent ? <IconComponent id={id} color={color} /> : null}
     </svg>
   )
 }
