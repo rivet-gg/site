@@ -159,6 +159,8 @@ function NavigationGroup({ group, className }) {
 }
 
 export function Navigation({ navigation, ...props }) {
+  let overviewGroup = { title: '', pages: [{ title: 'Overview', href: navigation.prefix }] };
+
   return (
     <nav {...props}>
       <ul role='list'>
@@ -170,7 +172,7 @@ export function Navigation({ navigation, ...props }) {
 
         {/* Sidebar */}
         {navigation.sidebar
-          ? navigation.sidebar.groups.map((group, groupIndex) => (
+          ? [overviewGroup, ...navigation.sidebar.groups].map((group, groupIndex) => (
               <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
             ))
           : null}

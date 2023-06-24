@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
   let router = useRouter();
 
   let navigation = routes.find(route => router.pathname.startsWith(route.prefix));
-  if (!navigation) navigation = { feedback: false, pages: [] };
+  if (!navigation) navigation = { prefix: '/', feedback: false };
 
   console.log('Navigated', navigation);
 
