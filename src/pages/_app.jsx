@@ -23,8 +23,6 @@ export default function App({ Component, pageProps }) {
   let navigation = routes.find(route => router.pathname.startsWith(route.prefix));
   if (!navigation) navigation = { prefix: '/', feedback: false };
 
-  console.log('Navigated', navigation);
-
   let page = navigation.sidebar
     ? navigation.sidebar.groups.flatMap(x => x.pages).find(page => page.href === router.pathname)
     : null;
