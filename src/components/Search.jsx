@@ -104,7 +104,8 @@ function HighlightQuery({ text, query }) {
 }
 
 function SearchResult({ result, resultIndex, autocomplete, collection, query }) {
-  let id = useId();
+  return (<div>TODO</div>);
+  {/* let id = useId();
 
   let sectionTitle = navigation.sidebar.groups.find(section =>
     section.pages.find(link => link.href === result.url.split('#')[0])
@@ -151,7 +152,7 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
         </div>
       )}
     </li>
-  );
+  ); */}
 }
 
 function SearchResults({ autocomplete, query, collection }) {
