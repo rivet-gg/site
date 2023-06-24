@@ -13,10 +13,10 @@ async function buildRoute(path) {
   // Update URLs
   let outputPages = [];
   for (let inputSection of navigation.pages) {
-    let outputSection = { title: inputSection.title, links: [] };
+    let outputSection = { title: inputSection.title, pages: [] };
     outputPages.push(outputSection);
 
-    for (let page of inputSection.links) {
+    for (let page of inputSection.pages) {
       if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
 
       let md = await readFile(`./src/pages/${path}/${page}.mdx`);
@@ -28,7 +28,7 @@ async function buildRoute(path) {
         title = firstHeading.children[0].value;
       }
 
-      outputSection.links.push({
+      outputSection.pages.push({
         title,
         href: `/${path}/${page}`
       });

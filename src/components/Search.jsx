@@ -106,8 +106,8 @@ function HighlightQuery({ text, query }) {
 function SearchResult({ result, resultIndex, autocomplete, collection, query }) {
   let id = useId();
 
-  let sectionTitle = navigation.find(section =>
-    section.links.find(link => link.href === result.url.split('#')[0])
+  let sectionTitle = navigation.pages.find(section =>
+    section.pages.find(link => link.href === result.url.split('#')[0])
   )?.title;
   let hierarchy = [sectionTitle, result.pageTitle].filter(Boolean);
 

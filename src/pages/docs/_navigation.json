@@ -3,11 +3,11 @@
   "pages": [
     {
       "title": "Guides",
-      "links": ["quickstart", "sdks", "authentication", "pagination", "errors", "webhooks"]
+      "pages": ["quickstart", "sdks", "authentication", "pagination", "errors", "webhooks"]
     },
     {
       "title": "Resources",
-      "links": ["contacts", "conversations", "messages", "groups", "attachments"]
+      "pages": ["contacts", "conversations", "messages", "groups", "attachments"]
     }
   ]
 }

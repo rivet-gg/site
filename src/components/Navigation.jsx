@@ -65,7 +65,7 @@ function VisibleSectionHighlight({ group, pathname }) {
   let itemHeight = remToPx(2);
   let height = isPresent ? Math.max(1, visibleSections.length) * itemHeight : itemHeight;
   let top =
-    group.links.findIndex(link => link.href === pathname) * itemHeight +
+    group.pages.findIndex(link => link.href === pathname) * itemHeight +
     firstVisibleSectionIndex * itemHeight;
 
   return (
@@ -83,7 +83,7 @@ function VisibleSectionHighlight({ group, pathname }) {
 function ActivePageMarker({ group, pathname }) {
   let itemHeight = remToPx(2);
   let offset = remToPx(0.25);
-  let activePageIndex = group.links.findIndex(link => link.href === pathname);
+  let activePageIndex = group.pages.findIndex(link => link.href === pathname);
   let top = offset + activePageIndex * itemHeight;
 
   return (
@@ -108,7 +108,7 @@ function NavigationGroup({ group, className }) {
     isInsideMobileNavigation
   );
 
-  let isActiveGroup = group.links.findIndex(link => link.href === router.pathname) !== -1;
+  let isActiveGroup = group.pages.findIndex(link => link.href === router.pathname) !== -1;
 
   return (
     <li className={clsx('relative mt-6', className)}>
@@ -124,7 +124,7 @@ function NavigationGroup({ group, className }) {
           {isActiveGroup && <ActivePageMarker group={group} pathname={router.pathname} />}
         </AnimatePresence>
         <ul role='list' className='border-l border-transparent'>
-          {group.links.map(link => (
+          {group.pages.map(link => (
             <motion.li key={link.href} layout='position' className='relative'>
               <NavLink href={link.href} active={link.href === router.pathname}>
                 {link.title}
@@ -165,7 +165,7 @@ export function Navigation({ navigation, ...props }) {
   return (
     <nav {...props}>
       <ul role='list'>
-        <TopLevelNavItem href='/tutorials'>Tutorials</TopLevelNavItem>
+        <TopLevelNavItem href='/tutorials'>Learn</TopLevelNavItem>
         <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
