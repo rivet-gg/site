@@ -81,7 +81,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
           <ModeToggle />
         </div>
         <div className="hidden min-[416px]:contents">
-          <Button href="#">Sign in</Button>
+          <Button href="https://hub.rivet.gg" target="_blank">Open Rivet</Button>
         </div>
       </div>
     </motion.div>

@@ -223,8 +223,8 @@ export function Navigation(props) {
           />
         ))}
         <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
-          <Button href="#" variant="filled" className="w-full">
-            Sign in
+          <Button href="https://hub.rivet.gg" target="_blank" variant="filled" className="w-full">
+            Open Rivet
           </Button>
         </li>
       </ul>
