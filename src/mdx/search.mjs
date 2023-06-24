@@ -57,7 +57,7 @@ export default function (nextConfig = {}) {
 
             let files = glob.sync('**/*.mdx', { cwd: pagesDir });
             let data = files.map(file => {
-              let url = file === 'index.mdx' ? '/' : `/${file.replace(/\.mdx$/, '')}`;
+              let url = `/${file.replace(/\/index\.mdx$/, '').replace(/\.mdx$/, '')}`;
               let mdx = fs.readFileSync(path.join(pagesDir, file), 'utf8');
 
               // console.log('Processing', url);
