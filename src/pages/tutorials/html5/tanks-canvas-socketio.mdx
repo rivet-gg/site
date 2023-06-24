@@ -48,21 +48,42 @@ This will open your browser to http://localhost:8080. Verify the game works.
 Run the following command to setup your project:
 
 <Tabs>
-  <Tab title='Bash'>
-    ```bash rivet init \ --recommend \ --matchmaker \ --matchmaker-port 3000 \ --matchmaker-dockerfile
-    Dockerfile \ --cdn \ --cdn-build-command "npm install && npm run build:client:prod" \ --cdn-build-output
-    ./dist/ ```
-  </Tab>
-  <Tab title='Powershell'>
-    ```powershell rivet init ` --recommend ` --matchmaker ` --matchmaker-port 3000 ` --matchmaker-dockerfile
-    Dockerfile ` --cdn ` --cdn-build-command "npm install && npm run build:client:prod" ` --cdn-build-output
-    ./dist/ ```
-  </Tab>
-  <Tab title='CMD'>
-    ```batch rivet init ^ --recommend ^ --matchmaker ^ --matchmaker-port 3000 ^ --matchmaker-dockerfile
-    Dockerfile ^ --cdn ^ --cdn-build-command "npm install && npm run build:client:prod" ^ --cdn-build-output
-    ./dist/ ```
-  </Tab>
+    <Tab title="Bash">
+        ```bash
+        rivet init \
+            --recommend \
+            --matchmaker \
+            --matchmaker-port 3000 \
+            --matchmaker-dockerfile Dockerfile \
+            --cdn \
+            --cdn-build-command "npm install && npm run build:client:prod" \
+            --cdn-build-output ./dist/
+        ```
+    </Tab>
+    <Tab title="Powershell">
+        ```powershell
+        rivet init `
+            --recommend `
+            --matchmaker `
+            --matchmaker-port 3000 `
+            --matchmaker-dockerfile Dockerfile `
+            --cdn `
+            --cdn-build-command "npm install && npm run build:client:prod" `
+            --cdn-build-output ./dist/
+        ```
+    </Tab>
+    <Tab title="CMD">
+        ```batch
+        rivet init ^
+            --recommend ^
+            --matchmaker ^
+            --matchmaker-port 3000 ^
+            --matchmaker-dockerfile Dockerfile ^
+            --cdn ^
+            --cdn-build-command "npm install && npm run build:client:prod" ^
+            --cdn-build-output ./dist/
+        ```
+    </Tab>
 </Tabs>
 
 <Accordion title="What did this do?">
