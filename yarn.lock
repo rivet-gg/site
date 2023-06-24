@@ -87,14 +87,14 @@ __metadata:
 
 "@fortawesome/fontawesome-common-types@npm:6.4.0":
   version: 6.4.0
-  resolution: "@fortawesome/fontawesome-common-types@npm:6.4.0"
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.4.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-common-types%2F-%2F6.4.0%2Ffontawesome-common-types-6.4.0.tgz"
   checksum: a9b79136caa615352bd921cfe2710516321b402cd76c3f0ae68e579a7e3d7645c5a5c0ecd7516c0b207adeeffd1d2174978638d8c0d3c8c937d66fca4f2ff556
   languageName: node
   linkType: hard
 
 "@fortawesome/fontawesome-svg-core@npm:^6.4.0":
   version: 6.4.0
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.4.0"
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.4.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-svg-core%2F-%2F6.4.0%2Ffontawesome-svg-core-6.4.0.tgz"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.4.0
   checksum: 5d4e6c15f814f5ce29053b666d0c7d194dc8ba173d128a38cc5856403a09d4e817e54956d30ed8d48d621f2f5ebcc71756f4e8fe5c5a091c636fc728fcb2362b
@@ -110,7 +110,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/react-fontawesome@npm:latest":
+"@fortawesome/react-fontawesome@latest":
   version: 0.2.0
   resolution: "@fortawesome/react-fontawesome@npm:0.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Freact-fontawesome%2F-%2F0.2.0%2Freact-fontawesome-0.2.0.tgz"
   dependencies:
@@ -880,11 +880,11 @@ __metadata:
   linkType: hard
 
 "aria-query@npm:^5.1.3":
-  version: 5.2.1
-  resolution: "aria-query@npm:5.2.1"
+  version: 5.3.0
+  resolution: "aria-query@npm:5.3.0"
   dependencies:
     dequal: ^2.0.3
-  checksum: fdb7a337d97acf4dae831e4c2c786233aca5ccb779a02c10fe65a65af9849f6e9868073593313ab52b7b0d9817e05cfb22a5cd43ecf22a8e7f2abea2268bdac9
+  checksum: 305bd73c76756117b59aba121d08f413c7ff5e80fa1b98e217a3443fcddb9a232ee790e24e432b59ae7625aebcf4c47cb01c2cac872994f0b426f5bdfcd96ba9
   languageName: node
   linkType: hard
 
@@ -1378,6 +1378,17 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  languageName: node
+  linkType: hard
+
+"csv-parser@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "csv-parser@npm:3.0.0"
+  dependencies:
+    minimist: ^1.2.0
+  bin:
+    csv-parser: bin/csv-parser
+  checksum: adc9d67d9f185249825570778c24d13004625301655330f6b735a052b9fdfbe1a239a014afb1f89939e0626ee573718f71f9f14164db7c17e4bcb2f38d6a162b
   languageName: node
   linkType: hard
 
@@ -2796,7 +2807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-core-module@npm:^2.11.0, is-core-module@npm:^2.9.0":
+"is-core-module@npm:^2.11.0, is-core-module@npm:^2.12.0, is-core-module@npm:^2.9.0":
   version: 2.12.1
   resolution: "is-core-module@npm:2.12.1"
   dependencies:
@@ -3495,9 +3506,9 @@ __metadata:
   linkType: hard
 
 "memoize-one@npm:^4.0.0":
-  version: 4.1.0
-  resolution: "memoize-one@npm:4.1.0"
-  checksum: 5a0c5a0795c4af01649797dc7a417d441edda6e5933510aebd47b57a1ea84d31c42092aee03b0d1d969c102b57d45ba673b593228cd507c82e577a69847dfbae
+  version: 4.0.3
+  resolution: "memoize-one@npm:4.0.3"
+  checksum: addd18c046542f57440ba70bf8ebd48663d17626cade681f777522ef70900a87ec72c5041bed8ece4f6d40a2cb58803bae388b50a4b740d64f36bcda20c147b7
   languageName: node
   linkType: hard
 
@@ -5028,15 +5039,15 @@ __metadata:
   linkType: hard
 
 "resolve@npm:^1.1.7, resolve@npm:^1.22.0, resolve@npm:^1.22.1, resolve@npm:^1.22.2":
-  version: 1.22.2
-  resolution: "resolve@npm:1.22.2"
+  version: 1.22.3
+  resolution: "resolve@npm:1.22.3"
   dependencies:
-    is-core-module: ^2.11.0
+    is-core-module: ^2.12.0
     path-parse: ^1.0.7
     supports-preserve-symlinks-flag: ^1.0.0
   bin:
     resolve: bin/resolve
-  checksum: 7e5df75796ebd429445d102d5824482ee7e567f0070b2b45897b29bb4f613dcbc262e0257b8aeedb3089330ccaea0d6a0464df1a77b2992cf331dcda0f4cb549
+  checksum: fb834b81348428cb545ff1b828a72ea28feb5a97c026a1cf40aa1008352c72811ff4d4e71f2035273dc536dcfcae20c13604ba6283c612d70fa0b6e44519c374
   languageName: node
   linkType: hard
 
@@ -5054,15 +5065,15 @@ __metadata:
   linkType: hard
 
 "resolve@patch:resolve@^1.1.7#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.2#~builtin<compat/resolve>":
-  version: 1.22.2
-  resolution: "resolve@patch:resolve@npm%3A1.22.2#~builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
+  version: 1.22.3
+  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=c3c19d"
   dependencies:
-    is-core-module: ^2.11.0
+    is-core-module: ^2.12.0
     path-parse: ^1.0.7
     supports-preserve-symlinks-flag: ^1.0.0
   bin:
     resolve: bin/resolve
-  checksum: 66cc788f13b8398de18eb4abb3aed90435c84bb8935953feafcf7231ba4cd191b2c10b4a87b1e9681afc34fb138c705f91f7330ff90bfa36f457e5584076a2b8
+  checksum: ad59734723b596d0891321c951592ed9015a77ce84907f89c9d9307dd0c06e11a67906a3e628c4cae143d3e44898603478af0ddeb2bba3f229a9373efe342665
   languageName: node
   linkType: hard
 
@@ -5609,6 +5620,7 @@ __metadata:
     acorn: ^8.8.1
     autoprefixer: ^10.4.7
     clsx: ^1.2.0
+    csv-parser: ^3.0.0
     eslint: 8.26.0
     eslint-config-next: 13.0.2
     fast-glob: ^3.2.12
