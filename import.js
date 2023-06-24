@@ -18,6 +18,9 @@ fs.createReadStream(csvPath)
 
     // download image
     const imageUrl = row['Main Image'];
+    if (imageUrl.length == 0) {
+        throw new Error(`No image for ${row['Name']}`);
+    }
     await downloadImage(imageUrl, `${blogPath}/image.png`);
 
     // create blog post file
@@ -44,7 +47,6 @@ ${/*row['Post Body']*/ "Hell, world!"}
 
 async function downloadImage(url, path) {
   return new Promise((resolve, reject) => {
-    url = 'https://uploads-ssl.webflow.com/63c5a99869556daf7e8d7e4c/64151138b8070c66b05486df_load-user-avatars-faster-with-automatic-resizing-and-compression.png'
     const request = https.get(url, {
       headers: {
         'User-Agent':
