@@ -162,11 +162,13 @@ export function Navigation({ navigation, ...props }) {
   return (
     <nav {...props}>
       <ul role='list'>
+        {/* Header */}
         <TopLevelNavItem href='/tutorials'>Learn</TopLevelNavItem>
         <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
 
+        {/* Sidebar */}
         {navigation.sidebar
           ? navigation.sidebar.groups.map((group, groupIndex) => (
               <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
