@@ -8,10 +8,6 @@ import { getAllArticles } from './getAllArticles';
 export async function generateRssFeed() {
   let articles = await getAllArticles();
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  let author = {
-    name: 'Spencer Sharp',
-    email: 'spencer@planetaria.tech'
-  };
 
   let feed = new Feed({
     title: author.name,
@@ -29,7 +25,7 @@ export async function generateRssFeed() {
   });
 
   for (let article of articles) {
-    let url = `${siteUrl}/blog/${article.slug}`;
+    let url = `${siteUrl}/${article.href}`;
     let html = ReactDOMServer.renderToStaticMarkup(
       <MemoryRouterProvider>
         <article.component isRssFeed />
@@ -42,8 +38,8 @@ export async function generateRssFeed() {
       link: url,
       description: article.description,
       content: html,
-      author: [author],
-      contributor: [author],
+      author: [article.authorInfo],
+      contributor: [article.authorInfo],
       date: new Date(article.date)
     });
   }

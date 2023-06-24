@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image'
 import { useRouter } from 'next/router';
 
 import { Container } from '@/components/Container';
@@ -18,7 +19,7 @@ function ArrowLeftIcon(props) {
   );
 }
 
-export function ArticleLayout({ children, meta, isRssFeed = false, previousPathname }) {
+export function ArticleLayout({ children, image, meta, isRssFeed = false, previousPathname }) {
   let router = useRouter();
 
   if (isRssFeed) {
@@ -46,6 +47,7 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
             )}
             <article>
               <header className='flex flex-col'>
+                <Image src={image} alt={meta.imageAlt} />
                 <h1 className='mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl'>
                   {meta.title}
                 </h1>
