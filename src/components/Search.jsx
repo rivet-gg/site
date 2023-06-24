@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
-import { navigation } from '@/components/Navigation';
 import Highlighter from 'react-highlight-words';
 
 function useAutocomplete() {
@@ -104,14 +103,14 @@ function HighlightQuery({ text, query }) {
 }
 
 function SearchResult({ result, resultIndex, autocomplete, collection, query }) {
-  return <div>TODO</div>;
-  {
-    /* let id = useId();
+    let id = useId();
 
-  let sectionTitle = navigation.sidebar.groups.find(section =>
-    section.pages.find(link => link.href === result.url.split('#')[0])
-  )?.title;
-  let hierarchy = [sectionTitle, result.pageTitle].filter(Boolean);
+  // TODO: Improve our navigation module for this to work again
+  // let sectionTitle = navigation.sidebar.groups.find(section =>
+  //   section.pages.find(link => link.href === result.url.split('#')[0])
+  // )?.title;
+  let sectionTitle = result.href;
+  let hierarchy = [result.title, result.pageTitle].filter(Boolean);
 
   return (
     <li
@@ -153,8 +152,8 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
         </div>
       )}
     </li>
-  ); */
-  }
+  );
+  
 }
 
 function SearchResults({ autocomplete, query, collection }) {
