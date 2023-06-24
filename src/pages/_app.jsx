@@ -39,6 +39,15 @@ export default function App({ Component, pageProps }) {
       break;
   }
 
+  // Update URLs
+  navigation = structuredClone(navigation);
+  for (let section of navigation) {
+    for (let link of section.links) {
+      if (!link.href.startsWith('/')) throw new Error(`Link href should not start with a slash: ${link.href}`);
+      link.href = `/${dir}${link.href}`;
+    }
+  }
+
   return (
     <>
       <Head>
@@ -46,7 +55,7 @@ export default function App({ Component, pageProps }) {
         <meta name='description' content={pageProps.description} />
       </Head>
       <MDXProvider components={mdxComponents}>
-        <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
+        <Layout navigation={navigation} feedback={feedback} prose={Component.prose ?? true} {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </MDXProvider>
