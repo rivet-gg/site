@@ -8,7 +8,16 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation';
 
 import '@/styles/tailwind.css';
 import 'focus-visible';
+
 import routes from '@/generated/routes.json';
+
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false;
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/pro-solid-svg-icons'
+library.add(fas)
 
 function onRouteChange() {
   useMobileNavigationStore.getState().close();

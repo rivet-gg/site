@@ -11,6 +11,9 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@algolia/autocomplete-core": "^1.7.3",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/pro-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "latest",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/loader": "^2.1.5",

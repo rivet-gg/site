@@ -7,8 +7,8 @@ export const a = Link;
 export { Button } from '@/components/Button';
 export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
 export { Summary } from '@/components/Summary';
-// export { CardGroup, Card } from '@/components/Cards';
 export { Snippet } from '@/components/Snippet';
+export { ResourceGroup, Resource } from '@/components/Resources';
 
 // TODO: Phase this out with our own custom elements
 export * from "@mintlify/components";

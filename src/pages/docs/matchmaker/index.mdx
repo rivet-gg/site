@@ -1,4 +1,4 @@
-import { CardGroup, Card } from '@/components/Cards';
+import { ResourceGroup, Resource } from '@/components/Resources';
 
 # Matchmaker
 
@@ -14,41 +14,35 @@ To integrate the Rivet matchmaker, your game needs to call these three endpoints
 
 The Rivet Matchmaker is tightly integrated with Serverless Lobbies to automatically boot lobbies on-demand when players need them. Read more about how Rivet Serverless Lobbies operates your game servers [here](/serverless-lobbies/introduction).
 
-<CardGroup>
-  <Card
+<ResourceGroup>
+  <Resource
     title='How the matchmaker chooses lobbies'
     icon='magnifying-glass'
-    iconType='duotone'
-    href='/matchmaker/concepts/finding-lobby'
+        href='/matchmaker/concepts/finding-lobby'
   />
-  <Card
+  <Resource
     title='Lobby environment variables'
     icon='list'
-    iconType='duotone'
-    href='/matchmaker/concepts/lobby-env'
+        href='/matchmaker/concepts/lobby-env'
   />
-  <Card
+  <Resource
     title='matchmaker.lobbies.find'
     icon='code'
-    iconType='duotone'
-    href='/matchmaker/api/post-lobbies-find'
+        href='/matchmaker/api/post-lobbies-find'
   />
-  <Card
+  <Resource
     title='matchmaker.players.connected'
     icon='code'
-    iconType='duotone'
-    href='/matchmaker/api/post-players-connected'
+        href='/matchmaker/api/post-players-connected'
   />
-  <Card
+  <Resource
     title='matchmaker.players.disconnected'
     icon='code'
-    iconType='duotone'
-    href='/matchmaker/api/post-players-disconnected'
+        href='/matchmaker/api/post-players-disconnected'
   />
-  <Card
+  <Resource
     title='matchmaker.lobbies.ready'
     icon='code'
-    iconType='duotone'
-    href='/matchmaker/api/post-lobbies-ready'
+        href='/matchmaker/api/post-lobbies-ready'
   />
-</CardGroup>
+</ResourceGroup>
