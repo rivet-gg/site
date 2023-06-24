@@ -8,6 +8,31 @@ import { Navigation } from '@/components/Navigation'
 import { Prose } from '@/components/Prose'
 import { SectionProvider } from '@/components/SectionProvider'
 
+export const navigation = [
+  {
+    title: 'Guides',
+    links: [
+      { title: 'Introduction', href: '/' },
+      { title: 'Quickstart', href: '/quickstart' },
+      { title: 'SDKs', href: '/sdks' },
+      { title: 'Authentication', href: '/authentication' },
+      { title: 'Pagination', href: '/pagination' },
+      { title: 'Errors', href: '/errors' },
+      { title: 'Webhooks', href: '/webhooks' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { title: 'Contacts', href: '/contacts' },
+      { title: 'Conversations', href: '/conversations' },
+      { title: 'Messages', href: '/messages' },
+      { title: 'Groups', href: '/groups' },
+      { title: 'Attachments', href: '/attachments' },
+    ],
+  },
+]
+
 export function Layout({ children, sections = [] }) {
   return (
     <SectionProvider sections={sections}>
@@ -23,14 +48,14 @@ export function Layout({ children, sections = [] }) {
               </Link>
             </div>
             <Header />
-            <Navigation className="hidden lg:mt-10 lg:block" />
+            <Navigation className="hidden lg:mt-10 lg:block" navigation={navigation} />
           </div>
         </motion.header>
         <div className="relative px-4 pt-14 sm:px-6 lg:px-8">
           <main className="py-16">
             <Prose as="article">{children}</Prose>
           </main>
-          <Footer />
+          <Footer navigation={navigation} />
         </div>
       </div>
     </SectionProvider>
