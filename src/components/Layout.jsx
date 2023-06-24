@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { Subheader } from '@/components/Subheader';
 import { Navigation } from '@/components/Navigation';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
@@ -20,7 +19,6 @@ export function Layout({ navigation, prose, children, sections = [] }) {
           layoutScroll
           className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'>
           <Header navigation={navigation} />
-          {/* <Subheader navigation={navigation} /> */}
           <div
             className={clsx(
               `contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80`,

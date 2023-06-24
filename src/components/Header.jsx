@@ -99,7 +99,7 @@ export const Header = forwardRef(function ({ navigation, className }, ref) {
           <nav className='flex h-full space-x-8'>
             {navigation.tabs.map(tab => (
               <a
-                key={tab.name}
+                key={tab.title}
                 href={tab.href}
                 className={classNames(
                   tab.current

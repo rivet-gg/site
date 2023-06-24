@@ -8,6 +8,7 @@ export { Button } from '@/components/Button';
 export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
 export { Summary } from '@/components/Summary';
 export { CardGroup, Card } from '@/components/Cards';
+export { Snippet } from '@/components/Snippet';
 
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
