@@ -119,7 +119,7 @@ function PageLink({ label, page, previous = false }) {
 
 function PageNavigation({ navigation }) {
   let router = useRouter();
-  let allPages = navigation.pages.flatMap(group => group.pages);
+  let allPages = navigation.sidebar.groups.flatMap(group => group.pages);
   let currentPageIndex = allPages.findIndex(page => page.href === router.pathname);
 
   if (currentPageIndex === -1) {
@@ -213,7 +213,7 @@ export function Footer({ navigation, feedback }) {
   return (
     <footer className='mx-auto max-w-2xl space-y-10 pb-16 lg:max-w-5xl'>
       {feedback ? <Feedback key={router.pathname} /> : null}
-      <PageNavigation navigation={navigation} />
+      {navigation.sidebar ? <PageNavigation navigation={navigation} /> : null}
       <SmallPrint />
     </footer>
   );

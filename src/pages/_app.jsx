@@ -23,7 +23,9 @@ export default function App({ Component, pageProps }) {
   let navigation = routes.find(route => router.pathname.startsWith(route.prefix));
   if (!navigation) navigation = { feedback: false, pages: [] };
 
-  let page = navigation.pages.flatMap(x => x.pages).find(page => page.href === router.pathname);
+  let page = navigation.sidebar
+    ? navigation.sidebar.groups.flatMap(x => x.pages).find(page => page.href === router.pathname)
+    : null;
   let title = pageProps.title ?? page?.title ?? null;
   let description = pageProps.description ?? page?.description ?? null;
 

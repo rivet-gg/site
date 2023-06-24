@@ -20,8 +20,7 @@ function TopLevelNavItem({ href, children }) {
     <li className='md:hidden'>
       <Link
         href={href}
-        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      >
+        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
         {children}
       </Link>
     </li>
@@ -39,8 +38,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      )}
-    >
+      )}>
       <span className='truncate'>{children}</span>
       {tag && (
         <Tag variant='small' color='zinc'>
@@ -141,8 +139,7 @@ function NavigationGroup({ group, className }) {
                     exit={{
                       opacity: 0,
                       transition: { duration: 0.15 }
-                    }}
-                  >
+                    }}>
                     {sections.map(section => (
                       <li key={section.id}>
                         <NavLink href={`${link.href}#${section.id}`} tag={section.tag} isAnchorLink>
@@ -170,9 +167,11 @@ export function Navigation({ navigation, ...props }) {
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
 
-        {navigation.pages.map((group, groupIndex) => (
-          <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
-        ))}
+        {navigation.sidebar
+          ? navigation.sidebar.groups.map((group, groupIndex) => (
+              <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
+            ))
+          : null}
         <li className='sticky bottom-0 z-10 mt-6 min-[416px]:hidden'>
           <Button href='https://hub.rivet.gg' target='_blank' variant='filled' className='w-full'>
             Open Rivet
