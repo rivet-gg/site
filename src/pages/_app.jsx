@@ -8,6 +8,7 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation';
 
 import '@/styles/tailwind.css';
 import 'focus-visible';
+import routes from '@/generated/routes.json';
 
 function onRouteChange() {
   useMobileNavigationStore.getState().close();
@@ -16,37 +17,11 @@ function onRouteChange() {
 Router.events.on('routeChangeStart', onRouteChange);
 Router.events.on('hashChangeStart', onRouteChange);
 
-import docsNavigation from './docs/_navigation.json';
-import tutorialsNavigation from './tutorials/_navigation.json';
-
 export default function App({ Component, pageProps }) {
   let router = useRouter();
 
-  let navigation;
-  let feedback = false;
-  let dir = router.pathname.split('/')[1];
-  switch (dir) {
-    case 'docs':
-      navigation = docsNavigation;
-      feedback = true;
-      break;
-    case 'tutorials':
-      navigation = tutorialsNavigation;
-      feedback = true;
-      break;
-    default:
-      navigation = [];
-      break;
-  }
-
-  // Update URLs
-  navigation = structuredClone(navigation);
-  for (let section of navigation) {
-    for (let link of section.links) {
-      if (!link.href.startsWith('/')) throw new Error(`Link href should not start with a slash: ${link.href}`);
-      link.href = `/${dir}${link.href}`;
-    }
-  }
+  let navigation = routes.find((route) => router.pathname.startsWith(route.prefix));
+  if (!navigation) navigation = { feedback: true, pages:[]};
 
   return (
     <>
@@ -55,7 +30,7 @@ export default function App({ Component, pageProps }) {
         <meta name='description' content={pageProps.description} />
       </Head>
       <MDXProvider components={mdxComponents}>
-        <Layout navigation={navigation} feedback={feedback} prose={Component.prose ?? true} {...pageProps}>
+        <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </MDXProvider>

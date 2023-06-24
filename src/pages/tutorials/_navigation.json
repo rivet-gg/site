@@ -1,6 +1,9 @@
-[
-  {
-    "title": "Learn",
-    "links": [{ "title": "Test", "href": "/" }]
-  }
-]
+{
+  "feedback": true,
+  "pages": [
+    {
+      "title": "Learn",
+      "links": []
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import { Navigation } from '@/components/Navigation';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
 
-export function Layout({ navigation, prose, feedback, children, sections = [] }) {
+export function Layout({ navigation, prose, children, sections = [] }) {
   return (
     <SectionProvider sections={sections}>
       <div className='lg:ml-72 xl:ml-80'>
@@ -28,7 +28,7 @@ export function Layout({ navigation, prose, feedback, children, sections = [] })
         </motion.header>
         <div className={`relative ${prose ? 'px-4 pt-14 sm:px-6 lg:px-8' : ''}`}>
           <main className='py-16'>{prose ? <Prose as='article'>{children}</Prose> : children}</main>
-          <Footer navigation={navigation} feedback={feedback} />
+          <Footer navigation={navigation} />
         </div>
       </div>
     </SectionProvider>

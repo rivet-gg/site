@@ -170,7 +170,7 @@ export function Navigation({ navigation, ...props }) {
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
 
-        {navigation.map((group, groupIndex) => (
+        {navigation.pages.map((group, groupIndex) => (
           <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
         ))}
         <li className='sticky bottom-0 z-10 mt-6 min-[416px]:hidden'>
