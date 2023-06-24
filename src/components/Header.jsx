@@ -173,7 +173,7 @@ export const Header = forwardRef(function ({ navigation, className }, ref) {
 
       {/* Tabs */}
       {navigation.tabs && (
-        <div className='h-12 px-6'>
+        <div className='h-12 px-6 overflow-x-scroll hide-scrollbar'>
           <nav className='flex h-full space-x-8'>
             {navigation.tabs.map(tab => (
               <a
