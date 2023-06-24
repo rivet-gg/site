@@ -165,7 +165,7 @@ export function Navigation({ navigation, ...props }) {
   return (
     <nav {...props}>
       <ul role='list'>
-        <TopLevelNavItem href='/learn'>Learn</TopLevelNavItem>
+        <TopLevelNavItem href='/tutorials'>Tutorials</TopLevelNavItem>
         <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>

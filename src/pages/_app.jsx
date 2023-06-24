@@ -16,10 +16,28 @@ function onRouteChange() {
 Router.events.on('routeChangeStart', onRouteChange);
 Router.events.on('hashChangeStart', onRouteChange);
 
-import navigation from './docs/navigation.json';
+import docsNavigation from './docs/_navigation.json';
+import tutorialsNavigation from './tutorials/_navigation.json';
 
 export default function App({ Component, pageProps }) {
   let router = useRouter();
+
+  let navigation;
+  let feedback = false;
+  let dir = router.pathname.split('/')[1];
+  switch (dir) {
+    case 'docs':
+      navigation = docsNavigation;
+      feedback = true;
+      break;
+    case 'tutorials':
+      navigation = tutorialsNavigation;
+      feedback = true;
+      break;
+    default:
+      navigation = [];
+      break;
+  }
 
   return (
     <>
