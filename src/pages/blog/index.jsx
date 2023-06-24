@@ -20,7 +20,7 @@ function Article({ article }) {
               class='aspect-[2/1] w-full object-cover rounded-2xl'
             />
           </Link>
-          <div class='absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10'></div>
+          <div class='absolute pointer-events-none inset-0 rounded-2xl ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10'></div>
         </div>
 
         {/* Date & category */}
@@ -71,7 +71,7 @@ export default function ArticlesIndex({ articles }) {
   return (
     <>
       <Head>
-        <title>Rivet Blog</title>
+        <title>Blog</title>
       </Head>
       <SimpleLayout title='Rivet Blog'>
         <div class='mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
