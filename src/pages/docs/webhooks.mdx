@@ -1,5 +1,5 @@
 export const description =
-  'In this guide, we will look at how to register and consume webhooks to integrate your app with Protocol.'
+  'In this guide, we will look at how to register and consume webhooks to integrate your app with Protocol.';
 
 # Webhooks
 
@@ -28,13 +28,8 @@ When your app receives a webhook request from Protocol, check the `type` attribu
 
 In the example above, a conversation was `updated`, and the payload type is a `conversation`.
 
-<div className="not-prose">
-  <Button
-    href="#event-types"
-    variant="text"
-    arrow="right"
-    children="See all event types"
-  />
+<div className='not-prose'>
+  <Button href='#event-types' variant='text' arrow='right' children='See all event types' />
 </div>
 
 ---
@@ -132,8 +127,8 @@ To know for sure that a webhook was, in fact, sent by Protocol instead of a mali
 <CodeGroup title="Verifying a request">
 
 ```js
-const signature = req.headers['x-protocol-signature']
-const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+const signature = req.headers['x-protocol-signature'];
+const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex');
 
 if (hash === signature) {
   // Request is verified

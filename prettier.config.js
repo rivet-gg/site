@@ -1,5 +1,22 @@
 module.exports = {
+  trailingComma: 'none',
+  tabWidth: 2,
+  useTabs: false,
   singleQuote: true,
-  semi: false,
-  plugins: [require('prettier-plugin-tailwindcss')],
-}
+  printWidth: 110,
+  endOfLine: 'lf',
+  arrowParens: 'avoid',
+  bracketSpacing: true,
+  jsxBracketSameLine: true,
+  jsxSingleQuote: true,
+  overrides: [
+    {
+      files: '*.yaml',
+      options: {
+        tabWidth: 2,
+        useTabs: false
+      }
+    }
+  ],
+  plugins: [require('prettier-plugin-tailwindcss')]
+};

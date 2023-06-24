@@ -17,26 +17,26 @@ module.exports = {
       '6xl': ['3.75rem', { lineHeight: '1' }],
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
-      '9xl': ['8rem', { lineHeight: '1' }],
+      '9xl': ['8rem', { lineHeight: '1' }]
     },
     typography: require('./typography'),
     extend: {
       boxShadow: {
-        glow: '0 0 4px rgb(0 0 0 / 0.1)',
+        glow: '0 0 4px rgb(0 0 0 / 0.1)'
       },
       maxWidth: {
         lg: '33rem',
         '2xl': '40rem',
         '3xl': '50rem',
-        '5xl': '66rem',
+        '5xl': '66rem'
       },
       opacity: {
         1: '0.01',
         2.5: '0.025',
         7.5: '0.075',
-        15: '0.15',
-      },
-    },
+        15: '0.15'
+      }
+    }
   },
-  plugins: [require('@tailwindcss/typography')],
-}
+  plugins: [require('@tailwindcss/typography')]
+};

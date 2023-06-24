@@ -1,4 +1,4 @@
-import { Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document';
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -36,11 +36,11 @@ const modeScript = `
     disableTransitionsTemporarily()
     updateMode()
   }
-`
+`;
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang='en'>
       <Head>
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
 
@@ -72,10 +72,10 @@ export default function Document() {
         <!-- <meta name="twitter:image" content="https://rivet.gg/promo/full.png"> -->
         <!-- <meta name="twitter:image:alt" content="Rivet promotional banner"> --></meta> */}
       </Head>
-      <body className="bg-white antialiased dark:bg-zinc-900">
+      <body className='bg-white antialiased dark:bg-zinc-900'>
         <Main />
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
