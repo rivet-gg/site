@@ -22,7 +22,11 @@ function TopLevelNavItem({ href, children }) {
   );
 }
 
-export const Header = forwardRef(function({ navigation, className }, ref) {
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
+export const Header = forwardRef(function ({ navigation, className }, ref) {
   let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
 
@@ -35,7 +39,7 @@ export const Header = forwardRef(function({ navigation, className }, ref) {
       ref={ref}
       className={clsx(
         className,
-        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
+        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col divide-y divide-zinc-900/10 transition md:dark:divide-white/15',
         !isInsideMobileNavigation && 'backdrop-blur-sm dark:backdrop-blur',
         isInsideMobileNavigation
           ? 'bg-white dark:bg-zinc-900'
@@ -88,6 +92,28 @@ export const Header = forwardRef(function({ navigation, className }, ref) {
           </div>
         </div>
       </div>
+
+      {/* Tabs */}
+      {navigation.tabs && (
+        <div className='h-12 px-6'>
+          <nav className='flex h-full space-x-8'>
+            {navigation.tabs.map(tab => (
+              <a
+                key={tab.name}
+                href={tab.href}
+                className={classNames(
+                  tab.current
+                    ? 'text-white'
+                    : 'border-transparent text-zinc-600 hover:border-gray-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white',
+                  'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 text-sm font-medium'
+                )}
+                aria-current={tab.current ? 'page' : undefined}>
+                {tab.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </motion.div>
   );
 });

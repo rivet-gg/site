@@ -36,32 +36,32 @@ export default function App({ Component, pageProps }) {
     {
       title: 'Matchmaker',
       href: '#',
-      current: true,
+      current: false,
     },
     {
       title: 'Serverless Lobbies',
       href: '#',
-      current: true,
+      current: false,
     },
     {
       title: 'CDN',
       href: '#',
-      current: true,
+      current: false,
     },
     {
       title: 'Identity',
       href: '#',
-      current: true,
+      current: false,
     },
     {
       title: 'KV',
       href: '#',
-      current: true,
+      current: false,
     },
     {
       title: 'Cloud',
       href: '#',
-      current: true,
+      current: false,
     },
   ];
 
