@@ -17,6 +17,9 @@ const nextConfig = {
   output: 'export',
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  images: {
+    unoptimized: true
+  },
   experimental: {
     scrollRestoration: true
   }
