@@ -49,30 +49,33 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
   let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`;
   let style = { maskImage, WebkitMaskImage: maskImage };
 
+  let gridWidth= 50;
+  let gridHeight = 30;
+
   return (
     <div className='pointer-events-none'>
       <div className='absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50'>
         <GridPattern
-          width={72}
-          height={56}
+          width={gridWidth}
+          height={gridHeight}
           x='50%'
-          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-black/[0.02] stroke-black/5 dark:fill-white/1 dark:stroke-white/2.5'
+          className='absolute saturate-0 opacity-10 inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/[0.02] stroke-black/5 dark:fill-white/1 dark:stroke-white/2.5'
           {...gridProps}
         />
       </div>
       <motion.div
-        className='absolute inset-0 rounded-2xl bg-gradient-to-r from-[#D7EDEA] to-[#F4FBDF] opacity-0 transition duration-300 group-hover:opacity-100 dark:from-[#202D2E] dark:to-[#303428]'
+        className='absolute inset-0 rounded-2xl bg-gradient-to-r from-[#f1f1f1] to-[#F4FBDF] opacity-0 transition duration-300 group-hover:opacity-100 dark:from-[#202020] dark:to-[#303030]'
         style={style}
       />
       <motion.div
-        className='absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay transition duration-300 group-hover:opacity-100'
+        className='absolute inset-0 rounded-2xl opacity-0 mix-blend-normal transition duration-300 group-hover:opacity-100'
         style={style}
       >
         <GridPattern
-          width={72}
-          height={56}
+          width={gridWidth}
+          height={gridHeight}
           x='50%'
-          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-black/50 stroke-black/70 dark:fill-white/2.5 dark:stroke-white/10'
+          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/50 stroke-black/70 dark:fill-white/2.5 dark:stroke-white/10'
           {...gridProps}
         />
       </motion.div>
