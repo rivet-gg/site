@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,mjs,jsx,mdx}'],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
+      condensed: ['Open Sans Condensed', 'ui-sans-serif', 'system-ui'],
+    },
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],

@@ -7,6 +7,7 @@ import * as mdxComponents from '@/components/mdx';
 import { useMobileNavigationStore } from '@/components/MobileNavigation';
 
 import '@/styles/tailwind.css';
+import '@/styles/fonts.css'
 import 'focus-visible';
 
 import routes from '@/generated/routes.json';
