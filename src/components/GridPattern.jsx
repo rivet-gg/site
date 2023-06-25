@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import backdrop from '@/images/backdrop.svg';
+import backdrop from '@/images/effects/backdrop.svg';
 import { useId } from 'react';
 
 export function GridPattern({ width, height, ...props }) {

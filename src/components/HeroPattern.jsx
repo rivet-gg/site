@@ -1,7 +1,7 @@
 import { GridPattern } from '@/components/GridPattern';
 
 export function HeroPattern() {
-  return <GridPattern className='absolute h-screen -z-10 right-0 top-0 m-0'></GridPattern>
+  return <GridPattern className='absolute w-[400px] max-w-[50%] -z-10 right-12 top-[120px] m-0'></GridPattern>
   // return (
   //   <div className='absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden'>
   //     <div className='absolute left-1/2 top-0 ml-[-38rem] h-[25rem] w-[81.25rem] dark:[mask-image:linear-gradient(white,transparent)]'>
