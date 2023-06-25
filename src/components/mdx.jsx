@@ -31,7 +31,7 @@ export {
   Tabs,
   Tip,
   Tab,
-  Tooltip,
+  Tooltip
 } from '@mintlify/components';
 
 export const h2 = function H2(props) {

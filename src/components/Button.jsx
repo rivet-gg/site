@@ -28,14 +28,14 @@ const variantStyles = {
 };
 
 export function ButtonGroup({ children }) {
-  return <div className='not-prose mb-16 mt-6 flex gap-3'>{children}</div>
+  return <div className='not-prose mb-16 mt-6 flex gap-3'>{children}</div>;
 }
 
 export function Button({ variant = 'primary', className, children, arrow, icon, ...props }) {
   let Component = props.href ? Link : 'button';
 
   className = clsx(
-    'inline-flex gap-0.5 justify-center content-center overflow-hidden text-sm font-medium transition',
+    'inline-flex content-center justify-center gap-0.5 overflow-hidden text-sm font-medium transition',
     variantStyles[variant],
     className
   );
@@ -53,7 +53,7 @@ export function Button({ variant = 'primary', className, children, arrow, icon, 
 
   return (
     <Component className={className} {...props}>
-      {icon ? <FontAwesomeIcon icon={icon} className='h-5 w-5 -ml-1' /> : null}
+      {icon ? <FontAwesomeIcon icon={icon} className='-ml-1 h-5 w-5' /> : null}
       {arrow === 'left' && arrowIcon}
       {children}
       {arrow === 'right' && arrowIcon}

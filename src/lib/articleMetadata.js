@@ -4,27 +4,27 @@ const authors = {
   'nathan-flurry': {
     name: 'Nathan Flurry',
     role: 'Co-founder & CTO',
-    avatar: nathanFlurry,
+    avatar: nathanFlurry
   }
-}
+};
 
 const categories = {
   'developer-changelog': {
-    name: 'Developer Changelog',
+    name: 'Developer Changelog'
     // href: '/blog/developer-changelog',
   },
   'hub-changelog': {
-    name: 'Hub Changelog',
+    name: 'Hub Changelog'
     // href: '/blog/hub-changelog',
   },
   'launch-week': {
-    name: 'Launch Week',
+    name: 'Launch Week'
     // href: '/blog/launch-week',
-  },
-}
+  }
+};
 export function processArticleMeta(meta, category, slug) {
   let href = `/blog/${category}/${slug}`;
-  
+
   // Fetch author
   let authorInfo = authors[meta.author];
   if (!authorInfo) throw new Error(`Unknown author: ${meta.author}`);
@@ -38,6 +38,6 @@ export function processArticleMeta(meta, category, slug) {
     categoryInfo,
     authorInfo,
     slug,
-    ...meta,
+    ...meta
   };
 }

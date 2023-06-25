@@ -17,10 +17,10 @@ function Article({ article }) {
             <Image
               src={article.image}
               alt={article.imageAlt}
-              className='aspect-[2/1] w-full object-cover rounded-2xl'
+              className='aspect-[2/1] w-full rounded-2xl object-cover'
             />
           </Link>
-          <div className='absolute pointer-events-none inset-0 rounded-2xl ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10'></div>
+          <div className='pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10'></div>
         </div>
 
         {/* Date & category */}
@@ -28,8 +28,7 @@ function Article({ article }) {
           <time datetime='2020-03-16' className='text-slate-500'>
             {formatDate(article.date)}
           </time>
-          <div
-            className='relative z-10 rounded-full px-3 py-1.5 font-medium bg-slate-50 text-slate-600 dark:bg-slate-800 dark:text-slate-400'>
+          <div className='relative z-10 rounded-full bg-slate-50 px-3 py-1.5 font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400'>
             {article.categoryInfo.name}
           </div>
         </div>
@@ -42,7 +41,9 @@ function Article({ article }) {
               {article.title}
             </Link>
           </h3>
-          <p className='mt-5 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-400'>{article.description}</p>
+          <p className='mt-5 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-400'>
+            {article.description}
+          </p>
         </div>
       </div>
 

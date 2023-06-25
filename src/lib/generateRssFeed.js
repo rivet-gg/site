@@ -10,7 +10,7 @@ export async function generateRssFeed() {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
   let feed = new Feed({
-    title: "Rivet",
+    title: 'Rivet',
     description: 'Rivet news',
     id: siteUrl,
     link: siteUrl,

@@ -21,7 +21,8 @@ function TopLevelNavItem({ href, children }) {
     <li>
       <Link
         href={href}
-        className='text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
+        className='text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+      >
         {children}
       </Link>
     </li>
@@ -43,7 +44,8 @@ function TopLevelNavPopover({ solutions, callsToAction, children }) {
         enterTo='opacity-100 translate-y-0'
         leave='transition ease-in duration-150'
         leaveFrom='opacity-100 translate-y-0'
-        leaveTo='opacity-0 translate-y-1'>
+        leaveTo='opacity-0 translate-y-1'
+      >
         <Popover.Panel className='absolute z-10 mt-5 flex w-screen max-w-max'>
           <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
             <div className='p-4'>{solutions}</div>
@@ -81,7 +83,8 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
     <Link
       key={title}
       href={href}
-      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'>
+      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'
+    >
       <FontAwesomeIcon icon={icon} className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
       {title}
     </Link>
@@ -114,7 +117,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       style={{
         '--bg-opacity-light': bgOpacityLight,
         '--bg-opacity-dark': bgOpacityDark
-      }}>
+      }}
+    >
       {/* Main header */}
       <div className='flex h-14 items-center justify-between gap-12 px-6 lg:z-30'>
         <div
@@ -154,7 +158,9 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   />
                 </>
               }
-            >Products</TopLevelNavPopover>
+            >
+              Products
+            </TopLevelNavPopover>
             <TopLevelNavPopover
               solutions={
                 <>
@@ -181,7 +187,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   />
                   <TopLevelNavPopoverCallToAction icon={faUserGroup} title='Community' href='/support' />
                 </>
-              }>
+              }
+            >
               Learn
             </TopLevelNavPopover>
             <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
@@ -225,7 +232,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                     : 'border-transparent text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white',
                   'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
-                aria-current={tab.current ? 'page' : undefined}>
+                aria-current={tab.current ? 'page' : undefined}
+              >
                 {tab.title}
               </Link>
             ))}
