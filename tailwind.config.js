@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
-      condensed: ['Open Sans Condensed', 'ui-sans-serif', 'system-ui'],
+      display: ['Open Sans Condensed', 'ui-sans-serif', 'system-ui'],
     },
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],
