@@ -174,7 +174,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   <TopLevelNavPopoverCallToAction
                     icon={faYoutube}
                     title='YouTube'
-                    href='https://youtoube.com/@rivet-gg'
+                    href='https://youtube.com/@rivet-gg'
                   />
                   <TopLevelNavPopoverCallToAction icon={faUserGroup} title='Community' href='/support' />
                 </>
@@ -207,7 +207,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
           <nav className='flex h-full space-x-8'>
             {/* Title */}
-            <div className='text-md flex items-center font-display font-semibold text-zinc-900 dark:text-white'>
+            <div className='text-md flex items-center font-display font-bold text-zinc-900 dark:text-white'>
               {navigation.tabsTitle}
             </div>
 

@@ -11,7 +11,9 @@ function capitalizeWords(str) {
 // Read the directory files
 let fonts = [];
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/open-sans')));
-fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-condensed')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-extra-condensed')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/darker-grotesque')));
 
 // Filter out non-TTF files (optional)
 fonts = fonts.filter(file => path.extname(file) === '.ttf');
@@ -35,13 +37,22 @@ fonts.forEach(font => {
   if (font.includes('Italic')) style = 'italic';
 
   // Format the font family name
+  let slug;
   let family;
   if (font.includes('OpenSans')) {
+    slug = 'open-sans';
     family = 'Open Sans';
     if (font.includes('Condensed')) family = 'Open Sans Condensed';
     if (font.includes('SemiCondensed')) family = 'Open Sans Semi Condensed';
+  } else if (font.includes('SairaCondensed')) {
+    slug = 'saira-condensed';
+    family = 'Saira Condensed';
   } else if (font.includes('SairaExtraCondensed')) {
+    slug = 'saira-extra-condensed';
     family = 'Saira Extra Condensed';
+  } else if (font.includes('DarkerGrotesque')) {
+    slug = 'darker-grgrotesque';
+    family = 'Darker Grotesque';
   } else {
     throw new Error('Unknown font family');
   }
@@ -49,7 +60,7 @@ fonts.forEach(font => {
   // Generate the CSS rule
   let rule = `@font-face {
     font-family: '${capitalizeWords(family)}';
-    src: url('/fonts/open-sans/${font}') format('truetype');
+    src: url('/fonts/${slug}/${font}') format('truetype');
     font-weight: ${weight};
     font-style: ${style};
 }\n\n`;

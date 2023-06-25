@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,mjs,jsx,mdx}'],
@@ -5,7 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
-      display: ['Open Sans Condensed', 'ui-sans-serif', 'system-ui'],
+      display: ['Darker Grotesque', 'ui-sans-serif', 'system-ui']
     },
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],
@@ -45,5 +47,15 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')]
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    plugin(function ({ addBase, theme }) {
+      addBase({
+        h1: { fontFamily: theme('fontFamily.display') },
+        h2: { fontFamily: theme('fontFamily.display') },
+        h3: { fontFamily: theme('fontFamily.display') }
+      });
+    })
+  ]
 };

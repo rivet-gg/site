@@ -180,7 +180,6 @@ module.exports = ({ theme }) => ({
       // Headings
       h1: {
         color: 'var(--tw-prose-headings)',
-        fontFamily: theme('fontFamily.display').join(', '),
         fontWeight: '700',
         fontSize: theme('fontSize.2xl')[0],
         ...theme('fontSize.2xl')[1],
@@ -188,7 +187,6 @@ module.exports = ({ theme }) => ({
       },
       h2: {
         color: 'var(--tw-prose-headings)',
-        fontFamily: theme('fontFamily.display').join(', '),
         fontWeight: '600',
         fontSize: theme('fontSize.lg')[0],
         ...theme('fontSize.lg')[1],
@@ -197,7 +195,6 @@ module.exports = ({ theme }) => ({
       },
       h3: {
         color: 'var(--tw-prose-headings)',
-        fontFamily: theme('fontFamily.display').join(', '),
         fontSize: theme('fontSize.base')[0],
         ...theme('fontSize.base')[1],
         fontWeight: '600',
