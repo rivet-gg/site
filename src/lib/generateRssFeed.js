@@ -10,14 +10,13 @@ export async function generateRssFeed() {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
   let feed = new Feed({
-    title: author.name,
-    description: 'Your blog description',
-    author,
+    title: "Rivet",
+    description: 'Rivet news',
     id: siteUrl,
     link: siteUrl,
     image: `${siteUrl}/favicon.ico`,
     favicon: `${siteUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}`,
+    copyright: `All rights reserved ${new Date().getFullYear()} Rivet Gaming, Inc.`,
     feedLinks: {
       rss2: `${siteUrl}/rss/feed.xml`,
       json: `${siteUrl}/rss/feed.json`
