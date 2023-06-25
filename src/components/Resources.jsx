@@ -106,7 +106,7 @@ export function Resource({ children, ...props }) {
             {props.title}
           </Link>
         </h3>
-        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p>
+        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children ? children : null}</p>
       </div>
     </div>
   );
