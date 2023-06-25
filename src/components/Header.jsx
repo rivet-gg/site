@@ -88,7 +88,7 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
   );
 }
 
-function classNames(...classes) {
+function clsx(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -219,7 +219,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
               <Link
                 key={tab.title}
                 href={tab.href}
-                className={classNames(
+                className={clsx(
                   tab.current
                     ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
                     : 'border-transparent text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white',

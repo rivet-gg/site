@@ -18,5 +18,6 @@ module.exports = {
       }
     }
   ],
+  tailwindFunctions: ['clsx'],
   plugins: [require('prettier-plugin-tailwindcss')]
 };
