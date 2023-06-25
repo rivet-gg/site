@@ -1,3 +1,5 @@
+import { TutorialReplit } from '@/components/TutorialReplit';
+
 # How the matchmaker chooses lobbies
 
 This document explains the logic going on behind the scenes when a game calls [`Lobbies.find`](/matchmaker/api/post-lobbies-find).
@@ -22,11 +24,7 @@ Once the region has been determined, Rivet Matchmaker will filter out full lobbi
 
 This simplified exampe demonstrates how the matchmaker finds the correct lobby to join:
 
-<iframe
-  src='https://replit.com/@NathanRivet/MatchmakerFindLobbyExplanation?embed=true#index.ts'
-  width='100%'
-  height='600'
-/>
+<TutorialReplit src='https://replit.com/@NathanRivet/MatchmakerFindLobbyExplanation?embed=true#index.ts' />
 
 ## Providing multiple game modes
 

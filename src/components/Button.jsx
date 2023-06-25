@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ArrowIcon(props) {
   return (
@@ -26,11 +27,15 @@ const variantStyles = {
   text: 'text-emerald-500 hover:text-emerald-600 dark:text-emerald-400 dark:hover:text-emerald-500'
 };
 
-export function Button({ variant = 'primary', className, children, arrow, ...props }) {
+export function ButtonGroup({ children }) {
+  return <div className='not-prose mb-16 mt-6 flex gap-3'>{children}</div>
+}
+
+export function Button({ variant = 'primary', className, children, arrow, icon, ...props }) {
   let Component = props.href ? Link : 'button';
 
   className = clsx(
-    'inline-flex gap-0.5 justify-center overflow-hidden text-sm font-medium transition',
+    'inline-flex gap-0.5 justify-center content-center overflow-hidden text-sm font-medium transition',
     variantStyles[variant],
     className
   );
@@ -38,7 +43,7 @@ export function Button({ variant = 'primary', className, children, arrow, ...pro
   let arrowIcon = (
     <ArrowIcon
       className={clsx(
-        'mt-0.5 h-5 w-5',
+        'h-5 w-5',
         variant === 'text' && 'relative top-px',
         arrow === 'left' && '-ml-1 rotate-180',
         arrow === 'right' && '-mr-1'
@@ -48,6 +53,7 @@ export function Button({ variant = 'primary', className, children, arrow, ...pro
 
   return (
     <Component className={className} {...props}>
+      {icon ? <FontAwesomeIcon icon={icon} className='h-5 w-5 -ml-1' /> : null}
       {arrow === 'left' && arrowIcon}
       {children}
       {arrow === 'right' && arrowIcon}

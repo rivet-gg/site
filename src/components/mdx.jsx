@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
 
 export const a = Link;
-export { Button } from '@/components/Button';
+export { ButtonGroup, Button } from '@/components/Button';
 export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
 export { Summary } from '@/components/Summary';
 export { Snippet } from '@/components/Snippet';

@@ -1,14 +1,13 @@
-import { faGitHub } from '@fortawesome/pro-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { TutorialVideo } from '@/components/TutorialVideo';
 
 # Tanks (TypeScript + Canvas + Socket.io)
 
 <Snippet file='beta-signup.mdx' />
 
-<Resource
-  title='View on GitHub'
-  icon={faGitHub}
-  href='https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio'
-></Resource>
+<ButtonGroup>
+  <Button href='https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio' target='_blank' icon={faGithub} arrow='right' children='View on GitHub' />
+</ButtonGroup>
 
 | Language                                      | Rendering                                                             | Networking                      |
 | --------------------------------------------- | --------------------------------------------------------------------- | ------------------------------- |
@@ -16,16 +15,7 @@ import { faGitHub } from '@fortawesome/pro-solid-svg-icons';
 
 The following guide will walk you through integraing and deploying a game with Rivet.
 
-<iframe
-  width='560'
-  height='315'
-  src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowfullscreen
-  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-></iframe>
+<TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
 
 ---
 
