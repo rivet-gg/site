@@ -1,9 +1,7 @@
 import Image from 'next/image';
 
-// import textBlack from '@/images/branding/text-black.svg';
-// import textWhite from '@/images/branding/text-white.svg';
-import textBlack from '@/images/branding/black-notext.svg';
-import textWhite from '@/images/branding/white-notext.svg';
+import textBlack from '@/images/branding/black.svg';
+import textWhite from '@/images/branding/white.svg';
 
 export function Logo({ ...props }) {
   return (
