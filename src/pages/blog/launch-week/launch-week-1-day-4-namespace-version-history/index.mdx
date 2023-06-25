@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import image from './image.png';
+import versionSelector from './version-selector.png';
 
 export const meta = {
   image,
@@ -18,7 +20,7 @@ The last thing we want is developers hunting for the last version they deployed 
 
 ‍
 
-![Version selector](https://uploads-ssl.webflow.com/63c5a99869556daf7e8d7e4c/641bed275b92d373ab38d516_Screenshot%202023-03-22%20at%2011.09.33%20PM.png)
+<Image src={versionSelector} alt='Version selector' />
 
 ‍
 
