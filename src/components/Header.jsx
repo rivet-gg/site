@@ -91,10 +91,6 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
   );
 }
 
-function clsx(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
 export const Header = forwardRef(function Header({ navigation, className }, ref) {
   let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
