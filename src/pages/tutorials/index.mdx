@@ -1,5 +1,5 @@
+import { faBooks } from '@fortawesome/pro-solid-svg-icons';
 import { Guides } from '@/components/Guides';
-import { Resources } from '@/components/Resources';
 import { HeroPattern } from '@/components/HeroPattern';
 
 export const description = 'Learn';
@@ -27,4 +27,10 @@ To get started, create a new application in your [developer settings](#), then r
 
 <Guides />
 
-<Resources />
+<ResourceGroup>
+  <Resource title='5 Minute Crash Course' icon={faBooks} href='/general/guides/crash-course' />
+  <Resource title='Libraries' icon={faBooks} href='/general/libraries' />
+  <Resource title='Matchmaker' icon={faBooks} href='/matchmaker/introduction'>
+    Flexible matchmaker for placing players in lobbies with no wait times.
+  </Resource>
+</ResourceGroup>

@@ -106,7 +106,8 @@ export function Resource({ children, ...props }) {
             {props.title}
           </Link>
         </h3>
-        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children ? children : null}</p>
+        {/* TODO: This is causing an error */}
+        {/* <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p> */}
       </div>
     </div>
   );
@@ -127,9 +128,6 @@ export function ResourceGroup({ children }) {
       </Heading>
       <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4'>
         {clonedChildren}
-        {/* {resources.map(resource => (
-          <Resource key={resource.href} {...resource} />
-        ))} */}
       </div>
     </div>
   );
