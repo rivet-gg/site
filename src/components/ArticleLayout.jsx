@@ -71,15 +71,15 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
                 </time>
 
                 {/* Author */}
-                <div class='relative flex items-center gap-x-4'>
+                <div className='relative flex items-center gap-x-4'>
                   <Image
                     src={article.authorInfo.avatar}
                     alt=''
-                    class='h-10 w-10 rounded-full bg-slate-100 dark:bg-slate-100'
+                    className='h-10 w-10 rounded-full bg-slate-100 dark:bg-slate-100'
                   />
-                  <div class='text-sm leading-6'>
-                    <div class='font-semibold text-slate-900 dark:text-slate-100'>{article.authorInfo.name}</div>
-                    <div class='text-slate-600 dark:text-slate-400'>{article.authorInfo.role}</div>
+                  <div className='text-sm leading-6'>
+                    <div className='font-semibold text-slate-900 dark:text-slate-100'>{article.authorInfo.name}</div>
+                    <div className='text-slate-600 dark:text-slate-400'>{article.authorInfo.role}</div>
                   </div>
                 </div>
               </header>
