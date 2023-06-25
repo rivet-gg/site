@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
+import { PostHogProvider} from 'posthog-js/react'
 
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
+
+const POSTHOG_API_KEY = 'phc_6kfTNEAVw7rn1LA51cO3D69FefbKupSWFaM7OUgEpEo';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -14,6 +17,7 @@ function classNames(...classes) {
 export function Layout({ navigation, prose, children, sections = [] }) {
   return (
     <SectionProvider sections={sections}>
+      <PostHogProvider apiKey={POSTHOG_API_KEY}>
       <div className={clsx(navigation.sidebar && 'lg:ml-72 xl:ml-80')}>
         {/* Navigation */}
         <motion.header
@@ -46,6 +50,7 @@ export function Layout({ navigation, prose, children, sections = [] }) {
           <Footer navigation={navigation} />
         </div>
       </div>
+      </PostHogProvider>
     </SectionProvider>
   );
 }
