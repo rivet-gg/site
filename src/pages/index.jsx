@@ -1,11 +1,18 @@
-import Image from 'next/image';
-import { formatDate } from '@/lib/formatDate';
+import React from 'react';
 import { generateRssFeed } from '@/lib/generateRssFeed';
 import { getAllArticles } from '@/lib/getAllArticles';
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HeroPattern } from '@/components/HeroPattern';
+import clsx from 'clsx';
+
+const tabs = [
+  { name: 'Game Servers' },
+  { name: 'DDoS Mitigation' },
+  { name: 'Matchmaking' },
+  { name: 'Analytics' },
+  { name: 'Social' },
+  { name: 'CDN' },
+  { name: 'Open Source' }
+];
 
 export async function getStaticProps() {
   if (process.env.NODE_ENV === 'production') {
@@ -29,7 +36,7 @@ export default function Index() {
         <div className='py-24 sm:py-32 lg:pb-40'>
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <Title />
-            <Tabs />
+            <Features />
           </div>
         </div>
       </div>
@@ -61,8 +68,41 @@ function Title() {
 }
 
 function Features() {
+  const [tabIndex, setTabIndex] = React.useState(0);
+
   return (
-    <div className='max-w-64 ring-inse mt-16 h-[500px] w-full rounded-md shadow-2xl ring-1 ring-gray-800/10 dark:ring-gray-200/10 sm:mt-24'></div>
+    <div className='max-w-64 ring-inse mt-16 h-[500px] w-full rounded-md shadow-2xl ring-1 ring-gray-800/10 dark:ring-gray-200/10 sm:mt-24'>
+      <Tabs tabIndex={tabIndex} onChangeTabIndex={setTabIndex} />
+    </div>
+  );
+}
+
+function Tabs({ tabIndex, onChangeTabIndex }) {
+  return (
+    <div className='hidden sm:block'>
+      <div className='border-b border-gray-200'>
+        <nav className='-mb-px flex' aria-label='Tabs'>
+          {tabs.map((tab, i) => {
+            let isCurrent = i == tabIndex;
+            return (
+              <a
+                key={tab.name}
+                href={tab.href}
+                className={clsx(
+                  isCurrent
+                    ? 'border-indigo-500 text-indigo-600'
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  'w-1/4 cursor-pointer border-b-2 px-1 py-4 text-center text-sm font-medium'
+                )}
+                aria-current={isCurrent ? 'page' : undefined}
+                onClick={() => onChangeTabIndex(i)}>
+                {tab.name}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </div>
   );
 }
 
