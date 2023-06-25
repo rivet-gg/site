@@ -48,18 +48,15 @@ function Article({ article }) {
 
       <div class='max-w-xl'>
         {/* Author */}
-        <div class='relative mt-8 flex items-center gap-x-4'>
-          <img
-            src='https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+        <div class='relative mt-4 flex items-center gap-x-4'>
+          <Image
+            src={article.authorInfo.avatar}
             alt=''
             class='h-10 w-10 rounded-full bg-slate-100 dark:bg-slate-100'
           />
           <div class='text-sm leading-6'>
-            <p class='font-semibold text-slate-900 dark:text-slate-100'>
-              <span class='absolute inset-0'></span>
-              {article.authorInfo.name}
-            </p>
-            <p class='text-slate-600 dark:text-slate-400'>{article.authorInfo.role}</p>
+            <div class='font-semibold text-slate-900 dark:text-slate-100'>{article.authorInfo.name}</div>
+            <div class='text-slate-600 dark:text-slate-400'>{article.authorInfo.role}</div>
           </div>
         </div>
       </div>
