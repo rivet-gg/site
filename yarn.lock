@@ -2351,6 +2351,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"github-buttons@npm:^2.22.0":
+  version: 2.27.0
+  resolution: "github-buttons@npm:2.27.0"
+  checksum: 1954e04fc7e65a5c14b9c0726b486015deee648c9de62f7f0d4267bbd548090f57137d33e1755490736b10578c4fc7bf149fe64c296d7634a1bfc3707e25e96b
+  languageName: node
+  linkType: hard
+
 "github-from-package@npm:0.0.0":
   version: 0.0.0
   resolution: "github-from-package@npm:0.0.0"
@@ -5020,6 +5027,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-github-btn@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "react-github-btn@npm:1.4.0"
+  dependencies:
+    github-buttons: ^2.22.0
+  peerDependencies:
+    react: ">=16.3.0"
+  checksum: 33a416ad76ab4cc9238ac5cf5cfcab636bb2127c48fb30805385350fd3a3c2aa0aaeb78f6c726c52a0d3d133ca469be35d4b3d188c8e40c735c7ff458d2c8c3c
+  languageName: node
+  linkType: hard
+
 "react-highlight-words@npm:^0.20.0":
   version: 0.20.0
   resolution: "react-highlight-words@npm:0.20.0"
@@ -5842,6 +5860,7 @@ __metadata:
     prettier-plugin-tailwindcss: ^0.3.0
     react: 18.2.0
     react-dom: 18.2.0
+    react-github-btn: ^1.4.0
     react-highlight-words: ^0.20.0
     recma-nextjs-static-props: ^1.0.0
     rehype-mdx-title: ^2.0.0

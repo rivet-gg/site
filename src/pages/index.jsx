@@ -1,4 +1,5 @@
 import React from 'react';
+import GitHubButton from 'react-github-btn';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
@@ -8,7 +9,34 @@ import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faBolt,
+  faBook,
+  faChartWaterfall,
+  faClockRotateLeft,
+  faComment,
+  faDoorOpen,
+  faFire,
+  faGearCode,
+  faGhost,
+  faInfinity,
+  faKey,
+  faLink,
+  faLock,
+  faPiggyBank,
+  faPlanetMoon,
+  faPlug,
+  faServer,
+  faStopwatch,
+  faUserGroup,
+  faWreath,
+  faSwords,
+  faGaugeCircleBolt,
+  faPartyHorn,
+  faEarthAmericas,
+  faFileCertificate
+} from '@fortawesome/pro-solid-svg-icons';
+
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
 import imgComputeColor from 'src/images/products/compute-monotone.svg';
@@ -26,29 +54,149 @@ import imgOSSColor from '@/images/products/rocket-monotone.svg';
 const pages = [
   {
     name: 'Game Servers',
+    description: 'Deploy and scale game servers globally in minutes',
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
     features: [
       {
-        name: 'Autoscaling',
-        icon: faBook
+        name: 'Auto-scaling',
+        icon: faChartWaterfall
       },
       {
-        name: 'DDoS Mitigation',
-        icon: faBook
+        name: 'Fast & no downtime deploys',
+        icon: faBolt
       },
       {
-        name: 'No downtime deploys',
-        icon: faBook
+        name: 'Instant rollbacks',
+        icon: faClockRotateLeft
+      },
+      {
+        name: 'Cost effective',
+        icon: faPiggyBank
       }
     ]
   },
-  { name: 'DDoS Mitigation', color: '#8A7ED8', image: [imgGameGuardWhite, imgGameGuardColor], features: [] },
-  { name: 'Matchmaker', color: '#4DB1F9', image: [imgMatchmakerWhite, imgMatchmakerColor], features: [] },
-  { name: 'Analytics', color: '#4DB1F9', image: [imgAnalyticsWhite, imgAnalyticsColor], features: [] },
-  { name: 'Social', color: '#F2B046', image: [imgSocialWhite, imgSocialColor], features: [] },
+  {
+    name: 'DDoS Mitigation',
+    description: 'Protect your game servers from DDoS attacks',
+    color: '#8A7ED8',
+    image: [imgGameGuardWhite, imgGameGuardColor],
+    features: [
+      {
+        name: 'Mitigates DDoS & botting attacks',
+        icon: faSwords
+      },
+      {
+        name: 'No added latency',
+        icon: faGaugeCircleBolt
+      },
+      {
+        name: 'Supports WebSockets+SSL, TCP+TLS, & UDP',
+        icon: faPlug
+      }
+    ]
+  },
+  {
+    name: 'Matchmaker',
+    description: 'Matchmake players in < 1 second',
+    color: '#4DB1F9',
+    image: [imgMatchmakerWhite, imgMatchmakerColor],
+    features: [
+      {
+        name: 'Fast matchmaking',
+        icon: faStopwatch
+      },
+      {
+        name: 'Integrated with infrastructure',
+        icon: faLink
+      },
+      {
+        name: 'Flexible to work with your game',
+        icon: faInfinity
+      },
+      {
+        name: 'Configurable region selection',
+        icon: faEarthAmericas
+      },
+    ]
+  },
+  {
+    name: 'Analytics',
+    description: 'Understand your players & game servers',
+    color: '#4DB1F9',
+    image: [imgAnalyticsWhite, imgAnalyticsColor],
+    features: [
+      {
+        name: 'Real-time analytics',
+        icon: faFire
+      },
+      {
+        name: 'No code changes required',
+        icon: faGearCode
+      },
+      {
+        name: 'Insights for both social & services',
+        icon: faPlanetMoon
+      }
+    ]
+  },
+  {
+    name: 'Social',
+    description: 'Add social features to your game in 1 line of code',
+    color: '#F2B046',
+    image: [imgSocialWhite, imgSocialColor],
+    features: [
+      {
+        name: 'Easy account integration',
+        icon: faKey
+      },
+      {
+        name: 'Parties',
+        icon: faPartyHorn
+      },
+      {
+        name: 'Chat',
+        icon: faComment
+      },
+      {
+        name: 'Groups',
+        icon: faUserGroup
+      },
+      {
+        name: 'Guest accounts',
+        icon: faGhost
+      }
+    ]
+  },
   // { name: 'CDN', features: [] },
-  { name: 'Open Source', color: '#8A7ED8', image: [imgOSSWhite, imgOSSColor], features: [] }
+  {
+    name: 'Open Source',
+    description: 'Source code available to read, modify, and self-host',
+    color: '#8A7ED8',
+    image: [imgOSSWhite, imgOSSColor],
+    features: [
+      {
+        name: 'Permissive license (Apache 2.0)',
+        icon: faFileCertificate
+      },
+      {
+        name: 'Full transparency',
+        icon: faDoorOpen
+      },
+      {
+        name: 'Self-host on-premise',
+        icon: faServer
+      },
+      {
+        name: 'Audit security',
+        icon: faLock
+      },
+      {
+        name: 'Make it your own',
+        icon: faWreath
+      }
+    ]
+  }
 ];
 
 export async function getStaticProps() {
@@ -70,7 +218,7 @@ export default function Index() {
 
       {/* Header */}
       <div className='relative isolate pt-14'>
-        <div className='py-24 sm:py-32 lg:pb-40'>
+        <div className='py-12 sm:py-16 lg:pb-20'>
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <Title />
             <Features />
@@ -84,12 +232,37 @@ export default function Index() {
 function Title() {
   return (
     <div className='mx-auto max-w-2xl text-center'>
+      {/* Event */}
+      <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
+        <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
+          <div>Rivet is now open source</div>
+
+          <div className='-mb-1'>
+            <GitHubButton
+              href='https://github.com/rivet-gg/rivet'
+              data-show-count='true'
+              aria-label='Star rivet-gg/rivet on GitHub'>
+              Star
+            </GitHubButton>
+          </div>
+          {/* <a href='#' className='font-semibold text-white'>
+            <span className='absolute inset-0' aria-hidden='true' />
+            Read more <span aria-hidden='true'>&rarr;</span>
+          </a> */}
+        </div>
+      </div>
+
+      {/* Title */}
       <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>
-        Multiplayer development platform
+        The multiplayer development platform
       </h1>
+
+      {/* Subtitle */}
       <p className='mt-6 text-lg leading-8 text-gray-300'>
-        Open-source suite of tools to run, scale, and engage audiences within your multiplayer game.
+        All-in-one solution to deploy, scale, and operate your multiplayer game
       </p>
+
+      {/* CTA */}
       <div className='mt-10 flex items-center justify-center gap-x-6'>
         <a
           href='#'
@@ -249,11 +422,9 @@ function PageGameServers({ page }) {
         <div className='lg:ml-auto lg:px-4 lg:pt-4'>
           <div className='lg:max-w-lg'>
             {/* Title */}
-            <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-              Something something
-            </h2>
+            <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>{page.name}</h2>
             <p className='text-m mt-4 text-gray-300'>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit
+            {page.description}
             </p>
 
             {/* Features */}
@@ -269,7 +440,7 @@ function PageGameServers({ page }) {
             </div>
 
             {/* Learn more */}
-            <div className='mt-3'>
+            <div className='mt-5'>
               <Button href='/docs' arrow='right'>
                 Learn More
               </Button>
