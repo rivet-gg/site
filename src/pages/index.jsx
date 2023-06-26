@@ -221,14 +221,15 @@ export default function Index() {
   return (
     <div>
       {/* Hero */}
-      <GridPattern className='absolute right-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%]'></GridPattern>
-      <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern>
+      {/* <GridPattern className='absolute right-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%]'></GridPattern>
+      <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern> */}
 
       {/* Header */}
       <div className='relative isolate'>
         <div className='pb-12 sm:pb-16 lg:pb-20'>
+          <Title />
+
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-            <Title />
             <Features />
             <CaseStudies />
           </div>
@@ -242,70 +243,75 @@ export default function Index() {
 
 function Title() {
   return (
-    <div className='mx-auto max-w-2xl text-center'>
-      <Demo />
-
-      {/* Event */}
-      <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
-        <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
-          <div>Rivet is now open source</div>
-          <div className='-mb-1 ml-4'>
-            <GitHubButton
-              href='https://github.com/rivet-gg/rivet'
-              data-show-count='true'
-              aria-label='Star rivet-gg/rivet on GitHub'>
-              Star
-            </GitHubButton>
-          </div>
-          {/* <a href='#' className='font-semibold text-white'>
+    <div className='w-full flex justify-around items-center flex-wrap'>
+      {/* Text */}
+      <div className='max-w-2xl text-center'>
+        {/* Event */}
+        <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
+          <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
+            <div>Rivet is now open source</div>
+            <div className='-mb-1 ml-4'>
+              <GitHubButton
+                href='https://github.com/rivet-gg/rivet'
+                data-show-count='true'
+                aria-label='Star rivet-gg/rivet on GitHub'>
+                Star
+              </GitHubButton>
+            </div>
+            {/* <a href='#' className='font-semibold text-white'>
             <span className='absolute inset-0' aria-hidden='true' />
             Read more <span aria-hidden='true'>&rarr;</span>
           </a> */}
+          </div>
+        </div>
+
+        {/* Title */}
+        <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>
+          The multiplayer development platform
+        </h1>
+
+        {/* Subtitle */}
+        <p className='mt-6 text-lg leading-8 text-gray-300'>
+          All-in-one solution to deploy, scale, and operate your multiplayer game
+        </p>
+
+        {/* CTA */}
+        <div className='mt-10 flex items-center justify-center gap-x-6'>
+          <a
+            href='#'
+            className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
+            Sign Up
+          </a>
+          <a href='#' className='text-sm font-semibold leading-6 text-white'>
+            Crash Course <span aria-hidden='true'>→</span>
+          </a>
         </div>
       </div>
 
-      {/* Title */}
-      <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>
-        The multiplayer development platform
-      </h1>
-
-      {/* Subtitle */}
-      <p className='mt-6 text-lg leading-8 text-gray-300'>
-        All-in-one solution to deploy, scale, and operate your multiplayer game
-      </p>
-
-      {/* CTA */}
-      <div className='mt-10 flex items-center justify-center gap-x-6'>
-        <a
-          href='#'
-          className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
-          Sign Up
-        </a>
-        <a href='#' className='text-sm font-semibold leading-6 text-white'>
-          Crash Course <span aria-hidden='true'>→</span>
-        </a>
-      </div>
+      {/* Demo */}
+      <Demo />
     </div>
   );
 }
 
 function Demo() {
-      {/* TODO: https://www.pngwing.com/en/free-png-srjqm */}
-      return (
-        <div className='relative h-[800px]'>
-          <div className='absolute w-[1000px] h-[1000px] scale-[calc(640/1000)] origin-top left-[50%] -translate-x-1/2'>
-            <Image
-              src={imgComputerFrame}
-              alt='Rivet'
-              className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
-            />
-            <div className='absolute left-[351px] top-[193px] h-[222px] w-[298px] bg-red-500'>
-              <iframe src='https://tanks.rivet.game/' className='h-full w-full' />
-            </div>
-          </div>
+  {
+    /* TODO: https://www.pngwing.com/en/free-png-srjqm */
+  }
+  return (
+    <div className='relative w-[640px] h-[750px] overflow-hidden'>
+      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
+        <Image
+          src={imgComputerFrame}
+          alt='Rivet'
+          className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
+        />
+        <div className='absolute left-[351px] top-[193px] h-[222px] w-[298px] bg-red-500'>
+          <iframe src='https://tanks.rivet.game/' className='h-full w-full' />
         </div>
-      );
-
+      </div>
+    </div>
+  );
 }
 
 const variants = {
