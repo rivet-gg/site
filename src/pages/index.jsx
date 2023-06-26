@@ -12,6 +12,8 @@ import { faBook } from '@fortawesome/pro-solid-svg-icons';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
 import imgComputeColor from 'src/images/products/compute-monotone.svg';
+import imgGameGuardWhite from 'src/images/products/game-guard-white.svg';
+import imgGameGuardColor from 'src/images/products/game-guard-monotone.svg';
 import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 import imgMatchmakerColor from '@/images/products/matchmaker-monotone.svg';
 import imgAnalyticsWhite from '@/images/products/analytics-white.svg';
@@ -41,7 +43,7 @@ const pages = [
       }
     ]
   },
-  // { name: 'DDoS Mitigation', features: [] },
+  { name: 'DDoS Mitigation', color: '#8A7ED8', image: [imgGameGuardWhite, imgGameGuardColor], features: [] },
   { name: 'Matchmaker', color: '#4DB1F9', image: [imgMatchmakerWhite, imgMatchmakerColor], features: [] },
   { name: 'Analytics', color: '#4DB1F9', image: [imgAnalyticsWhite, imgAnalyticsColor], features: [] },
   { name: 'Social', color: '#F2B046', image: [imgSocialWhite, imgSocialColor], features: [] },
@@ -158,9 +160,9 @@ function Tabs({ index, onChangeTab }) {
                 href={tab.href}
                 className={clsx(
                   isCurrent
-                    ? 'border-violet-500 text-white bg-[color:var(--tab-color)]'
+                    ? 'border-violet-500 bg-[color:var(--tab-color)] text-white'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center font-display text-sm font-semibold text-white transition rounded-lg m-2'
+                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-display text-sm font-semibold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
@@ -169,7 +171,7 @@ function Tabs({ index, onChangeTab }) {
                   <Image
                     src={tab.image[0]}
                     className={clsx(
-                      'absolute h-full w-full opacity-100 transition',
+                      'absolute h-full w-full opacity-100 transition'
                       // isCurrent && 'opacity-0'
                     )}
                   />
@@ -194,7 +196,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[500px] w-full'>
+    <div className='relative flex h-[500px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
