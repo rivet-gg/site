@@ -34,11 +34,10 @@ function TopLevelNavItem({ href, icon, children }) {
       href={href}
       className={clsx(
         current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
-        'rounded-md px-3.5 py-1.5 text-sm font-medium transition flex items-center gap-2'
-        // 'flex items-center gap-2 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white px-3 py-1 rounded-md'
+        'rounded-md px-3.5 py-1.5 transition flex items-center gap-2'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <Link href={href} className='font-display text-base font-medium'>
+      <Link href={href} className='font-display text-lg font-semibold'>
         {children}
       </Link>
     </Link>
