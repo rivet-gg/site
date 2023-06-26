@@ -158,9 +158,9 @@ function Tabs({ index, onChangeTab }) {
                 href={tab.href}
                 className={clsx(
                   isCurrent
-                    ? 'border-violet-500 text-[color:var(--tab-color)]'
+                    ? 'border-violet-500 text-white bg-[color:var(--tab-color)]'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center px-1 py-4 text-center font-display text-sm font-semibold text-white transition'
+                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center font-display text-sm font-semibold text-white transition rounded-lg m-2'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
@@ -170,16 +170,16 @@ function Tabs({ index, onChangeTab }) {
                     src={tab.image[0]}
                     className={clsx(
                       'absolute h-full w-full opacity-100 transition',
-                      isCurrent && 'opacity-0'
+                      // isCurrent && 'opacity-0'
                     )}
                   />
-                  <Image
+                  {/* <Image
                     src={tab.image[1]}
                     className={clsx(
                       'absolute h-full w-full opacity-0 transition',
                       isCurrent && 'opacity-100'
                     )}
-                  />
+                  /> */}
                 </div>
                 <div>{tab.name}</div>
               </div>
