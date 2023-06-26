@@ -25,6 +25,32 @@ import {
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { useRouter } from 'next/router';
 
+import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
+import imgComputeWhite from '@/images/products/compute-white.svg';
+import imgCdnWhite from '@/images/products/cdn-white.svg';
+import imgIdentityWhite from '@/images/products/identity-white.svg';
+import imgKvWhite from '@/images/products/kv-white.svg';
+
+import imgUnity from '@/images/vendors/unity-white.svg';
+import imgUnreal from '@/images/vendors/unreal-white.svg';
+import imgGodot from '@/images/vendors/godot-white.svg';
+import imgHtml5 from '@/images/vendors/html5-white.svg';
+
+const ICONS = {
+  // Products
+  matchmaker: imgMatchmakerWhite,
+  compute: imgComputeWhite,
+  cdn: imgCdnWhite,
+  identity: imgIdentityWhite,
+  kv: imgKvWhite,
+
+  // Vendor
+  unity: imgUnity,
+  unreal: imgUnreal,
+  godot: imgGodot,
+  html5: imgHtml5
+};
+
 function TopLevelNavItem({ href, icon, children }) {
   let router = useRouter();
 
@@ -34,12 +60,12 @@ function TopLevelNavItem({ href, icon, children }) {
       href={href}
       className={clsx(
         current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
-        'rounded-md px-3.5 py-1.5 transition flex items-center gap-2'
+        'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <Link href={href} className='font-display text-lg font-semibold'>
+      <span href={href} className='font-display text-lg font-semibold'>
         {children}
-      </Link>
+      </span>
     </Link>
   );
 }
@@ -143,7 +169,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
         </div>
 
-        <div className='hidden gap-6 md:flex items-center'>
+        <div className='hidden items-center gap-6 md:flex'>
           <Link href='/' aria-label='Home'>
             <Logo className='h-6' />
           </Link>

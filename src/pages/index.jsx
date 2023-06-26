@@ -597,9 +597,9 @@ function UpAndRunning() {
               className='h-full w-full'
               src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
               title='YouTube video player'
-              frameborder='0'
+              frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen></iframe>
+              allowFullScreen></iframe>
           </div>
           {/* <Image
             className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm'

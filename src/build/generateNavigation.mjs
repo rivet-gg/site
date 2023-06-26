@@ -81,26 +81,31 @@ function docsTabs(path) {
     },
     {
       title: 'Matchmaker',
+      icon: 'matchmaker',
       href: '/docs/matchmaker',
       current: path[1] === 'matchmaker'
     },
     {
       title: 'Serverless Lobbies',
+      icon: 'compute',
       href: '/docs/serverless-lobbies',
       current: path[1] === 'serverless-lobbies'
     },
     {
       title: 'CDN',
+      icon: 'cdn',
       href: '/docs/cdn',
       current: path[1] === 'cdn'
     },
     {
       title: 'Identity',
+      icon: 'identity',
       href: '/docs/identity',
       current: path[1] === 'identity'
     },
     {
       title: 'KV',
+      icon: 'kv',
       href: '/docs/kv',
       current: path[1] === 'kv'
     },
@@ -121,21 +126,25 @@ function learnTabs(path) {
     },
     {
       title: 'Unity',
+      icon: 'unity',
       href: '/learn/unity',
       current: path[1] === 'unity'
     },
     {
       title: 'Unreal Engine',
+      icon: 'unreal',
       href: '/learn/unreal',
       current: path[1] === 'unreal'
     },
     {
       title: 'Godot',
+      icon: 'godot',
       href: '/learn/godot',
       current: path[1] === 'godot'
     },
     {
       title: 'HTML5',
+      icon: 'html5',
       href: '/learn/html5',
       current: path[1] === 'html5'
     },
