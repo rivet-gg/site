@@ -222,6 +222,7 @@ export default function Index() {
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <Title />
             <Features />
+            <CaseStudies />
           </div>
         </div>
       </div>
@@ -414,7 +415,10 @@ function PageGameServers({ page }) {
           className='absolute left-1/2 top-1/2 w-full rounded-lg'
           key={page.index}
           initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
-          whileInView={{ transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)', opacity: 1 }}
+          whileInView={{
+            transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)',
+            opacity: 1
+          }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
           <Image src={imgLobbies} className='' />
@@ -450,6 +454,77 @@ function PageGameServers({ page }) {
               </Button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseStudies({ props }) {
+  return (
+    <div className='mt-16'>
+      {/* Title */}
+      <div className='mx-auto max-w-2xl text-center'>
+        <h2 className='text-xl font-bold tracking-tight text-white sm:text-2xl'>
+          Trusted to serve millions of players.
+        </h2>
+      </div>
+
+      {/* Grid */}
+      <div className='-mx-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3 mt-6'>
+        <div className='bg-white/5 p-8 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg'
+            alt='Transistor'
+            width={158}
+            height={48}
+          />
+        </div>
+        <div className='bg-white/5 p-6 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg'
+            alt='Reform'
+            width={158}
+            height={48}
+          />
+        </div>
+        <div className='bg-white/5 p-6 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg'
+            alt='Tuple'
+            width={158}
+            height={48}
+          />
+        </div>
+        <div className='bg-white/5 p-6 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/laravel-logo-white.svg'
+            alt='Laravel'
+            width={158}
+            height={48}
+          />
+        </div>
+        <div className='bg-white/5 p-6 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg'
+            alt='SavvyCal'
+            width={158}
+            height={48}
+          />
+        </div>
+        <div className='bg-white/5 p-6 sm:p-10'>
+          <img
+            className='max-h-12 w-full object-contain'
+            src='https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg'
+            alt='Statamic'
+            width={158}
+            height={48}
+          />
         </div>
       </div>
     </div>
