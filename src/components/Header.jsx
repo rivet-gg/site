@@ -13,15 +13,14 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation';
 import { ModeToggle } from '@/components/ModeToggle';
 import { MobileSearch, Search } from '@/components/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faGraduationCap, faUserGroup } from '@fortawesome/pro-solid-svg-icons';
+import { faBooks, faCode, faCoin, faGraduationCap, faHammer, faNewspaper, faUserGroup } from '@fortawesome/pro-solid-svg-icons';
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
 
-function TopLevelNavItem({ href, children }) {
+function TopLevelNavItem({ href, icon, children }) {
   return (
-    <li>
-      <Link
-        href={href}
-        className='text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
+    <li className='text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex gap-2 items-center'>
+      {icon ? <FontAwesomeIcon icon={icon} /> : null}
+      <Link href={href} className='font-display text-base font-semibold'>
         {children}
       </Link>
     </li>
@@ -181,13 +180,19 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
               }>
               Learn
             </TopLevelNavPopover> */}
-            <TopLevelNavItem href='/docs'>Docs</TopLevelNavItem>
-            <TopLevelNavItem href='/tutorials'>Tutorials</TopLevelNavItem>
-            <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
-            <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
-            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faGithub}/></TopLevelNavItem>
-            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faDiscord}/></TopLevelNavItem>
-            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faTwitter}/></TopLevelNavItem>
+            <TopLevelNavItem href='/docs' icon={faBooks}>Docs</TopLevelNavItem>
+            <TopLevelNavItem href='/tutorials' icon={faHammer}>Tutorials</TopLevelNavItem>
+            <TopLevelNavItem href='/blog' icon={faNewspaper}>Blog</TopLevelNavItem>
+            <TopLevelNavItem href='/pricing' icon={faCoin}>Pricing</TopLevelNavItem>
+            <TopLevelNavItem href='/support'>
+              <FontAwesomeIcon icon={faGithub} />
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/support'>
+              <FontAwesomeIcon icon={faDiscord} />
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/support'>
+              <FontAwesomeIcon icon={faTwitter} />
+            </TopLevelNavItem>
             {/* <TopLevelNavItem href='/support'>Support</TopLevelNavItem> */}
           </ul>
         </div>
