@@ -127,7 +127,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
         </div>
 
-        <div className='hidden gap-6 md:flex'>
+        <div className='hidden gap-8 md:flex'>
           <Link href='/' aria-label='Home'>
             <Logo className='h-6' />
           </Link>
