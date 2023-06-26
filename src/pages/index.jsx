@@ -243,7 +243,7 @@ export default function Index() {
 
 function Title() {
   return (
-    <div className='w-full flex justify-around items-center flex-wrap'>
+    <div className='flex w-full flex-wrap items-center justify-around'>
       {/* Text */}
       <div className='max-w-2xl text-center'>
         {/* Event */}
@@ -286,6 +286,11 @@ function Title() {
             Crash Course <span aria-hidden='true'>→</span>
           </a>
         </div>
+
+        {/* YC */}
+        {/* <div className='mt-8 flex items-center justify-center gap-x-6'>
+          Backed by Y Combinator
+        </div> */}
       </div>
 
       {/* Demo */}
@@ -299,7 +304,7 @@ function Demo() {
     /* TODO: https://www.pngwing.com/en/free-png-srjqm */
   }
   return (
-    <div className='relative w-[640px] h-[750px] overflow-hidden'>
+    <div className='relative h-[750px] w-[640px] overflow-hidden'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
@@ -570,6 +575,7 @@ function CaseStudies({ props }) {
 
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { Resource, ResourceGroup } from '@/components/Resources';
+// import YCLogo from '@/components/YCLogo';
 
 const benefits = [
   'Competitive salaries',

@@ -376,3 +376,52 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('/fonts/darker-grgrotesque/DarkerGrotesque-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
