@@ -13,17 +13,35 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation';
 import { ModeToggle } from '@/components/ModeToggle';
 import { MobileSearch, Search } from '@/components/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBooks, faCode, faCoin, faGraduationCap, faHammer, faNewspaper, faUserGroup } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faBooks,
+  faCode,
+  faCoin,
+  faGraduationCap,
+  faHammer,
+  faNewspaper,
+  faUserGroup
+} from '@fortawesome/pro-solid-svg-icons';
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { useRouter } from 'next/router';
 
 function TopLevelNavItem({ href, icon, children }) {
+  let router = useRouter();
+
+  let current = router.pathname.startsWith(href);
   return (
-    <li className='text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex gap-2 items-center'>
+    <Link
+      href={href}
+      className={clsx(
+        current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
+        'rounded-md px-3.5 py-1.5 text-sm font-medium transition flex items-center gap-2'
+        // 'flex items-center gap-2 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white px-3 py-1 rounded-md'
+      )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <Link href={href} className='font-display text-base font-semibold'>
+      <Link href={href} className='font-display text-base font-medium'>
         {children}
       </Link>
-    </li>
+    </Link>
   );
 }
 
@@ -126,12 +144,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
         </div>
 
-        <div className='hidden gap-8 md:flex'>
+        <div className='hidden gap-6 md:flex items-center'>
           <Link href='/' aria-label='Home'>
             <Logo className='h-6' />
           </Link>
 
-          <ul role='list' className='flex items-center gap-6'>
+          <div className='flex items-center gap-1'>
             {/* <TopLevelNavPopover
               solutions={
                 <>
@@ -180,11 +198,19 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
               }>
               Learn
             </TopLevelNavPopover> */}
-            <TopLevelNavItem href='/docs' icon={faBooks}>Docs</TopLevelNavItem>
-            <TopLevelNavItem href='/tutorials' icon={faHammer}>Tutorials</TopLevelNavItem>
-            <TopLevelNavItem href='/blog' icon={faNewspaper}>Blog</TopLevelNavItem>
-            <TopLevelNavItem href='/pricing' icon={faCoin}>Pricing</TopLevelNavItem>
-            <TopLevelNavItem href='/support'>
+            <TopLevelNavItem href='/docs' icon={faBooks}>
+              Docs
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/tutorials' icon={faHammer}>
+              Tutorials
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/blog' icon={faNewspaper}>
+              Blog
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/pricing' icon={faCoin}>
+              Pricing
+            </TopLevelNavItem>
+            {/* <TopLevelNavItem href='/support'>
               <FontAwesomeIcon icon={faGithub} />
             </TopLevelNavItem>
             <TopLevelNavItem href='/support'>
@@ -192,9 +218,9 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
             </TopLevelNavItem>
             <TopLevelNavItem href='/support'>
               <FontAwesomeIcon icon={faTwitter} />
-            </TopLevelNavItem>
+            </TopLevelNavItem> */}
             {/* <TopLevelNavItem href='/support'>Support</TopLevelNavItem> */}
-          </ul>
+          </div>
         </div>
 
         <div className='flex items-center gap-5'>
