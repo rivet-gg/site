@@ -416,7 +416,7 @@ function PageGameServers({ page }) {
           initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
           whileInView={{ transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)', opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, type: 'spring' }}>
+          transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
           <Image src={imgLobbies} className='' />
           <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </motion.div>
