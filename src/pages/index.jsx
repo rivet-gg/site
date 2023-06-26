@@ -117,26 +117,6 @@ const pages = [
       {
         name: 'Configurable region selection',
         icon: faEarthAmericas
-      },
-    ]
-  },
-  {
-    name: 'Analytics',
-    description: 'Understand your players & game servers',
-    color: '#4DB1F9',
-    image: [imgAnalyticsWhite, imgAnalyticsColor],
-    features: [
-      {
-        name: 'Real-time analytics',
-        icon: faFire
-      },
-      {
-        name: 'No code changes required',
-        icon: faGearCode
-      },
-      {
-        name: 'Insights for both social & services',
-        icon: faPlanetMoon
       }
     ]
   },
@@ -165,6 +145,26 @@ const pages = [
       {
         name: 'Guest accounts',
         icon: faGhost
+      }
+    ]
+  },
+  {
+    name: 'Analytics',
+    description: 'Understand your players & game servers',
+    color: '#4DB1F9',
+    image: [imgAnalyticsWhite, imgAnalyticsColor],
+    features: [
+      {
+        name: 'Real-time analytics',
+        icon: faFire
+      },
+      {
+        name: 'No code changes required',
+        icon: faGearCode
+      },
+      {
+        name: 'Insights for both social & services',
+        icon: faPlanetMoon
       }
     ]
   },
@@ -236,8 +236,7 @@ function Title() {
       <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
         <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
           <div>Rivet is now open source</div>
-
-          <div className='-mb-1'>
+          <div className='ml-4 -mb-1'>
             <GitHubButton
               href='https://github.com/rivet-gg/rivet'
               data-show-count='true'
@@ -329,7 +328,7 @@ function Tabs({ index, onChangeTab }) {
             let isCurrent = i == index;
             return (
               <div
-                key={tab.namehover}
+                key={tab.name}
                 href={tab.href}
                 className={clsx(
                   isCurrent
@@ -402,7 +401,7 @@ function Pages({ page, onChangePage }) {
   );
 }
 
-function PageTodo() {
+function Page() {
   return <div className='h-full w-full'>Todo</div>;
 }
 
@@ -411,10 +410,18 @@ function PageGameServers({ page }) {
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
       <div className='relative flex-1'>
-        <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
-          <Image src={imgLobbies} className='' />
-          <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
-        </div>
+        <motion.div
+          className='absolute inset-0 h-full w-full'
+          key={page.index}
+          initial={{ translateY: 100, opacity: 0 }}
+          whileInView={{ translateY: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}>
+          <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
+            <Image src={imgLobbies} className='' />
+            <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
+          </div>
+        </motion.div>
       </div>
 
       {/* Details */}
@@ -423,14 +430,13 @@ function PageGameServers({ page }) {
           <div className='lg:max-w-lg'>
             {/* Title */}
             <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>{page.name}</h2>
-            <p className='text-m mt-4 text-gray-300'>
-            {page.description}
-            </p>
+            <p className='text-m mt-4 text-gray-300'>{page.description}</p>
 
             {/* Features */}
             <div className='mt-6 flex w-full flex-col items-stretch gap-4'>
-              {page.features.map(feature => (
+              {page.features.map((feature, i) => (
                 <Link
+                  key={i}
                   href='/docs'
                   className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition hover:bg-violet-600'>
                   <FontAwesomeIcon icon={feature.icon} />
