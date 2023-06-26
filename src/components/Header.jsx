@@ -14,7 +14,7 @@ import { ModeToggle } from '@/components/ModeToggle';
 import { MobileSearch, Search } from '@/components/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faGraduationCap, faUserGroup } from '@fortawesome/pro-solid-svg-icons';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
 
 function TopLevelNavItem({ href, children }) {
   return (
@@ -33,7 +33,7 @@ function TopLevelNavPopover({ solutions, callsToAction, children }) {
     <Popover className='relative'>
       <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
         <span>{children}</span>
-        <ChevronDownIcon className='h-5 w-5' aria-hidden='true' />
+        {/* <ChevronDownIcon className='h-5 w-5' aria-hidden='true' /> */}
       </Popover.Button>
 
       <Transition
@@ -133,7 +133,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
 
           <ul role='list' className='flex items-center gap-6'>
-            <TopLevelNavPopover
+            {/* <TopLevelNavPopover
               solutions={
                 <>
                   <TopLevelNavPopoverSolution
@@ -151,8 +151,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 </>
               }>
               Products
-            </TopLevelNavPopover>
-            <TopLevelNavPopover
+            </TopLevelNavPopover> */}
+            {/* <TopLevelNavPopover
               solutions={
                 <>
                   <TopLevelNavPopoverSolution
@@ -180,10 +180,15 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 </>
               }>
               Learn
-            </TopLevelNavPopover>
+            </TopLevelNavPopover> */}
+            <TopLevelNavItem href='/docs'>Docs</TopLevelNavItem>
+            <TopLevelNavItem href='/tutorials'>Tutorials</TopLevelNavItem>
             <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
             <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
-            <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
+            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faGithub}/></TopLevelNavItem>
+            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faDiscord}/></TopLevelNavItem>
+            <TopLevelNavItem href='/support'><FontAwesomeIcon icon={faTwitter}/></TopLevelNavItem>
+            {/* <TopLevelNavItem href='/support'>Support</TopLevelNavItem> */}
           </ul>
         </div>
 

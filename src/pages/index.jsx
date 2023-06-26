@@ -579,7 +579,7 @@ function UpAndRunning() {
               Just 3 lines of code and you're off to the races.
             </p>
 
-            <div className='mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
+            <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource title='Getting started' icon={faGraduationCap} href='/general/guides/crash-course' />
               <Resource title='Tutorials' icon={faBooks} href='/general/libraries' />
               <Resource
