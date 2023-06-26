@@ -35,7 +35,7 @@ export function Button({ variant = 'primary', className, children, arrow, icon, 
   let Component = props.href ? Link : 'button';
 
   className = clsx(
-    'font-display inline-flex items-center justify-center gap-0.5 overflow-hidden text-sm font-medium transition',
+    'inline-flex items-center justify-center gap-0.5 overflow-hidden text-sm font-semibold transition',
     variantStyles[variant],
     className
   );

@@ -51,7 +51,7 @@ fonts.forEach(font => {
     slug = 'saira-extra-condensed';
     family = 'Saira Extra Condensed';
   } else if (font.includes('DarkerGrotesque')) {
-    slug = 'darker-grgrotesque';
+    slug = 'darker-grotesque';
     family = 'Darker Grotesque';
   } else {
     throw new Error('Unknown font family');

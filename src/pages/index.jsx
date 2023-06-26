@@ -266,8 +266,8 @@ function Title() {
         </div>
 
         {/* Title */}
-        <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>
-          The multiplayer development platform
+        <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
+          The multiplayer<br/>development platform
         </h1>
 
         {/* Subtitle */}
@@ -377,7 +377,7 @@ function Tabs({ index, onChangeTab }) {
                   isCurrent
                     ? 'border-violet-500 bg-[color:var(--tab-color)] text-white'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-display text-sm font-semibold text-white transition'
+                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-display text-lg font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
