@@ -62,9 +62,9 @@ async function buildRoute(path) {
   if (pathSplit[0] === 'docs') {
     output.tabsTitle = 'Documentation';
     output.tabs = docsTabs(pathSplit);
-  } else if (pathSplit[0] === 'tutorials') {
-    output.tabsTitle = 'Tutorials';
-    output.tabs = tutorialTabs(pathSplit);
+  } else if (pathSplit[0] === 'learn') {
+    output.tabsTitle = 'Learn';
+    output.tabs = learnTabs(pathSplit);
   } else {
     output.tabs = null;
   }
@@ -112,36 +112,36 @@ function docsTabs(path) {
   ];
 }
 
-function tutorialTabs(path) {
+function learnTabs(path) {
   return [
     {
       title: 'Introduction',
-      href: '/tutorials',
+      href: '/learn',
       current: path.length == 1
     },
     {
       title: 'Unity',
-      href: '/tutorials/unity',
+      href: '/learn/unity',
       current: path[1] === 'unity'
     },
     {
       title: 'Unreal Engine',
-      href: '/tutorials/unreal',
+      href: '/learn/unreal',
       current: path[1] === 'unreal'
     },
     {
       title: 'Godot',
-      href: '/tutorials/godot',
+      href: '/learn/godot',
       current: path[1] === 'godot'
     },
     {
       title: 'HTML5',
-      href: '/tutorials/html5',
+      href: '/learn/html5',
       current: path[1] === 'html5'
     },
     {
       title: 'Custom',
-      href: '/tutorials/custom',
+      href: '/learn/custom',
       current: path[1] === 'custom'
     }
   ];

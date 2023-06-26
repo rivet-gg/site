@@ -173,8 +173,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 <>
                   <TopLevelNavPopoverSolution
                     icon={faGraduationCap}
-                    href='/tutorials'
-                    title='Tutorials'
+                    href='/learn'
+                    title='Learn'
                     description='Hands-on learning with your engine of choice'
                   />
                   <TopLevelNavPopoverSolution
@@ -200,8 +200,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
             <TopLevelNavItem href='/docs' icon={faBooks}>
               Docs
             </TopLevelNavItem>
-            <TopLevelNavItem href='/tutorials' icon={faHammer}>
-              Tutorials
+            <TopLevelNavItem href='/learn' icon={faHammer}>
+              Learn
             </TopLevelNavItem>
             <TopLevelNavItem href='/blog' icon={faNewspaper}>
               Blog
@@ -209,16 +209,6 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
             <TopLevelNavItem href='/pricing' icon={faCoin}>
               Pricing
             </TopLevelNavItem>
-            {/* <TopLevelNavItem href='/support'>
-              <FontAwesomeIcon icon={faGithub} />
-            </TopLevelNavItem>
-            <TopLevelNavItem href='/support'>
-              <FontAwesomeIcon icon={faDiscord} />
-            </TopLevelNavItem>
-            <TopLevelNavItem href='/support'>
-              <FontAwesomeIcon icon={faTwitter} />
-            </TopLevelNavItem> */}
-            {/* <TopLevelNavItem href='/support'>Support</TopLevelNavItem> */}
           </div>
         </div>
 

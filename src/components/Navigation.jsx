@@ -168,7 +168,7 @@ export function Navigation({ navigation, ...props }) {
     <nav {...props}>
       <ul role='list'>
         {/* Header */}
-        <TopLevelNavItem href='/tutorials'>Learn</TopLevelNavItem>
+        <TopLevelNavItem href='/learn'>Learn</TopLevelNavItem>
         <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
         <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
         <TopLevelNavItem href='/support'>Support</TopLevelNavItem>

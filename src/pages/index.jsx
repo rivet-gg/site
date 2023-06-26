@@ -618,9 +618,9 @@ function UpAndRunning() {
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource title='Getting started' icon={faGraduationCap} href='/general/guides/crash-course' />
-              <Resource title='Tutorials' icon={faBooks} href='/general/libraries' />
+              <Resource title='Learn' icon={faBooks} href='/general/libraries' />
               <Resource
-                title='Video tutorials'
+                title='Video learn'
                 icon={faServer}
                 iconType='duotone'
                 href='/serverless-lobbies/introduction'
