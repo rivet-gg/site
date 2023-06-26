@@ -5,14 +5,14 @@ import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const tabs = [
-  { name: 'Game Servers' },
-  { name: 'DDoS Mitigation' },
-  { name: 'Matchmaking' },
-  { name: 'Analytics' },
-  { name: 'Social' },
-  { name: 'CDN' },
-  { name: 'Open Source' }
+const pages = [
+  { name: 'Game Servers', element: PageGameServers },
+  { name: 'DDoS Mitigation', element: PageTodo },
+  { name: 'Matchmaking', element: PageTodo },
+  { name: 'Analytics', element: PageTodo },
+  { name: 'Social', element: PageTodo },
+  { name: 'CDN', element: PageTodo },
+  { name: 'Open Source', element: PageTodo }
 ];
 
 export async function getStaticProps() {
@@ -89,12 +89,6 @@ const variants = {
   }
 };
 
-/**
- * Experimenting with distilling swipe offset and velocity into a single variable, so the
- * less distance a user has swiped, the more velocity they need to register as a swipe.
- * Should accomodate longer swipes and short flicks without having binary checks on
- * just distance thresholds and velocity > 0.
- */
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
@@ -102,8 +96,8 @@ const swipePower = (offset, velocity) => {
 
 function paginate(page, dir) {
   const newPage = page + dir;
-  if (newPage < 0) return { index: tabs.length - (-newPage % tabs.length), dir };
-  return { index: newPage % tabs.length, dir };
+  if (newPage < 0) return { index: pages.length - (-newPage % pages.length), dir };
+  return { index: newPage % pages.length, dir };
 }
 
 function Features() {
@@ -123,7 +117,7 @@ function Tabs({ index, onChangeTab }) {
     <div className='hidden sm:block'>
       <div className='border-b border-gray-200'>
         <nav className='-mb-px flex' aria-label='Tabs'>
-          {tabs.map((tab, i) => {
+          {pages.map((tab, i) => {
             let isCurrent = i == index;
             return (
               <a
@@ -148,12 +142,13 @@ function Tabs({ index, onChangeTab }) {
 }
 
 function Pages({ page, onChangePage }) {
+  let PageElement = pages[page.index].element;
   return (
-    <div className='relative flex h-72 w-full items-center justify-center'>
+    <div className='relative flex h-72 w-full'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
-          className='absolute h-full w-full bg-red-500'
+          className='absolute h-full w-full'
           custom={page.dir}
           variants={variants}
           initial='enter'
@@ -170,24 +165,24 @@ function Pages({ page, onChangePage }) {
             const swipe = swipePower(offset.x, velocity.x);
 
             if (swipe < -swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, 1, ));
+              onChangePage(paginate(page.index, 1));
             } else if (swipe > swipeConfidenceThreshold) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          Hello page {page.index}
+          <PageElement />
         </motion.div>
       </AnimatePresence>
     </div>
   );
 }
 
-// function Page({ index, children }) {
-//   return (
-//     <div className='absolute h-full w-full bg-red-500' style={{ left: `${index * 100}%` }}>
-//       {children}
-//     </div>
-//   );
-// }
+function PageTodo() {
+  return <div className='w-full h-full bg-red-500'>Todo</div>;
+}
+
+function PageGameServers() {
+  return <div>Game servers</div>;
+}
 
 Index.prose = false;
