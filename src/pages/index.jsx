@@ -1,4 +1,5 @@
 import React from 'react';
+import { GridPattern } from '@/components/GridPattern';
 import GitHubButton from 'react-github-btn';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -41,6 +42,7 @@ import {
   faFileCertificate
 } from '@fortawesome/pro-solid-svg-icons';
 
+import imgComputerFrame from '@/images/effects/computer-frame.png';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
 import imgComputeColor from 'src/images/products/compute-monotone.svg';
@@ -218,11 +220,13 @@ export async function getStaticProps() {
 export default function Index() {
   return (
     <div>
-      <HeroPattern />
+      {/* Hero */}
+      <GridPattern className='absolute right-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%]'></GridPattern>
+      <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern>
 
       {/* Header */}
-      <div className='relative isolate pt-14'>
-        <div className='py-12 sm:py-16 lg:pb-20'>
+      <div className='relative isolate'>
+        <div className='pb-12 sm:pb-16 lg:pb-20'>
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <Title />
             <Features />
@@ -239,6 +243,8 @@ export default function Index() {
 function Title() {
   return (
     <div className='mx-auto max-w-2xl text-center'>
+      <Demo />
+
       {/* Event */}
       <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
         <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
@@ -281,6 +287,25 @@ function Title() {
       </div>
     </div>
   );
+}
+
+function Demo() {
+      {/* TODO: https://www.pngwing.com/en/free-png-srjqm */}
+      return (
+        <div className='relative h-[800px]'>
+          <div className='absolute w-[1000px] h-[1000px] scale-[calc(640/1000)] origin-top left-[50%] -translate-x-1/2'>
+            <Image
+              src={imgComputerFrame}
+              alt='Rivet'
+              className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
+            />
+            <div className='absolute left-[351px] top-[193px] h-[222px] w-[298px] bg-red-500'>
+              <iframe src='https://tanks.rivet.game/' className='h-full w-full' />
+            </div>
+          </div>
+        </div>
+      );
+
 }
 
 const variants = {
@@ -555,9 +580,9 @@ function UpAndRunning() {
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
-          <div className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-video lg:h-auto lg:max-w-sm overflow-hidden'>
+          <div className='h-96 w-full flex-none overflow-hidden rounded-2xl object-cover shadow-xl lg:aspect-video lg:h-auto lg:max-w-sm'>
             <iframe
-            className='w-full h-full'
+              className='h-full w-full'
               src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
               title='YouTube video player'
               frameborder='0'
