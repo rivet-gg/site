@@ -9,32 +9,44 @@ import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/pro-solid-svg-icons';
-import imgLobbies from '@/images/product/lobbies.png';
+import imgLobbies from '@/images/screenshots/lobbies.png';
+import imgComputeWhite from 'src/images/products/compute-white.svg';
+import imgComputeColor from 'src/images/products/compute-monotone.svg';
+import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
+import imgMatchmakerColor from '@/images/products/matchmaker-monotone.svg';
+import imgAnalyticsWhite from '@/images/products/analytics-white.svg';
+import imgAnalyticsColor from '@/images/products/analytics-monotone.svg';
+import imgSocialWhite from '@/images/products/friend-white.svg';
+import imgSocialColor from '@/images/products/friend-monotone.svg';
+import imgOSSWhite from '@/images/products/rocket-white.svg';
+import imgOSSColor from '@/images/products/rocket-monotone.svg';
 
 const pages = [
   {
     name: 'Game Servers',
+    color: '#8A7ED8',
+    image: [imgComputeWhite, imgComputeColor],
     features: [
       {
-        name: 'Push to deploy.',
+        name: 'Autoscaling',
         icon: faBook
       },
       {
-        name: 'SSL certificates.',
+        name: 'DDoS Mitigation',
         icon: faBook
       },
       {
-        name: 'Database backups.',
+        name: 'No downtime deploys',
         icon: faBook
       }
     ]
   },
-  { name: 'DDoS Mitigation', features: [] },
-  { name: 'Matchmaking', features: [] },
-  { name: 'Analytics', features: [] },
-  { name: 'Social', features: [] },
-  { name: 'CDN', features: [] },
-  { name: 'Open Source', features: [] }
+  // { name: 'DDoS Mitigation', features: [] },
+  { name: 'Matchmaker', color: '#4DB1F9', image: [imgMatchmakerWhite, imgMatchmakerColor], features: [] },
+  { name: 'Analytics', color: '#4DB1F9', image: [imgAnalyticsWhite, imgAnalyticsColor], features: [] },
+  { name: 'Social', color: '#F2B046', image: [imgSocialWhite, imgSocialColor], features: [] },
+  // { name: 'CDN', features: [] },
+  { name: 'Open Source', color: '#8A7ED8', image: [imgOSSWhite, imgOSSColor], features: [] }
 ];
 
 export async function getStaticProps() {
@@ -79,7 +91,7 @@ function Title() {
       <div className='mt-10 flex items-center justify-center gap-x-6'>
         <a
           href='#'
-          className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'>
+          className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
           Sign Up
         </a>
         <a href='#' className='text-sm font-semibold leading-6 text-white'>
@@ -126,9 +138,8 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='ring-inse mt-16 h-[500px] w-[1000px] rounded-md shadow-2xl ring-1 ring-gray-800/10 dark:ring-gray-200/10 sm:mt-24'>
+    <div className='ring-inse mt-16 w-full rounded-md shadow-2xl ring-1 ring-gray-800/10 dark:ring-gray-200/10 sm:mt-24'>
       <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
-
       <Pages page={page} onChangePage={setPage} />
     </div>
   );
@@ -137,24 +148,41 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div className='hidden sm:block'>
-      <div className='border-b border-gray-200'>
+      <div className='border-b border-zinc-900/10 dark:border-white/15'>
         <nav className='-mb-px flex' aria-label='Tabs'>
           {pages.map((tab, i) => {
             let isCurrent = i == index;
             return (
-              <a
-                key={tab.name}
+              <div
+                key={tab.namehover}
                 href={tab.href}
                 className={clsx(
                   isCurrent
-                    ? 'border-violet-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                  'w-1/4 cursor-pointer border-b-2 px-1 py-4 text-center text-sm font-medium'
+                    ? 'border-violet-500 text-[color:var(--tab-color)]'
+                    : 'opacity-50 hover:opacity-100',
+                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center px-1 py-4 text-center font-display text-sm font-semibold text-white transition'
                 )}
+                style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
                 onClick={() => onChangeTab(i)}>
-                {tab.name}
-              </a>
+                <div className='relative h-16 w-16'>
+                  <Image
+                    src={tab.image[0]}
+                    className={clsx(
+                      'absolute h-full w-full opacity-100 transition',
+                      isCurrent && 'opacity-0'
+                    )}
+                  />
+                  <Image
+                    src={tab.image[1]}
+                    className={clsx(
+                      'absolute h-full w-full opacity-0 transition',
+                      isCurrent && 'opacity-100'
+                    )}
+                  />
+                </div>
+                <div>{tab.name}</div>
+              </div>
             );
           })}
         </nav>
@@ -166,7 +194,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-full w-full'>
+    <div className='relative flex h-[500px] w-full'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -208,7 +236,7 @@ function PageGameServers({ page }) {
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
       <div className='relative flex-1'>
-        <div className='absolute w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
+        <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
           <Image src={imgLobbies} className='' />
           <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </div>
@@ -218,27 +246,31 @@ function PageGameServers({ page }) {
       <div className='flex-1'>
         <div className='lg:ml-auto lg:px-4 lg:pt-4'>
           <div className='lg:max-w-lg'>
+            {/* Title */}
             <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>
               Something something
             </h2>
-            <p className='mt-4 text-m text-gray-300'>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit
-              eaque, iste dolor cupiditate blanditiis ratione.
+            <p className='text-m mt-4 text-gray-300'>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit
             </p>
-            <div className='mt-3'>
-              <Button href='/docs' arrow='right'>
-                Learn More
-              </Button>
-            </div>
 
             {/* Features */}
             <div className='mt-6 flex w-full flex-col items-stretch gap-4'>
               {page.features.map(feature => (
-                <Link href='/docs' className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 hover:bg-violet-600 transition'>
+                <Link
+                  href='/docs'
+                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition hover:bg-violet-600'>
                   <FontAwesomeIcon icon={feature.icon} />
                   {feature.name}
                 </Link>
               ))}
+            </div>
+
+            {/* Learn more */}
+            <div className='mt-3'>
+              <Button href='/docs' arrow='right'>
+                Learn More
+              </Button>
             </div>
           </div>
         </div>
