@@ -1,18 +1,40 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/Button';
 import { generateRssFeed } from '@/lib/generateRssFeed';
 import { getAllArticles } from '@/lib/getAllArticles';
 import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook } from '@fortawesome/pro-solid-svg-icons';
+import imgLobbies from '@/images/product/lobbies.png';
 
 const pages = [
-  { name: 'Game Servers', element: PageGameServers },
-  { name: 'DDoS Mitigation', element: PageTodo },
-  { name: 'Matchmaking', element: PageTodo },
-  { name: 'Analytics', element: PageTodo },
-  { name: 'Social', element: PageTodo },
-  { name: 'CDN', element: PageTodo },
-  { name: 'Open Source', element: PageTodo }
+  {
+    name: 'Game Servers',
+    features: [
+      {
+        name: 'Push to deploy.',
+        icon: faBook
+      },
+      {
+        name: 'SSL certificates.',
+        icon: faBook
+      },
+      {
+        name: 'Database backups.',
+        icon: faBook
+      }
+    ]
+  },
+  { name: 'DDoS Mitigation', features: [] },
+  { name: 'Matchmaking', features: [] },
+  { name: 'Analytics', features: [] },
+  { name: 'Social', features: [] },
+  { name: 'CDN', features: [] },
+  { name: 'Open Source', features: [] }
 ];
 
 export async function getStaticProps() {
@@ -57,7 +79,7 @@ function Title() {
       <div className='mt-10 flex items-center justify-center gap-x-6'>
         <a
           href='#'
-          className='rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'>
+          className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'>
           Sign Up
         </a>
         <a href='#' className='text-sm font-semibold leading-6 text-white'>
@@ -125,7 +147,7 @@ function Tabs({ index, onChangeTab }) {
                 href={tab.href}
                 className={clsx(
                   isCurrent
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-violet-500 text-indigo-600'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                   'w-1/4 cursor-pointer border-b-2 px-1 py-4 text-center text-sm font-medium'
                 )}
@@ -142,9 +164,9 @@ function Tabs({ index, onChangeTab }) {
 }
 
 function Pages({ page, onChangePage }) {
-  let PageElement = pages[page.index].element;
+  // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-72 w-full'>
+    <div className='relative flex h-full w-full'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -170,7 +192,7 @@ function Pages({ page, onChangePage }) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          <PageElement />
+          <PageGameServers page={pages[page.index]} />
         </motion.div>
       </AnimatePresence>
     </div>
@@ -178,11 +200,51 @@ function Pages({ page, onChangePage }) {
 }
 
 function PageTodo() {
-  return <div className='w-full h-full bg-red-500'>Todo</div>;
+  return <div className='h-full w-full'>Todo</div>;
 }
 
-function PageGameServers() {
-  return <div>Game servers</div>;
+function PageGameServers({ page }) {
+  return (
+    <div className='flex h-full w-full justify-stretch'>
+      {/* Image */}
+      <div className='relative flex-1'>
+        <div className='absolute w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
+          <Image src={imgLobbies} className='' />
+          <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
+        </div>
+      </div>
+
+      {/* Details */}
+      <div className='flex-1'>
+        <div className='lg:ml-auto lg:px-4 lg:pt-4'>
+          <div className='lg:max-w-lg'>
+            <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>
+              Something something
+            </h2>
+            <p className='mt-4 text-m text-gray-300'>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit
+              eaque, iste dolor cupiditate blanditiis ratione.
+            </p>
+            <div className='mt-3'>
+              <Button href='/docs' arrow='right'>
+                Learn More
+              </Button>
+            </div>
+
+            {/* Features */}
+            <div className='mt-6 flex w-full flex-col items-stretch gap-4'>
+              {page.features.map(feature => (
+                <Link href='/docs' className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 hover:bg-violet-600 transition'>
+                  <FontAwesomeIcon icon={feature.icon} />
+                  {feature.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 Index.prose = false;
