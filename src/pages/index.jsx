@@ -236,7 +236,7 @@ function Title() {
       <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
         <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
           <div>Rivet is now open source</div>
-          <div className='ml-4 -mb-1'>
+          <div className='-mb-1 ml-4'>
             <GitHubButton
               href='https://github.com/rivet-gg/rivet'
               data-show-count='true'
@@ -411,16 +411,14 @@ function PageGameServers({ page }) {
       {/* Image */}
       <div className='relative flex-1'>
         <motion.div
-          className='absolute inset-0 h-full w-full'
+          className='absolute left-1/2 top-1/2 w-full rounded-lg'
           key={page.index}
-          initial={{ translateY: 100, opacity: 0 }}
-          whileInView={{ translateY: 0, opacity: 1 }}
+          initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
+          whileInView={{ transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)', opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}>
-          <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 -rotate-3 scale-75 rounded-lg'>
-            <Image src={imgLobbies} className='' />
-            <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
-          </div>
+          transition={{ duration: 0.5, type: 'spring' }}>
+          <Image src={imgLobbies} className='' />
+          <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </motion.div>
       </div>
 
