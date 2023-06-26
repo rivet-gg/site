@@ -479,7 +479,7 @@ function CaseStudies({ props }) {
       {/* Grid */}
       <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3'>
         <div className='bg-white/5 p-8 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg'
             alt='Transistor'
@@ -488,7 +488,7 @@ function CaseStudies({ props }) {
           />
         </div>
         <div className='bg-white/5 p-6 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg'
             alt='Reform'
@@ -497,7 +497,7 @@ function CaseStudies({ props }) {
           />
         </div>
         <div className='bg-white/5 p-6 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg'
             alt='Tuple'
@@ -506,7 +506,7 @@ function CaseStudies({ props }) {
           />
         </div>
         <div className='bg-white/5 p-6 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/laravel-logo-white.svg'
             alt='Laravel'
@@ -515,7 +515,7 @@ function CaseStudies({ props }) {
           />
         </div>
         <div className='bg-white/5 p-6 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg'
             alt='SavvyCal'
@@ -524,7 +524,7 @@ function CaseStudies({ props }) {
           />
         </div>
         <div className='bg-white/5 p-6 sm:p-10'>
-          <img
+          <Image
             className='max-h-12 w-full object-contain'
             src='https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg'
             alt='Statamic'
@@ -564,7 +564,7 @@ function UpAndRunning() {
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
               allowfullscreen></iframe>
           </div>
-          {/* <img
+          {/* <Image
             className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm'
             src='https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80'
             alt=''
@@ -576,7 +576,7 @@ function UpAndRunning() {
               Launch your game in <span className='text-purple-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              Just 3 lines of code and you're off to the races.
+              {`Just 3 lines of code and you're off to the races.`}
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
