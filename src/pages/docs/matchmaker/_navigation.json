@@ -10,6 +10,10 @@
           "concepts/auto-region-selection",
           "concepts/competitive-matchmaking"
         ]
+      },
+      {
+        "title": "API",
+        "template": "api/matchmaker"
       }
     ]
   }
