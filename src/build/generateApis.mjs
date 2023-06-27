@@ -38,12 +38,15 @@ let products = {
   }
 };
 
-export async function generateApi() {
+export async function generateApis() {
+  let apiPages = {};
+
   let specYaml = fs.readFileSync(`${backendPath}/gen/openapi/external/spec/openapi.yml`, 'utf8');
-  let spec = YAML.parse(specYaml);
+  let spec = YAML.parse(specYaml, { maxAliasCount: -1 });
 
   for (let product in products) {
     fs.rmSync(apiPath(product), { recursive: true, force: true });
+    fs.mkdirSync(apiPath(product), { recursive: true });
   }
 
   for (let pathName in spec.paths) {
@@ -58,9 +61,10 @@ export async function generateApi() {
       // TODO: Hack
       let product = url.replace('https://', '').replace('.api.rivet.gg/v1', '');
       let productConfig = products[product];
+      if (!productConfig) continue;
 
       let indexableName = `${method.toUpperCase()} ${pathName}`;
-      let importantIndex = productConfig.importantEndpoints[product].indexOf(indexableName);
+      let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
       let title = path.operationId.replace(/_/g, '.');
@@ -85,15 +89,17 @@ ${curlCommand}
 `;
 
       let pathStripped = pathName.replace(/\/\{[^\}]+\}/g, '').replace(/\//g, '-');
-      let filePath = new String(`${apiPath(product)}/api/${method}${pathStripped}`);
+      let filePath = new String(`${apiPath(product)}/${method}${pathStripped}`);
 
       // Sort by grouping similar endpoints together and move important endpoints first
       filePath.sortingKey = `${isImportant ? '0' : `999 ${importantIndex}`} ${pathName} ${method}`;
 
-      fs.writeSync(`${filePath}.mdx`, file);
+      fs.writeFileSync(`${filePath}.mdx`, file);
 
-      apiTemplates[product].pages.push(filePath);
-      apiTemplates[product].pages.sort((a, b) => {
+      // Write config
+      apiPages[product] = apiPages[product] || { pages: [] };
+      apiPages[product].pages.push(filePath);
+      apiPages[product].pages.sort((a, b) => {
         if (a.sortingKey < b.sortingKey) return -1;
         else if (a.sortingKey > b.sortingKey) return 1;
         else return 0;
@@ -101,5 +107,5 @@ ${curlCommand}
     }
   }
 
-  return apiTemplates;
+  return apiPages;
 }
