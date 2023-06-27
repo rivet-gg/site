@@ -86,7 +86,7 @@ const tiers = [
     id: 'tier-oss',
     href: '#',
     button: 'View on GitHub',
-    description: 'Quis suspendisse ut fermentum neque vivamus non tellus.',
+    description: 'Self-host on your own hardware.',
     mostPopular: false
   },
   {
@@ -94,7 +94,7 @@ const tiers = [
     id: 'tier-cloud',
     href: '#',
     button: 'Sign Up',
-    description: 'Quis eleifend a tincidunt pellentesque. A tempor in sed.',
+    description: 'Get up and running quickly. Everything managed by us.',
     mostPopular: true
   },
   {
@@ -102,7 +102,7 @@ const tiers = [
     id: 'tier-enterprise',
     href: '#',
     button: 'Contact Us',
-    description: 'Orci volutpat ut sed sed neque, dui eget. Quis tristique non.',
+    description: 'Custom solutions for your game.',
     mostPopular: false
   }
 ];
@@ -110,28 +110,27 @@ const sections = [
   {
     name: 'Features',
     features: [
-      { name: 'Integrations', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Shared links', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Importing and exporting', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Team members', tiers: { 'tier-cloud': 'Up to 20 users', 'tier-enterprise': 'Up to 50 users' } }
+      { name: 'Analytics', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Audit log', tiers: { 'tier-enterprise': true } },
+      { name: 'SSO', tiers: { 'tier-enterprise': true } },
+      { name: 'Cloud providers (more coming soon)', tiers: { 'tier-oss': 'Linode', 'tier-cloud': 'Linode', 'tier-enterprise': 'On-premise, AWS, Linode' } },
+      { name: 'Bring your own game server', tiers: {  'tier-cloud': 'Coming soon', 'tier-enterprise': true } },
     ]
   },
   {
-    name: 'Reporting',
+    name: 'Cluster',
     features: [
-      { name: 'Advanced analytics', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Basic reports', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Professional reports', tiers: { 'tier-enterprise': true } },
-      { name: 'Custom report builder', tiers: { 'tier-enterprise': true } }
+      { name: 'On-premise deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
+      { name: 'Autoscaling (cost saving)', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'High availability', tiers: { 'tier-cloud': true,'tier-enterprise': true } },
+      { name: 'Horizontal scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
     ]
   },
   {
     name: 'Support',
     features: [
-      { name: '24/7 online support', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Quarterly product workshops', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Priority phone support', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: '1:1 onboarding tour', tiers: { 'tier-enterprise': true } }
+      { name: 'Onboarding', tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Community', 'tier-enterprise': true } },
+      { name: 'Support', tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Custom' } }
     ]
   }
 ];
@@ -228,7 +227,7 @@ export default function Pricing() {
                   {tiers.map(tier => (
                     <th key={tier.id} scope='col' className='px-6 pt-6 xl:px-8 xl:pt-8'>
                       <h2 className='text-4xl font-bolt text-white'>{tier.name}</h2>
-                      <p className='text-gray-300 font-normal mt-2'>{tier.description}</p>
+                      <p className='text-gray-300 font-normal mt-3'>{tier.description}</p>
                     </th>
                   ))}
                 </tr>
@@ -239,7 +238,7 @@ export default function Pricing() {
                     <span className='sr-only'>Price</span>
                   </th>
                   {tiers.map(tier => (
-                    <td key={tier.id} className='px-6 pt-6 xl:px-8'>
+                    <td key={tier.id} className='px-6 pt-8 xl:px-8'>
                       <a
                         href={tier.href}
                         className={clsx(
