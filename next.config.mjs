@@ -31,7 +31,7 @@ const nextConfig = {
 export default async function () {
   let errorPages = await generateErrors();
   let apiPages = await generateApis();
-  await generateNavigation({ errorPages });
+  await generateNavigation({ errorPages, apiPages });
 
   return withSearch(withMDX(nextConfig));
 }
