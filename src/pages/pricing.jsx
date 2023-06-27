@@ -1,4 +1,5 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import { Button } from '@/components/Button';
 import { CheckIcon, MinusIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
@@ -81,102 +82,111 @@ import clsx from 'clsx';
 //   ]
 // };
 
-const tiers = [
-  {
-    name: 'Open Source',
-    id: 'tier-oss',
-    href: '#',
-    button: 'View on GitHub',
-    description: 'Self-host on your own hardware.',
-    mostPopular: false
-  },
-  {
-    name: 'Cloud',
-    promo: '1 free server',
-    id: 'tier-cloud',
-    href: '#',
-    button: 'Sign Up',
-    description: 'Get up and running quickly. Everything managed by us.',
-    mostPopular: true
-  },
-  {
-    name: 'Enterprise',
-    id: 'tier-enterprise',
-    href: '#',
-    button: 'Contact Us',
-    description: 'Custom solutions for your game.',
-    mostPopular: false
-  }
-];
-const sections = [
-  {
-    name: '',
-    features: [
-      {
-        name: 'Price',
-        tiers: {
-          'tier-oss': 'Free',
-          'tier-cloud': (
-            <Button variant='text' arrow='right'>
-              Pricing Calculator
-            </Button>
-          ),
-          'tier-enterprise': 'Custom'
-        }
-      },
-      {
-        name: 'Freebies',
-        tiers: {
-          'tier-cloud': (
-            <div className='mx-auto w-max gap-0.5 rounded-full bg-violet-400/10 px-3 py-1 text-sm font-semibold text-violet-400 ring-1 ring-inset ring-violet-400/20 transition'>
-              1 free server
-            </div>
-          )
-        }
-      }
-    ]
-  },
-  {
-    name: 'Features',
-    features: [
-      { name: 'Analytics', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Audit log', tiers: { 'tier-enterprise': true } },
-      { name: 'SSO', tiers: { 'tier-enterprise': true } }
-    ]
-  },
-  {
-    name: 'Game servers',
-    features: [
-      { name: 'Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      {
-        name: 'Cloud providers (more coming soon)',
-        tiers: { 'tier-oss': 'Linode', 'tier-cloud': 'Linode', 'tier-enterprise': 'On-premise, AWS, Linode' }
-      },
-      { name: 'Bring your own hardware', tiers: { 'tier-enterprise': true } }
-    ]
-  },
-  {
-    name: 'Cluster',
-    features: [
-      { name: 'On-premise deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
-      { name: 'High availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'Horizontal scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
-    ]
-  },
-  {
-    name: 'Support',
-    features: [
-      {
-        name: 'Support',
-        tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Custom' }
-      }
-    ]
-  }
-];
-
 export default function Pricing() {
+  const [open, setOpen] = useState(true);
+
+  const tiers = [
+    {
+      name: 'Open Source',
+      id: 'tier-oss',
+      href: '#',
+      button: 'View on GitHub',
+      description: 'Self-host on your own hardware.',
+      mostPopular: false
+    },
+    {
+      name: 'Cloud',
+      promo: '1 free server',
+      id: 'tier-cloud',
+      href: '#',
+      button: 'Sign Up',
+      description: 'Get up and running quickly. Everything managed by us.',
+      mostPopular: true
+    },
+    {
+      name: 'Enterprise',
+      id: 'tier-enterprise',
+      href: '#',
+      button: 'Contact Us',
+      description: 'Custom solutions for your game.',
+      mostPopular: false
+    }
+  ];
+  const sections = [
+    {
+      name: '',
+      features: [
+        {
+          name: 'Price',
+          tiers: {
+            'tier-oss': 'Free',
+            'tier-cloud': (
+              <Button variant='text' arrow='right' onClick={() => setOpen(true)}>
+                Pricing Calculator
+              </Button>
+            ),
+            'tier-enterprise': 'Custom'
+          }
+        },
+        {
+          name: 'Freebies',
+          tiers: {
+            'tier-cloud': (
+              <div className='mx-auto w-max gap-0.5 rounded-full bg-violet-400/10 px-3 py-1 text-sm font-semibold text-violet-400 ring-1 ring-inset ring-violet-400/20 transition'>
+                1 free server
+              </div>
+            )
+          }
+        }
+      ]
+    },
+    {
+      name: 'Features',
+      features: [
+        { name: 'Analytics', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+        { name: 'Audit log', tiers: { 'tier-enterprise': true } },
+        { name: 'SSO', tiers: { 'tier-enterprise': true } }
+      ]
+    },
+    {
+      name: 'Game servers',
+      features: [
+        { name: 'Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+        {
+          name: 'Cloud providers (more coming soon)',
+          tiers: {
+            'tier-oss': 'Linode',
+            'tier-cloud': 'Linode',
+            'tier-enterprise': 'On-premise, AWS, Linode'
+          }
+        },
+        { name: 'Bring your own hardware', tiers: { 'tier-enterprise': true } }
+      ]
+    },
+    {
+      name: 'Cluster',
+      features: [
+        { name: 'On-premise deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
+        { name: 'High availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+        { name: 'Horizontal scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
+      ]
+    },
+    {
+      name: 'Support',
+      features: [
+        {
+          name: 'Support',
+          tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Custom' }
+        }
+      ]
+    }
+  ];
   return (
     <div className='py-16 sm:py-24'>
+      {/* Modals */}
+      <PricingModal open={open} onClose={() => setOpen(false)} />
+
+      {/* Pricing */}
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
           <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
@@ -341,6 +351,64 @@ export default function Pricing() {
         </div>
       </div>
     </div>
+  );
+}
+
+function PricingModal({ open, onClose }) {
+  return (
+    <Transition.Root show={open} onClose={onClose} as={Fragment}>
+      <Dialog as='div' className='relative z-10'>
+        <Transition.Child
+          as={Fragment}
+          enter='ease-out duration-300'
+          enterFrom='opacity-0'
+          enterTo='opacity-100'
+          leave='ease-in duration-200'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'>
+          <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
+        </Transition.Child>
+
+        <div className='fixed inset-0 z-10 overflow-y-auto'>
+          <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
+            <Transition.Child
+              as={Fragment}
+              enter='ease-out duration-300'
+              enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+              enterTo='opacity-100 translate-y-0 sm:scale-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
+              <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6'>
+                <div>
+                  <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100'>
+                    <CheckIcon className='h-6 w-6 text-green-600' aria-hidden='true' />
+                  </div>
+                  <div className='mt-3 text-center sm:mt-5'>
+                    <Dialog.Title as='h3' className='text-base font-semibold leading-6 text-gray-900'>
+                      Payment successful
+                    </Dialog.Title>
+                    <div className='mt-2'>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className='mt-5 sm:mt-6'>
+                  <button
+                    type='button'
+                    className='inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                    onClick={onClose}>
+                    Go back to dashboard
+                  </button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
   );
 }
 
