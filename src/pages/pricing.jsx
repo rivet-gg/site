@@ -1,8 +1,21 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import Image from 'next/image';
+import clsx from 'clsx';
 import { Button } from '@/components/Button';
 import { CheckIcon, MinusIcon } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import imgIdentity from '@/images/products/identity-duotone.svg';
+import imgCompute from '@/images/products/compute-duotone.svg';
+import imgCdn from '@/images/products/cdn-duotone.svg';
+import imgParties from '@/images/products/party-duotone.svg';
+import imgFriend from '@/images/products/friend-duotone.svg';
+import imgKv from '@/images/products/kv-duotone.svg';
+import imgMatchmaker from '@/images/products/matchmaker-duotone.svg';
+import imgGameGuard from '@/images/products/game-guard-duotone.svg';
+import imgAnalytics from '@/images/products/analytics-duotone.svg';
+import { faInfinity } from '@fortawesome/pro-solid-svg-icons';
 
 export default function Pricing() {
   const [open, setOpen] = useState(true);
@@ -40,14 +53,16 @@ export default function Pricing() {
       features: [
         {
           name: 'CCU & MAU',
+          icon: imgIdentity,
           tiers: {
-            'tier-oss': 'Unlimited',
-            'tier-cloud': 'Unlimited',
-            'tier-enterprise': 'Unlimited'
+            'tier-oss': <FontAwesomeIcon icon={faInfinity} />,
+            'tier-cloud': <FontAwesomeIcon icon={faInfinity} />,
+            'tier-enterprise': <FontAwesomeIcon icon={faInfinity} />,
           }
         },
         {
           name: 'Serverless Lobbies',
+          icon: imgCompute,
           tiers: {
             'tier-oss': 'Self-hosted',
             'tier-cloud': (
@@ -60,6 +75,7 @@ export default function Pricing() {
         },
         {
           name: 'Custom Domain with SSL',
+          icon: imgCdn,
           tiers: {
             'tier-oss': 'Self-hosted',
             'tier-cloud': '$5/month/domain',
@@ -68,6 +84,7 @@ export default function Pricing() {
         },
         {
           name: 'CDN',
+          icon: imgCdn,
           tiers: {
             'tier-oss': 'Self-hosted',
             'tier-cloud': '$0.05/GB/month (1 TB free)',
@@ -80,11 +97,37 @@ export default function Pricing() {
       name: 'Features',
       features: [
         {
+          name: 'Identities, Chat, & Groups',
+          icon: imgFriend,
+          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
+        },
+        {
+          name: 'Parties',
+          icon: imgParties,
+          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
+        },
+        {
+          name: 'Matchmaker',
+          icon: imgMatchmaker,
+          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
+        },
+        {
+          name: 'Key-Value Database',
+          icon: imgKv,
+          tiers: { 'tier-oss': true, 'tier-cloud': 'Free while in beta', 'tier-enterprise': 'Contact us' }
+        },
+        {
           name: 'Game Guard (DDoS + SSL)',
+          icon: imgGameGuard,
           tiers: { 'tier-oss': 'Limited', 'tier-cloud': true, 'tier-enterprise': true }
         },
-        { name: 'Analytics', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-        { name: 'Audit log', tiers: { 'tier-enterprise': true } },
+        {
+          name: 'Analytics',
+
+          icon: imgAnalytics,
+          tiers: { 'tier-cloud': true, 'tier-enterprise': true }
+        },
+        { name: 'Audit Log', tiers: { 'tier-enterprise': true } },
         { name: 'Single Sign-On (SAML 2.0)', tiers: { 'tier-enterprise': true } }
       ]
     },
@@ -93,22 +136,22 @@ export default function Pricing() {
       features: [
         { name: 'Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
         {
-          name: 'Cloud providers (more coming soon)',
+          name: 'Cloud Providers (more coming soon)',
           tiers: {
             'tier-oss': 'Linode',
             'tier-cloud': 'Linode',
             'tier-enterprise': 'On-premise, AWS, Linode'
           }
         },
-        { name: 'Bring your own hardware', tiers: { 'tier-enterprise': true } }
+        { name: 'Bring Your Own Hardware', tiers: { 'tier-enterprise': true } }
       ]
     },
     {
       name: 'Cluster',
       features: [
-        { name: 'On-premise deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
-        { name: 'High availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-        { name: 'Horizontal scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
+        { name: 'On-Premise Deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
+        { name: 'High Availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+        { name: 'Horizontal Scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
       ]
     },
     {
@@ -255,8 +298,13 @@ export default function Pricing() {
                     {section.features.map(feature => (
                       <tr key={feature.name}>
                         <th scope='row' className='py-4 text-sm font-normal leading-6 text-white'>
-                          {feature.name}
-                          <div className='absolute inset-x-8 mt-4 h-px bg-white/5' />
+                          <div className='flex items-center gap-3'>
+                            {feature.icon && (
+                              <Image className='h-5 w-5' src={feature.icon} alt={section.name} />
+                            )}
+                            <div>{feature.name}</div>
+                          </div>
+                          {/* <div className='absolute inset-x-8 mt-4 h-px bg-white/5' /> */}
                         </th>
                         {tiers.map(tier => (
                           <td key={tier.id} className='px-6 py-4 xl:px-8'>
