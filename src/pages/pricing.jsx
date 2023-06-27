@@ -51,20 +51,32 @@ const pricing = {
   ],
   sections: [
     {
-      name: 'Cluster',
+      name: 'Services',
       features: [
-        { name: 'Tax Savings', tiers: [0, 1, 0] },
-        { name: 'Tax Savings', tiers: [0, 1, 0] },
-        { name: 'Tax Savings', tiers: [0, 1, 0] },
-        { name: 'Tax Savings', tiers: [0, 1, 0] }
+        { name: 'Analytics', tiers: [0, 1, 1] },
+        { name: 'Audit log', tiers: [0, 0, 1] },
+        { name: 'SSO', tiers: [0, 0, 1] },
+        {
+          name: 'Cloud providers (more coming soon)',
+          tiers: ['Linode', 'Linode', 'On-premise, AWS, Linode']
+        },
+        { name: 'Bring-your-own-server', tiers: ['Coming soon', 'Coming soon', 1] }
       ]
     },
     {
-      name: 'Other perks',
+      name: 'Cluster',
       features: [
-        { name: 'Tax Savings', tiers: [0, 1, 0] },
-        { name: 'Tax Savings', tiers: [0, 1, 0] },
-        { name: 'Tax Savings', tiers: [0, 1, 0] }
+        { name: 'On-premise deployment', tiers: [1, 0, 1] },
+        { name: 'Autoscaling (cost saving)', tiers: [0, 1, 1] },
+        { name: 'High availability', tiers: [0, 1, 1] },
+        { name: 'Horzontal scaling', tiers: [0, 1, 1] }
+      ]
+    },
+    {
+      name: 'Support',
+      features: [
+        { name: 'Support', tiers: ['Community', 'Standard', 'Business or Enterprise'] },
+        { name: 'Onboarding', tiers: ['Community', 'Community', 1] }
       ]
     }
   ]
@@ -81,7 +93,7 @@ export default function Pricing() {
         <div className='flow-root bg-gray-900 py-16 sm:pt-32 lg:pb-0'>
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <div className='relative z-10'>
-              <h1 className='mx-auto max-w-4xl text-center text-5xl font-bold tracking-tight text-white'>
+              <h1 className='mx-auto max-w-4xl text-center text-4xl font-bold tracking-tight text-white sm:text-5xl'>
                 Pricing
               </h1>
             </div>
@@ -379,9 +391,7 @@ function FeatureComparisonLarge() {
                                     />
                                   )}
 
-                                  <span className='sr-only'>
-                                    {featureTier === true ? 'Yes' : 'No'}
-                                  </span>
+                                  <span className='sr-only'>{featureTier === true ? 'Yes' : 'No'}</span>
                                 </>
                               )}
                             </span>
