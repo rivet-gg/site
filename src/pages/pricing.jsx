@@ -110,28 +110,28 @@ const sections = [
   {
     name: 'Features',
     features: [
-      { name: 'Integrations', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Shared links', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Importing and exporting', tiers: { 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Team members', tiers: { 'tier-cloud': 'Up to 20 users', 'tier-premium': 'Up to 50 users' } }
+      { name: 'Integrations', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Shared links', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Importing and exporting', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Team members', tiers: { 'tier-cloud': 'Up to 20 users', 'tier-enterprise': 'Up to 50 users' } }
     ]
   },
   {
     name: 'Reporting',
     features: [
-      { name: 'Advanced analytics', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Basic reports', tiers: { 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Professional reports', tiers: { 'tier-premium': true } },
-      { name: 'Custom report builder', tiers: { 'tier-premium': true } }
+      { name: 'Advanced analytics', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Basic reports', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Professional reports', tiers: { 'tier-enterprise': true } },
+      { name: 'Custom report builder', tiers: { 'tier-enterprise': true } }
     ]
   },
   {
     name: 'Support',
     features: [
-      { name: '24/7 online support', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Quarterly product workshops', tiers: { 'tier-cloud': true, 'tier-premium': true } },
-      { name: 'Priority phone support', tiers: { 'tier-cloud': true, 'tier-premium': true } },
-      { name: '1:1 onboarding tour', tiers: { 'tier-premium': true } }
+      { name: '24/7 online support', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Quarterly product workshops', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: 'Priority phone support', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      { name: '1:1 onboarding tour', tiers: { 'tier-enterprise': true } }
     ]
   }
 ];
@@ -160,13 +160,9 @@ export default function Pricing() {
                 tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
                 'p-8'
               )}>
-              <h3 id={tier.id} className='text-sm font-semibold leading-6 text-white'>
+              <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>
                 {tier.name}
-              </h3>
-              <p className='mt-2 flex items-baseline gap-x-1'>
-                <span className='text-4xl font-bold text-white'>{tier.priceMonthly}</span>
-                <span className='text-sm font-semibold text-gray-300'>/month</span>
-              </p>
+              </h2>
               <a
                 href={tier.href}
                 aria-describedby={tier.id}
@@ -176,7 +172,7 @@ export default function Pricing() {
                     : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
                   'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
                 )}>
-                Buy plan
+                {tier.button}
               </a>
               <ul role='list' className='mt-10 space-y-4 text-sm leading-6 text-white'>
                 {sections.map(section => (
