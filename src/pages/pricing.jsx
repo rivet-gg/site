@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { Button } from '@/components/Button';
 import { CheckIcon, MinusIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 
@@ -91,6 +92,7 @@ const tiers = [
   },
   {
     name: 'Cloud',
+    promo: '1 free server',
     id: 'tier-cloud',
     href: '#',
     button: 'Sign Up',
@@ -107,6 +109,33 @@ const tiers = [
   }
 ];
 const sections = [
+  {
+    name: '',
+    features: [
+      {
+        name: 'Price',
+        tiers: {
+          'tier-oss': 'Free',
+          'tier-cloud': (
+            <Button variant='text' arrow='right'>
+              Pricing Calculator
+            </Button>
+          ),
+          'tier-enterprise': 'Custom'
+        }
+      },
+      {
+        name: 'Freebies',
+        tiers: {
+          'tier-cloud': (
+            <div className='mx-auto w-max gap-0.5 rounded-full bg-violet-400/10 px-3 py-1 text-sm font-semibold text-violet-400 ring-1 ring-inset ring-violet-400/20 transition'>
+              1 free server
+            </div>
+          )
+        }
+      }
+    ]
+  },
   {
     name: 'Features',
     features: [
@@ -155,7 +184,9 @@ export default function Pricing() {
           </p>
         </div>
         <p className='mx-auto mt-6 text-center text-lg leading-8 text-gray-300'>
-          Affordable for small studios & scalable for large studios.<br/>Always predictable pricing.
+          Affordable for small studios & scalable for large studios.
+          <br />
+          Always predictable pricing.
         </p>
 
         {/* xs to lg */}
@@ -189,7 +220,8 @@ export default function Pricing() {
                             <CheckIcon className='h-6 w-5 flex-none text-indigo-400' aria-hidden='true' />
                             <span>
                               {feature.name}{' '}
-                              {typeof feature.tiers[tier.id] === 'string' ? (
+                              {typeof feature.tiers[tier.id] === 'string' ||
+                              typeof feature.tiers[tier.id] === 'object' ? (
                                 <span className='text-sm leading-6 text-gray-400'>
                                   ({feature.tiers[tier.id]})
                                 </span>
@@ -231,7 +263,7 @@ export default function Pricing() {
                 <tr>
                   <td />
                   {tiers.map(tier => (
-                    <th key={tier.id} scope='col' className='px-6 pt-6 xl:px-8 xl:pt-8'>
+                    <th key={tier.id} scope='col' className='px-6 pt-6 align-top xl:px-8 xl:pt-8'>
                       <h2 className='font-bolt text-4xl text-white'>{tier.name}</h2>
                       <p className='mt-3 font-normal text-gray-300'>{tier.description}</p>
                     </th>
@@ -240,11 +272,9 @@ export default function Pricing() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope='row'>
-                    <span className='sr-only'>Price</span>
-                  </th>
+                  <th scope='row'></th>
                   {tiers.map(tier => (
-                    <td key={tier.id} className='px-6 pt-8 xl:px-8'>
+                    <td key={tier.id} className='px-6 pt-6 xl:px-8'>
                       <a
                         href={tier.href}
                         className={clsx(
@@ -280,7 +310,8 @@ export default function Pricing() {
                         </th>
                         {tiers.map(tier => (
                           <td key={tier.id} className='px-6 py-4 xl:px-8'>
-                            {typeof feature.tiers[tier.id] === 'string' ? (
+                            {typeof feature.tiers[tier.id] === 'string' ||
+                            typeof feature.tiers[tier.id] === 'object' ? (
                               <div className='text-center text-sm leading-6 text-gray-300'>
                                 {feature.tiers[tier.id]}
                               </div>
