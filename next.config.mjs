@@ -2,6 +2,7 @@ import nextMDX from '@next/mdx';
 import withSearch from './src/mdx/search.mjs';
 import { remarkPlugins } from './src/mdx/remark.mjs';
 import { rehypePlugins } from './src/mdx/rehype.mjs';
+import { generateErrors } from './src/build/generateErrors.mjs';
 import { generateNavigation } from './src/build/generateNavigation.mjs';
 
 const withMDX = nextMDX({
@@ -27,7 +28,8 @@ const nextConfig = {
 };
 
 export default async function () {
-  await generateNavigation();
+  let errorPages = await generateErrors();
+  await generateNavigation({ errorPages });
 
   return withSearch(withMDX(nextConfig));
 }

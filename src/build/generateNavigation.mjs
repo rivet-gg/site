@@ -1,9 +1,8 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
-import path from 'path';
 
-export async function generateNavigation() {
+export async function generateNavigation({ errorPages }) {
   let routes = [];
 
   // Process all navigation in globs
@@ -12,7 +11,7 @@ export async function generateNavigation() {
   });
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
-    routes.push(await buildRoute(path));
+    routes.push(await buildRoute({ path, errorPages }));
   }
 
   // Sort by path descending to match most specific first
@@ -21,7 +20,7 @@ export async function generateNavigation() {
   await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
 }
 
-async function buildRoute(path) {
+async function buildRoute({ path, errorPages }) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   let output = {
@@ -37,22 +36,28 @@ async function buildRoute(path) {
       let outputGroup = { title: inputGroup.title, pages: [] };
       output.sidebar.groups.push(outputGroup);
 
-      for (let page of inputGroup.pages) {
-        if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
+      if (inputGroup.template == 'errors') {
+        // Errors
+        outputGroup.pages.push(...errorPages)
+      } else if (inputGroup.pages) {
+        // Pages
+        for (let page of inputGroup.pages) {
+          if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
 
-        let md = await readFile(`./src/pages/${path}/${page}.mdx`);
+          let md = await readFile(`./src/pages/${path}/${page}.mdx`);
 
-        let ast = remark().parse(md);
-        let firstHeading = ast.children.find(node => node.type === 'heading');
-        let title = '?';
-        if (firstHeading) {
-          title = firstHeading.children[0].value;
+          let ast = remark().parse(md);
+          let firstHeading = ast.children.find(node => node.type === 'heading');
+          let title = '?';
+          if (firstHeading) {
+            title = firstHeading.children[0].value;
+          }
+
+          outputGroup.pages.push({
+            title,
+            href: `/${path}/${page}`
+          });
         }
-
-        outputGroup.pages.push({
-          title,
-          href: `/${path}/${page}`
-        });
       }
     }
   }

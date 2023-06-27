@@ -23,6 +23,10 @@
       {
         "title": "Guides",
         "pages": ["guides/crash-course"]
+      },
+      {
+        "title": "Errors",
+        "template": "errors"
       }
     ]
   }
