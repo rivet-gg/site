@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Button } from '@/components/Button';
-import { CheckIcon, MinusIcon } from '@heroicons/react/20/solid';
+import { CheckIcon, MinusIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -57,7 +57,7 @@ export default function Pricing() {
           tiers: {
             'tier-oss': <FontAwesomeIcon icon={faInfinity} />,
             'tier-cloud': <FontAwesomeIcon icon={faInfinity} />,
-            'tier-enterprise': <FontAwesomeIcon icon={faInfinity} />,
+            'tier-enterprise': <FontAwesomeIcon icon={faInfinity} />
           }
         },
         {
@@ -367,14 +367,18 @@ function PricingModal({ open, onClose }) {
               leave='ease-in duration-200'
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-              <Dialog.Panel className='relative transform overflow-hidden rounded-xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6'>
+              <Dialog.Panel className='relative transform overflow-hidden rounded-xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                 {/* Content */}
                 <div className='mt-1 text-center'>
-                  <Dialog.Title as='h3' className='text-3xl font-bold text-gray-900'>
-                    Cloud Pricing
+                  <Dialog.Title as='h3' className='text-4xl font-bold text-gray-900'>
+                    Serverless Lobbies Pricing
                   </Dialog.Title>
 
-                  <div className='mt-2'>Pricing</div>
+                  <div className='m-auto mt-6 h-[2px] w-full bg-black/10'></div>
+
+                  <div className='mt-6'>
+                    <PricingCalc />
+                  </div>
                 </div>
 
                 {/* Buttons */}
@@ -392,6 +396,99 @@ function PricingModal({ open, onClose }) {
         </div>
       </Dialog>
     </Transition.Root>
+  );
+}
+
+function PricingCalc() {
+  let [tierIdx, setTierIdx] = useState(4);
+
+  let tier = tiers[tierIdx];
+
+  let price = Math.ceil(1620 * tier.unit) / 100;
+
+  let ram = Math.floor(unitCore.ram * tier.unit);
+  let bandwidth = Math.floor(unitCore.bandwidth * tier.unit);
+  let stats = [
+    ['CPU Cores', `${tier.name} core`],
+    ['RAM', `${ram} MB`],
+    ['Bandwidth', `${bandwidth} GB`],
+    ['Hardware', 'AMD EPYC 7713 64-Core Processor'],
+    ['Clock Speed', '2.0 GHz base, 3.675 GHz boost']
+  ];
+
+  return (
+    <div>
+      <PricingTabs tierIdx={tierIdx} setTierIdx={setTierIdx} />
+
+      {/* Price */}
+      <div className='mt-6 flex items-end justify-center'>
+        <div className='text-5xl font-bold'>${price.toFixed(2)}</div>
+        <div className='text-xl text-black/50'>/server/mo</div>
+      </div>
+
+      {/* Specs */}
+      <table className='mx-auto mt-5 w-full max-w-sm border-separate border-spacing-1'>
+        {stats.map(([name, value]) => (
+          <tr key={name}>
+            <td className='text-left font-semibold'>{name}</td>
+            <td className='text-right'>{value}</td>
+          </tr>
+        ))}
+      </table>
+
+      <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-900 ring-1 ring-black/50 mx-auto mt-4 w-max'>
+        More hardware configurations coming soon
+      </div>
+
+      {/* Disclaimers */}
+      <div className='mt-4 italic text-black/60'>
+        Bandwidth pooled across all lobbies.
+        <br />
+        For example: 5 × 1-core lobbies = 5 TB total free bandwidth.
+        <br />
+        $0.05/GB for bandwidth overages.
+      </div>
+    </div>
+  );
+}
+
+let unitCore = {
+  ram: 2000,
+  bandwidth: 1000
+};
+
+let tiers = [
+  { name: '¹⁄₁₆', unit: 1 / 16 },
+  { name: '⅛', unit: 1 / 8 },
+  { name: '¼', unit: 1 / 4 },
+  { name: '½', unit: 1 / 2 },
+  { name: '1', unit: 1 },
+  { name: '2', unit: 2 },
+  { name: '4', unit: 4 }
+];
+
+function PricingTabs({ tierIdx, setTierIdx }) {
+  return (
+    <div>
+      <div className='font-lg font-bold'>Number of CPU cores</div>
+      <div className='isolate mt-2 flex flex w-full rounded-md shadow-sm'>
+        {tiers.map((tier, i) => {
+          let current = i == tierIdx;
+          return (
+            <div
+              className={clsx(
+                'inline-flex flex-grow cursor-pointer items-center justify-center',
+                current
+                  ? 'z-10 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                  : 'px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
+              )}
+              onClick={() => setTierIdx(i)}>
+              {tier.name}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
