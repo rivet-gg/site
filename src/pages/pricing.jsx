@@ -436,7 +436,7 @@ function PricingCalc() {
         ))}
       </table>
 
-      <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-900 ring-1 ring-black/50 mx-auto mt-4 w-max'>
+      <div className='relative mx-auto mt-4 flex w-max items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-900 ring-1 ring-black/50'>
         More hardware configurations coming soon
       </div>
 
@@ -476,6 +476,7 @@ function PricingTabs({ tierIdx, setTierIdx }) {
           let current = i == tierIdx;
           return (
             <div
+              key={i}
               className={clsx(
                 'inline-flex flex-grow cursor-pointer items-center justify-center',
                 current
