@@ -3,6 +3,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
+import {
+  faBooks,
+  faCode,
+  faCoin,
+  faGraduationCap,
+  faHammer,
+  faNewspaper,
+  faUserGroup
+} from '@fortawesome/pro-solid-svg-icons';
 
 import { Button } from '@/components/Button';
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation';
@@ -20,8 +29,7 @@ function TopLevelNavItem({ href, children }) {
     <li className='md:hidden'>
       <Link
         href={href}
-        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      >
+        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
         {children}
       </Link>
     </li>
@@ -39,8 +47,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      )}
-    >
+      )}>
       <span className='truncate'>{children}</span>
       {tag && (
         <Tag variant='small' color='zinc'>
@@ -141,8 +148,7 @@ function NavigationGroup({ group, className }) {
                     exit={{
                       opacity: 0,
                       transition: { duration: 0.15 }
-                    }}
-                  >
+                    }}>
                     {sections.map(section => (
                       <li key={section.id}>
                         <NavLink href={`${link.href}#${section.id}`} tag={section.tag} isAnchorLink>
@@ -168,10 +174,18 @@ export function Navigation({ navigation, ...props }) {
     <nav {...props}>
       <ul role='list'>
         {/* Header */}
-        <TopLevelNavItem href='/learn'>Learn</TopLevelNavItem>
-        <TopLevelNavItem href='/blog'>Blog</TopLevelNavItem>
-        <TopLevelNavItem href='/pricing'>Pricing</TopLevelNavItem>
-        <TopLevelNavItem href='/support'>Support</TopLevelNavItem>
+        <TopLevelNavItem href='/learn' icon={faHammer}>
+          Learn
+        </TopLevelNavItem>
+        <TopLevelNavItem href='/docs' icon={faBooks}>
+          Docs
+        </TopLevelNavItem>
+        <TopLevelNavItem href='/blog' icon={faNewspaper}>
+          Blog
+        </TopLevelNavItem>
+        <TopLevelNavItem href='/pricing' icon={faCoin}>
+          Pricing
+        </TopLevelNavItem>
 
         {/* Sidebar */}
         {navigation.sidebar

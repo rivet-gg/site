@@ -67,10 +67,14 @@ export async function generateApis() {
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
-      let title = path.operationId.replace(/_/g, '.').replace(`${product}.`, '');
+      // Remove product prefix from operation ID
+      let operationIdStripped = path.operationId.replace(`${product}_`, '');
+
+      // Generate title
+      let title = operationIdStripped.replace(/_/g, '.');
       if (isImportant) title = '⭐️ ' + title;
 
-      let file = `$ ${title}\n`;
+      let file = `# ${title}\n`;
       file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
 
       let curlCommand;
@@ -87,8 +91,7 @@ ${curlCommand}
 </RequestExample>*/}
 `;
 
-      let pathStripped = pathName.replace(/\/\{[^\}]+\}/g, '').replace(/\//g, '-');
-      let fileName = `${method}${pathStripped}`;
+      let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '-'));
       let filePath = new String(`${apiPath(product)}/${fileName}`);
 
       // Sort by grouping similar endpoints together and move important endpoints first
@@ -117,3 +120,8 @@ ${curlCommand}
 
   return apiPages;
 }
+
+function camelToKebab(input) {
+  return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
+}
+

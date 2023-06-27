@@ -26,7 +26,8 @@ Router.events.on('hashChangeStart', onRouteChange);
 export default function App({ Component, pageProps }) {
   let router = useRouter();
 
-  let navigation = routes.find(route => router.pathname.startsWith(route.prefix));
+  let routes2 = JSON.parse(JSON.stringify(routes));
+  let navigation = routes2.find(route => router.pathname.startsWith(route.prefix));
   if (!navigation) navigation = { prefix: '/', feedback: false };
 
   let page = navigation.sidebar

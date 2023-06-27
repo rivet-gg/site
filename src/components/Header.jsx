@@ -180,59 +180,11 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
 
           <div className='flex items-center gap-1'>
-            {/* <TopLevelNavPopover
-              solutions={
-                <>
-                  <TopLevelNavPopoverSolution
-                    icon={faGraduationCap}
-                    href='/services'
-                    title='Rivet Services'
-                    description='Simple APIs for running multiplayer games'
-                  />
-                  <TopLevelNavPopoverSolution
-                    icon={faCode}
-                    href='/social'
-                    title='Rivet Social'
-                    description='Open community of millions of users across games & platforms'
-                  />
-                </>
-              }>
-              Products
-            </TopLevelNavPopover> */}
-            {/* <TopLevelNavPopover
-              solutions={
-                <>
-                  <TopLevelNavPopoverSolution
-                    icon={faGraduationCap}
-                    href='/learn'
-                    title='Learn'
-                    description='Hands-on learning with your engine of choice'
-                  />
-                  <TopLevelNavPopoverSolution
-                    icon={faCode}
-                    href='/docs'
-                    title='Documentation'
-                    description={`Read about how to use Rivet's services`}
-                  />
-                </>
-              }
-              callsToAction={
-                <>
-                  <TopLevelNavPopoverCallToAction
-                    icon={faYoutube}
-                    title='YouTube'
-                    href='https://youtube.com/@rivet-gg'
-                  />
-                  <TopLevelNavPopoverCallToAction icon={faUserGroup} title='Community' href='/support' />
-                </>
-              }>
-              Learn
-            </TopLevelNavPopover> */}
-            <TopLevelNavItem href='/docs' icon={faBooks}>
-              Docs
-            </TopLevelNavItem>
             <TopLevelNavItem href='/learn' icon={faHammer}>
               Learn
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/docs' icon={faBooks}>
+              Docs
             </TopLevelNavItem>
             <TopLevelNavItem href='/blog' icon={faNewspaper}>
               Blog
