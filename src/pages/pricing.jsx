@@ -18,7 +18,7 @@ import imgAnalytics from '@/images/products/analytics-duotone.svg';
 import { faInfinity } from '@fortawesome/pro-solid-svg-icons';
 
 export default function Pricing() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const tiers = [
     {
