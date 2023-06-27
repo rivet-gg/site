@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -270,11 +271,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 className={clsx(
                   tab.current
                     ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
-                    : 'border-transparent text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white',
-                  'lh-full flex h-full items-center whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
+                    : 'border-transparent text-zinc-600 opacity-80 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
+                  'lh-full flex h-full items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
-                {tab.title}
+                {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' /> : null}
+                <span>{tab.title}</span>
               </Link>
             ))}
           </nav>
