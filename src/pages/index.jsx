@@ -267,7 +267,9 @@ function Title() {
 
         {/* Title */}
         <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          The multiplayer<br/>development platform
+          The multiplayer
+          <br />
+          development platform
         </h1>
 
         {/* Subtitle */}
@@ -288,9 +290,15 @@ function Title() {
         </div>
 
         {/* YC */}
-        {/* <div className='mt-8 flex items-center justify-center gap-x-6'>
-          Backed by Y Combinator
-        </div> */}
+        <Link
+          href='https://www.ycombinator.com/'
+          target='_blank'
+          className='block margin-auto mx-auto mt-8 w-max rounded-lg bg-white/5 px-4 pb-2.5 pt-1 ring-1 ring-white/10'>
+          <div className='flex flex-col items-center justify-center gap-0.5 text-sm font-semibold text-white'>
+            <div>Backed by</div>
+            <YCLogo className='h-[1.8em]' white={true} />
+          </div>
+        </Link>
       </div>
 
       {/* Demo */}
@@ -575,6 +583,7 @@ function CaseStudies({ props }) {
 
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { Resource, ResourceGroup } from '@/components/Resources';
+import YCLogo from '@/components/YCLogo';
 // import YCLogo from '@/components/YCLogo';
 
 const benefits = [
