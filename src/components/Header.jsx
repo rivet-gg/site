@@ -26,24 +26,28 @@ import {
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { useRouter } from 'next/router';
 
-import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
-import imgComputeWhite from '@/images/products/compute-white.svg';
 import imgCdnWhite from '@/images/products/cdn-white.svg';
+import imgChatWhite from '@/images/products/chat-white.svg';
+import imgComputeWhite from '@/images/products/compute-white.svg';
+import imgGroupWhite from '@/images/products/group-white.svg';
 import imgIdentityWhite from '@/images/products/identity-white.svg';
 import imgKvWhite from '@/images/products/kv-white.svg';
+import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 
-import imgUnity from '@/images/vendors/unity-white.svg';
-import imgUnreal from '@/images/vendors/unreal-white.svg';
 import imgGodot from '@/images/vendors/godot-white.svg';
 import imgHtml5 from '@/images/vendors/html5-white.svg';
+import imgUnity from '@/images/vendors/unity-white.svg';
+import imgUnreal from '@/images/vendors/unreal-white.svg';
 
 const ICONS = {
   // Products
-  matchmaker: imgMatchmakerWhite,
-  compute: imgComputeWhite,
   cdn: imgCdnWhite,
+  chat: imgChatWhite,
+  compute: imgComputeWhite,
+  group: imgGroupWhite,
   identity: imgIdentityWhite,
   kv: imgKvWhite,
+  matchmaker: imgMatchmakerWhite,
 
   // Vendor
   unity: imgUnity,

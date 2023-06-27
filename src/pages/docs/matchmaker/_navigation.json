@@ -13,7 +13,7 @@
       },
       {
         "title": "API",
-        "template": "api/matchmaker"
+        "template": { "api": "matchmaker" }
       }
     ]
   }

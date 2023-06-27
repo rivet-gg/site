@@ -21,10 +21,10 @@ let products = {
     importantEndpoints: ['POST /identities', 'POST /game-links', 'GET /events/live']
   },
   chat: {
-    importantEndpoints: ['POST /identities', 'POST /game-links', 'GET /events/live']
+    importantEndpoints: []
   },
   group: {
-    importantEndpoints: ['POST /identities', 'POST /game-links', 'GET /events/live']
+    importantEndpoints: []
   },
   kv: {
     importantEndpoints: ['GET /entries', 'PUT /entries', 'DELETE /entries']
@@ -67,11 +67,10 @@ export async function generateApis() {
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
-      let title = path.operationId.replace(/_/g, '.');
+      let title = path.operationId.replace(/_/g, '.').replace(`${product}.`, '');
       if (isImportant) title = '⭐️ ' + title;
 
-      let file = `---\ntitle: "${title}"\nopenapi: "${method.toUpperCase()} ${pathName}"\n---\n\n`;
-
+      let file = `$ ${title}\n`;
       file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
 
       let curlCommand;
@@ -89,22 +88,31 @@ ${curlCommand}
 `;
 
       let pathStripped = pathName.replace(/\/\{[^\}]+\}/g, '').replace(/\//g, '-');
-      let filePath = new String(`${apiPath(product)}/${method}${pathStripped}`);
+      let fileName = `${method}${pathStripped}`;
+      let filePath = new String(`${apiPath(product)}/${fileName}`);
 
       // Sort by grouping similar endpoints together and move important endpoints first
-      filePath.sortingKey = `${isImportant ? '0' : `999 ${importantIndex}`} ${pathName} ${method}`;
+      let sortingKey = `${isImportant ? '0' : `999 ${importantIndex}`} ${pathName} ${method}`;
 
       fs.writeFileSync(`${filePath}.mdx`, file);
 
       // Write config
       apiPages[product] = apiPages[product] || { pages: [] };
-      apiPages[product].pages.push(filePath);
-      apiPages[product].pages.sort((a, b) => {
-        if (a.sortingKey < b.sortingKey) return -1;
-        else if (a.sortingKey > b.sortingKey) return 1;
-        else return 0;
+      apiPages[product].pages.push({
+        title,
+        href: `/docs/${product}/api/${fileName}`,
+        sortingKey,
       });
     }
+  }
+
+  // Sort pages
+  for (let product in apiPages) {
+    apiPages[product].pages.sort((a, b) => {
+      if (a.sortingKey < b.sortingKey) return -1;
+      else if (a.sortingKey > b.sortingKey) return 1;
+      else return 0;
+    });
   }
 
   return apiPages;

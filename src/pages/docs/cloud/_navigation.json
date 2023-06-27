@@ -1,6 +1,11 @@
 {
   "feedback": true,
   "sidebar": {
-    "groups": []
+    "groups": [
+      {
+        "title": "API",
+        "template": { "api": "cloud" }
+      }
+    ]
   }
 }

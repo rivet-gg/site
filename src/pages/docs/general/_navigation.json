@@ -26,7 +26,7 @@
       },
       {
         "title": "Errors",
-        "template": "errors"
+        "template": { "errors": true }
       }
     ]
   }

@@ -2,7 +2,7 @@ import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
 
-export async function generateNavigation({ errorPages }) {
+export async function generateNavigation({ errorPages, apiPages }) {
   let routes = [];
 
   // Process all navigation in globs
@@ -11,7 +11,7 @@ export async function generateNavigation({ errorPages }) {
   });
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
-    routes.push(await buildRoute({ path, errorPages }));
+    routes.push(await buildRoute({ path, errorPages, apiPages }));
   }
 
   // Sort by path descending to match most specific first
@@ -20,7 +20,7 @@ export async function generateNavigation({ errorPages }) {
   await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
 }
 
-async function buildRoute({ path, errorPages }) {
+async function buildRoute({ path, errorPages, apiPages }) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   let output = {
@@ -36,11 +36,14 @@ async function buildRoute({ path, errorPages }) {
       let outputGroup = { title: inputGroup.title, pages: [] };
       output.sidebar.groups.push(outputGroup);
 
-      if (inputGroup.template == 'errors') {
+      if (inputGroup.template?.errors) {
         // Errors
         outputGroup.pages.push(...errorPages)
+      } else if (inputGroup.template?.api) {
+        // API
+        outputGroup.pages.push(...apiPages[inputGroup.template.api].pages);
       } else if (inputGroup.pages) {
-        // Pages
+        // Markdown pages
         for (let page of inputGroup.pages) {
           if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
 
@@ -103,16 +106,28 @@ function docsTabs(path) {
       current: path[1] === 'cdn'
     },
     {
+      title: 'KV',
+      icon: 'kv',
+      href: '/docs/kv',
+      current: path[1] === 'kv'
+    },
+    {
       title: 'Identity',
       icon: 'identity',
       href: '/docs/identity',
       current: path[1] === 'identity'
     },
     {
-      title: 'KV',
-      icon: 'kv',
-      href: '/docs/kv',
-      current: path[1] === 'kv'
+      title: 'Chat',
+      icon: 'chat',
+      href: '/docs/chat',
+      current: path[1] === 'chat'
+    },
+    {
+      title: 'Groups',
+      icon: 'group',
+      href: '/docs/group',
+      current: path[1] === 'group'
     },
     {
       title: 'Cloud',

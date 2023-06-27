@@ -5,6 +5,10 @@
       {
         "title": "Concepts",
         "pages": ["concepts/follow-mechanics", "concepts/friend-discovery"]
+      },
+      {
+        "title": "API",
+        "template": { "api": "identity" }
       }
     ]
   }

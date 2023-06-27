@@ -4,9 +4,8 @@
     "groups": [
       {
         "title": "API",
-        "template": { "api": "kv" }
+        "template": { "api": "chat" }
       }
-
     ]
   }
 }
