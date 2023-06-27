@@ -248,7 +248,7 @@ function Title() {
       <div className='max-w-2xl text-center'>
         {/* Event */}
         <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
-          <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20'>
+          <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10'>
             <div>Rivet is now open source</div>
             <div className='-mb-1 ml-4'>
               <GitHubButton
@@ -293,10 +293,10 @@ function Title() {
         <Link
           href='https://www.ycombinator.com/'
           target='_blank'
-          className='block margin-auto mx-auto mt-8 w-max rounded-lg bg-white/5 px-4 pb-2.5 pt-1 ring-1 ring-white/10'>
-          <div className='flex flex-col items-center justify-center gap-0.5 text-sm font-semibold text-white'>
+          className='margin-auto mx-auto mt-8 block w-max rounded-lg bg-white/5 px-4 py-2 ring-1 ring-white/10'>
+          <div className='flex items-center justify-center gap-2 text-sm font-semibold text-white'>
             <div>Backed by</div>
-            <YCLogo className='h-[1.8em]' white={true} />
+            <YCLogo className='h-[1.7em]' white={true} />
           </div>
         </Link>
       </div>
