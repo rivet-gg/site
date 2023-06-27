@@ -112,25 +112,35 @@ const sections = [
     features: [
       { name: 'Analytics', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
       { name: 'Audit log', tiers: { 'tier-enterprise': true } },
-      { name: 'SSO', tiers: { 'tier-enterprise': true } },
-      { name: 'Cloud providers (more coming soon)', tiers: { 'tier-oss': 'Linode', 'tier-cloud': 'Linode', 'tier-enterprise': 'On-premise, AWS, Linode' } },
-      { name: 'Bring your own game server', tiers: {  'tier-cloud': 'Coming soon', 'tier-enterprise': true } },
+      { name: 'SSO', tiers: { 'tier-enterprise': true } }
+    ]
+  },
+  {
+    name: 'Game servers',
+    features: [
+      { name: 'Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+      {
+        name: 'Cloud providers (more coming soon)',
+        tiers: { 'tier-oss': 'Linode', 'tier-cloud': 'Linode', 'tier-enterprise': 'On-premise, AWS, Linode' }
+      },
+      { name: 'Bring your own hardware', tiers: { 'tier-enterprise': true } }
     ]
   },
   {
     name: 'Cluster',
     features: [
       { name: 'On-premise deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
-      { name: 'Autoscaling (cost saving)', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-      { name: 'High availability', tiers: { 'tier-cloud': true,'tier-enterprise': true } },
+      { name: 'High availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
       { name: 'Horizontal scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
     ]
   },
   {
     name: 'Support',
     features: [
-      { name: 'Onboarding', tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Community', 'tier-enterprise': true } },
-      { name: 'Support', tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Custom' } }
+      {
+        name: 'Support',
+        tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Custom' }
+      }
     ]
   }
 ];
@@ -140,14 +150,12 @@ export default function Pricing() {
     <div className='py-16 sm:py-24'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
-          <h1 className='text-base font-semibold leading-7 text-indigo-400'>Pricing</h1>
-          <p className='mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl'>
-            Plans for teams of&nbsp;all&nbsp;sizes
+          <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
+            Pricing
           </p>
         </div>
-        <p className='mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-300'>
-          Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non
-          voluptas in. Explicabo id ut laborum.
+        <p className='mx-auto mt-6 text-center text-lg leading-8 text-gray-300'>
+          Affordable for small studios & scalable for large studios.<br/>Always predictable pricing.
         </p>
 
         {/* xs to lg */}
@@ -159,9 +167,7 @@ export default function Pricing() {
                 tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
                 'p-8'
               )}>
-              <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>
-                {tier.name}
-              </h2>
+              <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>{tier.name}</h2>
               <a
                 href={tier.href}
                 aria-describedby={tier.id}
@@ -226,8 +232,8 @@ export default function Pricing() {
                   <td />
                   {tiers.map(tier => (
                     <th key={tier.id} scope='col' className='px-6 pt-6 xl:px-8 xl:pt-8'>
-                      <h2 className='text-4xl font-bolt text-white'>{tier.name}</h2>
-                      <p className='text-gray-300 font-normal mt-3'>{tier.description}</p>
+                      <h2 className='font-bolt text-4xl text-white'>{tier.name}</h2>
+                      <p className='mt-3 font-normal text-gray-300'>{tier.description}</p>
                     </th>
                   ))}
                 </tr>

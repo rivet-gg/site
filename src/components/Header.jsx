@@ -239,13 +239,10 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </div>
         </div>
 
-        <div className='flex items-center gap-5'>
+        <div className='flex items-center gap-4'>
           <Search />
-          <div className='hidden md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15 lg:block' />
-          <div className='flex gap-4'>
-            <MobileSearch />
-            <ModeToggle />
-          </div>
+          <MobileSearch />
+          {/* <ModeToggle /> */}
           <div className='hidden min-[416px]:contents'>
             <Button href='https://hub.rivet.gg' target='_blank'>
               Open Rivet
