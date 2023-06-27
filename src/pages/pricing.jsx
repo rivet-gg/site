@@ -82,26 +82,26 @@ import clsx from 'clsx';
 
 const tiers = [
   {
-    name: 'Basic',
-    id: 'tier-basic',
+    name: 'Open Source',
+    id: 'tier-oss',
     href: '#',
-    priceMonthly: '$9',
+    button: 'View on GitHub',
     description: 'Quis suspendisse ut fermentum neque vivamus non tellus.',
     mostPopular: false
   },
   {
-    name: 'Essential',
-    id: 'tier-essential',
+    name: 'Cloud',
+    id: 'tier-cloud',
     href: '#',
-    priceMonthly: '$29',
+    button: 'Sign Up',
     description: 'Quis eleifend a tincidunt pellentesque. A tempor in sed.',
     mostPopular: true
   },
   {
-    name: 'Premium',
-    id: 'tier-premium',
+    name: 'Enterprise',
+    id: 'tier-enterprise',
     href: '#',
-    priceMonthly: '$59',
+    button: 'Contact Us',
     description: 'Orci volutpat ut sed sed neque, dui eget. Quis tristique non.',
     mostPopular: false
   }
@@ -110,38 +110,38 @@ const sections = [
   {
     name: 'Features',
     features: [
-      { name: 'Integrations', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Shared links', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Importing and exporting', tiers: { Essential: true, Premium: true } },
-      { name: 'Team members', tiers: { Essential: 'Up to 20 users', Premium: 'Up to 50 users' } }
+      { name: 'Integrations', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Shared links', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Importing and exporting', tiers: { 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Team members', tiers: { 'tier-cloud': 'Up to 20 users', 'tier-premium': 'Up to 50 users' } }
     ]
   },
   {
     name: 'Reporting',
     features: [
-      { name: 'Advanced analytics', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Basic reports', tiers: { Essential: true, Premium: true } },
-      { name: 'Professional reports', tiers: { Premium: true } },
-      { name: 'Custom report builder', tiers: { Premium: true } }
+      { name: 'Advanced analytics', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Basic reports', tiers: { 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Professional reports', tiers: { 'tier-premium': true } },
+      { name: 'Custom report builder', tiers: { 'tier-premium': true } }
     ]
   },
   {
     name: 'Support',
     features: [
-      { name: '24/7 online support', tiers: { Basic: true, Essential: true, Premium: true } },
-      { name: 'Quarterly product workshops', tiers: { Essential: true, Premium: true } },
-      { name: 'Priority phone support', tiers: { Essential: true, Premium: true } },
-      { name: '1:1 onboarding tour', tiers: { Premium: true } }
+      { name: '24/7 online support', tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Quarterly product workshops', tiers: { 'tier-cloud': true, 'tier-premium': true } },
+      { name: 'Priority phone support', tiers: { 'tier-cloud': true, 'tier-premium': true } },
+      { name: '1:1 onboarding tour', tiers: { 'tier-premium': true } }
     ]
   }
 ];
 
 export default function Pricing() {
   return (
-    <div className='bg-gray-900 py-24 sm:py-32'>
+    <div className='py-16 sm:py-24'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
-          <h2 className='text-base font-semibold leading-7 text-indigo-400'>Pricing</h2>
+          <h1 className='text-base font-semibold leading-7 text-indigo-400'>Pricing</h1>
           <p className='mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl'>
             Plans for teams of&nbsp;all&nbsp;sizes
           </p>
@@ -183,14 +183,14 @@ export default function Pricing() {
                   <li key={section.name}>
                     <ul role='list' className='space-y-4'>
                       {section.features.map(feature =>
-                        feature.tiers[tier.name] ? (
+                        feature.tiers[tier.id] ? (
                           <li key={feature.name} className='flex gap-x-3'>
                             <CheckIcon className='h-6 w-5 flex-none text-indigo-400' aria-hidden='true' />
                             <span>
                               {feature.name}{' '}
-                              {typeof feature.tiers[tier.name] === 'string' ? (
+                              {typeof feature.tiers[tier.id] === 'string' ? (
                                 <span className='text-sm leading-6 text-gray-400'>
-                                  ({feature.tiers[tier.name]})
+                                  ({feature.tiers[tier.id]})
                                 </span>
                               ) : null}
                             </span>
@@ -231,7 +231,8 @@ export default function Pricing() {
                   <td />
                   {tiers.map(tier => (
                     <th key={tier.id} scope='col' className='px-6 pt-6 xl:px-8 xl:pt-8'>
-                      <div className='text-sm font-semibold leading-7 text-white'>{tier.name}</div>
+                      <h2 className='text-4xl font-bolt text-white'>{tier.name}</h2>
+                      <p className='text-gray-300 font-normal mt-2'>{tier.description}</p>
                     </th>
                   ))}
                 </tr>
@@ -242,20 +243,16 @@ export default function Pricing() {
                     <span className='sr-only'>Price</span>
                   </th>
                   {tiers.map(tier => (
-                    <td key={tier.id} className='px-6 pt-2 xl:px-8'>
-                      <div className='flex items-baseline gap-x-1 text-white'>
-                        <span className='text-4xl font-bold'>{tier.priceMonthly}</span>
-                        <span className='text-sm font-semibold leading-6'>/month</span>
-                      </div>
+                    <td key={tier.id} className='px-6 pt-6 xl:px-8'>
                       <a
                         href={tier.href}
                         className={clsx(
                           tier.mostPopular
                             ? 'bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600'
                             : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
-                          'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+                          'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
                         )}>
-                        Buy plan
+                        {tier.button}
                       </a>
                     </td>
                   ))}
@@ -282,20 +279,20 @@ export default function Pricing() {
                         </th>
                         {tiers.map(tier => (
                           <td key={tier.id} className='px-6 py-4 xl:px-8'>
-                            {typeof feature.tiers[tier.name] === 'string' ? (
+                            {typeof feature.tiers[tier.id] === 'string' ? (
                               <div className='text-center text-sm leading-6 text-gray-300'>
-                                {feature.tiers[tier.name]}
+                                {feature.tiers[tier.id]}
                               </div>
                             ) : (
                               <>
-                                {feature.tiers[tier.name] === true ? (
+                                {feature.tiers[tier.id] === true ? (
                                   <CheckIcon className='mx-auto h-5 w-5 text-indigo-400' aria-hidden='true' />
                                 ) : (
                                   <MinusIcon className='mx-auto h-5 w-5 text-gray-500' aria-hidden='true' />
                                 )}
 
                                 <span className='sr-only'>
-                                  {feature.tiers[tier.name] === true ? 'Included' : 'Not included'} in{' '}
+                                  {feature.tiers[tier.id] === true ? 'Included' : 'Not included'} in{' '}
                                   {tier.name}
                                 </span>
                               </>
