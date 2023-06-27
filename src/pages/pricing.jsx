@@ -18,9 +18,9 @@ const pricing = {
       featured: false,
       description: 'All your essential business finances, taken care of.',
       mainFeatures: [
-        'Permissive license (Apache 2.0)',
         'Self-host on your hardware',
-        'Read & modify source code'
+        'Read & modify source code',
+        'Permissive license (Apache 2.0)',
       ]
     },
     {
