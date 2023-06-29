@@ -1,2 +1,4 @@
 *
 !.gitignore
+!errorPages.json
+!apiPages.json
