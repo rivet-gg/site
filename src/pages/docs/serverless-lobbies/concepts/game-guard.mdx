@@ -39,9 +39,9 @@ Make sure you are doing the following:
 
 The Rivet Matchmaker has systems in place to ensure players are valid & optionally completed a captcha before issuing a player token. Ensure this player token is valid before letting a player connect to your game.
 
-Disconnect sockets immediately if [matchmaker.players.connected](/matchmaker/api/post-players-connected) returns an error. Specifically, [MATCHMAKER_PLAYER_NOT_IN_LOBBY](/errors/mm/player-not-in-lobby), [MATCHMAKER_PLAYER_ALREADY_CONNECTED](/errors/mm/player-already-connected), and [TOKEN_INVALID](/errors/token/invalid) indicate the player may be malicious.
+Disconnect sockets immediately if [matchmaker.players.connected](/docs/matchmaker/api/post-players-connected) returns an error. Specifically, [MATCHMAKER_PLAYER_NOT_IN_LOBBY](/errors/mm/player-not-in-lobby), [MATCHMAKER_PLAYER_ALREADY_CONNECTED](/errors/mm/player-already-connected), and [TOKEN_INVALID](/errors/token/invalid) indicate the player may be malicious.
 
-Additionally, don't accept any packets from the client until [matchmaker.players.connected](/matchmaker/api/post-players-connected) has succeeded.
+Additionally, don't accept any packets from the client until [matchmaker.players.connected](/docs/matchmaker/api/post-players-connected) has succeeded.
 
 #### Limit packet size & frequency
 

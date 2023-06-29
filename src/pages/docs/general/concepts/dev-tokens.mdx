@@ -10,7 +10,7 @@ Ideally, each developer generates a token for their local development. The token
 
 In some cases, there's no way to return a valid response when developing on your local machine.
 
-For example, the [`matchmaker.lobbies.find`](/matchmaker/api/post-lobbies-find) endpoint will mock a fake address pointing to your local development server. It will also return a [development player token](/general/concepts/token-types#matchmaker-development-player) that act as a real [player token](/general/concepts/token-types#matchmaker-player).
+For example, the [`matchmaker.lobbies.find`](/docs/matchmaker/api/post-lobbies-find) endpoint will mock a fake address pointing to your local development server. It will also return a [development player token](/docs/general/concepts/token-types#matchmaker-development-player) that act as a real [player token](/docs/general/concepts/token-types#matchmaker-player).
 
 ## Store your token in a `.env` file
 
@@ -40,7 +40,7 @@ A development token can be created via the Rivet Dashboard in _My Game > API > C
 
 This is useful when generating one-off tokens where you need to override the hostname to test a multiplayer game on separate devices.
 
-![Create dev token](/images/create-dev-token.png)
+![Create dev token](./images/create-dev-token.png)
 
 ---
 
@@ -60,4 +60,4 @@ To override the development ports, each `matchmaker.docker.ports.*` property has
 
 Development tokens via the Rivet Dashboard at _My Game > API > Create Development Token_ have the same properties available as the CLI.
 
-![Configure dev token](/images/configure-dev-token.png)
+![Configure dev token](./images/configure-dev-token.png)

@@ -2,7 +2,7 @@ import { TutorialReplit } from '@/components/TutorialReplit';
 
 # How the matchmaker chooses lobbies
 
-This document explains the logic going on behind the scenes when a game calls [`Lobbies.find`](/matchmaker/api/post-lobbies-find).
+This document explains the logic going on behind the scenes when a game calls [`Lobbies.find`](/docs/matchmaker/api/post-lobbies-find).
 
 ## TL;DR
 
@@ -10,11 +10,11 @@ Rivet Matchmaker will return the lobby in the [closest region](#determining-the-
 
 ## Competitive matchmaking
 
-If you're looking to build competitive matchmaking on top of Rivet, please read [this](/matchmaker/concepts/competitive-matchmaking) first.
+If you're looking to build competitive matchmaking on top of Rivet, please read [this](/docs/matchmaker/concepts/competitive-matchmaking) first.
 
 ## Determining the region
 
-If no region is specificed in [`Lobbies.find`](/matchmaker/api/post-lobbies-find), Rivet will use the GeoIP location provided by Cloudflare to find the nearest datacenter.
+If no region is specificed in [`Lobbies.find`](/docs/matchmaker/api/post-lobbies-find), Rivet will use the GeoIP location provided by Cloudflare to find the nearest datacenter.
 
 GeoIP does not always provide the most optimal route to the datacenter, so we recommend providing the user with the ability to select their own region.
 
@@ -28,7 +28,7 @@ This simplified exampe demonstrates how the matchmaker finds the correct lobby t
 
 ## Providing multiple game modes
 
-[`Lobbies.find`](/matchmaker/api/post-lobbies-find) allows the developer to provide multiple game modes to join. In this case, Rivet Matchmaker will select the optimal lobby from all of the provided game modes.
+[`Lobbies.find`](/docs/matchmaker/api/post-lobbies-find) allows the developer to provide multiple game modes to join. In this case, Rivet Matchmaker will select the optimal lobby from all of the provided game modes.
 
 This can be helpful for games with low traffic but still want to provide multiple game modes to their users. In this situation, new players will be connected to any lobby for any game mode with players in it.
 
@@ -36,9 +36,9 @@ This can be helpful for games with low traffic but still want to provide multipl
 
 When all of the lobbies are full or there are no lobbies running, Rivet Matchmaker will automatically create a new lobby for the game mode specified and connect the player to that lobby.
 
-If this is not the desired behavior, [`Lobbies.find`](/matchmaker/api/post-lobbies-find) can be called with `prevent_auto_create_lobby` as `true`. This will return a [`MATCHMAKER_NO_AVAILABLE_LOBBIES`](/errors/mm/no-available-lobbies) error when no lobby can accept players.
+If this is not the desired behavior, [`Lobbies.find`](/docs/matchmaker/api/post-lobbies-find) can be called with `prevent_auto_create_lobby` as `true`. This will return a [`MATCHMAKER_NO_AVAILABLE_LOBBIES`](/errors/mm/no-available-lobbies) error when no lobby can accept players.
 
-Also see [idle lobbies](/matchmaker/concepts/idle-lobbies).
+Also see [idle lobbies](/docs/matchmaker/concepts/idle-lobbies).
 
 ## Making games feel full in off hours
 
@@ -64,4 +64,4 @@ Take our example at 10 PM where there are **5 lobbies** with **2 players in each
 
 In our example, we still have 4 lobbies with only 2 players online.
 
-We recommend prompting players to find a new lobby when the lobby is almost empty. By having the players in these empty lobbies call [`Lobbies.find`](/matchmaker/api/post-lobbies-find) again, the players will be compacted in fewer, fuller lobbies.
+We recommend prompting players to find a new lobby when the lobby is almost empty. By having the players in these empty lobbies call [`Lobbies.find`](/docs/matchmaker/api/post-lobbies-find) again, the players will be compacted in fewer, fuller lobbies.

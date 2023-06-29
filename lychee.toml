@@ -13,7 +13,9 @@ exclude = [
 
     # Example code
     '@body\.json',
+
+    # Bug parsing `src={xxxx}`
+    '%7B.*%7D$'
 ]
 exclude_all_private = true
-base = "src/pages/docs/"
 exclude_mail = true

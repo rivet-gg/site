@@ -40,4 +40,4 @@ To learn more about the technologies used in this site template, see the followi
 - [Framer Motion](https://www.framer.com/docs/) - the official Framer Motion documentation
 - [MDX](https://mdxjs.com/) - the official MDX documentation
 - [FlexSearch](https://github.com/nextapps-de/flexsearch) - the official FlexSearch documentation
-- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction) - the official Zustand documentation
+- [Zustand](https://docs.pmnd.rs/zustand/getting-started/index) - the official Zustand documentation

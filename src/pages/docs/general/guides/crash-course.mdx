@@ -23,7 +23,7 @@ Follow instructions [here](https://github.com/rivet-gg/cli#installing).
     	We're working on publishing a tutorial for this soon.
     </Accordion>
     <Accordion title="Can I automate this with APIs?">
-    	Rivet's Cloud API can be managed with your [cloud token](/general/concepts/token-types#cloud). This is the same API we use internally and [in the CLI](https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368).
+    	Rivet's Cloud API can be managed with your [cloud token](/docs/general/concepts/token-types#cloud). This is the same API we use internally and [in the CLI](https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368).
 
     	A dedicated library and specification will be published soon in order to build your own tooling.
     </Accordion>
@@ -42,9 +42,9 @@ This will guide you through setting up your project with Rivet.
 
 <Accordion title='What does this do?'>
   - Linked your project to Rivet - Creates `rivet.version.toml` to configure your deployed game. Read more
-  about the Rivet version config [here](/general/concepts/version-config). - Creates a dev token added to your
+  about the Rivet version config [here](/docs/general/concepts/version-config). - Creates a dev token added to your
   `.env` to tell Rivet to mock API endpoints in development. Read more about dev tokens
-  [here](/general/concepts/dev-tokens).
+  [here](/docs/general/concepts/dev-tokens).
 </Accordion>
 
 ### Write a `Dockerfile` for your server

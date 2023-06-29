@@ -27,11 +27,11 @@ For example:
 	</Tab>
 </Tabs>
 
-This document will talk about handling [public](/general/concepts/token-types#namespace-public), [matchmaker lobby](/general/concepts/token-types#matchmaker-lobby), and [development](/general/concepts/token-types#namespace-development) tokens for your game.
+This document will talk about handling [public](/docs/general/concepts/token-types#namespace-public), [matchmaker lobby](/docs/general/concepts/token-types#matchmaker-lobby), and [development](/docs/general/concepts/token-types#namespace-development) tokens for your game.
 
 ## Server-side lobby tokens
 
-All lobby servers running on Rivet are automatically provided a unique [lobby token](/general/concepts/token-types#matchmaker-lobby) in the `RIVET_LOBBY_TOKEN` environment variable. No extra work is required.
+All lobby servers running on Rivet are automatically provided a unique [lobby token](/docs/general/concepts/token-types#matchmaker-lobby) in the `RIVET_LOBBY_TOKEN` environment variable. No extra work is required.
 
 <Warning>
   Make sure that your lobby token is never leaked. It has permission to perform sensitive actions.
@@ -41,9 +41,9 @@ All lobby servers running on Rivet are automatically provided a unique [lobby to
 
 If you are building an HTML5 game, skip to [tokenless authentication for web](#tokenless-authentication-for-web).
 
-To connect to your game, you need to generate a [public namespace token](/general/concepts/token-types#namespace-public). Do that by navigating to **Developer > My Game > API > Create Public Token**.
+To connect to your game, you need to generate a [public namespace token](/docs/general/concepts/token-types#namespace-public). Do that by navigating to **Developer > My Game > API > Create Public Token**.
 
-![Create public token](/images/create-public-token.png)
+![Create public token](./images/create-public-token.png)
 
 This token needs to be included with the game client.
 
@@ -51,10 +51,10 @@ This token needs to be included with the game client.
 
 Rivet can authenticate web browsers without any tokens by what domain API requests are sent from. In this case, no token needs to be provided at all to the API client.
 
-See [here](/general/concepts/tokenless-authentication-web) for more details.
+See [here](/docs/general/concepts/tokenless-authentication-web) for more details.
 
 ## Development tokens
 
 When developing your game locally, you can still use the Rivet API by using development tokens. These act as real tokens whenever possible and return mock responses when needed.
 
-See [here](/general/concepts/dev-tokens) for more details.
+See [here](/docs/general/concepts/dev-tokens) for more details.
