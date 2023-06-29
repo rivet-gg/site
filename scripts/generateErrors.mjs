@@ -62,5 +62,7 @@ export async function generateErrors() {
     pages.sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  return errorPages;
+  fs.writeFileSync('src/generated/errorPages.json', JSON.stringify(errorPages, null, 2));
 }
+
+generateErrors();

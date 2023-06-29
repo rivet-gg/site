@@ -118,10 +118,12 @@ ${curlCommand}
     });
   }
 
-  return apiPages;
+  fs.writeFileSync('src/generated/apiPages.json', JSON.stringify(apiPages, null, 2));
 }
 
 function camelToKebab(input) {
   return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
 }
 
+
+generateApis();

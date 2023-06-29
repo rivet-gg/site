@@ -1,8 +1,10 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
+import errorPages from '@/generated/errorPages.json';
+import apiPages from '@/generated/apiPages.json';
 
-export async function generateNavigation({ errorPages, apiPages }) {
+export async function generateNavigation() {
   let routes = [];
 
   // Process all navigation in globs
@@ -11,7 +13,7 @@ export async function generateNavigation({ errorPages, apiPages }) {
   });
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
-    routes.push(await buildRoute({ path, errorPages, apiPages }));
+    routes.push(await buildRoute({ path }));
   }
 
   // Sort by path descending to match most specific first
@@ -20,7 +22,7 @@ export async function generateNavigation({ errorPages, apiPages }) {
   await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
 }
 
-async function buildRoute({ path, errorPages, apiPages }) {
+async function buildRoute({ path }) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   let output = {
