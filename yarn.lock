@@ -5335,6 +5335,68 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rivet-site@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "rivet-site@workspace:."
+  dependencies:
+    "@algolia/autocomplete-core": ^1.7.3
+    "@fortawesome/fontawesome-svg-core": ^6.4.0
+    "@fortawesome/free-brands-svg-icons": ^6.4.0
+    "@fortawesome/pro-solid-svg-icons": ^6.4.0
+    "@fortawesome/react-fontawesome": latest
+    "@headlessui/react": ^1.7.13
+    "@heroicons/react": ^2.0.18
+    "@mdx-js/loader": ^2.1.5
+    "@mdx-js/react": ^2.1.5
+    "@mintlify/components": ^0.3.15
+    "@next/mdx": ^13.0.3
+    "@sindresorhus/slugify": ^2.1.1
+    "@tailwindcss/forms": ^0.5.3
+    "@tailwindcss/typography": ^0.5.8
+    acorn: ^8.8.1
+    autoprefixer: ^10.4.7
+    clsx: ^1.2.0
+    csv-parser: ^3.0.0
+    eslint: 8.26.0
+    eslint-config-next: 13.0.2
+    fast-glob: ^3.2.12
+    feed: ^4.2.2
+    flexsearch: ^0.7.31
+    focus-visible: ^5.2.0
+    framer-motion: 7.8.1
+    mdast-util-to-string: ^3.2.0
+    mdx-annotations: ^0.1.1
+    next: 13.4.2
+    next-router-mock: ^0.9.7
+    postcss: ^8.4.24
+    postcss-focus-visible: ^6.0.4
+    posthog-js: ^1.68.4
+    prettier: ^2.8.8
+    prettier-plugin-tailwindcss: ^0.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-github-btn: ^1.4.0
+    react-highlight-words: ^0.20.0
+    recma-nextjs-static-props: ^1.0.0
+    rehype-mdx-title: ^2.0.0
+    rehype-parse: ^8.0.4
+    rehype-remark: ^9.1.2
+    remark: ^14.0.2
+    remark-gfm: ^3.0.1
+    remark-mdx: ^2.3.0
+    remark-stringify: ^10.0.3
+    sharp: ^0.32.1
+    shiki: ^0.11.1
+    simple-functional-loader: ^1.2.1
+    tailwindcss: ^3.3.0
+    unified: ^10.1.2
+    unist-util-filter: ^4.0.1
+    unist-util-visit: ^4.1.1
+    yaml: ^2.3.1
+    zustand: ^4.3.2
+  languageName: unknown
+  linkType: soft
+
 "run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
@@ -5819,68 +5881,6 @@ __metadata:
   checksum: 4897c70e671c885e151f57434d87ccb806f468a11900f028245b351ffbca5245ff0c10ca5dbb6eb4c7c4df3de8a15a05fe08c2aea4b152cb07bee9bb1d8a14a8
   languageName: node
   linkType: hard
-
-"tailwindui-protocol@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "tailwindui-protocol@workspace:."
-  dependencies:
-    "@algolia/autocomplete-core": ^1.7.3
-    "@fortawesome/fontawesome-svg-core": ^6.4.0
-    "@fortawesome/free-brands-svg-icons": ^6.4.0
-    "@fortawesome/pro-solid-svg-icons": ^6.4.0
-    "@fortawesome/react-fontawesome": latest
-    "@headlessui/react": ^1.7.13
-    "@heroicons/react": ^2.0.18
-    "@mdx-js/loader": ^2.1.5
-    "@mdx-js/react": ^2.1.5
-    "@mintlify/components": ^0.3.15
-    "@next/mdx": ^13.0.3
-    "@sindresorhus/slugify": ^2.1.1
-    "@tailwindcss/forms": ^0.5.3
-    "@tailwindcss/typography": ^0.5.8
-    acorn: ^8.8.1
-    autoprefixer: ^10.4.7
-    clsx: ^1.2.0
-    csv-parser: ^3.0.0
-    eslint: 8.26.0
-    eslint-config-next: 13.0.2
-    fast-glob: ^3.2.12
-    feed: ^4.2.2
-    flexsearch: ^0.7.31
-    focus-visible: ^5.2.0
-    framer-motion: 7.8.1
-    mdast-util-to-string: ^3.2.0
-    mdx-annotations: ^0.1.1
-    next: 13.4.2
-    next-router-mock: ^0.9.7
-    postcss: ^8.4.24
-    postcss-focus-visible: ^6.0.4
-    posthog-js: ^1.68.4
-    prettier: ^2.8.8
-    prettier-plugin-tailwindcss: ^0.3.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-github-btn: ^1.4.0
-    react-highlight-words: ^0.20.0
-    recma-nextjs-static-props: ^1.0.0
-    rehype-mdx-title: ^2.0.0
-    rehype-parse: ^8.0.4
-    rehype-remark: ^9.1.2
-    remark: ^14.0.2
-    remark-gfm: ^3.0.1
-    remark-mdx: ^2.3.0
-    remark-stringify: ^10.0.3
-    sharp: ^0.32.1
-    shiki: ^0.11.1
-    simple-functional-loader: ^1.2.1
-    tailwindcss: ^3.3.0
-    unified: ^10.1.2
-    unist-util-filter: ^4.0.1
-    unist-util-visit: ^4.1.1
-    yaml: ^2.3.1
-    zustand: ^4.3.2
-  languageName: unknown
-  linkType: soft
 
 "tar-fs@npm:^2.0.0, tar-fs@npm:^2.1.1":
   version: 2.1.1
