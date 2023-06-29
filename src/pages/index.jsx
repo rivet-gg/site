@@ -632,11 +632,11 @@ function UpAndRunning() {
                 title='Video learn'
                 icon={faServer}
                 iconType='duotone'
-                href='/docs/serverless-lobbies/index'
+                href='/docs/serverless-lobbies'
               />
-              <Resource title='API' icon={faGlobe} href='/docs/cdn/index' />
-              <Resource title='GitHub' icon={faGlobe} href='/docs/cdn/index' />
-              <Resource title='Community' icon={faUserGroup} href='/docs/cdn/index' />
+              <Resource title='API' icon={faGlobe} href='/docs/cdn' />
+              <Resource title='GitHub' icon={faGlobe} href='/docs/cdn' />
+              <Resource title='Community' icon={faUserGroup} href='/docs/cdn' />
             </div>
           </div>
         </div>

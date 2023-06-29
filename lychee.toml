@@ -17,5 +17,5 @@ exclude = [
     # Bug parsing `src={xxxx}`
     '%7B.*%7D$'
 ]
-exclude_all_private = true
+# exclude_all_private = true
 exclude_mail = true
