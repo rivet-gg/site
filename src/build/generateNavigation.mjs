@@ -1,8 +1,8 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
-import errorPages from '@/generated/errorPages.json';
-import apiPages from '@/generated/apiPages.json';
+import errorPages from '../generated/errorPages.json' assert { type: 'json' };
+import apiPages from '../generated/apiPages.json' assert { type: 'json' };
 
 export async function generateNavigation() {
   let routes = [];
@@ -40,7 +40,7 @@ async function buildRoute({ path }) {
 
       if (inputGroup.template?.errors) {
         // Errors
-        outputGroup.pages.push(...errorPages)
+        outputGroup.pages.push(...errorPages);
       } else if (inputGroup.template?.api) {
         // API
         outputGroup.pages.push(...apiPages[inputGroup.template.api].pages);
