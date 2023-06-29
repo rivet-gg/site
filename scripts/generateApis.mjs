@@ -1,5 +1,6 @@
 import fs from 'fs';
 import YAML from 'yaml';
+import path from 'path';
 
 let backendPath = '../rivet';
 
@@ -51,11 +52,11 @@ export async function generateApis() {
 
   for (let pathName in spec.paths) {
     for (let method in spec.paths[pathName]) {
-      let path = spec.paths[pathName][method];
+      let specPath = spec.paths[pathName][method];
 
       console.log('Registering', method, pathName);
 
-      let url = path.servers[0].url;
+      let url = specPath.servers[0].url;
       let fullUrl = url + pathName;
 
       // TODO: Hack
@@ -68,7 +69,7 @@ export async function generateApis() {
       let isImportant = importantIndex != -1;
 
       // Remove product prefix from operation ID
-      let operationIdStripped = path.operationId.replace(`${product}_`, '');
+      let operationIdStripped = specPath.operationId.replace(`${product}_`, '');
 
       // Generate title
       let title = operationIdStripped.replace(/_/g, '.');
@@ -91,8 +92,9 @@ ${curlCommand}
 </RequestExample>*/}
 `;
 
-      let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '-'));
-      let filePath = new String(`${apiPath(product)}/${fileName}`);
+      let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '/'));
+      let filePath = `${apiPath(product)}/${fileName}`;
+      fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
       // Sort by grouping similar endpoints together and move important endpoints first
       let sortingKey = `${isImportant ? '0' : `999 ${importantIndex}`} ${pathName} ${method}`;
