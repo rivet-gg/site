@@ -88,8 +88,8 @@ export function getCurrentPlayer(client: Client): PlayerState | undefined {
 function resize(client: Client) {
 	let pixelRatio = window.devicePixelRatio || 1;
 	let canvasRect = client.canvas.getBoundingClientRect();
-	client.canvas.width = canvasRect.width * devicePixelRatio;
-	client.canvas.height = canvasRect.height * devicePixelRatio;
+	client.canvas.width = canvasRect.width * pixelRatio;
+	client.canvas.height = canvasRect.height * pixelRatio;
 }
 
 function joinGame(client: Client) {
@@ -155,6 +155,12 @@ function render(client: Client, ctx: CanvasRenderingContext2D) {
 
 	// Clear any graphics left on the canvas from the last frame
 	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+	// Fill background
+	ctx.save();
+	ctx.fillStyle = '#E7D4A9';
+	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	ctx.restore();
 
 	// Center <0, 0> to the center of the screen and scale to have an equal height on all devices
 	ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2);

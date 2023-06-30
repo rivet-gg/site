@@ -269,9 +269,9 @@ function Title() {
 
         {/* Title */}
         <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          The multiplayer
+          The Multiplayer
           <br />
-          development platform
+          Development Platform
         </h1>
 
         {/* Subtitle */}
