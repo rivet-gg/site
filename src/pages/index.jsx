@@ -310,16 +310,6 @@ function Title() {
 }
 
 function Demo() {
-  let [isRunning, setIsRunning] = useState(false);
-  const iframeElement = useRef(null);
-
-  useEffect(() => {
-    console.log('effect', !!iframeElement.current)
-    if (iframeElement.current) {
-      iframeElement.current.contentWindow.focus();
-    }
-  }, [isRunning]);
-
   return (
     <div className='relative h-[750px] w-[640px] shrink-0 grow-0'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
