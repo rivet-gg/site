@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 export { default as  Image } from 'next/image';
 import clsx from 'clsx';
@@ -40,9 +39,6 @@ export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
 
-export function DocsImage(props) {
-  return <Image {...props} />;
-}
 
 function InfoIcon(props) {
   return (
