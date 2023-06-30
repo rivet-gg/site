@@ -115,9 +115,10 @@ function update(client: Client) {
 		if (client.input.isKeyDown("w")) moveY += 1;
 
 		// Determine rotation
+		let boundingBox = client.canvas.getBoundingClientRect();
 		const aimDir = Math.atan2(
-			client.input.mousePosition.y - client.canvas.clientHeight / 2,
-			client.input.mousePosition.x - client.canvas.clientWidth / 2,
+			client.input.mousePosition.y - (boundingBox.top + boundingBox.height / 2),
+			client.input.mousePosition.x - (boundingBox.left + boundingBox.width / 2)
 		);
 
 		client.connection?.socket.emit("input", moveX, moveY, aimDir);
