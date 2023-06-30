@@ -12,8 +12,8 @@ The Rivet Matchmaker is a casual matchmaker optimized to get your player connect
 To integrate the Rivet matchmaker, your game needs to call these three endpoints:
 
 - **[matchmaker.lobbies.find](/docs/matchmaker/api/lobbies/find)**: Called on the game client to return the address to connect to & the player token
-- **[matchmaker.players.connected](/docs/matchmaker/api/post-players-connected)**: Called on the game server to notify the matchmaker the player connected & verify the player token
-- **[matchmaker.players.disconnected](/docs/matchmaker/api/post-players-disconnected)**: Called on the game server to notify the matchmaker the player disconnected
+- **[matchmaker.players.connected](/docs/matchmaker/api/players/connected)**: Called on the game server to notify the matchmaker the player connected & verify the player token
+- **[matchmaker.players.disconnected](/docs/matchmaker/api/players/disconnected)**: Called on the game server to notify the matchmaker the player disconnected
 
 The Rivet Matchmaker is tightly integrated with Serverless Lobbies to automatically boot lobbies on-demand when players need them. Read more about how Rivet Serverless Lobbies operates your game servers [here](/docs/serverless-lobbies/index).
 
@@ -28,12 +28,12 @@ The Rivet Matchmaker is tightly integrated with Serverless Lobbies to automatica
   <Resource
     title='matchmaker.players.connected'
     icon={faCode}
-    href='/docs/matchmaker/api/post-players-connected'
+    href='/docs/matchmaker/api/players/connected'
   />
   <Resource
     title='matchmaker.players.disconnected'
     icon={faCode}
-    href='/docs/matchmaker/api/post-players-disconnected'
+    href='/docs/matchmaker/api/players/disconnected'
   />
-  <Resource title='matchmaker.lobbies.ready' icon={faCode} href='/docs/matchmaker/api/post-lobbies-ready' />
+  <Resource title='matchmaker.lobbies.ready' icon={faCode} href='/docs/matchmaker/api/lobbies/ready' />
 </ResourceGroup>

@@ -21,25 +21,25 @@ Rivet Identities include the following features:
 
 To integrate Rivet Identities:
 
-- **[identity.setup](/docs/identity/api/post-identities)**: creates a new identity and returns a token used for future API requests; this token can be stored in your existing account database
-- **[identity.events.watch](/docs/identity/api/events-watch)** (optional): returns realtime updates for the identity such as party updates, chat messages, and more
-- **[identity.links.prepare](/docs/identity/api/links-prepare)** (optional): starts the linking process for connecting the Rivet Identity to the Rivet Hub
+- **[identity.setup](/docs/identity/api/setup)**: creates a new identity and returns a token used for future API requests; this token can be stored in your existing account database
+- **[identity.events.watch](/docs/identity/api/events/watch)** (optional): returns realtime updates for the identity such as party updates, chat messages, and more
+- **[identity.links.prepare](/docs/identity/api/links/prepare)** (optional): starts the linking process for connecting the Rivet Identity to the Rivet Hub
 
 When integrating Rivet Identities, we provide an identity token. You can use that token to integrate with existing account systems.
 
 <ResourceGroup>
   <Resource title='Friend discovery mechanisms' icon={faCompass} href='/docs/identity/concepts/friend-discovery' />
-  <Resource title='identity.setup' icon={faCode} iconType='duotone' href='/docs/identity/api/post-identities' />
+  <Resource title='identity.setup' icon={faCode} iconType='duotone' href='/docs/identity/api/setup' />
   <Resource
     title='identity.events.watch'
     icon={faCode}
     iconType='duotone'
-    href='/docs/identity/api/events-watch'
+    href='/docs/identity/api/events/watch'
   />
   <Resource
     title='identity.links.prepare'
     icon={faCode}
     iconType='duotone'
-    href='/docs/identity/api/post-game-links'
+    href='/docs/identity/api/links/prepare'
   />
 </ResourceGroup>
