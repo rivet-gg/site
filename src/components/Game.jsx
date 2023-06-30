@@ -18,7 +18,7 @@ export function Game({ className, ...props }) {
   }, [isRunning, gameClient]);
 
   return (
-    <div className={clsx(className, 'bg-slate-950')} {...props}>
+    <div className={clsx(className, 'bg-slate-950 pointer-events-auto')} {...props}>
       {isRunning && <canvas className='h-full w-full' ref={canvasElement}></canvas>}
 
       {/* Start UI */}

@@ -311,14 +311,14 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='relative h-[750px] w-[640px] shrink-0 grow-0'>
+    <div className='relative h-[750px] w-[640px] shrink-0 grow-0 pointer-events-none'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
           className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
         />
-        <div className='absolute left-[264px] top-[195px] h-[314px] w-[465px] bg-slate-950'>
+        <div className='absolute left-[264px] top-[195px] h-[314px] w-[465px]'>
           <Game className='h-full w-full' />
         </div>
       </div>

@@ -86,8 +86,10 @@ export function getCurrentPlayer(client: Client): PlayerState | undefined {
 }
 
 function resize(client: Client) {
-	client.canvas.width = window.innerWidth;
-	client.canvas.height = window.innerHeight;
+	let pixelRatio = window.devicePixelRatio || 1;
+	let canvasRect = client.canvas.getBoundingClientRect();
+	client.canvas.width = canvasRect.width * devicePixelRatio;
+	client.canvas.height = canvasRect.height * devicePixelRatio;
 }
 
 function joinGame(client: Client) {
@@ -140,9 +142,9 @@ function render(client: Client, ctx: CanvasRenderingContext2D) {
 	const currentPlayer = getCurrentPlayer(client);
 
 	// Update world screen width and height
-	const scale = window.innerHeight / client.game.viewportHeight;
-	client.screenWidth = window.innerWidth / scale;
-	client.screenHeight = window.innerHeight / scale;
+	const scale = client.canvas.height / client.game.viewportHeight;
+	client.screenWidth = client.canvas.width/ scale;
+	client.screenHeight = client.canvas.height / scale;
 
 	ctx.save();
 
