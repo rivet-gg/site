@@ -140,7 +140,7 @@ export function renderPlayer(
 	ctx.fillStyle = "white";
 	ctx.strokeStyle = "#333";
 	ctx.lineWidth = 6;
-	ctx.font = Utilities.font(32, 700);
+	ctx.font = Utilities.font(32, 800);
 	ctx.strokeText(state.score.toString(), 0, scoreY);
 	ctx.fillText(state.score.toString(), 0, scoreY);
 	ctx.restore();

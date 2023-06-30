@@ -10,7 +10,7 @@ import { renderExplosion } from "../shared/Explosion";
 import { renderTurret } from "../shared/Turret";
 
 import { RivetClient } from "@rivet-gg/api";
-export const RIVET = new RivetClient({ token: "pub_prod.eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.CL7uiq-GMhC-lsbxkDEaEgoQB6VjXortT7ixweMU_kRoRSIWGhQKEgoQ-mibfqn1QHm1tW4GjLw5Zw.G3WGB8OlBHM4ph9Bdx6uIQq8-ufGJOV-i9TUer1vQt1ok1F0BAJM11zcJJnypfJZRh4nxkygHhGpd-JNK1HtAA" });
+export const RIVET = new RivetClient({ token: "pub_low_resources.eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.CMaYo7CGMhDGwN7ykDEaEgoQB8GHsWkRRheihVf774gvqCIWGhQKEgoQJcVm7iAXTEmJTnGUyTIR6Q.DRJPgeMDfrUetWKypb5vyrDScz0kMN9DO_vXs_3l1L3zQbzD751IhBJtzfrOlQLY1JTolwhh5TueOKawZpCxCA" });
 
 const TITLE_TEXT = "Tanks!";
 
@@ -292,9 +292,9 @@ function renderMenu(client: Client, ctx: CanvasRenderingContext2D) {
 		for (let i = 0; i < instructions.length; i++) {
 			ctx.fillText(
 				instructions[i],
-				-client.screenWidth / 2 + 20,
+				-client.screenWidth / 2 + 40,
 				client.screenHeight / 2 -
-					20 -
+					40 -
 					(instructions.length - i - 1) * 50,
 			);
 		}
