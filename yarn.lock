@@ -656,6 +656,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:20.3.2":
+  version: 20.3.2
+  resolution: "@types/node@npm:20.3.2"
+  checksum: 5929ce2b9b12b1e2a2304a0921a953c72a81f5753ad39ac43b99ce6312fbb2b4fb5bc6b60d64a2550704e3223cd5de1299467d36085ac69888899db978f2653a
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
@@ -5353,6 +5360,7 @@ __metadata:
     "@sindresorhus/slugify": ^2.1.1
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/typography": ^0.5.8
+    "@types/node": 20.3.2
     acorn: ^8.8.1
     autoprefixer: ^10.4.7
     clsx: ^1.2.0

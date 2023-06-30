@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { GridPattern } from '@/components/GridPattern';
+import { Game } from '@/components/Game';
 import GitHubButton from 'react-github-btn';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -328,16 +329,7 @@ function Demo() {
           className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
         />
         <div className='absolute left-[264px] top-[195px] h-[314px] w-[465px] bg-slate-950'>
-          {isRunning && (
-            <iframe src='https://tanks.rivet.game/' className='h-full w-full' ref={iframeElement} />
-          )}
-          {!isRunning && (
-            <div
-              className='absolute inset-0 flex cursor-pointer items-center justify-center font-pixel text-2xl font-bold text-white scale-90 opacity-50 hover:opacity-100 hover:scale-100 transition'
-              onClick={() => setIsRunning(true)}>
-              CLICK TO START<motion.span animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1, repeat: Infinity, ease: x => Math.round(x) }}>█</motion.span>
-            </div>
-          )}
+          <Game className='h-full w-full' />
         </div>
       </div>
     </div>
