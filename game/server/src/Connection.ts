@@ -1,6 +1,6 @@
 import { Socket } from "socket.io";
-import { createPlayer, PlayerState, shoot } from "../shared/Player";
-import { Game } from "../shared/Game";
+import { createPlayer, PlayerState, shoot } from "../../shared/Player";
+import { Game } from "../../shared/Game";
 
 export class Connection {
 	public currentPlayerId?: number;
