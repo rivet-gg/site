@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { GridPattern } from '@/components/GridPattern';
 import GitHubButton from 'react-github-btn';
 import Link from 'next/link';
@@ -243,7 +244,7 @@ export default function Index() {
 
 function Title() {
   return (
-    <div className='flex w-full flex-wrap items-center justify-around'>
+    <div className='flex w-full flex-wrap items-center justify-center gap-8'>
       {/* Text */}
       <div className='max-w-2xl text-center'>
         {/* Event */}
@@ -308,19 +309,35 @@ function Title() {
 }
 
 function Demo() {
-  {
-    /* TODO: https://www.pngwing.com/en/free-png-srjqm */
-  }
+  let [isRunning, setIsRunning] = useState(false);
+  const iframeElement = useRef(null);
+
+  useEffect(() => {
+    console.log('effect', !!iframeElement.current)
+    if (iframeElement.current) {
+      iframeElement.current.contentWindow.focus();
+    }
+  }, [isRunning]);
+
   return (
-    <div className='relative h-[750px] w-[640px] overflow-hidden'>
+    <div className='relative h-[750px] w-[640px] shrink-0 grow-0'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
           className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
         />
-        <div className='absolute left-[351px] top-[193px] h-[222px] w-[298px] bg-red-500'>
-          <iframe src='https://tanks.rivet.game/' className='h-full w-full' />
+        <div className='absolute left-[264px] top-[195px] h-[314px] w-[465px] bg-slate-950'>
+          {isRunning && (
+            <iframe src='https://tanks.rivet.game/' className='h-full w-full' ref={iframeElement} />
+          )}
+          {!isRunning && (
+            <div
+              className='absolute inset-0 flex cursor-pointer items-center justify-center font-pixel text-2xl font-bold text-white scale-90 opacity-50 hover:opacity-100 hover:scale-100 transition'
+              onClick={() => setIsRunning(true)}>
+              CLICK TO START<motion.span animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1, repeat: Infinity, ease: x => Math.round(x) }}>█</motion.span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -627,7 +644,11 @@ function UpAndRunning() {
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
-              <Resource title='Getting started' icon={faGraduationCap} href='/docs/general/guides/crash-course' />
+              <Resource
+                title='Getting started'
+                icon={faGraduationCap}
+                href='/docs/general/guides/crash-course'
+              />
               <Resource title='Learn' icon={faBooks} href='/docs/general/libraries' />
               <Resource
                 title='Video learn'

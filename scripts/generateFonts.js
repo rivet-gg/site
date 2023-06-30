@@ -11,9 +11,10 @@ function capitalizeWords(str) {
 // Read the directory files
 let fonts = [];
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/open-sans')));
-fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-condensed')));
-fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-extra-condensed')));
+// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-condensed')));
+// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-extra-condensed')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/darker-grotesque')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen')));
 
 // Filter out non-TTF files (optional)
 fonts = fonts.filter(file => path.extname(file) === '.ttf');
@@ -53,6 +54,9 @@ fonts.forEach(font => {
   } else if (font.includes('DarkerGrotesque')) {
     slug = 'darker-grotesque';
     family = 'Darker Grotesque';
+  } else if (font.includes('Silkscreen')) {
+    slug = 'silkscreen';
+    family = 'Silkscreen';
   } else {
     throw new Error('Unknown font family');
   }
