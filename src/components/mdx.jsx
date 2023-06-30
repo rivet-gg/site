@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+export { default as  Image } from 'next/image';
 import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
 
@@ -10,7 +11,6 @@ export { Snippet } from '@/components/Snippet';
 export { Summary } from '@/components/Summary';
 
 export const a = Link;
-export const img = Image;
 
 // TODO: Phase this out with our own custom elements
 export {
@@ -39,6 +39,10 @@ export {
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
+
+export function DocsImage(props) {
+  return <Image {...props} />;
+}
 
 function InfoIcon(props) {
   return (
