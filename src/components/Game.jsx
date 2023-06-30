@@ -1,17 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { Client } from '../../game/client/Client';
+import { createClient } from '../../game/client/Client';
 
-export function Game({ className, ...props}) {
+export function Game({ className, ...props }) {
   let [isRunning, setIsRunning] = useState(false);
+  let [gameClient, setGameClient] = useState(null);
+
   const canvasElement = useRef(null);
 
   useEffect(() => {
-    if (canvasElement.current) {
-        console.log('creating client');
+    if (canvasElement.current && gameClient == null) {
+      console.log('Creating game client');
+      let client = createClient(canvasElement.current);
+      setGameClient(client);
     }
-  }, [isRunning]);
+  }, [isRunning, gameClient]);
 
   return (
     <div className={clsx(className, 'bg-slate-950')} {...props}>

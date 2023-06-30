@@ -10,7 +10,7 @@ import { renderExplosion } from "../shared/Explosion";
 import { renderTurret } from "../shared/Turret";
 
 import { RivetClient } from "@rivet-gg/api";
-export const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+export const RIVET = new RivetClient({ token: "pub_prod.eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.CL7uiq-GMhC-lsbxkDEaEgoQB6VjXortT7ixweMU_kRoRSIWGhQKEgoQ-mibfqn1QHm1tW4GjLw5Zw.G3WGB8OlBHM4ph9Bdx6uIQq8-ufGJOV-i9TUer1vQt1ok1F0BAJM11zcJJnypfJZRh4nxkygHhGpd-JNK1HtAA" });
 
 const TITLE_TEXT = "Tanks!";
 
@@ -31,7 +31,7 @@ export interface Client {
 	cameraOffsetY: number;
 }
 
-export async function createClient(canvas: HTMLCanvasElement): Promise<Client> {
+export function createClient(canvas: HTMLCanvasElement): Client {
 	const client = {
 		canvas,
 
