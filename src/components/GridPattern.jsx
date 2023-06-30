@@ -5,7 +5,7 @@ import { useId } from 'react';
 export function GridPattern({ width, height, ...props }) {
   // let patternId = useId();
 
-  return <Image src={backdrop} width={width} height={height} {...props} />;
+  return <Image src={backdrop} width={width} height={height} {...props} alt='' />;
   // return (
   //   <svg aria-hidden='true' {...props}>
   //     <defs>

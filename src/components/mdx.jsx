@@ -1,14 +1,16 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import clsx from 'clsx';
-
 import { Heading } from '@/components/Heading';
 
-export const a = Link;
 export { ButtonGroup, Button } from '@/components/Button';
 export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
-export { Summary } from '@/components/Summary';
-export { Snippet } from '@/components/Snippet';
 export { ResourceGroup, Resource } from '@/components/Resources';
+export { Snippet } from '@/components/Snippet';
+export { Summary } from '@/components/Summary';
+
+export const a = Link;
+export const img = Image;
 
 // TODO: Phase this out with our own custom elements
 export {

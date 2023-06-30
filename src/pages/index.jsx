@@ -393,6 +393,7 @@ function Tabs({ index, onChangeTab }) {
                 <div className='relative h-16 w-16'>
                   <Image
                     src={tab.image[0]}
+                    alt='Tab image'
                     className={clsx(
                       'absolute h-full w-full opacity-100 transition'
                       // isCurrent && 'opacity-0'
@@ -471,7 +472,7 @@ function PageGameServers({ page }) {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
-          <Image src={imgLobbies} className='' />
+          <Image src={imgLobbies} alt='Lobby list screenshot' className='' />
           <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </motion.div>
       </div>

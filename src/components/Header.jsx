@@ -228,7 +228,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   'lh-full flex h-full items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
-                {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' /> : null}
+                {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
                 <span>{tab.title}</span>
               </Link>
             ))}
