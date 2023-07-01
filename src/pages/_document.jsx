@@ -62,7 +62,7 @@ export default function Document() {
         <meta name='msapplication-TileColor' content='#ffffff' />
         <meta name='msapplication-config' content='/icons/browserconfig.xml?v=3' />
         <meta name='theme-color' content='#ffffff' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='viewport' content='width=device-width' />
 
         <meta property='og:title' content='Rivet' />
         <meta property='og:description' content='Rivet - Social Gaming' />

@@ -319,7 +319,7 @@ let caseStudies = [
           <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
             2023 Best eSports & FPS Game
           </span>
-          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>– Gam3rs' Choice Awards</span>
+          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>{'– Gam3rsu Choice Awards'}</span>
         </div>
       </div>
     ),
