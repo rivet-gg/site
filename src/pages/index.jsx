@@ -226,7 +226,7 @@ export default function Index() {
       <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern> */}
 
       {/* Header */}
-      <div className='relative isolate'>
+      <div className='relative isolate overflow-x-hidden'>
         <div className='pb-12 sm:pb-16 lg:pb-20'>
           <Title />
 

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
@@ -65,31 +65,38 @@ function StarPrompt() {
   };
 
   return (
-    <div
-      className={clsx(
-        isHidden ? 'hidden' : 'flex',
-        'fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-zinc-900/80 backdrop-blur'
-      )}>
-      <div className='relative flex items-center justify-center rounded-full px-6 py-2 text-base font-semibold text-slate-300 ring-1 ring-inset ring-white/10'>
-        <FontAwesomeIcon
-          icon={faXmark}
-          className='h-full cursor-pointer px-1 hover:text-white'
-          onClick={onHide}
-        />
+    <div className='fixed bottom-6 w-full justify-center flex'>
+      <AnimatePresence>
+        {!isHidden && (
+          <motion.div
+            className='flex rounded-full bg-zinc-900/80 backdrop-blur w-max mx-4'
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ ease: "easeOut", duration: 0.4 }}>
+            <div className='relative flex items-center justify-center rounded-full px-6 py-2 text-sm sm:text-base font-semibold text-slate-300 ring-1 ring-inset ring-white/10'>
+              <FontAwesomeIcon
+                icon={faXmark}
+                className='h-full cursor-pointer px-1 hover:text-white'
+                onClick={onHide}
+              />
 
-        <div className='ml-2'>Rivet is now open source!</div>
+              <div className='ml-2'>Rivet is now open source!</div>
 
-        <div className='-mb-[8px] ml-4'>
-          <GitHubButton
-            href='https://github.com/rivet-gg/rivet'
-            data-color-scheme='no-preference: light; light: light; dark: light;'
-            data-size='large'
-            data-show-count='true'
-            aria-label='Star rivet-gg/rivet on GitHub'>
-            Star
-          </GitHubButton>
-        </div>
-      </div>
+              <div className='-mb-[8px] ml-4'>
+                <GitHubButton
+                  href='https://github.com/rivet-gg/rivet'
+                  data-color-scheme='no-preference: light; light: light; dark: light;'
+                  data-size='large'
+                  data-show-count='true'
+                  aria-label='Star rivet-gg/rivet on GitHub'>
+                  Star
+                </GitHubButton>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
