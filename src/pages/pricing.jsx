@@ -24,7 +24,7 @@ export default function Pricing() {
     {
       name: 'Open Source',
       id: 'tier-oss',
-      href: '#',
+      href: 'https://github.com/rivet-gg/rivet',
       button: 'View on GitHub',
       description: 'Self-host on your own hardware.',
       mostPopular: false
@@ -33,7 +33,7 @@ export default function Pricing() {
       name: 'Cloud',
       promo: '1 free server',
       id: 'tier-cloud',
-      href: '#',
+      href: 'https://b8v8449klvp.typeform.com/rivet',
       button: 'Sign Up',
       description: 'Get up and running quickly. Everything managed by us.',
       mostPopular: true
@@ -41,7 +41,7 @@ export default function Pricing() {
     {
       name: 'Enterprise',
       id: 'tier-enterprise',
-      href: '#',
+      href: 'mailto:sales@rivet.gg',
       button: 'Contact Us',
       description: 'Custom solutions for your game.',
       mostPopular: false
