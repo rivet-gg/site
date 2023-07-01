@@ -1,11 +1,55 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # invites.consumeInvite
-```
-POST https://group.api.rivet.gg/v1/invites/{group_invite_code}/consume
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/invites/{group_invite_code}/consume'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://group.api.rivet.gg/v1/invites/{group_invite_code}/consume'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://group.api.rivet.gg/v1/invites/{group_invite_code}/consume'
+// Make request
+await RIVET.group.invites.consumeInvite({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  group_id:
+    type: string
+    format: uuid
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}
+```
+
+</CodeGroup>
+

@@ -1,11 +1,78 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.toggleNamespaceDomainPublicAuth
-```
-PUT https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X PUT -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.toggleNamespaceDomainPublicAuth({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  enabled:
+    type: boolean
+    description: Whether or not to enable authentication based on domain.
+required:
+  - enabled
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether or not to enable authentication based on domain."
+    }
+  },
+  "required": [
+    "enabled"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

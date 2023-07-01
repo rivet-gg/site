@@ -1,11 +1,86 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.setNamespaceCdnAuthType
-```
-PUT https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/cdn-auth
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/cdn-auth'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X PUT -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/cdn-auth'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.setNamespaceCdnAuthType({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  auth_type:
+    type: string
+    enum:
+      - none
+      - basic
+    description: A value denoting what type of authentication to use for a game
+      namespace's CDN.
+required:
+  - auth_type
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "auth_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "basic"
+      ],
+      "description": "A value denoting what type of authentication to use for a game namespace's CDN."
+    }
+  },
+  "required": [
+    "auth_type"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

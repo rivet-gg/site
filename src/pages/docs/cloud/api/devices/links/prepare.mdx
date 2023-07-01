@@ -1,11 +1,74 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # devices.links.prepare
-```
-POST https://cloud.api.rivet.gg/v1/devices/links
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/devices/links'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://cloud.api.rivet.gg/v1/devices/links'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/devices/links'
+// Make request
+await RIVET.cloud.devices.links.prepare({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  device_link_id:
+    type: string
+    format: uuid
+  device_link_token:
+    type: string
+  device_link_url:
+    type: string
+required:
+  - device_link_id
+  - device_link_token
+  - device_link_url
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "device_link_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "device_link_token": {
+      "type": "string"
+    },
+    "device_link_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "device_link_id",
+    "device_link_token",
+    "device_link_url"
+  ]
+}
+```
+
+</CodeGroup>
+

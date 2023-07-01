@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # ⭐️ lobbies.ready
-```
-POST https://matchmaker.api.rivet.gg/v1/lobbies/ready
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/ready'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://matchmaker.api.rivet.gg/v1/lobbies/ready'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/ready'
+// Make request
+await RIVET.matchmaker.lobbies.ready({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

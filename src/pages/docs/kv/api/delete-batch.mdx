@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # deleteBatch
-```
-DELETE https://kv.api.rivet.gg/v1/entries/batch
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='DELETE' label='https://kv.api.rivet.gg/v1/entries/batch'>
+
+```bash {{ title: 'cURL' }}
 curl -X DELETE 'https://kv.api.rivet.gg/v1/entries/batch'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.kv.deleteBatch({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

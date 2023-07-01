@@ -1,11 +1,76 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # ⭐️ players.connected
-```
-POST https://matchmaker.api.rivet.gg/v1/players/connected
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/players/connected'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/players/connected'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.matchmaker.players.connected({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  player_token:
+    type: string
+required:
+  - player_token
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "player_token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "player_token"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

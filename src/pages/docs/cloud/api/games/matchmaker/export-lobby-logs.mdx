@@ -1,11 +1,101 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.matchmaker.exportLobbyLogs
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.matchmaker.exportLobbyLogs({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  stream:
+    type: string
+    enum:
+      - std_out
+      - std_err
+required:
+  - stream
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "stream": {
+      "type": "string",
+      "enum": [
+        "std_out",
+        "std_err"
+      ]
+    }
+  },
+  "required": [
+    "stream"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  url:
+    type: string
+    description: The URL to a CSV file for the given lobby history.
+required:
+  - url
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "The URL to a CSV file for the given lobby history."
+    }
+  },
+  "required": [
+    "url"
+  ]
+}
+```
+
+</CodeGroup>
+

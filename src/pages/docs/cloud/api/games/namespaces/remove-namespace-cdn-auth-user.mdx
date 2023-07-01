@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.removeNamespaceCdnAuthUser
-```
-DELETE https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user/{user}
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='DELETE' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user/{user}'>
+
+```bash {{ title: 'cURL' }}
 curl -X DELETE 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user/{user}'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.removeNamespaceCdnAuthUser({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

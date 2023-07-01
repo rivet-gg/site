@@ -1,11 +1,88 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # updateStatus
-```
-POST https://identity.api.rivet.gg/v1/identities/identities/self/status
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/identities/self/status'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/identities/identities/self/status'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.identity.updateStatus({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  status:
+    type: string
+    enum:
+      - online
+      - away
+      - offline
+    description: The current status of an identity. This helps players understand if
+      another player is currently playing or has their game in the background.
+required:
+  - status
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "away",
+        "offline"
+      ],
+      "description": "The current status of an identity. This helps players understand if another player is currently playing or has their game in the background."
+    }
+  },
+  "required": [
+    "status"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

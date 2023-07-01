@@ -1,11 +1,82 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # setThreadRead
-```
-POST https://chat.api.rivet.gg/v1/threads/{thread_id}/read
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://chat.api.rivet.gg/v1/threads/{thread_id}/read'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://chat.api.rivet.gg/v1/threads/{thread_id}/read'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.chat.setThreadRead({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  last_read_ts:
+    type: string
+    format: date-time
+    description: |-
+      Any messages newer than this timestamp will be marked as unread.
+      This should be the current timestamp (in milliseconds).
+required:
+  - last_read_ts
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "last_read_ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Any messages newer than this timestamp will be marked as unread.\nThis should be the current timestamp (in milliseconds)."
+    }
+  },
+  "required": [
+    "last_read_ts"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

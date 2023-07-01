@@ -1,11 +1,103 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # invites.createInvite
-```
-POST https://group.api.rivet.gg/v1/groups/{group_id}/invites
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/invites'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://group.api.rivet.gg/v1/groups/{group_id}/invites'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.group.invites.createInvite({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  ttl:
+    type: number
+    format: double
+    description: How long until the group invite expires (in milliseconds).
+  use_count:
+    type: number
+    format: double
+    description: How many times the group invite can be used.
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "ttl": {
+      "type": "number",
+      "format": "double",
+      "description": "How long until the group invite expires (in milliseconds)."
+    },
+    "use_count": {
+      "type": "number",
+      "format": "double",
+      "description": "How many times the group invite can be used."
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  code:
+    type: string
+    description: The code that will be passed to `rivet.api.group#ConsumeInvite` to
+      join a group.
+required:
+  - code
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."
+    }
+  },
+  "required": [
+    "code"
+  ]
+}
+```
+
+</CodeGroup>
+

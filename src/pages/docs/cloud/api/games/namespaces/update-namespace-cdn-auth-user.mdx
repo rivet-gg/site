@@ -1,11 +1,88 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.updateNamespaceCdnAuthUser
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/auth-user'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.updateNamespaceCdnAuthUser({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  user:
+    type: string
+    description: A user name.
+  password:
+    type: string
+    description: A bcrypt encrypted password. An error is returned if the given
+      string is not properly encrypted.
+required:
+  - user
+  - password
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "string",
+      "description": "A user name."
+    },
+    "password": {
+      "type": "string",
+      "description": "A bcrypt encrypted password. An error is returned if the given string is not properly encrypted."
+    }
+  },
+  "required": [
+    "user",
+    "password"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

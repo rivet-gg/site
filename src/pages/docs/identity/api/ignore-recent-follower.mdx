@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # ignoreRecentFollower
-```
-POST https://identity.api.rivet.gg/v1/identities/self/recent-followers/{identity_id}/ignore
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/self/recent-followers/{identity_id}/ignore'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://identity.api.rivet.gg/v1/identities/self/recent-followers/{identity_id}/ignore'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/identities/self/recent-followers/{identity_id}/ignore'
+// Make request
+await RIVET.identity.ignoreRecentFollower({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

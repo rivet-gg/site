@@ -1,11 +1,150 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # prepareAvatarUpload
-```
-POST https://identity.api.rivet.gg/v1/identities/avatar-upload/prepare
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/avatar-upload/prepare'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/identities/avatar-upload/prepare'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.identity.prepareAvatarUpload({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  path:
+    type: string
+  mime:
+    type: string
+    description: See https://www.iana.org/assignments/media-types/media-types.xhtml
+  content_length:
+    type: integer
+    format: int64
+required:
+  - path
+  - mime
+  - content_length
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string"
+    },
+    "mime": {
+      "type": "string",
+      "description": "See https://www.iana.org/assignments/media-types/media-types.xhtml"
+    },
+    "content_length": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "required": [
+    "path",
+    "mime",
+    "content_length"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  upload_id:
+    type: string
+    format: uuid
+  presigned_request:
+    type: object
+    description: >
+      A presigned request used to upload files.  Upload your file to the given
+      URL via a PUT request.
+    properties:
+      path:
+        type: string
+        description: >
+          The name of the file to upload.  This is the same as the one given in
+          the upload prepare file.
+      url:
+        type: string
+        description: |
+          The URL of the presigned request for which to upload your file to.
+    required:
+      - path
+      - url
+required:
+  - upload_id
+  - presigned_request
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "upload_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "presigned_request": {
+      "type": "object",
+      "description": "A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL of the presigned request for which to upload your file to.\n"
+        }
+      },
+      "required": [
+        "path",
+        "url"
+      ]
+    }
+  },
+  "required": [
+    "upload_id",
+    "presigned_request"
+  ]
+}
+```
+
+</CodeGroup>
+

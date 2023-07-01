@@ -1,11 +1,80 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # transferOwnership
-```
-POST https://group.api.rivet.gg/v1/groups/{group_id}/transfer-owner
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/transfer-owner'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://group.api.rivet.gg/v1/groups/{group_id}/transfer-owner'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.group.transferOwnership({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  new_owner_identity_id:
+    type: string
+    description: |-
+      Identity to transfer the group to.
+      Must be a member of the group.
+required:
+  - new_owner_identity_id
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "new_owner_identity_id": {
+      "type": "string",
+      "description": "Identity to transfer the group to.\nMust be a member of the group."
+    }
+  },
+  "required": [
+    "new_owner_identity_id"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

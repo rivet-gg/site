@@ -42,8 +42,9 @@ let products = {
 export async function generateApis() {
   let apiPages = {};
 
-  let specYaml = fs.readFileSync(`${backendPath}/gen/openapi/external/spec/openapi.yml`, 'utf8');
-  let spec = YAML.parse(specYaml, { maxAliasCount: -1 });
+  // let specYaml = fs.readFileSync(`${backendPath}/gen/openapi/external/spec/openapi.yml`, 'utf8');
+  // let spec = YAML.parse(specYaml, { maxAliasCount: -1 });
+  let spec = await flattenOpenAPISpec(`${backendPath}/gen/openapi/external/spec/openapi.yml`);
 
   for (let product in products) {
     fs.rmSync(apiPath(product), { recursive: true, force: true });
@@ -75,21 +76,82 @@ export async function generateApis() {
       let title = operationIdStripped.replace(/_/g, '.');
       if (isImportant) title = '⭐️ ' + title;
 
-      let file = `# ${title}\n`;
-      file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
+      let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
 
+      let file = `import { CodeGroup, Code } from '@/components/Code';\n\n# ${title}\n`;
+      // file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
+
+      // Code examples
       let curlCommand;
-      if (method == 'post' || method == 'put') {
-        curlCommand = `curl -X ${method.toUpperCase()} -d '@body.json' '${fullUrl}'`;
+      if (hasRequestBody) {
+        curlCommand = `# Write the request body to body.json before running\ncurl -X ${method.toUpperCase()} -d '@body.json' '${fullUrl}'`;
       } else {
         curlCommand = `curl -X ${method.toUpperCase()} '${fullUrl}'`;
       }
       file += `
-{/*<RequestExample>
-\`\`\`bash curl
+## Code Example
+
+<CodeGroup title='Request' tag='${method.toUpperCase()}' label='${fullUrl}'>
+
+\`\`\`bash {{ title: 'cURL' }}
 ${curlCommand}
 \`\`\`
-</RequestExample>*/}
+
+\`\`\`ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.${specPath.operationId.replace(/_/g, '.')}({
+  // Add your request body here
+});
+\`\`\`
+
+</CodeGroup>
+
+`;
+
+      // Request body
+      if (hasRequestBody) {
+      file += `
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+\`\`\`yaml
+${YAML.stringify(specPath.requestBody?.content['application/json'].schema, null, 2)}
+\`\`\`
+
+\`\`\`json
+${JSON.stringify(specPath.requestBody?.content['application/json'].schema, null, 2)}
+\`\`\`
+
+</CodeGroup>
+
+`;
+      }
+
+      // Response body
+      file += `
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+\`\`\`yaml
+${YAML.stringify(specPath.responses['200']?.content['application/json'].schema, null, 2)}
+\`\`\`
+
+\`\`\`json
+${JSON.stringify(specPath.responses['200']?.content['application/json'].schema, null, 2)}
+\`\`\`
+
+</CodeGroup>
+
 `;
 
       let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '/'));
@@ -126,5 +188,118 @@ ${curlCommand}
 function camelToKebab(input) {
   return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
 }
+
+// Reads a schema and flattens $refs.
+async function flattenOpenAPISpec(specPath) {
+  const fileContents = fs.readFileSync(specPath, 'utf8');
+  const spec = YAML.parse(fileContents, { maxAliasCount: -1 });
+
+  let schemas = spec.components.schemas;
+
+  for (let pathKey in spec.paths) {
+    let path = spec.paths[pathKey];
+
+    for (let methodKey in path) {
+      let method = path[methodKey];
+
+      if (method.requestBody?.content) {
+        let requestBodySchema = method.requestBody.content['application/json'].schema;
+        method.requestBody.content['application/json'].schema = flattenRefs(requestBodySchema, schemas);
+      }
+
+      for (let response in method.responses) {
+        if (!method.responses[response].content) continue;
+        let responseSchema = method.responses[response].content['application/json'].schema;
+
+        method.responses[response].content['application/json'].schema = flattenRefs(responseSchema, schemas);
+      }
+    }
+  }
+
+  return spec;
+}
+
+/// Flattens $ref in to the root object. We use this for exposing the full schema in the docs.
+function flattenRefs(schema, schemas) {
+  // Exclude if deprecated
+  if (schema?.deprecated || schema?.description?.indexOf('Deprecated') >= 0) return null;
+
+  // Iterate properties
+  if (schema?.properties) {
+    for (let property in schema.properties) {
+      schema.properties[property] = flattenRefs(schema.properties[property], schemas);
+    }
+  }
+
+  // Iterate arrays
+  if (schema?.items) {
+    schema.items = flattenRefs(schema.items, schemas);
+  }
+
+  // Resolve refs
+  if (schema?.$ref) {
+    let ref = schema.$ref;
+    let refPath = ref.replace('#/components/schemas/', '');
+    let refSchema = JSON.parse(JSON.stringify(flattenRefs(schemas[refPath], schemas)));
+    if (schema.description) refSchema.description = schema.description;
+    return refSchema;
+  }
+
+  // No ref
+  return schema;
+}
+
+// async function loadOpenAPISpec(specPath) {
+//   console.log('Loading', specPath)
+//   try {
+//     return spec;
+//   } catch (error) {
+//     throw new Error(`Error loading OpenAPI spec: ${error}`);
+//   }
+// }
+
+// async function resolveRefs(schema, baseSchema) {
+//   if (typeof schema == 'object' && '$ref' in schema) {
+//     const refUrl = schema.$ref;
+//     const refSchema = await resolveRef(refUrl, baseSchema);
+//     return resolveRefs(refSchema, baseSchema);
+//   } else if (Array.isArray(schema)) {
+//     const resolvedItems = await Promise.all(schema.map(async item => await resolveRefs(item, baseSchema)));
+//     return resolvedItems;
+//   } else if (typeof schema === 'object' && schema !== null) {
+//     const resolvedObject = {};
+//     for (const [key, value] of Object.entries(schema)) {
+//       const resolvedValue = await resolveRefs(value, baseSchema);
+//       resolvedObject[key] = resolvedValue;
+//     }
+//     return resolvedObject;
+//   } else {
+//     return schema;
+//   }
+// }
+
+// async function resolveRef(refUrl, baseSchema) {
+//   const schemaName = refUrl.split('#/components/schemas/')[1];
+//   return baseSchema.components.schemas[schemaName];
+// }
+
+// function flattenRefs(schema) {
+//   if (typeof schema == 'object' && '$ref' in schema) {
+//     const refUrl = schema.$ref;
+//     const refName = refUrl.substring(refUrl.lastIndexOf('/') + 1);
+//     return { $ref: refName };
+//   } else if (Array.isArray(schema)) {
+//     return schema.map(item => flattenRefs(item));
+//   } else if (typeof schema === 'object' && schema !== null) {
+//     const flattenedObject = {};
+//     for (const [key, value] of Object.entries(schema)) {
+//       const flattenedValue = flattenRefs(value);
+//       Object.assign(flattenedObject, flattenedValue);
+//     }
+//     return flattenedObject;
+//   } else {
+//     return schema;
+//   }
+// }
 
 generateApis();

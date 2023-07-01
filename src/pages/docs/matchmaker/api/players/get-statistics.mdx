@@ -1,11 +1,72 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # players.getStatistics
-```
-GET https://matchmaker.api.rivet.gg/v1/players/statistics
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://matchmaker.api.rivet.gg/v1/players/statistics'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://matchmaker.api.rivet.gg/v1/players/statistics'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.matchmaker.players.getStatistics({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  player_count:
+    type: integer
+    format: int64
+  game_modes:
+    type: object
+    additionalProperties:
+      $ref: "#/components/schemas/MatchmakerGameModeStatistics"
+required:
+  - player_count
+  - game_modes
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "player_count": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "game_modes": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/MatchmakerGameModeStatistics"
+      }
+    }
+  },
+  "required": [
+    "player_count",
+    "game_modes"
+  ]
+}
+```
+
+</CodeGroup>
+

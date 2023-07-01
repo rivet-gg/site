@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # follow
-```
-POST https://identity.api.rivet.gg/v1/identities/{identity_id}/follow
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/{identity_id}/follow'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://identity.api.rivet.gg/v1/identities/{identity_id}/follow'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/identities/{identity_id}/follow'
+// Make request
+await RIVET.identity.follow({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

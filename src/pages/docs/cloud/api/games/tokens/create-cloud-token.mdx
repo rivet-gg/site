@@ -1,11 +1,63 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.tokens.createCloudToken
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/tokens/cloud
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/tokens/cloud'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://cloud.api.rivet.gg/v1/games/{game_id}/tokens/cloud'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/tokens/cloud'
+// Make request
+await RIVET.cloud.games.tokens.createCloudToken({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  token:
+    type: string
+    description: |-
+      A JSON Web Token.
+      Slightly modified to include a description prefix and use Protobufs of
+      JSON.
+required:
+  - token
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."
+    }
+  },
+  "required": [
+    "token"
+  ]
+}
+```
+
+</CodeGroup>
+

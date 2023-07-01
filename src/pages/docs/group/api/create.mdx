@@ -1,11 +1,96 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # create
-```
-POST https://group.api.rivet.gg/v1/groups
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://group.api.rivet.gg/v1/groups'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.group.create({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  display_name:
+    type: string
+    description: Represent a resource's readable display name.
+required:
+  - display_name
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "display_name": {
+      "type": "string",
+      "description": "Represent a resource's readable display name."
+    }
+  },
+  "required": [
+    "display_name"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  group_id:
+    type: string
+    format: uuid
+required:
+  - group_id
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  },
+  "required": [
+    "group_id"
+  ]
+}
+```
+
+</CodeGroup>
+

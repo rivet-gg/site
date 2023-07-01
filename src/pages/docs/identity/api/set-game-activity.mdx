@@ -1,11 +1,100 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # setGameActivity
-```
-POST https://identity.api.rivet.gg/v1/identities/self/activity
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/self/activity'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/identities/self/activity'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.identity.setGameActivity({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  game_activity:
+    type: object
+    description: Information about the identity's current game. This is information
+      that all other identities can see about what the current identity is
+      doing.
+    properties:
+      message:
+        type: string
+        description: A short message about the current game activity.
+      public_metadata:
+        description: JSON data seen by anyone.
+      mutual_metadata:
+        description: JSON data seen only by the given identity and their mutual followers.
+required:
+  - game_activity
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "game_activity": {
+      "type": "object",
+      "description": "Information about the identity's current game. This is information that all other identities can see about what the current identity is doing.",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A short message about the current game activity."
+        },
+        "public_metadata": {
+          "description": "JSON data seen by anyone."
+        },
+        "mutual_metadata": {
+          "description": "JSON data seen only by the given identity and their mutual followers."
+        }
+      }
+    }
+  },
+  "required": [
+    "game_activity"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

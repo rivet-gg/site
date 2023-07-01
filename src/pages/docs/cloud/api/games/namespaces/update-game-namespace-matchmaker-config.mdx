@@ -1,11 +1,87 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.updateGameNamespaceMatchmakerConfig
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.updateGameNamespaceMatchmakerConfig({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  lobby_count_max:
+    type: integer
+    description: Unsigned 32 bit integer.
+  max_players:
+    type: integer
+    description: Unsigned 32 bit integer.
+required:
+  - lobby_count_max
+  - max_players
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "lobby_count_max": {
+      "type": "integer",
+      "description": "Unsigned 32 bit integer."
+    },
+    "max_players": {
+      "type": "integer",
+      "description": "Unsigned 32 bit integer."
+    }
+  },
+  "required": [
+    "lobby_count_max",
+    "max_players"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

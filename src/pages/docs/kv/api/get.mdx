@@ -1,11 +1,95 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # ⭐️ get
-```
-GET https://kv.api.rivet.gg/v1/entries
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://kv.api.rivet.gg/v1/entries'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://kv.api.rivet.gg/v1/entries'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.kv.get({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  value:
+    description: |-
+      A JSON object stored in the KV database.
+      A `null` value indicates the entry is deleted.
+      Maximum length of 262,144 bytes when encoded.
+  deleted:
+    type: boolean
+    description: Whether or not the entry has been deleted. Only set when watching
+      this endpoint.
+  watch:
+    type: object
+    description: Provided by watchable endpoints used in blocking loops.
+    properties:
+      index:
+        type: string
+        description: |
+          Index indicating the version of the data responded.
+          Pass this to `WatchQuery` to block and wait for the next response.
+    required:
+      - index
+required:
+  - value
+  - watch
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "value": {
+      "description": "A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether or not the entry has been deleted. Only set when watching this endpoint."
+    },
+    "watch": {
+      "type": "object",
+      "description": "Provided by watchable endpoints used in blocking loops.",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  "required": [
+    "value",
+    "watch"
+  ]
+}
+```
+
+</CodeGroup>
+

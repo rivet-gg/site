@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # unbanIdentity
-```
-DELETE https://group.api.rivet.gg/v1/groups/{group_id}/bans/{identity_id}
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='DELETE' label='https://group.api.rivet.gg/v1/groups/{group_id}/bans/{identity_id}'>
+
+```bash {{ title: 'cURL' }}
 curl -X DELETE 'https://group.api.rivet.gg/v1/groups/{group_id}/bans/{identity_id}'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.group.unbanIdentity({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

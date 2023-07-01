@@ -1,11 +1,55 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.matchmaker.deleteMatchmakerLobby
-```
-DELETE https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='DELETE' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}'>
+
+```bash {{ title: 'cURL' }}
 curl -X DELETE 'https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.matchmaker.deleteMatchmakerLobby({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  did_remove:
+    type: boolean
+    description: Whether or not the lobby was successfully stopped.
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "did_remove": {
+      "type": "boolean",
+      "description": "Whether or not the lobby was successfully stopped."
+    }
+  }
+}
+```
+
+</CodeGroup>
+

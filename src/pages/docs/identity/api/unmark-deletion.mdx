@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # unmarkDeletion
-```
-DELETE https://identity.api.rivet.gg/v1/identities/self/delete-request
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='DELETE' label='https://identity.api.rivet.gg/v1/identities/self/delete-request'>
+
+```bash {{ title: 'cURL' }}
 curl -X DELETE 'https://identity.api.rivet.gg/v1/identities/self/delete-request'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.identity.unmarkDeletion({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

@@ -1,11 +1,42 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # joinRequests.createJoinRequest
-```
-POST https://group.api.rivet.gg/v1/groups/{group_id}/join-request
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/join-request'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://group.api.rivet.gg/v1/groups/{group_id}/join-request'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://group.api.rivet.gg/v1/groups/{group_id}/join-request'
+// Make request
+await RIVET.group.joinRequests.createJoinRequest({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

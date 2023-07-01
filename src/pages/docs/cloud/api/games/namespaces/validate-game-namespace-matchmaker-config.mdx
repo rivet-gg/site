@@ -1,11 +1,132 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.validateGameNamespaceMatchmakerConfig
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config/validate
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config/validate'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config/validate'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.validateGameNamespaceMatchmakerConfig({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  lobby_count_max:
+    type: integer
+    description: Unsigned 32 bit integer.
+  max_players:
+    type: integer
+    description: Unsigned 32 bit integer.
+required:
+  - lobby_count_max
+  - max_players
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "lobby_count_max": {
+      "type": "integer",
+      "description": "Unsigned 32 bit integer."
+    },
+    "max_players": {
+      "type": "integer",
+      "description": "Unsigned 32 bit integer."
+    }
+  },
+  "required": [
+    "lobby_count_max",
+    "max_players"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  errors:
+    type: array
+    items:
+      type: object
+      description: An error given by failed content validation.
+      properties:
+        path:
+          type: array
+          items:
+            type: string
+          description: A list of strings denoting the origin of a validation error.
+      required:
+        - path
+    description: A list of validation errors.
+required:
+  - errors
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "An error given by failed content validation.",
+        "properties": {
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of strings denoting the origin of a validation error."
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "description": "A list of validation errors."
+    }
+  },
+  "required": [
+    "errors"
+  ]
+}
+```
+
+</CodeGroup>
+

@@ -1,11 +1,131 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.builds.listGameBuilds
-```
-GET https://cloud.api.rivet.gg/v1/games/{game_id}/builds
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games/{game_id}/builds'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://cloud.api.rivet.gg/v1/games/{game_id}/builds'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.builds.listGameBuilds({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  builds:
+    type: array
+    items:
+      type: object
+      description: A build summary.
+      properties:
+        build_id:
+          type: string
+          format: uuid
+        upload_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+          description: Represent a resource's readable display name.
+        create_ts:
+          type: string
+          format: date-time
+          description: RFC3339 timestamp.
+        content_length:
+          type: integer
+          format: int64
+          description: Unsigned 64 bit integer.
+        complete:
+          type: boolean
+          description: Whether or not this build has completely been uploaded.
+      required:
+        - build_id
+        - upload_id
+        - display_name
+        - create_ts
+        - content_length
+        - complete
+    description: A list of build summaries.
+required:
+  - builds
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "builds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "A build summary.",
+        "properties": {
+          "build_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Represent a resource's readable display name."
+          },
+          "create_ts": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC3339 timestamp."
+          },
+          "content_length": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unsigned 64 bit integer."
+          },
+          "complete": {
+            "type": "boolean",
+            "description": "Whether or not this build has completely been uploaded."
+          }
+        },
+        "required": [
+          "build_id",
+          "upload_id",
+          "display_name",
+          "create_ts",
+          "content_length",
+          "complete"
+        ]
+      },
+      "description": "A list of build summaries."
+    }
+  },
+  "required": [
+    "builds"
+  ]
+}
+```
+
+</CodeGroup>
+

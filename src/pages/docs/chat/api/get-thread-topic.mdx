@@ -1,11 +1,134 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # getThreadTopic
-```
-GET https://chat.api.rivet.gg/v1/threads/{thread_id}/topic
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://chat.api.rivet.gg/v1/threads/{thread_id}/topic'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://chat.api.rivet.gg/v1/threads/{thread_id}/topic'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.chat.getThreadTopic({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  topic:
+    type: object
+    description: |
+      Represents a topic of the given chat thread without the associated handles
+      for the topic.
+    properties:
+      group:
+        type: object
+        properties:
+          group:
+            type: string
+            format: uuid
+        required:
+          - group
+      party:
+        type: object
+        properties:
+          party:
+            type: string
+            format: uuid
+        required:
+          - party
+      direct:
+        type: object
+        properties:
+          identity_a:
+            type: string
+            format: uuid
+          identity_b:
+            type: string
+            format: uuid
+        required:
+          - identity_a
+          - identity_b
+required:
+  - topic
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "topic": {
+      "type": "object",
+      "description": "Represents a topic of the given chat thread without the associated handles\nfor the topic.\n",
+      "properties": {
+        "group": {
+          "type": "object",
+          "properties": {
+            "group": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "group"
+          ]
+        },
+        "party": {
+          "type": "object",
+          "properties": {
+            "party": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "party"
+          ]
+        },
+        "direct": {
+          "type": "object",
+          "properties": {
+            "identity_a": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "identity_b": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "identity_a",
+            "identity_b"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "topic"
+  ]
+}
+```
+
+</CodeGroup>
+

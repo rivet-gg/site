@@ -1,11 +1,105 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.matchmaker.getLobbyLogs
-```
-GET https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.matchmaker.getLobbyLogs({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  lines:
+    type: array
+    items:
+      type: string
+    description: Sorted old to new.
+  timestamps:
+    type: array
+    items:
+      type: string
+    description: Sorted old to new.
+  watch:
+    type: object
+    description: Provided by watchable endpoints used in blocking loops.
+    properties:
+      index:
+        type: string
+        description: |
+          Index indicating the version of the data responded.
+          Pass this to `WatchQuery` to block and wait for the next response.
+    required:
+      - index
+required:
+  - lines
+  - timestamps
+  - watch
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Sorted old to new."
+    },
+    "timestamps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Sorted old to new."
+    },
+    "watch": {
+      "type": "object",
+      "description": "Provided by watchable endpoints used in blocking loops.",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  "required": [
+    "lines",
+    "timestamps",
+    "watch"
+  ]
+}
+```
+
+</CodeGroup>
+

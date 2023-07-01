@@ -13,7 +13,9 @@ const languageNames = {
   php: 'PHP',
   python: 'Python',
   ruby: 'Ruby',
-  go: 'Go'
+  go: 'Go',
+  json: 'JSON',
+  yaml: 'YAML',
 };
 
 function getPanelTitle({ title, language }) {

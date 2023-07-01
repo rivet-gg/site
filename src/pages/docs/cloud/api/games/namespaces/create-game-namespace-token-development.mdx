@@ -1,11 +1,111 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.createGameNamespaceTokenDevelopment
-```
-POST https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/tokens/development
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/tokens/development'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/tokens/development'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.createGameNamespaceTokenDevelopment({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  hostname:
+    type: string
+    description: The hostname used for the token.
+  ports:
+    type: object
+    additionalProperties:
+      $ref: "#/components/schemas/CloudMatchmakerDevelopmentPort"
+  lobby_ports: null
+required:
+  - hostname
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string",
+      "description": "The hostname used for the token."
+    },
+    "ports": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/CloudMatchmakerDevelopmentPort"
+      }
+    },
+    "lobby_ports": null
+  },
+  "required": [
+    "hostname"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  token:
+    type: string
+    description: |-
+      A JSON Web Token.
+      Slightly modified to include a description prefix and use Protobufs of
+      JSON.
+required:
+  - token
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."
+    }
+  },
+  "required": [
+    "token"
+  ]
+}
+```
+
+</CodeGroup>
+

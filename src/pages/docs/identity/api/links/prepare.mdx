@@ -1,11 +1,76 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # ⭐️ links.prepare
-```
-POST https://identity.api.rivet.gg/v1/game-links
+
+## Code Example
+
+<CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/game-links'>
+
+```bash {{ title: 'cURL' }}
+curl -X POST 'https://identity.api.rivet.gg/v1/game-links'
 ```
 
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
 
-{/*<RequestExample>
-```bash curl
-curl -X POST -d '@body.json' 'https://identity.api.rivet.gg/v1/game-links'
+// Make request
+await RIVET.identity.links.prepare({
+  // Add your request body here
+});
 ```
-</RequestExample>*/}
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  identity_link_token:
+    type: string
+    description: Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes.
+  identity_link_url:
+    type: string
+  expire_ts:
+    type: string
+    format: date-time
+required:
+  - identity_link_token
+  - identity_link_url
+  - expire_ts
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "identity_link_token": {
+      "type": "string",
+      "description": "Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."
+    },
+    "identity_link_url": {
+      "type": "string"
+    },
+    "expire_ts": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "identity_link_token",
+    "identity_link_url",
+    "expire_ts"
+  ]
+}
+```
+
+</CodeGroup>
+

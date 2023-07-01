@@ -1,11 +1,102 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # games.namespaces.GetGameNamespaceVersionHistoryList
-```
-GET https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/version-history
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/version-history'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/version-history'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.games.namespaces.GetGameNamespaceVersionHistoryList({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  versions:
+    type: array
+    items:
+      type: object
+      description: A previously deployed namespace version.
+      properties:
+        namespace_id:
+          type: string
+          description: A universally unique identifier.
+        version_id:
+          type: string
+          description: A universally unique identifier.
+        deploy_ts:
+          type: string
+          format: date-time
+          description: RFC3339 timestamp.
+      required:
+        - namespace_id
+        - version_id
+        - deploy_ts
+    description: A list of previously deployed namespace versions.
+required:
+  - versions
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "A previously deployed namespace version.",
+        "properties": {
+          "namespace_id": {
+            "type": "string",
+            "description": "A universally unique identifier."
+          },
+          "version_id": {
+            "type": "string",
+            "description": "A universally unique identifier."
+          },
+          "deploy_ts": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC3339 timestamp."
+          }
+        },
+        "required": [
+          "namespace_id",
+          "version_id",
+          "deploy_ts"
+        ]
+      },
+      "description": "A list of previously deployed namespace versions."
+    }
+  },
+  "required": [
+    "versions"
+  ]
+}
+```
+
+</CodeGroup>
+

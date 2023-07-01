@@ -1,11 +1,76 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # lobbies.setClosed
-```
-PUT https://matchmaker.api.rivet.gg/v1/lobbies/closed
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='PUT' label='https://matchmaker.api.rivet.gg/v1/lobbies/closed'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
 curl -X PUT -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/closed'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.matchmaker.lobbies.setClosed({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Request'>
+
+```yaml
+type: object
+properties:
+  is_closed:
+    type: boolean
+required:
+  - is_closed
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "is_closed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "is_closed"
+  ]
+}
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+undefined
+```
+
+```json
+undefined
+```
+
+</CodeGroup>
+

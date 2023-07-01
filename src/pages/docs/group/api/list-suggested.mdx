@@ -1,11 +1,212 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # listSuggested
-```
-GET https://group.api.rivet.gg/v1/groups
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://group.api.rivet.gg/v1/groups'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://group.api.rivet.gg/v1/groups'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.group.listSuggested({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  groups:
+    type: array
+    items:
+      type: object
+      properties:
+        group_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+        avatar_url:
+          type: string
+          description: The URL of this group's avatar image.
+        external:
+          type: object
+          description: External links for this group.
+          properties:
+            profile:
+              type: string
+              description: A link to this group's profile page.
+            chat:
+              type: string
+              description: A link to this group's chat page.
+          required:
+            - profile
+            - chat
+        is_developer:
+          type: boolean
+          description: Whether or not this group is a developer.
+        bio:
+          type: string
+          description: Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
+        is_current_identity_member:
+          type: boolean
+          description: Whether or not the current identity is a member of this group.
+        publicity:
+          type: string
+          enum:
+            - open
+            - closed
+          description: The current publicity value for the given group.
+        member_count:
+          type: integer
+        owner_identity_id:
+          type: string
+          format: uuid
+      required:
+        - group_id
+        - display_name
+        - external
+        - is_developer
+        - bio
+        - is_current_identity_member
+        - publicity
+        - member_count
+        - owner_identity_id
+    description: A list of group summaries.
+  watch:
+    type: object
+    description: Provided by watchable endpoints used in blocking loops.
+    properties:
+      index:
+        type: string
+        description: |
+          Index indicating the version of the data responded.
+          Pass this to `WatchQuery` to block and wait for the next response.
+    required:
+      - index
+required:
+  - groups
+  - watch
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "avatar_url": {
+            "type": "string",
+            "description": "The URL of this group's avatar image."
+          },
+          "external": {
+            "type": "object",
+            "description": "External links for this group.",
+            "properties": {
+              "profile": {
+                "type": "string",
+                "description": "A link to this group's profile page."
+              },
+              "chat": {
+                "type": "string",
+                "description": "A link to this group's chat page."
+              }
+            },
+            "required": [
+              "profile",
+              "chat"
+            ]
+          },
+          "is_developer": {
+            "type": "boolean",
+            "description": "Whether or not this group is a developer."
+          },
+          "bio": {
+            "type": "string",
+            "description": "Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"
+          },
+          "is_current_identity_member": {
+            "type": "boolean",
+            "description": "Whether or not the current identity is a member of this group."
+          },
+          "publicity": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed"
+            ],
+            "description": "The current publicity value for the given group."
+          },
+          "member_count": {
+            "type": "integer"
+          },
+          "owner_identity_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "group_id",
+          "display_name",
+          "external",
+          "is_developer",
+          "bio",
+          "is_current_identity_member",
+          "publicity",
+          "member_count",
+          "owner_identity_id"
+        ]
+      },
+      "description": "A list of group summaries."
+    },
+    "watch": {
+      "type": "object",
+      "description": "Provided by watchable endpoints used in blocking loops.",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  "required": [
+    "groups",
+    "watch"
+  ]
+}
+```
+
+</CodeGroup>
+

@@ -1,11 +1,225 @@
+import { CodeGroup, Code } from '@/components/Code';
+
 # logs.getRayPerfLogs
-```
-GET https://cloud.api.rivet.gg/v1/rays/{ray_id}/perf
-```
 
+## Code Example
 
-{/*<RequestExample>
-```bash curl
+<CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/rays/{ray_id}/perf'>
+
+```bash {{ title: 'cURL' }}
 curl -X GET 'https://cloud.api.rivet.gg/v1/rays/{ray_id}/perf'
 ```
-</RequestExample>*/}
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.logs.getRayPerfLogs({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Response Body
+
+_Represented in [JSON Schema](https://json-schema.org/)._
+
+<CodeGroup title='Response'>
+
+```yaml
+type: object
+properties:
+  perf_lists:
+    type: array
+    items:
+      type: object
+      description: A service performance summary.
+      properties:
+        svc_name:
+          type: string
+          description: The name of the service.
+        ts:
+          type: string
+          format: date-time
+          description: RFC3339 timestamp.
+        duration:
+          type: integer
+          format: int64
+          description: Unsigned 64 bit integer.
+        req_id:
+          type: string
+          format: uuid
+        spans:
+          type: array
+          items:
+            type: object
+            description: A performance span.
+            properties:
+              label:
+                type: string
+                description: The label given to this performance span.
+              start_ts:
+                type: string
+                format: date-time
+                description: RFC3339 timestamp.
+              finish_ts:
+                type: string
+                format: date-time
+                description: RFC3339 timestamp.
+              req_id:
+                type: string
+                format: uuid
+            required:
+              - label
+              - start_ts
+          description: A list of performance spans.
+        marks:
+          type: array
+          items:
+            type: object
+            description: A performance mark.
+            properties:
+              label:
+                type: string
+                description: The label given to this performance mark.
+              ts:
+                type: string
+                format: date-time
+                description: RFC3339 timestamp.
+              ray_id:
+                type: string
+                format: uuid
+              req_id:
+                type: string
+                format: uuid
+            required:
+              - label
+              - ts
+          description: A list of performance marks.
+      required:
+        - svc_name
+        - ts
+        - duration
+        - spans
+        - marks
+    description: A list of service performance summaries.
+required:
+  - perf_lists
+
+```
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "perf_lists": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "A service performance summary.",
+        "properties": {
+          "svc_name": {
+            "type": "string",
+            "description": "The name of the service."
+          },
+          "ts": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC3339 timestamp."
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unsigned 64 bit integer."
+          },
+          "req_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "spans": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A performance span.",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "The label given to this performance span."
+                },
+                "start_ts": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "RFC3339 timestamp."
+                },
+                "finish_ts": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "RFC3339 timestamp."
+                },
+                "req_id": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "required": [
+                "label",
+                "start_ts"
+              ]
+            },
+            "description": "A list of performance spans."
+          },
+          "marks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A performance mark.",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "The label given to this performance mark."
+                },
+                "ts": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "RFC3339 timestamp."
+                },
+                "ray_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "req_id": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "required": [
+                "label",
+                "ts"
+              ]
+            },
+            "description": "A list of performance marks."
+          }
+        },
+        "required": [
+          "svc_name",
+          "ts",
+          "duration",
+          "spans",
+          "marks"
+        ]
+      },
+      "description": "A list of service performance summaries."
+    }
+  },
+  "required": [
+    "perf_lists"
+  ]
+}
+```
+
+</CodeGroup>
+
