@@ -349,16 +349,6 @@ function Title() {
           All-in-one solution to deploy, scale, and operate your multiplayer game
         </p>
 
-        {/* YC */}
-        {/* <Link
-          href='https://www.ycombinator.com/'
-          target='_blank'
-          className='margin-auto mt-8 block w-max rounded-lg bg-white/5 px-3 py-1.5 ring-1 ring-white/10'>
-          <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
-            <div>Backed by</div>
-            <YCLogo className='h-[1.7em]' white={true} />
-          </div>
-        </Link> */}
 
         {/* Engines */}
         <div className='mt-6'>
@@ -389,6 +379,17 @@ function Title() {
             Crash Course <span aria-hidden='true'>→</span>
           </Link>
         </div>
+
+        {/* YC */}
+        <Link
+          href='https://www.ycombinator.com/'
+          target='_blank'
+          className='margin-auto mt-6 block w-max py-1.5'>
+          <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
+            <div>Backed by</div>
+            <YCLogo className='h-[1.7em]' white={true} />
+          </div>
+        </Link>
       </div>
 
       {/* Demo */}
