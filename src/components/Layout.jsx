@@ -74,7 +74,7 @@ function StarPrompt() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ ease: "easeOut", duration: 0.4 }}>
-            <div className='relative flex items-center justify-center rounded-full px-6 py-2 text-sm sm:text-base font-semibold text-slate-300 ring-1 ring-inset ring-white/10'>
+            <div className='relative flex items-center justify-center rounded-full pr-6 pl-4 py-2 text-sm sm:text-base font-semibold text-slate-300 ring-1 ring-inset ring-white/10'>
               <FontAwesomeIcon
                 icon={faXmark}
                 className='h-full cursor-pointer px-1 hover:text-white'
@@ -83,7 +83,7 @@ function StarPrompt() {
 
               <div className='ml-2'>Rivet is now open source!</div>
 
-              <div className='-mb-[8px] ml-4'>
+              <div className='ml-4'>
                 <GitHubButton
                   href='https://github.com/rivet-gg/rivet'
                   data-color-scheme='no-preference: light; light: light; dark: light;'
