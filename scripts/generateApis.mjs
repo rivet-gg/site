@@ -114,7 +114,8 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
 
       // Request body
       if (hasRequestBody) {
-      file += `
+        if (specPath.requestBody?.content['application/json'].schema) {
+          file += `
 ## Request Body
 
 _Represented in [JSON Schema](https://json-schema.org/)._
@@ -132,10 +133,18 @@ ${JSON.stringify(specPath.requestBody?.content['application/json'].schema, null,
 </CodeGroup>
 
 `;
+        } else {
+          file += `
+## Request Body
+
+_Empty request body._
+`;
+        }
       }
 
       // Response body
-      file += `
+      if (specPath.responses['200']?.content['application/json']?.schema) {
+        file += `
 ## Response Body
 
 _Represented in [JSON Schema](https://json-schema.org/)._
@@ -153,6 +162,13 @@ ${JSON.stringify(specPath.responses['200']?.content['application/json'].schema, 
 </CodeGroup>
 
 `;
+      } else {
+        file += `
+## Response Body
+
+_Empty response body._
+`;
+      }
 
       let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '/'));
       let filePath = `${apiPath(product)}/${fileName}`;
