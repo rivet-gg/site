@@ -107,7 +107,7 @@ export function Resource({ children, ...props }) {
           {props.title}
         </div>
         {/* TODO: This is causing an error */}
-        {/* <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p> */}
+        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p>
       </div>
     </Link>
   );
