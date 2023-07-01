@@ -10,25 +10,14 @@ All Rivet API clients accept a `token` parameter upon initialization. This token
 
 For example:
 
-<Tabs>
-	<Tab title="TypeScript">
-        ```typescript
-		let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
-        ```
-	</Tab>
-	<Tab title="C#">
-		Coming soon
-	</Tab>
-	<Tab title="C++">
-		Coming soon
-	</Tab>
-	<Tab title="Java">
-		Coming soon
-	</Tab>
-	<Tab title="Rust">
-        Coming soon
-	</Tab>
-</Tabs>
+<CodeGroup>
+
+```ts
+import { RivetClient } from "@rivet-gg/api";
+const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+```
+
+</CodeGroup>
 
 This document will talk about handling [public](/docs/general/concepts/token-types#namespace-public), [matchmaker lobby](/docs/general/concepts/token-types#matchmaker-lobby), and [development](/docs/general/concepts/token-types#namespace-development) tokens for your game.
 

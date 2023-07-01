@@ -6,16 +6,17 @@ import { create } from 'zustand';
 import { Tag } from '@/components/Tag';
 
 const languageNames = {
+  csharp: 'C#',
+  cpp: 'C++',
+  go: 'Go',
   js: 'JavaScript',
-  ts: 'TypeScript',
-  javascript: 'JavaScript',
-  typescript: 'TypeScript',
+  json: 'JSON',
   php: 'PHP',
   python: 'Python',
   ruby: 'Ruby',
-  go: 'Go',
-  json: 'JSON',
+  ts: 'TypeScript',
   yaml: 'YAML',
+  gdscript: 'GDScript'
 };
 
 function getPanelTitle({ title, language }) {
@@ -64,15 +65,13 @@ function CopyButton({ code }) {
         window.navigator.clipboard.writeText(code).then(() => {
           setCopyCount(count => count + 1);
         });
-      }}
-    >
+      }}>
       <span
         aria-hidden={copied}
         className={clsx(
           'pointer-events-none flex items-center gap-0.5 text-zinc-400 transition duration-300',
           copied && '-translate-y-1.5 opacity-0'
-        )}
-      >
+        )}>
         <ClipboardIcon className='h-5 w-5 fill-zinc-500/20 stroke-zinc-500 transition-colors group-hover/button:stroke-zinc-400' />
         Copy
       </span>
@@ -81,8 +80,7 @@ function CopyButton({ code }) {
         className={clsx(
           'pointer-events-none absolute inset-0 flex items-center justify-center text-violet-400 transition duration-300',
           !copied && 'translate-y-1.5 opacity-0'
-        )}
-      >
+        )}>
         Copied!
       </span>
     </button>
@@ -140,8 +138,7 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
                 childIndex === selectedIndex
                   ? 'border-violet-500 text-violet-400'
                   : 'border-transparent text-zinc-400 hover:text-zinc-300'
-              )}
-            >
+              )}>
               {getPanelTitle(child.props)}
             </Tab>
           ))}
@@ -243,8 +240,7 @@ export function CodeGroup({ children, title, ...props }) {
     <CodeGroupContext.Provider value={true}>
       <Container
         {...containerProps}
-        className='not-prose my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10'
-      >
+        className='not-prose my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10'>
         <CodeGroupHeader title={title} {...headerProps}>
           {children}
         </CodeGroupHeader>
@@ -265,6 +261,7 @@ export function Code({ children, ...props }) {
 }
 
 export function Pre({ children, ...props }) {
+  console.log('props', props);
   let isGrouped = useContext(CodeGroupContext);
 
   if (isGrouped) {

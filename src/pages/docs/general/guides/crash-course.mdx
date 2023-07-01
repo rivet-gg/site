@@ -64,138 +64,60 @@ You'll need a `Dockerfile` to build and run your game server.
 
 ### Install the Rivet library
 
-<Tabs>
-	<Tab title="TypeScript">
-		**Yarn**
-		```bash
-		yarn add @rivet-gg/api
-		```
+<CodeGroup>
 
-    	**NPM**
-    	```bash
-    	npm install --save @rivet-gg/api
-    	```
-    </Tab>
-    <Tab title="C#">
-    	Coming soon
-    </Tab>
-    <Tab title="C++">
-    	Coming soon
-    </Tab>
-    <Tab title="Java">
-    	Coming soon
-    </Tab>
-    <Tab title="Rust">
-    </Tab>
+<code title='NPM'>```bash npm install --save @rivet-gg/api ```</code>
 
-</Tabs>
+<code title='Yarn'>```bash yarn add @rivet-gg/api ```</code>
+
+</CodeGroup>
 
 ### Update your client
 
 Copy the following pseudocode into the appropriate places in your source:
 
-<Tabs>
-	<Tab title="TypeScript">
-		```typescript
-		import { RivetClient } from "@rivet-gg/api";
-		let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+```typescript
+import { RivetClient } from '@rivet-gg/api';
+let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
 
-    	// Find a lobby (a new lobby will automatically be created on demand if needed)
-    	let res = await rivet.matchmaker.lobbies.find({ gameModes: ["default"] });
+// Find a lobby (a new lobby will automatically be created on demand if needed)
+let res = await rivet.matchmaker.lobbies.find({ gameModes: ['default'] });
 
-    	// Connect to the lobby (Rivet automatically manages your SSL)
-    	let ws = new WebSocket(`wss://${res.ports["default"].host}/?token=${res.player.token}`);
-    	```
+// Connect to the lobby (Rivet automatically manages your SSL)
+let ws = new WebSocket(`wss://${res.ports['default'].host}/?token=${res.player.token}`);
+```
 
-    	<Snippet file="env-public-token-web.mdx"></Snippet>
-    </Tab>
-    <Tab title="C#">
-    	Coming soon
-    </Tab>
-    <Tab title="C++">
-    	Coming soon
-    </Tab>
-    <Tab title="Java">
-    	Coming soon
-    </Tab>
-    <Tab title="Rust">
-    	Coming soon
-    </Tab>
-    <Tab title="Raw HTTP">
-    	**curl**
-
-    	Coming soon
-
-    	**HTTPie**
-
-    	TOOD
-
-    	**Postman**
-
-    	Coming soon
-    </Tab>
-
-</Tabs>
+<Snippet file='env-public-token-web.mdx'></Snippet>
 
 ### Update your server
 
 Copy the following pseudocode into the appropriate places in your source:
 
-<Tabs>
-	<Tab title="TypeScript">
-		```typescript
-		// `RIVET_LOBBY_TOKEN` is automatically added to the environment by Rivet.
-		import { RivetClient } from "@rivet-gg/api";
-		let rivet = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
+```typescript
+// `RIVET_LOBBY_TOKEN` is automatically added to the environment by Rivet.
+import { RivetClient } from "@rivet-gg/api";
+let rivet = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
 
-    	// Tell Rivet your server is ready. This gives you time to load maps and
-    	// other data before accepting players.
-    	rivet.matchmaker.lobbies.ready().catch(() => process.exit(1));
+// Tell Rivet your server is ready. This gives you time to load maps and
+// other data before accepting players.
+rivet.matchmaker.lobbies.ready().catch(() => process.exit(1));
 
-    	myGameServer.on("connect", await (socket) => {
-    		let playerToken = socket.request.query.token;
+myGameServer.on("connect", await (socket) => {
+	let playerToken = socket.request.query.token;
 
-    		// Notify the matchmaker that the player connected. This can be
-    		// called only once per player token. This will throw an error and
-    		// close the socket if the player token is already used or invalid.
-    		await rivet.matchmaker.players.connected({ playerToken }).catch(err => socket.close());
+	// Notify the matchmaker that the player connected. This can be
+	// called only once per player token. This will throw an error and
+	// close the socket if the player token is already used or invalid.
+	await rivet.matchmaker.players.connected({ playerToken }).catch(err => socket.close());
 
-    		socket.on("close", async () => {
-    			// Notify the matchmaker that the player disconnected.
-    			await rivet.matchmaker.players.disconnected({ playerToken });
-    		});
-    	});
-    	```
+	socket.on("close", async () => {
+		// Notify the matchmaker that the player disconnected.
+		await rivet.matchmaker.players.disconnected({ playerToken });
+	});
+});
+```
 
-    	<Snippet file="env-lobby-token.mdx"></Snippet>
-    </Tab>
-    <Tab title="C#">
-    	Coming soon
-    </Tab>
-    <Tab title="C++">
-    	Coming soon
-    </Tab>
-    <Tab title="Java">
-    	Coming soon
-    </Tab>
-    <Tab title="Rust">
-    	Coming soon
-    </Tab>
-    <Tab title="Raw HTTP">
-    	**curl**
-
-    	Coming soon
-
-    	**HTTPie**
-
-    	TOOD
-
-    	**Postman**
-
-    	Coming soon
-    </Tab>
-
-</Tabs>
+<Snippet file="env-lobby-token.mdx"></Snippet>
 
 ---
 
