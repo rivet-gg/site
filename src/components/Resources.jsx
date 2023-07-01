@@ -69,8 +69,7 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
       />
       <motion.div
         className='absolute inset-0 rounded-2xl opacity-0 mix-blend-normal transition duration-300 group-hover:opacity-100'
-        style={style}
-      >
+        style={style}>
         <GridPattern
           width={gridWidth}
           height={gridHeight}
@@ -94,25 +93,23 @@ export function Resource({ children, ...props }) {
   }
 
   return (
-    <div
+    <Link
+      href={props.href}
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5'
-    >
+      className='group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5'>
       <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
         <ResourceIcon icon={props.icon} />
         <h3 className='mt-4 font-display text-sm font-semibold leading-7 text-zinc-900 dark:text-white'>
-          <Link href={props.href}>
-            <span className='absolute inset-0 rounded-2xl' />
-            {props.title}
-          </Link>
+          <span className='absolute inset-0 rounded-2xl' />
+          {props.title}
         </h3>
         {/* TODO: This is causing an error */}
         {/* <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p> */}
       </div>
-    </div>
+    </Link>
   );
 }
 
