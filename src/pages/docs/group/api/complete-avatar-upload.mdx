@@ -2,6 +2,13 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # completeAvatarUpload
 
+## Description
+
+Completes an avatar image upload. Must be called after the file upload
+process completes.
+Call `rivet.api.group#PrepareAvatarUpload` first.
+
+
 ## Code Example
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/avatar-upload/{upload_id}/complete'>

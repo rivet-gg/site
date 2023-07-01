@@ -2,6 +2,11 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # links.get
 
+## Description
+
+Returns the current status of a linking process. Once `status` is `complete`, the identity's profile should be fetched again since they may have switched accounts.
+
+
 ## Code Example
 
 <CodeGroup title='Request' tag='GET' label='https://identity.api.rivet.gg/v1/game-links'>

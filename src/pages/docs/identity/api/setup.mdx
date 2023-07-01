@@ -2,6 +2,17 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ setup
 
+## Description
+
+Gets or creates an identity.
+Passing an existing identity token in the body refreshes the token.
+Temporary Accounts
+Until the identity is linked with the Rivet Hub (see `PrepareGameLink`), this identity will be temporary but still behave like all other identities.
+This is intended to allow users to play the game without signing up while still having the benefits of having an account. When they are ready to save their account, they should be instructed to link their account (see `PrepareGameLink`).
+Storing Token
+`identity_token` should be stored in some form of persistent storage. The token should be read from storage and passed to `Setup` every time the client starts.
+
+
 ## Code Example
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities'>

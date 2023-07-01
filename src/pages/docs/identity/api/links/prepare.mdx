@@ -2,6 +2,23 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ links.prepare
 
+## Description
+
+Begins the process for linking an identity with the Rivet Hub.
+# Importance of Linking Identities
+When an identity is created via `rivet.api.identity#SetupIdentity`, the identity is temporary
+and is not shared with other games the user plays.
+In order to make the identity permanent and synchronize the identity with
+other games, the identity must be linked with the hub.
+# Linking Process
+The linking process works by opening `identity_link_url` in a browser then polling
+`rivet.api.identity#GetGameLink` to wait for it to complete.
+This is designed to be as flexible as possible so `identity_link_url` can be opened
+on any device. For example, when playing a console game, the user can scan a
+QR code for `identity_link_url` to authenticate on their phone.
+
+
+
 ## Code Example
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/game-links'>

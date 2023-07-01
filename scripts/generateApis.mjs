@@ -78,7 +78,7 @@ export async function generateApis() {
 
       let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
 
-      let file = `import { CodeGroup, Code } from '@/components/Code';\n\n# ${title}\n`;
+      let file = `import { CodeGroup, Code } from '@/components/Code';\n\n# ${title}\n\n## Description\n\n${specPath.description}\n\n`;
       // file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
 
       // Code examples
