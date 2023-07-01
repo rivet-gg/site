@@ -349,17 +349,16 @@ function Title() {
           All-in-one solution to deploy, scale, and operate your multiplayer game
         </p>
 
-
         {/* Engines */}
         <div className='mt-6'>
-          <div className='text-white font-bold'>Supports</div>
-          <div className='flex flex-wrap gap-2.5 mt-3'>
+          <div className='font-bold text-white'>Supports</div>
+          <div className='mt-3 flex flex-wrap gap-2.5'>
             {supportedEngines.map(({ name, image, href }) => (
               <Link
                 key={name}
                 href={href}
-                className='ring-white/10 ring-inset flex flex-shrink items-center rounded-lg bg-white/5 px-3 py-2 font-semibold text-white ring-1 transition gap-1 hover:bg-white/20 hover:ring-white/20'>
-                {image && <Image src={image} alt={name} className='w-6 h-6' />}
+                className='flex flex-shrink items-center gap-1 rounded-lg bg-white/5 px-3 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
+                {image && <Image src={image} alt={name} className='h-6 w-6' />}
                 <div>{name}</div>
               </Link>
             ))}
@@ -384,7 +383,7 @@ function Title() {
         <Link
           href='https://www.ycombinator.com/'
           target='_blank'
-          className='margin-auto mt-6 block w-max py-1.5'>
+          className='margin-auto mt-6 block w-max py-1.5 opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
           <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
             <div>Backed by</div>
             <YCLogo className='h-[1.7em]' white={true} />
