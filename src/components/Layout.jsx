@@ -79,10 +79,10 @@ function StarPrompt() {
 
         <div className='ml-2'>Rivet is now open source!</div>
 
-        <div className='-mb-1 ml-4'>
+        <div className='-mb-[8px] ml-4'>
           <GitHubButton
             href='https://github.com/rivet-gg/rivet'
-            data-color-scheme='no-preference: dark_high_contrast; light: dark_high_contrast; dark: dark_high_contrast;'
+            data-color-scheme='no-preference: light; light: light; dark: light;'
             data-size='large'
             data-show-count='true'
             aria-label='Star rivet-gg/rivet on GitHub'>
