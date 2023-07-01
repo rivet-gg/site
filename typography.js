@@ -181,25 +181,25 @@ module.exports = ({ theme }) => ({
       h1: {
         color: 'var(--tw-prose-headings)',
         fontWeight: '700',
-        fontSize: theme('fontSize.2xl')[0],
-        ...theme('fontSize.2xl')[1],
-        marginBottom: theme('spacing.2')
+        fontSize: theme('fontSize.4xl')[0],
+        ...theme('fontSize.4xl')[1],
+        marginBottom: theme('spacing.5')
       },
       h2: {
         color: 'var(--tw-prose-headings)',
         fontWeight: '600',
-        fontSize: theme('fontSize.lg')[0],
-        ...theme('fontSize.lg')[1],
+        fontSize: theme('fontSize.2xl')[0],
+        ...theme('fontSize.2xl')[1],
         marginTop: theme('spacing.16'),
-        marginBottom: theme('spacing.2')
+        marginBottom: theme('spacing.3')
       },
       h3: {
         color: 'var(--tw-prose-headings)',
-        fontSize: theme('fontSize.base')[0],
-        ...theme('fontSize.base')[1],
+        fontSize: theme('fontSize.xl')[0],
+        ...theme('fontSize.xl')[1],
         fontWeight: '600',
         marginTop: theme('spacing.10'),
-        marginBottom: theme('spacing.2')
+        marginBottom: theme('spacing.3')
       },
 
       // Media
