@@ -1,114 +1,97 @@
 import { forwardRef, Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Transition } from '@headlessui/react';
-import { usePostHog } from 'posthog-js/react';
 import { Button } from '@/components/Button';
+import { Feedback } from '@/components/Feedback';
 
-function CheckIcon(props) {
-  return (
-    <svg viewBox='0 0 20 20' aria-hidden='true' {...props}>
-      <circle cx='10' cy='10' r='10' strokeWidth='0' />
-      <path
-        fill='none'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth='1.5'
-        d='m6.75 10.813 2.438 2.437c1.218-4.469 4.062-6.5 4.062-6.5'
-      />
-    </svg>
-  );
-}
-
-function FeedbackButton(props) {
-  return (
-    <button
-      type='submit'
-      className='px-3 text-sm font-medium text-zinc-600 transition hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white'
-      {...props}
-    />
-  );
-}
-
-const FeedbackForm = forwardRef(function FeedbackForm({ onSubmit }, ref) {
-  return (
-    <form
-      ref={ref}
-      onSubmit={onSubmit}
-      className='absolute inset-0 flex items-center justify-center gap-6 md:justify-start'
-    >
-      <p className='text-sm text-zinc-600 dark:text-zinc-400'>Was this page helpful?</p>
-      <div className='group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-zinc-900/10 dark:border-white/10'>
-        <FeedbackButton data-response='yes'>Yes</FeedbackButton>
-        <div className='bg-zinc-900/10 dark:bg-white/10' />
-        <FeedbackButton data-response='no'>No</FeedbackButton>
-      </div>
-    </form>
-  );
-});
-
-const FeedbackThanks = forwardRef(function FeedbackThanks(_props, ref) {
-  return (
-    <div ref={ref} className='absolute inset-0 flex justify-center md:justify-start'>
-      <div className='flex items-center gap-3 rounded-full bg-violet-50/50 py-1 pl-1.5 pr-3 text-sm text-violet-900 ring-1 ring-inset ring-violet-500/20 dark:bg-violet-500/5 dark:text-violet-200 dark:ring-violet-500/30'>
-        <CheckIcon className='h-5 w-5 flex-none fill-violet-500 stroke-white dark:fill-violet-200/20 dark:stroke-violet-200' />
-        Thanks for your feedback!
-      </div>
-    </div>
-  );
-});
-
-function Feedback() {
-  const posthog = usePostHog();
-
-  let router = useRouter();
-  let feedbackKey = `feedback:${router.pathname}`;
-  let [submitted, setSubmitted] = useState(false);
-
-  // Populate submitted
-  useEffect(() => {
-    if (localStorage.getItem(feedbackKey)) {
-      setSubmitted(true);
-    }
-  }, [feedbackKey]);
-
-  // Handle submission
-  function onSubmit(event) {
-    event.preventDefault();
-
-    // Send event
-    posthog?.capture('page_feedback', {
-      page: router.pathname,
-      helpful: event.nativeEvent.submitter.dataset.response === 'yes'
-    });
-
-    // Update state
-    localStorage.setItem(feedbackKey, 'true');
-    setSubmitted(true);
-  }
-
-  return (
-    <div className='relative h-8'>
-      <Transition
-        show={!submitted}
-        as={Fragment}
-        leaveFrom='opacity-100'
-        leaveTo='opacity-0'
-        leave='pointer-events-none duration-300'
-      >
-        <FeedbackForm onSubmit={onSubmit} />
-      </Transition>
-      <Transition
-        show={submitted}
-        as={Fragment}
-        enterFrom='opacity-0'
-        enterTo='opacity-100'
-        enter='delay-150 duration-300'
-      >
-        <FeedbackThanks />
-      </Transition>
-    </div>
-  );
+const navigation = {
+  solutions: [
+    { name: 'Marketing', href: '#' },
+    { name: 'Analytics', href: '#' },
+    { name: 'Commerce', href: '#' },
+    { name: 'Insights', href: '#' },
+  ],
+  support: [
+    { name: 'Pricing', href: '#' },
+    { name: 'Documentation', href: '#' },
+    { name: 'Guides', href: '#' },
+    { name: 'API Status', href: '#' },
+  ],
+  company: [
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Jobs', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Partners', href: '#' },
+  ],
+  legal: [
+    { name: 'Claim', href: '#' },
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' },
+  ],
+  social: [
+    {
+      name: 'Facebook',
+      href: '#',
+      icon: (props) => (
+        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+          <path
+            fillRule="evenodd"
+            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
+      name: 'Instagram',
+      href: '#',
+      icon: (props) => (
+        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+          <path
+            fillRule="evenodd"
+            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
+      name: 'Twitter',
+      href: '#',
+      icon: (props) => (
+        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+        </svg>
+      ),
+    },
+    {
+      name: 'GitHub',
+      href: '#',
+      icon: (props) => (
+        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+          <path
+            fillRule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
+      name: 'YouTube',
+      href: '#',
+      icon: (props) => (
+        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+          <path
+            fillRule="evenodd"
+            d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+    },
+  ],
 }
 
 function PageLink({ label, page, previous = false }) {
@@ -134,7 +117,7 @@ function PageLink({ label, page, previous = false }) {
   );
 }
 
-function PageNavigation({ navigation }) {
+function PageNextPrevious({ navigation }) {
   let router = useRouter();
   let allPages = navigation.sidebar.groups.flatMap(group => group.pages);
   let currentPageIndex = allPages.findIndex(page => page.href === router.pathname);
@@ -166,34 +149,6 @@ function PageNavigation({ navigation }) {
   );
 }
 
-function TwitterIcon(props) {
-  return (
-    <svg viewBox='0 0 20 20' aria-hidden='true' {...props}>
-      <path d='M16.712 6.652c.01.146.01.29.01.436 0 4.449-3.267 9.579-9.242 9.579v-.003a8.963 8.963 0 0 1-4.98-1.509 6.379 6.379 0 0 0 4.807-1.396c-1.39-.027-2.608-.966-3.035-2.337.487.097.99.077 1.467-.059-1.514-.316-2.606-1.696-2.606-3.3v-.041c.45.26.956.404 1.475.42C3.18 7.454 2.74 5.486 3.602 3.947c1.65 2.104 4.083 3.382 6.695 3.517a3.446 3.446 0 0 1 .94-3.217 3.172 3.172 0 0 1 4.596.148 6.38 6.38 0 0 0 2.063-.817 3.357 3.357 0 0 1-1.428 1.861 6.283 6.283 0 0 0 1.865-.53 6.735 6.735 0 0 1-1.62 1.744Z' />
-    </svg>
-  );
-}
-
-function GitHubIcon(props) {
-  return (
-    <svg viewBox='0 0 20 20' aria-hidden='true' {...props}>
-      <path
-        fillRule='evenodd'
-        clipRule='evenodd'
-        d='M10 1.667c-4.605 0-8.334 3.823-8.334 8.544 0 3.78 2.385 6.974 5.698 8.106.417.075.573-.182.573-.406 0-.203-.011-.875-.011-1.592-2.093.397-2.635-.522-2.802-1.002-.094-.246-.5-1.005-.854-1.207-.291-.16-.708-.556-.01-.567.656-.01 1.124.62 1.281.876.75 1.292 1.948.93 2.427.705.073-.555.291-.93.531-1.143-1.854-.213-3.791-.95-3.791-4.218 0-.929.322-1.698.854-2.296-.083-.214-.375-1.09.083-2.265 0 0 .698-.224 2.292.876a7.576 7.576 0 0 1 2.083-.288c.709 0 1.417.096 2.084.288 1.593-1.11 2.291-.875 2.291-.875.459 1.174.167 2.05.084 2.263.53.599.854 1.357.854 2.297 0 3.278-1.948 4.005-3.802 4.219.302.266.563.78.563 1.58 0 1.143-.011 2.061-.011 2.35 0 .224.156.491.573.405a8.365 8.365 0 0 0 4.11-3.116 8.707 8.707 0 0 0 1.567-4.99c0-4.721-3.73-8.545-8.334-8.545Z'
-      />
-    </svg>
-  );
-}
-
-function DiscordIcon(props) {
-  return (
-    <svg viewBox='0 0 20 20' aria-hidden='true' {...props}>
-      <path d='M16.238 4.515a14.842 14.842 0 0 0-3.664-1.136.055.055 0 0 0-.059.027 10.35 10.35 0 0 0-.456.938 13.702 13.702 0 0 0-4.115 0 9.479 9.479 0 0 0-.464-.938.058.058 0 0 0-.058-.027c-1.266.218-2.497.6-3.664 1.136a.052.052 0 0 0-.024.02C1.4 8.023.76 11.424 1.074 14.782a.062.062 0 0 0 .024.042 14.923 14.923 0 0 0 4.494 2.272.058.058 0 0 0 .064-.02c.346-.473.654-.972.92-1.496a.057.057 0 0 0-.032-.08 9.83 9.83 0 0 1-1.404-.669.058.058 0 0 1-.029-.046.058.058 0 0 1 .023-.05c.094-.07.189-.144.279-.218a.056.056 0 0 1 .058-.008c2.946 1.345 6.135 1.345 9.046 0a.056.056 0 0 1 .059.007c.09.074.184.149.28.22a.058.058 0 0 1 .023.049.059.059 0 0 1-.028.046 9.224 9.224 0 0 1-1.405.669.058.058 0 0 0-.033.033.056.056 0 0 0 .002.047c.27.523.58 1.022.92 1.495a.056.056 0 0 0 .062.021 14.878 14.878 0 0 0 4.502-2.272.055.055 0 0 0 .016-.018.056.056 0 0 0 .008-.023c.375-3.883-.63-7.256-2.662-10.246a.046.046 0 0 0-.023-.021Zm-9.223 8.221c-.887 0-1.618-.814-1.618-1.814s.717-1.814 1.618-1.814c.908 0 1.632.821 1.618 1.814 0 1-.717 1.814-1.618 1.814Zm5.981 0c-.887 0-1.618-.814-1.618-1.814s.717-1.814 1.618-1.814c.908 0 1.632.821 1.618 1.814 0 1-.71 1.814-1.618 1.814Z' />
-    </svg>
-  );
-}
-
 function SocialLink({ href, icon: Icon, children }) {
   return (
     <Link href={href} className='group'>
@@ -210,7 +165,7 @@ function SmallPrint() {
         &copy; Copyright {new Date().getFullYear()} Rivet Gaming, Inc. All rights reserved.
       </p>
       <div className='flex gap-4'>
-        <SocialLink href='#' icon={TwitterIcon}>
+        {/* <SocialLink href='#' icon={TwitterIcon}>
           Follow us on Twitter
         </SocialLink>
         <SocialLink href='#' icon={GitHubIcon}>
@@ -218,7 +173,7 @@ function SmallPrint() {
         </SocialLink>
         <SocialLink href='#' icon={DiscordIcon}>
           Join our Discord server
-        </SocialLink>
+        </SocialLink> */}
       </div>
     </div>
   );
@@ -230,7 +185,7 @@ export function Footer({ navigation }) {
   return (
     <footer className='mx-auto max-w-2xl space-y-10 pb-16 lg:max-w-5xl'>
       {navigation.feedback && <Feedback key={router.pathname} />}
-      {navigation.sidebar ? <PageNavigation navigation={navigation} /> : null}
+      {navigation.sidebar ? <PageNextPrevious navigation={navigation} /> : null}
       <SmallPrint />
     </footer>
   );
