@@ -1,5 +1,5 @@
 import Link from 'next/link';
-export { default as  Image } from 'next/image';
+export { default as Image } from 'next/image';
 import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
 
@@ -38,7 +38,6 @@ export {
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
-
 
 function InfoIcon(props) {
   return (

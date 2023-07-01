@@ -1,3 +1,3 @@
 export interface EntityState {
-	id: number;
+  id: number;
 }

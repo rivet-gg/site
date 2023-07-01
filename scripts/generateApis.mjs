@@ -106,7 +106,7 @@ ${curlCommand}
       apiPages[product].pages.push({
         title,
         href: `/docs/${product}/api/${fileName}`,
-        sortingKey,
+        sortingKey
       });
     }
   }
@@ -126,6 +126,5 @@ ${curlCommand}
 function camelToKebab(input) {
   return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
 }
-
 
 generateApis();

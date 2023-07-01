@@ -190,7 +190,8 @@ export default function Pricing() {
               className={clsx(
                 tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
                 'p-8'
-              )}>
+              )}
+            >
               <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>{tier.name}</h2>
               <a
                 href={tier.href}
@@ -200,7 +201,8 @@ export default function Pricing() {
                     ? 'bg-indigo-500 text-white hover:bg-indigo-400 focus-visible:outline-indigo-500'
                     : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
                   'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                )}>
+                )}
+              >
                 {tier.button}
               </a>
               <ul role='list' className='mt-10 space-y-4 text-sm leading-6 text-white'>
@@ -239,7 +241,8 @@ export default function Pricing() {
                 <div
                   className='flex w-1/4 px-4'
                   aria-hidden='true'
-                  style={{ marginLeft: `${(tiers.findIndex(tier => tier.mostPopular) + 1) * 25}%` }}>
+                  style={{ marginLeft: `${(tiers.findIndex(tier => tier.mostPopular) + 1) * 25}%` }}
+                >
                   <div className='w-full rounded-t-xl border-x border-t border-white/10 bg-white/5' />
                 </div>
               </div>
@@ -275,7 +278,8 @@ export default function Pricing() {
                             ? 'bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600'
                             : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
                           'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                        )}>
+                        )}
+                      >
                         {tier.button}
                       </a>
                     </td>
@@ -290,7 +294,8 @@ export default function Pricing() {
                         className={clsx(
                           sectionIdx === 0 ? 'pt-8' : 'pt-16',
                           'pb-4 text-sm font-semibold leading-6 text-white'
-                        )}>
+                        )}
+                      >
                         {section.name}
                         <div className='absolute inset-x-8 mt-4 h-px bg-white/10' />
                       </th>
@@ -353,7 +358,8 @@ function PricingModal({ open, onClose }) {
           enterTo='opacity-100'
           leave='ease-in duration-200'
           leaveFrom='opacity-100'
-          leaveTo='opacity-0'>
+          leaveTo='opacity-0'
+        >
           <div className='fixed inset-0 bg-black bg-opacity-75 transition-opacity' />
         </Transition.Child>
 
@@ -366,7 +372,8 @@ function PricingModal({ open, onClose }) {
               enterTo='opacity-100 translate-y-0 sm:scale-100'
               leave='ease-in duration-200'
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
-              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
+              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+            >
               <Dialog.Panel className='relative transform overflow-hidden rounded-xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                 {/* Content */}
                 <div className='mt-1 text-center'>
@@ -386,7 +393,8 @@ function PricingModal({ open, onClose }) {
                   <button
                     type='button'
                     className='inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                    onClick={onClose}>
+                    onClick={onClose}
+                  >
                     Close
                   </button>
                 </div>
@@ -483,7 +491,8 @@ function PricingTabs({ tierIdx, setTierIdx }) {
                   ? 'z-10 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                   : 'px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
               )}
-              onClick={() => setTierIdx(i)}>
+              onClick={() => setTierIdx(i)}
+            >
               {tier.name}
             </div>
           );

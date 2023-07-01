@@ -18,7 +18,8 @@ export function Layout({ navigation, prose, children, sections = [] }) {
         {/* Navigation */}
         <motion.header
           layoutScroll
-          className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'>
+          className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'
+        >
           {/* Header */}
           <Header navigation={navigation} />
 
@@ -28,7 +29,8 @@ export function Layout({ navigation, prose, children, sections = [] }) {
               className={clsx(
                 `contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80`,
                 navigation.tabs ? 'mt-26' : 'mt-14'
-              )}>
+              )}
+            >
               <Navigation className='hidden lg:block' navigation={navigation} />
             </div>
           ) : null}
@@ -36,7 +38,8 @@ export function Layout({ navigation, prose, children, sections = [] }) {
 
         {/* Body */}
         <div
-          className={clsx('relative', prose && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}>
+          className={clsx('relative', prose && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}
+        >
           <main className={clsx(prose && 'py-16')}>
             {prose ? <Prose as='article'>{children}</Prose> : children}
           </main>
@@ -65,16 +68,17 @@ function StarPrompt() {
   };
 
   return (
-    <div className='fixed bottom-6 w-full justify-center flex'>
+    <div className='fixed bottom-6 flex w-full justify-center'>
       <AnimatePresence>
         {!isHidden && (
           <motion.div
-            className='flex rounded-full bg-zinc-900/80 backdrop-blur w-max mx-4'
+            className='mx-4 flex w-max rounded-full bg-zinc-900/80 backdrop-blur'
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ ease: "easeOut", duration: 0.4 }}>
-            <div className='relative flex items-center justify-center rounded-full pr-6 pl-4 py-2 text-sm sm:text-base font-semibold text-slate-300 ring-1 ring-inset ring-white/10'>
+            transition={{ ease: 'easeOut', duration: 0.4 }}
+          >
+            <div className='relative flex items-center justify-center rounded-full py-2 pl-4 pr-6 text-sm font-semibold text-slate-300 ring-1 ring-inset ring-white/10 sm:text-base'>
               <FontAwesomeIcon
                 icon={faXmark}
                 className='h-full cursor-pointer px-1 hover:text-white'
@@ -89,7 +93,8 @@ function StarPrompt() {
                   data-color-scheme='no-preference: light; light: light; dark: light;'
                   data-size='large'
                   data-show-count='true'
-                  aria-label='Star rivet-gg/rivet on GitHub'>
+                  aria-label='Star rivet-gg/rivet on GitHub'
+                >
                   Star
                 </GitHubButton>
               </div>

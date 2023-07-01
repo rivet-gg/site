@@ -7,8 +7,7 @@ const variantStyles = {
 const colorStyles = {
   violet: {
     small: 'text-violet-500 dark:text-violet-400',
-    medium:
-      'ring-violet-300 dark:ring-violet-400/30 bg-violet-400/10 text-violet-500 dark:text-violet-400'
+    medium: 'ring-violet-300 dark:ring-violet-400/30 bg-violet-400/10 text-violet-500 dark:text-violet-400'
   },
   sky: {
     small: 'text-sky-500',

@@ -6,7 +6,6 @@
         "title": "API",
         "template": { "api": "kv" }
       }
-
     ]
   }
 }

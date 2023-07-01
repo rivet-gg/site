@@ -49,7 +49,7 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
   let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`;
   let style = { maskImage, WebkitMaskImage: maskImage };
 
-  let gridWidth= 50;
+  let gridWidth = 50;
   let gridHeight = 30;
 
   return (
@@ -59,7 +59,7 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
           width={gridWidth}
           height={gridHeight}
           x='50%'
-          className='absolute saturate-0 opacity-10 inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/[0.02] stroke-black/5 dark:fill-white/1 dark:stroke-white/2.5'
+          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/[0.02] stroke-black/5 opacity-10 saturate-0 dark:fill-white/1 dark:stroke-white/2.5'
           {...gridProps}
         />
       </div>
@@ -103,7 +103,7 @@ export function Resource({ children, ...props }) {
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
         <ResourceIcon icon={props.icon} />
-        <h3 className='mt-4 text-sm font-display font-semibold leading-7 text-zinc-900 dark:text-white'>
+        <h3 className='mt-4 font-display text-sm font-semibold leading-7 text-zinc-900 dark:text-white'>
           <Link href={props.href}>
             <span className='absolute inset-0 rounded-2xl' />
             {props.title}

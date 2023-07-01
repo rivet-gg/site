@@ -110,7 +110,7 @@ const pages = [
       {
         name: 'Unified logging & monitoring',
         icon: faMonitorWaveform
-      },
+      }
     ]
   },
   {
@@ -168,7 +168,7 @@ const pages = [
       {
         name: 'Intelligent region selection',
         icon: faEarthAmericas
-      },
+      }
       // {
       //   name: 'Adjusts to make off hours feel full',
       //   icon: faCloudMoon
@@ -300,7 +300,8 @@ function Title() {
       <div className='max-w-2xl text-left'>
         {/* Title */}
         <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          Multiplayer Made<br />
+          Multiplayer Made
+          <br />
           Simple
           {/* The Multiplayer
           <br />
@@ -316,7 +317,8 @@ function Title() {
         <Link
           href='https://www.ycombinator.com/'
           target='_blank'
-          className='margin-auto mt-8 block w-max rounded-lg bg-white/5 px-3 py-1.5 ring-1 ring-white/10'>
+          className='margin-auto mt-8 block w-max rounded-lg bg-white/5 px-3 py-1.5 ring-1 ring-white/10'
+        >
           <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
             <div>Backed by</div>
             <YCLogo className='h-[1.7em]' white={true} />
@@ -324,10 +326,11 @@ function Title() {
         </Link>
 
         {/* CTA */}
-        <div className='mt-10 flex items-center justify-left gap-x-6'>
+        <div className='justify-left mt-10 flex items-center gap-x-6'>
           <a
             href='#'
-            className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
+            className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'
+          >
             Sign Up
           </a>
           <a href='#' className='text-sm font-semibold leading-6 text-white'>
@@ -417,11 +420,12 @@ function Tabs({ index, onChangeTab }) {
                   isCurrent
                     ? 'border-violet-500 bg-[color:var(--tab-color)] text-white'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center text-normal font-bold text-white transition'
+                  'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
-                onClick={() => onChangeTab(i)}>
+                onClick={() => onChangeTab(i)}
+              >
                 <div className='relative h-16 w-16'>
                   <Image
                     src={tab.image[0]}
@@ -477,7 +481,8 @@ function Pages({ page, onChangePage }) {
             } else if (swipe > swipeConfidenceThreshold) {
               onChangePage(paginate(page.index, -1));
             }
-          }}>
+          }}
+        >
           <PageContents page={pages[page.index]} />
         </motion.div>
       </AnimatePresence>
@@ -503,7 +508,8 @@ function PageContents({ page }) {
             opacity: 1
           }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
+          transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}
+        >
           <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
           <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </motion.div>
@@ -523,7 +529,8 @@ function PageContents({ page }) {
                 <div
                   key={i}
                   href='/docs'
-                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'>
+                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'
+                >
                   <FontAwesomeIcon icon={feature.icon} />
                   {feature.name}
                 </div>
@@ -643,7 +650,8 @@ function UpAndRunning() {
               title='YouTube video player'
               frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowFullScreen></iframe>
+              allowFullScreen
+            ></iframe>
           </div>
           {/* <Image
             className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm'
@@ -682,7 +690,8 @@ function UpAndRunning() {
       </div>
       <div
         className='absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl'
-        aria-hidden='true'>
+        aria-hidden='true'
+      >
         {/* <div
           className='aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25'
           style={{
