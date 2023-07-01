@@ -40,11 +40,28 @@ import {
   faGaugeCircleBolt,
   faPartyHorn,
   faEarthAmericas,
-  faFileCertificate
+  faFileCertificate,
+  faChildReaching,
+  faWrench,
+  faMonitorWaveform,
+  faClouds,
+  faMap,
+  faMagnifyingGlass,
+  faCodeBranch,
+  faMoneyBill,
+  faHundredPoints,
+  faCloudMoon,
+  faPaintbrushPencil
 } from '@fortawesome/pro-solid-svg-icons';
 
-import imgComputerFrame from '@/images/effects/computer-frame.png';
 import imgLobbies from '@/images/screenshots/lobbies.png';
+import imgOss from '@/images/screenshots/oss.png';
+import imgMatchmaker from '@/images/screenshots/matchmaker.png';
+import imgGameGuard from '@/images/screenshots/gameGuard.png';
+import imgSocial from '@/images/screenshots/social.png';
+import imgAnalytics from '@/images/screenshots/analytics.png';
+
+import imgComputerFrame from '@/images/effects/computer-frame.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
 import imgComputeColor from 'src/images/products/compute-monotone.svg';
 import imgGameGuardWhite from 'src/images/products/game-guard-white.svg';
@@ -55,39 +72,53 @@ import imgAnalyticsWhite from '@/images/products/analytics-white.svg';
 import imgAnalyticsColor from '@/images/products/analytics-monotone.svg';
 import imgSocialWhite from '@/images/products/friend-white.svg';
 import imgSocialColor from '@/images/products/friend-monotone.svg';
-import imgOSSWhite from '@/images/products/rocket-white.svg';
-import imgOSSColor from '@/images/products/rocket-monotone.svg';
+import imgOssWhite from '@/images/products/rocket-white.svg';
+import imgOssColor from '@/images/products/rocket-monotone.svg';
 
 const pages = [
   {
     name: 'Game Servers',
-    description: 'Deploy and scale game servers globally in minutes',
+    description: 'Deploy and scale game servers globally in seconds',
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
+    screenshot: imgLobbies,
     features: [
       {
-        name: 'Auto-scaling',
-        icon: faChartWaterfall
+        name: 'Multi-cloud & on-prem autoscaling',
+        icon: faMap
       },
+      // {
+      //   name: 'Cost effective auto-scaling',
+      //   icon: faChartWaterfall
+      // },
+      // {
+      //   name: 'Infinite autoscaling',
+      //   icon: faChartWaterfall
+      // },
       {
         name: 'Fast & no downtime deploys',
         icon: faBolt
       },
       {
-        name: 'Instant rollbacks',
-        icon: faClockRotateLeft
+        name: 'Streamlined team collaboration',
+        icon: faCodeBranch
       },
       {
-        name: 'Cost effective',
+        name: 'Cost saving',
         icon: faPiggyBank
-      }
+      },
+      {
+        name: 'Unified logging & monitoring',
+        icon: faMonitorWaveform
+      },
     ]
   },
   {
     name: 'DDoS Mitigation',
-    description: 'Protect your game servers from DDoS attacks',
+    description: 'Protect your game servers from DDoS attacks with Game Guard',
     color: '#8A7ED8',
     image: [imgGameGuardWhite, imgGameGuardColor],
+    screenshot: imgGameGuard,
     features: [
       {
         name: 'Mitigates DDoS & botting attacks',
@@ -98,56 +129,74 @@ const pages = [
         icon: faGaugeCircleBolt
       },
       {
-        name: 'Supports WebSockets+SSL, TCP+TLS, & UDP',
+        name: 'Supports TCP, UDP, WebSockets & WebRTC',
         icon: faPlug
+      },
+      {
+        name: 'Managed SSL certificates',
+        icon: faFileCertificate
+      },
+      {
+        name: 'Skiddies be gone',
+        icon: faChildReaching
       }
     ]
   },
   {
     name: 'Matchmaker',
-    description: 'Matchmake players in < 1 second',
+    description: 'Intelligently matchmake players into game servers',
     color: '#4DB1F9',
     image: [imgMatchmakerWhite, imgMatchmakerColor],
+    screenshot: imgMatchmaker,
     features: [
       {
-        name: 'Fast matchmaking',
+        name: 'Instant matchmaking',
         icon: faStopwatch
-      },
-      {
-        name: 'Integrated with infrastructure',
-        icon: faLink
       },
       {
         name: 'Flexible to work with your game',
         icon: faInfinity
       },
       {
-        name: 'Configurable region selection',
+        name: 'Custom games, dedicated servers & UGC support',
+        icon: faPaintbrushPencil
+      },
+      {
+        name: 'Integrated with infrastructure',
+        icon: faLink
+      },
+      {
+        name: 'Intelligent region selection',
         icon: faEarthAmericas
-      }
+      },
+      // {
+      //   name: 'Adjusts to make off hours feel full',
+      //   icon: faCloudMoon
+      // }
     ]
   },
   {
     name: 'Social',
-    description: 'Add social features to your game in 1 line of code',
+    description: 'Leverage a community of millions of players in your game with 1 line of code',
     color: '#F2B046',
     image: [imgSocialWhite, imgSocialColor],
+    screenshot: imgSocial,
     features: [
       {
-        name: 'Easy account integration',
-        icon: faKey
+        name: '100% free, open, and privacy-centric',
+        icon: faHundredPoints
       },
       {
-        name: 'Parties',
-        icon: faPartyHorn
+        name: 'Cross-game & cross-platform identities',
+        icon: faInfinity
       },
       {
-        name: 'Chat',
-        icon: faComment
-      },
-      {
-        name: 'Groups',
+        name: 'Friends, groups, chat & presence',
         icon: faUserGroup
+      },
+      {
+        name: 'Parties integrated with matchmaking',
+        icon: faPartyHorn
       },
       {
         name: 'Guest accounts',
@@ -160,6 +209,7 @@ const pages = [
     description: 'Understand your players & game servers',
     color: '#4DB1F9',
     image: [imgAnalyticsWhite, imgAnalyticsColor],
+    screenshot: imgAnalytics,
     features: [
       {
         name: 'Real-time analytics',
@@ -170,17 +220,18 @@ const pages = [
         icon: faGearCode
       },
       {
-        name: 'Insights for both social & services',
+        name: 'Universal insights for both social & services',
         icon: faPlanetMoon
       }
     ]
   },
-  // { name: 'CDN', features: [] },
+  // { name: 'CDN', features: [{ name: 'Free rivet.game domain'}, {name: 'Free SSL for CDN & lobbies'}] },
   {
     name: 'Open Source',
     description: 'Source code available to read, modify, and self-host',
     color: '#8A7ED8',
-    image: [imgOSSWhite, imgOSSColor],
+    image: [imgOssWhite, imgOssColor],
+    screenshot: imgOss,
     features: [
       {
         name: 'Permissive license (Apache 2.0)',
@@ -191,16 +242,16 @@ const pages = [
         icon: faDoorOpen
       },
       {
-        name: 'Self-host on-premise',
-        icon: faServer
-      },
-      {
         name: 'Audit security',
         icon: faLock
       },
       {
+        name: 'Self-host on-premise',
+        icon: faServer
+      },
+      {
         name: 'Make it your own',
-        icon: faWreath
+        icon: faWrench
       }
     ]
   }
@@ -291,7 +342,7 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='relative h-[750px] w-[640px] shrink-0 grow-0 pointer-events-none'>
+    <div className='pointer-events-none relative h-[750px] w-[640px] shrink-0 grow-0'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
@@ -425,7 +476,7 @@ function Pages({ page, onChangePage }) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          <PageGameServers page={pages[page.index]} />
+          <PageContents page={pages[page.index]} />
         </motion.div>
       </AnimatePresence>
     </div>
@@ -436,7 +487,7 @@ function Page() {
   return <div className='h-full w-full'>Todo</div>;
 }
 
-function PageGameServers({ page }) {
+function PageContents({ page }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
@@ -451,7 +502,7 @@ function PageGameServers({ page }) {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
-          <Image src={imgLobbies} alt='Lobby list screenshot' className='' />
+          <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
           <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
         </motion.div>
       </div>
@@ -467,13 +518,13 @@ function PageGameServers({ page }) {
             {/* Features */}
             <div className='mt-6 flex w-full flex-col items-stretch gap-4'>
               {page.features.map((feature, i) => (
-                <Link
+                <div
                   key={i}
                   href='/docs'
-                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition hover:bg-violet-600'>
+                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'>
                   <FontAwesomeIcon icon={feature.icon} />
                   {feature.name}
-                </Link>
+                </div>
               ))}
             </div>
 
@@ -599,7 +650,7 @@ function UpAndRunning() {
           {/* Body */}
           <div className='w-full flex-auto'>
             <h2 className='text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-              Launch your game in <span className='text-purple-300'>minutes</span>
+              Launch your game in <span className='text-violet-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
               {`Just 3 lines of code and you're off to the races.`}
