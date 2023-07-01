@@ -97,7 +97,7 @@ export function Resource({ children, ...props }) {
       href={props.href}
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5 hover:scale-[1.03]'>
+      className='group relative flex rounded-2xl bg-zinc-50 transition hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5 hover:scale-[1.03] active:scale-[0.95]'>
       <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
