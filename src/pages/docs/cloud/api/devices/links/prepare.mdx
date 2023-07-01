@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # devices.links.prepare
 
@@ -31,49 +33,11 @@ await RIVET.cloud.devices.links.prepare({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  device_link_id:
-    type: string
-    format: uuid
-  device_link_token:
-    type: string
-  device_link_url:
-    type: string
-required:
-  - device_link_id
-  - device_link_token
-  - device_link_url
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "device_link_id": {
-      "type": "string",
-      "format": "uuid"
-    },
-    "device_link_token": {
-      "type": "string"
-    },
-    "device_link_url": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "device_link_id",
-    "device_link_token",
-    "device_link_url"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"device_link_id":{"type":"string","format":"uuid"},"device_link_token":{"type":"string"},"device_link_url":{"type":"string"}},"required":["device_link_id","device_link_token","device_link_url"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

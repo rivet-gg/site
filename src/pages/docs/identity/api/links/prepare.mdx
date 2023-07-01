@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # ⭐️ links.prepare
 
@@ -43,51 +45,11 @@ await RIVET.identity.links.prepare({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  identity_link_token:
-    type: string
-    description: Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes.
-  identity_link_url:
-    type: string
-  expire_ts:
-    type: string
-    format: date-time
-required:
-  - identity_link_token
-  - identity_link_url
-  - expire_ts
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "identity_link_token": {
-      "type": "string",
-      "description": "Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."
-    },
-    "identity_link_url": {
-      "type": "string"
-    },
-    "expire_ts": {
-      "type": "string",
-      "format": "date-time"
-    }
-  },
-  "required": [
-    "identity_link_token",
-    "identity_link_url",
-    "expire_ts"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"identity_link_token":{"type":"string","description":"Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."},"identity_link_url":{"type":"string"},"expire_ts":{"type":"string","format":"date-time"}},"required":["identity_link_token","identity_link_url","expire_ts"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

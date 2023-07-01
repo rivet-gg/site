@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.consumeInvite
 
@@ -31,30 +33,11 @@ await RIVET.group.invites.consumeInvite({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  group_id:
-    type: string
-    format: uuid
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "group_id": {
-      "type": "string",
-      "format": "uuid"
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.createGameNamespaceTokenDevelopment
 
@@ -32,85 +34,22 @@ await RIVET.cloud.games.namespaces.createGameNamespaceTokenDevelopment({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  hostname:
-    type: string
-    description: The hostname used for the token.
-  ports:
-    type: object
-    additionalProperties:
-      $ref: "#/components/schemas/CloudMatchmakerDevelopmentPort"
-  lobby_ports: null
-required:
-  - hostname
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "hostname": {
-      "type": "string",
-      "description": "The hostname used for the token."
-    },
-    "ports": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/components/schemas/CloudMatchmakerDevelopmentPort"
-      }
-    },
-    "lobby_ports": null
-  },
-  "required": [
-    "hostname"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"hostname":{"type":"string","description":"The hostname used for the token."},"ports":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/CloudMatchmakerDevelopmentPort"}},"lobby_ports":null},"required":["hostname"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  token:
-    type: string
-    description: |-
-      A JSON Web Token.
-      Slightly modified to include a description prefix and use Protobufs of
-      JSON.
-required:
-  - token
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "token": {
-      "type": "string",
-      "description": "A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."
-    }
-  },
-  "required": [
-    "token"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"token":{"type":"string","description":"A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."}},"required":["token"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

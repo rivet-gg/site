@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # setTypingStatus
 
@@ -32,56 +34,13 @@ await RIVET.chat.setTypingStatus({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  status:
-    type: object
-    properties:
-      idle:
-        type: object
-        properties: {}
-        description: Not typing
-      typing:
-        type: object
-        properties: {}
-        description: Typing
-required:
-  - status
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "status": {
-      "type": "object",
-      "properties": {
-        "idle": {
-          "type": "object",
-          "properties": {},
-          "description": "Not typing"
-        },
-        "typing": {
-          "type": "object",
-          "properties": {},
-          "description": "Typing"
-        }
-      }
-    }
-  },
-  "required": [
-    "status"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"status":{"type":"object","properties":{"idle":{"type":"object","properties":{},"description":"Not typing"},"typing":{"type":"object","properties":{},"description":"Typing"}}}},"required":["status"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

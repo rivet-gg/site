@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # devices.links.get
 
@@ -31,57 +33,11 @@ await RIVET.cloud.devices.links.get({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  cloud_token:
-    type: string
-  watch:
-    type: object
-    description: Provided by watchable endpoints used in blocking loops.
-    properties:
-      index:
-        type: string
-        description: |
-          Index indicating the version of the data responded.
-          Pass this to `WatchQuery` to block and wait for the next response.
-    required:
-      - index
-required:
-  - watch
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "cloud_token": {
-      "type": "string"
-    },
-    "watch": {
-      "type": "object",
-      "description": "Provided by watchable endpoints used in blocking loops.",
-      "properties": {
-        "index": {
-          "type": "string",
-          "description": "Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"
-        }
-      },
-      "required": [
-        "index"
-      ]
-    }
-  },
-  "required": [
-    "watch"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"cloud_token":{"type":"string"},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["watch"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

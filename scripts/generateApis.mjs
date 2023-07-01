@@ -78,8 +78,17 @@ export async function generateApis() {
 
       let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
 
-      let file = `import { CodeGroup, Code } from '@/components/Code';\n\n# ${title}\n\n## Description\n\n${specPath.description}\n\n`;
-      // file += `\`\`\`\n${method.toUpperCase()} ${fullUrl}\n\`\`\`\n\n`;
+      let file = `
+import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
+
+# ${title}
+
+## Description
+
+${specPath.description}
+
+`;
 
       // Code examples
       let curlCommand;
@@ -112,25 +121,21 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
 
 `;
 
+      // TODO: Path parameters
+
       // Request body
       if (hasRequestBody) {
         if (specPath.requestBody?.content['application/json'].schema) {
           file += `
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-\`\`\`yaml
-${YAML.stringify(specPath.requestBody?.content['application/json'].schema, null, 2)}
-\`\`\`
-
-\`\`\`json
-${JSON.stringify(specPath.requestBody?.content['application/json'].schema, null, 2)}
-\`\`\`
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={${JSON.stringify(specPath.requestBody?.content['application/json'].schema)}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 `;
         } else {
@@ -147,19 +152,13 @@ _Empty request body._
         file += `
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-\`\`\`yaml
-${YAML.stringify(specPath.responses['200']?.content['application/json'].schema, null, 2)}
-\`\`\`
-
-\`\`\`json
-${JSON.stringify(specPath.responses['200']?.content['application/json'].schema, null, 2)}
-\`\`\`
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={${JSON.stringify(specPath.responses['200'].content['application/json'].schema)}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 `;
       } else {

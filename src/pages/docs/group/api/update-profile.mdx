@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # updateProfile
 
@@ -32,53 +34,13 @@ await RIVET.group.updateProfile({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  display_name:
-    type: string
-    description: Represent a resource's readable display name.
-  bio:
-    type: string
-    description: Detailed information about a profile.
-  publicity:
-    type: string
-    enum:
-      - open
-      - closed
-    description: The current publicity value for the given group.
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "display_name": {
-      "type": "string",
-      "description": "Represent a resource's readable display name."
-    },
-    "bio": {
-      "type": "string",
-      "description": "Detailed information about a profile."
-    },
-    "publicity": {
-      "type": "string",
-      "enum": [
-        "open",
-        "closed"
-      ],
-      "description": "The current publicity value for the given group."
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"bio":{"type":"string","description":"Detailed information about a profile."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

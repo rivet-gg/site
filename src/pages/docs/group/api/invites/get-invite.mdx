@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.getInvite
 
@@ -31,104 +33,11 @@ await RIVET.group.invites.getInvite({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  group:
-    type: object
-    description: A group handle.
-    properties:
-      group_id:
-        type: string
-        format: uuid
-      display_name:
-        type: string
-      avatar_url:
-        type: string
-        description: The URL of this group's avatar image
-      external:
-        type: object
-        description: External links for this group.
-        properties:
-          profile:
-            type: string
-            description: A link to this group's profile page.
-          chat:
-            type: string
-            description: A link to this group's chat page.
-        required:
-          - profile
-          - chat
-      is_developer:
-        type: boolean
-        description: Whether or not this group is a developer group.
-    required:
-      - group_id
-      - display_name
-      - external
-required:
-  - group
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "group": {
-      "type": "object",
-      "description": "A group handle.",
-      "properties": {
-        "group_id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "display_name": {
-          "type": "string"
-        },
-        "avatar_url": {
-          "type": "string",
-          "description": "The URL of this group's avatar image"
-        },
-        "external": {
-          "type": "object",
-          "description": "External links for this group.",
-          "properties": {
-            "profile": {
-              "type": "string",
-              "description": "A link to this group's profile page."
-            },
-            "chat": {
-              "type": "string",
-              "description": "A link to this group's chat page."
-            }
-          },
-          "required": [
-            "profile",
-            "chat"
-          ]
-        },
-        "is_developer": {
-          "type": "boolean",
-          "description": "Whether or not this group is a developer group."
-        }
-      },
-      "required": [
-        "group_id",
-        "display_name",
-        "external"
-      ]
-    }
-  },
-  "required": [
-    "group"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"group":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]}},"required":["group"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

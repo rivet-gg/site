@@ -24,6 +24,7 @@
     "@next/mdx": "^13.0.3",
     "@rivet-gg/api": "^0.0.1-rc19",
     "@sindresorhus/slugify": "^2.1.1",
+    "@stoplight/json-schema-viewer": "^4.10.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
     "acorn": "^8.8.1",

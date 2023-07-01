@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # players.getStatistics
 
@@ -31,47 +33,11 @@ await RIVET.matchmaker.players.getStatistics({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  player_count:
-    type: integer
-    format: int64
-  game_modes:
-    type: object
-    additionalProperties:
-      $ref: "#/components/schemas/MatchmakerGameModeStatistics"
-required:
-  - player_count
-  - game_modes
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "player_count": {
-      "type": "integer",
-      "format": "int64"
-    },
-    "game_modes": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/components/schemas/MatchmakerGameModeStatistics"
-      }
-    }
-  },
-  "required": [
-    "player_count",
-    "game_modes"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"},"game_modes":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/MatchmakerGameModeStatistics"}}},"required":["player_count","game_modes"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

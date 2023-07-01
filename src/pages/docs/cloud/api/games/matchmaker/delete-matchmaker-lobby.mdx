@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.matchmaker.deleteMatchmakerLobby
 
@@ -31,30 +33,11 @@ await RIVET.cloud.games.matchmaker.deleteMatchmakerLobby({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  did_remove:
-    type: boolean
-    description: Whether or not the lobby was successfully stopped.
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "did_remove": {
-      "type": "boolean",
-      "description": "Whether or not the lobby was successfully stopped."
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"did_remove":{"type":"boolean","description":"Whether or not the lobby was successfully stopped."}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

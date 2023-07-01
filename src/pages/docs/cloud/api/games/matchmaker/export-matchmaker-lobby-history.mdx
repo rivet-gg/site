@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.matchmaker.exportMatchmakerLobbyHistory
 
@@ -32,76 +34,22 @@ await RIVET.cloud.games.matchmaker.exportMatchmakerLobbyHistory({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  query_start:
-    type: integer
-    format: int64
-    description: Unsigned 64 bit integer.
-  query_end:
-    type: integer
-    format: int64
-    description: Unsigned 64 bit integer.
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "query_start": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Unsigned 64 bit integer."
-    },
-    "query_end": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Unsigned 64 bit integer."
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"query_start":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"query_end":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  url:
-    type: string
-    description: The URL to a CSV file for the given lobby history.
-required:
-  - url
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "url": {
-      "type": "string",
-      "description": "The URL to a CSV file for the given lobby history."
-    }
-  },
-  "required": [
-    "url"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"url":{"type":"string","description":"The URL to a CSV file for the given lobby history."}},"required":["url"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

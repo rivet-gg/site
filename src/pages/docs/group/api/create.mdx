@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # create
 
@@ -32,70 +34,22 @@ await RIVET.group.create({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  display_name:
-    type: string
-    description: Represent a resource's readable display name.
-required:
-  - display_name
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "display_name": {
-      "type": "string",
-      "description": "Represent a resource's readable display name."
-    }
-  },
-  "required": [
-    "display_name"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["display_name"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  group_id:
-    type: string
-    format: uuid
-required:
-  - group_id
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "group_id": {
-      "type": "string",
-      "format": "uuid"
-    }
-  },
-  "required": [
-    "group_id"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}},"required":["group_id"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

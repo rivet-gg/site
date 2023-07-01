@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.cdn.listGameCdnSites
 
@@ -31,106 +33,11 @@ await RIVET.cloud.games.cdn.listGameCdnSites({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  sites:
-    type: array
-    items:
-      type: object
-      description: A CDN site summary.
-      properties:
-        site_id:
-          type: string
-          format: uuid
-        upload_id:
-          type: string
-          format: uuid
-        display_name:
-          type: string
-          description: Represent a resource's readable display name.
-        create_ts:
-          type: string
-          format: date-time
-          description: RFC3339 timestamp.
-        content_length:
-          type: integer
-          format: int64
-          description: Unsigned 64 bit integer.
-        complete:
-          type: boolean
-          description: Whether or not this site has completely been uploaded.
-      required:
-        - site_id
-        - upload_id
-        - display_name
-        - create_ts
-        - content_length
-        - complete
-    description: A list of CDN site summaries.
-required:
-  - sites
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "sites": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "description": "A CDN site summary.",
-        "properties": {
-          "site_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "upload_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "display_name": {
-            "type": "string",
-            "description": "Represent a resource's readable display name."
-          },
-          "create_ts": {
-            "type": "string",
-            "format": "date-time",
-            "description": "RFC3339 timestamp."
-          },
-          "content_length": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Unsigned 64 bit integer."
-          },
-          "complete": {
-            "type": "boolean",
-            "description": "Whether or not this site has completely been uploaded."
-          }
-        },
-        "required": [
-          "site_id",
-          "upload_id",
-          "display_name",
-          "create_ts",
-          "content_length",
-          "complete"
-        ]
-      },
-      "description": "A list of CDN site summaries."
-    }
-  },
-  "required": [
-    "sites"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"sites":{"type":"array","items":{"type":"object","description":"A CDN site summary.","properties":{"site_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this site has completely been uploaded."}},"required":["site_id","upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of CDN site summaries."}},"required":["sites"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

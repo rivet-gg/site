@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.avatars.listGameCustomAvatars
 
@@ -31,105 +33,11 @@ await RIVET.cloud.games.avatars.listGameCustomAvatars({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  custom_avatars:
-    type: array
-    items:
-      type: object
-      description: A custom avatar summary.
-      properties:
-        upload_id:
-          type: string
-          format: uuid
-        display_name:
-          type: string
-          description: Represent a resource's readable display name.
-        create_ts:
-          type: string
-          format: date-time
-          description: RFC3339 timestamp.
-        url:
-          type: string
-          description: The URL of this custom avatar image. Only present if upload is
-            complete.
-        content_length:
-          type: integer
-          format: int64
-          description: Unsigned 64 bit integer.
-        complete:
-          type: boolean
-          description: Whether or not this custom avatar has completely been uploaded.
-      required:
-        - upload_id
-        - display_name
-        - create_ts
-        - content_length
-        - complete
-    description: A list of custom avatar summaries.
-required:
-  - custom_avatars
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "custom_avatars": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "description": "A custom avatar summary.",
-        "properties": {
-          "upload_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "display_name": {
-            "type": "string",
-            "description": "Represent a resource's readable display name."
-          },
-          "create_ts": {
-            "type": "string",
-            "format": "date-time",
-            "description": "RFC3339 timestamp."
-          },
-          "url": {
-            "type": "string",
-            "description": "The URL of this custom avatar image. Only present if upload is complete."
-          },
-          "content_length": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Unsigned 64 bit integer."
-          },
-          "complete": {
-            "type": "boolean",
-            "description": "Whether or not this custom avatar has completely been uploaded."
-          }
-        },
-        "required": [
-          "upload_id",
-          "display_name",
-          "create_ts",
-          "content_length",
-          "complete"
-        ]
-      },
-      "description": "A list of custom avatar summaries."
-    }
-  },
-  "required": [
-    "custom_avatars"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"custom_avatars":{"type":"array","items":{"type":"object","description":"A custom avatar summary.","properties":{"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"url":{"type":"string","description":"The URL of this custom avatar image. Only present if upload is complete."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this custom avatar has completely been uploaded."}},"required":["upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of custom avatar summaries."}},"required":["custom_avatars"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.validateGameNamespaceMatchmakerConfig
 
@@ -32,106 +34,22 @@ await RIVET.cloud.games.namespaces.validateGameNamespaceMatchmakerConfig({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  lobby_count_max:
-    type: integer
-    description: Unsigned 32 bit integer.
-  max_players:
-    type: integer
-    description: Unsigned 32 bit integer.
-required:
-  - lobby_count_max
-  - max_players
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "lobby_count_max": {
-      "type": "integer",
-      "description": "Unsigned 32 bit integer."
-    },
-    "max_players": {
-      "type": "integer",
-      "description": "Unsigned 32 bit integer."
-    }
-  },
-  "required": [
-    "lobby_count_max",
-    "max_players"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  errors:
-    type: array
-    items:
-      type: object
-      description: An error given by failed content validation.
-      properties:
-        path:
-          type: array
-          items:
-            type: string
-          description: A list of strings denoting the origin of a validation error.
-      required:
-        - path
-    description: A list of validation errors.
-required:
-  - errors
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "errors": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "description": "An error given by failed content validation.",
-        "properties": {
-          "path": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A list of strings denoting the origin of a validation error."
-          }
-        },
-        "required": [
-          "path"
-        ]
-      },
-      "description": "A list of validation errors."
-    }
-  },
-  "required": [
-    "errors"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

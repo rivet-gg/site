@@ -5,6 +5,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { Layout } from '@/components/Layout';
 import * as mdxComponents from '@/components/mdx';
 import { useMobileNavigationStore } from '@/components/MobileNavigation';
+import { injectStyles } from '@stoplight/mosaic';
 
 import '@/styles/tailwind.css';
 import '@/styles/fonts.css';
@@ -24,6 +25,8 @@ Router.events.on('routeChangeStart', onRouteChange);
 Router.events.on('hashChangeStart', onRouteChange);
 
 export default function App({ Component, pageProps }) {
+  injectStyles();
+
   let router = useRouter();
 
   let routes2 = JSON.parse(JSON.stringify(routes));

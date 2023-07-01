@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # signupForBeta
 
@@ -32,61 +34,13 @@ await RIVET.identity.signupForBeta({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  name:
-    type: string
-  company_name:
-    type: string
-  company_size:
-    type: string
-  preferred_tools:
-    type: string
-  goals:
-    type: string
-required:
-  - name
-  - company_size
-  - preferred_tools
-  - goals
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "company_name": {
-      "type": "string"
-    },
-    "company_size": {
-      "type": "string"
-    },
-    "preferred_tools": {
-      "type": "string"
-    },
-    "goals": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "name",
-    "company_size",
-    "preferred_tools",
-    "goals"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"name":{"type":"string"},"company_name":{"type":"string"},"company_size":{"type":"string"},"preferred_tools":{"type":"string"},"goals":{"type":"string"}},"required":["name","company_size","preferred_tools","goals"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

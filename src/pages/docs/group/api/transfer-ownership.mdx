@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # transferOwnership
 
@@ -32,39 +34,13 @@ await RIVET.group.transferOwnership({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  new_owner_identity_id:
-    type: string
-    description: |-
-      Identity to transfer the group to.
-      Must be a member of the group.
-required:
-  - new_owner_identity_id
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "new_owner_identity_id": {
-      "type": "string",
-      "description": "Identity to transfer the group to.\nMust be a member of the group."
-    }
-  },
-  "required": [
-    "new_owner_identity_id"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"new_owner_identity_id":{"type":"string","description":"Identity to transfer the group to.\nMust be a member of the group."}},"required":["new_owner_identity_id"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

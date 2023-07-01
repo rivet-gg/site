@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # lobbies.setClosed
 
@@ -34,35 +36,13 @@ await RIVET.matchmaker.lobbies.setClosed({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  is_closed:
-    type: boolean
-required:
-  - is_closed
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "is_closed": {
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "is_closed"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"is_closed":{"type":"boolean"}},"required":["is_closed"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

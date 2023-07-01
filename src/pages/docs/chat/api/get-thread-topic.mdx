@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # getThreadTopic
 
@@ -31,109 +33,11 @@ await RIVET.chat.getThreadTopic({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  topic:
-    type: object
-    description: |
-      Represents a topic of the given chat thread without the associated handles
-      for the topic.
-    properties:
-      group:
-        type: object
-        properties:
-          group:
-            type: string
-            format: uuid
-        required:
-          - group
-      party:
-        type: object
-        properties:
-          party:
-            type: string
-            format: uuid
-        required:
-          - party
-      direct:
-        type: object
-        properties:
-          identity_a:
-            type: string
-            format: uuid
-          identity_b:
-            type: string
-            format: uuid
-        required:
-          - identity_a
-          - identity_b
-required:
-  - topic
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "topic": {
-      "type": "object",
-      "description": "Represents a topic of the given chat thread without the associated handles\nfor the topic.\n",
-      "properties": {
-        "group": {
-          "type": "object",
-          "properties": {
-            "group": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "required": [
-            "group"
-          ]
-        },
-        "party": {
-          "type": "object",
-          "properties": {
-            "party": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "required": [
-            "party"
-          ]
-        },
-        "direct": {
-          "type": "object",
-          "properties": {
-            "identity_a": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "identity_b": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "required": [
-            "identity_a",
-            "identity_b"
-          ]
-        }
-      }
-    }
-  },
-  "required": [
-    "topic"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"topic":{"type":"object","description":"Represents a topic of the given chat thread without the associated handles\nfor the topic.\n","properties":{"group":{"type":"object","properties":{"group":{"type":"string","format":"uuid"}},"required":["group"]},"party":{"type":"object","properties":{"party":{"type":"string","format":"uuid"}},"required":["party"]},"direct":{"type":"object","properties":{"identity_a":{"type":"string","format":"uuid"},"identity_b":{"type":"string","format":"uuid"}},"required":["identity_a","identity_b"]}}}},"required":["topic"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

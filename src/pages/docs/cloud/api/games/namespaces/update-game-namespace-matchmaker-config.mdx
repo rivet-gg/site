@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.updateGameNamespaceMatchmakerConfig
 
@@ -32,46 +34,13 @@ await RIVET.cloud.games.namespaces.updateGameNamespaceMatchmakerConfig({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  lobby_count_max:
-    type: integer
-    description: Unsigned 32 bit integer.
-  max_players:
-    type: integer
-    description: Unsigned 32 bit integer.
-required:
-  - lobby_count_max
-  - max_players
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "lobby_count_max": {
-      "type": "integer",
-      "description": "Unsigned 32 bit integer."
-    },
-    "max_players": {
-      "type": "integer",
-      "description": "Unsigned 32 bit integer."
-    }
-  },
-  "required": [
-    "lobby_count_max",
-    "max_players"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

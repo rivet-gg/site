@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.games.gameLogoUploadPrepare
 
@@ -32,126 +34,22 @@ await RIVET.cloud.games.games.gameLogoUploadPrepare({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  path:
-    type: string
-    description: The path/filename of the game logo.
-  mime:
-    type: string
-    description: The MIME type of the game logo.
-  content_length:
-    type: integer
-    format: int64
-    description: Unsigned 64 bit integer.
-required:
-  - path
-  - content_length
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "path": {
-      "type": "string",
-      "description": "The path/filename of the game logo."
-    },
-    "mime": {
-      "type": "string",
-      "description": "The MIME type of the game logo."
-    },
-    "content_length": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Unsigned 64 bit integer."
-    }
-  },
-  "required": [
-    "path",
-    "content_length"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the game logo."},"mime":{"type":"string","description":"The MIME type of the game logo."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  upload_id:
-    type: string
-    format: uuid
-  presigned_request:
-    type: object
-    description: >
-      A presigned request used to upload files.  Upload your file to the given
-      URL via a PUT request.
-    properties:
-      path:
-        type: string
-        description: >
-          The name of the file to upload.  This is the same as the one given in
-          the upload prepare file.
-      url:
-        type: string
-        description: |
-          The URL of the presigned request for which to upload your file to.
-    required:
-      - path
-      - url
-required:
-  - upload_id
-  - presigned_request
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "upload_id": {
-      "type": "string",
-      "format": "uuid"
-    },
-    "presigned_request": {
-      "type": "object",
-      "description": "A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n",
-      "properties": {
-        "path": {
-          "type": "string",
-          "description": "The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"
-        },
-        "url": {
-          "type": "string",
-          "description": "The URL of the presigned request for which to upload your file to.\n"
-        }
-      },
-      "required": [
-        "path",
-        "url"
-      ]
-    }
-  },
-  "required": [
-    "upload_id",
-    "presigned_request"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

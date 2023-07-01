@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # joinRequests.resolveJoinRequest
 
@@ -32,30 +34,13 @@ await RIVET.group.joinRequests.resolveJoinRequest({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  resolution:
-    type: boolean
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "resolution": {
-      "type": "boolean"
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"resolution":{"type":"boolean"}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

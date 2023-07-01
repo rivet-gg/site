@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.createInvite
 
@@ -32,77 +34,22 @@ await RIVET.group.invites.createInvite({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  ttl:
-    type: number
-    format: double
-    description: How long until the group invite expires (in milliseconds).
-  use_count:
-    type: number
-    format: double
-    description: How many times the group invite can be used.
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "ttl": {
-      "type": "number",
-      "format": "double",
-      "description": "How long until the group invite expires (in milliseconds)."
-    },
-    "use_count": {
-      "type": "number",
-      "format": "double",
-      "description": "How many times the group invite can be used."
-    }
-  }
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"ttl":{"type":"number","format":"double","description":"How long until the group invite expires (in milliseconds)."},"use_count":{"type":"number","format":"double","description":"How many times the group invite can be used."}}}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  code:
-    type: string
-    description: The code that will be passed to `rivet.api.group#ConsumeInvite` to
-      join a group.
-required:
-  - code
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "code": {
-      "type": "string",
-      "description": "The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."
-    }
-  },
-  "required": [
-    "code"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"code":{"type":"string","description":"The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."}},"required":["code"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # setThreadRead
 
@@ -32,41 +34,13 @@ await RIVET.chat.setThreadRead({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  last_read_ts:
-    type: string
-    format: date-time
-    description: |-
-      Any messages newer than this timestamp will be marked as unread.
-      This should be the current timestamp (in milliseconds).
-required:
-  - last_read_ts
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "last_read_ts": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Any messages newer than this timestamp will be marked as unread.\nThis should be the current timestamp (in milliseconds)."
-    }
-  },
-  "required": [
-    "last_read_ts"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"last_read_ts":{"type":"string","format":"date-time","description":"Any messages newer than this timestamp will be marked as unread.\nThis should be the current timestamp (in milliseconds)."}},"required":["last_read_ts"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

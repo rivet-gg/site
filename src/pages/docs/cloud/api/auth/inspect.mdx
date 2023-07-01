@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # auth.inspect
 
@@ -31,82 +33,11 @@ await RIVET.cloud.auth.inspect({
 
 ## Response Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Response'>
-
-```yaml
-type: object
-properties:
-  agent:
-    type: object
-    description: The current authenticated agent.
-    properties:
-      identity:
-        type: object
-        description: The current authenticated identity.
-        properties:
-          identity_id:
-            type: string
-            format: uuid
-        required:
-          - identity_id
-      game_cloud:
-        type: object
-        description: The current authenticated game cloud.
-        properties:
-          game_id:
-            type: string
-            format: uuid
-        required:
-          - game_id
-required:
-  - agent
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "agent": {
-      "type": "object",
-      "description": "The current authenticated agent.",
-      "properties": {
-        "identity": {
-          "type": "object",
-          "description": "The current authenticated identity.",
-          "properties": {
-            "identity_id": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "required": [
-            "identity_id"
-          ]
-        },
-        "game_cloud": {
-          "type": "object",
-          "description": "The current authenticated game cloud.",
-          "properties": {
-            "game_id": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "required": [
-            "game_id"
-          ]
-        }
-      }
-    }
-  },
-  "required": [
-    "agent"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"agent":{"type":"object","description":"The current authenticated agent.","properties":{"identity":{"type":"object","description":"The current authenticated identity.","properties":{"identity_id":{"type":"string","format":"uuid"}},"required":["identity_id"]},"game_cloud":{"type":"object","description":"The current authenticated game cloud.","properties":{"game_id":{"type":"string","format":"uuid"}},"required":["game_id"]}}}},"required":["agent"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 

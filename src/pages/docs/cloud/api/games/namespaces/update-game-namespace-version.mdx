@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # ⭐️ games.namespaces.updateGameNamespaceVersion
 
@@ -32,37 +34,13 @@ await RIVET.cloud.games.namespaces.updateGameNamespaceVersion({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  version_id:
-    type: string
-    format: uuid
-required:
-  - version_id
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "version_id": {
-      "type": "string",
-      "format": "uuid"
-    }
-  },
-  "required": [
-    "version_id"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"version_id":{"type":"string","format":"uuid"}},"required":["version_id"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body

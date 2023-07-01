@@ -1,4 +1,6 @@
+
 import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.updateNamespaceCdnAuthUser
 
@@ -32,47 +34,13 @@ await RIVET.cloud.games.namespaces.updateNamespaceCdnAuthUser({
 
 ## Request Body
 
-_Represented in [JSON Schema](https://json-schema.org/)._
-
-<CodeGroup title='Request'>
-
-```yaml
-type: object
-properties:
-  user:
-    type: string
-    description: A user name.
-  password:
-    type: string
-    description: A bcrypt encrypted password. An error is returned if the given
-      string is not properly encrypted.
-required:
-  - user
-  - password
-
-```
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "user": {
-      "type": "string",
-      "description": "A user name."
-    },
-    "password": {
-      "type": "string",
-      "description": "A bcrypt encrypted password. An error is returned if the given string is not properly encrypted."
-    }
-  },
-  "required": [
-    "user",
-    "password"
-  ]
-}
-```
-
-</CodeGroup>
+<DocsJsonSchemaViewer
+  schema={{"type":"object","properties":{"user":{"type":"string","description":"A user name."},"password":{"type":"string","description":"A bcrypt encrypted password. An error is returned if the given string is not properly encrypted."}},"required":["user","password"]}}
+  expanded={true}
+  hideTopBar={false}
+  emptyText="No schema defined"
+  defaultExpandedDepth={0}
+/>
 
 
 ## Response Body
