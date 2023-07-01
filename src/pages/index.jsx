@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { GridPattern } from '@/components/GridPattern';
 import { Game } from '@/components/Game';
-import GitHubButton from 'react-github-btn';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
@@ -248,25 +247,6 @@ function Title() {
     <div className='flex w-full flex-wrap items-center justify-center gap-8'>
       {/* Text */}
       <div className='max-w-2xl text-center'>
-        {/* Event */}
-        <div className='hidden sm:mb-8 sm:flex sm:justify-center'>
-          <div className='relative flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10'>
-            <div>Rivet is now open source</div>
-            <div className='-mb-1 ml-4'>
-              <GitHubButton
-                href='https://github.com/rivet-gg/rivet'
-                data-show-count='true'
-                aria-label='Star rivet-gg/rivet on GitHub'>
-                Star
-              </GitHubButton>
-            </div>
-            {/* <a href='#' className='font-semibold text-white'>
-            <span className='absolute inset-0' aria-hidden='true' />
-            Read more <span aria-hidden='true'>&rarr;</span>
-          </a> */}
-          </div>
-        </div>
-
         {/* Title */}
         <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
           The Multiplayer
