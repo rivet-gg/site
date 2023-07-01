@@ -1,8 +1,8 @@
-import { forwardRef, Fragment, useState } from 'react';
+import { forwardRef, Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
-
+import { usePostHog } from 'posthog-js/react';
 import { Button } from '@/components/Button';
 
 function CheckIcon(props) {
@@ -59,14 +59,32 @@ const FeedbackThanks = forwardRef(function FeedbackThanks(_props, ref) {
 });
 
 function Feedback() {
+  const posthog = usePostHog()
+
+  let router = useRouter();
+  let feedbackKey = `feedback:${router.pathname}`
   let [submitted, setSubmitted] = useState(false);
 
+  // Populate submitted
+  useEffect(() => {
+    if (localStorage.getItem(feedbackKey)) {
+      setSubmitted(true);
+    }
+  }, [feedbackKey]);
+
+  // Handle submission
   function onSubmit(event) {
     event.preventDefault();
 
-    // event.nativeEvent.submitter.dataset.response
-    // => "yes" or "no"
+    // Send event
+    console.log('feedback', posthog)
+    posthog?.capture('page_feedback', {
+      page: router.pathname,
+      helpful: event.nativeEvent.submitter.dataset.response === 'yes',
+    });
 
+    // Update state
+    localStorage.setItem(feedbackKey, 'true');
     setSubmitted(true);
   }
 
@@ -207,12 +225,12 @@ function SmallPrint() {
   );
 }
 
-export function Footer({ navigation, feedback }) {
+export function Footer({ navigation  }) {
   let router = useRouter();
 
   return (
     <footer className='mx-auto max-w-2xl space-y-10 pb-16 lg:max-w-5xl'>
-      {feedback ? <Feedback key={router.pathname} /> : null}
+      {navigation.feedback && <Feedback key={router.pathname} />}
       {navigation.sidebar ? <PageNavigation navigation={navigation} /> : null}
       <SmallPrint />
     </footer>
