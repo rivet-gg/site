@@ -83,6 +83,13 @@ import imgUnreal from '@/images/vendors/unreal-white.svg';
 import imgGodot from '@/images/vendors/godot-white.svg';
 import imgHtml5 from '@/images/vendors/html5-white.svg';
 
+import imgApesScreenshot from '@/images/case-studies/screenshots/apes.png';
+import imgApesLogo from '@/images/case-studies/logos/apes.png';
+import imgDiepScreenshot from '@/images/case-studies/screenshots/diep.jpg';
+import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
+import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
+import imgEvLogo from '@/images/case-studies/logos/ev.png';
+
 const pages = [
   {
     name: 'Game Servers',
@@ -293,6 +300,34 @@ let supportedEngines = [
   }
 ];
 
+let caseStudies = [
+  {
+    name: 'Apes.io',
+    href: 'https://apes.io',
+    screenshot: imgApesScreenshot,
+    logo: imgApesLogo,
+    gradient: 'from-[#a8271d] to-[#ad7b3d]'
+  },
+  {
+    name: 'Ev.io',
+    href: 'https://ev.io',
+    badge: {
+      title: 'Best eSports Game',
+      subtitle: '– Gam3rs Choice Awards'
+    },
+    screenshot: imgEvScreenshot,
+    logo: imgEvLogo,
+    gradient: 'from-[#7d56d6] to-[#2a4080]'
+  },
+  {
+    name: 'Diep.io',
+    href: 'https://diep.io',
+    screenshot: imgDiepScreenshot,
+    logo: imgDiepLogo,
+    gradient: 'from-[#56a0d9] to-[#3d5db8]'
+  }
+];
+
 export async function getStaticProps() {
   if (process.env.NODE_ENV === 'production') {
     await generateRssFeed();
@@ -450,7 +485,7 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='ring-inse mt-16 w-full rounded-md shadow-2xl ring-1 ring-gray-800/10 dark:ring-gray-200/10 sm:mt-24'>
+    <div className='ring-inset mt-16 w-full rounded-3xl shadow-2xl ring-1 ring-white/10 sm:mt-24'>
       <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
       <Pages page={page} onChangePage={setPage} />
     </div>
@@ -460,7 +495,7 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div className='hidden sm:block'>
-      <div className='border-b border-zinc-900/10 dark:border-white/15'>
+      <div className='border-b border-white/10'>
         <nav className='-mb-px flex' aria-label='Tabs'>
           {pages.map((tab, i) => {
             let isCurrent = i == index;
@@ -470,9 +505,9 @@ function Tabs({ index, onChangeTab }) {
                 href={tab.href}
                 className={clsx(
                   isCurrent
-                    ? 'border-violet-500 bg-[color:var(--tab-color)] text-white'
+                    ? 'bg-[color:var(--tab-color)] text-white'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-bold text-white transition'
+                  'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-2xl py-2 text-center font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
@@ -603,69 +638,27 @@ function CaseStudies({ props }) {
     <div className='mt-40'>
       {/* Title */}
       <div className='mx-auto max-w-2xl text-center'>
-        <h2 className='text-xl font-bold tracking-tight text-white sm:text-2xl'>
+        <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl'>
           {/* Trusted to serve millions of players. */}
           {/* Used by companies that forget about infrastructure */}
-          Used by companies that prefer game development over infrastructure
+          {/* Used by companies that prefer game development over infrastructure */}
+          Serving <span className='text-violet-300'>millions</span> of players at scale
         </h2>
       </div>
 
       {/* Grid */}
-      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3'>
-        <div className='bg-white/5 p-8 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg'
-            alt='Transistor'
-            width={158}
-            height={48}
-          />
-        </div>
-        <div className='bg-white/5 p-6 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg'
-            alt='Reform'
-            width={158}
-            height={48}
-          />
-        </div>
-        <div className='bg-white/5 p-6 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg'
-            alt='Tuple'
-            width={158}
-            height={48}
-          />
-        </div>
-        <div className='bg-white/5 p-6 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/laravel-logo-white.svg'
-            alt='Laravel'
-            width={158}
-            height={48}
-          />
-        </div>
-        <div className='bg-white/5 p-6 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg'
-            alt='SavvyCal'
-            width={158}
-            height={48}
-          />
-        </div>
-        <div className='bg-white/5 p-6 sm:p-10'>
-          <Image
-            className='max-h-12 w-full object-contain'
-            src='https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg'
-            alt='Statamic'
-            width={158}
-            height={48}
-          />
-        </div>
+      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3 ring-1 ring-white/10 ring-inset'>
+        {caseStudies.map((study, i) => (
+          <Link key={i} href={study.href} className='group align-center relative flex justify-center items-center p-8 sm:p-10 h-[175px]'>
+            <Image
+              className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
+              src={study.screenshot}
+              alt=''
+            />
+            <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', study.gradient)} />
+            <Image className='h-12 object-contain group-hover:scale-110 transition' src={study.logo} alt={study.name} />
+          </Link>
+        ))}
       </div>
     </div>
   );
@@ -690,7 +683,7 @@ function UpAndRunning() {
   return (
     <div className='relative isolate mt-40'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-        <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
+        <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-inset ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
           <div className='h-96 w-full flex-none overflow-hidden rounded-2xl object-cover shadow-xl lg:aspect-video lg:h-auto lg:max-w-sm'>
             <iframe
