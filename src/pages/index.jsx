@@ -297,12 +297,14 @@ function Title() {
   return (
     <div className='flex w-full flex-wrap items-center justify-center gap-8'>
       {/* Text */}
-      <div className='max-w-2xl text-center'>
+      <div className='max-w-2xl text-left'>
         {/* Title */}
         <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          The Multiplayer
+          Multiplayer Made<br />
+          Simple
+          {/* The Multiplayer
           <br />
-          Development Platform
+          Development Platform */}
         </h1>
 
         {/* Subtitle */}
@@ -310,8 +312,19 @@ function Title() {
           All-in-one solution to deploy, scale, and operate your multiplayer game
         </p>
 
+        {/* YC */}
+        <Link
+          href='https://www.ycombinator.com/'
+          target='_blank'
+          className='margin-auto mt-8 block w-max rounded-lg bg-white/5 px-3 py-1.5 ring-1 ring-white/10'>
+          <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
+            <div>Backed by</div>
+            <YCLogo className='h-[1.7em]' white={true} />
+          </div>
+        </Link>
+
         {/* CTA */}
-        <div className='mt-10 flex items-center justify-center gap-x-6'>
+        <div className='mt-10 flex items-center justify-left gap-x-6'>
           <a
             href='#'
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
@@ -321,17 +334,6 @@ function Title() {
             Crash Course <span aria-hidden='true'>→</span>
           </a>
         </div>
-
-        {/* YC */}
-        <Link
-          href='https://www.ycombinator.com/'
-          target='_blank'
-          className='margin-auto mx-auto mt-8 block w-max rounded-lg bg-white/5 px-4 py-2 ring-1 ring-white/10'>
-          <div className='flex items-center justify-center gap-2 text-sm font-semibold text-white'>
-            <div>Backed by</div>
-            <YCLogo className='h-[1.7em]' white={true} />
-          </div>
-        </Link>
       </div>
 
       {/* Demo */}
@@ -415,7 +417,7 @@ function Tabs({ index, onChangeTab }) {
                   isCurrent
                     ? 'border-violet-500 bg-[color:var(--tab-color)] text-white'
                     : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center font-display text-lg font-bold text-white transition'
+                  'group/tab align-center m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-lg py-2 text-center text-normal font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
@@ -547,7 +549,9 @@ function CaseStudies({ props }) {
       {/* Title */}
       <div className='mx-auto max-w-2xl text-center'>
         <h2 className='text-xl font-bold tracking-tight text-white sm:text-2xl'>
-          Trusted to serve millions of players.
+          {/* Trusted to serve millions of players. */}
+          {/* Used by companies that forget about infrastructure */}
+          Used by companies that prefer game development over infrastructure
         </h2>
       </div>
 
