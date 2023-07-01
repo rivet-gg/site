@@ -333,9 +333,9 @@ function Title() {
           >
             Sign Up
           </a>
-          <a href='#' className='text-sm font-semibold leading-6 text-white'>
+          <Link href='#' className='text-sm font-semibold leading-6 text-white'>
             Crash Course <span aria-hidden='true'>→</span>
-          </a>
+          </Link>
         </div>
       </div>
 

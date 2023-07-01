@@ -2,6 +2,7 @@ import { forwardRef, useState, useEffect, Fragment } from "react";
 import { usePostHog } from "posthog-js/react";
 import { useRouter } from "next/router";
 import { Transition } from '@headlessui/react';
+import { CheckIcon } from '@heroicons/react/20/solid';
 
 function FeedbackButton(props) {
   return (
