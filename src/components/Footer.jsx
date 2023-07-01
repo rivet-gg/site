@@ -35,8 +35,7 @@ const FeedbackForm = forwardRef(function FeedbackForm({ onSubmit }, ref) {
     <form
       ref={ref}
       onSubmit={onSubmit}
-      className='absolute inset-0 flex items-center justify-center gap-6 md:justify-start'
-    >
+      className='absolute inset-0 flex items-center justify-center gap-6 md:justify-start'>
       <p className='text-sm text-zinc-600 dark:text-zinc-400'>Was this page helpful?</p>
       <div className='group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-zinc-900/10 dark:border-white/10'>
         <FeedbackButton data-response='yes'>Yes</FeedbackButton>
@@ -59,10 +58,10 @@ const FeedbackThanks = forwardRef(function FeedbackThanks(_props, ref) {
 });
 
 function Feedback() {
-  const posthog = usePostHog()
+  const posthog = usePostHog();
 
   let router = useRouter();
-  let feedbackKey = `feedback:${router.pathname}`
+  let feedbackKey = `feedback:${router.pathname}`;
   let [submitted, setSubmitted] = useState(false);
 
   // Populate submitted
@@ -77,10 +76,9 @@ function Feedback() {
     event.preventDefault();
 
     // Send event
-    console.log('feedback', posthog)
     posthog?.capture('page_feedback', {
       page: router.pathname,
-      helpful: event.nativeEvent.submitter.dataset.response === 'yes',
+      helpful: event.nativeEvent.submitter.dataset.response === 'yes'
     });
 
     // Update state
@@ -95,8 +93,7 @@ function Feedback() {
         as={Fragment}
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
-        leave='pointer-events-none duration-300'
-      >
+        leave='pointer-events-none duration-300'>
         <FeedbackForm onSubmit={onSubmit} />
       </Transition>
       <Transition
@@ -104,8 +101,7 @@ function Feedback() {
         as={Fragment}
         enterFrom='opacity-0'
         enterTo='opacity-100'
-        enter='delay-150 duration-300'
-      >
+        enter='delay-150 duration-300'>
         <FeedbackThanks />
       </Transition>
     </div>
@@ -119,16 +115,14 @@ function PageLink({ label, page, previous = false }) {
         href={page.href}
         aria-label={`${label}: ${page.title}`}
         variant='secondary'
-        arrow={previous ? 'left' : 'right'}
-      >
+        arrow={previous ? 'left' : 'right'}>
         {label}
       </Button>
       <Link
         href={page.href}
         tabIndex={-1}
         aria-hidden='true'
-        className='text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300'
-      >
+        className='text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300'>
         {page.title}
       </Link>
     </>
@@ -225,7 +219,7 @@ function SmallPrint() {
   );
 }
 
-export function Footer({ navigation  }) {
+export function Footer({ navigation }) {
   let router = useRouter();
 
   return (
