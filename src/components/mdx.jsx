@@ -8,32 +8,9 @@ export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
 export { ResourceGroup, Resource } from '@/components/Resources';
 export { Snippet } from '@/components/Snippet';
 export { Summary } from '@/components/Summary';
+export { Accordion, AccordionGroup } from '@/components/Accordion';
 
 export const a = Link;
-
-// TODO: Phase this out with our own custom elements
-export {
-  Accordion,
-  AccordionGroup
-  // AppearFromTop,
-  // Button,
-  // Card,
-  // CardGroup,
-  // CodeBlock,
-  // CodeGroup,
-  // Check,
-  // Expandable,
-  // Frame,
-  // Info,
-  // Warning,
-  // Note,
-  // Param,
-  // PillSelect,
-  // Tabs,
-  // Tip,
-  // Tab,
-  // Tooltip
-} from '@mintlify/components';
 
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
