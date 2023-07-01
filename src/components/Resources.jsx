@@ -39,7 +39,7 @@ function ResourceIcon({ icon }) {
     <div className='flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-violet-300/10 dark:group-hover:ring-violet-400'>
       <FontAwesomeIcon
         icon={icon}
-        className='h-5 w-5 fill-zinc-700/10 stroke-zinc-700 transition-colors duration-300 group-hover:stroke-zinc-900 dark:fill-white/10 dark:stroke-zinc-400 dark:group-hover:fill-violet-300/10 dark:group-hover:stroke-violet-400'
+        className='h-5 w-5 transition duration-300 text-zinc-400 group-hover:text-violet-400'
       />
     </div>
   );
@@ -97,15 +97,15 @@ export function Resource({ children, ...props }) {
       href={props.href}
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5'>
+      className='group relative flex rounded-2xl bg-zinc-50 transition hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5 hover:scale-[1.03]'>
       <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
         <ResourceIcon icon={props.icon} />
-        <h3 className='mt-4 font-display text-sm font-semibold leading-7 text-zinc-900 dark:text-white'>
+        <div className='mt-4 font-display text-xl font-semibold leading-7 text-zinc-900 dark:text-white'>
           <span className='absolute inset-0 rounded-2xl' />
           {props.title}
-        </h3>
+        </div>
         {/* TODO: This is causing an error */}
         {/* <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p> */}
       </div>

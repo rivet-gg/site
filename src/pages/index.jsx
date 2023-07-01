@@ -51,7 +51,10 @@ import {
   faMoneyBill,
   faHundredPoints,
   faCloudMoon,
-  faPaintbrushPencil
+  faPaintbrushPencil,
+  faHammer,
+  faCode,
+  faLifeRing
 } from '@fortawesome/pro-solid-svg-icons';
 
 import imgLobbies from '@/images/screenshots/lobbies.png';
@@ -626,6 +629,7 @@ function CaseStudies({ props }) {
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { Resource, ResourceGroup } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
+import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 // import YCLogo from '@/components/YCLogo';
 
 const benefits = [
@@ -665,25 +669,20 @@ function UpAndRunning() {
               Launch your game in <span className='text-violet-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              {`Just 3 lines of code and you're off to the races.`}
+              {`Just 5 lines of code and you're off to the races.`}
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource
-                title='Getting started'
+                title='Crash course'
                 icon={faGraduationCap}
                 href='/docs/general/guides/crash-course'
               />
-              <Resource title='Learn' icon={faBooks} href='/docs/general/libraries' />
-              <Resource
-                title='Video learn'
-                icon={faServer}
-                iconType='duotone'
-                href='/docs/serverless-lobbies'
-              />
-              <Resource title='API' icon={faGlobe} href='/docs/cdn' />
-              <Resource title='GitHub' icon={faGlobe} href='/docs/cdn' />
-              <Resource title='Community' icon={faUserGroup} href='/docs/cdn' />
+              <Resource title='Learn' icon={faHammer} href='/learn' />
+              <Resource title='Libraries' icon={faCode} href='/docs/general/libraries' />
+              <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' />
+              <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' />
+              <Resource title='Support' icon={faLifeRing} href='/support' />
             </div>
           </div>
         </div>
