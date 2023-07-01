@@ -54,7 +54,8 @@ import {
   faPaintbrushPencil,
   faHammer,
   faCode,
-  faLifeRing
+  faLifeRing,
+  faAward
 } from '@fortawesome/pro-solid-svg-icons';
 
 import imgLobbies from '@/images/screenshots/lobbies.png';
@@ -311,10 +312,17 @@ let caseStudies = [
   {
     name: 'Ev.io',
     href: 'https://ev.io',
-    badge: {
-      title: 'Best eSports Game',
-      subtitle: '– Gam3rs Choice Awards'
-    },
+    badge: () => (
+      <div className='flex align-center absolute bottom-2 w-full justify-center items-center text-white gap-4'>
+        <FontAwesomeIcon icon={faAward} className='text-2xl' />
+        <div className=' flex flex-col'>
+          <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
+            2023 Best eSports & FPS Game
+          </span>
+          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>– Gam3rs' Choice Awards</span>
+        </div>
+      </div>
+    ),
     screenshot: imgEvScreenshot,
     logo: imgEvLogo,
     gradient: 'from-[#7d56d6] to-[#2a4080]'
@@ -485,7 +493,7 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='ring-inset mt-16 w-full rounded-3xl shadow-2xl ring-1 ring-white/10 sm:mt-24'>
+    <div className='mt-16 w-full rounded-3xl shadow-2xl ring-1 ring-inset ring-white/10 sm:mt-24'>
       <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
       <Pages page={page} onChangePage={setPage} />
     </div>
@@ -504,9 +512,7 @@ function Tabs({ index, onChangeTab }) {
                 key={tab.name}
                 href={tab.href}
                 className={clsx(
-                  isCurrent
-                    ? 'bg-[color:var(--tab-color)] text-white'
-                    : 'opacity-50 hover:opacity-100',
+                  isCurrent ? 'bg-[color:var(--tab-color)] text-white' : 'opacity-50 hover:opacity-100',
                   'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-2xl py-2 text-center font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
@@ -647,16 +653,24 @@ function CaseStudies({ props }) {
       </div>
 
       {/* Grid */}
-      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3 ring-1 ring-white/10 ring-inset'>
+      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10 sm:mx-0 sm:rounded-2xl md:grid-cols-3'>
         {caseStudies.map((study, i) => (
-          <Link key={i} href={study.href} className='group align-center relative flex justify-center items-center p-8 sm:p-10 h-[175px]'>
+          <Link
+            key={i}
+            href={study.href}
+            className='align-center group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
               alt=''
             />
             <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', study.gradient)} />
-            <Image className='h-12 object-contain group-hover:scale-110 transition' src={study.logo} alt={study.name} />
+            <Image
+              className='h-14 w-32 object-contain transition group-hover:scale-110'
+              src={study.logo}
+              alt={study.name}
+            />
+            {study.badge && study.badge()}
           </Link>
         ))}
       </div>
