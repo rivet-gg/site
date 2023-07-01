@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Kicks an identity from a group. Must be the owner of the group to perform this action.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/kick/{identity_id}'>
 
@@ -29,6 +29,25 @@ await RIVET.group.kickMember({
 ```
 
 </CodeGroup>
+
+
+## Request Parameters
+
+
+### group_id
+
+_Path parameter, required_
+
+
+
+
+
+### identity_id
+
+_Path parameter, required_
+
+
+
 
 
 ## Response Body

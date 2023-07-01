@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Creates an abuse report for an identity.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/{identity_id}/report'>
 
@@ -32,15 +32,20 @@ await RIVET.identity.report({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### identity_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"reason":{"type":"string"}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"reason":{"type":"string"}}}} />
 
 
 ## Response Body

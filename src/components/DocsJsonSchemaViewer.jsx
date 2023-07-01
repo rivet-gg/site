@@ -6,10 +6,16 @@ const JsonSchemaViewerNoSSR = dynamic(
   { ssr: false }
 );
 
-export function DocsJsonSchemaViewer({ ...props }) {
+export function DocsJsonSchemaViewer({ schema }) {
   return (
     <InvertTheme>
-      <JsonSchemaViewerNoSSR {...props} />
+      <JsonSchemaViewerNoSSR
+        schema={schema}
+        expanded={true}
+        hideTopBar={false}
+        emptyText='No schema defined'
+        defaultExpandedDepth={0}
+      />
     </InvertTheme>
   );
 }

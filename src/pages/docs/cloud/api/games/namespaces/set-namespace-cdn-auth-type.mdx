@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Updates the CDN authentication type of the given game namesapce.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/cdn-auth'>
 
@@ -32,15 +32,28 @@ await RIVET.cloud.games.namespaces.setNamespaceCdnAuthType({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"auth_type":{"type":"string","enum":["none","basic"],"description":"A value denoting what type of authentication to use for a game namespace's CDN."}},"required":["auth_type"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"auth_type":{"type":"string","enum":["none","basic"],"description":"A value denoting what type of authentication to use for a game namespace's CDN."}},"required":["auth_type"]}} />
 
 
 ## Response Body

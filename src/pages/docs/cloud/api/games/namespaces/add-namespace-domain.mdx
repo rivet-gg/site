@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Adds a domain to the given game namespace.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domains'>
 
@@ -32,15 +32,28 @@ await RIVET.cloud.games.namespaces.addNamespaceDomain({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"domain":{"type":"string","description":"A valid domain name (no protocol)."}},"required":["domain"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"domain":{"type":"string","description":"A valid domain name (no protocol)."}},"required":["domain"]}} />
 
 
 ## Response Body

@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Completes an avatar image upload. Must be called after the file upload process completes.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/self/beta-signup'>
 
@@ -32,15 +32,12 @@ await RIVET.identity.signupForBeta({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"name":{"type":"string"},"company_name":{"type":"string"},"company_size":{"type":"string"},"preferred_tools":{"type":"string"},"goals":{"type":"string"}},"required":["name","company_size","preferred_tools","goals"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"name":{"type":"string"},"company_name":{"type":"string"},"company_size":{"type":"string"},"preferred_tools":{"type":"string"},"goals":{"type":"string"}},"required":["name","company_size","preferred_tools","goals"]}} />
 
 
 ## Response Body

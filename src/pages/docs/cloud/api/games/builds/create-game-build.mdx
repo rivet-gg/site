@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Creates a new game build for the given game.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/builds'>
 
@@ -32,24 +32,23 @@ await RIVET.cloud.games.builds.createGameBuild({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"image_tag":{"type":"string","description":"A tag given to the game build."},"image_file":{"type":"object","description":"A file being prepared to upload.","properties":{"path":{"type":"string","description":"The path/filename of the file."},"content_type":{"type":"string","description":"The MIME type of the file."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}},"required":["display_name","image_tag","image_file"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"image_tag":{"type":"string","description":"A tag given to the game build."},"image_file":{"type":"object","description":"A file being prepared to upload.","properties":{"path":{"type":"string","description":"The path/filename of the file."},"content_type":{"type":"string","description":"The MIME type of the file."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}},"required":["display_name","image_tag","image_file"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"build_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"image_presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["build_id","upload_id","image_presigned_request"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"build_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"image_presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["build_id","upload_id","image_presigned_request"]}} />
 

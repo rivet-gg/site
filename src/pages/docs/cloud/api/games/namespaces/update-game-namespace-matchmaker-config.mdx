@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Updates matchmaker config for the given game namespace.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config'>
 
@@ -32,15 +32,28 @@ await RIVET.cloud.games.namespaces.updateGameNamespaceMatchmakerConfig({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}} />
 
 
 ## Response Body

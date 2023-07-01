@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Validate contents of group profile. Use to provide immediate feedback on profile changes before committing them.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/profile/validate'>
 
@@ -32,24 +32,15 @@ await RIVET.group.validateProfile({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"bio":{"type":"string","description":"Detailed information about a profile."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"bio":{"type":"string","description":"Detailed information about a profile."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."}}}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}} />
 

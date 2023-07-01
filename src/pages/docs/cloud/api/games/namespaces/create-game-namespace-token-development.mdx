@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Creates a development token for the given namespace.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/tokens/development'>
 
@@ -32,24 +32,31 @@ await RIVET.cloud.games.namespaces.createGameNamespaceTokenDevelopment({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"hostname":{"type":"string","description":"The hostname used for the token."},"ports":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/CloudMatchmakerDevelopmentPort"}},"lobby_ports":null},"required":["hostname"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"hostname":{"type":"string","description":"The hostname used for the token."},"ports":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/CloudMatchmakerDevelopmentPort"}},"lobby_ports":null},"required":["hostname"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"token":{"type":"string","description":"A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."}},"required":["token"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"token":{"type":"string","description":"A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."}},"required":["token"]}} />
 

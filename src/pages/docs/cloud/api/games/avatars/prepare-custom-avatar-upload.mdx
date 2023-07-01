@@ -10,7 +10,7 @@ Prepares a custom avatar image upload.
 Complete upload with `rivet.api.cloud#CompleteCustomAvatarUpload`.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/prepare'>
 
@@ -33,24 +33,23 @@ await RIVET.cloud.games.avatars.prepareCustomAvatarUpload({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the custom avatar."},"mime":{"type":"string","description":"The MIME type of the custom avatar."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the custom avatar."},"mime":{"type":"string","description":"The MIME type of the custom avatar."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}} />
 

@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Sends a chat message to a given topic.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://chat.api.rivet.gg/v1/messages'>
 
@@ -32,24 +32,15 @@ await RIVET.chat.sendMessage({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"topic":{"type":"object","description":"Topic to send a chat message to.","properties":{"thread_id":{"type":"string","format":"uuid"},"group_id":{"type":"string","format":"uuid"},"party_id":{"type":"string","format":"uuid"},"identity_id":{"type":"string","format":"uuid"}}},"message_body":{"type":"object","description":"Data to send in a chat message.","properties":{"text":{"type":"object","description":"The text in the text message.","properties":{"body":{"type":"string"}},"required":["body"]},"party_invite":{"type":"object","properties":{"token":{"type":"string","description":"Documentation at https://jwt.io/"}},"required":["token"]}}}},"required":["topic","message_body"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"topic":{"type":"object","description":"Topic to send a chat message to.","properties":{"thread_id":{"type":"string","format":"uuid"},"group_id":{"type":"string","format":"uuid"},"party_id":{"type":"string","format":"uuid"},"identity_id":{"type":"string","format":"uuid"}}},"message_body":{"type":"object","description":"Data to send in a chat message.","properties":{"text":{"type":"object","description":"The text in the text message.","properties":{"body":{"type":"string"}},"required":["body"]},"party_invite":{"type":"object","properties":{"token":{"type":"string","description":"Documentation at https://jwt.io/"}},"required":["token"]}}}},"required":["topic","message_body"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"chat_message_id":{"type":"string","format":"uuid"}},"required":["chat_message_id"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"chat_message_id":{"type":"string","format":"uuid"}},"required":["chat_message_id"]}} />
 

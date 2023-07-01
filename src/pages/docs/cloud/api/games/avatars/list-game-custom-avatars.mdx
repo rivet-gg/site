@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Lists custom avatars for the given game.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games/{game_id}/avatars'>
 
@@ -31,13 +31,18 @@ await RIVET.cloud.games.avatars.listGameCustomAvatars({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"custom_avatars":{"type":"array","items":{"type":"object","description":"A custom avatar summary.","properties":{"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"url":{"type":"string","description":"The URL of this custom avatar image. Only present if upload is complete."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this custom avatar has completely been uploaded."}},"required":["upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of custom avatar summaries."}},"required":["custom_avatars"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"custom_avatars":{"type":"array","items":{"type":"object","description":"A custom avatar summary.","properties":{"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"url":{"type":"string","description":"The URL of this custom avatar image. Only present if upload is complete."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this custom avatar has completely been uploaded."}},"required":["upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of custom avatar summaries."}},"required":["custom_avatars"]}} />
 

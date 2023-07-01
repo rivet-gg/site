@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Creates a group invite. Can be shared with other identities to let them join this group.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/invites'>
 
@@ -32,24 +32,23 @@ await RIVET.group.invites.createInvite({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### group_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"ttl":{"type":"number","format":"double","description":"How long until the group invite expires (in milliseconds)."},"use_count":{"type":"number","format":"double","description":"How many times the group invite can be used."}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"ttl":{"type":"number","format":"double","description":"How long until the group invite expires (in milliseconds)."},"use_count":{"type":"number","format":"double","description":"How many times the group invite can be used."}}}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"code":{"type":"string","description":"The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."}},"required":["code"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"code":{"type":"string","description":"The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."}},"required":["code"]}} />
 

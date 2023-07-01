@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Fuzzy search for groups.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://group.api.rivet.gg/v1/groups/search'>
 
@@ -31,13 +31,34 @@ await RIVET.group.search({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### query
+
+_Query parameter, required_
+
+
+The query to match group display names against.
+
+
+### anchor
+
+_Query parameter, optional_
+
+
+
+
+
+### limit
+
+_Query parameter, optional_
+
+
+Unsigned 32 bit integer.
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group handles."},"anchor":{"type":"string"}},"required":["groups"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group handles."},"anchor":{"type":"string"}},"required":["groups"]}} />
 

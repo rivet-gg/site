@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Updates the version of a game namespace.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/version'>
 
@@ -32,15 +32,28 @@ await RIVET.cloud.games.namespaces.updateGameNamespaceVersion({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"version_id":{"type":"string","format":"uuid"}},"required":["version_id"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"version_id":{"type":"string","format":"uuid"}},"required":["version_id"]}} />
 
 
 ## Response Body

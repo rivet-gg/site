@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Toggles whether or not to allow authentication based on domain for the given game namesapce.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'>
 
@@ -32,15 +32,28 @@ await RIVET.cloud.games.namespaces.toggleNamespaceDomainPublicAuth({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"enabled":{"type":"boolean","description":"Whether or not to enable authentication based on domain."}},"required":["enabled"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"enabled":{"type":"boolean","description":"Whether or not to enable authentication based on domain."}},"required":["enabled"]}} />
 
 
 ## Response Body

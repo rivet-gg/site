@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Completes a custom avatar image upload. Must be called after the file upload process completes.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/avatar-upload/{upload_id}/complete'>
 
@@ -29,6 +29,25 @@ await RIVET.cloud.games.avatars.completeCustomAvatarUpload({
 ```
 
 </CodeGroup>
+
+
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### upload_id
+
+_Path parameter, required_
+
+
+
 
 
 ## Response Body

@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Returns the logs for a given lobby.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs'>
 
@@ -31,13 +31,42 @@ await RIVET.cloud.games.matchmaker.getLobbyLogs({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### lobby_id
+
+_Path parameter, required_
+
+
+
+
+
+### stream
+
+_Query parameter, required_
+
+
+
+
+
+### watch_index
+
+_Query parameter, optional_
+
+
+A query parameter denoting the requests watch index.
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"lines":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"timestamps":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["lines","timestamps","watch"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lines":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"timestamps":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["lines","timestamps","watch"]}} />
 

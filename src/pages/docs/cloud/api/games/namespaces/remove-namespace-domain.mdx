@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Removes a domain from the given game namespace.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='DELETE' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domains/{domain}'>
 
@@ -29,6 +29,33 @@ await RIVET.cloud.games.namespaces.removeNamespaceDomain({
 ```
 
 </CodeGroup>
+
+
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
+### domain
+
+_Path parameter, required_
+
+
+A valid domain name (no protocol).
 
 
 ## Response Body

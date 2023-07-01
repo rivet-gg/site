@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Returns information about the current authenticated agent.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/auth/inspect'>
 
@@ -31,13 +31,10 @@ await RIVET.cloud.auth.inspect({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"agent":{"type":"object","description":"The current authenticated agent.","properties":{"identity":{"type":"object","description":"The current authenticated identity.","properties":{"identity_id":{"type":"string","format":"uuid"}},"required":["identity_id"]},"game_cloud":{"type":"object","description":"The current authenticated game cloud.","properties":{"game_id":{"type":"string","format":"uuid"}},"required":["game_id"]}}}},"required":["agent"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"agent":{"type":"object","description":"The current authenticated agent.","properties":{"identity":{"type":"object","description":"The current authenticated identity.","properties":{"identity_id":{"type":"string","format":"uuid"}},"required":["identity_id"]},"game_cloud":{"type":"object","description":"The current authenticated game cloud.","properties":{"game_id":{"type":"string","format":"uuid"}},"required":["game_id"]}}}},"required":["agent"]}} />
 

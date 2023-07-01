@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Creates a new group.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups'>
 
@@ -32,24 +32,15 @@ await RIVET.group.create({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["display_name"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["display_name"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}},"required":["group_id"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}},"required":["group_id"]}} />
 

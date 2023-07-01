@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 undefined
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/devices/links'>
 
@@ -31,13 +31,10 @@ await RIVET.cloud.devices.links.prepare({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"device_link_id":{"type":"string","format":"uuid"},"device_link_token":{"type":"string"},"device_link_url":{"type":"string"}},"required":["device_link_id","device_link_token","device_link_url"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"device_link_id":{"type":"string","format":"uuid"},"device_link_token":{"type":"string"},"device_link_url":{"type":"string"}},"required":["device_link_id","device_link_token","device_link_url"]}} />
 

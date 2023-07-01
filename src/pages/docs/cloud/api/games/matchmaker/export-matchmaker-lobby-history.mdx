@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Exports lobby history over a given query time span.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/export-history'>
 
@@ -32,24 +32,23 @@ await RIVET.cloud.games.matchmaker.exportMatchmakerLobbyHistory({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"query_start":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"query_end":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"query_start":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"query_end":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}}}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"url":{"type":"string","description":"The URL to a CSV file for the given lobby history."}},"required":["url"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"url":{"type":"string","description":"The URL to a CSV file for the given lobby history."}},"required":["url"]}} />
 

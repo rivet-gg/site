@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Updates profile of the current identity.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/identities/self/profile'>
 
@@ -32,15 +32,12 @@ await RIVET.identity.updateProfile({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"display_name":{"type":"string"},"account_number":{"type":"integer"},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string"},"account_number":{"type":"integer"},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"}}}} />
 
 
 ## Response Body

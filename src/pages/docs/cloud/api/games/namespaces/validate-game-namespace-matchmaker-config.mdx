@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Validates information used to update a game namespace's matchmaker config.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/mm-config/validate'>
 
@@ -32,24 +32,31 @@ await RIVET.cloud.games.namespaces.validateGameNamespaceMatchmakerConfig({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}} />
 

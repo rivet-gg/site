@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Consumes a group invite to join a group.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/invites/{group_invite_code}/consume'>
 
@@ -31,13 +31,18 @@ await RIVET.group.invites.consumeInvite({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### group_invite_code
+
+_Path parameter, required_
+
+
+Provided by `rivet.api.group#CreateInviteResponse$code`.
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}}}} />
 

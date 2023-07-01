@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Deletes a matchmaker lobby, stopping it immediately.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='DELETE' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}'>
 
@@ -31,13 +31,26 @@ await RIVET.cloud.games.matchmaker.deleteMatchmakerLobby({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### lobby_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"did_remove":{"type":"boolean","description":"Whether or not the lobby was successfully stopped."}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"did_remove":{"type":"boolean","description":"Whether or not the lobby was successfully stopped."}}}} />
 

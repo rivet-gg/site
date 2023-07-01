@@ -21,7 +21,7 @@ QR code for `identity_link_url` to authenticate on their phone.
 
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://identity.api.rivet.gg/v1/game-links'>
 
@@ -43,13 +43,10 @@ await RIVET.identity.links.prepare({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"identity_link_token":{"type":"string","description":"Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."},"identity_link_url":{"type":"string"},"expire_ts":{"type":"string","format":"date-time"}},"required":["identity_link_token","identity_link_url","expire_ts"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"identity_link_token":{"type":"string","description":"Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."},"identity_link_url":{"type":"string"},"expire_ts":{"type":"string","format":"date-time"}},"required":["identity_link_token","identity_link_url","expire_ts"]}} />
 

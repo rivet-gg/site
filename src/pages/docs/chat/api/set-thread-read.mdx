@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Updates the current identity's last read timestamp in the given thread.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://chat.api.rivet.gg/v1/threads/{thread_id}/read'>
 
@@ -32,15 +32,20 @@ await RIVET.chat.setThreadRead({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### thread_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"last_read_ts":{"type":"string","format":"date-time","description":"Any messages newer than this timestamp will be marked as unread.\nThis should be the current timestamp (in milliseconds)."}},"required":["last_read_ts"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"last_read_ts":{"type":"string","format":"date-time","description":"Any messages newer than this timestamp will be marked as unread.\nThis should be the current timestamp (in milliseconds)."}},"required":["last_read_ts"]}} />
 
 
 ## Response Body

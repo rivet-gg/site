@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Resolves a join request for a given group.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/{group_id}/join-request/{identity_id}'>
 
@@ -32,15 +32,28 @@ await RIVET.group.joinRequests.resolveJoinRequest({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### group_id
+
+_Path parameter, required_
+
+
+
+
+
+### identity_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"resolution":{"type":"boolean"}}}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"resolution":{"type":"boolean"}}}} />
 
 
 ## Response Body

@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 undefined
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/devices/links'>
 
@@ -31,13 +31,26 @@ await RIVET.cloud.devices.links.get({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### device_link_token
+
+_Query parameter, required_
+
+
+
+
+
+### watch_index
+
+_Query parameter, optional_
+
+
+
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"cloud_token":{"type":"string"},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["watch"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"cloud_token":{"type":"string"},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["watch"]}} />
 

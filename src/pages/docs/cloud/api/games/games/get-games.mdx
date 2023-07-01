@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Returns a list of games in which the current identity is a group member of its development team.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://cloud.api.rivet.gg/v1/games'>
 
@@ -31,13 +31,18 @@ await RIVET.cloud.games.games.getGames({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### watch_index
+
+_Query parameter, optional_
+
+
+A query parameter denoting the requests watch index.
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"games":{"type":"array","items":{"type":"object","description":"A game summary.","properties":{"game_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"developer_group_id":{"type":"string","format":"uuid"},"total_player_count":{"type":"integer","description":"Unsigned 32 bit integer."},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","create_ts","name_id","display_name","developer_group_id"]},"description":"A list of game summaries."},"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group summaries."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["games","groups","watch"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"games":{"type":"array","items":{"type":"object","description":"A game summary.","properties":{"game_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"developer_group_id":{"type":"string","format":"uuid"},"total_player_count":{"type":"integer","description":"Unsigned 32 bit integer."},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","create_ts","name_id","display_name","developer_group_id"]},"description":"A list of game summaries."},"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group summaries."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["games","groups","watch"]}} />
 

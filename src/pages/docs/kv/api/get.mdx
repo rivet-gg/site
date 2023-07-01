@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Returns a specific key-value entry by key.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://kv.api.rivet.gg/v1/entries'>
 
@@ -31,13 +31,34 @@ await RIVET.kv.get({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### key
+
+_Query parameter, required_
+
+
+
+
+
+### watch_index
+
+_Query parameter, optional_
+
+
+A query parameter denoting the requests watch index.
+
+
+### namespace_id
+
+_Query parameter, optional_
+
+
+
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"value":{"description":"A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."},"deleted":{"type":"boolean","description":"Whether or not the entry has been deleted. Only set when watching this endpoint."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["value","watch"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"value":{"description":"A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."},"deleted":{"type":"boolean","description":"Whether or not the entry has been deleted. Only set when watching this endpoint."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["value","watch"]}} />
 

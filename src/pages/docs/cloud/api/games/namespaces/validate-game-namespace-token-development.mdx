@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Validates information used to create a new game namespace development token.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/tokens/development/validate'>
 
@@ -32,24 +32,31 @@ await RIVET.cloud.games.namespaces.validateGameNamespaceTokenDevelopment({
 </CodeGroup>
 
 
+## Request Parameters
+
+
+### game_id
+
+_Path parameter, required_
+
+
+
+
+
+### namespace_id
+
+_Path parameter, required_
+
+
+
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"hostname":{"type":"string"},"lobby_ports":{"type":"array","items":null,"description":"A list of docker ports."}},"required":["hostname","lobby_ports"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"hostname":{"type":"string"},"lobby_ports":{"type":"array","items":null,"description":"A list of docker ports."}},"required":["hostname","lobby_ports"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}} />
 

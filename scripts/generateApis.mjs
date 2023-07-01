@@ -98,7 +98,7 @@ ${specPath.description}
         curlCommand = `curl -X ${method.toUpperCase()} '${fullUrl}'`;
       }
       file += `
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='${method.toUpperCase()}' label='${fullUrl}'>
 
@@ -121,7 +121,25 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
 
 `;
 
-      // TODO: Path parameters
+      // Request parameters
+      if (specPath.parameters) {
+        // Don't include the schema because it's not useful
+        file += `
+## Request Parameters
+
+`;
+        for (let parameter of specPath.parameters) {
+          file += `
+### ${parameter.name}
+
+_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${parameter.required ? 'required' : 'optional'}_
+
+
+${parameter.description || parameter.schema.description || ''}
+
+`;
+        }
+      }
 
       // Request body
       if (hasRequestBody) {
@@ -129,13 +147,7 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
           file += `
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={${JSON.stringify(specPath.requestBody?.content['application/json'].schema)}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={${JSON.stringify(specPath.requestBody?.content['application/json'].schema)}} />
 
 `;
         } else {
@@ -152,13 +164,9 @@ _Empty request body._
         file += `
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={${JSON.stringify(specPath.responses['200'].content['application/json'].schema)}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={${JSON.stringify(
+          specPath.responses['200'].content['application/json'].schema
+        )}} />
 
 `;
       } else {
@@ -243,6 +251,13 @@ function flattenRefs(schema, schemas) {
   if (schema?.properties) {
     for (let property in schema.properties) {
       schema.properties[property] = flattenRefs(schema.properties[property], schemas);
+    }
+  }
+
+  // Iterate parameters
+  if (schema?.parameters) {
+    for (let parameter in schema.parameters) {
+      schema.parameters[parameter].schema = flattenRefs(schema.parameters[parameter].schema, schemas);
     }
   }
 

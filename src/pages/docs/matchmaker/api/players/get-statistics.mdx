@@ -9,7 +9,7 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 Gives matchmaker statistics about the players in game.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='GET' label='https://matchmaker.api.rivet.gg/v1/players/statistics'>
 
@@ -31,13 +31,10 @@ await RIVET.matchmaker.players.getStatistics({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"},"game_modes":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/MatchmakerGameModeStatistics"}}},"required":["player_count","game_modes"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"},"game_modes":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/MatchmakerGameModeStatistics"}}},"required":["player_count","game_modes"]}} />
 

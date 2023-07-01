@@ -38,7 +38,7 @@ the player token is validated.
 
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/players/connected'>
 
@@ -61,15 +61,12 @@ await RIVET.matchmaker.players.connected({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"player_token":{"type":"string"}},"required":["player_token"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"player_token":{"type":"string"}},"required":["player_token"]}} />
 
 
 ## Response Body

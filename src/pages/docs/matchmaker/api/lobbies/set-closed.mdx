@@ -11,7 +11,7 @@ Does not shutdown the lobby.
 
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='PUT' label='https://matchmaker.api.rivet.gg/v1/lobbies/closed'>
 
@@ -34,15 +34,12 @@ await RIVET.matchmaker.lobbies.setClosed({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"is_closed":{"type":"boolean"}},"required":["is_closed"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"is_closed":{"type":"boolean"}},"required":["is_closed"]}} />
 
 
 ## Response Body

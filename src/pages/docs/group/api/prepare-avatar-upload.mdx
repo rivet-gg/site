@@ -10,7 +10,7 @@ Prepares an avatar image upload.
 Complete upload with `rivet.api.group#CompleteAvatarUpload`.
 
 
-## Code Example
+## Code Examples
 
 <CodeGroup title='Request' tag='POST' label='https://group.api.rivet.gg/v1/groups/avatar-upload/prepare'>
 
@@ -33,24 +33,15 @@ await RIVET.group.prepareAvatarUpload({
 </CodeGroup>
 
 
+## Request Parameters
+
+
 ## Request Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the group avatar."},"mime":{"type":"string","description":"The MIME type of the group avatar."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the group avatar."},"mime":{"type":"string","description":"The MIME type of the group avatar."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer
-  schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}}
-  expanded={true}
-  hideTopBar={false}
-  emptyText="No schema defined"
-  defaultExpandedDepth={0}
-/>
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}} />
 
