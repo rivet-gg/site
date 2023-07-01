@@ -14,7 +14,7 @@ export const a = Link;
 // TODO: Phase this out with our own custom elements
 export {
   Accordion,
-  AccordionGroup,
+  AccordionGroup
   // AppearFromTop,
   // Button,
   // Card,
@@ -29,15 +29,28 @@ export {
   // Note,
   // Param,
   // PillSelect,
-  Tabs,
+  // Tabs,
   // Tip,
-  Tab,
-  Tooltip
+  // Tab,
+  // Tooltip
 } from '@mintlify/components';
 
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
+
+export function Tooltip({ tip, children }) {
+  return (
+    <span class='group relative z-10 inline'>
+      <span class='underline decoration-zinc-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-zinc-500'>
+      {children}
+      </span>
+      <span class='bg-black/50 absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-lg border border-gray-50 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover:flex dark:border-gray-500'>
+      {tip}
+      </span>
+    </span>
+  );
+}
 
 function InfoIcon(props) {
   return (
@@ -66,7 +79,7 @@ export function Tip({ children }) {
 
 export function Note({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 rounded-2xl border border-violet-500/20 bg-violet-50/50 p-4 leading-6 text-violet-900 dark:border-violet-500/30 dark:bg-violet-500/5 dark:text-violet-200 dark:[--tw-prose-links-hover:theme(colors.violet.300)] dark:[--tw-prose-links:theme(colors.white)]'>
+    <div className='my-6 flex gap-2.5 rounded-2xl border border-violet-500/20 bg-violet-50/50 p-4 leading-6 text-violet-900 dark:border-violet-500/30 dark:bg-violet-500/5 dark:text-violet-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.violet.300)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none fill-violet-500 stroke-white dark:fill-violet-200/20 dark:stroke-violet-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>
@@ -75,7 +88,7 @@ export function Note({ children }) {
 
 export function Info({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 rounded-2xl border border-cyan-500/20 bg-cyan-50/50 p-4 leading-6 text-cyan-900 dark:border-cyan-500/30 dark:bg-cyan-500/5 dark:text-cyan-200 dark:[--tw-prose-links-hover:theme(colors.cyan.300)] dark:[--tw-prose-links:theme(colors.white)]'>
+    <div className='my-6 flex gap-2.5 rounded-2xl border border-cyan-500/20 bg-cyan-50/50 p-4 leading-6 text-cyan-900 dark:border-cyan-500/30 dark:bg-cyan-500/5 dark:text-cyan-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.cyan.300)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none fill-cyan-500 stroke-white dark:fill-cyan-200/20 dark:stroke-cyan-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>
@@ -84,7 +97,7 @@ export function Info({ children }) {
 
 export function Warning({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 rounded-2xl border border-amber-500/20 bg-amber-50/50 p-4 leading-6 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/5 dark:text-amber-200 dark:[--tw-prose-links-hover:theme(colors.amber.300)] dark:[--tw-prose-links:theme(colors.white)]'>
+    <div className='my-6 flex gap-2.5 rounded-2xl border border-amber-500/20 bg-amber-50/50 p-4 leading-6 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/5 dark:text-amber-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.amber.300)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none fill-amber-500 stroke-white dark:fill-amber-200/20 dark:stroke-amber-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>
@@ -112,8 +125,7 @@ export function Properties({ children }) {
     <div className='my-6'>
       <ul
         role='list'
-        className='m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-zinc-900/5 p-0 dark:divide-white/5'
-      >
+        className='m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-zinc-900/5 p-0 dark:divide-white/5'>
         {children}
       </ul>
     </div>
