@@ -2,37 +2,30 @@
   "chat": {
     "pages": [
       {
-        "title": "identity.getDirectThread",
         "href": "/docs/chat/api/identity/get-direct-thread",
         "sortingKey": "999 -1 /identities/{identity_id}/thread get"
       },
       {
-        "title": "sendMessage",
         "href": "/docs/chat/api/send-message",
         "sortingKey": "999 -1 /messages post"
       },
       {
-        "title": "getThreadHistory",
         "href": "/docs/chat/api/get-thread-history",
         "sortingKey": "999 -1 /threads/{thread_id}/history get"
       },
       {
-        "title": "watchThread",
         "href": "/docs/chat/api/watch-thread",
         "sortingKey": "999 -1 /threads/{thread_id}/live get"
       },
       {
-        "title": "setThreadRead",
         "href": "/docs/chat/api/set-thread-read",
         "sortingKey": "999 -1 /threads/{thread_id}/read post"
       },
       {
-        "title": "getThreadTopic",
         "href": "/docs/chat/api/get-thread-topic",
         "sortingKey": "999 -1 /threads/{thread_id}/topic get"
       },
       {
-        "title": "setTypingStatus",
         "href": "/docs/chat/api/set-typing-status",
         "sortingKey": "999 -1 /threads/{thread_id}/typing-status put"
       }
@@ -41,252 +34,202 @@
   "cloud": {
     "pages": [
       {
-        "title": "⭐️ games.namespaces.createGameNamespace",
         "href": "/docs/cloud/api/games/namespaces/create-game-namespace",
         "sortingKey": "0 /games/{game_id}/namespaces post"
       },
       {
-        "title": "⭐️ games.namespaces.updateGameNamespaceVersion",
         "href": "/docs/cloud/api/games/namespaces/update-game-namespace-version",
         "sortingKey": "0 /games/{game_id}/namespaces/{namespace_id}/version put"
       },
       {
-        "title": "⭐️ games.versions.createGameVersion",
         "href": "/docs/cloud/api/games/versions/create-game-version",
         "sortingKey": "0 /games/{game_id}/versions post"
       },
       {
-        "title": "auth.inspect",
         "href": "/docs/cloud/api/auth/inspect",
         "sortingKey": "999 -1 /auth/inspect get"
       },
       {
-        "title": "devices.links.get",
         "href": "/docs/cloud/api/devices/links/get",
         "sortingKey": "999 -1 /devices/links get"
       },
       {
-        "title": "devices.links.prepare",
         "href": "/docs/cloud/api/devices/links/prepare",
         "sortingKey": "999 -1 /devices/links post"
       },
       {
-        "title": "games.games.getGames",
         "href": "/docs/cloud/api/games/games/get-games",
         "sortingKey": "999 -1 /games get"
       },
       {
-        "title": "games.games.createGame",
         "href": "/docs/cloud/api/games/games/create-game",
         "sortingKey": "999 -1 /games post"
       },
       {
-        "title": "games.games.validateGame",
         "href": "/docs/cloud/api/games/games/validate-game",
         "sortingKey": "999 -1 /games/validate post"
       },
       {
-        "title": "games.games.getGameById",
         "href": "/docs/cloud/api/games/games/get-game-by-id",
         "sortingKey": "999 -1 /games/{game_id} get"
       },
       {
-        "title": "games.avatars.completeCustomAvatarUpload",
         "href": "/docs/cloud/api/games/avatars/complete-custom-avatar-upload",
         "sortingKey": "999 -1 /games/{game_id}/avatar-upload/{upload_id}/complete post"
       },
       {
-        "title": "games.avatars.listGameCustomAvatars",
         "href": "/docs/cloud/api/games/avatars/list-game-custom-avatars",
         "sortingKey": "999 -1 /games/{game_id}/avatars get"
       },
       {
-        "title": "games.games.gameBannerUploadPrepare",
         "href": "/docs/cloud/api/games/games/game-banner-upload-prepare",
         "sortingKey": "999 -1 /games/{game_id}/banner-upload/prepare post"
       },
       {
-        "title": "games.games.gameBannerUploadComplete",
         "href": "/docs/cloud/api/games/games/game-banner-upload-complete",
         "sortingKey": "999 -1 /games/{game_id}/banner-upload/{upload_id}/complete post"
       },
       {
-        "title": "games.builds.listGameBuilds",
         "href": "/docs/cloud/api/games/builds/list-game-builds",
         "sortingKey": "999 -1 /games/{game_id}/builds get"
       },
       {
-        "title": "games.builds.createGameBuild",
         "href": "/docs/cloud/api/games/builds/create-game-build",
         "sortingKey": "999 -1 /games/{game_id}/builds post"
       },
       {
-        "title": "games.cdn.listGameCdnSites",
         "href": "/docs/cloud/api/games/cdn/list-game-cdn-sites",
         "sortingKey": "999 -1 /games/{game_id}/cdn/sites get"
       },
       {
-        "title": "games.cdn.createGameCdnSite",
         "href": "/docs/cloud/api/games/cdn/create-game-cdn-site",
         "sortingKey": "999 -1 /games/{game_id}/cdn/sites post"
       },
       {
-        "title": "games.games.gameLogoUploadPrepare",
         "href": "/docs/cloud/api/games/games/game-logo-upload-prepare",
         "sortingKey": "999 -1 /games/{game_id}/logo-upload/prepare post"
       },
       {
-        "title": "games.games.gameLogoUploadComplete",
         "href": "/docs/cloud/api/games/games/game-logo-upload-complete",
         "sortingKey": "999 -1 /games/{game_id}/logo-upload/{upload_id}/complete post"
       },
       {
-        "title": "games.matchmaker.exportMatchmakerLobbyHistory",
         "href": "/docs/cloud/api/games/matchmaker/export-matchmaker-lobby-history",
         "sortingKey": "999 -1 /games/{game_id}/matchmaker/lobbies/export-history post"
       },
       {
-        "title": "games.matchmaker.deleteMatchmakerLobby",
         "href": "/docs/cloud/api/games/matchmaker/delete-matchmaker-lobby",
         "sortingKey": "999 -1 /games/{game_id}/matchmaker/lobbies/{lobby_id} delete"
       },
       {
-        "title": "games.matchmaker.getLobbyLogs",
         "href": "/docs/cloud/api/games/matchmaker/get-lobby-logs",
         "sortingKey": "999 -1 /games/{game_id}/matchmaker/lobbies/{lobby_id}/logs get"
       },
       {
-        "title": "games.matchmaker.exportLobbyLogs",
         "href": "/docs/cloud/api/games/matchmaker/export-lobby-logs",
         "sortingKey": "999 -1 /games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export post"
       },
       {
-        "title": "games.namespaces.validateGameNamespace",
         "href": "/docs/cloud/api/games/namespaces/validate-game-namespace",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/validate post"
       },
       {
-        "title": "games.namespaces.getGameNamespaceById",
         "href": "/docs/cloud/api/games/namespaces/get-game-namespace-by-id",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id} get"
       },
       {
-        "title": "games.namespaces.analytics.getAnalyticsMatchmakerLive",
         "href": "/docs/cloud/api/games/namespaces/analytics/get-analytics-matchmaker-live",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/analytics/matchmaker/live get"
       },
       {
-        "title": "games.namespaces.updateNamespaceCdnAuthUser",
         "href": "/docs/cloud/api/games/namespaces/update-namespace-cdn-auth-user",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/auth-user post"
       },
       {
-        "title": "games.namespaces.removeNamespaceCdnAuthUser",
         "href": "/docs/cloud/api/games/namespaces/remove-namespace-cdn-auth-user",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/auth-user/{user} delete"
       },
       {
-        "title": "games.namespaces.setNamespaceCdnAuthType",
         "href": "/docs/cloud/api/games/namespaces/set-namespace-cdn-auth-type",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/cdn-auth put"
       },
       {
-        "title": "games.namespaces.toggleNamespaceDomainPublicAuth",
         "href": "/docs/cloud/api/games/namespaces/toggle-namespace-domain-public-auth",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/domain-public-auth put"
       },
       {
-        "title": "games.namespaces.addNamespaceDomain",
         "href": "/docs/cloud/api/games/namespaces/add-namespace-domain",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/domains post"
       },
       {
-        "title": "games.namespaces.removeNamespaceDomain",
         "href": "/docs/cloud/api/games/namespaces/remove-namespace-domain",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/domains/{domain} delete"
       },
       {
-        "title": "games.namespaces.logs.listNamespaceLobbies",
         "href": "/docs/cloud/api/games/namespaces/logs/list-namespace-lobbies",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/logs/lobbies get"
       },
       {
-        "title": "games.namespaces.logs.getNamespaceLobby",
         "href": "/docs/cloud/api/games/namespaces/logs/get-namespace-lobby",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/logs/lobbies/{lobby_id} get"
       },
       {
-        "title": "games.namespaces.updateGameNamespaceMatchmakerConfig",
         "href": "/docs/cloud/api/games/namespaces/update-game-namespace-matchmaker-config",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/mm-config post"
       },
       {
-        "title": "games.namespaces.validateGameNamespaceMatchmakerConfig",
         "href": "/docs/cloud/api/games/namespaces/validate-game-namespace-matchmaker-config",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/mm-config/validate post"
       },
       {
-        "title": "games.namespaces.createGameNamespaceTokenDevelopment",
         "href": "/docs/cloud/api/games/namespaces/create-game-namespace-token-development",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/tokens/development post"
       },
       {
-        "title": "games.namespaces.validateGameNamespaceTokenDevelopment",
         "href": "/docs/cloud/api/games/namespaces/validate-game-namespace-token-development",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/tokens/development/validate post"
       },
       {
-        "title": "games.namespaces.createGameNamespaceTokenPublic",
         "href": "/docs/cloud/api/games/namespaces/create-game-namespace-token-public",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/tokens/public post"
       },
       {
-        "title": "games.namespaces.GetGameNamespaceVersionHistoryList",
         "href": "/docs/cloud/api/games/namespaces/-get-game-namespace-version-history-list",
         "sortingKey": "999 -1 /games/{game_id}/namespaces/{namespace_id}/version-history get"
       },
       {
-        "title": "games.avatars.prepareCustomAvatarUpload",
         "href": "/docs/cloud/api/games/avatars/prepare-custom-avatar-upload",
         "sortingKey": "999 -1 /games/{game_id}/prepare post"
       },
       {
-        "title": "games.tokens.createCloudToken",
         "href": "/docs/cloud/api/games/tokens/create-cloud-token",
         "sortingKey": "999 -1 /games/{game_id}/tokens/cloud post"
       },
       {
-        "title": "games.versions.validateGameVersion",
         "href": "/docs/cloud/api/games/versions/validate-game-version",
         "sortingKey": "999 -1 /games/{game_id}/versions/validate post"
       },
       {
-        "title": "games.versions.getGameVersionById",
         "href": "/docs/cloud/api/games/versions/get-game-version-by-id",
         "sortingKey": "999 -1 /games/{game_id}/versions/{version_id} get"
       },
       {
-        "title": "groups.validate",
         "href": "/docs/cloud/api/groups/validate",
         "sortingKey": "999 -1 /groups/validate post"
       },
       {
-        "title": "groups.convertGroup",
         "href": "/docs/cloud/api/groups/convert-group",
         "sortingKey": "999 -1 /groups/{group_id}/convert post"
       },
       {
-        "title": "logs.getRayPerfLogs",
         "href": "/docs/cloud/api/logs/get-ray-perf-logs",
         "sortingKey": "999 -1 /rays/{ray_id}/perf get"
       },
       {
-        "title": "tiers.getRegionTiers",
         "href": "/docs/cloud/api/tiers/get-region-tiers",
         "sortingKey": "999 -1 /region-tiers get"
       },
       {
-        "title": "uploads.completeUpload",
         "href": "/docs/cloud/api/uploads/complete-upload",
         "sortingKey": "999 -1 /uploads/{upload_id}/complete post"
       }
@@ -295,112 +238,90 @@
   "group": {
     "pages": [
       {
-        "title": "listSuggested",
         "href": "/docs/group/api/list-suggested",
         "sortingKey": "999 -1 /groups get"
       },
       {
-        "title": "create",
         "href": "/docs/group/api/create",
         "sortingKey": "999 -1 /groups post"
       },
       {
-        "title": "prepareAvatarUpload",
         "href": "/docs/group/api/prepare-avatar-upload",
         "sortingKey": "999 -1 /groups/avatar-upload/prepare post"
       },
       {
-        "title": "validateProfile",
         "href": "/docs/group/api/validate-profile",
         "sortingKey": "999 -1 /groups/profile/validate post"
       },
       {
-        "title": "search",
         "href": "/docs/group/api/search",
         "sortingKey": "999 -1 /groups/search get"
       },
       {
-        "title": "completeAvatarUpload",
         "href": "/docs/group/api/complete-avatar-upload",
         "sortingKey": "999 -1 /groups/{group_id}/avatar-upload/{upload_id}/complete post"
       },
       {
-        "title": "getBans",
         "href": "/docs/group/api/get-bans",
         "sortingKey": "999 -1 /groups/{group_id}/bans get"
       },
       {
-        "title": "unbanIdentity",
         "href": "/docs/group/api/unban-identity",
         "sortingKey": "999 -1 /groups/{group_id}/bans/{identity_id} delete"
       },
       {
-        "title": "banIdentity",
         "href": "/docs/group/api/ban-identity",
         "sortingKey": "999 -1 /groups/{group_id}/bans/{identity_id} post"
       },
       {
-        "title": "invites.createInvite",
         "href": "/docs/group/api/invites/create-invite",
         "sortingKey": "999 -1 /groups/{group_id}/invites post"
       },
       {
-        "title": "joinRequests.createJoinRequest",
         "href": "/docs/group/api/join-requests/create-join-request",
         "sortingKey": "999 -1 /groups/{group_id}/join-request post"
       },
       {
-        "title": "joinRequests.resolveJoinRequest",
         "href": "/docs/group/api/join-requests/resolve-join-request",
         "sortingKey": "999 -1 /groups/{group_id}/join-request/{identity_id} post"
       },
       {
-        "title": "getJoinRequests",
         "href": "/docs/group/api/get-join-requests",
         "sortingKey": "999 -1 /groups/{group_id}/join-requests get"
       },
       {
-        "title": "kickMember",
         "href": "/docs/group/api/kick-member",
         "sortingKey": "999 -1 /groups/{group_id}/kick/{identity_id} post"
       },
       {
-        "title": "leave",
         "href": "/docs/group/api/leave",
         "sortingKey": "999 -1 /groups/{group_id}/leave post"
       },
       {
-        "title": "getMembers",
         "href": "/docs/group/api/get-members",
         "sortingKey": "999 -1 /groups/{group_id}/members get"
       },
       {
-        "title": "getProfile",
         "href": "/docs/group/api/get-profile",
         "sortingKey": "999 -1 /groups/{group_id}/profile get"
       },
       {
-        "title": "updateProfile",
         "href": "/docs/group/api/update-profile",
         "sortingKey": "999 -1 /groups/{group_id}/profile post"
       },
       {
-        "title": "getSummary",
         "href": "/docs/group/api/get-summary",
         "sortingKey": "999 -1 /groups/{group_id}/summary get"
       },
       {
-        "title": "transferOwnership",
         "href": "/docs/group/api/transfer-ownership",
         "sortingKey": "999 -1 /groups/{group_id}/transfer-owner post"
       },
       {
-        "title": "invites.getInvite",
         "href": "/docs/group/api/invites/get-invite",
         "sortingKey": "999 -1 /invites/{group_invite_code} get"
       },
       {
-        "title": "invites.consumeInvite",
         "href": "/docs/group/api/invites/consume-invite",
         "sortingKey": "999 -1 /invites/{group_invite_code}/consume post"
       }
@@ -409,142 +330,114 @@
   "identity": {
     "pages": [
       {
-        "title": "⭐️ events.watch",
         "href": "/docs/identity/api/events/watch",
         "sortingKey": "0 /events/live get"
       },
       {
-        "title": "⭐️ links.prepare",
         "href": "/docs/identity/api/links/prepare",
         "sortingKey": "0 /game-links post"
       },
       {
-        "title": "⭐️ setup",
         "href": "/docs/identity/api/setup",
         "sortingKey": "0 /identities post"
       },
       {
-        "title": "links.get",
         "href": "/docs/identity/api/links/get",
         "sortingKey": "999 -1 /game-links get"
       },
       {
-        "title": "prepareAvatarUpload",
         "href": "/docs/identity/api/prepare-avatar-upload",
         "sortingKey": "999 -1 /identities/avatar-upload/prepare post"
       },
       {
-        "title": "completeAvatarUpload",
         "href": "/docs/identity/api/complete-avatar-upload",
         "sortingKey": "999 -1 /identities/avatar-upload/{upload_id}/complete post"
       },
       {
-        "title": "getHandles",
         "href": "/docs/identity/api/get-handles",
         "sortingKey": "999 -1 /identities/batch/handle get"
       },
       {
-        "title": "getSummaries",
         "href": "/docs/identity/api/get-summaries",
         "sortingKey": "999 -1 /identities/batch/summary get"
       },
       {
-        "title": "updateStatus",
         "href": "/docs/identity/api/update-status",
         "sortingKey": "999 -1 /identities/identities/self/status post"
       },
       {
-        "title": "search",
         "href": "/docs/identity/api/search",
         "sortingKey": "999 -1 /identities/search get"
       },
       {
-        "title": "removeGameActivity",
         "href": "/docs/identity/api/remove-game-activity",
         "sortingKey": "999 -1 /identities/self/activity delete"
       },
       {
-        "title": "setGameActivity",
         "href": "/docs/identity/api/set-game-activity",
         "sortingKey": "999 -1 /identities/self/activity post"
       },
       {
-        "title": "signupForBeta",
         "href": "/docs/identity/api/signup-for-beta",
         "sortingKey": "999 -1 /identities/self/beta-signup post"
       },
       {
-        "title": "unmarkDeletion",
         "href": "/docs/identity/api/unmark-deletion",
         "sortingKey": "999 -1 /identities/self/delete-request delete"
       },
       {
-        "title": "markDeletion",
         "href": "/docs/identity/api/mark-deletion",
         "sortingKey": "999 -1 /identities/self/delete-request post"
       },
       {
-        "title": "listFriends",
         "href": "/docs/identity/api/list-friends",
         "sortingKey": "999 -1 /identities/self/friends get"
       },
       {
-        "title": "getSelfProfile",
         "href": "/docs/identity/api/get-self-profile",
         "sortingKey": "999 -1 /identities/self/profile get"
       },
       {
-        "title": "updateProfile",
         "href": "/docs/identity/api/update-profile",
         "sortingKey": "999 -1 /identities/self/profile post"
       },
       {
-        "title": "validateProfile",
         "href": "/docs/identity/api/validate-profile",
         "sortingKey": "999 -1 /identities/self/profile/validate post"
       },
       {
-        "title": "listRecentFollowers",
         "href": "/docs/identity/api/list-recent-followers",
         "sortingKey": "999 -1 /identities/self/recent-followers get"
       },
       {
-        "title": "ignoreRecentFollower",
         "href": "/docs/identity/api/ignore-recent-follower",
         "sortingKey": "999 -1 /identities/self/recent-followers/{identity_id}/ignore post"
       },
       {
-        "title": "unfollow",
         "href": "/docs/identity/api/unfollow",
         "sortingKey": "999 -1 /identities/{identity_id}/follow delete"
       },
       {
-        "title": "follow",
         "href": "/docs/identity/api/follow",
         "sortingKey": "999 -1 /identities/{identity_id}/follow post"
       },
       {
-        "title": "listFollowers",
         "href": "/docs/identity/api/list-followers",
         "sortingKey": "999 -1 /identities/{identity_id}/followers get"
       },
       {
-        "title": "listFollowing",
         "href": "/docs/identity/api/list-following",
         "sortingKey": "999 -1 /identities/{identity_id}/following get"
       },
       {
-        "title": "listMutualFriends",
         "href": "/docs/identity/api/list-mutual-friends",
         "sortingKey": "999 -1 /identities/{identity_id}/mutual-friends get"
       },
       {
-        "title": "getProfile",
         "href": "/docs/identity/api/get-profile",
         "sortingKey": "999 -1 /identities/{identity_id}/profile get"
       },
       {
-        "title": "report",
         "href": "/docs/identity/api/report",
         "sortingKey": "999 -1 /identities/{identity_id}/report post"
       }
@@ -553,32 +446,26 @@
   "kv": {
     "pages": [
       {
-        "title": "⭐️ delete",
         "href": "/docs/kv/api/delete",
         "sortingKey": "0 /entries delete"
       },
       {
-        "title": "⭐️ get",
         "href": "/docs/kv/api/get",
         "sortingKey": "0 /entries get"
       },
       {
-        "title": "⭐️ put",
         "href": "/docs/kv/api/put",
         "sortingKey": "0 /entries put"
       },
       {
-        "title": "deleteBatch",
         "href": "/docs/kv/api/delete-batch",
         "sortingKey": "999 -1 /entries/batch delete"
       },
       {
-        "title": "getBatch",
         "href": "/docs/kv/api/get-batch",
         "sortingKey": "999 -1 /entries/batch get"
       },
       {
-        "title": "putBatch",
         "href": "/docs/kv/api/put-batch",
         "sortingKey": "999 -1 /entries/batch put"
       }
@@ -587,47 +474,38 @@
   "matchmaker": {
     "pages": [
       {
-        "title": "⭐️ lobbies.find",
         "href": "/docs/matchmaker/api/lobbies/find",
         "sortingKey": "0 /lobbies/find post"
       },
       {
-        "title": "⭐️ lobbies.join",
         "href": "/docs/matchmaker/api/lobbies/join",
         "sortingKey": "0 /lobbies/join post"
       },
       {
-        "title": "⭐️ lobbies.ready",
         "href": "/docs/matchmaker/api/lobbies/ready",
         "sortingKey": "0 /lobbies/ready post"
       },
       {
-        "title": "⭐️ players.connected",
         "href": "/docs/matchmaker/api/players/connected",
         "sortingKey": "0 /players/connected post"
       },
       {
-        "title": "⭐️ players.disconnected",
         "href": "/docs/matchmaker/api/players/disconnected",
         "sortingKey": "0 /players/disconnected post"
       },
       {
-        "title": "lobbies.setClosed",
         "href": "/docs/matchmaker/api/lobbies/set-closed",
         "sortingKey": "999 -1 /lobbies/closed put"
       },
       {
-        "title": "lobbies.list",
         "href": "/docs/matchmaker/api/lobbies/list",
         "sortingKey": "999 -1 /lobbies/list get"
       },
       {
-        "title": "players.getStatistics",
         "href": "/docs/matchmaker/api/players/get-statistics",
         "sortingKey": "999 -1 /players/statistics get"
       },
       {
-        "title": "regions.list",
         "href": "/docs/matchmaker/api/regions/list",
         "sortingKey": "999 -1 /regions get"
       }

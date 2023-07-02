@@ -189,7 +189,6 @@ _Empty response body._
       // Write config
       apiPages[product] = apiPages[product] || { pages: [] };
       apiPages[product].pages.push({
-        title,
         href: `/docs/${product}/api/${fileName}`,
         sortingKey
       });

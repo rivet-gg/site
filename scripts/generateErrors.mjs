@@ -41,7 +41,7 @@ export async function generateErrors() {
         fs.writeFileSync(outputPathEntry.replace('.md', '.mdx'), errorDoc);
 
         pages.push({
-          title: name,
+          title,
           href: outputPathEntry.replace('.md', '').substring('src/pages'.length)
         });
       } else if (stat.isDirectory) {

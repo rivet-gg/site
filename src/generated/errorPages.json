@@ -1,414 +1,414 @@
 [
   {
-    "title": "API_BAD_BODY",
-    "href": "/docs/general/errors/api/bad-body"
-  },
-  {
-    "title": "API_BAD_CONTENT_LENGTH",
-    "href": "/docs/general/errors/api/bad-content-length"
-  },
-  {
-    "title": "API_BAD_COOKIE",
-    "href": "/docs/general/errors/api/bad-cookie"
-  },
-  {
-    "title": "API_BAD_HEADER",
-    "href": "/docs/general/errors/api/bad-header"
-  },
-  {
-    "title": "API_BAD_HEADERS",
-    "href": "/docs/general/errors/api/bad-headers"
-  },
-  {
-    "title": "API_BAD_QUERY",
-    "href": "/docs/general/errors/api/bad-query"
-  },
-  {
-    "title": "API_BAD_QUERY_PARAMETER",
-    "href": "/docs/general/errors/api/bad-query-parameter"
-  },
-  {
-    "title": "API_BODY_TOO_LARGE",
-    "href": "/docs/general/errors/api/body-too-large"
-  },
-  {
-    "title": "API_CORS_HEADER_NOT_ALLOWED",
-    "href": "/docs/general/errors/api/cors/header-not-allowed"
-  },
-  {
-    "title": "API_CORS_METHOD_NOT_ALLOWED",
-    "href": "/docs/general/errors/api/cors/method-not-allowed"
-  },
-  {
-    "title": "API_CORS_ORIGIN_NOT_ALLOWED",
-    "href": "/docs/general/errors/api/cors/origin-not-allowed"
-  },
-  {
-    "title": "API_FORBIDDEN",
-    "href": "/docs/general/errors/api/forbidden"
-  },
-  {
-    "title": "API_INVALID_IP",
-    "href": "/docs/general/errors/api/invalid-ip"
-  },
-  {
-    "title": "API_MISSING_COOKIE",
-    "href": "/docs/general/errors/api/missing-cookie"
-  },
-  {
-    "title": "API_MISSING_HEADER",
-    "href": "/docs/general/errors/api/missing-header"
-  },
-  {
-    "title": "API_NOT_FOUND",
-    "href": "/docs/general/errors/api/not-found"
-  },
-  {
-    "title": "API_RATE_LIMIT",
-    "href": "/docs/general/errors/api/rate-limit"
-  },
-  {
-    "title": "API_UNAUTHORIZED",
-    "href": "/docs/general/errors/api/unauthorized"
-  },
-  {
-    "title": "CAPTCHA_CAPTCHA_FAILED",
-    "href": "/docs/general/errors/captcha/captcha-failed"
-  },
-  {
-    "title": "CAPTCHA_CAPTCHA_INVALID",
-    "href": "/docs/general/errors/captcha/captcha-invalid"
-  },
-  {
-    "title": "CAPTCHA_CAPTCHA_ORIGIN_NOT_ALLOWED",
-    "href": "/docs/general/errors/captcha/captcha-origin-not-allowed"
-  },
-  {
-    "title": "CAPTCHA_CAPTCHA_REQUIRED",
-    "href": "/docs/general/errors/captcha/captcha-required"
-  },
-  {
-    "title": "CDN_INVALID_AUTH_USER_PASSWORD",
-    "href": "/docs/general/errors/cdn/invalid-auth-user-password"
-  },
-  {
-    "title": "CDN_INVALID_DOMAIN",
-    "href": "/docs/general/errors/cdn/invalid-domain"
-  },
-  {
-    "title": "CDN_TOO_MANY_AUTH_USERS",
-    "href": "/docs/general/errors/cdn/too-many-auth-users"
-  },
-  {
-    "title": "CDN_TOO_MANY_DOMAINS",
-    "href": "/docs/general/errors/cdn/too-many-domains"
-  },
-  {
-    "title": "CHAT_INVALID_BODY",
-    "href": "/docs/general/errors/chat/invalid-body"
-  },
-  {
-    "title": "CHAT_INVALID_TOPIC",
-    "href": "/docs/general/errors/chat/invalid-topic"
-  },
-  {
-    "title": "CHAT_THREAD_NOT_FOUND",
-    "href": "/docs/general/errors/chat/thread-not-found"
-  },
-  {
-    "title": "CLAIMS_ENTITLEMENT_EXPIRED",
-    "href": "/docs/general/errors/claims/entitlement-expired"
-  },
-  {
-    "title": "CLAIMS_MISSING_ENTITLEMENT",
-    "href": "/docs/general/errors/claims/missing-entitlement"
-  },
-  {
-    "title": "CLOUD_DEVICE_LINK_ALREADY_COMPLETE",
-    "href": "/docs/general/errors/cloud/device-link-already-complete"
-  },
-  {
-    "title": "CLOUD_HOSTNAME_TAKEN",
-    "href": "/docs/general/errors/cloud/hostname-taken"
-  },
-  {
-    "title": "CLOUD_TOO_MANY_PENDING_HOSTNAMES_FOR_GROUP",
-    "href": "/docs/general/errors/cloud/too-many-pending-hostnames-for-group"
-  },
-  {
-    "title": "GAME_NOT_FOUND",
-    "href": "/docs/general/errors/game/game-not-found"
-  },
-  {
-    "title": "GAME_USER_LINK_FAILED",
-    "href": "/docs/general/errors/game-user/link-failed"
-  },
-  {
-    "title": "GLOB_INVALID",
-    "href": "/docs/general/errors/glob/invalid"
-  },
-  {
-    "title": "GROUP_ALREADY_MEMBER",
-    "href": "/docs/general/errors/group/already-member"
-  },
-  {
-    "title": "GROUP_CANNOT_REQUEST_JOIN",
-    "href": "/docs/general/errors/group/cannot-request-join"
-  },
-  {
-    "title": "GROUP_ENTERPRISE_RESTRICTION",
-    "href": "/docs/general/errors/group/group-enterprise-restriction"
-  },
-  {
-    "title": "GROUP_FAILED_TO_CONSUME_INVITE",
-    "href": "/docs/general/errors/group/failed-to-consume-invite"
-  },
-  {
-    "title": "GROUP_FULL",
-    "href": "/docs/general/errors/group/full"
-  },
-  {
-    "title": "GROUP_INSUFFICIENT_PERMISSIONS",
-    "href": "/docs/general/errors/group/insufficient-permissions"
-  },
-  {
-    "title": "GROUP_INVALID_DEVELOPER_STATUS",
-    "href": "/docs/general/errors/group/group-invalid-developer-status"
-  },
-  {
-    "title": "GROUP_INVITE_CODE_ALREADY_USED",
-    "href": "/docs/general/errors/group/invite/code-already-used"
-  },
-  {
-    "title": "GROUP_INVITE_CODE_EXPIRED",
-    "href": "/docs/general/errors/group/invite/code-expired"
-  },
-  {
-    "title": "GROUP_INVITE_CODE_INVALID",
-    "href": "/docs/general/errors/group/invite/code-invalid"
-  },
-  {
-    "title": "GROUP_INVITE_CODE_REVOKED",
-    "href": "/docs/general/errors/group/invite/code-revoked"
-  },
-  {
-    "title": "GROUP_JOIN_REQUEST_ALREADY_EXISTS",
-    "href": "/docs/general/errors/group/join-request-already-exists"
-  },
-  {
-    "title": "GROUP_MEMBER_BANNED",
-    "href": "/docs/general/errors/group/member-banned"
-  },
-  {
-    "title": "GROUP_NOT_DEVELOPER_GROUP",
-    "href": "/docs/general/errors/group/group-not-developer-group"
-  },
-  {
-    "title": "GROUP_NOT_FOUND",
-    "href": "/docs/general/errors/group/not-found"
-  },
-  {
-    "title": "GROUP_NOT_JOINABLE",
-    "href": "/docs/general/errors/group/not-joinable"
-  },
-  {
-    "title": "GROUP_NOT_MEMBER",
-    "href": "/docs/general/errors/group/not-member"
-  },
-  {
-    "title": "IDENTITY_NOT_ADMIN",
-    "href": "/docs/general/errors/identity/not-admin"
-  },
-  {
-    "title": "IDENTITY_NOT_FOUND",
-    "href": "/docs/general/errors/identity/not-found"
-  },
-  {
-    "title": "IDENTITY_NOT_REGISTERED",
-    "href": "/docs/general/errors/identity/not-registered"
-  },
-  {
-    "title": "IDENTITY_WRONG_IDENTITY",
-    "href": "/docs/general/errors/identity/wrong-identity"
-  },
-  {
-    "title": "KV_BATCH_TOO_LARGE",
-    "href": "/docs/general/errors/kv/batch-too-large"
-  },
-  {
-    "title": "KV_ENTRIES_MISSING",
-    "href": "/docs/general/errors/kv/entries-missing"
-  },
-  {
-    "title": "KV_KEY_VALIDATION_ERROR",
-    "href": "/docs/general/errors/kv/key-validation-error"
-  },
-  {
-    "title": "KV_KEYS_MISSING",
-    "href": "/docs/general/errors/kv/keys-missing"
-  },
-  {
-    "title": "KV_VALUE_TOO_LONG",
-    "href": "/docs/general/errors/kv/value-too-long"
-  },
-  {
-    "title": "MATCHMAKER_GAME_MODE_NOT_FOUND",
-    "href": "/docs/general/errors/mm/game-mode-not-found"
-  },
-  {
-    "title": "MATCHMAKER_LOBBY_CLOSED",
-    "href": "/docs/general/errors/mm/lobby-closed"
-  },
-  {
-    "title": "MATCHMAKER_LOBBY_FULL",
-    "href": "/docs/general/errors/mm/lobby-full"
-  },
-  {
-    "title": "MATCHMAKER_LOBBY_NOT_FOUND",
-    "href": "/docs/general/errors/mm/lobby-not-found"
-  },
-  {
-    "title": "MATCHMAKER_LOBBY_NOT_STARTED",
-    "href": "/docs/general/errors/mm/lobby-not-started"
-  },
-  {
-    "title": "MATCHMAKER_LOBBY_STOPPED",
-    "href": "/docs/general/errors/mm/lobby-stopped"
-  },
-  {
-    "title": "MATCHMAKER_NO_AVAILABLE_LOBBIES",
-    "href": "/docs/general/errors/mm/no-available-lobbies"
-  },
-  {
-    "title": "MATCHMAKER_PLAYER_ALREADY_CONNECTED",
-    "href": "/docs/general/errors/mm/player-already-connected"
-  },
-  {
-    "title": "MATCHMAKER_PLAYER_IN_DIFFERENT_LOBBY",
-    "href": "/docs/general/errors/mm/player-in-different-lobby"
-  },
-  {
-    "title": "MATCHMAKER_PLAYER_REGISTRATION_EXPIRED",
-    "href": "/docs/general/errors/mm/player-registration-expired"
-  },
-  {
-    "title": "MATCHMAKER_PLAYER_REMOVED",
-    "href": "/docs/general/errors/mm/player-removed"
-  },
-  {
-    "title": "MATCHMAKER_REGION_NOT_ENABLED_FOR_GAME_MODE",
-    "href": "/docs/general/errors/mm/region-not-enabled-for-game-mode"
-  },
-  {
-    "title": "MATCHMAKER_TOO_MANY_LOBBIES",
-    "href": "/docs/general/errors/mm/too-many-lobbies"
-  },
-  {
-    "title": "MATCHMAKER_TOO_MANY_PLAYERS_FROM_SOURCE",
-    "href": "/docs/general/errors/mm/too-many-players-from-source"
-  },
-  {
-    "title": "PARTY_ALREADY_IN_PARTY",
+    "title": "Already In Party",
     "href": "/docs/general/errors/party/already-in-party"
   },
   {
-    "title": "PARTY_BAD_INVITE_ALIAS_LENGTH",
+    "title": "API Bad Body",
+    "href": "/docs/general/errors/api/bad-body"
+  },
+  {
+    "title": "API Bad Body",
+    "href": "/docs/general/errors/api/body-too-large"
+  },
+  {
+    "title": "API Bad Content Length",
+    "href": "/docs/general/errors/api/bad-content-length"
+  },
+  {
+    "title": "API Bad Cookie",
+    "href": "/docs/general/errors/api/bad-cookie"
+  },
+  {
+    "title": "API Bad Header",
+    "href": "/docs/general/errors/api/bad-header"
+  },
+  {
+    "title": "API Bad Headers",
+    "href": "/docs/general/errors/api/bad-headers"
+  },
+  {
+    "title": "API Bad Query",
+    "href": "/docs/general/errors/api/bad-query"
+  },
+  {
+    "title": "API Bad Query Parameter",
+    "href": "/docs/general/errors/api/bad-query-parameter"
+  },
+  {
+    "title": "API CORS Header Not Allowed",
+    "href": "/docs/general/errors/api/cors/header-not-allowed"
+  },
+  {
+    "title": "API CORS Method Not Allowed",
+    "href": "/docs/general/errors/api/cors/method-not-allowed"
+  },
+  {
+    "title": "API CORS Origin Not Allowed",
+    "href": "/docs/general/errors/api/cors/origin-not-allowed"
+  },
+  {
+    "title": "API Forbidden",
+    "href": "/docs/general/errors/api/forbidden"
+  },
+  {
+    "title": "API Invalid IP",
+    "href": "/docs/general/errors/api/invalid-ip"
+  },
+  {
+    "title": "API Missing Cookie",
+    "href": "/docs/general/errors/api/missing-cookie"
+  },
+  {
+    "title": "API Missing Header",
+    "href": "/docs/general/errors/api/missing-header"
+  },
+  {
+    "title": "API Not Found",
+    "href": "/docs/general/errors/api/not-found"
+  },
+  {
+    "title": "API Rate Limit",
+    "href": "/docs/general/errors/api/rate-limit"
+  },
+  {
+    "title": "API Unauthorized",
+    "href": "/docs/general/errors/api/unauthorized"
+  },
+  {
+    "title": "Bad Invite Alias Length",
     "href": "/docs/general/errors/party/bad-invite-alias-length"
   },
   {
-    "title": "PARTY_BAD_PARTY_SIZE",
+    "title": "Bad Party Size",
     "href": "/docs/general/errors/party/bad-size"
   },
   {
-    "title": "PARTY_CANNOT_KICK_SELF",
+    "title": "Cannot Kick Self",
     "href": "/docs/general/errors/party/cannot-kick-self"
   },
   {
-    "title": "PARTY_CANNOT_SET_LEADER_TO_SELF",
+    "title": "Cannot Set Party Leader To Self",
     "href": "/docs/general/errors/party/cannot-set-party-leader-to-self"
   },
   {
-    "title": "PARTY_IDENTITY_NOT_IN_ANY_PARTY",
-    "href": "/docs/general/errors/party/identity-not-in-any-party"
+    "title": "Captcha Failed",
+    "href": "/docs/general/errors/captcha/captcha-failed"
   },
   {
-    "title": "PARTY_IDENTITY_NOT_PARTY_LEADER",
-    "href": "/docs/general/errors/party/identity-not-party-leader"
+    "title": "Captcha Invalid",
+    "href": "/docs/general/errors/captcha/captcha-invalid"
   },
   {
-    "title": "PARTY_INVITE_ALIAS_NOT_FOUND",
-    "href": "/docs/general/errors/party/invite-alias-not-found"
+    "title": "Captcha Origin Not Allowed",
+    "href": "/docs/general/errors/captcha/captcha-origin-not-allowed"
   },
   {
-    "title": "PARTY_INVITE_ALIAS_NOT_UNIQUE",
-    "href": "/docs/general/errors/party/invite-alias-not-unique"
+    "title": "Captcha Required",
+    "href": "/docs/general/errors/captcha/captcha-required"
   },
   {
-    "title": "PARTY_INVITE_NOT_FOUND",
-    "href": "/docs/general/errors/party/invite-not-found"
+    "title": "CDN Invalid Auth User Password",
+    "href": "/docs/general/errors/cdn/invalid-auth-user-password"
   },
   {
-    "title": "PARTY_LEADER_NOT_IN_SAME_PARTY",
-    "href": "/docs/general/errors/party/leader-not-in-same-party"
+    "title": "CDN Invalid Domain",
+    "href": "/docs/general/errors/cdn/invalid-domain"
   },
   {
-    "title": "PARTY_PARTY_FULL",
-    "href": "/docs/general/errors/party/party-full"
+    "title": "CDN Too Many Auth Users",
+    "href": "/docs/general/errors/cdn/too-many-auth-users"
   },
   {
-    "title": "PARTY_PARTY_NOT_FOUND",
-    "href": "/docs/general/errors/party/party-not-found"
+    "title": "CDN Too Many Auth Users",
+    "href": "/docs/general/errors/glob/invalid"
   },
   {
-    "title": "PARTY_PARTY_NOT_IN_GAME",
-    "href": "/docs/general/errors/party/party-not-in-game"
+    "title": "CDN Too Many Domains",
+    "href": "/docs/general/errors/cdn/too-many-domains"
   },
   {
-    "title": "PARTY_PARTY_NOT_JOINABLE",
-    "href": "/docs/general/errors/party/party-not-joinable"
+    "title": "Chat Thread Not Found",
+    "href": "/docs/general/errors/chat/thread-not-found"
   },
   {
-    "title": "PARTY_TOO_MANY_INVITES",
-    "href": "/docs/general/errors/party/too-many-invites"
+    "title": "Device Link Already Complete",
+    "href": "/docs/general/errors/cloud/device-link-already-complete"
   },
   {
-    "title": "PARTY_UNEXPECTED_INVITE_ALIAS",
-    "href": "/docs/general/errors/party/unexpected-invite-alias"
+    "title": "Entitlement Expired",
+    "href": "/docs/general/errors/claims/entitlement-expired"
   },
   {
-    "title": "TOKEN_ERROR",
+    "title": "Failed to consume group invite",
+    "href": "/docs/general/errors/group/failed-to-consume-invite"
+  },
+  {
+    "title": "Game Mode Not Found",
+    "href": "/docs/general/errors/mm/game-mode-not-found"
+  },
+  {
+    "title": "Game Not Found",
+    "href": "/docs/general/errors/game/game-not-found"
+  },
+  {
+    "title": "Game User Link Failed",
+    "href": "/docs/general/errors/game-user/link-failed"
+  },
+  {
+    "title": "Generic Token Error",
     "href": "/docs/general/errors/token/generic-error"
   },
   {
-    "title": "TOKEN_EXCHANGE_FAILED",
-    "href": "/docs/general/errors/token/exchange-failed"
+    "title": "Group Already Member",
+    "href": "/docs/general/errors/group/already-member"
   },
   {
-    "title": "TOKEN_EXPIRED",
-    "href": "/docs/general/errors/token/expired"
+    "title": "Group cannot request join",
+    "href": "/docs/general/errors/group/cannot-request-join"
   },
   {
-    "title": "TOKEN_INVALID",
-    "href": "/docs/general/errors/token/invalid"
+    "title": "Group Full",
+    "href": "/docs/general/errors/group/full"
   },
   {
-    "title": "TOKEN_REFRESH_NOT_FOUND",
-    "href": "/docs/general/errors/token/refresh-not-found"
+    "title": "Group Insufficient Permissions",
+    "href": "/docs/general/errors/group/insufficient-permissions"
   },
   {
-    "title": "TOKEN_REVOKED",
-    "href": "/docs/general/errors/token/revoked"
+    "title": "Group Invalid Developer Status",
+    "href": "/docs/general/errors/group/group-enterprise-restriction"
   },
   {
-    "title": "UPLOAD_NSFW_CONTENT_DETECTED",
+    "title": "Group Invalid Developer Status",
+    "href": "/docs/general/errors/group/group-invalid-developer-status"
+  },
+  {
+    "title": "Group invite code already used",
+    "href": "/docs/general/errors/group/invite/code-already-used"
+  },
+  {
+    "title": "Group invite code expired",
+    "href": "/docs/general/errors/group/invite/code-expired"
+  },
+  {
+    "title": "Group invite code invalid",
+    "href": "/docs/general/errors/group/invite/code-invalid"
+  },
+  {
+    "title": "Group invite code revoked",
+    "href": "/docs/general/errors/group/invite/code-revoked"
+  },
+  {
+    "title": "Group Join Request Already Exists",
+    "href": "/docs/general/errors/group/join-request-already-exists"
+  },
+  {
+    "title": "Group Member Banned",
+    "href": "/docs/general/errors/group/member-banned"
+  },
+  {
+    "title": "Group Not Developer Group",
+    "href": "/docs/general/errors/group/group-not-developer-group"
+  },
+  {
+    "title": "Group Not Found",
+    "href": "/docs/general/errors/group/not-found"
+  },
+  {
+    "title": "Group Not Joinable",
+    "href": "/docs/general/errors/group/not-joinable"
+  },
+  {
+    "title": "Group Not Member",
+    "href": "/docs/general/errors/group/not-member"
+  },
+  {
+    "title": "Hostname Taken",
+    "href": "/docs/general/errors/cloud/hostname-taken"
+  },
+  {
+    "title": "Identity Not Admin",
+    "href": "/docs/general/errors/identity/not-admin"
+  },
+  {
+    "title": "Identity Not Found",
+    "href": "/docs/general/errors/identity/not-found"
+  },
+  {
+    "title": "Identity Not In Any Party",
+    "href": "/docs/general/errors/party/identity-not-in-any-party"
+  },
+  {
+    "title": "Identity Not Party Leader",
+    "href": "/docs/general/errors/party/identity-not-party-leader"
+  },
+  {
+    "title": "Identity Not Registered",
+    "href": "/docs/general/errors/identity/not-registered"
+  },
+  {
+    "title": "Invalid Chat Body",
+    "href": "/docs/general/errors/chat/invalid-body"
+  },
+  {
+    "title": "Invalid Chat Topic",
+    "href": "/docs/general/errors/chat/invalid-topic"
+  },
+  {
+    "title": "Invite Alias Not Found",
+    "href": "/docs/general/errors/party/invite-alias-not-found"
+  },
+  {
+    "title": "Invite Alias Not Unique",
+    "href": "/docs/general/errors/party/invite-alias-not-unique"
+  },
+  {
+    "title": "Invite Not Found",
+    "href": "/docs/general/errors/party/invite-not-found"
+  },
+  {
+    "title": "KV Batch Too Large",
+    "href": "/docs/general/errors/kv/batch-too-large"
+  },
+  {
+    "title": "KV Entries Missing",
+    "href": "/docs/general/errors/kv/entries-missing"
+  },
+  {
+    "title": "KV Key Validation Error",
+    "href": "/docs/general/errors/kv/key-validation-error"
+  },
+  {
+    "title": "KV Keys Missing",
+    "href": "/docs/general/errors/kv/keys-missing"
+  },
+  {
+    "title": "KV Value Too Long",
+    "href": "/docs/general/errors/kv/value-too-long"
+  },
+  {
+    "title": "Leader Not In Same Party",
+    "href": "/docs/general/errors/party/leader-not-in-same-party"
+  },
+  {
+    "title": "Matchmaker Lobby Closed",
+    "href": "/docs/general/errors/mm/lobby-closed"
+  },
+  {
+    "title": "Matchmaker Lobby Full",
+    "href": "/docs/general/errors/mm/lobby-full"
+  },
+  {
+    "title": "Matchmaker Lobby Not Found",
+    "href": "/docs/general/errors/mm/lobby-not-found"
+  },
+  {
+    "title": "Matchmaker Lobby Not Started",
+    "href": "/docs/general/errors/mm/lobby-not-started"
+  },
+  {
+    "title": "Matchmaker Lobby Stopped",
+    "href": "/docs/general/errors/mm/lobby-stopped"
+  },
+  {
+    "title": "Matchmaker No Available Lobbies",
+    "href": "/docs/general/errors/mm/no-available-lobbies"
+  },
+  {
+    "title": "Matchmaker Player Already Connected",
+    "href": "/docs/general/errors/mm/player-already-connected"
+  },
+  {
+    "title": "Matchmaker Player In Different Lobby",
+    "href": "/docs/general/errors/mm/player-in-different-lobby"
+  },
+  {
+    "title": "Matchmaker Player Registration Expired",
+    "href": "/docs/general/errors/mm/player-registration-expired"
+  },
+  {
+    "title": "Matchmaker Player Removed",
+    "href": "/docs/general/errors/mm/player-removed"
+  },
+  {
+    "title": "Matchmaker Region Not Enabled",
+    "href": "/docs/general/errors/mm/region-not-enabled-for-game-mode"
+  },
+  {
+    "title": "Matchmaker Too Many Lobbies",
+    "href": "/docs/general/errors/mm/too-many-lobbies"
+  },
+  {
+    "title": "Matchmaker Too Many Players From Source",
+    "href": "/docs/general/errors/mm/too-many-players-from-source"
+  },
+  {
+    "title": "Missing Entitlement",
+    "href": "/docs/general/errors/claims/missing-entitlement"
+  },
+  {
+    "title": "NSFW Content Detected in Upload",
     "href": "/docs/general/errors/upload/nsfw-content-detected"
   },
   {
-    "title": "UUID_INVALID",
+    "title": "Party Full",
+    "href": "/docs/general/errors/party/party-full"
+  },
+  {
+    "title": "Party Not Found",
+    "href": "/docs/general/errors/party/party-not-found"
+  },
+  {
+    "title": "Party Not in Game",
+    "href": "/docs/general/errors/party/party-not-in-game"
+  },
+  {
+    "title": "Party Not Joinable",
+    "href": "/docs/general/errors/party/party-not-joinable"
+  },
+  {
+    "title": "Refresh Token Not Found",
+    "href": "/docs/general/errors/token/refresh-not-found"
+  },
+  {
+    "title": "Token Exchange Failed",
+    "href": "/docs/general/errors/token/exchange-failed"
+  },
+  {
+    "title": "Token Expired",
+    "href": "/docs/general/errors/token/expired"
+  },
+  {
+    "title": "Token Invalid",
+    "href": "/docs/general/errors/token/invalid"
+  },
+  {
+    "title": "Token Revoked",
+    "href": "/docs/general/errors/token/revoked"
+  },
+  {
+    "title": "Too Many Invites",
+    "href": "/docs/general/errors/party/too-many-invites"
+  },
+  {
+    "title": "Too Many Pending Hostnames",
+    "href": "/docs/general/errors/cloud/too-many-pending-hostnames-for-group"
+  },
+  {
+    "title": "Unexpected Invite Alias",
+    "href": "/docs/general/errors/party/unexpected-invite-alias"
+  },
+  {
+    "title": "UUID Invalid",
     "href": "/docs/general/errors/uuid/invalid"
   },
   {
-    "title": "VALIDATION_ERROR",
+    "title": "Validation Error",
     "href": "/docs/general/errors/validation/error"
+  },
+  {
+    "title": "Wrong Identity",
+    "href": "/docs/general/errors/identity/wrong-identity"
   }
 ]

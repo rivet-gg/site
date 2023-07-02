@@ -5,9 +5,18 @@ import errorPages from '../generated/errorPages.json' assert { type: 'json' };
 import apiPages from '../generated/apiPages.json' assert { type: 'json' };
 
 export async function generateNavigation() {
-  let routes = [];
+  // Process all pages
+  let pages = {};
+  let mdxFileNames = await glob(['**/*.mdx'], {
+    cwd: 'src/pages'
+  });
+  for (let filename of mdxFileNames) {
+    let href = filename.replace(/\.mdx$/, '');
+    pages[href] = await processPage({ path: filename });
+  }
 
-  // Process all navigation in globs
+  // Process all routes
+  let routes = [];
   let navigationFilenames = await glob(['**/_navigation.json'], {
     cwd: 'src/pages'
   });
@@ -19,7 +28,33 @@ export async function generateNavigation() {
   // Sort by path descending to match most specific first
   routes.sort((a, b) => b.prefix.length - a.prefix.length);
 
-  await writeFile('./src/generated/routes.json', JSON.stringify(routes), 'utf8');
+  await writeFile('./src/generated/routes.json', JSON.stringify({ routes, pages }, null, 2), 'utf8');
+}
+
+async function processPage({ path }) {
+  let md = await readFile(`src/pages/${path}`);
+
+  let ast = remark().parse(md);
+
+  // Title
+  let firstHeadingIndex = ast.children.findIndex(node => node.type === 'heading');
+  let firstHeading = ast.children[firstHeadingIndex];
+  let title = '';
+  if (firstHeading) {
+    title = firstHeading.children[0].value;
+  }
+
+  // Description
+  let firstParagraph = ast.children[firstHeadingIndex + 1];
+  let description = null;
+  if (firstParagraph && firstParagraph.type === 'paragraph') {
+    description = firstParagraph.children[0].value;
+  }
+
+  return {
+    title,
+    description
+  };
 }
 
 async function buildRoute({ path }) {
@@ -41,40 +76,24 @@ async function buildRoute({ path }) {
       if (inputGroup.template?.errors) {
         // Errors
         outputGroup.pages.push(...errorPages);
+        for (let page in errorPages) {
+          outputGroup.pages.push({
+            href: page.href
+          });
+        }
       } else if (inputGroup.template?.api) {
         // API
-        outputGroup.pages.push(...apiPages[inputGroup.template.api].pages);
+        for (let page in apiPages[inputGroup.template.api].pages) {
+          outputGroup.pages.push({
+            href: page.href
+          });
+        }
       } else if (inputGroup.pages) {
         // Markdown pages
         for (let page of inputGroup.pages) {
           if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
 
-          let md = await readFile(`./src/pages/${path}/${page}.mdx`);
-
-          let ast = remark().parse(md);
-
-          if (path.indexOf('blog') !== -1) {
-          console.log('ast', ast)
-          }
-
-          // Title
-          let firstHeadingIndex = ast.children.findIndex(node => node.type === 'heading');
-          let firstHeading = ast.children[firstHeadingIndex];
-          let title = '';
-          if (firstHeading) {
-            title = firstHeading.children[0].value;
-          }
-
-          // Description
-          let firstParagraph = ast.children[firstHeadingIndex + 1]
-          let description = null;
-          if (firstParagraph && firstParagraph.type === 'paragraph') {
-            description = firstParagraph.children[0].value;
-          }
-
           outputGroup.pages.push({
-            title,
-            description,
             href: `/${path}/${page}`
           });
         }
