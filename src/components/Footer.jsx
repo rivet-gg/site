@@ -151,6 +151,26 @@ function SmallPrint() {
               affiliates. 'Unreal Engine' is a trademark or registered trademark of Epic Games, Inc. in the
               U.S. and elsewhere.
             </p>
+
+            {/* Genreated with GPT-4 */}
+            {/* Another shorter option is also available at https://www.w3.org/html/logo/faq.html */}
+            <p className='text-2xs italic leading-4 text-white/50'>
+              The HTML5 Logo by the World Wide Web Consortium (W3C), used under a Creative Commons Attribution
+              3.0 License. [Source](https://www.w3.org/html/logo/index.html)
+            </p>
+
+            {/* Genreated with GPT-4 */}
+            <p className='text-2xs italic leading-4 text-white/50'>
+              The Godot Engine Logo by the Andrea Calabró, used under a Creative Commons Attribution 4.0
+              International License. [Source](https://godotengine.org/press/)
+            </p>
+
+            {/* Copied from https://www.docker.com/legal/trademark-guidelines/ */}
+            <p className='text-2xs italic leading-4 text-white/50'>
+              Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United
+              States and/or other countries. Docker, Inc. and other parties may also have trademark rights in
+              other terms used herein.
+            </p>
           </div>
         </div>
         <div className='mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0'>

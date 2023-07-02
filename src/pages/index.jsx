@@ -420,7 +420,7 @@ function Title() {
             Sign Up
           </a>
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
-            Learn <span aria-hidden='true'>→</span>
+            Tutorials & Templates <span aria-hidden='true'>→</span>
           </Link>
         </div>
 
