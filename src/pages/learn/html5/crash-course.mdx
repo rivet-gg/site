@@ -1,193 +1,130 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TutorialVideo } from '@/components/TutorialVideo';
 
-# Crash Course
+# ⏱️ Crash Course
 
 <RequiresBetaSignup />
 
-<ButtonGroup>
-  <Button
-    href='https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio'
-    target='_blank'
-    icon={faGithub}
-    arrow='right'
-    children='View on GitHub'
-  />
-</ButtonGroup>
-
-| Language                                      | Rendering                                                             | Networking                      |
-| --------------------------------------------- | --------------------------------------------------------------------- | ------------------------------- |
-| [TypeScript](https://www.typescriptlang.org/) | [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) | [Socket.io](https://socket.io/) |
-
-The following guide will walk you through integraing and deploying a game with Rivet.
-
 <TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
-
----
 
 ## Step 1: Setup project
 
-### Clone & run repo
+### Create a game on the Rivet Dashboard
 
-Run the following to clone the repository and start the server:
+Visit the [Rivet Dashboard](https://hub.rivet.gg/developer/dashboard) to create a new game.
 
+### Install the [Rivet CLI](https://github.com/rivet-gg/cli)
+
+Follow instructions [here](https://github.com/rivet-gg/cli#installing).
+
+<AccordionGroup>
+	<Accordion title="Can I do this with just a GUI?">
+		Yes. Everything in Rivet is built to be able to be access three ways: GUI, CLI, and API.
+
+    	We're working on publishing a tutorial for this soon.
+    </Accordion>
+    <Accordion title="Can I automate this with APIs?">
+    	Rivet's Cloud API can be managed with your [cloud token](/docs/general/concepts/token-types#cloud). This is the same API we use internally and [in the CLI](https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368).
+
+    	A dedicated library and specification will be published soon in order to build your own tooling.
+    </Accordion>
+
+</AccordionGroup>
+
+### Initialize the project
+
+Open your project's directory in a terminal and run:
+
+```bash
+rivet init --recommend
 ```
-git clone https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio.git
-cd example-tanks-typescript-canvas-socketio
-npm start
-```
 
-This will open your browser to http://localhost:8080. Verify the game works.
+This will guide you through setting up your project with Rivet.
 
-### Initialize project
-
-<InstallCli />
-
-Run the following command to setup your project:
-
-<CodeGroup>
-  <code title="Bash">
-  ```bash
-  rivet init \
-      --recommend \
-      --matchmaker \
-      --matchmaker-port 3000 \
-      --matchmaker-dockerfile Dockerfile \
-      --cdn \
-      --cdn-build-command "npm install && npm run build:client:prod" \
-      --cdn-build-output ./dist/
-  ```
-  </code>
-  <code title="PowerShell">
-  ```powershell
-  rivet init `
-      --recommend `
-      --matchmaker `
-      --matchmaker-port 3000 `
-      --matchmaker-dockerfile Dockerfile `
-      --cdn `
-      --cdn-build-command "npm install && npm run build:client:prod" `
-      --cdn-build-output ./dist/
-  ```
-  </code>
-  <code title="CMD">
-    ```batch
-    rivet init ^
-        --recommend ^
-        --matchmaker ^
-        --matchmaker-port 3000 ^
-        --matchmaker-dockerfile Dockerfile ^
-        --cdn ^
-        --cdn-build-command "npm install && npm run build:client:prod" ^
-        --cdn-build-output ./dist/
-    ```
-  </code>
-</CodeGroup>
-
-<Accordion title="What did this do?">
-    - Linked your project to Rivet
-    - Created `rivet.version.toml` file that configures how to run your game.
-    - Added a development token to your `.env` that lets you develop with Rivet on your local machine
-
-    You can also run `rivet init` wihtout any flags to go through the interactive setup process.
-
+<Accordion title='What does this do?'>
+  - Linked your project to Rivet - Creates `rivet.version.toml` to configure your deployed game. Read more
+  about the Rivet version config [here](/docs/general/concepts/version-config). - Creates a dev token added to
+  your `.env` to tell Rivet to mock API endpoints in development. Read more about dev tokens
+  [here](/docs/general/concepts/dev-tokens).
 </Accordion>
 
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/01-init)
+### Write a `Dockerfile` for your server
+
+You'll need a `Dockerfile` to build and run your game server.
+
+<Accordion title='Unfamiliar with Dockerfiles?'>
+  - [Boilerplate `Dockerfiles`](https://github.com/gauthamp10/dockerfile-boilerplates) has one already written
+  for you - [Dockerfile Crash Course](https://docker-curriculum.com/#dockerfile) will teach you how to write
+  your own `Dockerfile` quickly - Join our [Discord](https://discord.gg/BG2vqsJczH) and we'll write your
+  `Dockerfile` for you!
+</Accordion>
 
 ---
 
 ## Step 2: Integrate Rivet Matchmaker
 
-### Install `@rivet-gg/api`
+### Install the Rivet library
 
-Run the following to install the library to interact with Rivet:
+<CodeGroup>
 
-```
-npm install --save @rivet-gg/api
-```
+<code title='NPM'>```bash npm install --save @rivet-gg/api ```</code>
 
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/01-init)
+<code title='Yarn'>```bash yarn add @rivet-gg/api ```</code>
 
-### Update the client
+</CodeGroup>
 
-Add the following to the top of `client/Client.ts`:
+### Update your client
 
-```typescript client/Client.ts
+Copy the following pseudocode into the appropriate places in your source:
+
+```typescript
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+
+// Find a lobby (a new lobby will automatically be created on demand if needed)
+let res = await rivet.matchmaker.lobbies.find({ gameModes: ['default'] });
+
+// Connect to the lobby (Rivet automatically manages your SSL)
+let ws = new WebSocket(`wss://${res.ports['default'].host}/?token=${res.player.token}`);
 ```
 
 <EnvPublicToken />
 
-Find the `connect` function in `client/Client.ts` and replace it with the following:
+### Update your server
 
-```typescript client/Client.ts
-async function connect(client: Client) {
-  // Find a lobby to connect to on Rivet
-  let res = await RIVET.matchmaker.lobbies.find({ gameModes: ['default'] });
-  let port = res.ports['default'];
+Copy the following pseudocode into the appropriate places in your source:
 
-  // Open a new connection to the lobby
-  client.connection = new Connection(client, port.isTls, port.host, {
-    token: res.player.token
-  });
-}
-```
+```typescript
+// `RIVET_LOBBY_TOKEN` is automatically added to the environment by Rivet.
+import { RivetClient } from "@rivet-gg/api";
+let rivet = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
 
-Run `npm start` again and validate the game still connects.
+// Tell Rivet your server is ready. This gives you time to load maps and
+// other data before accepting players.
+rivet.matchmaker.lobbies.ready().catch(() => process.exit(1));
 
-Open the network inspector and reload to see a `POST` request to `https://matchmaker.api.rivet.gg/v1/lobbies/find`.
+myGameServer.on("connect", await (socket) => {
+	let playerToken = socket.request.query.token;
 
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/02-integrate-client)
+	// Notify the matchmaker that the player connected. This can be
+	// called only once per player token. This will throw an error and
+	// close the socket if the player token is already used or invalid.
+	await rivet.matchmaker.players.connected({ playerToken }).catch(err => socket.close());
 
-### Update the server
-
-Add the following to the top of `server/index.ts`:
-
-```typescript server/index.ts
-import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
-
-// Notify Rivet that this lobby is ready to accept players
-RIVET.matchmaker.lobbies.ready();
+	socket.on("close", async () => {
+		// Notify the matchmaker that the player disconnected.
+		await rivet.matchmaker.players.disconnected({ playerToken });
+	});
+});
 ```
 
 <EnvLobbyToken />
 
-Find the `setupConnection` function in `server/index.ts` and replace it with the following:
-
-```typescript server/index.ts
-async function setupConnection(socket: Socket) {
-  // Read the token passed to the socket query
-  let playerToken = socket.handshake.query.token as string;
-
-  // Validate the player token with the matchmaker
-  await RIVET.matchmaker.players.connected({ playerToken });
-
-  // Remove the player when disconnected
-  socket.on('disconnect', () => RIVET.matchmaker.players.disconnected({ playerToken }));
-
-  new Connection(game, socket);
-}
-```
-
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/03-integrate-server)
-
 ---
 
-## Step 3: Deploy to Rivet
-
-Deploy your game to Rivet with:
+## Step 3: Publish your game
 
 ```bash
 rivet deploy --namespace prod
 ```
 
-<Accordion title='What did this do?'>
-  - Build & upload your Docker image for [Rivet Serverless Lobbies](/docs/serverless-lobbies/index) - Build &
-  upload your site for [Rivet CDN](/docs//cdn) - Create a version on Rivet - Deploy the version to the
-  *Production* namespace
-</Accordion>
-
-The CLI will print a link ending in `rivet.game`. Share the link with a friend to play your game on Rivet! 🎉
+This will print a URL ending in `rivet.game`. If you are hosting your game on Rivet CDN, visit that URL to play your game.

@@ -22,10 +22,6 @@
         "pages": ["faq/who-is-rivet-built-for", "faq/who-is-rivet-not-built-for"]
       },
       {
-        "title": "Guides",
-        "pages": ["guides/crash-course"]
-      },
-      {
         "title": "Errors",
         "template": { "errors": true }
       }
