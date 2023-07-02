@@ -4,6 +4,7 @@ import { createAutocomplete } from '@algolia/autocomplete-core';
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import Highlighter from 'react-highlight-words';
+import routes from '@/generated/routes.json';
 
 function useAutocomplete() {
   let id = useId();
@@ -105,12 +106,20 @@ function HighlightQuery({ text, query }) {
 function SearchResult({ result, resultIndex, autocomplete, collection, query }) {
   let id = useId();
 
-  // TODO: Improve our navigation module for this to work again
-  // let sectionTitle = navigation.sidebar.groups.find(section =>
-  //   section.pages.find(link => link.href === result.url.split('#')[0])
-  // )?.title;
-  let sectionTitle = result.href;
-  let hierarchy = [result.title, result.pageTitle].filter(Boolean);
+  let sectionTitle;
+  for (let route of routes.routes) {
+    if (route.sidebar) {
+      for (let group of route.sidebar.groups) {
+        for (let page of group.pages) {
+          if (page.href === result.url.split('#')[0]) {
+            sectionTitle = `${route.title} – ${group.title}`;
+          }
+        }
+      }
+    }
+  }
+
+  let hierarchy = [sectionTitle, result.pageTitle].filter(Boolean);
 
   return (
     <li
@@ -122,29 +131,25 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
       {...autocomplete.getItemProps({
         item: result,
         source: collection.source
-      })}
-    >
+      })}>
       <div
         id={`${id}-title`}
         aria-hidden='true'
-        className='text-sm font-medium text-zinc-900 group-aria-selected:text-violet-500 dark:text-white'
-      >
+        className='text-sm font-medium text-zinc-900 group-aria-selected:text-violet-500 dark:text-white'>
         <HighlightQuery text={result.title} query={query} />
       </div>
       {hierarchy.length > 0 && (
         <div
           id={`${id}-hierarchy`}
           aria-hidden='true'
-          className='mt-1 truncate whitespace-nowrap text-2xs text-zinc-500'
-        >
+          className='mt-1 truncate whitespace-nowrap text-2xs text-zinc-500'>
           {hierarchy.map((item, itemIndex, items) => (
             <Fragment key={itemIndex}>
               <HighlightQuery text={item} query={query} />
               <span
                 className={
                   itemIndex === items.length - 1 ? 'sr-only' : 'mx-2 text-zinc-300 dark:text-zinc-700'
-                }
-              >
+                }>
                 /
               </span>
             </Fragment>
@@ -233,8 +238,7 @@ function SearchButton(props) {
       <button
         type='button'
         className='hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
-        {...props}
-      >
+        {...props}>
         <SearchIcon className='h-5 w-5 stroke-current' />
         Find something...
         <kbd className='ml-auto text-2xs text-zinc-400 dark:text-zinc-500'>
@@ -246,8 +250,7 @@ function SearchButton(props) {
         type='button'
         className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
         aria-label='Find something...'
-        {...props}
-      >
+        {...props}>
         <SearchIcon className='h-5 w-5 stroke-zinc-900 dark:stroke-white' />
       </button>
     </>
@@ -308,8 +311,7 @@ function SearchDialog({ open, setOpen, className }) {
           enterTo='opacity-100'
           leave='ease-in duration-200'
           leaveFrom='opacity-100'
-          leaveTo='opacity-0'
-        >
+          leaveTo='opacity-0'>
           <div className='fixed inset-0 bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40' />
         </Transition.Child>
 
@@ -321,16 +323,14 @@ function SearchDialog({ open, setOpen, className }) {
             enterTo='opacity-100 scale-100'
             leave='ease-in duration-200'
             leaveFrom='opacity-100 scale-100'
-            leaveTo='opacity-0 scale-95'
-          >
+            leaveTo='opacity-0 scale-95'>
             <Dialog.Panel className='mx-auto overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 dark:bg-zinc-900 dark:ring-zinc-800 sm:max-w-xl'>
               <div {...autocomplete.getRootProps({})}>
                 <form
                   ref={formRef}
                   {...autocomplete.getFormProps({
                     inputElement: inputRef.current
-                  })}
-                >
+                  })}>
                   <SearchInput
                     ref={inputRef}
                     autocomplete={autocomplete}
@@ -340,8 +340,7 @@ function SearchDialog({ open, setOpen, className }) {
                   <div
                     ref={panelRef}
                     className='border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5'
-                    {...autocomplete.getPanelProps({})}
-                  >
+                    {...autocomplete.getPanelProps({})}>
                     {autocompleteState.isOpen && (
                       <SearchResults
                         autocomplete={autocomplete}
@@ -396,8 +395,7 @@ export function Search() {
       <button
         type='button'
         className='hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
-        {...buttonProps}
-      >
+        {...buttonProps}>
         <SearchIcon className='h-5 w-5 stroke-current' />
         Find something...
         <kbd className='ml-auto text-2xs text-zinc-400 dark:text-zinc-500'>
@@ -419,8 +417,7 @@ export function MobileSearch() {
         type='button'
         className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
         aria-label='Find something...'
-        {...buttonProps}
-      >
+        {...buttonProps}>
         <SearchIcon className='h-5 w-5 stroke-zinc-900 dark:stroke-white' />
       </button>
       <SearchDialog className='lg:hidden' {...dialogProps} />

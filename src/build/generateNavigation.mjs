@@ -61,6 +61,7 @@ async function buildRoute({ path }) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   let output = {
+    title: input.title,
     prefix: `/${path}`,
     feedback: input.feedback ?? false
   };
