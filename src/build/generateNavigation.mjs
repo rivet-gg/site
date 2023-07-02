@@ -134,16 +134,16 @@ function docsTabs(path) {
       current: path[1] === 'general'
     },
     {
-      title: 'Matchmaker',
-      icon: 'matchmaker',
-      href: '/docs/matchmaker',
-      current: path[1] === 'matchmaker'
-    },
-    {
       title: 'Serverless Lobbies',
       icon: 'compute',
       href: '/docs/serverless-lobbies',
       current: path[1] === 'serverless-lobbies'
+    },
+    {
+      title: 'Matchmaker',
+      icon: 'matchmaker',
+      href: '/docs/matchmaker',
+      current: path[1] === 'matchmaker'
     },
     {
       title: 'CDN',

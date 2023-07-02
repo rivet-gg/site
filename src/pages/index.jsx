@@ -98,6 +98,7 @@ const pages = [
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
     screenshot: imgLobbies,
+    learnHref: '/docs/serverless-lobbies',
     features: [
       {
         name: 'Multi-cloud & on-prem autoscaling',
@@ -135,6 +136,7 @@ const pages = [
     color: '#8A7ED8',
     image: [imgGameGuardWhite, imgGameGuardColor],
     screenshot: imgGameGuard,
+    learnHref: '/docs/serverless-lobbies/concepts/game-guard',
     features: [
       {
         name: 'Mitigates DDoS & botting attacks',
@@ -164,6 +166,7 @@ const pages = [
     color: '#4DB1F9',
     image: [imgMatchmakerWhite, imgMatchmakerColor],
     screenshot: imgMatchmaker,
+    learnHref: '/docs/matchmaker',
     features: [
       {
         name: 'Instant matchmaking',
@@ -197,6 +200,7 @@ const pages = [
     color: '#F2B046',
     image: [imgSocialWhite, imgSocialColor],
     screenshot: imgSocial,
+    learnHref: '/docs/identity',
     features: [
       {
         name: '100% free, open, and privacy-centric',
@@ -248,6 +252,7 @@ const pages = [
     color: '#8A7ED8',
     image: [imgOssWhite, imgOssColor],
     screenshot: imgOss,
+    learnHref: 'https://github.com/rivet-gg/rivet',
     features: [
       {
         name: 'Permissive license (Apache 2.0)',
@@ -313,7 +318,7 @@ let caseStudies = [
     name: 'Ev.io',
     href: 'https://ev.io',
     badge: () => (
-      <div className='flex align-center absolute bottom-2 w-full justify-center items-center text-white gap-4'>
+      <div className='align-center absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
         <FontAwesomeIcon icon={faAward} className='text-2xl' />
         <div className=' flex flex-col'>
           <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
@@ -415,9 +420,7 @@ function Title() {
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
             Sign Up
           </a>
-          <Link
-            href='/learn'
-            className='text-sm font-semibold leading-6 text-white'>
+          <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             Learn <span aria-hidden='true'>→</span>
           </Link>
         </div>
@@ -626,11 +629,13 @@ function PageContents({ page }) {
             </div>
 
             {/* Learn more */}
-            <div className='mt-5'>
-              <Button href='/docs/general' arrow='right'>
-                Learn More
-              </Button>
-            </div>
+            {page.learnHref && (
+              <div className='mt-5'>
+                <Button href={page.learnHref} arrow='right'>
+                  Learn More
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
