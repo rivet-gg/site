@@ -416,9 +416,9 @@ function Title() {
             Sign Up
           </a>
           <Link
-            href='/docs/general/guides/crash-course'
+            href='/learn'
             className='text-sm font-semibold leading-6 text-white'>
-            Crash Course <span aria-hidden='true'>→</span>
+            Learn <span aria-hidden='true'>→</span>
           </Link>
         </div>
 
@@ -724,13 +724,9 @@ function UpAndRunning() {
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
-              <Resource
-                title='Crash course'
-                icon={faGraduationCap}
-                href='/docs/general/guides/crash-course'
-              />
               <Resource title='Learn' icon={faHammer} href='/learn' />
-              <Resource title='Libraries' icon={faCode} href='/docs/general/libraries' />
+              <Resource title='Docs' icon={faHammer} href='/docs' />
+              <Resource title='Blog' icon={faCode} href='/blog' />
               <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' />
               <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' />
               <Resource title='Support' icon={faLifeRing} href='/support' />
