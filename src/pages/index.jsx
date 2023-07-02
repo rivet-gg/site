@@ -413,12 +413,12 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <a
+          <Link
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
             Sign Up
-          </a>
+          </Link>
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             Tutorials & Templates <span aria-hidden='true'>→</span>
           </Link>
