@@ -68,9 +68,6 @@ function Article({ article }) {
 export default function ArticlesIndex({ articles }) {
   return (
     <>
-      <Head>
-        <title>Blog</title>
-      </Head>
       <SimpleLayout title='Blog'>
         <div className='mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
           {articles.map(article => (
@@ -82,6 +79,7 @@ export default function ArticlesIndex({ articles }) {
   );
 }
 
+ArticlesIndex.title = 'Blog';
 ArticlesIndex.prose = false;
 
 export async function getStaticProps() {
