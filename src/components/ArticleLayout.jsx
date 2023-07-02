@@ -2,10 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
 import { Prose } from '@/components/Prose';
 import { formatDate } from '@/lib/formatDate';
 import { processArticleMeta } from '@/lib/articleMetadata';
+import { faRss } from '@fortawesome/pro-solid-svg-icons';
 
 function ArrowLeftIcon(props) {
   return (
@@ -95,6 +97,10 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
             </article>
           </div>
         </div>
+
+        <Button icon={faRss} href='/rss/feed.xml' className='mt-8'>
+          RSS Feed
+        </Button>
       </Container>
     </>
   );

@@ -2,10 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { formatDate } from '@/lib/formatDate';
 import { getAllArticles } from '@/lib/getAllArticles';
+import { faRss } from '@fortawesome/pro-solid-svg-icons';
 
 function Article({ article }) {
   return (
@@ -68,7 +70,7 @@ function Article({ article }) {
 export default function ArticlesIndex({ articles }) {
   return (
     <>
-      <SimpleLayout title='Blog'>
+      <SimpleLayout title='Blog' intro={<Button icon={faRss} href='/rss/feed.xml'>RSS Feed</Button>}>
         <div className='mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
           {articles.map(article => (
             <Article key={article.slug} article={article} />
