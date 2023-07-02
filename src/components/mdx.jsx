@@ -18,11 +18,11 @@ export const h2 = function H2(props) {
 
 export function Tooltip({ tip, children }) {
   return (
-    <span class='group relative z-10 inline'>
-      <span class='underline decoration-zinc-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-zinc-500'>
+    <span className='group relative z-10 inline'>
+      <span className='underline decoration-zinc-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-zinc-500'>
         {children}
       </span>
-      <span class='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-lg border border-gray-50 bg-black/50 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover:flex dark:border-gray-500'>
+      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-lg border border-gray-50 bg-black/50 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover:flex dark:border-gray-500'>
         {tip}
       </span>
     </span>
@@ -167,16 +167,53 @@ export function EnvLobbyToken() {
 }
 
 export function ProtocolSupportMatrix() {
-  return `
-| Protocol                 | [Rivet Game Guard](/serverless-lobbies/concepts/game-guard) | [Host Network](/serverless-lobbies/concepts/host-bridge-networking) |
-| ------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------- |
-|                          | _Requires single port_                                      | _Requires port range_                                               |
-| HTTPS / Secure WebSocket | ✅                                                          |                                                                     |
-| HTTP / WebSocket         | ✅                                                          |                                                                     |
-| TCP + TLS                | ✅                                                          |                                                                     |
-| TCP                      | ✅                                                          | ✅                                                                  |
-| UDP                      | ✅                                                          | ✅                                                                  |
-`;
+  return (
+    <table>
+      <tr>
+        <th>Protocol</th>
+        <th>
+          <Link href='/docs/serverless-lobbies/concepts/game-guard'>Rivet Game Guard</Link>
+        </th>
+        <th>
+          <Link href='/docs/serverless-lobbies/concepts/host-bridge-networking'>Host Network</Link>
+        </th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <em>Requires single port</em>
+        </td>
+        <td>
+          <em>Requires port range</em>
+        </td>
+      </tr>
+      <tr>
+        <td>HTTPS / Secure WebSocket</td>
+        <td>✅</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>HTTP / WebSocket</td>
+        <td>✅</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>TCP + TLS</td>
+        <td>✅</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>TCP</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>UDP / WebRTC / ENet / KCP</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+    </table>
+  );
 }
 
 export function InstallCli() {
