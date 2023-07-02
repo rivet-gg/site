@@ -45,10 +45,19 @@ async function processPage({ path }) {
   }
 
   // Description
-  let firstParagraph = ast.children[firstHeadingIndex + 1];
   let description = null;
-  if (firstParagraph && firstParagraph.type === 'paragraph') {
-    description = firstParagraph.children[0].value;
+  if (firstHeadingIndex !== -1) {
+    for (let i = firstHeadingIndex + 1; i < ast.children.length; i++) {
+      let node = ast.children[i];
+      if (node.type === 'paragraph') {
+        // Stop iterating once we reach a paragraph. Means there's a description.
+        description = node.children[0].value;
+        break;
+      } else if (node.type === 'heading') {
+        // Stop iterating once we reach a new heading. Means there's no description.
+        break;
+      }
+    }
   }
 
   return {
