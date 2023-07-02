@@ -90,6 +90,7 @@ function StarPrompt() {
               <div className='ml-4'>
                 <GitHubButton
                   href='https://github.com/rivet-gg/rivet'
+                  target='_blank'
                   data-color-scheme='no-preference: light; light: light; dark: light;'
                   data-size='large'
                   data-show-count='true'

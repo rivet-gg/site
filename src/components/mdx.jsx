@@ -138,7 +138,7 @@ export function RequiresBetaSignup() {
   return (
     <Note>
       This guide requires access to the Rivet private beta. Request access{' '}
-      <Link href='https://b8v8449klvp.typeform.com/rivet'>here</Link>.
+      <Link href='https://b8v8449klvp.typeform.com/rivet' target='_blank'>here</Link>.
     </Note>
   );
 }
@@ -237,7 +237,7 @@ export function ProtocolSupportMatrix() {
 export function InstallCli() {
   return (
     <Note>
-      Make sure you have installed the Rivet CLI <Link href='https://github.com/rivet-gg/cli#installing'>here</Link>.
+      Make sure you have installed the Rivet CLI <Link href='https://github.com/rivet-gg/cli#installing' target='_blank'>here</Link>.
     </Note>
   );
 }

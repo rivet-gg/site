@@ -417,6 +417,7 @@ function Title() {
         <div className='justify-left mt-10 flex items-center gap-x-6'>
           <a
             href='https://b8v8449klvp.typeform.com/rivet'
+            target='_blank'
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
             Sign Up
           </a>
@@ -731,8 +732,8 @@ function UpAndRunning() {
               <Resource title='Learn' icon={faHammer} href='/learn' />
               <Resource title='Docs' icon={faBooks} href='/docs/general' />
               <Resource title='Blog' icon={faCode} href='/blog' />
-              <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' />
-              <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' />
+              <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' target='_blank' />
+              <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' target='_blank' />
               <Resource title='Support' icon={faLifeRing} href='/support' />
             </div>
           </div>
