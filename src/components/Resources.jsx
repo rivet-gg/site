@@ -106,8 +106,7 @@ export function Resource({ children, ...props }) {
           <span className='absolute inset-0 rounded-2xl' />
           {props.title}
         </div>
-        {/* TODO: This is causing an error */}
-        <p className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</p>
+        <span className='mt-1 text-sm text-zinc-600 dark:text-zinc-400'>{children}</span>
       </div>
     </Link>
   );

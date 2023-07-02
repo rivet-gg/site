@@ -4,8 +4,8 @@
   "sidebar": {
     "groups": [
       {
-        "title": "Starter",
-        "pages": ["starter"]
+        "title": "Tutorials",
+        "pages": ["crash-course"]
       }
     ]
   }

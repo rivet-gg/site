@@ -261,7 +261,6 @@ export function Code({ children, ...props }) {
 }
 
 export function Pre({ children, ...props }) {
-  console.log('props', props);
   let isGrouped = useContext(CodeGroupContext);
 
   if (isGrouped) {

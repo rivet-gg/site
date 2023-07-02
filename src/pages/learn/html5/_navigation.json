@@ -4,8 +4,8 @@
   "sidebar": {
     "groups": [
       {
-        "title": "Starter",
-        "pages": ["tanks-canvas-socketio"]
+        "title": "Tutorials",
+        "pages": ["crash-course"]
       }
     ]
   }
