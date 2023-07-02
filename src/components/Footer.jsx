@@ -119,6 +119,7 @@ function SmallPrint() {
   return (
     <div className='mx-auto max-w-7xl pb-8 pt-16 sm:pt-20'>
       <div className='xl:grid xl:grid-cols-2 xl:gap-8'>
+        {/* Brands & links */}
         <div className='space-y-8'>
           {/* Logo */}
           <Image className='h-7 w-7' src={imgLogo} alt='Rivet' />
@@ -135,45 +136,10 @@ function SmallPrint() {
               </Link>
             ))}
           </div>
-
-          {/* Trademarks */}
-          <div className='space-y-3'>
-            {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
-            <p className='text-2xs italic leading-4 text-white/50'>
-              This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity
-              Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates
-              in the U.S. and elsewhere.
-            </p>
-
-            {/* Genreated with GPT-4 */}
-            <p className='text-2xs italic leading-4 text-white/50'>
-              This website is not sponsored by, affiliated with, or endorsed by Epic Games, Inc. or its
-              affiliates. 'Unreal Engine' is a trademark or registered trademark of Epic Games, Inc. in the
-              U.S. and elsewhere.
-            </p>
-
-            {/* Genreated with GPT-4 */}
-            {/* Another shorter option is also available at https://www.w3.org/html/logo/faq.html */}
-            <p className='text-2xs italic leading-4 text-white/50'>
-              The HTML5 Logo by the World Wide Web Consortium (W3C), used under a Creative Commons Attribution
-              3.0 License. [Source](https://www.w3.org/html/logo/index.html)
-            </p>
-
-            {/* Genreated with GPT-4 */}
-            <p className='text-2xs italic leading-4 text-white/50'>
-              The Godot Engine Logo by the Andrea Calabró, used under a Creative Commons Attribution 4.0
-              International License. [Source](https://godotengine.org/press/)
-            </p>
-
-            {/* Copied from https://www.docker.com/legal/trademark-guidelines/ */}
-            <p className='text-2xs italic leading-4 text-white/50'>
-              Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United
-              States and/or other countries. Docker, Inc. and other parties may also have trademark rights in
-              other terms used herein.
-            </p>
-          </div>
         </div>
-        <div className='mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 xl:mt-0'>
+
+        {/* Links */}
+        <div className='mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 xl:mt-0'>
           <div>
             <div className='text-sm font-semibold leading-6 text-white'>Learn</div>
             <ul role='list' className='mt-3 space-y-2'>
@@ -212,7 +178,46 @@ function SmallPrint() {
           </div>
         </div>
       </div>
-      <div className='mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24'>
+
+      {/* Trademarks */}
+      <div className='space-y-3 mt-6 md:mt-12'>
+        {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
+        <p className='text-2xs italic leading-4 text-white/50'>
+          This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity
+          Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates in
+          the U.S. and elsewhere.
+        </p>
+
+        {/* Genreated with GPT-4 */}
+        <p className='text-2xs italic leading-4 text-white/50'>
+          This website is not sponsored by, affiliated with, or endorsed by Epic Games, Inc. or its
+          affiliates. 'Unreal Engine' is a trademark or registered trademark of Epic Games, Inc. in the U.S.
+          and elsewhere.
+        </p>
+
+        {/* Genreated with GPT-4 */}
+        {/* Another shorter option is also available at https://www.w3.org/html/logo/faq.html */}
+        <p className='text-2xs italic leading-4 text-white/50'>
+          The HTML5 Logo by the World Wide Web Consortium (W3C), used under a Creative Commons Attribution 3.0
+          License. <Link href='https://www.w3.org/html/logo/index.html' className='underline'>Source</Link>
+        </p>
+
+        {/* Genreated with GPT-4 */}
+        <p className='text-2xs italic leading-4 text-white/50'>
+          The Godot Engine Logo by the Andrea Calabró, used under a Creative Commons Attribution 4.0
+          International License. <Link href='https://godotengine.org/press/' className='underline'>Source</Link>
+        </p>
+
+        {/* Copied from https://www.docker.com/legal/trademark-guidelines/ */}
+        <p className='text-2xs italic leading-4 text-white/50'>
+          Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United
+          States and/or other countries. Docker, Inc. and other parties may also have trademark rights in
+          other terms used herein.
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className='mt-4 border-t border-white/10 pt-8 md:mt-8'>
         <p className='text-xs leading-5 text-gray-400'>
           &copy; {new Date().getFullYear()} Rivet Gaming, Inc. All rights reserved.
         </p>
