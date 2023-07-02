@@ -192,13 +192,11 @@ function learnTabs(path) {
     },
     {
       title: 'Unity',
-      icon: 'unity',
       href: '/learn/unity',
       current: path[1] === 'unity'
     },
     {
       title: 'Unreal Engine',
-      icon: 'unreal',
       href: '/learn/unreal',
       current: path[1] === 'unreal'
     },
@@ -216,6 +214,7 @@ function learnTabs(path) {
     },
     {
       title: 'Custom',
+      icon: 'docker',
       href: '/learn/custom',
       current: path[1] === 'custom'
     }

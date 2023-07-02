@@ -36,8 +36,7 @@ import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 
 import imgGodot from '@/images/vendors/godot-white.svg';
 import imgHtml5 from '@/images/vendors/html5-white.svg';
-import imgUnity from '@/images/vendors/unity-white.svg';
-import imgUnreal from '@/images/vendors/unreal-white.svg';
+import imgDocker from '@/images/vendors/docker-white.svg';
 
 const ICONS = {
   // Products
@@ -50,10 +49,9 @@ const ICONS = {
   matchmaker: imgMatchmakerWhite,
 
   // Vendor
-  unity: imgUnity,
-  unreal: imgUnreal,
   godot: imgGodot,
-  html5: imgHtml5
+  html5: imgHtml5,
+  docker: imgDocker,
 };
 
 function TopLevelNavItem({ href, initHref, icon, children }) {

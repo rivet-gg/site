@@ -79,10 +79,9 @@ import imgSocialColor from '@/images/products/friend-monotone.svg';
 import imgOssWhite from '@/images/products/rocket-white.svg';
 import imgOssColor from '@/images/products/rocket-monotone.svg';
 
-import imgUnity from '@/images/vendors/unity-white.svg';
-import imgUnreal from '@/images/vendors/unreal-white.svg';
 import imgGodot from '@/images/vendors/godot-white.svg';
 import imgHtml5 from '@/images/vendors/html5-white.svg';
+import imgDocker from '@/images/vendors/docker-white.svg';
 
 import imgApesScreenshot from '@/images/case-studies/screenshots/apes.png';
 import imgApesLogo from '@/images/case-studies/logos/apes.png';
@@ -281,12 +280,10 @@ const pages = [
 let supportedEngines = [
   {
     name: 'Unity',
-    image: imgUnity,
     href: '/learn/unity'
   },
   {
     name: 'Unreal Engine',
-    image: imgUnreal,
     href: '/learn/unreal'
   },
   {
@@ -302,6 +299,7 @@ let supportedEngines = [
   },
   {
     name: 'Custom',
+    image: imgDocker,
     href: '/learn/custom'
   }
 ];
@@ -394,7 +392,7 @@ function Title() {
 
         {/* Subtitle */}
         <p className='mt-6 text-lg leading-8 text-gray-300'>
-          All-in-one solution to deploy, scale, and operate your multiplayer game
+          Open source solution to deploy, scale, and operate your multiplayer game
         </p>
 
         {/* Engines */}
@@ -405,7 +403,7 @@ function Title() {
               <Link
                 key={name}
                 href={href}
-                className='flex flex-shrink items-center gap-1 rounded-lg bg-white/5 px-3 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
+                className='flex flex-shrink items-center gap-1 rounded-lg bg-white/5 px-4 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
                 {image && <Image src={image} alt={name} className='h-6 w-6' />}
                 <div>{name}</div>
               </Link>
@@ -754,5 +752,5 @@ function UpAndRunning() {
   );
 }
 
-Index.description = 'All-in-one solution to deploy, scale, and operate your multiplayer game';
+Index.description = 'Open source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;

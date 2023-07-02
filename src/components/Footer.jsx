@@ -6,7 +6,15 @@ import { Button } from '@/components/Button';
 import { Feedback } from '@/components/Feedback';
 
 import imgLogo from '@/images/branding/white.svg';
-import { faDiscord, faFacebook, faGithub, faInstagram, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import {
+  faDiscord,
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+  faYoutube
+} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const footer = {
@@ -50,7 +58,7 @@ const footer = {
       name: 'LinkedIn',
       href: 'https://www.linkedin.com/company/72072261/',
       icon: faLinkedin
-    },
+    }
   ]
 };
 
@@ -92,7 +100,7 @@ function PageNextPrevious({ navigation }) {
   }
 
   return (
-    <div className='flex pt-8 mt-16 border-t border-white/10'>
+    <div className='mt-16 flex border-t border-white/10 pt-8'>
       {previousPage && (
         <div className='flex flex-col items-start gap-3'>
           <PageLink label='Previous' page={previousPage} previous />
@@ -112,17 +120,37 @@ function SmallPrint() {
     <div className='mx-auto max-w-7xl pb-8 pt-16 sm:pt-20'>
       <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
         <div className='space-y-8'>
+          {/* Logo */}
           <Image className='h-7 w-7' src={imgLogo} alt='Rivet' />
           <p className='text-sm leading-6 text-gray-300'>
-            All-in-one solution to deploy, scale, and operate your multiplayer game
+            Open source solution to deploy, scale, and operate your multiplayer game
           </p>
+
+          {/* Social */}
           <div className='flex space-x-6'>
             {footer.social.map(item => (
-              <Link key={item.name} href={item.href} className='text-gray-500 hover:text-gray-400 text-xl'>
+              <Link key={item.name} href={item.href} className='text-xl text-gray-500 hover:text-gray-400'>
                 <span className='sr-only'>{item.name}</span>
                 <FontAwesomeIcon icon={item.icon} aria-hidden='true' />
               </Link>
             ))}
+          </div>
+
+          {/* Trademarks */}
+          <div className='space-y-3'>
+            {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
+            <p className='text-2xs italic leading-4 text-white/50'>
+              This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity
+              Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates
+              in the U.S. and elsewhere.
+            </p>
+
+            {/* Genreated with GPT-4 */}
+            <p className='text-2xs italic leading-4 text-white/50'>
+              This website is not sponsored by, affiliated with, or endorsed by Epic Games, Inc. or its
+              affiliates. 'Unreal Engine' is a trademark or registered trademark of Epic Games, Inc. in the
+              U.S. and elsewhere.
+            </p>
           </div>
         </div>
         <div className='mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0'>
