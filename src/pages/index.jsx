@@ -725,7 +725,7 @@ function UpAndRunning() {
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource title='Learn' icon={faHammer} href='/learn' />
-              <Resource title='Docs' icon={faHammer} href='/docs' />
+              <Resource title='Docs' icon={faBooks} href='/docs' />
               <Resource title='Blog' icon={faCode} href='/blog' />
               <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' />
               <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' />
