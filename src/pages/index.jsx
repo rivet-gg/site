@@ -618,7 +618,6 @@ function PageContents({ page }) {
               {page.features.map((feature, i) => (
                 <div
                   key={i}
-                  href='/docs'
                   className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'>
                   <FontAwesomeIcon icon={feature.icon} />
                   {feature.name}
@@ -628,7 +627,7 @@ function PageContents({ page }) {
 
             {/* Learn more */}
             <div className='mt-5'>
-              <Button href='/docs' arrow='right'>
+              <Button href='/docs/general' arrow='right'>
                 Learn More
               </Button>
             </div>
@@ -725,7 +724,7 @@ function UpAndRunning() {
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource title='Learn' icon={faHammer} href='/learn' />
-              <Resource title='Docs' icon={faBooks} href='/docs' />
+              <Resource title='Docs' icon={faBooks} href='/docs/general' />
               <Resource title='Blog' icon={faCode} href='/blog' />
               <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' />
               <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' />

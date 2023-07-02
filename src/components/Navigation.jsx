@@ -181,7 +181,7 @@ export function Navigation({ navigation, ...props }) {
         <TopLevelNavItem href='/learn' icon={faHammer}>
           Learn
         </TopLevelNavItem>
-        <TopLevelNavItem href='/docs' icon={faBooks}>
+        <TopLevelNavItem href='/docs/general' icon={faBooks}>
           Docs
         </TopLevelNavItem>
         <TopLevelNavItem href='/blog' icon={faNewspaper}>

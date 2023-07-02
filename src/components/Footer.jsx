@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const footer = {
   learn: [
     { name: 'Learn', href: '/learn' },
-    { name: 'Documentation', href: '/docs' }
+    { name: 'Documentation', href: '/docs/general' }
   ],
   company: [
     { name: 'Blog', href: '/blog' },

@@ -56,20 +56,20 @@ const ICONS = {
   html5: imgHtml5
 };
 
-function TopLevelNavItem({ href, icon, children }) {
+function TopLevelNavItem({ href, initHref, icon, children }) {
   let router = useRouter();
 
   let current = router.pathname.startsWith(href);
   return (
     <Link
-      href={href}
+      href={initHref ?? href}
       className={clsx(
         current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
         'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition'
       )}
     >
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <span href={href} className='font-display text-lg font-semibold'>
+      <span className='font-display text-lg font-semibold'>
         {children}
       </span>
     </Link>
@@ -187,7 +187,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
             <TopLevelNavItem href='/learn' icon={faHammer}>
               Learn
             </TopLevelNavItem>
-            <TopLevelNavItem href='/docs' icon={faBooks}>
+            <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
               Docs
             </TopLevelNavItem>
             <TopLevelNavItem href='/blog' icon={faNewspaper}>
