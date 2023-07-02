@@ -10,7 +10,7 @@ async function importArticle(articleFilename) {
   }
 
   // Parse file
-  console.log('Parsing', articleFilename);
+  // console.log('Parsing', articleFilename);
   let { meta, default: component } = await import(`../pages/blog/${articleFilename}`);
 
   let enriched = processArticleMeta(meta, category, slug);

@@ -52,14 +52,29 @@ async function buildRoute({ path }) {
           let md = await readFile(`./src/pages/${path}/${page}.mdx`);
 
           let ast = remark().parse(md);
-          let firstHeading = ast.children.find(node => node.type === 'heading');
-          let title = '?';
+
+          if (path.indexOf('blog') !== -1) {
+          console.log('ast', ast)
+          }
+
+          // Title
+          let firstHeadingIndex = ast.children.findIndex(node => node.type === 'heading');
+          let firstHeading = ast.children[firstHeadingIndex];
+          let title = '';
           if (firstHeading) {
             title = firstHeading.children[0].value;
           }
 
+          // Description
+          let firstParagraph = ast.children[firstHeadingIndex + 1]
+          let description = null;
+          if (firstParagraph && firstParagraph.type === 'paragraph') {
+            description = firstParagraph.children[0].value;
+          }
+
           outputGroup.pages.push({
             title,
+            description,
             href: `/${path}/${page}`
           });
         }

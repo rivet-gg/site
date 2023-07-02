@@ -36,14 +36,25 @@ export default function App({ Component, pageProps }) {
   let page = navigation.sidebar
     ? navigation.sidebar.groups.flatMap(x => x.pages).find(page => page.href === router.pathname)
     : null;
+
   let title = pageProps.title ?? page?.title ?? null;
+  title = title ? `${title} - Rivet` : 'Rivet';
   let description = pageProps.description ?? page?.description ?? null;
+  console.log('page', page);
 
   return (
     <>
       <Head>
-        {title ? <title>{`${title} - Rivet`}</title> : <title>Rivet</title>}
-        <meta name='description' content={description} />
+        <meta name='viewport' content='width=device-width' />
+
+        <title>{title}</title>
+        {description && <meta name='description' content={description} />}
+
+        <meta property='og:title' content='{title}' />
+        {description && <meta property='og:description' content='{dsecription}' />}
+
+        <meta name='twitter:title' content='{title}' />
+        {description && <meta property='twitter:description' content='{dsecription}' />}
       </Head>
       <MDXProvider components={mdxComponents}>
         <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
