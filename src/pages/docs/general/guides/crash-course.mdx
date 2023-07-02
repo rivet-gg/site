@@ -2,7 +2,7 @@ import { TutorialVideo } from '@/components/TutorialVideo';
 
 # ⏱️ 5 Minute Crash Course
 
-<Snippet file='beta-signup.mdx' />
+<RequiresBetaSignup />
 
 <TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
 
@@ -87,7 +87,7 @@ let res = await rivet.matchmaker.lobbies.find({ gameModes: ['default'] });
 let ws = new WebSocket(`wss://${res.ports['default'].host}/?token=${res.player.token}`);
 ```
 
-<Snippet file='env-public-token-web.mdx'></Snippet>
+<EnvPublicToken />
 
 ### Update your server
 
@@ -117,7 +117,7 @@ myGameServer.on("connect", await (socket) => {
 });
 ```
 
-<Snippet file="env-lobby-token.mdx"></Snippet>
+<EnvLobbyToken />
 
 ---
 
