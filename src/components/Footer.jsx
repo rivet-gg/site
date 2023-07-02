@@ -118,7 +118,7 @@ function PageNextPrevious({ navigation }) {
 function SmallPrint() {
   return (
     <div className='mx-auto max-w-7xl pb-8 pt-16 sm:pt-20'>
-      <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
+      <div className='xl:grid xl:grid-cols-2 xl:gap-8'>
         <div className='space-y-8'>
           {/* Logo */}
           <Image className='h-7 w-7' src={imgLogo} alt='Rivet' />
@@ -173,47 +173,42 @@ function SmallPrint() {
             </p>
           </div>
         </div>
-        <div className='mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0'>
-          <div className='md:grid md:grid-cols-2 md:gap-8'>
-            <div>{/* Empty column placeholder */}</div>
-            <div>
-              <div className='text-sm font-semibold leading-6 text-white'>Learn</div>
-              <ul role='list' className='mt-3 space-y-2'>
-                {footer.learn.map(item => (
-                  <li key={item.name}>
-                    <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className='mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 xl:mt-0'>
+          <div>
+            <div className='text-sm font-semibold leading-6 text-white'>Learn</div>
+            <ul role='list' className='mt-3 space-y-2'>
+              {footer.learn.map(item => (
+                <li key={item.name}>
+                  <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className='md:grid md:grid-cols-2 md:gap-8'>
-            <div>
-              <div className='text-sm font-semibold leading-6 text-white'>Company</div>
-              <ul role='list' className='mt-3 space-y-2'>
-                {footer.company.map(item => (
-                  <li key={item.name}>
-                    <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className='mt-10 md:mt-0'>
-              <div className='text-sm font-semibold leading-6 text-white'>Legal</div>
-              <ul role='list' className='mt-3 space-y-2'>
-                {footer.legal.map(item => (
-                  <li key={item.name}>
-                    <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div>
+            <div className='text-sm font-semibold leading-6 text-white'>Company</div>
+            <ul role='list' className='mt-3 space-y-2'>
+              {footer.company.map(item => (
+                <li key={item.name}>
+                  <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className='mt-10 md:mt-0'>
+            <div className='text-sm font-semibold leading-6 text-white'>Legal</div>
+            <ul role='list' className='mt-3 space-y-2'>
+              {footer.legal.map(item => (
+                <li key={item.name}>
+                  <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
