@@ -25,7 +25,7 @@ function Article({ article }) {
 
         {/* Date & category */}
         <div className='mt-8 flex items-center gap-x-4 text-xs'>
-          <time datetime='2020-03-16' className='text-slate-500'>
+          <time dateTime='2020-03-16' className='text-slate-500'>
             {formatDate(article.date)}
           </time>
           <div className='relative z-10 rounded-full bg-slate-50 px-3 py-1.5 font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400'>

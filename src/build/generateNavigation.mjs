@@ -11,7 +11,7 @@ export async function generateNavigation() {
     cwd: 'src/pages'
   });
   for (let filename of mdxFileNames) {
-    let href = filename.replace(/\.mdx$/, '');
+    let href = '/' + filename.replace(/\/index\.mdx$/, '').replace(/\.mdx$/, '');
     pages[href] = await processPage({ path: filename });
   }
 
@@ -76,14 +76,14 @@ async function buildRoute({ path }) {
       if (inputGroup.template?.errors) {
         // Errors
         outputGroup.pages.push(...errorPages);
-        for (let page in errorPages) {
+        for (let page of errorPages) {
           outputGroup.pages.push({
             href: page.href
           });
         }
       } else if (inputGroup.template?.api) {
         // API
-        for (let page in apiPages[inputGroup.template.api].pages) {
+        for (let page of apiPages[inputGroup.template.api].pages) {
           outputGroup.pages.push({
             href: page.href
           });

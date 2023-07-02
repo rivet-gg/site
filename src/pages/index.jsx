@@ -753,4 +753,5 @@ function UpAndRunning() {
   );
 }
 
+Index.description = 'All-in-one solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;

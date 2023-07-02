@@ -37,8 +37,10 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
   return (
     <>
       <Head>
-        <title>{`${article.title} - Spencer Sharp`}</title>
+        <title>{`${article.title} - Rivet Blog`}</title>
         <meta name='description' content={article.description} />
+        <meta property='og:description' content={article.description} />
+        <meta property='twitter:description' content={article.description} />
       </Head>
       <Container className='mt-16 lg:mt-32'>
         <div className='xl:relative'>

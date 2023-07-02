@@ -12,6 +12,7 @@ import {
   faNewspaper,
   faUserGroup
 } from '@fortawesome/pro-solid-svg-icons';
+import routes from '@/generated/routes.json';
 
 import { Button } from '@/components/Button';
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation';
@@ -29,8 +30,7 @@ function TopLevelNavItem({ href, children }) {
     <li className='md:hidden'>
       <Link
         href={href}
-        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      >
+        className='block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
         {children}
       </Link>
     </li>
@@ -48,8 +48,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
-      )}
-    >
+      )}>
       <span className='truncate'>{children}</span>
       {tag && (
         <Tag variant='small' color='zinc'>
@@ -133,37 +132,39 @@ function NavigationGroup({ group, className }) {
           {isActiveGroup && <ActivePageMarker group={group} pathname={router.pathname} />}
         </AnimatePresence>
         <ul role='list' className='border-l border-transparent'>
-          {group.pages.map(link => (
-            <motion.li key={link.href} layout='position' className='relative'>
-              <NavLink href={link.href} active={link.href === router.pathname}>
-                {link.title}
-              </NavLink>
-              <AnimatePresence mode='popLayout' initial={false}>
-                {link.href === router.pathname && sections.length > 0 && (
-                  <motion.ul
-                    role='list'
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { delay: 0.1 }
-                    }}
-                    exit={{
-                      opacity: 0,
-                      transition: { duration: 0.15 }
-                    }}
-                  >
-                    {sections.map(section => (
-                      <li key={section.id}>
-                        <NavLink href={`${link.href}#${section.id}`} tag={section.tag} isAnchorLink>
-                          {section.title}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </motion.li>
-          ))}
+          {group.pages.map(link => {
+            let page = routes.pages[link.href];
+            return (
+              <motion.li key={link.href} layout='position' className='relative'>
+                <NavLink href={link.href} active={link.href === router.pathname}>
+                  {page.title}
+                </NavLink>
+                <AnimatePresence mode='popLayout' initial={false}>
+                  {link.href === router.pathname && sections.length > 0 && (
+                    <motion.ul
+                      role='list'
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: 1,
+                        transition: { delay: 0.1 }
+                      }}
+                      exit={{
+                        opacity: 0,
+                        transition: { duration: 0.15 }
+                      }}>
+                      {sections.map(section => (
+                        <li key={section.id}>
+                          <NavLink href={`${link.href}#${section.id}`} tag={section.tag} isAnchorLink>
+                            {section.title}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </motion.li>
+            );
+          })}
         </ul>
       </div>
     </li>
