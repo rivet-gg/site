@@ -112,7 +112,7 @@ export function Resource({ children, ...props }) {
   );
 }
 
-export function ResourceGroup({ children }) {
+export function ResourceGroup({ title = 'Resources', children }) {
   let clonedChildren = React.Children.map(children, (child, i) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, { pattern: patterns[i % patterns.length] });
@@ -123,7 +123,7 @@ export function ResourceGroup({ children }) {
   return (
     <div className='my-16 xl:max-w-none'>
       <Heading level={2} id='resources'>
-        Resources
+        {title}
       </Heading>
       <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4'>
         {clonedChildren}
