@@ -6,6 +6,19 @@
       {
         "title": "Tutorials",
         "pages": ["crash-course"]
+      },
+      {
+        "title": "Concepts",
+        "pages": ["concepts/resources", "concepts/build-engine-from-source", "concepts/test-methods", "concepts/useful-commands"]
+      },
+      {
+        "title": "Troubleshooting",
+        "pages": [
+          "troubleshooting/chmod-error",
+          "troubleshooting/empty-level",
+          "troubleshooting/port-7777-already-taken",
+          "troubleshooting/standalone-wrong-map"
+        ]
       }
     ]
   }

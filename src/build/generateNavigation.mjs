@@ -22,7 +22,7 @@ export async function generateNavigation() {
   });
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
-    routes.push(await buildRoute({ path }));
+    routes.push(await buildRoute({ path, pages }));
   }
 
   // Sort by path descending to match most specific first
@@ -66,7 +66,7 @@ async function processPage({ path }) {
   };
 }
 
-async function buildRoute({ path }) {
+async function buildRoute({ path, pages }) {
   let input = JSON.parse(await readFile(`./src/pages/${path}/_navigation.json`, 'utf8'));
 
   let output = {
@@ -107,6 +107,11 @@ async function buildRoute({ path }) {
             href: `/${path}/${page}`
           });
         }
+      }
+
+      // Validate pages
+      for (let page of outputGroup.pages) {
+        if (!pages[page.href]) throw new Error(`Page not found: ${page.href}`);
       }
     }
   }
