@@ -1,0 +1,38 @@
+# Step X: Integrate with Rivet
+
+## Update game mode
+
+TODO
+
+## Add development token to config
+
+Copy the development token generated from the Rivet CLI.
+
+Add the following to the end of _Config/DefaultGame.ini_:
+
+```ini Config/DefaultGame.ini
+[/Script/MyProject.RivetClient]
+DefaultToken=YOUR_TOKEN_HERE
+```
+
+Replace `YOUR_TOKEN_HERE` with your development token.
+
+Replace this with a [public namespace token](/general/concepts/handling-game-tokens#public-namespace-tokens) in production.
+
+<Tip>
+	If you need to generate a new development token or update the Rivet configuration, run:
+
+	```bash
+	rivet dev create-dev-token
+	```
+</Tip>
+
+## Test the game
+
+1. Open the _Entry_ world.
+2. Press _Play_.
+3. Click the _Connect_ button you created to call the Rivet API and connect to your local server.
+
+If you run into issues, check the log for warnings and errors.
+
+This is using the Rivet development token to mock production APIs. This lets you test with production APIs while still using your local machine.

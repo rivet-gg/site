@@ -1,0 +1,60 @@
+# Step X: Deploy to Rivet
+
+## Authenticate with GitHub Container Registry
+
+We must authenticate with the GitHub Container Registry to pull the Unreal Engine Docker image. This contains the source code for Unreal Engine for Linux, enabling us to build the dedicated server.
+
+Follow [these](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic) instructions.
+
+Once complete, run:
+
+```bash
+docker pull ghcr.io/epicgames/unreal-engine:dev-5.2.1
+```
+
+Replace `5.2.1` with the version of Unreal Engine you're using.
+
+This will take some time to download.
+
+<AccordionGroup>
+	<Accordion title='Why does this take so long to download?'>
+		This step downloads a copy of Unreal Engine for Linux and its source code. You'll only have to do this once.
+	</Accordion>
+	<Accordion title='What if I want to build Unreal Engine from source?'>
+		It's also possible to build your dedicated server by [building Unreal Engine from source](https://docs.unrealengine.com/5.0/en-US/building-unreal-engine-from-source/). This requires many more prerequisites with a complicated & error prone setup process, so we use Epic's Docker image instead.
+
+		However, this may be required if using a fork of Unreal Engine. Please [reach out](https://discord.com/invite/BG2vqsJczH) if you need help making this work with Rivet.
+	</Accordion>
+</AccordionGroup>
+
+## Write server Dockerfile
+
+TODO
+
+## Deploy to Rivet
+
+In the root of the project, run the following command:
+
+```bash
+rivet deploy -n prod
+```
+
+This will deploy your project to your game's production namespace.
+
+## Test with remote game server locally
+
+Now that your game server is running on Rivet, you can test using a production namespace token.
+
+1. Create a new namespace token as described [here](/general/concepts/handling-game-tokens#public-namespace-tokens).
+2. Update `DefaultToken` in _Config/DefaultGame.ini_ to match this token.
+3. Play the project and click your _Connect_ button. Check that you are able to see the other player run around.
+
+Your game is now up and running on Rivet!
+
+## Build & distribute client
+
+You can build & distribute the game client as you like. Rivet provides a [CDN](/cdn/introduction) to make this easy.
+
+<Warning>
+	Make sure you set the `DefaultToken` to a [public namespace token](/general/concepts/handling-game-tokens#public-namespace-tokens) when distributing builds. Otherwise, it will try to connect to the localhost instead of the production game server.
+</Warning>

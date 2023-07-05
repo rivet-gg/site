@@ -5,7 +5,7 @@
     "groups": [
       {
         "title": "Tutorials",
-        "pages": ["crash-course"]
+        "pages": ["tutorials/crash-course"]
       },
       {
         "title": "Concepts",

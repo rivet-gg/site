@@ -1,0 +1,39 @@
+## Step X: Setup Rivet project
+
+### Install Rivet CLI
+
+[Installation instructions](https://github.com/rivet-gg/cli)
+
+### Initiate project
+
+Run the following in your project's directory:
+
+```bash
+rivet init --recommend --matchmaker --matchmaker-port 7777 --matchmaker-dockerfile 'Dockerfile'
+```
+
+Don't enable the CDN for this guide. Don't write the token to .env.
+
+Save the development token that's provided to you. You'll use this in a few steps.
+
+### Update _rivet.version.toml_
+
+Update your _rivet.version.toml_ file to look like this:
+
+```toml rivet.version.toml
+[matchmaker]
+	max_players = 32
+
+[matchmaker.regions]
+	lnd-atl = {}
+	lnd-fra = {}
+
+[matchmaker.docker]
+	dockerfile = "Dockerfile"
+
+	[matchmaker.docker.ports]
+		default = { port = 7777, protocol = "udp" }
+
+[matchmaker.game_modes]
+	default = {}
+```

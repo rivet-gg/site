@@ -1,0 +1,48 @@
+import Image from 'next/image';
+import imgCreateThirdPerson from './images/create-third-person-cpp.png';
+import imgPlaySettings from './images/play-settings.png';
+import imgMultiplayerOptionsSettings from './images/multiplayer-options-settings.png';
+import imgNumberPlayers from './images/number-players.png';
+
+## Step X: Setup Unreal Engine project
+
+We'll use the third-person template from Unreal Engine. All the components come with networking out of the box. These steps also apply to any other Unreal Engine games.
+
+<Warning>
+  If you're following this guide on an existing project, ensure that your project is version controlled before making any changes.
+</Warning>
+
+### Create project template (or bring your project)
+
+1. Create a third-person template with the C++ version. We'll create a guide for using Blueprints instead of C++ soon.
+2. Set _Quality Preset_, _Starter Content_, and _Raytracing_ to your preferences.
+3. Click _Create_.
+
+<Image src={imgCreateThirdPerson} alt='Third person create dialog' />
+
+### Add server target
+
+TODO
+
+### Set up play configuration for testing multiplayer
+
+We will test the networking locally before deploying it.
+
+1. Press the three dots next to the play button and click _Advanced Settings_ to open the _Play In_ settings.
+<Image src={imgPlaySettings} alt='Play settings' />
+
+2. Scroll down to _Multiplayer Options_. Update the following settings:
+	- **Play Net Mode**: Play Standalone
+	- **Run Under One Process**: False
+<Image src={imgMultiplayerOptionsSettings} alt='Multiplayer options settings' />
+
+3. Update the number of players to at least 2.
+<Image src={imgNumberPlayers} alt='Change number of players' />
+
+3. Press the green play button or press _Alt + P_.
+
+4. Validate that you can run around and see your movement synchronized between windows.
+
+<Tip>
+	See more ways of testing your game [here](/learn/unreal/concepts/test-methods).
+</Tip>

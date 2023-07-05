@@ -1,0 +1,20 @@
+# ⏱️ Crash Course
+
+Unreal Engine provides great multiplayer capabilities out of the box. We'll use Unreal's built-in networking to build and deploy a server-authoritative multiplayer game on top of Rivet.
+
+<Accordion title='How does Rivet compare to Epic Online Services and Steam Sockets?'>
+    Rivet is intended to help run authoritative multiplayer servers. We do not support peer-to-peer networking yet.
+
+    Read more about [authoritative vs peer-to-peer networking](/docs/general/concepts/authoritative-vs-p2p).
+
+    If you want high-performance networking, mobile games, large lobbies, or to prevent cheating, peer-to-peer networking is not a good choice.
+</Accordion>
+
+## Prerequisites
+
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [Unreal Engine 5](https://www.unrealengine.com/en-US/download)
+	- This guide was written using Unreal Engine 5.2.1.
+	- This process is similar if using Unreal Engine 4. If you're using a different version of Unreal Engine and need help, don't hesitate to [reach out](https://discord.gg/BG2vqsJczH).
+- [Unreal Engine 5 GitHub access](https://www.unrealengine.com/en-US/ue-on-github)
+- About 60 GB of free space (for Unreal Engine Linux build)
