@@ -5,11 +5,23 @@
     "groups": [
       {
         "title": "Tutorials",
-        "pages": ["tutorials/crash-course"]
+        "pages": [
+          "tutorials/crash-course",
+          "tutorials/crash-course/10-setup-project",
+          "tutorials/crash-course/20-setup-rivet",
+          "tutorials/crash-course/30-integrate-rivet",
+          "tutorials/crash-course/35-build-entry",
+          "tutorials/crash-course/40-deploy-rivet"
+        ]
       },
       {
         "title": "Concepts",
-        "pages": ["concepts/resources", "concepts/build-engine-from-source", "concepts/test-methods", "concepts/useful-commands"]
+        "pages": [
+          "concepts/resources",
+          "concepts/build-engine-from-source",
+          "concepts/test-methods",
+          "concepts/useful-commands"
+        ]
       },
       {
         "title": "Troubleshooting",

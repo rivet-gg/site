@@ -2,7 +2,6 @@ import nextMDX from '@next/mdx';
 import withSearch from './src/mdx/search.mjs';
 import { remarkPlugins } from './src/mdx/remark.mjs';
 import { rehypePlugins } from './src/mdx/rehype.mjs';
-import { generateNavigation } from './src/build/generateNavigation.mjs';
 
 const withMDX = nextMDX({
   options: {
@@ -27,7 +26,5 @@ const nextConfig = {
 };
 
 export default async function () {
-  await generateNavigation();
-
   return withSearch(withMDX(nextConfig));
 }

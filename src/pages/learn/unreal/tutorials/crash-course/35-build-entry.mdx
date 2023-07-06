@@ -1,0 +1,61 @@
+import imgSetGameModeBase from './images/set-game-mode-base.png';
+import imgCreateWidgetBlueprint from './images/create-widget-blueprint.png';
+import imgUserWidget from './images/user-widget.png';
+import imgOpenLevelBlueprint from './images/open-level-blueprint.png';
+import imgEntryLevelBlueprint from './images/entry-level-blueprint.png';
+import imgEntryWidgetDesign from './images/entry-widget-design.png';
+import imgEntryWidgetBlueprint from './images/entry-widget-blueprint.png';
+
+# Step X: Build menu UI
+
+### Create the menu UI world
+
+1. Create a new level in _File -> New Level..._
+2. Select _Empty Level_
+3. Click _File -> Save Current Level_ or press _Ctrl + S_. Save in _All/Content/Third Person/Maps_ and name it _Entry_.
+4. Change the game mode by clicking the Blueprint dropdown and then clicking _World Override -> Game Mode: Not overridden! -> Select GameModeBase Class -> GameModeBase_ - This will remove the game mode logic to create a pure menu screen
+   <Image src={imgSetGameModeBase} alt='Set game mode base' />
+
+### Create the menu widget
+
+1. Open the _Content Drawer_
+2. Open _All/Content/ThirdPerson/UI_
+   - You may have to create this folder
+3. Right-click in the content area and click _User Interface -> Widget Blueprint_
+   <Image src={imgCreateWidgetBlueprint} alt='Create widget blueprint' />
+4. Click _User Widget_
+   <Image src={imgUserWidget} alt='User widget' />
+5. Rename it to _EntryWidget_
+
+### Design menu widget
+
+<CrashCourseUnrealWidget />
+
+1. Open the _EntryWidget_ you created
+2. Construct the following design:
+   <Image src={imgEntryWidgetDesign} alt='Entry widget design' />
+
+### Connect to the server on _Connect_ clicked
+
+<CrashCourseUnrealBlueprint />
+
+1. Open the Blueprint code for the _EntryWidget_ you created by clicking _Graph_ in the top right corner
+2. Construct the following Blueprint:
+   <Image src={imgEntryWidgetBlueprint} alt='Entry widget blueprint' />
+3. Press _Compile_
+
+This widget can now be used to connect a player to a server.
+
+### Add the menu widget to the entry level
+
+1. Open the level Blueprint by clicking the Blueprint dropdown and then clicking _Open Level Blueprint_
+   <Image src={imgOpenLevelBlueprint} alt='Open level blueprint' />
+2. Construct the following Blueprint:
+   <Image src={imgEntryLevelBlueprint} alt='Entry level blueprint' />
+3. Press _Compile_
+
+### Test the game
+
+1. Switch to the main editor
+2. Validate that the _Entry_ level is open
+3. Click _Play_ 

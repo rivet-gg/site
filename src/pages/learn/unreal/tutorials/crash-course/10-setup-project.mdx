@@ -12,7 +12,7 @@ We'll use the third-person template from Unreal Engine. All the components come 
   If you're following this guide on an existing project, ensure that your project is version controlled before making any changes.
 </Warning>
 
-### Create project template (or bring your project)
+### Create project template (or bring your own project)
 
 1. Create a third-person template with the C++ version. We'll create a guide for using Blueprints instead of C++ soon.
 2. Set _Quality Preset_, _Starter Content_, and _Raytracing_ to your preferences.
@@ -22,7 +22,25 @@ We'll use the third-person template from Unreal Engine. All the components come 
 
 ### Add server target
 
-TODO
+We need to add a target so you can compile your game as a dedicated server to run in Rivet.
+
+Replace `MyGame` with your project's name.
+
+```csharp
+using UnrealBuildTool;
+using System.Collections.Generic;
+
+public class MultiplayerTest2ServerTarget : TargetRules
+{
+	public MultiplayerTest2ServerTarget(TargetInfo Target) : base(Target)
+	{
+		Type = TargetType.Server;
+		DefaultBuildSettings = BuildSettingsVersion.V2;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
+		ExtraModuleNames.Add("MyGame");
+	}
+}
+```
 
 ### Set up play configuration for testing multiplayer
 
@@ -39,10 +57,7 @@ We will test the networking locally before deploying it.
 3. Update the number of players to at least 2.
 <Image src={imgNumberPlayers} alt='Change number of players' />
 
-3. Press the green play button or press _Alt + P_.
+4. Press the green play button or press _Alt + P_.
+5. Validate that you can run around and see your movement synchronized between windows.
 
-4. Validate that you can run around and see your movement synchronized between windows.
-
-<Tip>
-	See more ways of testing your game [here](/learn/unreal/concepts/test-methods).
-</Tip>
+See more ways of testing your game [here](/learn/unreal/concepts/test-methods).

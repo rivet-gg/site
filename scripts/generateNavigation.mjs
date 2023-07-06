@@ -1,8 +1,8 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
-import errorPages from '../generated/errorPages.json' assert { type: 'json' };
-import apiPages from '../generated/apiPages.json' assert { type: 'json' };
+import errorPages from '../src/generated/errorPages.json' assert { type: 'json' };
+import apiPages from '../src/generated/apiPages.json' assert { type: 'json' };
 
 export async function generateNavigation() {
   // Process all pages
@@ -225,3 +225,5 @@ function learnTabs(path) {
     }
   ];
 }
+
+generateNavigation();

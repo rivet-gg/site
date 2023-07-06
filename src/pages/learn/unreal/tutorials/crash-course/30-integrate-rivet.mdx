@@ -1,31 +1,41 @@
 # Step X: Integrate with Rivet
 
-## Update game mode
+## Add the Rivet module
 
-TODO
+- TODO: Copy module
+- TODO: Update uproject
+- TODO: Update Build.cs
+
+## Update `AMyProjectGameMode` class
+
+We will update the game mode code to connect player connect & disconnect events to Rivet.
+
+**Source/MyProject/MyProjectGameMode.h**
+
+1. Open the file `Source/MyProject/MyProjectGameMode.h` (replace `MyProject` with your project name)
+2. TODO
+
+**Source/MyProject/MyProjectGameMode.cpp**
+
+1. Open the file `Source/MyProject/MyProjectGameMode.cpp` (replace `MyProject` with your project name)
+2. TODO
 
 ## Add development token to config
 
-Copy the development token generated from the Rivet CLI.
+We will configure the token to connect to Rivet to test the game.
 
-Add the following to the end of _Config/DefaultGame.ini_:
+1. Create a development token by running:
 
-```ini Config/DefaultGame.ini
-[/Script/MyProject.RivetClient]
-DefaultToken=YOUR_TOKEN_HERE
-```
+   ```bash
+   rivet dev create-dev-token
+   ```
 
-Replace `YOUR_TOKEN_HERE` with your development token.
+2. Add the following to the end of _Config/DefaultGame.ini_. Replace `MyProject` with your project name and replace `YOUR_TOKEN_HERE` with the token created in the last step.
 
-Replace this with a [public namespace token](/general/concepts/handling-game-tokens#public-namespace-tokens) in production.
-
-<Tip>
-	If you need to generate a new development token or update the Rivet configuration, run:
-
-	```bash
-	rivet dev create-dev-token
-	```
-</Tip>
+   ```ini Config/DefaultGame.ini
+   [/Script/MyProject.RivetClient]
+   DefaultToken=YOUR_TOKEN_HERE
+   ```
 
 ## Test the game
 
