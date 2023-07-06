@@ -19,7 +19,7 @@
         "pages": [
           "concepts/resources",
           "concepts/build-engine-from-source",
-          "concepts/test-methods",
+          "concepts/run-methods",
           "concepts/useful-commands"
         ]
       },
