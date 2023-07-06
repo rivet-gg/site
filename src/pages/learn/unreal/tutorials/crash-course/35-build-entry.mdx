@@ -8,6 +8,8 @@ import imgEntryWidgetBlueprint from './images/entry-widget-blueprint.png';
 
 # Step X: Build menu UI
 
+We will build a simple menu UI that will allow players to connect to a server. This will be the first thing players see when they start the game. We will also update the default map to be the menu UI instead of the game world.
+
 ### Create the menu UI world
 
 1. Create a new level in _File -> New Level..._
@@ -54,8 +56,20 @@ This widget can now be used to connect a player to a server.
    <Image src={imgEntryLevelBlueprint} alt='Entry level blueprint' />
 3. Press _Compile_
 
+### Update the default map
+
+Now that we have a new _Entry_ map for the UI, we need to make it the default map.
+
+1. Open _Edit -> Project Settings..._
+2. Click on _Maps & Modes_ under _Projects_ in the sidebar
+   - You can also search for "map" in the search bar
+3. Change _Game Default Map_ to _/Game/ThirdPerson/Maps/Entry_
+3. Change _Advanced > Server Default Map_ to _/Game/ThirdPerson/Maps/ThirdPersonMap_
+
 ### Test the game
 
 1. Switch to the main editor
 2. Validate that the _Entry_ level is open
-3. Click _Play_ 
+3. Click _Play_
+
+This is using the Rivet development token to mock production APIs. This lets you test with production APIs while still using your local machine.

@@ -30,9 +30,7 @@ Update your _rivet.version.toml_ file to look like this:
 
 [matchmaker.docker]
 	dockerfile = "Dockerfile"
-
-	[matchmaker.docker.ports]
-		default = { port = 7777, protocol = "udp" }
+	ports.default = { port = 7777, protocol = "udp" }
 
 [matchmaker.game_modes]
 	default = {}
