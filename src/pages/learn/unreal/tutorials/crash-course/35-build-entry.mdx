@@ -68,8 +68,28 @@ Now that we have a new _Entry_ map for the UI, we need to make it the default ma
 
 ### Test the game
 
+First, run the Rivet server:
+
+<CodeGroup>
+   <code title="Windows">
+      ```powershell
+      docker run -it --rm -v "${PWD}:/project" -p "127.0.0.1:7777:7777/udp" --entrypoint="/project/build_and_run_inner.sh" ghcr.io/epicgames/unreal-engine:dev-5.2.1
+      ```
+   </code>
+
+   <code title="macOS & Linux">
+      ```bash
+      docker run -it --rm -v "$(pwd):/project" -p "127.0.0.1:7777:7777/udp" --entrypoint="/project/build_and_run_inner.sh" ghcr.io/epicgames/unreal-engine:dev-5.2.1
+      ```
+   </code>
+</CodeGroup>
+
+Now run the client:
+
 1. Switch to the main editor
 2. Validate that the _Entry_ level is open
-3. Click _Play_
+3. Click _Play_ 
+4. Click _Connect_ in each of the game instances created
+5. You should be able to see each player running around in sync
 
 This is using the Rivet development token to mock production APIs. This lets you test with production APIs while still using your local machine.

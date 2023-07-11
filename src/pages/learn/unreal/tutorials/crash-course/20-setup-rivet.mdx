@@ -30,10 +30,8 @@ Update your _rivet.version.toml_ file to look like this:
 
 [matchmaker.docker]
 	dockerfile = "Dockerfile"
-	ports.default = { port = 7777, dev_port = 17777, protocol = "udp" }
+	ports.default = { port = 7777, protocol = "udp" }
 
 [matchmaker.game_modes]
 	default = {}
 ```
-
-`dev_port` is set to 17777 because that's the default port that Unreal Engine runs on. This can be configured in _Edit > Editor Preferences > Level Editor > Play > Server > Server Port_.
