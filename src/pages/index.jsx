@@ -383,12 +383,14 @@ function Background({ props }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    let pixelRatio = window.devicePixelRatio || 1;
+    canvas.width = canvas.clientWidth * pixelRatio;
+    canvas.height = canvas.clientHeight * pixelRatio;
 
     function drawGrid() {
-      let size = 50; // size of each grid cell
+      let size = 50 * pixelRatio; // size of each grid cell
       ctx.strokeStyle = 'rgba(139, 92, 246, 0.08)'; // color of the grid lines
+      ctx.lineWidth = 2 * pixelRatio;
 
       for (let i = 0; i <= canvas.width; i += size) {
         ctx.beginPath();
@@ -413,14 +415,14 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 pb-16'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 pb-16 pt-8 px-2'>
       {/* Background */}
       <Background />
 
       {/* Text */}
       <div className='max-w-2xl text-left'>
         {/* Title */}
-        <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
+        <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
           Multiplayer Made
           <br />
           Simple
@@ -542,7 +544,7 @@ function Features() {
 
 function Tabs({ index, onChangeTab }) {
   return (
-    <div className='hidden sm:block'>
+    <div>
       <div className='border-b border-white/10'>
         <nav className='-mb-px flex' aria-label='Tabs'>
           {pages.map((tab, i) => {
@@ -552,13 +554,13 @@ function Tabs({ index, onChangeTab }) {
                 key={tab.name}
                 href={tab.href}
                 className={clsx(
-                  isCurrent ? 'bg-[color:var(--tab-color)] text-white' : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-2xl py-2 text-center font-bold text-white transition'
+                  isCurrent ? 'border-b-4 border-[color:var(--tab-color)] text-white' : 'opacity-50 hover:opacity-100',
+                  'group/tab align-center text-xs md:text-base flex w-1/4 cursor-pointer flex-col items-center py-2 text-center font-bold text-white transition'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
                 onClick={() => onChangeTab(i)}>
-                <div className='relative h-16 w-16'>
+                <div className='relative w-10 h-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
                     alt='Tab image'
@@ -575,7 +577,7 @@ function Tabs({ index, onChangeTab }) {
                     )}
                   /> */}
                 </div>
-                <div>{tab.name}</div>
+                <div className='hidden sm:block'>{tab.name}</div>
               </div>
             );
           })}
@@ -588,7 +590,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[500px] w-full overflow-hidden'>
+    <div className='relative flex h-[600px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -621,15 +623,11 @@ function Pages({ page, onChangePage }) {
   );
 }
 
-function Page() {
-  return <div className='h-full w-full'>Todo</div>;
-}
-
 function PageContents({ page }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
-      <div className='relative flex-1'>
+      <div className='relative flex-1 hidden md:block'>
         <motion.div
           className='absolute left-1/2 top-1/2 w-full rounded-lg'
           key={page.index}
@@ -646,8 +644,8 @@ function PageContents({ page }) {
       </div>
 
       {/* Details */}
-      <div className='flex-1'>
-        <div className='lg:ml-auto lg:px-4 lg:pt-4'>
+      <div className='flex-1 flex items-center justify-center'>
+        <div className='px-2 lg:px-4'>
           <div className='lg:max-w-lg'>
             {/* Title */}
             <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>{page.name}</h2>
