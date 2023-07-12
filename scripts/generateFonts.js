@@ -14,7 +14,7 @@ fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/open-sans')))
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-condensed')));
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-extra-condensed')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/darker-grotesque')));
-// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen')));
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/outfit')));
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/prompt')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/cartridge')));

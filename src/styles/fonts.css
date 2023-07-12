@@ -300,6 +300,20 @@
 }
 
 @font-face {
+    font-family: 'Silkscreen';
+    src: url('/fonts/silkscreen/Silkscreen-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('/fonts/silkscreen/Silkscreen-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Cartridge';
     src: url('/fonts/cartridge/Cartridge-Bold.otf') format('truetype');
     font-weight: bold;
