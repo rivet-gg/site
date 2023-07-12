@@ -482,8 +482,8 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='pointer-events-none relative h-[825px] w-[640px] shrink-0 grow-0'>
-      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
+    <div className='pointer-events-none relative h-[412px] w-[320px] md:h-[825px] md:w-[640px] shrink-0 grow-0'>
+      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
