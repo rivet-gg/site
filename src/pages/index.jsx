@@ -363,8 +363,9 @@ export default function Index() {
         <div className='pb-12 sm:pb-16 lg:pb-20'>
           <Title />
 
+          <Features />
+
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-            <Features />
             <CaseStudies />
           </div>
 
@@ -407,12 +408,12 @@ function Background({ props }) {
     drawGrid();
   }, []);
 
-  return <canvas ref={canvasRef} className='absolute inset-0 w-full h-full -z-10' {...props} />;
+  return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
 }
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 pb-16'>
       {/* Background */}
       <Background />
 
@@ -423,9 +424,6 @@ function Title() {
           Multiplayer Made
           <br />
           Simple
-          {/* The Multiplayer
-          <br />
-          Development Platform */}
         </h1>
 
         {/* Subtitle */}
@@ -533,9 +531,11 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='mt-16 w-full rounded-3xl shadow-2xl ring-1 ring-inset ring-white/10 sm:mt-24'>
-      <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
-      <Pages page={page} onChangePage={setPage} />
+    <div className='border border-white/10'>
+      <div className='mx-auto w-full max-w-7xl'>
+        <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
+        <Pages page={page} onChangePage={setPage} />
+      </div>
     </div>
   );
 }
