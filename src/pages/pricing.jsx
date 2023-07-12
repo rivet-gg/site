@@ -228,7 +228,7 @@ export default function Pricing() {
                 aria-describedby={tier.id}
                 className={clsx(
                   tier.mostPopular
-                    ? 'bg-indigo-500 text-white hover:bg-indigo-400 focus-visible:outline-indigo-500'
+                    ? 'bg-violet-500 text-white hover:bg-violet-400 focus-visible:outline-violet-500'
                     : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
                   'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
                 )}>
@@ -241,7 +241,7 @@ export default function Pricing() {
                       {section.features.map(feature =>
                         feature.tiers[tier.id] ? (
                           <li key={feature.name} className='flex gap-x-3'>
-                            <CheckIcon className='h-6 w-5 flex-none text-indigo-400' aria-hidden='true' />
+                            <CheckIcon className='h-6 w-5 flex-none text-violet-400' aria-hidden='true' />
                             <span>
                               {feature.name}{' '}
                               {typeof feature.tiers[tier.id] === 'string' ||
@@ -303,7 +303,7 @@ export default function Pricing() {
                         href={tier.href}
                         className={clsx(
                           tier.mostPopular
-                            ? 'bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600'
+                            ? 'bg-violet-500 hover:bg-violet-400 focus-visible:outline-violet-600'
                             : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
                           'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
                         )}>
@@ -347,7 +347,7 @@ export default function Pricing() {
                             ) : (
                               <>
                                 {feature.tiers[tier.id] === true ? (
-                                  <CheckIcon className='mx-auto h-5 w-5 text-indigo-400' aria-hidden='true' />
+                                  <CheckIcon className='mx-auto h-5 w-5 text-violet-400' aria-hidden='true' />
                                 ) : (
                                   <MinusIcon className='mx-auto h-5 w-5 text-gray-500' aria-hidden='true' />
                                 )}
@@ -416,7 +416,7 @@ function PricingModal({ open, onClose }) {
                 <div className='mt-5 sm:mt-6'>
                   <button
                     type='button'
-                    className='inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                    className='inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600'
                     onClick={onClose}>
                     Close
                   </button>
@@ -496,7 +496,7 @@ function PricingTabs({ tierIdx, setTierIdx }) {
               className={clsx(
                 'inline-flex flex-grow cursor-pointer items-center justify-center',
                 current
-                  ? 'z-10 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                  ? 'z-10 bg-violet-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600'
                   : 'px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
               )}
               onClick={() => setTierIdx(i)}>
