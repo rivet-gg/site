@@ -87,7 +87,8 @@ function StarPrompt() {
 
               <div className='ml-2'>Rivet is now open source!</div>
 
-              <div className='ml-4'>
+              {/* Hardcode the button height since the iframe has odd layout side effects */}
+              <div className='ml-4 h-[28px]'>
                 <GitHubButton
                   href='https://github.com/rivet-gg/rivet'
                   target='_blank'
