@@ -14,10 +14,15 @@ fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/open-sans')))
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-condensed')));
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/saira-extra-condensed')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/darker-grotesque')));
-fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen')));
+// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen')));
+// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/outfit')));
+// fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/prompt')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/cartridge')));
 
 // Filter out non-TTF files (optional)
-fonts = fonts.filter(file => path.extname(file) === '.ttf');
+fonts = fonts
+  .filter(file => path.extname(file) === '.ttf' || path.extname(file) === '.otf')
+  .filter(file => !(file.includes('Cartridge') && file.includes('Rough')));
 
 // Continue with the rest of your code...
 
@@ -57,6 +62,15 @@ fonts.forEach(font => {
   } else if (font.includes('Silkscreen')) {
     slug = 'silkscreen';
     family = 'Silkscreen';
+  } else if (font.includes('Outfit')) {
+    slug = 'outfit';
+    family = 'Outfit';
+  } else if (font.includes('Prompt')) {
+    slug = 'prompt';
+    family = 'Prompt';
+  } else if (font.includes('Cartridge')) {
+    slug = 'cartridge';
+    family = 'Cartridge';
   } else {
     throw new Error('Unknown font family');
   }
