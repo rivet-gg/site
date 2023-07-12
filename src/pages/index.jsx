@@ -375,9 +375,47 @@ export default function Index() {
   );
 }
 
+function Background({ props }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    function drawGrid() {
+      let size = 50; // size of each grid cell
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.08)'; // color of the grid lines
+
+      for (let i = 0; i <= canvas.width; i += size) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let j = 0; j <= canvas.height; j += size) {
+        ctx.beginPath();
+        ctx.moveTo(0, j);
+        ctx.lineTo(canvas.width, j);
+        ctx.stroke();
+      }
+    }
+
+    drawGrid();
+  }, []);
+
+  return <canvas ref={canvasRef} className='absolute inset-0 w-full h-full -z-10' {...props} />;
+}
+
 function Title() {
   return (
-    <div className='flex w-full flex-wrap items-center justify-center gap-8'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8'>
+      {/* Background */}
+      <Background />
+
       {/* Text */}
       <div className='max-w-2xl text-left'>
         {/* Title */}
@@ -444,7 +482,7 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='pointer-events-none relative h-[750px] w-[640px] shrink-0 grow-0'>
+    <div className='pointer-events-none relative h-[825px] w-[640px] shrink-0 grow-0'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
@@ -731,7 +769,12 @@ function UpAndRunning() {
               <Resource title='Docs' icon={faBooks} href='/docs/general' />
               <Resource title='Blog' icon={faCode} href='/blog' />
               <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' target='_blank' />
-              <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' target='_blank' />
+              <Resource
+                title='Discord'
+                icon={faDiscord}
+                href='https://discord.gg/aXYfyNxYVn'
+                target='_blank'
+              />
               <Resource title='Support' icon={faLifeRing} href='/support' />
             </div>
           </div>
