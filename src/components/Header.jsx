@@ -227,7 +227,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   tab.current
                     ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
                     : 'border-transparent text-zinc-600 opacity-80 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
-                  'lh-full flex h-full items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
+                  'lh-full flex shrink-0 h-full items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
                 aria-current={tab.current ? 'page' : undefined}
               >

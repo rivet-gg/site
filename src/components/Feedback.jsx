@@ -72,7 +72,7 @@ export function Feedback() {
   }
 
   return (
-    <div className='relative h-8'>
+    <div className='relative h-8 prose'>
       <Transition
         show={!submitted}
         as={Fragment}
