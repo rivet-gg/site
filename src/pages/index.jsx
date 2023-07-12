@@ -392,7 +392,7 @@ function Title() {
 
         {/* Subtitle */}
         <p className='mt-6 text-lg leading-8 text-gray-300'>
-          Open source solution to deploy, scale, and operate your multiplayer game
+          Open-source solution to deploy, scale, and operate your multiplayer game
         </p>
 
         {/* Engines */}
@@ -403,7 +403,7 @@ function Title() {
               <Link
                 key={name}
                 href={href}
-                className='flex flex-shrink items-center gap-1 rounded-lg bg-white/5 px-4 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
+                className='flex flex-shrink items-center gap-1 rounded-xl bg-white/5 px-4 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
                 {image && <Image src={image} alt={name} className='h-6 w-6' />}
                 <div>{name}</div>
               </Link>
@@ -752,5 +752,5 @@ function UpAndRunning() {
   );
 }
 
-Index.description = 'Open source solution to deploy, scale, and operate your multiplayer game';
+Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;

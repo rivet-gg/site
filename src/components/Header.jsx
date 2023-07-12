@@ -67,7 +67,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
       )}
     >
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <span className='font-display text-lg font-semibold'>
+      <span className='font-display text-lg'>
         {children}
       </span>
     </Link>
