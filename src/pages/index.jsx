@@ -380,34 +380,53 @@ function Background({ props }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    function redrawCanvas() {
+      console.log('resize');
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
 
-    let pixelRatio = window.devicePixelRatio || 1;
-    canvas.width = canvas.clientWidth * pixelRatio;
-    canvas.height = canvas.clientHeight * pixelRatio;
+      let pixelRatio = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * pixelRatio;
+      canvas.height = canvas.clientHeight * pixelRatio;
 
-    function drawGrid() {
+      // Fill background
+      ctx.fillStyle = 'rgb(24, 24, 27)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw grid
       let size = 50 * pixelRatio; // size of each grid cell
       ctx.strokeStyle = 'rgba(139, 92, 246, 0.08)'; // color of the grid lines
       ctx.lineWidth = 2 * pixelRatio;
 
-      for (let i = 0; i <= canvas.width; i += size) {
+      for (let i = -size / 2; i <= canvas.width; i += size) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvas.height);
         ctx.stroke();
       }
 
-      for (let j = 0; j <= canvas.height; j += size) {
+      for (let j = -size / 2; j <= canvas.height; j += size) {
         ctx.beginPath();
         ctx.moveTo(0, j);
         ctx.lineTo(canvas.width, j);
         ctx.stroke();
       }
+
+      // Fill overlay
+      let xPos = canvas.clientWidth > 1280 ? canvas.width * 0.25 : canvas.width * 0.5;
+      let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
+      const grd = ctx.createRadialGradient(xPos, yPos, 0, xPos, yPos, canvas.width / 2);
+      grd.addColorStop(0, 'rgba(24, 24, 27, 1)');
+      grd.addColorStop(1, 'rgba(24, 24, 27, 0.00)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    drawGrid();
+    redrawCanvas();
+
+    const canvas = canvasRef.current;
+    window.addEventListener('resize', redrawCanvas);
+    return () => window.removeEventListener('resize', redrawCanvas);
   }, []);
 
   return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
@@ -415,7 +434,7 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 pb-16 pt-8 px-2'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-8'>
       {/* Background */}
       <Background />
 
@@ -482,7 +501,7 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='pointer-events-none relative h-[412px] w-[320px] md:h-[825px] md:w-[640px] shrink-0 grow-0'>
+    <div className='pointer-events-none relative h-[412px] w-[320px] shrink-0 grow-0 md:h-[825px] md:w-[640px]'>
       <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
@@ -554,13 +573,15 @@ function Tabs({ index, onChangeTab }) {
                 key={tab.name}
                 href={tab.href}
                 className={clsx(
-                  isCurrent ? 'border-b-4 border-[color:var(--tab-color)] text-white' : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center text-xs md:text-base flex w-1/4 cursor-pointer flex-col items-center py-2 text-center font-bold text-white transition'
+                  isCurrent
+                    ? 'border-b-4 border-[color:var(--tab-color)] text-white'
+                    : 'opacity-50 hover:opacity-100',
+                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
                 onClick={() => onChangeTab(i)}>
-                <div className='relative w-10 h-10 md:h-16 md:w-16'>
+                <div className='relative h-10 w-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
                     alt='Tab image'
@@ -627,7 +648,7 @@ function PageContents({ page }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
-      <div className='relative flex-1 hidden md:block'>
+      <div className='relative hidden flex-1 md:block'>
         <motion.div
           className='absolute left-1/2 top-1/2 w-full rounded-lg'
           key={page.index}
@@ -644,7 +665,7 @@ function PageContents({ page }) {
       </div>
 
       {/* Details */}
-      <div className='flex-1 flex items-center justify-center'>
+      <div className='flex flex-1 items-center justify-center'>
         <div className='px-2 lg:px-4'>
           <div className='lg:max-w-lg'>
             {/* Title */}
