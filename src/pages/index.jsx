@@ -396,12 +396,12 @@ function Background({ props }) {
       let delta = now - lastUpdate;
 
       // Max 15 FPS
-      if (delta < 1000 / 30) return requestAnimationFrame(drawCanvas);
+      if (delta < 1000 / 15) return requestAnimationFrame(drawCanvas);
 
       lastUpdate = now;
 
-      offsetX += delta * 0.03;
-      offsetY = Math.sin((now / 1000) * 0.3) * 50;
+      offsetX += delta * 0.01;
+      offsetY = Math.sin((now / 1000) * 0.1) * 50;
 
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
@@ -446,16 +446,16 @@ function Background({ props }) {
 
       ctx.restore();
 
-      // requestAnimationFrame(drawCanvas);
+      requestAnimationFrame(drawCanvas);
     }
 
     drawCanvas();
 
-    window.addEventListener('resize', drawCanvas);
+    // window.addEventListener('resize', drawCanvas);
 
     return () => {
       active = false;
-      window.removeEventListener('resize', drawCanvas);
+      // window.removeEventListener('resize', drawCanvas);
     };
   }, []);
 
@@ -492,8 +492,7 @@ function Title() {
                 href={href}
                 className={clsx(
                   'flex shrink-0 items-center justify-center gap-1 rounded-xl',
-                  'py-4 font-semibold opacity-75 transition transition',
-                  'hover:opacity-100 hover:scale-105',
+                  'py-4 font-semibold transition transition hover:scale-110',
                   'bg-gradient-to-r bg-clip-text text-transparent',
                   gradient[0],
                   gradient[1]
