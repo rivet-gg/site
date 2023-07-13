@@ -479,14 +479,14 @@ function Title() {
         </p>
 
         {/* Engines */}
-        <div className='mt-6'>
+        <div className='mt-6 rounded-xl bg-white/[0.02] ring-1 ring-inset ring-white/10 pt-4 pb-1 px-6 w-fit'>
           <div className='font-bold text-white'>Supports</div>
-          <div className='mt-3 flex flex-wrap gap-2.5'>
+          <div className='mt-0 flex gap-4'>
             {supportedEngines.map(({ name, image, href }) => (
               <Link
                 key={name}
                 href={href}
-                className='flex flex-shrink items-center gap-1 rounded-xl bg-white/5 px-4 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
+                className='flex shrink-0 items-center justify-center gap-1 rounded-xl py-4 font-semibold text-white transition opacity-75 hover:opacity-100 transition'>
                 {image && <Image src={image} alt={name} className='h-6 w-6' />}
                 <div>{name}</div>
               </Link>
