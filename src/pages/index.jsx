@@ -392,7 +392,7 @@ function Background({ props }) {
       let delta = now - lastUpdate;
 
       // Max 15 FPS
-      if (delta < 1000 / 20) return requestAnimationFrame(drawCanvas);
+      if (delta < 1000 / 30) return requestAnimationFrame(drawCanvas);
 
       lastUpdate = now;
 
