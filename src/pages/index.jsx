@@ -380,8 +380,25 @@ function Background({ props }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    function redrawCanvas() {
-      console.log('resize');
+    let lastUpdate = Date.now();
+    let offsetX = 0;
+    let offsetY = 0;
+    let active = true;
+
+    function drawCanvas() {
+      if (!active) return ;
+
+      let now = Date.now();
+      let delta = now - lastUpdate;
+
+      // Max 15 FPS
+      if (delta < 1000 / 20) return requestAnimationFrame(drawCanvas);
+
+      lastUpdate = now;
+
+      offsetX += delta * 0.05;
+      offsetY = Math.sin(now / 1000 * 0.5) * 50;
+
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
 
@@ -389,23 +406,25 @@ function Background({ props }) {
       canvas.width = canvas.clientWidth * pixelRatio;
       canvas.height = canvas.clientHeight * pixelRatio;
 
+      ctx.save();
+
       // Fill background
       ctx.fillStyle = 'rgb(24, 24, 27)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw grid
       let size = 50 * pixelRatio; // size of each grid cell
-      ctx.strokeStyle = 'rgba(139, 92, 246, 0.08)'; // color of the grid lines
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.15)'; // color of the grid lines
       ctx.lineWidth = 2 * pixelRatio;
 
-      for (let i = -size / 2; i <= canvas.width; i += size) {
+      for (let i = -size + (offsetX % size); i <= canvas.width; i += size) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvas.height);
         ctx.stroke();
       }
 
-      for (let j = -size / 2; j <= canvas.height; j += size) {
+      for (let j = -size + (offsetY % size); j <= canvas.height; j += size) {
         ctx.beginPath();
         ctx.moveTo(0, j);
         ctx.lineTo(canvas.width, j);
@@ -415,18 +434,25 @@ function Background({ props }) {
       // Fill overlay
       let xPos = canvas.clientWidth > 1280 ? canvas.width * 0.25 : canvas.width * 0.5;
       let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
-      const grd = ctx.createRadialGradient(xPos, yPos, 0, xPos, yPos, canvas.width / 2);
+      const grd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
       grd.addColorStop(0, 'rgba(24, 24, 27, 1)');
       grd.addColorStop(1, 'rgba(24, 24, 27, 0.00)');
       ctx.fillStyle = grd;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.restore();
+
+      requestAnimationFrame(drawCanvas);
     }
 
-    redrawCanvas();
+    drawCanvas();
 
-    const canvas = canvasRef.current;
-    window.addEventListener('resize', redrawCanvas);
-    return () => window.removeEventListener('resize', redrawCanvas);
+    // window.addEventListener('resize', redrawCanvas);
+
+    return () => {
+      active = false;
+      // window.removeEventListener('resize', redrawCanvas);
+    }
   }, []);
 
   return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
