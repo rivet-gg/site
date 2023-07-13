@@ -442,16 +442,16 @@ function Background({ props }) {
 
       ctx.restore();
 
-      requestAnimationFrame(drawCanvas);
+      // requestAnimationFrame(drawCanvas);
     }
 
     drawCanvas();
 
-    // window.addEventListener('resize', redrawCanvas);
+    window.addEventListener('resize', drawCanvas);
 
     return () => {
       active = false;
-      // window.removeEventListener('resize', redrawCanvas);
+      window.removeEventListener('resize', drawCanvas);
     };
   }, []);
 
