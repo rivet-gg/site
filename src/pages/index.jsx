@@ -280,27 +280,31 @@ const pages = [
 let supportedEngines = [
   {
     name: 'Unity',
-    href: '/learn/unity'
+    href: '/learn/unity',
+    gradient: ['from-cyan-300', 'to-cyan-500']
   },
   {
     name: 'Unreal Engine',
-    href: '/learn/unreal'
+    href: '/learn/unreal',
+    gradient: ['from-rose-400', 'to-rose-600']
   },
   {
     name: 'Godot',
-
     image: imgGodot,
-    href: '/learn/godot'
+    href: '/learn/godot',
+    gradient: ['from-blue-300', 'to-blue-500']
   },
   {
     name: 'HTML5',
     image: imgHtml5,
-    href: '/learn/html5'
+    href: '/learn/html5',
+    gradient: ['from-orange-400', 'to-orange-600']
   },
   {
     name: 'Custom',
     image: imgDocker,
-    href: '/learn/custom'
+    href: '/learn/custom',
+    gradient: ['from-slate-300', 'to-slate-500']
   }
 ];
 
@@ -479,15 +483,22 @@ function Title() {
         </p>
 
         {/* Engines */}
-        <div className='mt-6 rounded-xl bg-white/[0.02] ring-1 ring-inset ring-white/10 pt-4 pb-1 px-6 w-fit'>
+        <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
           <div className='font-bold text-white'>Supports</div>
-          <div className='mt-0 flex gap-4'>
-            {supportedEngines.map(({ name, image, href }) => (
+          <div className='mt-0 flex gap-5'>
+            {supportedEngines.map(({ name, image, href, gradient }) => (
               <Link
                 key={name}
                 href={href}
-                className='flex shrink-0 items-center justify-center gap-1 rounded-xl py-4 font-semibold text-white transition opacity-75 hover:opacity-100 transition'>
-                {image && <Image src={image} alt={name} className='h-6 w-6' />}
+                className={clsx(
+                  'flex shrink-0 items-center justify-center gap-1 rounded-xl',
+                  'py-4 font-semibold opacity-75 transition transition',
+                  'hover:opacity-100 hover:scale-105',
+                  'bg-gradient-to-r bg-clip-text text-transparent',
+                  gradient[0],
+                  gradient[1]
+                )}>
+                {/* {image && <Image src={image} alt={name} className='h-6 w-6' />} */}
                 <div>{name}</div>
               </Link>
             ))}
