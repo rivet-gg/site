@@ -386,7 +386,7 @@ function Background({ props }) {
     let active = true;
 
     function drawCanvas() {
-      if (!active) return ;
+      if (!active) return;
 
       let now = Date.now();
       let delta = now - lastUpdate;
@@ -396,8 +396,8 @@ function Background({ props }) {
 
       lastUpdate = now;
 
-      offsetX += delta * 0.05;
-      offsetY = Math.sin(now / 1000 * 0.5) * 50;
+      offsetX += delta * 0.03;
+      offsetY = Math.sin((now / 1000) * 0.3) * 50;
 
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
@@ -414,7 +414,7 @@ function Background({ props }) {
 
       // Draw grid
       let size = 50 * pixelRatio; // size of each grid cell
-      ctx.strokeStyle = 'rgba(139, 92, 246, 0.15)'; // color of the grid lines
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.1)'; // color of the grid lines
       ctx.lineWidth = 2 * pixelRatio;
 
       for (let i = -size + (offsetX % size); i <= canvas.width; i += size) {
@@ -452,7 +452,7 @@ function Background({ props }) {
     return () => {
       active = false;
       // window.removeEventListener('resize', redrawCanvas);
-    }
+    };
   }, []);
 
   return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
@@ -496,12 +496,25 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <Link
+          {/* <Link
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
             Sign Up
+          </Link> */}
+
+          <Link
+            href='https://b8v8449klvp.typeform.com/rivet'
+            target='_blank'
+            className='button cursor-pointer select-none rounded-lg border-b-[1px] border-violet-400 bg-violet-500
+            px-3.5 py-2.5
+            text-sm font-semibold text-white
+            transition-all
+            duration-150 [box-shadow:0_4px_0_0_#7c3aed] active:translate-y-[4px]
+            active:border-b-[0px] active:[box-shadow:0_0px_0_0_#7c3aed]'>
+            Sign Up
           </Link>
+
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             Tutorials & Templates <span aria-hidden='true'>→</span>
           </Link>
