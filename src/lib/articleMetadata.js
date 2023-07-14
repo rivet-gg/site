@@ -1,10 +1,16 @@
 import nathanFlurry from '../authors/nathan-flurry/avatar.jpeg';
+import nicholasKissel from '../authors/nicholas-kissel/avatar.jpeg';
 
 const authors = {
   'nathan-flurry': {
     name: 'Nathan Flurry',
     role: 'Co-founder & CTO',
     avatar: nathanFlurry
+  },
+  'nicholas-kissel': {
+    name: 'Nicholas Kissel',
+    role: 'Co-founder & CEO',
+    avatar: nicholasKissel
   }
 };
 
