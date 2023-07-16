@@ -4,7 +4,7 @@ import { processArticleMeta } from './articleMetadata';
 
 async function importArticle(articleFilename) {
   // Parse filename
-  let [category, slug, name] = articleFilename.split('/');
+  let [slug, name] = articleFilename.split('/');
   if (name !== 'index.mdx') {
     throw new Error(`Unexpected filename: ${articleFilename}`);
   }
@@ -13,7 +13,7 @@ async function importArticle(articleFilename) {
   // console.log('Parsing', articleFilename);
   let { meta, default: component } = await import(`../pages/blog/${articleFilename}`);
 
-  let enriched = processArticleMeta(meta, category, slug);
+  let enriched = processArticleMeta(meta, slug);
 
   return {
     component,
@@ -22,7 +22,7 @@ async function importArticle(articleFilename) {
 }
 
 export async function getAllArticles() {
-  let articleFilenames = await glob(['*/*/index.mdx'], {
+  let articleFilenames = await glob(['*/index.mdx'], {
     cwd: path.join(process.cwd(), 'src/pages/blog')
   });
 
