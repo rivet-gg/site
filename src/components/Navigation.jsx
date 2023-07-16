@@ -7,6 +7,7 @@ import {
   faBooks,
   faCode,
   faCoin,
+  faPuzzle,
   faGraduationCap,
   faHammer,
   faNewspaper,
@@ -184,6 +185,9 @@ export function Navigation({ navigation, ...props }) {
         <TopLevelNavItem href='/docs/general' icon={faBooks}>
           Docs
         </TopLevelNavItem>
+        <TopLevelNavItem href='/modules' icon={faPuzzle}>
+            Modules
+          </TopLevelNavItem>
         <TopLevelNavItem href='/blog' icon={faNewspaper}>
           Blog
         </TopLevelNavItem>

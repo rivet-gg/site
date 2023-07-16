@@ -21,6 +21,7 @@ import {
   faGraduationCap,
   faHammer,
   faNewspaper,
+  faPuzzle,
   faUserGroup
 } from '@fortawesome/pro-solid-svg-icons';
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -181,6 +182,9 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
             </TopLevelNavItem>
             <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
               Docs
+            </TopLevelNavItem>
+            <TopLevelNavItem href='/modules' icon={faPuzzle}>
+              Modules
             </TopLevelNavItem>
             <TopLevelNavItem href='/blog' icon={faNewspaper}>
               Blog
