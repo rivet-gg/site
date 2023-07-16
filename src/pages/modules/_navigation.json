@@ -1,0 +1,23 @@
+{
+  "title": "Modules",
+  "feedback": false,
+  "sidebar": {
+    "groups": [
+      {
+        "title": "rivet",
+        "pages": [
+          "rivet/cdn",
+          "rivet/chat",
+          "rivet/friend",
+          "rivet/group",
+          "rivet/identity",
+          "rivet/kv",
+          "rivet/matchmaker",
+          "rivet/party",
+          "rivet/presence",
+          "rivet/report"
+        ]
+      }
+    ]
+  }
+}

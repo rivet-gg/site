@@ -1,0 +1,32 @@
+import { faBookOpen } from '@fortawesome/pro-solid-svg-icons';
+
+# party
+
+_Enable users to create and join parties to play your game, integrated with matchmaking._
+
+|                 |       |
+| --------------- | ----- |
+| **Author**      | rivet |
+| **Identifier**  | party  |
+| **Version**     | 1.0.0 |
+
+## Installation
+
+To install this module, copy and paste this code into your Rivet configuration at `rivet.toml`. Then, run `rivet deploy -n prod`.
+
+<CodeGroup title="rivet.toml">
+```toml
+[modules]
+    party = "rivet/matchmaker"
+
+[party]
+    # Configuration options
+```
+</CodeGroup>
+
+## Usage
+
+<ResourceGroup title={null}>
+  <Resource title='Documentation' icon={faBookOpen} iconType='duotone' href='/docs/party' />
+</ResourceGroup>
+```

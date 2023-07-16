@@ -5,6 +5,7 @@ src/generated/*.json
 
 # Buggy formatting
 src/pages/learn/html5/tanks-canvas-socketio.mdx
+src/pages/modules/*.mdx
 
 # MARK: Copied from .gitignore
 # See https://help.github.com/blog/ignoring-files/ for more about ignoring files.

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import clsx from 'clsx';
 
 import { GridPattern } from '@/components/GridPattern';
 import { Heading } from '@/components/Heading';
@@ -39,7 +40,7 @@ function ResourceIcon({ icon }) {
     <div className='flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-violet-300/10 dark:group-hover:ring-violet-400'>
       <FontAwesomeIcon
         icon={icon}
-        className='h-5 w-5 transition duration-300 text-zinc-400 group-hover:text-violet-400'
+        className='h-5 w-5 text-zinc-400 transition duration-300 group-hover:text-violet-400'
       />
     </div>
   );
@@ -97,7 +98,7 @@ export function Resource({ children, ...props }) {
       href={props.href}
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5 hover:scale-[1.03] active:scale-[0.95]'>
+      className='group relative flex rounded-2xl bg-zinc-50 transition hover:scale-[1.03] hover:shadow-md hover:shadow-zinc-900/5 active:scale-[0.95] dark:bg-white/2.5 dark:hover:shadow-black/5'>
       <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
@@ -122,10 +123,16 @@ export function ResourceGroup({ title = 'Resources', children }) {
 
   return (
     <div className='my-16 xl:max-w-none'>
-      <Heading level={2} id='resources'>
-        {title}
-      </Heading>
-      <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4'>
+      {title && (
+        <Heading level={2} id='resources'>
+          {title}
+        </Heading>
+      )}
+      <div
+        className={clsx(
+          'not-prose grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4',
+          title && 'mt-4 border-t border-zinc-900/5 pt-10 dark:border-white/5'
+        )}>
         {clonedChildren}
       </div>
     </div>
