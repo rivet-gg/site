@@ -49,7 +49,7 @@ export function Game({ className, ...props }) {
       {/* Start UI */}
       {!isRunning && (
         <motion.div
-          className='absolute inset-0 flex scale-90 cursor-pointer items-center justify-center font-pixel text-2xl font-bold text-white opacity-50 transition hover:scale-100 hover:opacity-100'
+          className='opacity-75 absolute inset-0 flex cursor-pointer items-center justify-center font-pixel text-2xl font-bold text-[#389844] transition hover:opacity-100 drop-shadow-[0_0_8px_rgba(56,152,68,0.4)]'
           onClick={() => setIsRunning(true)}>
           CLICK TO START
           <motion.span

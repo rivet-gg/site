@@ -51,7 +51,7 @@ const ICONS = {
   // Vendor
   godot: imgGodot,
   html5: imgHtml5,
-  docker: imgDocker,
+  docker: imgDocker
 };
 
 function TopLevelNavItem({ href, initHref, icon, children }) {
@@ -64,12 +64,9 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
       className={clsx(
         current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
         'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition'
-      )}
-    >
+      )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      <span className='font-display text-lg font-semibold'>
-        {children}
-      </span>
+      <span className='font-display text-lg'>{children}</span>
     </Link>
   );
 }
@@ -89,8 +86,7 @@ function TopLevelNavPopover({ solutions, callsToAction, children }) {
         enterTo='opacity-100 translate-y-0'
         leave='transition ease-in duration-150'
         leaveFrom='opacity-100 translate-y-0'
-        leaveTo='opacity-0 translate-y-1'
-      >
+        leaveTo='opacity-0 translate-y-1'>
         <Popover.Panel className='absolute z-10 mt-5 flex w-screen max-w-max'>
           <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
             <div className='p-4'>{solutions}</div>
@@ -108,7 +104,7 @@ function TopLevelNavPopoverSolution({ icon, href, title, description }) {
       <div className='mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
         <FontAwesomeIcon
           icon={icon}
-          className='h-6 w-6 text-gray-600 group-hover:text-indigo-600'
+          className='h-6 w-6 text-gray-600 group-hover:text-violet-600'
           aria-hidden='true'
         />
       </div>
@@ -128,8 +124,7 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
     <Link
       key={title}
       href={href}
-      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'
-    >
+      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'>
       <FontAwesomeIcon icon={icon} className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
       {title}
     </Link>
@@ -158,8 +153,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       style={{
         '--bg-opacity-light': bgOpacityLight,
         '--bg-opacity-dark': bgOpacityDark
-      }}
-    >
+      }}>
       {/* Main header */}
       <div className='flex h-14 items-center justify-between gap-12 px-6 lg:z-30'>
         <div
@@ -198,6 +192,22 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         </div>
 
         <div className='flex items-center gap-4'>
+          {/* Social icons */}
+          {/* <div className='flex gap-1.5'> */}
+            {[
+              [faDiscord, 'https://discord.gg/aXYfyNxYVn'],
+              [faGithub, 'https://github.com/rivet-gg/rivet']
+            ].map(([icon, href]) => (
+              <Link
+                className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
+                key={href}
+                href={href}
+                target='_blank'>
+                <FontAwesomeIcon icon={icon} className='text-white text-lg' />
+              </Link>
+            ))}
+          {/* </div> */}
+
           <Search />
           <MobileSearch />
           {/* <ModeToggle /> */}
@@ -227,10 +237,9 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   tab.current
                     ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
                     : 'border-transparent text-zinc-600 opacity-80 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
-                  'lh-full flex h-full items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
+                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
                 )}
-                aria-current={tab.current ? 'page' : undefined}
-              >
+                aria-current={tab.current ? 'page' : undefined}>
                 {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
                 <span>{tab.title}</span>
               </Link>
