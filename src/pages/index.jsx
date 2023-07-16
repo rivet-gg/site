@@ -451,7 +451,7 @@ function Background({ props }) {
       // Fill gradient
       const fadeGrd = ctx.createLinearGradient(0, 0, 0, canvas.height);
       fadeGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
-      fadeGrd.addColorStop(1, 'rgba(24, 24, 27, 0.6)');
+      fadeGrd.addColorStop(1, 'rgba(24, 24, 27, 0.8)');
       ctx.fillStyle = fadeGrd;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
