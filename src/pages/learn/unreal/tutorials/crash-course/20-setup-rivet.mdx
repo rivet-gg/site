@@ -9,29 +9,15 @@
 Run the following in your project's directory:
 
 ```bash
-rivet init --recommend --matchmaker --matchmaker-port 7777 --matchmaker-dockerfile 'Dockerfile'
+rivet init --unreal --
 ```
 
-Don't enable the CDN for this guide. Don't write the token to .env.
+## Install the Rivet plugin
 
-Save the development token that's provided to you. You'll use this in a few steps.
 
-### Update _rivet.version.toml_
+- TODO: Copy plugin
 
-Update your _rivet.version.toml_ file to look like this:
-
-```toml rivet.version.toml
-[matchmaker]
-	max_players = 32
-
-[matchmaker.regions]
-	lnd-atl = {}
-	lnd-fra = {}
-
-[matchmaker.docker]
-	dockerfile = "Dockerfile"
-	ports.default = { port = 7777, protocol = "udp" }
-
-[matchmaker.game_modes]
-	default = {}
-```
+- TODO: Update .Build.cs
+- TODO: Update uproject
+- TODO: Update Build.cs
+- TODO: Optionally restart
