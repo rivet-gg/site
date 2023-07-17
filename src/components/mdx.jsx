@@ -243,6 +243,7 @@ export function InstallCli() {
 }
 
 export function CrashCourseUnrealBlueprint() {
+  return null;
   return <Tip>
     <p>TODO: Unreal crash blueprints course</p>
     <ul>
@@ -253,6 +254,7 @@ export function CrashCourseUnrealBlueprint() {
 }
 
 export function CrashCourseUnrealWidget() {
+  return null;
   return <Tip>
     <p>TODO: Unreal crash blueprints course</p>
     <ul>
