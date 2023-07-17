@@ -241,3 +241,25 @@ export function InstallCli() {
     </Note>
   );
 }
+
+export function CrashCourseUnrealBlueprint() {
+  return null;
+  return <Tip>
+    <p>TODO: Unreal crash blueprints course</p>
+    <ul>
+      <li>Comments</li>
+      <li>3 ways to create nodes</li>
+    </ul>
+  </Tip>
+}
+
+export function CrashCourseUnrealWidget() {
+  return null;
+  return <Tip>
+    <p>TODO: Unreal crash blueprints course</p>
+    <ul>
+      <li>How to create a UI</li>
+      <li>Common widget types</li>
+    </ul>
+  </Tip>
+}
