@@ -1,3 +1,6 @@
+// Auto-generate navigation
+import './scripts/generateNavigation.mjs';
+
 import nextMDX from '@next/mdx';
 import withSearch from './src/mdx/search.mjs';
 import { remarkPlugins } from './src/mdx/remark.mjs';
