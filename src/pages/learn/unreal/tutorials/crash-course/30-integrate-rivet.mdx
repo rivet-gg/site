@@ -1,29 +1,5 @@
 # Step X: Integrate with Rivet
 
-## Add development token to config
-
-We will configure the token to connect to Rivet to test the game.
-
-1. Create a development token by running the following command and copying the token. It should look like `dev_staging.XXXX`.
-
-   ```bash
-   dev create-dev-token --format json
-   ```
-
-2. Add the following to the end of _Config/DefaultGame.ini_. Replace `dev_staging.XXXX` with the token created in the last step.
-
-   ```ini Config/DefaultGame.ini
-   [/Script/Rivet.RivetClient]
-   DefaultToken=dev_staging.eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.CO76lo6IMhDuotLQkjEaEgoQAOPi6KuOTSKaEMiTCG64biIvQi0KEgoQtkjZQtL2StG7W6zJNmv03hoJMTI3LjAuMC4xIgwKB2RlZmF1bHQQ4Tw.M7WTktRJQOAV-W8VuMMF6nPiRmAxqnO4yPBccOrJbWz8DEh1LSbQoreKThPDR0TF2KV3OHltlrBwCdV_9BYjCA
-   ```
-
-## Add the Rivet module
-
-- TODO: Copy module
-- TODO: Update uproject
-- TODO: Update Build.cs
-- TODO: Optionally restart
-
 ## Update `AMyProjectGameMode` class
 
 We will update the game mode code to connect player connect & disconnect events to Rivet.
