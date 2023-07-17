@@ -1,0 +1,34 @@
+import { ArticleLayout } from '@/components/ArticleLayout';
+import image from './image.png';
+
+export const meta = {
+  image,
+  author: 'nathan-flurry',
+  date: '2022-11-12',
+  title: `Resizing & compression for user images`,
+  description: `Avatars are automatically compressed and resized to improve load times, parameters can now be passed to the avatar request to specify custom sizes`,
+  imageAlt: `customize compression and resizing`,
+  category: 'changelog',
+  tags: ['avatars', 'images', 'compression', 'resizing'],
+};
+
+export default props => <ArticleLayout meta={meta} {...props} />;
+
+## Identities
+
+### Added
+
+- Avatars are automatically compressed and resized to improve load times
+- Parameters can now be passed to the avatar request to specify custom sizes
+
+### Changed
+
+- Increase max user avatar, game logo, and game banner upload sizes
+
+‍
+
+## Developer Dashboard
+
+### Changed
+
+- Updated recommend game logo and banner image sizes

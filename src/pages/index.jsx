@@ -280,27 +280,31 @@ const pages = [
 let supportedEngines = [
   {
     name: 'Unity',
-    href: '/learn/unity'
+    href: '/learn/unity',
+    gradient: ['from-cyan-300', 'to-cyan-500']
   },
   {
     name: 'Unreal Engine',
-    href: '/learn/unreal'
+    href: '/learn/unreal',
+    gradient: ['from-rose-400', 'to-rose-600']
   },
   {
     name: 'Godot',
-
     image: imgGodot,
-    href: '/learn/godot'
+    href: '/learn/godot',
+    gradient: ['from-blue-300', 'to-blue-500']
   },
   {
     name: 'HTML5',
     image: imgHtml5,
-    href: '/learn/html5'
+    href: '/learn/html5',
+    gradient: ['from-orange-400', 'to-orange-600']
   },
   {
     name: 'Custom',
     image: imgDocker,
-    href: '/learn/custom'
+    href: '/learn/custom',
+    gradient: ['from-slate-300', 'to-slate-500']
   }
 ];
 
@@ -363,8 +367,9 @@ export default function Index() {
         <div className='pb-12 sm:pb-16 lg:pb-20'>
           <Title />
 
+          <Features />
+
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-            <Features />
             <CaseStudies />
           </div>
 
@@ -375,36 +380,151 @@ export default function Index() {
   );
 }
 
+function Background({ props }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    let lastUpdate = Date.now();
+    let offsetX = 0;
+    let offsetY = 0;
+    let active = true;
+
+    function drawCanvas() {
+      if (!active) return;
+
+      let now = Date.now();
+      let delta = now - lastUpdate;
+
+      // Cap FPS to reduce overhead
+      if (delta < 1000 / 35) return requestAnimationFrame(drawCanvas);
+
+      lastUpdate = now;
+
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+
+      let pixelRatio = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * pixelRatio;
+      canvas.height = canvas.clientHeight * pixelRatio;
+
+      // offsetX = Math.pow(Math.sin((now / 1000) * 0.6), 2) * 0.1;
+      offsetY += (delta / 1000) * 0.03;
+
+      ctx.save();
+
+      // Fill background
+      ctx.fillStyle = 'rgb(24, 24, 27)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw grid
+      let size = 0.1;
+      let xRange = 4;
+      let yRange = 3;
+      ctx.strokeStyle = 'rgba(139, 92, 246, 1)'; // color of the grid lines
+      ctx.lineWidth = 2 * pixelRatio;
+
+      // X
+      for (let x = -xRange / 2 - size + (offsetX % size); x <= xRange / 2; x += size) {
+        ctx.beginPath();
+        ctx.moveTo(...psp(x, 0));
+        ctx.lineTo(...psp(x, yRange));
+        ctx.stroke();
+      }
+
+      // Y
+      for (let y = -size + (offsetY % size); y <= yRange; y += size) {
+        ctx.beginPath();
+        ctx.moveTo(...psp(-xRange / 2, y));
+        ctx.lineTo(...psp(xRange / 2, y));
+        ctx.stroke();
+      }
+
+      // Fill overlay
+      let xPos = canvas.clientWidth > 1280 ? (canvas.width / 2 - 410 * pixelRatio) : canvas.width * 0.5;
+      let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
+      const radGrd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
+      radGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
+      radGrd.addColorStop(1, 'rgba(24, 24, 27, 0)');
+      ctx.fillStyle = radGrd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Fill gradient
+      const fadeGrd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      fadeGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
+      fadeGrd.addColorStop(1, 'rgba(24, 24, 27, 0.8)');
+      ctx.fillStyle = fadeGrd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.restore();
+
+      requestAnimationFrame(drawCanvas);
+
+      // Apply perspective
+      function psp(x, y, perspective = 1.5) {
+        const distance = perspective;
+        const z = y; // We can consider the y coordinate to be our z depth.
+        const factor = distance / (distance + z);
+
+        // Create a new 2D point transformed by the perspective factor
+        let newX = x * factor;
+        let newY = y * factor;
+
+        newX = (newX + 0.5) * canvas.width;
+        newY = canvas.height - newY * canvas.height;
+
+        return [newX, newY];
+      }
+    }
+
+    drawCanvas();
+
+    // window.addEventListener('resize', drawCanvas);
+
+    return () => {
+      active = false;
+      // window.removeEventListener('resize', drawCanvas);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
+}
+
 function Title() {
   return (
-    <div className='flex w-full flex-wrap items-center justify-center gap-8'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-8'>
+      {/* Background */}
+      <Background />
+
       {/* Text */}
       <div className='max-w-2xl text-left'>
         {/* Title */}
-        <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-7xl'>
+        <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
           Multiplayer Made
           <br />
           Simple
-          {/* The Multiplayer
-          <br />
-          Development Platform */}
         </h1>
 
         {/* Subtitle */}
         <p className='mt-6 text-lg leading-8 text-gray-300'>
-          Open source solution to deploy, scale, and operate your multiplayer game
+          Open-source solution to deploy, scale, and operate your multiplayer game
         </p>
 
         {/* Engines */}
-        <div className='mt-6'>
+        <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
           <div className='font-bold text-white'>Supports</div>
-          <div className='mt-3 flex flex-wrap gap-2.5'>
-            {supportedEngines.map(({ name, image, href }) => (
+          <div className='mt-0 flex gap-5'>
+            {supportedEngines.map(({ name, image, href, gradient }) => (
               <Link
                 key={name}
                 href={href}
-                className='flex flex-shrink items-center gap-1 rounded-lg bg-white/5 px-4 py-2 font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/20 hover:ring-white/20'>
-                {image && <Image src={image} alt={name} className='h-6 w-6' />}
+                className={clsx(
+                  'flex shrink-0 items-center justify-center gap-1 rounded-xl',
+                  'py-4 font-semibold transition transition hover:scale-110',
+                  'bg-gradient-to-r bg-clip-text text-transparent',
+                  gradient[0],
+                  gradient[1]
+                )}>
+                {/* {image && <Image src={image} alt={name} className='h-6 w-6' />} */}
                 <div>{name}</div>
               </Link>
             ))}
@@ -413,12 +533,25 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <Link
+          {/* <Link
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
             className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
             Sign Up
+          </Link> */}
+
+          <Link
+            href='https://b8v8449klvp.typeform.com/rivet'
+            target='_blank'
+            className='button cursor-pointer select-none rounded-lg border-b-[1px] border-violet-400 bg-violet-500
+            px-3.5 py-2.5
+            text-sm font-semibold text-white
+            transition-all
+            duration-150 [box-shadow:0_4px_0_0_#7c3aed] active:translate-y-[4px]
+            active:border-b-[0px] active:[box-shadow:0_0px_0_0_#7c3aed]'>
+            Sign Up
           </Link>
+
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             Tutorials & Templates <span aria-hidden='true'>→</span>
           </Link>
@@ -444,8 +577,8 @@ function Title() {
 
 function Demo() {
   return (
-    <div className='pointer-events-none relative h-[750px] w-[640px] shrink-0 grow-0'>
-      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*1.3)]'>
+    <div className='pointer-events-none relative h-[412px] w-[320px] shrink-0 grow-0 md:h-[825px] md:w-[640px]'>
+      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
@@ -495,16 +628,18 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='mt-16 w-full rounded-3xl shadow-2xl ring-1 ring-inset ring-white/10 sm:mt-24'>
-      <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
-      <Pages page={page} onChangePage={setPage} />
+    <div className='border border-white/10'>
+      <div className='mx-auto w-full max-w-7xl'>
+        <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
+        <Pages page={page} onChangePage={setPage} />
+      </div>
     </div>
   );
 }
 
 function Tabs({ index, onChangeTab }) {
   return (
-    <div className='hidden sm:block'>
+    <div>
       <div className='border-b border-white/10'>
         <nav className='-mb-px flex' aria-label='Tabs'>
           {pages.map((tab, i) => {
@@ -514,13 +649,15 @@ function Tabs({ index, onChangeTab }) {
                 key={tab.name}
                 href={tab.href}
                 className={clsx(
-                  isCurrent ? 'bg-[color:var(--tab-color)] text-white' : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center text-normal m-2 flex w-1/4 cursor-pointer flex-col items-center rounded-2xl py-2 text-center font-bold text-white transition'
+                  isCurrent
+                    ? 'border-b-4 border-[color:var(--tab-color)] text-white'
+                    : 'opacity-50 hover:opacity-100',
+                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
                 )}
                 style={{ '--tab-color': tab.color }}
                 aria-current={isCurrent ? 'page' : undefined}
                 onClick={() => onChangeTab(i)}>
-                <div className='relative h-16 w-16'>
+                <div className='relative h-10 w-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
                     alt='Tab image'
@@ -537,7 +674,7 @@ function Tabs({ index, onChangeTab }) {
                     )}
                   /> */}
                 </div>
-                <div>{tab.name}</div>
+                <div className='hidden sm:block'>{tab.name}</div>
               </div>
             );
           })}
@@ -550,7 +687,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[500px] w-full overflow-hidden'>
+    <div className='relative flex h-[600px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -583,15 +720,11 @@ function Pages({ page, onChangePage }) {
   );
 }
 
-function Page() {
-  return <div className='h-full w-full'>Todo</div>;
-}
-
 function PageContents({ page }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
       {/* Image */}
-      <div className='relative flex-1'>
+      <div className='relative hidden flex-1 md:block'>
         <motion.div
           className='absolute left-1/2 top-1/2 w-full rounded-lg'
           key={page.index}
@@ -608,8 +741,8 @@ function PageContents({ page }) {
       </div>
 
       {/* Details */}
-      <div className='flex-1'>
-        <div className='lg:ml-auto lg:px-4 lg:pt-4'>
+      <div className='flex flex-1 items-center justify-center'>
+        <div className='px-2 lg:px-4'>
           <div className='lg:max-w-lg'>
             {/* Title */}
             <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>{page.name}</h2>
@@ -731,7 +864,12 @@ function UpAndRunning() {
               <Resource title='Docs' icon={faBooks} href='/docs/general' />
               <Resource title='Blog' icon={faCode} href='/blog' />
               <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' target='_blank' />
-              <Resource title='Discord' icon={faDiscord} href='https://discord.gg/aXYfyNxYVn' target='_blank' />
+              <Resource
+                title='Discord'
+                icon={faDiscord}
+                href='https://discord.gg/aXYfyNxYVn'
+                target='_blank'
+              />
               <Resource title='Support' icon={faLifeRing} href='/support' />
             </div>
           </div>
@@ -752,5 +890,5 @@ function UpAndRunning() {
   );
 }
 
-Index.description = 'Open source solution to deploy, scale, and operate your multiplayer game';
+Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;

@@ -33,8 +33,8 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
   if (!router.pathname.startsWith('/blog/')) {
     throw new Error(`Unexpected path: ${href}`);
   }
-  let [_, __, category, slug] = router.pathname.split('/');
-  let article = processArticleMeta(meta, category, slug);
+  let [_, __, slug] = router.pathname.split('/');
+  let article = processArticleMeta(meta, slug);
 
   return (
     <>

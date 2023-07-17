@@ -7,7 +7,8 @@ import { getAllArticles } from './getAllArticles';
 
 export async function generateRssFeed() {
   let articles = await getAllArticles();
-  let siteUrl = process.env.CF_PAGES_URL ?? 'https://rivet.gg';
+  // let siteUrl = process.env.CF_PAGES_URL ?? 'https://rivet.gg';  // CF_PAGES_URL returns the pages.dev URL for prod
+  let siteUrl = 'https://rivet.gg';
 
   let feed = new Feed({
     title: 'Rivet',

@@ -1,0 +1,31 @@
+import { ArticleLayout } from '@/components/ArticleLayout';
+import Image from 'next/image';
+import image from './image.png';
+import imgBlueprint from './blueprint.jpeg';
+
+export const meta = {
+  image,
+  author: 'nathan-flurry',
+  date: '2023-03-20',
+  title: `Launch Week 1, Day 1: Unreal Engine Module`,
+  description: `Official Rivet Unreal Engine module allows you to deploy your multiplayer game to Rivet`,
+  imageAlt: `Launch week 1 day 1 unreal engine plugin`,
+  category: 'launch-week',
+  tags: ['unreal', 'plugin', 'multiplayer'],
+};
+
+export default props => <ArticleLayout meta={meta} {...props} />;
+
+The official Rivet Unreal Engine module allows you to deploy your multiplayer game to Rivet.
+
+‍
+
+Integrating Rivet with Unreal Engine just requires you to call the Rivet Matchmaker find lobby function and build a Linux dedicated server. Once you've done that, run _rivet deploy_ and we'll take it from there.
+
+‍
+
+<Image src={imgBlueprint} alt='Blueprint' />
+
+‍
+
+Want to learn more? Dive in to our example project tutorial [here](https://docs.rivet.gg/learn/unreal/crash-course)!

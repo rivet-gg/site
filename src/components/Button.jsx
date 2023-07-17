@@ -17,7 +17,7 @@ function ArrowIcon(props) {
 
 const variantStyles = {
   primary:
-    'rounded-full bg-zinc-900 py-1 px-3 text-white hover:bg-zinc-700 dark:bg-violet-400/10 dark:text-violet-400 dark:ring-1 dark:ring-inset dark:ring-violet-400/20 dark:hover:bg-violet-400/10 dark:hover:text-violet-300 dark:hover:ring-violet-300',
+    'rounded-full bg-violet-500 py-1 px-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400',
   secondary:
     'rounded-full bg-zinc-100 py-1 px-3 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-400 dark:ring-1 dark:ring-inset dark:ring-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-300',
   filled:
