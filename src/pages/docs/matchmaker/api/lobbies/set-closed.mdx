@@ -6,7 +6,9 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 ## Description
 
-If `is_closed` is `true`, players will be prevented from joining the lobby.
+If `is_closed` is `true`, the matchmaker will no longer route players to the lobby. Players can still
+join using the /join endpoint (this can be disabled by the developer by rejecting all new connections
+after setting the lobby to closed).
 Does not shutdown the lobby.
 
 

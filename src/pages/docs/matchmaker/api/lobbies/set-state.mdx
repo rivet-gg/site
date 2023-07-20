@@ -1,0 +1,45 @@
+
+import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
+
+# lobbies.setState
+
+## Description
+
+undefined
+
+
+## Code Examples
+
+<CodeGroup title='Request' tag='PUT' label='https://matchmaker.api.rivet.gg/v1/lobbies/state'>
+
+```bash {{ title: 'cURL' }}
+# Write the request body to body.json before running
+curl -X PUT -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/state'
+```
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.matchmaker.lobbies.setState({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Parameters
+
+
+## Request Body
+
+<DocsJsonSchemaViewer schema={{}} />
+
+
+## Response Body
+
+_Empty response body._

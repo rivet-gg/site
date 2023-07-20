@@ -2,23 +2,21 @@
 import { CodeGroup, Code } from '@/components/Code';
 import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
-# ⭐️ lobbies.find
+# lobbies.create
 
 ## Description
 
-Finds a lobby based on the given criteria.
-If a lobby is not found and `prevent_auto_create_lobby` is `true`, 
-a new lobby will be created.
+Creates a custom lobby.
 
 
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
+<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/find'
+curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/create'
 ```
 
 ```ts
@@ -27,7 +25,7 @@ import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: addYourTokenHere });
 
 // Make request
-await RIVET.matchmaker.lobbies.find({
+await RIVET.matchmaker.lobbies.create({
   // Add your request body here
 });
 ```
@@ -38,17 +36,9 @@ await RIVET.matchmaker.lobbies.find({
 ## Request Parameters
 
 
-### origin
-
-_Query parameter, optional_
-
-
-
-
-
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_modes":{"type":"array","items":{"type":"string"}},"regions":{"type":"array","items":{"type":"string"}},"prevent_auto_create_lobby":{"type":"boolean"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"verification_data":{}},"required":["game_modes"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_mode":{"type":"string"},"region":{"type":"string"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"publicity":{"type":"string","enum":["public","private"]},"lobby_config":{},"verification_data":{}},"required":["game_mode","publicity"]}} />
 
 
 ## Response Body

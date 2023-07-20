@@ -2,7 +2,7 @@ import fs from 'fs';
 import YAML from 'yaml';
 import path from 'path';
 
-let backendPath = '../rivet';
+let backendPath = '../backend-ee/oss';
 
 function apiPath(product) {
   return `src/pages/docs/${product}/api`;
@@ -132,7 +132,9 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
           file += `
 ### ${parameter.name}
 
-_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${parameter.required ? 'required' : 'optional'}_
+_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${
+            parameter.required ? 'required' : 'optional'
+          }_
 
 
 ${parameter.description || parameter.schema.description || ''}
