@@ -10,14 +10,14 @@ This guide will show four ways to prevent botting using Rivet.
 1. [Captcha](#captcha)
 2. [Identity verification](#identity-verification)
 3. [Custom external verification](#custom-external-verification)
-4. [Custom accounts verification](#custom-accounts-verification)
+4. [Custom account verification](#custom-account-verification)
 
 ## Captcha
 
 One popular method of bot prevention used across the entire internet is the
 [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA).
 
-To configure captcha for the rivet matchmaker, add the following to your version config file:
+To configure captcha for the Rivet matchmaker, add the following to your version config file:
 
 ```toml rivet.version.toml
 [matchmaker.captcha]
@@ -60,8 +60,8 @@ The Rivet matchmaker currently supports two captcha providers:
     "example.com" = "MY_TURNSTILE_SECRET_KEY"
   ```
 
-  <Accordion title='Where is my turnstile secret key?'>
-    Your turnstile secret key can be found here:
+  <Accordion title='Where can I find my Turnstile secret key?'>
+    Your Turnstile secret key can be found here:
     <Image src={imgTurnstile1} alt='Cloudflare sidebar' />
     <Image src={imgTurnstile2} alt='Turnstile sites page' />
     <Image src={imgTurnstile3} alt='Turnstile settings page' />
@@ -70,8 +70,8 @@ The Rivet matchmaker currently supports two captcha providers:
 ### Client-side changes
 
 After setting up captcha in your version config, future calls to
-[`lobbies.find`](/docs/matchmaker/api/lobbies/find) or [`lobbies.join`](/docs/matchmaker/api/lobbies/join)
-will fail if captcha is not provided when requested.
+[`lobbies.find`](/docs/matchmaker/api/lobbies/find), [`lobbies.join`](/docs/matchmaker/api/lobbies/join), and
+[`lobbies.create`](/docs/matchmaker/api/lobbies/create) will fail if captcha is not provided when requested.
 
 The response body will look something like this:
 
@@ -89,8 +89,9 @@ The response body will look something like this:
 ```
 
 Use the metadata provided (or in the case of turnstile, just your own site key) to have the user verify a
-captcha. After a successful captcha completion, retry the [`lobbies.find`](/docs/matchmaker/api/lobbies/find)
-or [`lobbies.join`](/docs/matchmaker/api/lobbies/join) request with the captcha response:
+captcha. After a successful captcha completion, retry the [`lobbies.find`](/docs/matchmaker/api/lobbies/find),
+[`lobbies.join`](/docs/matchmaker/api/lobbies/join), or [`lobbies.create`](/docs/matchmaker/api/lobbies/create)
+request with the captcha response:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
   ```bash {{ title: 'cURL' }}
@@ -126,8 +127,8 @@ The Rivet matchmaker offers 3 levels of identity verification:
 1. ### None
 
    No verification, an identity is not required for matchmaker requests. This is the default behavior when
-   `find_config` or `join_config` aren't provided, but to explicitly denote this type of verification you can
-   add this code to your version config:
+   `find_config`, `join_config` `create_config`, aren't provided, but to explicitly denote this type of
+   verification you can this code to your version config:
 
    ```toml rivet.version.toml
    [matchmaker.game_modes.default.find_config]
@@ -229,7 +230,7 @@ The request payload will look something like this:
 
 _† See [lobbies.setState](/docs/matchmaker/api/lobbies/set-state)._
 
-_†† See [Lobby environment variables](lobby-env) for more info._
+_†† See [Lobby environment variables](/docs/matchmaker/concepts/lobby-env) for more info._
 
 ### Server reply
 
@@ -271,9 +272,9 @@ fail with the `MATCHMAKER_VERIFICATION_FAILED` error code. If Rivet's request to
 fails for any reason, the matchmaker requestw ill fail with the `MATCHMAKER_VERIFICATION_REQUEST_FAILED`
 error code.
 
-## Custom accounts verification
+## Custom account verification
 
-If you plan on using your own game server instead of Rivet's identities, you can use the external
+If you plan on using your own accounts instead of Rivet's identities, you can use the external
 verification system discussed above to verify your accounts. A simple verification system you could use is
 generating some secret token that your verification server can use to confirm that a given account belongs
 to the user making the matchmaker request.
@@ -299,3 +300,5 @@ await RIVET.matchmaker.lobbies.find({
   }
 });
 ```
+
+</CodeGroup>

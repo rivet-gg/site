@@ -9,9 +9,12 @@
           "concepts/finding-lobby",
           "concepts/lobby-env",
           "concepts/auto-region-selection",
-          "concepts/competitive-matchmaking",
-          "concepts/anti-botting"
+          "concepts/competitive-matchmaking"
         ]
+      },
+      {
+        "title": "Guides",
+        "pages": ["guides/anti-botting", "guides/custom-games"]
       },
       {
         "title": "API",
