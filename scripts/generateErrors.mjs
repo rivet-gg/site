@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-let backendPath = '../backend-ee/oss';
+let backendPath = '../rivet';
 
 let errorsPath = 'src/pages/docs/general/errors';
 

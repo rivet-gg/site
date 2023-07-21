@@ -2,7 +2,7 @@ import fs from 'fs';
 import YAML from 'yaml';
 import path from 'path';
 
-let backendPath = '../backend-ee/oss';
+let backendPath = '../rivet';
 
 function apiPath(product) {
   return `src/pages/docs/${product}/api`;
