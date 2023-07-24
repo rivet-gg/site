@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { Router, useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
@@ -17,6 +18,20 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
+import posthog from 'posthog-js';
+import { PostHogProvider } from 'posthog-js/react';
+
+// Check that PostHog is client-side (used to handle Next.js SSR)
+if (typeof window !== 'undefined') {
+  posthog.init('phc_6kfTNEAVw7rn1LA51cO3D69FefbKupSWFaM7OUgEpEo', {
+    api_host: 'https://ph.rivet.gg',
+    // Enable debug mode in development
+    loaded: posthog => {
+      if (process.env.NODE_ENV === 'development') posthog.debug();
+    }
+  });
+}
+
 function onRouteChange() {
   useMobileNavigationStore.getState().close();
 }
@@ -29,6 +44,16 @@ export default function App({ Component, pageProps }) {
 
   let router = useRouter();
 
+  useEffect(() => {
+    // Track page views
+    const handleRouteChange = () => posthog?.capture('$pageview');
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
   let navigation = routes.routes.find(route => router.pathname.startsWith(route.prefix));
   if (!navigation) navigation = { prefix: '/', feedback: false };
 
@@ -40,28 +65,30 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Head>
-        <meta name='viewport' content='width=device-width' />
+      <PostHogProvider client={posthog}>
+        <Head>
+          <meta name='viewport' content='width=device-width' />
 
-        {/* Add metadata. Blog `ArticleLayout` provides its own title. */}
-        {!router.pathname.startsWith('/blog/') && (
-          <>
-            <title>{title}</title>
-            {description && <meta name='description' content={description} />}
+          {/* Add metadata. Blog `ArticleLayout` provides its own title. */}
+          {!router.pathname.startsWith('/blog/') && (
+            <>
+              <title>{title}</title>
+              {description && <meta name='description' content={description} />}
 
-            <meta property='og:title' content={title} />
-            {description && <meta property='og:description' content={description} />}
+              <meta property='og:title' content={title} />
+              {description && <meta property='og:description' content={description} />}
 
-            <meta name='twitter:title' content={title} />
-            {description && <meta property='twitter:description' content={description} />}
-          </>
-        )}
-      </Head>
-      <MDXProvider components={mdxComponents}>
-        <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
-          <Component {...pageProps} />
-        </Layout>
-      </MDXProvider>
+              <meta name='twitter:title' content={title} />
+              {description && <meta property='twitter:description' content={description} />}
+            </>
+          )}
+        </Head>
+        <MDXProvider components={mdxComponents}>
+          <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </MDXProvider>
+      </PostHogProvider>
     </>
   );
 }
