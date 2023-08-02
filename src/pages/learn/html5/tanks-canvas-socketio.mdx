@@ -115,7 +115,7 @@ Add the following to the top of `client/Client.ts`:
 
 ```typescript client/Client.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 ```
 
 <EnvPublicToken />
@@ -147,7 +147,7 @@ Add the following to the top of `server/index.ts`:
 
 ```typescript server/index.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
+export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 // Notify Rivet that this lobby is ready to accept players
 RIVET.matchmaker.lobbies.ready();
