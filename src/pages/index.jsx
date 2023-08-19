@@ -84,10 +84,6 @@ import imgSocialColor from '@/images/products/friend-monotone.svg';
 import imgOssWhite from '@/images/products/rocket-white.svg';
 import imgOssColor from '@/images/products/rocket-monotone.svg';
 
-import imgGodot from '@/images/vendors/godot-white.svg';
-import imgHtml5 from '@/images/vendors/html5-white.svg';
-import imgDocker from '@/images/vendors/docker-white.svg';
-
 import imgApesScreenshot from '@/images/case-studies/screenshots/apes.png';
 import imgApesLogo from '@/images/case-studies/logos/apes.png';
 import imgDiepScreenshot from '@/images/case-studies/screenshots/diep.jpg';
@@ -300,30 +296,27 @@ let supportedEngines = [
   {
     name: 'Unity',
     href: '/learn/unity',
-    gradient: ['from-cyan-300', 'to-cyan-500']
+    gradient: engineStyles.unity.gradient,
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
-    gradient: ['from-rose-400', 'to-rose-600']
+    gradient: engineStyles.unreal.gradient,
   },
   {
     name: 'Godot',
-    image: imgGodot,
     href: '/learn/godot',
-    gradient: ['from-blue-300', 'to-blue-500']
+    gradient: engineStyles.godot.gradient,
   },
   {
     name: 'HTML5',
-    image: imgHtml5,
     href: '/learn/html5',
-    gradient: ['from-orange-400', 'to-orange-600']
+    gradient: engineStyles.html5.gradient,
   },
   {
     name: 'Custom',
-    image: imgDocker,
     href: '/learn/custom',
-    gradient: ['from-slate-300', 'to-slate-500']
+    gradient: engineStyles.custom.gradient,
   }
 ];
 
@@ -837,6 +830,7 @@ import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { Resource, ResourceGroup } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
 import { faCloudflare, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { engineStyles } from '../lib/engineStyles';
 // import YCLogo from '@/components/YCLogo';
 
 const benefits = [

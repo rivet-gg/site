@@ -34,10 +34,6 @@ import imgIdentityWhite from '@/images/products/identity-white.svg';
 import imgKvWhite from '@/images/products/kv-white.svg';
 import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 
-import imgGodot from '@/images/vendors/godot-white.svg';
-import imgHtml5 from '@/images/vendors/html5-white.svg';
-import imgDocker from '@/images/vendors/docker-white.svg';
-
 const ICONS = {
   // Products
   cdn: imgCdnWhite,
@@ -47,11 +43,6 @@ const ICONS = {
   identity: imgIdentityWhite,
   kv: imgKvWhite,
   matchmaker: imgMatchmakerWhite,
-
-  // Vendor
-  godot: imgGodot,
-  html5: imgHtml5,
-  docker: imgDocker
 };
 
 function TopLevelNavItem({ href, initHref, icon, children }) {
