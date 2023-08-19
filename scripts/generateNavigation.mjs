@@ -207,19 +207,19 @@ function learnTabs(path) {
     },
     {
       title: 'Godot',
-      icon: 'godot',
+      // icon: 'godot',
       href: '/learn/godot',
       current: path[1] === 'godot'
     },
     {
       title: 'HTML5',
-      icon: 'html5',
+      // icon: 'html5',
       href: '/learn/html5',
       current: path[1] === 'html5'
     },
     {
       title: 'Custom',
-      icon: 'docker',
+      // icon: 'docker',
       href: '/learn/custom',
       current: path[1] === 'custom'
     }
