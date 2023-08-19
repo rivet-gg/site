@@ -2,6 +2,14 @@
   "title": "Unity",
   "feedback": true,
   "sidebar": {
-    "groups": []
+    "groups": [
+      {
+        "title": "⏱️ Crash Course (FishNet)",
+        "pages": [
+          "tutorials/fishnet/crash-course"
+        ]
+      }
+
+    ]
   }
 }
