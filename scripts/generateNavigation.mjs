@@ -139,7 +139,7 @@ function docsTabs(path) {
       current: path[1] === 'general'
     },
     {
-      title: 'Serverless Lobbies',
+      title: 'Dynamic Servers',
       icon: 'compute',
       href: '/docs/serverless-lobbies',
       current: path[1] === 'serverless-lobbies'
