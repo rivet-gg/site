@@ -34,10 +34,6 @@ import imgIdentityWhite from '@/images/products/identity-white.svg';
 import imgKvWhite from '@/images/products/kv-white.svg';
 import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 
-import imgGodot from '@/images/vendors/godot-white.svg';
-import imgHtml5 from '@/images/vendors/html5-white.svg';
-import imgDocker from '@/images/vendors/docker-white.svg';
-
 const ICONS = {
   // Products
   cdn: imgCdnWhite,
@@ -46,12 +42,7 @@ const ICONS = {
   group: imgGroupWhite,
   identity: imgIdentityWhite,
   kv: imgKvWhite,
-  matchmaker: imgMatchmakerWhite,
-
-  // Vendor
-  godot: imgGodot,
-  html5: imgHtml5,
-  docker: imgDocker
+  matchmaker: imgMatchmakerWhite
 };
 
 function TopLevelNavItem({ href, initHref, icon, children }) {
@@ -194,18 +185,18 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         <div className='flex items-center gap-4'>
           {/* Social icons */}
           {/* <div className='flex gap-1.5'> */}
-            {[
-              [faDiscord, 'https://discord.gg/aXYfyNxYVn'],
-              [faGithub, 'https://github.com/rivet-gg/rivet']
-            ].map(([icon, href]) => (
-              <Link
-                className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
-                key={href}
-                href={href}
-                target='_blank'>
-                <FontAwesomeIcon icon={icon} className='text-white text-lg' />
-              </Link>
-            ))}
+          {[
+            [faDiscord, 'https://discord.gg/aXYfyNxYVn'],
+            [faGithub, 'https://github.com/rivet-gg/rivet']
+          ].map(([icon, href]) => (
+            <Link
+              className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
+              key={href}
+              href={href}
+              target='_blank'>
+              <FontAwesomeIcon icon={icon} className='text-lg text-white' />
+            </Link>
+          ))}
           {/* </div> */}
 
           <Search />
@@ -236,12 +227,20 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 className={clsx(
                   tab.current
                     ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
-                    : 'border-transparent text-zinc-600 opacity-80 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
-                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium'
+                    : 'border-transparent text-zinc-600 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
+                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium',
+                  tab.gradient ? 'opacity-90' : 'opacity-80'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
                 {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
-                <span>{tab.title}</span>
+                <span
+                  className={clsx(
+                    // tab.gradient && 'from-cyan-300 to-violet-600 bg-clip-text text-transparent'
+                    tab.gradient && 'bg-clip-text bg-gradient-to-r text-transparent font-semibold',
+                    tab.gradient && tab.gradient.join(' '),
+                  )}>
+                  {tab.title}
+                </span>
               </Link>
             ))}
           </nav>
