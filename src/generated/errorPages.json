@@ -120,10 +120,6 @@
     "href": "/docs/general/errors/cdn/too-many-auth-users"
   },
   {
-    "title": "CDN Too Many Auth Users",
-    "href": "/docs/general/errors/glob/invalid"
-  },
-  {
     "title": "CDN Too Many Domains",
     "href": "/docs/general/errors/cdn/too-many-domains"
   },
@@ -162,6 +158,10 @@
   {
     "title": "Generic Token Error",
     "href": "/docs/general/errors/token/generic-error"
+  },
+  {
+    "title": "Glob Invalid",
+    "href": "/docs/general/errors/glob/invalid"
   },
   {
     "title": "Group Already Member",

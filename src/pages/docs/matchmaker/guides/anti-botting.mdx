@@ -2,7 +2,7 @@ import imgTurnstile1 from './images/turnstile-1.png';
 import imgTurnstile2 from './images/turnstile-2.png';
 import imgTurnstile3 from './images/turnstile-3.png';
 
-# Preventing botting
+# Anti-botting
 
 Botting is the act of using an automated script or computer program to connect to and interact with a game.
 This guide will show four ways to prevent botting using Rivet.
@@ -10,62 +10,67 @@ This guide will show four ways to prevent botting using Rivet.
 1. [Captcha](#captcha)
 2. [Identity verification](#identity-verification)
 3. [Custom external verification](#custom-external-verification)
-4. [Custom account verification](#custom-account-verification)
 
 ## Captcha
 
 One popular method of bot prevention used across the entire internet is the
 [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA).
 
+### Configuration changes
+
 To configure captcha for the Rivet matchmaker, add the following to your version config file:
 
-```toml rivet.version.toml
+```toml rivet.toml
 [matchmaker.captcha]
   # How many requests a connection can make before captcha reverification is required
   requests_before_reverify = 10
   # How much time before captcha reverification is required
   verification_ttl = 240000 # milliseconds
+
   # Chosen captcha provider here ...
 ```
 
 The Rivet matchmaker currently supports two captcha providers:
 
-- ### hCaptcha
+<AccordionGroup>
+  <Accordion title='hCaptcha'>
+    See the [hCaptcha guide](https://docs.hcaptcha.com/) for setup information. Add the following configuration
+    to your version config file:
 
-  See the [hCaptcha guide](https://docs.hcaptcha.com/) for setup information. Add the following configuration
-  to your version config file:
+    ```toml rivet.toml
+    [matchmaker.captcha]
+      # ...
 
-  ```toml rivet.version.toml
-  [matchmaker.captcha]
-    # ...
+    [matchmaker.hcaptcha]
+      # hCaptcha difficulty (easy, moderate, difficult, always_on)
+      level = "moderate"
+    ```
 
-  [matchmaker.hcaptcha]
-    # hCaptcha difficulty (easy, moderate, difficult, always_on)
-    level = "moderate"
-  ```
-
-  <Note>Rivet does not currently support the usage of a custom hCaptcha site ID.</Note>
-
-- ### Cloudflare Turnstile
-
-  See the [Cloudflare Turnstile](https://blog.cloudflare.com/turnstile-private-captcha-alternative/) guide
-  for setup information.
-  Add the following configuration to your version config file:
-
-  ```toml rivet.version.toml
-  [matchmaker.captcha]
-    # ...
-
-  [matchmaker.turnstile.domains]
-    "example.com" = "MY_TURNSTILE_SECRET_KEY"
-  ```
-
-  <Accordion title='Where can I find my Turnstile secret key?'>
-    Your Turnstile secret key can be found here:
-    <Image src={imgTurnstile1} alt='Cloudflare sidebar' />
-    <Image src={imgTurnstile2} alt='Turnstile sites page' />
-    <Image src={imgTurnstile3} alt='Turnstile settings page' />
+    <Note>Rivet does not currently support the usage of a custom hCaptcha site ID.</Note>
   </Accordion>
+  <Accordion title='Cloudflare Turnstile'>
+    See the [Cloudflare Turnstile](https://blog.cloudflare.com/turnstile-private-captcha-alternative/) guide
+    for setup information.
+
+    Add the following configuration to your version config file:
+
+    ```toml rivet.toml
+    [matchmaker.captcha]
+      # ...
+
+    [matchmaker.turnstile.domains]
+      "example.com" = "MY_TURNSTILE_SECRET_KEY"
+    ```
+
+    <Accordion title='Where can I find my Turnstile secret key?'>
+      Your Turnstile secret key can be found here:
+      <Image src={imgTurnstile1} alt='Cloudflare sidebar' />
+      <Image src={imgTurnstile2} alt='Turnstile sites page' />
+      <Image src={imgTurnstile3} alt='Turnstile settings page' />
+    </Accordion>
+  </Accordion>
+</AccordionGroup>
+
 
 ### Client-side changes
 
@@ -88,7 +93,7 @@ The response body will look something like this:
 }
 ```
 
-Use the metadata provided (or in the case of turnstile, just your own site key) to have the user verify a
+Use the metadata provided (or in the case of Turnstile, just your own site key) to have the user verify a
 captcha. After a successful captcha completion, retry the [`lobbies.find`](/docs/matchmaker/api/lobbies/find),
 [`lobbies.join`](/docs/matchmaker/api/lobbies/join), or [`lobbies.create`](/docs/matchmaker/api/lobbies/create)
 request with the captcha response:
@@ -103,11 +108,9 @@ request with the captcha response:
   ```
 
 ```ts
-// Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: addYourTokenHere });
 
-// Make request
 await RIVET.matchmaker.lobbies.find({
   captcha: {
     // Or `hcaptcha` depending on your version config
@@ -126,25 +129,16 @@ The Rivet matchmaker offers 3 levels of identity verification:
 
 1. ### None
 
-   No verification, an identity is not required for matchmaker requests. This is the default behavior when
-   `find_config`, `join_config` `create_config`, aren't provided, but to explicitly denote this type of
+   No verification or identity is required for matchmaker requests. This is the default behavior when
+   `find_config`, `join_config` `create_config`, aren't provided
    verification you can this code to your version config:
-
-   ```toml rivet.version.toml
-   [matchmaker.game_modes.default.find_config]
-     enabled = true
-     identity_verification = "none"
-   [matchmaker.game_modes.default.join_config]
-     enabled = true
-     identity_verification = "none"
-   ```
 
 2. ### Guest
 
-   A rivet identity is required to use the [`lobbies.find`](/docs/matchmaker/api/lobbies/find)
+   A [Rivet identity](/docs/identity) is required to use the [`lobbies.find`](/docs/matchmaker/api/lobbies/find)
    or [`lobbies.join`](/docs/matchmaker/api/lobbies/join) endpoints. Config:
 
-   ```toml rivet.version.toml
+   ```toml rivet.toml
    [matchmaker.game_modes.default.find_config]
      enabled = true
      identity_verification = "guest"
@@ -157,7 +151,7 @@ The Rivet matchmaker offers 3 levels of identity verification:
 
    A registered identity is required to use the matchmaker. Config:
 
-   ```toml rivet.version.toml
+   ```toml rivet.toml
    [matchmaker.game_modes.default.find_config]
      enabled = true
      identity_verification = "registered"
@@ -169,10 +163,20 @@ The Rivet matchmaker offers 3 levels of identity verification:
 ## Custom external verification
 
 The Rivet matchmaker allows for external verification requests to enable developers to arbitrarily
-allow/reject matchmaker requests by their own logic. This is done via a webhook-like system that is
-configured in the version config:
+allow/reject matchmaker requests by their own logic. This is useful for games that have their own
+account system or custom anti-botting mechanism that want to restrict API calls to the matchmaker.
 
-```toml rivet.version.toml
+This is done via a webhook-like system that sends a `POST` request to a custom API
+endpoint after every [`lobbies.find`](/docs/matchmaker/api/lobbies/find), [`lobbies.join`](/docs/matchmaker/api/lobbies/join),
+ or [`lobbies.create`](/docs/matchmaker/api/lobbies/create) request.
+
+### Configuration changes
+
+In this example, Rivet will send `https://my.app/verify` an HTTP POST request
+after every [`lobbies.join`](/docs/matchmaker/api/lobbies/join) request it
+receives.
+
+```toml rivet.toml
 [matchmaker.game_modes.default.join_config]
   enabled = true
   identity_verification = "none"
@@ -185,9 +189,6 @@ configured in the version config:
     # verify that a request to your server is actually from Rivet.
     my_header = "SECRET_CODE"
 ```
-
-Given the above example config, Rivet will send `https://my.app/verify` an HTTP POST request after every
-[`lobbies.join`](/docs/matchmaker/api/lobbies/join) request it receives.
 
 The request payload will look something like this:
 
@@ -237,7 +238,7 @@ _†† See [Lobby environment variables](/docs/matchmaker/concepts/lobby-env) f
 Your server should reply to Rivet's request according to these rules:
 
 - A success status code (`200` - `299`) tells the matchmaker it should accept the request
-- Any other status code tells the matchmaker it should reject the request
+- Any other status code tells the matchmaker it should reject the request with the [`MATCHMAKER_VERIFICATION_FAILED`](/docs/general/errors/mm/verification-failed) error
 
 ### Client-side changes
 
@@ -253,11 +254,9 @@ This code shows how to provide user data to your external verification server th
   ```
 
 ```ts
-// Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: addYourTokenHere });
 
-// Make request
 await RIVET.matchmaker.lobbies.find({
   verificationData: {
     foo: 'bar'
@@ -267,36 +266,35 @@ await RIVET.matchmaker.lobbies.find({
 
 </CodeGroup>
 
-If your server returns a response that ends up rejecting the matchmaker request, the user's request will
-fail with the `MATCHMAKER_VERIFICATION_FAILED` error code. If Rivet's request to your server times out or
-fails for any reason, the matchmaker requestw ill fail with the `MATCHMAKER_VERIFICATION_REQUEST_FAILED`
-error code.
+If your server returns a response that ends up rejecting the matchmaker request,
+the user's request will fail with the [`MATCHMAKER_VERIFICATION_FAILED`](/docs/general/errors/mm/verification-failed)
+error code. If Rivet's request to your server times out or fails for any reason, the matchmaker request will fail with the
+[`MATCHMAKER_VERIFICATION_REQUEST_FAILED`](/docs/general/errors/mm/verification-request-failed) error code.
 
-## Custom account verification
+### Use case: Custom account verification
 
-If you plan on using your own accounts instead of Rivet's identities, you can use the external
-verification system discussed above to verify your accounts. A simple verification system you could use is
-generating some secret token that your verification server can use to confirm that a given account belongs
-to the user making the matchmaker request.
+If you plan on using an external account system instead of Rivet's identities, you can
+leverage the external verification system discussed above.
+
+For example, passing a user's account token into this request will allow you to verify
+that the user is who they say they are:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
   ```bash {{ title: 'cURL' }}
   curl
     -X POST \
     -H "Content-Type: application/json" \
-    -d "{ \"verification_data\": { \"my_secret_account_token\": \"foo-bar\" } }" \
+    -d "{ \"verification_data\": { \"my_secret_account_token\": \"my-external-account-token-here" } }" \
     'https://matchmaker.api.rivet.gg/v1/lobbies/find'
   ```
 
 ```ts
-// Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: addYourTokenHere });
 
-// Make request
 await RIVET.matchmaker.lobbies.find({
   verificationData: {
-    mySecretAccountToken: 'foo-bar'
+    mySecretAccountToken: 'my-external-account-token-here'
   }
 });
 ```

@@ -1,33 +1,38 @@
 # Custom games
 
-The rivet matchmaker allows for the creation of lobbies on demand via the
+The Rivet matchmaker allows for the creation of lobbies on demand via the
 [`lobbies.create`](/docs/matchmaker/api/lobbies/create) endpoint. This guide will discuss in detail all of
-the configuration available with custom lobbies.
+the configurations available with custom lobbies.
 
 ## Creation
 
 To create custom lobbies, you must first enable them in the version config:
 
-```toml rivet.version.toml
-[matchmaker.game_modes.default.create_config]
-	identity_verification = "guest"
-  # Public custom lobbies will be listed in the response to /list, private custom
-  # lobbies will not
-  enable_public = true
-  enable_private = true
-  max_lobbies_per_identity = 5 # Optional
+<CodeGroup title='rivet.toml'>
+```toml
+[matchmaker.game_modes.default]
+	[matchmaker.game_modes.default.create_config]
+		identity_verification = "guest"
+
+		# Public custom lobbies will be listed in the response to `lobbies.list`, private custom
+		# lobbies will not
+		enable_public = true
+		enable_private = true
+		max_lobbies_per_identity = 5 # Optional
 ```
+</CodeGroup>
 
 Now users can create a new custom lobby on-demand like so:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
-  ```bash {{ title: 'cURL' }}
-  curl
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d "{ \"game_mode\": \"default\", \"region\": \"lnd-atl\", \"publicity\": \"private\" }" \
-    'https://matchmaker.api.rivet.gg/v1/lobbies/create'
-  ```
+
+```bash {{ title: 'cURL' }}
+curl
+-X POST \
+-H "Content-Type: application/json" \
+-d "{ \"game_mode\": \"default\", \"region\": \"lnd-atl\", \"publicity\": \"private\" }" \
+'https://matchmaker.api.rivet.gg/v1/lobbies/create'
+```
 
 ```ts
 // Create Rivet client
@@ -84,34 +89,28 @@ await RIVET.matchmaker.lobbies.create({
   [here](/docs/matchmaker/guides/anti-botting#custom-external-verification).
 </Note>
 
-Heres an example of how you might use the user's lobby config:
+Here's an example of how you might use the user's lobby config:
 
-<CodeGroup title='Node.js server'>
+<CodeGroup title='Game server'>
   ```ts
     // Create Rivet client
     import { RivetClient } from '@rivet-gg/api';
     const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
-
-    // Mark as ready
     await RIVET.matchmaker.lobbies.ready({});
 
-    // Read lobby config
-    const CONFIG = readRivetLobbyConfig();
-    const ROUND_DURATION = CONFIG.roundDuration ?? 240;
-    const GRAVITY = CONFIG.gravity ?? 9.8;
-    const COINS_PER_KILL = CONFIG.coinsPerKill ?? 50;
+	// Parse config
+	let config: any;
+	try {
+		config = JSON.parse(process.env.RIVET_LOBBY_CONFIG);
+	} catch(e) {
+		console.error("Invalid lobby config: ", e);
+		process.exit(1);
+	}
 
-    function readRivetLobbyConfig() {
-      try {
-        return JSON.parse(process.env.RIVET_LOBBY_CONFIG);
-      } catch(e) {
-        console.warn("invalid lobby config", e);
-
-        return {};
-      }
-    }
-
-    // ...
+    let roundDuration = config.roundDuration ?? 240;
+    let gravity = config.gravity ?? 9.8;
+    let coinsPerKill = config.coinsPerKill ?? 50;
+	
+	// ...
     ```
-
 </CodeGroup>
