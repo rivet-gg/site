@@ -9,8 +9,22 @@ import { slugifyWithCounter } from '@sindresorhus/slugify';
 function rehypeParseCodeBlocks() {
   return tree => {
     visit(tree, 'element', (node, _nodeIndex, parentNode) => {
-      if (node.tagName === 'code' && node.properties.className) {
-        parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
+      if (node.tagName === 'code') {
+        // Parse language
+        if (node.properties.className) {
+          parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
+        }
+
+        // Parse meta
+        if (node.data?.meta) {
+          console.log('meta', node.data.meta)
+          if (node.data.meta.startsWith('{')) {
+            // Apply properties to title
+            Object.assign(parentNode.properties, JSON.parse(node.data.meta));
+          } else {
+            parentNode.properties.title = node.data.meta;
+          }
+        }
       }
     });
   };
