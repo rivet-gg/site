@@ -55,7 +55,9 @@ import {
   faHammer,
   faCode,
   faLifeRing,
-  faAward
+  faAward,
+  faHome,
+  faFileImport
 } from '@fortawesome/pro-solid-svg-icons';
 
 import imgLobbies from '@/images/screenshots/lobbies.png';
@@ -64,6 +66,7 @@ import imgMatchmaker from '@/images/screenshots/matchmaker.png';
 import imgGameGuard from '@/images/screenshots/gameGuard.png';
 import imgSocial from '@/images/screenshots/social.png';
 import imgAnalytics from '@/images/screenshots/analytics.png';
+import imgCdn from '@/images/screenshots/cdn.png';
 
 import imgComputerFrame from '@/images/effects/computer-frame.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
@@ -74,14 +77,12 @@ import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
 import imgMatchmakerColor from '@/images/products/matchmaker-monotone.svg';
 import imgAnalyticsWhite from '@/images/products/analytics-white.svg';
 import imgAnalyticsColor from '@/images/products/analytics-monotone.svg';
+import imgCdnWhite from '@/images/products/cdn-white.svg';
+import imgCdnColor from '@/images/products/cdn-monotone.svg';
 import imgSocialWhite from '@/images/products/friend-white.svg';
 import imgSocialColor from '@/images/products/friend-monotone.svg';
 import imgOssWhite from '@/images/products/rocket-white.svg';
 import imgOssColor from '@/images/products/rocket-monotone.svg';
-
-import imgGodot from '@/images/vendors/godot-white.svg';
-import imgHtml5 from '@/images/vendors/html5-white.svg';
-import imgDocker from '@/images/vendors/docker-white.svg';
 
 import imgApesScreenshot from '@/images/case-studies/screenshots/apes.png';
 import imgApesLogo from '@/images/case-studies/logos/apes.png';
@@ -193,34 +194,49 @@ const pages = [
       // }
     ]
   },
+  // {
+  //   name: 'Social',
+  //   description: 'Leverage a community of millions of players in your game with 1 line of code',
+  //   color: '#F2B046',
+  //   image: [imgSocialWhite, imgSocialColor],
+  //   screenshot: imgSocial,
+  //   learnHref: '/docs/identity',
+  //   features: [
+  //     {
+  //       name: '100% free, open, and privacy-centric',
+  //       icon: faHundredPoints
+  //     },
+  //     {
+  //       name: 'Cross-game & cross-platform identities',
+  //       icon: faInfinity
+  //     },
+  //     {
+  //       name: 'Friends, groups, chat & presence',
+  //       icon: faUserGroup
+  //     },
+  //     {
+  //       name: 'Parties integrated with matchmaking',
+  //       icon: faPartyHorn
+  //     },
+  //     {
+  //       name: 'Guest accounts',
+  //       icon: faGhost
+  //     }
+  //   ]
+  // },
   {
-    name: 'Social',
-    description: 'Leverage a community of millions of players in your game with 1 line of code',
-    color: '#F2B046',
-    image: [imgSocialWhite, imgSocialColor],
-    screenshot: imgSocial,
-    learnHref: '/docs/identity',
+    name: 'CDN',
+    description: 'Serve game assets & web pages',
+    color: '#8A7ED8',
+    image: [imgCdnWhite, imgCdnColor],
+    screenshot: imgCdn,
+    learnHref: '/docs/cdn',
     features: [
-      {
-        name: '100% free, open, and privacy-centric',
-        icon: faHundredPoints
-      },
-      {
-        name: 'Cross-game & cross-platform identities',
-        icon: faInfinity
-      },
-      {
-        name: 'Friends, groups, chat & presence',
-        icon: faUserGroup
-      },
-      {
-        name: 'Parties integrated with matchmaking',
-        icon: faPartyHorn
-      },
-      {
-        name: 'Guest accounts',
-        icon: faGhost
-      }
+      { name: 'Free rivet.game subdomain', icon: faHome },
+      { name: 'Bring your own domain', icon: faFileImport },
+      { name: 'Managed SSL for custom domains', icon: faFileCertificate },
+      { name: 'Customize headers & routing rules', icon: faWrench },
+      // { name: 'Powered by Cloudflare', icon: faCloudflare }
     ]
   },
   {
@@ -244,7 +260,6 @@ const pages = [
       }
     ]
   },
-  // { name: 'CDN', features: [{ name: 'Free rivet.game domain'}, {name: 'Free SSL for CDN & lobbies'}] },
   {
     name: 'Open Source',
     description: 'Source code available to read, modify, and self-host',
@@ -281,30 +296,27 @@ let supportedEngines = [
   {
     name: 'Unity',
     href: '/learn/unity',
-    gradient: ['from-cyan-300', 'to-cyan-500']
+    gradient: engineStyles.unity.gradient,
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
-    gradient: ['from-rose-400', 'to-rose-600']
+    gradient: engineStyles.unreal.gradient,
   },
   {
     name: 'Godot',
-    image: imgGodot,
     href: '/learn/godot',
-    gradient: ['from-blue-300', 'to-blue-500']
+    gradient: engineStyles.godot.gradient,
   },
   {
     name: 'HTML5',
-    image: imgHtml5,
     href: '/learn/html5',
-    gradient: ['from-orange-400', 'to-orange-600']
+    gradient: engineStyles.html5.gradient,
   },
   {
     name: 'Custom',
-    image: imgDocker,
     href: '/learn/custom',
-    gradient: ['from-slate-300', 'to-slate-500']
+    gradient: engineStyles.custom.gradient,
   }
 ];
 
@@ -440,7 +452,7 @@ function Background({ props }) {
       }
 
       // Fill overlay
-      let xPos = canvas.clientWidth > 1280 ? (canvas.width / 2 - 410 * pixelRatio) : canvas.width * 0.5;
+      let xPos = canvas.clientWidth > 1280 ? canvas.width / 2 - 410 * pixelRatio : canvas.width * 0.5;
       let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
       const radGrd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
       radGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
@@ -817,7 +829,8 @@ function CaseStudies({ props }) {
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { Resource, ResourceGroup } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faCloudflare, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { engineStyles } from '../lib/engineStyles';
 // import YCLogo from '@/components/YCLogo';
 
 const benefits = [

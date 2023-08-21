@@ -86,7 +86,7 @@ Run the following command to setup your project:
 
 <Accordion title="What did this do?">
     - Linked your project to Rivet
-    - Created `rivet.version.toml` file that configures how to run your game.
+    - Created `rivet.toml` file that configures how to run your game.
     - Added a development token to your `.env` that lets you develop with Rivet on your local machine
 
     You can also run `rivet init` wihtout any flags to go through the interactive setup process.
@@ -115,7 +115,7 @@ Add the following to the top of `client/Client.ts`:
 
 ```typescript client/Client.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 ```
 
 <EnvPublicToken />
@@ -147,7 +147,7 @@ Add the following to the top of `server/index.ts`:
 
 ```typescript server/index.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
+export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 // Notify Rivet that this lobby is ready to accept players
 RIVET.matchmaker.lobbies.ready();
@@ -185,7 +185,7 @@ rivet deploy --namespace prod
 ```
 
 <Accordion title='What did this do?'>
-  - Build & upload your Docker image for [Rivet Serverless Lobbies](/docs/serverless-lobbies/index) - Build &
+  - Build & upload your Docker image for [Rivet Dynamic Servers](/docs/serverless-lobbies/index) - Build &
   upload your site for [Rivet CDN](/docs/cdn) - Create a version on Rivet - Deploy the version to the
   *Production* namespace
 </Accordion>
