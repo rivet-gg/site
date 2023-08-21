@@ -15,15 +15,9 @@ function rehypeParseCodeBlocks() {
           parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
         }
 
-        // Parse meta
+        // Parse title
         if (node.data?.meta) {
-          console.log('meta', node.data.meta)
-          if (node.data.meta.startsWith('{')) {
-            // Apply properties to title
-            Object.assign(parentNode.properties, JSON.parse(node.data.meta));
-          } else {
-            parentNode.properties.title = node.data.meta;
-          }
+          parentNode.properties.title = node.data.meta;
         }
       }
     });
