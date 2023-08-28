@@ -132,7 +132,9 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
           file += `
 ### ${parameter.name}
 
-_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${parameter.required ? 'required' : 'optional'}_
+_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${
+            parameter.required ? 'required' : 'optional'
+          }_
 
 
 ${parameter.description || parameter.schema.description || ''}

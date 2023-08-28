@@ -13,6 +13,10 @@
         ]
       },
       {
+        "title": "Guides",
+        "pages": ["guides/anti-botting", "guides/custom-games"]
+      },
+      {
         "title": "API",
         "template": { "api": "matchmaker" }
       }
