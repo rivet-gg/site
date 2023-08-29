@@ -20,6 +20,7 @@ config.autoAddCss = false;
 
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import { getSiteUrl } from '../lib/siteUrl';
 
 // Check that PostHog is client-side (used to handle Next.js SSR)
 if (typeof window !== 'undefined') {
@@ -43,6 +44,8 @@ export default function App({ Component, pageProps }) {
   injectStyles();
 
   let router = useRouter();
+
+  let siteUrl = getSiteUrl();
 
   useEffect(() => {
     // Track page views
@@ -69,7 +72,17 @@ export default function App({ Component, pageProps }) {
         <Head>
           <meta name='viewport' content='width=device-width' />
 
-          {/* Add metadata. Blog `ArticleLayout` provides its own title. */}
+          {/* Add common metadata */}
+          <meta property='og:image:type' content='image/png' />
+          <meta property='og:type' content='website' />
+          <meta property='og:url' content='https://rivet.gg/' />
+
+          <meta name='twitter:card' content='summary_large_image' />
+          <meta name='twitter:site' content='@rivet_gg' />
+          <meta name='twitter:image' content={`${siteUrl}/promo/og.png`} />
+          <meta name='twitter:image:alt' content='Rivet - Simplified Multiplayer Game Servers' />
+
+          {/* Add dynamic metadata. Blog `ArticleLayout` provides its own title. */}
           {!router.pathname.startsWith('/blog/') && (
             <>
               <title>{title}</title>
@@ -77,6 +90,8 @@ export default function App({ Component, pageProps }) {
 
               <meta property='og:title' content={title} />
               {description && <meta property='og:description' content={description} />}
+              <meta property='og:image' content={`${siteUrl}/promo/og.png`} />
+              <meta property='og:image:alt' content='Rivet - Simplified Multiplayer Game Servers' />
 
               <meta name='twitter:title' content={title} />
               {description && <meta property='twitter:description' content={description} />}

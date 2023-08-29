@@ -48,8 +48,6 @@ gtag('config', 'G-GHX1328ZFD');
 `;
 
 export default function Document() {
-  let siteUrl = getSiteUrl();
-
   return (
     <Html lang='en'>
       <Head>
@@ -72,21 +70,6 @@ export default function Document() {
         <meta name='msapplication-TileColor' content='#ffffff' />
         <meta name='msapplication-config' content='/icons/browserconfig.xml?v=3' />
         <meta name='theme-color' content='#ffffff' />
-
-        {/* <meta property='og:title' content='Rivet' /> */}
-        {/* <meta property='og:description' content='Simlpified Multiplayer Game Servers' /> */}
-        <meta property='og:url' content='https://rivet.gg/' />
-        <meta property='og:image' content={`${siteUrl}/promo/og.png`} />
-        <meta property='og:image:alt' content='Rivet - Simplified Multiplayer Game Servers' />
-        <meta property='og:image:type' content='image/png' />
-        <meta property='og:type' content='website' />
-
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@rivet_gg' />
-        {/* <meta name='twitter:title' content='Rivet' /> */}
-        {/* <meta name="twitter:description" content="Simplified Multiplayer Game Servers" /> */}
-        <meta name='twitter:image' content={`${siteUrl}/promo/og.png`} />
-        <meta name='twitter:image:alt' content='Rivet - Simplified Multiplayer Game Servers' />
       </Head>
       <body className='bg-white antialiased dark:bg-zinc-900'>
         <Main />
