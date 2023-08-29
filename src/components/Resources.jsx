@@ -114,7 +114,7 @@ export function Resource({ children, ...props }) {
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
         <ResourceIcon icon={props.icon} />
-        <div className='mt-4 font-display text-xl font-semibold leading-7 text-zinc-900 dark:text-white'>
+        <div className='break-all mt-4 font-display text-xl font-semibold leading-7 text-zinc-900 dark:text-white'>
           <span className='absolute inset-0 rounded-2xl' />
           {titleSegments}
         </div>
