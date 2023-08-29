@@ -44,9 +44,13 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
 
         <meta property='og:title' content={article.title} />
         <meta property='og:description' content={article.description} />
+        <meta property='og:image' content={article.image.src} />
+        <meta property='og:image:alt' content={article.imageAlt} />
 
         <meta name='twitter:title' content={article.title} />
         <meta property='twitter:description' content={article.description} />
+        <meta property='twitter:image' content={article.image.src} />
+        <meta name='twitter:image:alt' content={article.imageAlt} />
       </Head>
       <Container className='mt-16 lg:mt-32'>
         <div className='xl:relative'>
