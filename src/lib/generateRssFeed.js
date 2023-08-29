@@ -8,6 +8,7 @@ import { getSiteUrl } from './siteUrl';
 
 export async function generateRssFeed() {
   let siteUrl = getSiteUrl();
+  let articles = await getAllArticles();
 
   let feed = new Feed({
     title: 'Rivet',
