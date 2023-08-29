@@ -8,6 +8,7 @@ import { Prose } from '@/components/Prose';
 import { formatDate } from '@/lib/formatDate';
 import { processArticleMeta } from '@/lib/articleMetadata';
 import { faRss } from '@fortawesome/pro-solid-svg-icons';
+import { getSiteUrl } from '../lib/siteUrl';
 
 function ArrowLeftIcon(props) {
   return (
@@ -36,6 +37,8 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
   let [_, __, slug] = router.pathname.split('/');
   let article = processArticleMeta(meta, slug);
 
+  let siteUrl = getSiteUrl();
+
   return (
     <>
       <Head>
@@ -44,12 +47,12 @@ export function ArticleLayout({ children, meta, isRssFeed = false, previousPathn
 
         <meta property='og:title' content={article.title} />
         <meta property='og:description' content={article.description} />
-        <meta property='og:image' content={article.image.src} />
+        <meta property='og:image' content={siteUrl + article.image.src} />
         <meta property='og:image:alt' content={article.imageAlt} />
 
         <meta name='twitter:title' content={article.title} />
-        <meta property='twitter:description' content={article.description} />
-        <meta property='twitter:image' content={article.image.src} />
+        <meta name='twitter:description' content={article.description} />
+        <meta name='twitter:image' content={siteUrl + article.image.src} />
         <meta name='twitter:image:alt' content={article.imageAlt} />
       </Head>
       <Container className='mt-16 lg:mt-32'>
