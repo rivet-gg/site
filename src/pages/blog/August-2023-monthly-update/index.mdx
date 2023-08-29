@@ -1,0 +1,51 @@
+import { ArticleLayout } from '@/components/ArticleLayout';
+import image from './image.png';
+
+export const meta = {
+  image,
+  author: 'nicholas-kissel',
+  date: '2023-08-28',
+  title: 'August 2023 Monthly Update',
+  description: `Monthly improvments for the month of August 2023`,
+  category: 'monthly-update',
+  tags: ['open-source', 'website', 'docs', 'java'],
+};
+
+export default props => <ArticleLayout meta={meta} {...props} />;
+
+We are excited to launch a ton of new features during the month of August. First though, we want to thank you all for your support on Hacker News with our show HN post on our open-source game server management and over 1200 Github stars in less than a week.
+
+## Unity
+
+Rivet finally supports Unity, the last major game engine we wanted to support in our lineup. Rivet now supports all major engines: Unity, Unreal, and Godot; and will support more engines in the future.
+
+[Unity Demo Game](https://github.com/rivet-gg/example-tanks-unity-fishnet)
+
+## Custom Lobbies
+
+The matchmaker now supports the ability to create custom lobbies for your game, solving the issue of private game modes, mini-games, or other unique game server functionality.
+
+[Custom Lobbies Guide](https://rivet.gg//docs/matchmaker/guides/custom-games)
+
+## External Verification
+
+You can now use your own logic to allow and reject matchmaking requests for custom account systems, internal anti-botting mechanism, and restricting users from joining private game servers.
+
+[External Verification Guide](https://rivet.gg/docs/matchmaker/guides/anti-botting#custom-external-verification)
+
+## Lobby State
+
+Lobbies now broadcast their current status, which which will be helpful build royale style games and richer insights within your game. 
+
+## Faster cold starts
+
+Game servers launch faster now from 10s to around 3s for Unity. This greatly reduces the wait time for gamers waiting to join and the ability for Rivet to quickly scale during surge periods.
+
+## Java and Go clients
+
+Run game servers on Rivet using the Java and Go clients, or use game engines like LibGDX and Ebitengine.
+
+## Open-source improvements
+
+* Rivet now supports multiple file providers including S3, Backblaze, MinIO
+* Supports multipart uploads
