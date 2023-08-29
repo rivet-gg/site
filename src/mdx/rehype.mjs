@@ -9,8 +9,16 @@ import { slugifyWithCounter } from '@sindresorhus/slugify';
 function rehypeParseCodeBlocks() {
   return tree => {
     visit(tree, 'element', (node, _nodeIndex, parentNode) => {
-      if (node.tagName === 'code' && node.properties.className) {
-        parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
+      if (node.tagName === 'code') {
+        // Parse language
+        if (node.properties.className) {
+          parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
+        }
+
+        // Parse title
+        if (node.data?.meta) {
+          parentNode.properties.title = node.data.meta;
+        }
       }
     });
   };

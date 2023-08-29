@@ -92,7 +92,7 @@ export default function Pricing() {
           }
         },
         {
-          name: 'Serverless Lobbies',
+          name: 'Dynamic Servers',
           icon: imgCompute,
           tiers: {
             'tier-oss': 'Self-hosted',
@@ -402,7 +402,7 @@ function PricingModal({ open, onClose }) {
                 {/* Content */}
                 <div className='mt-1 text-center'>
                   <Dialog.Title as='h3' className='text-4xl font-bold text-gray-900'>
-                    Serverless Lobbies Pricing
+                    Dynamic Servers Pricing
                   </Dialog.Title>
 
                   <div className='m-auto mt-6 h-[2px] w-full bg-black/10'></div>

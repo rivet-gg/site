@@ -120,16 +120,16 @@
     "href": "/docs/general/errors/cdn/too-many-auth-users"
   },
   {
-    "title": "CDN Too Many Auth Users",
-    "href": "/docs/general/errors/glob/invalid"
-  },
-  {
     "title": "CDN Too Many Domains",
     "href": "/docs/general/errors/cdn/too-many-domains"
   },
   {
     "title": "Chat Thread Not Found",
     "href": "/docs/general/errors/chat/thread-not-found"
+  },
+  {
+    "title": "Cloud Invalid Config",
+    "href": "/docs/general/errors/cloud/invalid-config"
   },
   {
     "title": "Device Link Already Complete",
@@ -158,6 +158,10 @@
   {
     "title": "Generic Token Error",
     "href": "/docs/general/errors/token/generic-error"
+  },
+  {
+    "title": "Glob Invalid",
+    "href": "/docs/general/errors/glob/invalid"
   },
   {
     "title": "Group Already Member",
@@ -292,6 +296,38 @@
     "href": "/docs/general/errors/party/leader-not-in-same-party"
   },
   {
+    "title": "Matchmaker Auto Create Failed",
+    "href": "/docs/general/errors/mm/auto-create-failed"
+  },
+  {
+    "title": "Matchmaker Custom Lobbies Disabled",
+    "href": "/docs/general/errors/mm/custom-lobbies-disabled"
+  },
+  {
+    "title": "Matchmaker Custom Lobby Config Invalid",
+    "href": "/docs/general/errors/mm/custom-lobby-config-invalid"
+  },
+  {
+    "title": "Matchmaker Custom Lobby Limit Reached",
+    "href": "/docs/general/errors/mm/custom-lobby-limit-reached"
+  },
+  {
+    "title": "Matchmaker Find Disabled",
+    "href": "/docs/general/errors/mm/find-disabled"
+  },
+  {
+    "title": "Matchmaker Identity Required",
+    "href": "/docs/general/errors/mm/identity-required"
+  },
+  {
+    "title": "Matchmaker Invalid Version Config",
+    "href": "/docs/general/errors/mm/invalid-version-config"
+  },
+  {
+    "title": "Matchmaker Join Disabled",
+    "href": "/docs/general/errors/mm/join-disabled"
+  },
+  {
     "title": "Matchmaker Lobby Closed",
     "href": "/docs/general/errors/mm/lobby-closed"
   },
@@ -332,8 +368,16 @@
     "href": "/docs/general/errors/mm/player-removed"
   },
   {
-    "title": "Matchmaker Region Not Enabled",
+    "title": "Matchmaker Region Not Enabled For Game Mode",
     "href": "/docs/general/errors/mm/region-not-enabled-for-game-mode"
+  },
+  {
+    "title": "Matchmaker Region Not Found",
+    "href": "/docs/general/errors/mm/region-not-found"
+  },
+  {
+    "title": "Matchmaker Registration Required",
+    "href": "/docs/general/errors/mm/registration-required"
   },
   {
     "title": "Matchmaker Too Many Lobbies",
@@ -342,6 +386,10 @@
   {
     "title": "Matchmaker Too Many Players From Source",
     "href": "/docs/general/errors/mm/too-many-players-from-source"
+  },
+  {
+    "title": "Matchmaker Verification Failed",
+    "href": "/docs/general/errors/mm/verification-failed"
   },
   {
     "title": "Missing Entitlement",
@@ -398,6 +446,10 @@
   {
     "title": "Unexpected Invite Alias",
     "href": "/docs/general/errors/party/unexpected-invite-alias"
+  },
+  {
+    "title": "Upload Too Large",
+    "href": "/docs/general/errors/upload/too-large"
   },
   {
     "title": "UUID Invalid",

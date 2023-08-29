@@ -498,8 +498,20 @@
         "sortingKey": "999 -1 /lobbies/closed put"
       },
       {
+        "href": "/docs/matchmaker/api/lobbies/create",
+        "sortingKey": "999 -1 /lobbies/create post"
+      },
+      {
         "href": "/docs/matchmaker/api/lobbies/list",
         "sortingKey": "999 -1 /lobbies/list get"
+      },
+      {
+        "href": "/docs/matchmaker/api/lobbies/set-state",
+        "sortingKey": "999 -1 /lobbies/state put"
+      },
+      {
+        "href": "/docs/matchmaker/api/lobbies/get-state",
+        "sortingKey": "999 -1 /lobbies/{lobby_id}/state get"
       },
       {
         "href": "/docs/matchmaker/api/players/get-statistics",
