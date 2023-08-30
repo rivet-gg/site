@@ -47,6 +47,7 @@ The Rivet matchmaker currently supports two captcha providers:
     ```
 
     <Note>Rivet does not currently support the usage of a custom hCaptcha site ID.</Note>
+
   </Accordion>
   <Accordion title='Cloudflare Turnstile'>
     See the [Cloudflare Turnstile](https://blog.cloudflare.com/turnstile-private-captcha-alternative/) guide
@@ -68,9 +69,9 @@ The Rivet matchmaker currently supports two captcha providers:
       <Image src={imgTurnstile2} alt='Turnstile sites page' />
       <Image src={imgTurnstile3} alt='Turnstile settings page' />
     </Accordion>
+
   </Accordion>
 </AccordionGroup>
-
 
 ### Client-side changes
 
@@ -130,7 +131,7 @@ The Rivet matchmaker offers 3 levels of identity verification:
 1. ### None
 
    No verification or identity is required for matchmaker requests. This is the default behavior when
-   `find_config`, `join_config` `create_config`, aren't provided
+   `find_config`, `join_config` `create_config`, aren't provided but to explicitly denote this type of
    verification you can this code to your version config:
 
 2. ### Guest
@@ -168,7 +169,7 @@ account system or custom anti-botting mechanism that want to restrict API calls 
 
 This is done via a webhook-like system that sends a `POST` request to a custom API
 endpoint after every [`lobbies.find`](/docs/matchmaker/api/lobbies/find), [`lobbies.join`](/docs/matchmaker/api/lobbies/join),
- or [`lobbies.create`](/docs/matchmaker/api/lobbies/create) request.
+or [`lobbies.create`](/docs/matchmaker/api/lobbies/create) request.
 
 ### Configuration changes
 
