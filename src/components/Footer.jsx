@@ -26,7 +26,8 @@ const footer = {
     { name: 'Blog', href: '/blog' },
     { name: 'Support', href: '/support' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Status Page', href: 'https://rivet-gg.betteruptime.com/' }
+    { name: 'Status Page', href: 'https://rivet-gg.betteruptime.com/' },
+    { name: 'OSS Friends', href: '/oss-friends' }
   ],
   legal: [
     { name: 'Terms', href: '/terms' },
@@ -69,16 +70,14 @@ function PageLink({ label, page, previous = false }) {
         href={page.href}
         aria-label={`${label}: ${page.title}`}
         variant='secondary'
-        arrow={previous ? 'left' : 'right'}
-      >
+        arrow={previous ? 'left' : 'right'}>
         {label}
       </Button>
       <Link
         href={page.href}
         tabIndex={-1}
         aria-hidden='true'
-        className='text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300'
-      >
+        className='text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300'>
         {page.title}
       </Link>
     </>
@@ -182,34 +181,26 @@ function SmallPrint() {
       </div>
 
       {/* Trademarks */}
-      <div className='mt-6 text-2xs space-y-3 px-4 sm:px-6 md:mt-12 lg:px-8 italic leading-4 text-white/50 md:mt-12'>
+      <div className='mt-6 space-y-3 px-4 text-2xs italic leading-4 text-white/50 sm:px-6 md:mt-12 md:mt-12 lg:px-8'>
         {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
         {`This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates in the U.S. and elsewhere.`}
-
         &nbsp;|&nbsp;
-
         {/* Genreated with GPT-4 */}
         {`This website is not sponsored by, affiliated with, or endorsed by Epic Games, Inc. or its affiliates. 'Unreal Engine' is a trademark or registered trademark of Epic Games, Inc. in the U.S.  and elsewhere.`}
-
         &nbsp;|&nbsp;
-
         {/* Generated with GPT-4 */}
         {/* Another shorter option is also available at https://www.w3.org/html/logo/faq.html */}
         {`The HTML5 Logo by the World Wide Web Consortium (W3C), used under a Creative Commons Attribution 3.0 License. `}
         <Link href='https://www.w3.org/html/logo/index.html' className='underline'>
           Source
         </Link>
-
         &nbsp;|&nbsp;
-
         {/* Genreated with GPT-4 */}
         {`The Godot Engine Logo by the Andrea Calabró, used under a Creative Commons Attribution 4.0 International License. `}
         <Link href='https://godotengine.org/press/' className='underline'>
           Source
         </Link>
-
         &nbsp;|&nbsp;
-
         {/* Copied from https://www.docker.com/legal/trademark-guidelines/ */}
         {`Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.`}
       </div>
