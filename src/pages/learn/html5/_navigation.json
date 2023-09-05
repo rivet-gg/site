@@ -5,7 +5,7 @@
     "groups": [
       {
         "title": "Tutorials",
-        "pages": ["crash-course", "tanks-canvas-socketio"]
+        "pages": ["tutorials/crash-course", "tutorials/tanks-canvas-socketio"]
       }
     ]
   }

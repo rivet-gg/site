@@ -32,7 +32,7 @@ export function Game({ className, ...props }) {
 
           {/* Source code */}
           <Link
-            href='/learn/html5/crash-course'
+            href='/learn/html5/tutorials/crash-course'
             className='absolute bottom-3 right-3 z-50 flex items-center gap-2 px-3 py-1 font-pixel text-lg text-sm font-semibold text-white opacity-50 transition hover:scale-[1.05] hover:opacity-100'>
             <FontAwesomeIcon icon={faGithub} />
             <span>Source Code</span>
