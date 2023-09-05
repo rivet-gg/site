@@ -133,7 +133,7 @@ export function ResourceGroup({ title = 'Resources', children }) {
   });
 
   return (
-    <div className='my-16 xl:max-w-none'>
+    <div className='my-16'>
       <Heading level={2} id='resources'>
         {title}
       </Heading>
