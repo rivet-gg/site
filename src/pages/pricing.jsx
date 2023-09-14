@@ -127,14 +127,19 @@ export default function Pricing() {
     {
       name: 'Features',
       features: [
+        // {
+        //   name: 'Identities, Chat, & Groups',
+        //   icon: imgFriend,
+        //   tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
+        // },
+        // {
+        //   name: 'Parties',
+        //   icon: imgParties,
+        //   tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
+        // },
         {
-          name: 'Identities, Chat, & Groups',
-          icon: imgFriend,
-          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
-        },
-        {
-          name: 'Parties',
-          icon: imgParties,
+          name: 'Dynamic Server Autoscaling',
+          icon: imgCompute,
           tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
         },
         {
@@ -165,7 +170,7 @@ export default function Pricing() {
     {
       name: 'Game servers',
       features: [
-        { name: 'Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
+        { name: 'Dedicated Hardware Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
         {
           name: 'Cloud Providers (more coming soon)',
           tiers: {
