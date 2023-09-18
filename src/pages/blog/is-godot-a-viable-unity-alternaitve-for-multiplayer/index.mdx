@@ -1,0 +1,113 @@
+import { ArticleLayout } from '@/components/ArticleLayout';
+import image from './image.png';
+
+export const meta = {
+  image,
+  author: 'nathan-flurry',
+  date: '2023-08-17',
+  title: `Is Godot a viable alternative to Unity for multiplayer games?`,
+  description: ``,
+  imageAlt: ``,
+  category: 'changelog',
+  tags: ['unity', 'godot', 'multiplayer', 'fish-net', 'replication']
+};
+
+export default props => <ArticleLayout meta={meta} {...props} />;
+
+- Godot is attractive as an all-in-one engine alternative to Unity
+- There are many ways to build a multiplayer game
+- Talking specifically about Godot replication
+- Simpler API
+
+## TL;DR
+
+## A quick introduction
+
+- RPCs
+- Synchronizers
+
+## Prior art
+
+## Stability
+
+## Documentation
+
+## Featureset
+
+### Transports
+
+| Transport            | Godot                                                                                                                                 | Fish-Net                                                                                                                                                                                                         | Importance                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| UDP                  | [ENetMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html#class-enetmultiplayerpeer)        | [Tugboat](https://fish-networking.gitbook.io/docs/manual/components/transports/tugboat) (uses LiteNetLib)                                                                                                        | High-performance networking          |
+| WebSockets           | [WebSocketPeer](https://docs.godotengine.org/en/stable/classes/class_websocketpeer.html#class-websocketpeer)                          | [Bayou](https://fish-networking.gitbook.io/docs/manual/components/transports/bayou)                                                                                                                              | Supports HTML5, does not support UDP |
+| WebRTC               | [WebRTCMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html#class-webrtcmultiplayerpeer)  | No                                                                                                                                                                                                               | Unreliable transport (UDP) in HTML5  |
+| Steam                | [GodotSteam](https://godotsteam.com/)                                                                                                 | [FishySteamworks](https://fish-networking.gitbook.io/docs/manual/components/transports/fishysteamworks) or [FishyFacepunch](https://fish-networking.gitbook.io/docs/manual/components/transports/fishyfacepunch) | TODO                                 |
+| Epic Online Services | WIP ([A](https://github.com/3ddelano/epic-online-services-godot), [B](https://gitlab.com/RancidBacon/epic-online-services-for-godot)) | [Yes](https://fish-networking.gitbook.io/docs/manual/components/transports/epic-online-services-eos)                                                                                                             | TODO                                 |
+| Unity Transport      | No                                                                                                                                    | [Yes](https://fish-networking.gitbook.io/docs/manual/components/transports/unity-transport)                                                                                                                      | TODO                                 |
+
+### RPCs
+
+[Godot's RPCs](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls) will feel familiar to developers who have used [Fish-Net's RPCs](https://fish-networking.gitbook.io/docs/manual/guides/remote-procedure-calls).
+
+| Fish-Net                                    | Godot                                           |
+| ------------------------------------------- | ----------------------------------------------- |
+| `[ServerRpc]`                               | `@rpc`                                          |
+| `[ServerRpc(RequireOwnership = false)]`     | Unsupported                                     |
+| `[ObserversRpc]`                            | `@rpc("any_peer", "call_local")`                |
+| `[ObserversRpc(ExcludeOwner = true)]`       | `@rpc("any_peer", "call_remote")`               |
+| `[ObserversRpc(BufferLast = true)]`         | Unsupported                                     |
+| `[TargetRpc]`                               | `@rpc("any_peer")` + `my_rpc.rpc_id(client_id)` |
+| Multi-purpose (`[ObserversRpc][TargetRpc]`) | Multi-purpose by default                        |
+| `Channel.Unreliable`                        | `@rpc("unreliable")`                            |
+| Unsupported                                 | `@rpc("unreliable_ordered")`                    |
+| `Channel.Reliable`                          | `@rpc("reliable")`                              |
+| `[ServerRpc(RunLocally = true)]`            | `@rpc("call_local")`                            |
+| `[ServerRpc(DataLength = 3500)]`            | Unsupported                                     |
+| Unsupported                                 | Channel index (`@rpc(3)`)                       |
+
+### Synchronizers
+
+Developers use to Fish-Net's [sync types](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing) will find that Godot's defult [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) lacks a lot of features.
+
+| Fish-Net                                                                 | Godot                                                                                      |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| 
+
+- delta_interval
+- public_visibility
+- replication_config
+- replication_interval
+- root_path
+- visibility_update_mode
+- [sync_state](https://godotengine.org/article/multiplayer-changes-godot-4-0-report-4/)
+- getters & setters
+- signals
+
+### Authentication
+
+### Ownership
+
+### Sync types
+
+### Client-side prediction & lag compensation & predicted spawning
+
+- https://fish-networking.gitbook.io/docs/manual/guides/client-side-prediction/version-1/using-client-side-prediction
+- https://fish-networking.gitbook.io/docs/manual/guides/lag-compensation
+- https://fish-networking.gitbook.io/docs/manual/guides/spawning/predicted-spawning
+
+### Priority
+
+### TODO: See other Unreal features
+
+## Performance
+
+- C# vs Godot
+- Scenes
+
+## Benchmarks
+
+## Other alternatives
+
+## More
+
+Look at Photon
