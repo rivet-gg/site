@@ -61,6 +61,7 @@ export function Heading({ level = 2, children, id, tag, label, anchor = true, ..
 
   return (
     <>
+      <hr></hr>
       <Eyebrow tag={tag} label={label} />
       <Component
         ref={ref}
