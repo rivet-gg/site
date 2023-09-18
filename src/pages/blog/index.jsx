@@ -71,7 +71,7 @@ export default function ArticlesIndex({ articles }) {
   return (
     <>
       <SimpleLayout title='Blog' intro={<Button icon={faRss} href='/rss/feed.xml'>RSS Feed</Button>}>
-        <div className='mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
+        <div className='mt-16 grid grid-cols-1 gap-x-8 gap-y-20 lg:grid-cols-3'>
           {articles.map(article => (
             <Article key={article.slug} article={article} />
           ))}
@@ -83,6 +83,7 @@ export default function ArticlesIndex({ articles }) {
 
 ArticlesIndex.title = 'Blog';
 ArticlesIndex.prose = false;
+ArticlesIndex.inset = true;
 
 export async function getStaticProps() {
   return {

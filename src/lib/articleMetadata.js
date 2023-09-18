@@ -27,8 +27,8 @@ const categories = {
     name: 'Launch Week'
     // href: '/blog/launch-week',
   },
-  'info': {
-    name: 'info'
+  'technical': {
+    name: 'Technical'
     // href: '/blog/developer-changelog',
   },
 };

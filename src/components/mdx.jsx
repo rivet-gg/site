@@ -16,6 +16,14 @@ export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
 
+export const table = function Table(props) {
+  return (
+    <div className='overflow-x-auto'>
+      <table {...props} />
+    </div>
+  );
+}
+
 export function Tooltip({ tip, children }) {
   return (
     <span className='group relative z-10 inline'>

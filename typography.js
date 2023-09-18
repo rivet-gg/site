@@ -1,56 +1,28 @@
 module.exports = ({ theme }) => ({
   DEFAULT: {
     css: {
-      '--tw-prose-body': theme('colors.zinc.700'),
-      '--tw-prose-headings': theme('colors.zinc.900'),
-      '--tw-prose-links': theme('colors.violet.500'),
-      '--tw-prose-links-hover': theme('colors.violet.600'),
+      '--tw-prose-body': theme('colors.zinc.400'),
+      '--tw-prose-headings': theme('colors.white'),
+      '--tw-prose-links': theme('colors.violet.400'),
+      '--tw-prose-links-hover': theme('colors.violet.500'),
       '--tw-prose-links-underline': theme('colors.violet.500 / 0.3'),
-      '--tw-prose-bold': theme('colors.zinc.900'),
-      '--tw-prose-counters': theme('colors.zinc.500'),
-      '--tw-prose-bullets': theme('colors.zinc.300'),
-      '--tw-prose-hr': theme('colors.zinc.900 / 0.05'),
-      '--tw-prose-quotes': theme('colors.zinc.900'),
-      '--tw-prose-quote-borders': theme('colors.zinc.200'),
-      '--tw-prose-captions': theme('colors.zinc.500'),
-      '--tw-prose-code': theme('colors.zinc.900'),
-      '--tw-prose-code-bg': theme('colors.zinc.100'),
-      '--tw-prose-code-ring': theme('colors.zinc.300'),
-      '--tw-prose-th-borders': theme('colors.zinc.300'),
-      '--tw-prose-td-borders': theme('colors.zinc.200'),
-
-      '--tw-prose-invert-body': theme('colors.zinc.400'),
-      '--tw-prose-invert-headings': theme('colors.white'),
-      '--tw-prose-invert-links': theme('colors.violet.400'),
-      '--tw-prose-invert-links-hover': theme('colors.violet.500'),
-      '--tw-prose-invert-links-underline': theme('colors.violet.500 / 0.3'),
-      '--tw-prose-invert-bold': theme('colors.white'),
-      '--tw-prose-invert-counters': theme('colors.zinc.400'),
-      '--tw-prose-invert-bullets': theme('colors.zinc.600'),
-      '--tw-prose-invert-hr': theme('colors.white / 0.05'),
-      '--tw-prose-invert-quotes': theme('colors.zinc.100'),
-      '--tw-prose-invert-quote-borders': theme('colors.zinc.700'),
-      '--tw-prose-invert-captions': theme('colors.zinc.400'),
-      '--tw-prose-invert-code': theme('colors.white'),
-      '--tw-prose-invert-code-bg': theme('colors.zinc.700 / 0.15'),
-      '--tw-prose-invert-code-ring': theme('colors.white / 0.1'),
-      '--tw-prose-invert-th-borders': theme('colors.zinc.600'),
-      '--tw-prose-invert-td-borders': theme('colors.zinc.700'),
+      '--tw-prose-bold': theme('colors.white'),
+      '--tw-prose-counters': theme('colors.zinc.400'),
+      '--tw-prose-bullets': theme('colors.zinc.600'),
+      '--tw-prose-hr': theme('colors.white / 0.05'),
+      '--tw-prose-quotes': theme('colors.zinc.100'),
+      '--tw-prose-quote-borders': theme('colors.zinc.700'),
+      '--tw-prose-captions': theme('colors.zinc.400'),
+      '--tw-prose-code': theme('colors.white'),
+      '--tw-prose-code-bg': theme('colors.zinc.700 / 0.15'),
+      '--tw-prose-code-ring': theme('colors.white / 0.1'),
+      '--tw-prose-th-borders': theme('colors.zinc.600'),
+      '--tw-prose-td-borders': theme('colors.zinc.700'),
 
       // Base
       color: 'var(--tw-prose-body)',
       fontSize: theme('fontSize.sm')[0],
       lineHeight: theme('lineHeight.7'),
-
-      // Layout
-      '> *': {
-        maxWidth: theme('maxWidth.2xl'),
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        '@screen lg': {
-          maxWidth: theme('maxWidth.3xl'),
-        }
-      },
 
       // Text
       p: {
@@ -199,6 +171,14 @@ module.exports = ({ theme }) => ({
         marginTop: theme('spacing.10'),
         marginBottom: theme('spacing.3')
       },
+      h4: {
+        color: 'var(--tw-prose-headings)',
+        fontSize: theme('fontSize.base')[0],
+        ...theme('fontSize.base')[1],
+        fontWeight: theme('fontWeight.bold'),
+        marginTop: theme('spacing.10'),
+        marginBottom: theme('spacing.3')
+      },
 
       // Media
       'img, video, figure': {
@@ -286,7 +266,7 @@ module.exports = ({ theme }) => ({
           textDecorationColor: 'var(--tw-prose-links-underline)'
         }
       },
-      ':is(h1, h2, h3) a': {
+      ':is(h1, h2, h3, h4) a': {
         fontWeight: 'inherit'
       },
       strong: {
@@ -307,7 +287,7 @@ module.exports = ({ theme }) => ({
         backgroundColor: 'var(--tw-prose-code-bg)',
         fontSize: theme('fontSize.2xs')
       },
-      ':is(a, h1, h2, h3, blockquote, thead th) code': {
+      ':is(a, h1, h2, h3, h4, blockquote, thead th) code': {
         color: 'inherit'
       },
       'h2 code': {
@@ -318,9 +298,13 @@ module.exports = ({ theme }) => ({
         fontSize: theme('fontSize.sm')[0],
         fontWeight: 'inherit'
       },
+      'h4 code': {
+        fontSize: theme('fontSize.sm')[0],
+        fontWeight: 'inherit'
+      },
 
       // Overrides
-      ':is(h1, h2, h3) + *': {
+      ':is(h1, h2, h3, h4) + *': {
         marginTop: '0'
       },
       '> :first-child': {
@@ -331,25 +315,4 @@ module.exports = ({ theme }) => ({
       }
     }
   },
-  invert: {
-    css: {
-      '--tw-prose-body': 'var(--tw-prose-invert-body)',
-      '--tw-prose-headings': 'var(--tw-prose-invert-headings)',
-      '--tw-prose-links': 'var(--tw-prose-invert-links)',
-      '--tw-prose-links-hover': 'var(--tw-prose-invert-links-hover)',
-      '--tw-prose-links-underline': 'var(--tw-prose-invert-links-underline)',
-      '--tw-prose-bold': 'var(--tw-prose-invert-bold)',
-      '--tw-prose-counters': 'var(--tw-prose-invert-counters)',
-      '--tw-prose-bullets': 'var(--tw-prose-invert-bullets)',
-      '--tw-prose-hr': 'var(--tw-prose-invert-hr)',
-      '--tw-prose-quotes': 'var(--tw-prose-invert-quotes)',
-      '--tw-prose-quote-borders': 'var(--tw-prose-invert-quote-borders)',
-      '--tw-prose-captions': 'var(--tw-prose-invert-captions)',
-      '--tw-prose-code': 'var(--tw-prose-invert-code)',
-      '--tw-prose-code-bg': 'var(--tw-prose-invert-code-bg)',
-      '--tw-prose-code-ring': 'var(--tw-prose-invert-code-ring)',
-      '--tw-prose-th-borders': 'var(--tw-prose-invert-th-borders)',
-      '--tw-prose-td-borders': 'var(--tw-prose-invert-td-borders)'
-    }
-  }
 });
