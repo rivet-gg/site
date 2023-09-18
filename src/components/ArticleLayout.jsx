@@ -61,14 +61,18 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
             'mx-auto px-4 sm:px-6 lg:px-8',
             article.category == 'technical' ? 'max-w-5xl' : 'max-w-2xl'
           )}>
-          <Button icon={faRss} href='/rss/feed.xml' className='mb-8'>
-            RSS Feed
-          </Button>
-
           <article>
-            <header className='flex flex-col'>
+            <header>
               {/* Image */}
-              <Image className='aspect-[2/1]' src={article.image} alt={article.imageAlt} />
+              {/* <Image className='aspect-[2/1] rounded-2xl ring-1 ring-inset ring-gray-200/10' src={article.image} alt={article.imageAlt} /> */}
+              <div className='relative w-full'>
+                <Image
+                  src={article.image}
+                  alt={article.imageAlt}
+                  className='aspect-[2/1] w-full rounded-2xl object-cover'
+                />
+                <div className='pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-200/10'></div>
+              </div>
 
               {/* Title */}
               <h1 className='mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl'>
@@ -100,6 +104,10 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
             </header>
             <Prose className='mt-8'>{children}</Prose>
           </article>
+
+          <Button icon={faRss} href='/rss/feed.xml' className='mt-8'>
+            RSS Feed
+          </Button>
         </div>
       </div>
     </>
