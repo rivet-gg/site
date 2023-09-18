@@ -1,5 +1,6 @@
 import { ArticleLayout } from '@/components/ArticleLayout';
 import image from './image.png';
+import imgGodotSyncWatch from './godot-sync-watch.png';
 
 export const meta = {
   image,
@@ -14,6 +15,7 @@ export const meta = {
 
 export default props => <ArticleLayout meta={meta} {...props} />;
 
+- We've been asked this question a lot
 - Godot is attractive as an all-in-one engine alternative to Unity
 - There are many ways to build a multiplayer game
 - Talking specifically about Godot replication
@@ -67,37 +69,131 @@ export default props => <ArticleLayout meta={meta} {...props} />;
 
 ### Synchronizers
 
-Developers use to Fish-Net's [sync types](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing) will find that Godot's defult [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) lacks a lot of features.
+Developers use to Fish-Net's [sync types](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing) will find that Godot's default [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) lacks a lot of features, but is still a pleasant experience to use.
 
-| Fish-Net                                                                 | Godot                                                                                      |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| 
+#### Sync types
 
-- delta_interval
-- public_visibility
-- replication_config
-- replication_interval
-- root_path
-- visibility_update_mode
-- [sync_state](https://godotengine.org/article/multiplayer-changes-godot-4-0-report-4/)
-- getters & setters
-- signals
+Fish-Net supports many types of primitive synchronization out of the box (`SyncVar`, `SyncList`, `SyncHashSet`, `SyncDictionary`, `SyncTimer`).
 
-### Authentication
+By default, Godot's synchronization only supports synchronizing primitives (`float`, `string`) and simple types (`Vector2`, `Color`, etc). However, [`allow_object_decoding`](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-allow-object-decoding) can be enabled to allow synchronization of more complex types. This is not recommended, since it creates the potential for RCE exploits.
 
-### Ownership
+To manually synchronize your own complex types, it's possible to use a getter/setter to encode a [`PackedByteArray`](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html), as seen [here](https://godotengine.org/article/multiplayer-changes-godot-4-0-report-4/#:~:text=and%20then%20in%20your%20player%20script%3A).
 
-### Sync types
+```gdscript
+# Node state
+var weapon: int = 0
+var ammo: int = 100
 
-### Client-side prediction & lag compensation & predicted spawning
+# Custom encoding & decoding
+var sync_state:
+	get:
+		var buf = PackedByteArray()
+		buf.resize(6)
+		buf.encode_half(0, position.x)
+		buf.encode_half(2, position.y)
+		buf.encode_u8(4, weapon)
+		buf.encode_u8(5, ammo)
+		return buf
 
-- https://fish-networking.gitbook.io/docs/manual/guides/client-side-prediction/version-1/using-client-side-prediction
-- https://fish-networking.gitbook.io/docs/manual/guides/lag-compensation
-- https://fish-networking.gitbook.io/docs/manual/guides/spawning/predicted-spawning
+	set(value):
+		assert(typeof(value) == TYPE_RAW_ARRAY and value.size() == 6)
+		position = Vector2(value.decode_half(0), value.decode_half(2))
+		weapon = value.decode_u8(4)
+		ammo = value.decode_u8(5)
+```
 
-### Priority
+You'll likely find yourself writing repetitive encoding & decoding code if building a game with complex data types (e.g. board games, strategy games).
 
-### TODO: See other Unreal features
+<Tip>
+  For the full list of common types that can be synced, see [here](https://github.com/godotengine/godot/blob/4df80b0e629e25653a706f6721c13a1f9d1da368/core/io/marshalls.cpp#L1117) where `p_full_objects` is `false`.
+</Tip>
+
+#### Ownership/authority
+
+[Fish-Net's ownership](https://fish-networking.gitbook.io/docs/manual/guides/ownership) and [Godot's authority](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-multiplayer-authority) models are nearly identity.
+
+#### Send rate
+
+Fish-Net supports [configuring send rate for individual properties](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing/attributes#:~:text=it%20has%20changed.%20*%2F-,public%20float%20sendrate%20%3D%200.1f%3B,-%E2%80%8B).
+
+Godot also supports customizing send rate with [`MultiplayerSynchronizer.replication_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-replication-interval) (for synced properties) and [`MultiplayerSynchronizer.delta_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-delta-interval) (for watched properties). However, this is only supported at the node level; you can't customize for each property individually. You can work around this issue by creating multiple separate `MultiplayerSynchronizer` nodes.
+
+#### Visibility/observers
+
+Fish-Net has a robust system for automatically filtering what entities get replicated using [`ObserverCondition`](https://fish-networking.gitbook.io/docs/manual/guides/observers/custom-conditions). They include [6 conditions available out of the box](https://github.com/FirstGearGames/FishNet/tree/main/Assets/FishNet/Runtime/Observing/Conditions) that you can enable with one line of code.
+
+Godot lets you either (a) [set visibility for specific peers](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-method-set-visibility-for) or (b) [provide a custom callback for filtering peers](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-method-add-visibility-filter). The visibility filter is similar to Fish-Net's `ObserverCondition`, but requires more boilerplate code to implement.
+
+#### Configuring reliability
+
+Fish-Net supports configuring reliability for each variable individually.
+
+Godot approaches this slightly differently. Variables can either configured to "synced" (i.e. be sent each update, sent unreliabilty) or be "watched" (i.e. be sent only when changed, sent reliably).
+
+<Image src={imgGodotSyncWatch} alt="Godot sync/watch" />
+
+#### Listening for changes
+
+Fish-Net supports the `OnChange` to listen for when a property changes.
+
+Godot implements this using GDScript's native getters & setters.
+
+#### No-code prototyping
+
+One of the core goals of Godot's replication system was to allow for ["(almost) no-code prototyping"](https://github.com/godotengine/godot-proposals/issues/3459#:~:text=allow%20for%20(almost)%20no-code%20prototyping.) of multiplayer games. They achieve this by enabling you to enable replication just by adding [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) and [MultiplayerSpawner](https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html#class-multiplayerspawner) nodes, but you'll still need some boilerplate code to connect & start a server.
+
+There's no equivalent in Fish-Net.
+
+It's debatable how much time this saves in the long run, but the effort to lower the barrier of entry for building network replication without comprimising flexibility is admirable.
+
+#### Client-side prediction, lag compensation, and predicted spawning
+
+If a multiplayer game feels choppy on a high-latency connection, it's not going to be fun to play for most players.
+
+Fish-Net shines when it comes to all the extra goodies required to make your game feel buttery smooth. They provide:
+
+- [client-side prediction](https://fish-networking.gitbook.io/docs/manual/guides/client-side-prediction/version-1/using-client-side-prediction) (v2 is a WIP)
+- [Predicted spawning](https://fish-networking.gitbook.io/docs/manual/guides/spawning/predicted-spawning) out of the box.
+- [Transform extrapolation](https://fish-networking.gitbook.io/docs/manual/components/network-transform#smoothing) ([requires Pro](https://fish-networking.gitbook.io/docs/master/pro-and-donating))
+- [Lag compensation](https://fish-networking.gitbook.io/docs/manual/guides/lag-compensation) ([requires Pro](https://fish-networking.gitbook.io/docs/master/pro-and-donating))
+
+Godot 4's multiplayer replication is very young, so none of this is provided out of the box. You need to do a lot of work to implement these features yourself.
+
+#### Authentication
+
+Both [Fish-Net's authenticator](https://fish-networking.gitbook.io/docs/manual/components/authenticator) & [Godot's authentication callback](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-auth-callback) support the same functionality.
+
+#### License
+
+Always make sure to closely inspect the license of software you include in your game.
+
+Fish-Net uses a [non-standard license](https://fish-networking.gitbook.io/docs/master/restrictions). Their website states:
+
+> There are no restrictions for personal and commercial use.
+
+Fish-Net provides a [Pro version](https://fish-networking.gitbook.io/docs/master/pro-and-donating) which has its own limitations.
+
+Fish-Net requires using Unity. [Do with that what you will.](https://gamefromscratch.com/unity-price-change-fallout-keeps-getting-worse/)
+
+Godot is licensed under the [permissive MIT license](https://godotengine.org/license/), which is an [OSI approved license](https://opensource.org/licenses/). [Read more about the MIT license.](https://fossa.com/blog/open-source-licenses-101-mit-license/) Godot is also governed by the [Godot Foundation](https://godot.foundation/) non-profit. All that to say: if Godot does the job for your game, it's a very safe bet in terms of licensing.
+
+Ask your lawyer or do your own research if you have more questions.
+
+#### Priority
+
+Network prioritizing is important for games with a lot of data to send (e.g. open world games), but need to ensure that the most important data is sent first. Alex Forsythe has a great explanation of how this system works in Unreal Engine [here](https://youtu.be/JOJP0CvpB8w?t=551&si=_Go17YW6keAliujz).
+
+Both Fish-Net and Godot lack support for prioritizing RPC and synchronization updates. Tuning replication intervals can help with this, but it's not a perfect solution.
+
+#### Support
+
+Most large studios require good support around their tooling to make sure they can focus on shipping their game instead of fixing bugs in other peoples' code.
+
+Fish-Net offers [professional support](https://fish-networking.gitbook.io/docs/master/business-support).
+
+Godot also offers [commercial support](https://godotengine.org/contact/#:~:text=from%20conventional%20means.-,commercial%20support,-While%20we%20don).
+
+The SLA for both are unclear.
 
 ## Performance
 
