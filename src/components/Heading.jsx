@@ -54,14 +54,14 @@ export function Heading({ level = 2, children, id, tag, label, anchor = true, ..
   });
 
   useEffect(() => {
-    if (level === 2) {
+    if (level === 2 || level == 3) {
       registerHeading({ id, ref, offsetRem: tag || label ? 8 : 6 });
     }
   });
 
   return (
     <>
-      <hr></hr>
+      {level == 2 && <hr/>}
       <Eyebrow tag={tag} label={label} />
       <Component
         ref={ref}

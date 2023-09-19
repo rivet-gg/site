@@ -18,6 +18,10 @@ export const h2 = function H2(props) {
   return <Heading level={2} {...props} />;
 };
 
+export const h3 = function H3(props) {
+  return <Heading level={3} {...props} />;
+};
+
 export const table = function Table(props) {
   return (
     <div className='overflow-x-auto'>
