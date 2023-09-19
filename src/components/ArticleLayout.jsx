@@ -140,7 +140,7 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
 
 function SocialIcon({ url, icon }) {
   return (
-    <a href={url} target='_blank' className='text-slate-400 hover:text-slate-200'>
+    <a href={url} target='_blank' rel='noreferrer' className='text-slate-400 hover:text-slate-200'>
       <FontAwesomeIcon icon={icon} size='xl' />
     </a>
   );
