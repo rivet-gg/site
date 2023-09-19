@@ -7,8 +7,10 @@ import { Button } from '@/components/Button';
 import { Prose } from '@/components/Prose';
 import { formatDate } from '@/lib/formatDate';
 import { processArticleMeta } from '@/lib/articleMetadata';
-import { faRss } from '@fortawesome/pro-solid-svg-icons';
+import { faRss, faRssSquare } from '@fortawesome/pro-solid-svg-icons';
 import { getSiteUrl } from '../lib/siteUrl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter, faHackerNews, faReddit } from '@fortawesome/free-brands-svg-icons';
 
 function ArrowLeftIcon(props) {
   return (
@@ -38,6 +40,7 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
   let article = processArticleMeta(meta, slug);
 
   let siteUrl = getSiteUrl();
+  let articleUrl = siteUrl + router.asPath;
 
   return (
     <>
@@ -105,11 +108,40 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
             <Prose className='mt-8'>{children}</Prose>
           </article>
 
-          <Button icon={faRss} href='/rss/feed.xml' className='mt-8'>
-            RSS Feed
-          </Button>
+          {/* Socials */}
+          <div className='mt-14 flex items-center space-x-4'>
+            <div className='h-[2px] flex-grow bg-slate-700'></div>
+            <SocialIcon url='/rss/feed.xml' icon={faRssSquare} />
+            <SocialIcon
+              url={`https://x.com/share?text=${encodeURIComponent(
+                `${article.title} ${articleUrl} via @rivet_gg`
+              )}`}
+              icon={faXTwitter}
+            />
+            <SocialIcon
+              url={`https://news.ycombinator.com/submitlink?u=${encodeURIComponent(
+                articleUrl
+              )}&t=${encodeURIComponent(article.title)}`}
+              icon={faHackerNews}
+            />
+            <SocialIcon
+              url={`https://www.reddit.com/submit?url=${articleUrl}&title=${encodeURIComponent(
+                article.title
+              )}`}
+              icon={faReddit}
+            />
+            <div className='h-[2px] flex-grow bg-slate-700'></div>
+          </div>
         </div>
       </div>
     </>
+  );
+}
+
+function SocialIcon({ url, icon }) {
+  return (
+    <a href={url} target='_blank' className='text-slate-400 hover:text-slate-200'>
+      <FontAwesomeIcon icon={icon} size='xl' />
+    </a>
   );
 }
