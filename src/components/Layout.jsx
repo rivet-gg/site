@@ -11,7 +11,7 @@ import { SectionProvider } from '@/components/SectionProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faXmark } from '@fortawesome/pro-solid-svg-icons';
 
-export function Layout({ navigation, prose, children, sections = [] }) {
+export function Layout({ navigation, prose, inset, children, sections = [] }) {
   return (
     <SectionProvider sections={sections}>
       <div className={clsx(navigation.sidebar && 'lg:ml-72 xl:ml-80')}>
@@ -38,9 +38,9 @@ export function Layout({ navigation, prose, children, sections = [] }) {
 
         {/* Body */}
         <div
-          className={clsx('relative', prose && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}
+          className={clsx('relative', (prose || inset) && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}
         >
-          <main className={clsx(prose && 'py-16', 'min-h-[50vh]')}>
+          <main className={clsx((prose || inset) && 'py-16', 'min-h-[50vh]')}>
             {prose ? <Prose as='article'>{children}</Prose> : children}
           </main>
           <Footer navigation={navigation} />

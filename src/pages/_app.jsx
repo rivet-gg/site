@@ -99,7 +99,7 @@ export default function App({ Component, pageProps }) {
           )}
         </Head>
         <MDXProvider components={mdxComponents}>
-          <Layout navigation={navigation} prose={Component.prose ?? true} {...pageProps}>
+          <Layout navigation={navigation} prose={Component.prose ?? true} inset={Component.inset ?? false} {...pageProps}>
             <Component {...pageProps} />
           </Layout>
         </MDXProvider>

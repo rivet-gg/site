@@ -26,7 +26,11 @@ const categories = {
   'launch-week': {
     name: 'Launch Week'
     // href: '/blog/launch-week',
-  }
+  },
+  'technical': {
+    name: 'Technical'
+    // href: '/blog/developer-changelog',
+  },
 };
 export function processArticleMeta(meta, slug) {
   let href = `/blog/${slug}`;
