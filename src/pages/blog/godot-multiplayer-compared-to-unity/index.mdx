@@ -17,6 +17,31 @@ export const meta = {
 
 export default props => <ArticleLayout meta={meta} {...props} />;
 
+## Table of Contents
+
+- [TL;DR](#tl-dr)
+- [Introduction](#introduction)
+- [Why use an engine for multiplayer games?](#why-use-an-engine-for-multiplayer-games)
+- [Feature comparison](#feature-comparison)
+  - [Transports](#transports) (mature)
+  - [Ownership/authority](#ownership-authority) (mature)
+  - [RPCs](#rpcs) (mature)
+  - [Synchronizers](#synchronizers) (very buggy)
+  - [Client-side prediction, lag compensation, and predicted spawning](#client-side-prediction-lag-compensation-and-predicted-spawning) (not supported)
+  - [Authentication](#authentication) (mature)
+  - [No-code multiplayer prototyping](#no-code-multiplayer-prototyping) (proof of concept)
+  - [Priority](#priority) (not supported)
+- [License](#license) (killer)
+- [Stability & maintenance](#stability-and-maintenance) (needs work)
+- [Performance](#performance)
+- [Support](#support)
+  - [Community](#community)
+  - [Commercial](#commercial)
+- [Documentation](#documentation)
+- [Prior art](#prior-art)
+- [Alternative multiplayer solutions](#alternative-multiplayer-solutions)
+- [Dedicated game server hosting](#dedicated-game-server-hosting)
+
 ## TL;DR
 
 Godot 4's multiplayer (a.k.a. "scene replication") has the foundations required to build hobbyist multiplayer games (e.g. RPC & replication), but lacks some features required to build a production-ready game (e.g. sync data types & client-side replication). It is also buggy and lacking the attention it needs to get better.
@@ -90,7 +115,7 @@ While this guide explores specifically Godot's high-level API, you can also (a) 
 
 ### Synchronizers
 
-**Status:** Good enough, but very buggy
+**Status:** Good enough, very buggy
 
 Developers use to Fish-Net's [sync types](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing) will find that Godot's default [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) lacks a lot of features, but is still a pleasant experience to use.
 
@@ -163,21 +188,11 @@ Fish-Net supports the `OnChange` parameter to listen for property changes.
 
 Godot implements this using GDScript's native getters & setters.
 
-### No-code multiplayer prototyping
+### Client-side prediction, lag compensation, and predicted spawning
 
-**Status:** Proof of concept
+**Status:** Not supported
 
-One of the core goals of Godot's replication system was to allow for ["(almost) no-code prototyping"](<https://github.com/godotengine/godot-proposals/issues/3459#:~:text=allow%20for%20(almost)%20no-code%20prototyping.>) of multiplayer games. They achieve this by enabling you to enable replication just by adding [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) and [MultiplayerSpawner](https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html#class-multiplayerspawner) nodes, but you'll still need some boilerplate code to connect & start a server.
-
-There's no equivalent in Fish-Net.
-
-It's debatable how much time this saves in the long run, but the effort to lower the barrier of entry for building network replication without comprimising flexibility is admirable.
-
-#### Client-side prediction, lag compensation, and predicted spawning
-
-**Status:** Nonexistent
-
-It won't be fun for most players if a multiplayer game feels choppy on a high-latency connection.
+Client-side prediction is a deal breaker for most serious multiplayer game developers. It won't be fun for most players if a multiplayer game feels choppy on a high-latency connection.
 
 Fish-Net shines when it comes to all the extra goodies required to make your game feel buttery smooth. They provide:
 
@@ -193,6 +208,16 @@ Godot 4's multiplayer replication is very young, so none of this is provided out
 **Status:** Mature
 
 Both [Fish-Net's authenticator](https://fish-networking.gitbook.io/docs/manual/components/authenticator) & [Godot's authentication callback](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-auth-callback) support the same functionality. Fish-Net does provide some [handy authenticators out of the box](https://github.com/FirstGearGames/FishNet/tree/21b7ef4186cc7dba7ae0ad1ca8223118f557e13a/Assets/FishNet/Demos/Authenticator/Scripts), but they're not difficult to re-implement in Godot.
+
+### No-code multiplayer prototyping
+
+**Status:** Proof of concept
+
+One of the core goals of Godot's replication system was to allow for ["(almost) no-code prototyping"](<https://github.com/godotengine/godot-proposals/issues/3459#:~:text=allow%20for%20(almost)%20no-code%20prototyping.>) of multiplayer games. They achieve this by enabling you to enable replication just by adding [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) and [MultiplayerSpawner](https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html#class-multiplayerspawner) nodes, but you'll still need some boilerplate code to connect & start a server.
+
+There's no equivalent in Fish-Net.
+
+It's debatable how much time this saves in the long run, but the effort to lower the barrier of entry for building network replication without compromising flexibility is admirable.
 
 ### Priority
 
@@ -256,7 +281,7 @@ More detailed benchmarks between Godot & Fish-Net need to be developed.
 
 ### Community
 
-**Status:** Semi-mature
+**Status:** Manture
 
 Fish-Net has an active Discord and is responsive to issues on GitHub. There is no forum, and Reddit posts frequently go unanswered.
 
@@ -294,7 +319,9 @@ Here are a few Godot games using Godot 4's scene replication that I could find:
 - [Drift](https://store.steampowered.com/app/2159650/Drift/) ([RPC only](https://www.reddit.com/r/godot/comments/136l48l/comment/jirir32/))
 - [Object Wars](https://noiros.itch.io/object-wars) ([RPC only](https://www.reddit.com/r/godot/comments/117a1z2/comment/j9cbwx9/?utm_source=reddit&utm_medium=web2x&context=3))
 
-## Other alternatives
+## Alternative multiplayer solutions
+
+Outside of the land of Unity, it's the Wild West for multiplayer solutions.
 
 ### BYO Backend
 
@@ -333,7 +360,7 @@ One of the most challenging parts of building a multiplayer game is deploying & 
 
 [Rivet](https://github.com/rivet-gg/rivet) provides the features required to build a production-ready multiplayer game, including managed game servers, matchmaking, DDoS protection, and analytics.
 
-[Join the closed beta](https://b8v8449klvp.typeform.com/rivet) to get your game up and running in less than 10 minutes.
+[Join the closed beta](https://b8v8449klvp.typeform.com/rivet) to get your game up and running in less than 10 minutes. Supports Godot, Unreal Engine, and Unity.
 
 <Note>
 	Spot an issue with this article? Please reach out on our [Discord](https://discord.gg/aXYfyNxYVn)!
