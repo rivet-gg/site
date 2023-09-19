@@ -41,22 +41,23 @@ export default props => <ArticleLayout meta={meta} {...props} />;
 - [Prior art](#prior-art)
 - [Alternative multiplayer solutions](#alternative-multiplayer-solutions)
 - [Dedicated game server hosting](#dedicated-game-server-hosting)
+- [Conclusion](#conclusion)
 
 ## TL;DR
 
-Godot 4's multiplayer (a.k.a. "scene replication") has the foundations required to build hobbyist multiplayer games (e.g. RPC & replication), but lacks some features required to build a production-ready game (e.g. sync data types & client-side replication). It is also buggy and lacking the attention it needs to get better.
+Godot 4's multiplayer (a.k.a. "scene replication") has the foundations required to build hobbyist multiplayer games (e.g. RPC & replication), but lacks some features required to build a production-ready game (e.g. sync data types & client-side replication). It is also buggy and still very young.
 
-Given the recent explosive growth of the [Godot development fund](https://godotengine.org/article/godot-developer-fund/), it's bound to get better very soon.
+Given the recent rapid growth of the [Godot development fund](https://godotengine.org/article/godot-developer-fund/), it's bound to get better very soon.
 
-If you're building a game as a hobby, dive head-first into Godot's multiplayer; it's fantastic. If you're making a game as a business, you'll need to prepare to contribute bug fixes to Godot, write an in-house multiplayer system & transport, or use a different engine.
+If you're building a game as a hobby, dive head-first into Godot's multiplayer; it's easy to get started. If you're building a game as a business, you'll need to (a) prepare to contribute bug fixes to Godot, (b) write an in-house multiplayer system & transport, or (c) use a different engine.
 
 ## Introduction
 
-Given the [recent](https://gamefromscratch.com/unity-announce-new-pricing-and-plan-changes/) [events](https://gamefromscratch.com/developers-react-to-unity-pricing-change/) [in the](https://gamefromscratch.com/unity-price-change-fallout-keeps-getting-worse/) [world of Unity](https://gamefromscratch.com/unity-developers-fight-back/), we've received a lot of questions about Godot as a viable alternative to Unity for multipayer games.
-
-Godot's multiplayer (a.k.a. "scene replication") was rewritten from the ground up for Godot 4.0, released just [6 months ago](https://godotengine.org/article/godot-4-0-sets-sail/). It's still very young, but is a very promising foundation.
+Given the [recent](https://gamefromscratch.com/unity-announce-new-pricing-and-plan-changes/) [events](https://gamefromscratch.com/developers-react-to-unity-pricing-change/) [in the](https://gamefromscratch.com/unity-price-change-fallout-keeps-getting-worse/) [world of Unity](https://gamefromscratch.com/unity-developers-fight-back/), Godot has [exploded in popularity](https://twitter.com/reduzio/status/1703480989610094638/photo/1) and money has poured into the [Godot Development Fund](https://fund.godotengine.org/) as game developers search for a viable alternative. Developers have been asking us about our experience with Godot's multiplayer compared to Unity's, so we aggregated our thoughts into this article.
 
 We will compare developing multiplayer games in Unity with Godot's [high-level multiplayer API](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html). We'll be looking specifically at using Unity with the [Fish-Net library](https://fish-networking.gitbook.io/docs/), since it's arguably the [most comprehensive free option](https://docs.google.com/spreadsheets/d/1Bj5uLdnxZYlJykBg3Qd9BNOtvE8sp1ZQ4EgX1sI0RFA/edit#gid=233715429) compared to [Mirror](https://mirror-networking.com/) and Unity's native [NGO](https://docs-multiplayer.unity3d.com/netcode/current/tutorials/get-started-ngo/).
+
+Godot's multiplayer (a.k.a. "scene replication") was rewritten from the ground up for Godot 4.0, released just [6 months ago](https://godotengine.org/article/godot-4-0-sets-sail/). It's still very young, but is a very promising foundation.
 
 <Note>
 	Please remember we're comparing a free, open-source engine with a for-profit company with a 12.8 billion dollar market cap. It's astonishing how much the Godot team has accomplished with limited resources, and it's only going to get better.
@@ -64,11 +65,15 @@ We will compare developing multiplayer games in Unity with Godot's [high-level m
 
 ## Why use an engine for multiplayer games?
 
-Engines are an excellent choice for multiplayer games because they provide a lot of the core functionality (e.g. physics, platform support, transports) required to build a multiplayer game out of the box. It also helps with strong code reuse between client & server.
+Many multiplayer games write custom game servers from scratch instead of using an engine's multiplayer API. Before we dive in to the comparison, it's important to address why you might consider using an engine's high-level multiplayer API in the first place.
 
-However, many multiplayer games are written using a custom game servers from scratch. This is why Unity supports a [low-level transport library](https://docs.unity3d.com/Packages/com.unity.transport@2.0/manual/index.html).
+Engines are an excellent choice for many multiplayer games because they:
 
-While this guide explores specifically Godot's high-level API, you can also (a) use Godot on both the client & server with your own multiplayer system, or (b) use Godot on the client with your own custom game server.
+- Provide the core functionality required to build a multiplayer game out of the box (e.g. physics, platform support, transports)
+- Makes code reuse between client & server easy
+- Handles the low-level networking details for you (e.g. serialization, transport, etc)
+
+While this guide specifically explores Godot's high-level API, you can also (a) use Godot on both the client & server with your own multiplayer system, or (b) use Godot on the client with your own custom game server.
 
 ## Feature comparison
 
@@ -269,7 +274,7 @@ From a high level, Unity benefits from:
 Godot benefits from:
 
 - **Architecture** Godot's engine is architected to be an event-based engine, meaning slow user scripts are only run in response events instead of every frame if possible ([read more](https://godotengine.org/article/why-isnt-godot-ecs-based-game-engine/#:~:text=The%20scene%20system,from%20the%20user.)). Unity frequently relies on C# logic being called every update.
-- **C++ multiplayer** Multiplayer system is written in C++ (Fish-Net is written in C#) which has the potential to be faster than Fish-Net's C# implementation (needs benchmarks).
+- **C++ multiplayer** Multiplayer system is written in C++ which has the potential to be faster than Fish-Net's C# implementation (needs benchmarks).
 - **Multilingual** Godot add-ons can be written in any language (GDScript, C#, C++, Rust), enabling developers to selectively optimize performance-critical code.
 - **Contributions** Anyone can contribute to Godot's engine, meaning that performance issues can be resolved by anyone instead of waiting for Unity employees to fix them.
 
@@ -334,11 +339,11 @@ You're able to either:
 
 ### Unreal Engine
 
-Unreal Engine has a mature native multiplayer replication system. It's an excellent alternative for Unity developers developing high-end games.
+Unreal Engine has a well-built native multiplayer replication system. It's arguably the only mature high-level multiplayer API outside of Unity. It's an excellent alternative for Unity developers developing high-end games.
 
-However, Unreal Engine is not a great choice for many Unity developers developing casual games since it's a heavy engine that requires a lot of resources to run & not as easy to learn.
+However, Unreal Engine is not an excellent choice for many Unity developers developing casual games since it's a heavy engine that requires a lot of resources to run and is not as easy to learn.
 
-Unreal Engine also requires a [5% royalty](https://www.unrealengine.com/en-US/release) after $1 million in revenue, while Godot is a permissively licensed open-source project. You'll never pay a dime to use Godot.
+Unreal Engine also charges a [5% royalty](https://www.unrealengine.com/en-US/release) after $1 million in revenue, while Godot is a permissively licensed open-source project. You'll never pay a dime to use Godot.
 
 Unreal Engine also requires C++ or Blueprints knowledge, while Godot's GDScript is much easier to learn.
 
@@ -346,7 +351,7 @@ Unreal Engine also requires C++ or Blueprints knowledge, while Godot's GDScript 
 
 HTML5 + JavaScript is a popular alternative for casual multiplayer games since JavaScript is easy to run on both the client and server (e.g. NodeJS, Bun, Deno). This lets you easily share logic between the client & server since they're written in the same language. There are a wide variety of tools for building HTML5 games, like [Phaser](https://phaser.io/), [Three.js](https://threejs.org/), [PlayCanvas](https://playcanvas.com/), and [Babylon.js](https://www.babylonjs.com/).
 
-However, there is no widely used JavaScript multiplayer system similar to Fish-Net; expect to roll this yourself. JavaScript's performance is also generally not as good as Unity's C# or Godot's C++ core.
+However, there is no widely used JavaScript multiplayer system similar to Fish-Net; expect to roll this yourself. JavaScript's performance is generally not as good as Unity's C# or Godot's C++ core.
 
 ### Other Engines
 
@@ -365,3 +370,9 @@ One of the most challenging parts of building a multiplayer game is deploying & 
 <Note>
 	Spot an issue with this article? Please reach out on our [Discord](https://discord.gg/aXYfyNxYVn)!
 </Note>
+
+## Conclusion
+
+While Godot 4's multiplayer has the basics you need for hobby-level projects, it's still a work in progress for serious, production-ready games. There are gaps like data type syncing and client-side replication that you'd have to build yourself. That said, the Godot development fund is booming, which suggests improvements are on the horizon.
+
+For hobbyists, Godot's multiplayer is a solid choice to get your feet wet. If you're in it for the long haul, be ready to either contribute to Godot's codebase, roll your own multiplayer framework, or consider a different engine altogether. Keep in mind Godot's doing a lot with less—compared to giants like Unity—and it's only going to get better.
