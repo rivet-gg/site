@@ -63,7 +63,9 @@ We will compare developing multiplayer games in Unity with Godot's [high-level m
 Godot's multiplayer (a.k.a. "scene replication") was rewritten from the ground up for Godot 4.0, released just [6 months ago](https://godotengine.org/article/godot-4-0-sets-sail/). It's still very young, but is a very promising foundation.
 
 <Note>
-	Please remember we're comparing a free, open-source engine with a for-profit company with a 12.8 billion dollar market cap. It's astonishing how much the Godot team has accomplished with limited resources, and it's only going to get better.
+  Please remember we're comparing a free, open-source engine with a for-profit company with a 12.8 billion
+  dollar market cap. It's astonishing how much the Godot team has accomplished with limited resources, and
+  it's only going to get better.
 </Note>
 
 ## Why use an engine for multiplayer games?
@@ -138,28 +140,31 @@ By default, Godot's synchronization only supports synchronizing primitives (`flo
 To manually synchronize your own complex types, it's possible to use a getter/setter to encode a [`PackedByteArray`](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html), like this:
 
 <CodeGroup title='custom_sync_type.gd'>
+
 ```
 # Node state
 var weapon: int = 0
 var ammo: int = 100
 
 # Custom encoding & decoding
-var sync_state:
-	get:
-		var buf = PackedByteArray()
-		buf.resize(6)
-		buf.encode_half(0, position.x)
-		buf.encode_half(2, position.y)
-		buf.encode_u8(4, weapon)
-		buf.encode_u8(5, ammo)
-		return buf
 
-	set(value):
-		assert(typeof(value) == TYPE_RAW_ARRAY and value.size() == 6)
-		position = Vector2(value.decode_half(0), value.decode_half(2))
-		weapon = value.decode_u8(4)
-		ammo = value.decode_u8(5)
+var sync_state:
+get:
+var buf = PackedByteArray()
+buf.resize(6)
+buf.encode_half(0, position.x)
+buf.encode_half(2, position.y)
+buf.encode_u8(4, weapon)
+buf.encode_u8(5, ammo)
+return buf
+
+    set(value):
+    	assert(typeof(value) == TYPE_RAW_ARRAY and value.size() == 6)
+    	position = Vector2(value.decode_half(0), value.decode_half(2))
+    	weapon = value.decode_u8(4)
+    	ammo = value.decode_u8(5)
 ```
+
 </CodeGroup>
 
 You'll likely find yourself writing repetitive encoding & decoding code if building a game with complex data types (e.g. board games, strategy games).
@@ -196,7 +201,7 @@ Godot approaches this slightly differently. Variables can either configured to "
 
 Fish-Net supports the `OnChange` parameter to listen for property changes.
 
-Godot supports responding to synchronized properties using the [`MultiplayerSynchronizer.synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-synchronized) and [`MultiplayerSynchronizer.delta_synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-delta-synchronized) signals.  However, these are only emitted after the property has been updated, so you cannot access the previous value. Instead, you can use GDScript's native getter & setters to be able to access the previous property value.
+Godot supports responding to synchronized properties using the [`MultiplayerSynchronizer.synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-synchronized) and [`MultiplayerSynchronizer.delta_synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-delta-synchronized) signals. However, these are only emitted after the property has been updated, so you cannot access the previous value. Instead, you can use GDScript's native getter & setters to be able to access the previous property value.
 
 ### Client-side prediction, lag compensation, and predicted spawning
 
@@ -373,7 +378,7 @@ One of the most challenging parts of building a multiplayer game is deploying & 
 [Join the closed beta](https://b8v8449klvp.typeform.com/rivet) to get your game up and running in less than 10 minutes. Supports Godot, Unreal Engine, and Unity.
 
 <Note>
-	Spot an issue with this article? Please reach out on our [Discord](https://discord.gg/aXYfyNxYVn)!
+  Spot an issue with this article? Please reach out on our [Discord](https://discord.gg/aXYfyNxYVn)!
 </Note>
 
 ## Conclusion
