@@ -52,6 +52,8 @@ Given the recent rapid growth of the [Godot development fund](https://godotengin
 
 If you're building a game as a hobby, dive head-first into Godot's multiplayer; it's easy to get started. If you're building a game as a business, you'll need to (a) prepare to contribute bug fixes to Godot, (b) write an in-house multiplayer system & transport, or (c) use a different engine.
 
+This post specifically uses Fish-Net for Unity library for comparison.
+
 ## Introduction
 
 Given the [recent](https://gamefromscratch.com/unity-announce-new-pricing-and-plan-changes/) [events](https://gamefromscratch.com/developers-react-to-unity-pricing-change/) [in the](https://gamefromscratch.com/unity-price-change-fallout-keeps-getting-worse/) [world of Unity](https://gamefromscratch.com/unity-developers-fight-back/), Godot has [exploded in popularity](https://twitter.com/reduzio/status/1703480989610094638/photo/1) and money has poured into the [Godot Development Fund](https://fund.godotengine.org/) as game developers search for a viable alternative. Developers have been asking us about our experience with Godot's multiplayer compared to Unity's, so we aggregated our thoughts into this article.
@@ -125,13 +127,13 @@ While this guide specifically explores Godot's high-level API, you can also (a) 
 
 Developers use to Fish-Net's [sync types](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing) will find that Godot's default [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) lacks a lot of features, but is still a pleasant experience to use.
 
-However, many developers choose to avoid Godot's native synchronizer because of its lack of stability. ([A](https://www.reddit.com/r/godot/comments/136l48l/comment/jirir32/), [B](https://www.reddit.com/r/godot/comments/117a1z2/comment/j9cbwx9/?utm_source=reddit&utm_medium=web2x&context=3))
+However, many developers choose to avoid Godot's native synchronizer because of its lack of stability. ([A](https://www.reddit.com/r/godot/comments/136l48l/comment/jirir32/) – partially resolved by [#75467](https://github.com/godotengine/godot/pull/75467), [B](https://www.reddit.com/r/godot/comments/117a1z2/comment/j9cbwx9/?utm_source=reddit&utm_medium=web2x&context=3))
 
 #### Sync types
 
 Fish-Net supports many types of primitive synchronization out of the box (`SyncVar`, `SyncList`, `SyncHashSet`, `SyncDictionary`, `SyncTimer`).
 
-By default, Godot's synchronization only supports synchronizing primitives (`float`, `string`) and simple types (`Vector2`, `Color`, etc). [`allow_object_decoding`](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-allow-object-decoding) can be enabled to allow synchronization of more complex types. **Using this property is not recommended since it creates the potential for RCE exploits.**
+By default, Godot's synchronization only supports synchronizing primitives (`float`, `string`, etc) and most built-in types (`Vector2`, `Color`, `Array` (see [#74391](https://github.com/godotengine/godot/issues/74391)), `Dictionary`, etc). [`allow_object_decoding`](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-allow-object-decoding) can be enabled to allow synchronization of more complex types. **Using this property is not recommended since it creates the potential for RCE exploits.**
 
 To manually synchronize your own complex types, it's possible to use a getter/setter to encode a [`PackedByteArray`](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html), like this:
 
@@ -172,7 +174,9 @@ You'll likely find yourself writing repetitive encoding & decoding code if build
 
 Fish-Net supports [configuring send rate for individual properties](https://fish-networking.gitbook.io/docs/manual/guides/synchronizing/attributes#:~:text=it%20has%20changed.%20*%2F-,public%20float%20sendrate%20%3D%200.1f%3B,-%E2%80%8B).
 
-Godot also supports customizing send rate with [`MultiplayerSynchronizer.replication_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-replication-interval) for synced properties and [`MultiplayerSynchronizer.delta_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-delta-interval) for watched properties. However, this is only supported at the node level; you can't customize for each property individually. You can work around this issue by creating multiple separate `MultiplayerSynchronizer` nodes.
+Godot also supports configuring the send rate with [`MultiplayerSynchronizer.replication_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-replication-interval) for synced properties and [`MultiplayerSynchronizer.delta_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-delta-interval) for watched properties. However, this is only supported at the node level; you can't customize for each property individually. You can work around this issue by creating multiple separate `MultiplayerSynchronizer` nodes.
+
+Neither Fish-Net nor Godot supports configuring the send rate of objects on a per-peer basis. This is important for sending data less frequently when further away from a peer.
 
 #### Visibility/observers
 
@@ -192,7 +196,7 @@ Godot approaches this slightly differently. Variables can either configured to "
 
 Fish-Net supports the `OnChange` parameter to listen for property changes.
 
-Godot implements this using GDScript's native getters & setters.
+Godot supports responding to synchronized properties using the [`MultiplayerSynchronizer.synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-synchronized) and [`MultiplayerSynchronizer.delta_synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-delta-synchronized) signals.  However, these are only emitted after the property has been updated, so you cannot access the previous value. Instead, you can use GDScript's native getter & setters to be able to access the previous property value.
 
 ### Client-side prediction, lag compensation, and predicted spawning
 
@@ -377,3 +381,11 @@ One of the most challenging parts of building a multiplayer game is deploying & 
 While Godot 4's multiplayer has the basics you need for hobby-level projects, it's still a work in progress for serious, production-ready games. There are gaps like data type syncing and client-side replication that you'd have to build yourself. That said, the Godot development fund is booming, which suggests improvements are on the horizon.
 
 For hobbyists, Godot's multiplayer is a solid choice to get your feet wet. If you're in it for the long haul, be ready to either contribute to Godot's codebase, roll your own multiplayer framework, or consider a different engine altogether. Keep in mind Godot's doing a lot with less—compared to giants like Unity—and it's only going to get better.
+
+---
+
+- **Updated September 18th**: Clarified the comparison to Fish-Net in the TL;DR.
+- **Updated September 18th**: Note that part of the stability complaint has been fixed
+- **Updated September 18th**: Clarify that arrays & dictionaries can be synced by default, list affected issue
+- **Updated September 18th**: Add mention of `synchronized` and `delta_synchronized` signals
+- **Updated September 18th**: Include missing send rate on a per-client basis functionality
