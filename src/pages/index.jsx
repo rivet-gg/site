@@ -94,26 +94,22 @@ import imgEvLogo from '@/images/case-studies/logos/ev.png';
 const pages = [
   {
     name: 'Game Servers',
-    description: 'Deploy and scale game servers globally in seconds',
+    description: 'Deploy your game on on Rivet, scale globally in seconds',
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
     screenshot: imgLobbies,
     learnHref: '/docs/serverless-lobbies',
     features: [
       {
-        name: 'Multi-cloud & on-prem autoscaling',
-        icon: faMap
+        name: 'Cost effective auto-scaling',
+        icon: faPiggyBank
       },
-      // {
-      //   name: 'Cost effective auto-scaling',
-      //   icon: faChartWaterfall
-      // },
-      // {
-      //   name: 'Infinite autoscaling',
-      //   icon: faChartWaterfall
-      // },
       {
-        name: 'Fast & no downtime deploys',
+        name: 'Scales to meet player spikes',
+        icon: faChartWaterfall
+      },
+      {
+        name: 'Fast & no downtime deploys (< 5 second boot times)',
         icon: faBolt
       },
       {
@@ -121,13 +117,13 @@ const pages = [
         icon: faCodeBranch
       },
       {
-        name: 'Cost saving',
-        icon: faPiggyBank
-      },
-      {
         name: 'Unified logging & monitoring',
         icon: faMonitorWaveform
-      }
+      },
+      {
+        name: 'Customize hardware, regions, & providers',
+        icon: faWrench
+      },
     ]
   },
   {
@@ -297,26 +293,31 @@ let supportedEngines = [
     name: 'Unity',
     href: '/learn/unity',
     gradient: engineStyles.unity.gradient,
+    join: <span>,&nbsp;</span>,
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
     gradient: engineStyles.unreal.gradient,
+    join: <span>,&nbsp;</span>,
   },
   {
     name: 'Godot',
     href: '/learn/godot',
     gradient: engineStyles.godot.gradient,
+    join: <span>,&nbsp;</span>,
   },
   {
     name: 'HTML5',
     href: '/learn/html5',
     gradient: engineStyles.html5.gradient,
+    join: <span>,&nbsp;and&nbsp;</span>,
   },
   {
     name: 'Custom',
     href: '/learn/custom',
     gradient: engineStyles.custom.gradient,
+    join: null,
   }
 ];
 
@@ -452,8 +453,8 @@ function Background({ props }) {
       }
 
       // Fill overlay
-      let xPos = canvas.clientWidth > 1280 ? canvas.width / 2 - 410 * pixelRatio : canvas.width * 0.5;
-      let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
+      let xPos = canvas.width * 0.5;
+      let yPos = canvas.width * 0.25;
       const radGrd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
       radGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
       radGrd.addColorStop(1, 'rgba(24, 24, 27, 0)');
@@ -503,26 +504,42 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-8'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-12'>
       {/* Background */}
       <Background />
 
       {/* Text */}
-      <div className='max-w-2xl text-left'>
+      <div className='align-center flex flex-col items-center justify-center text-center'>
         {/* Title */}
         <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          Multiplayer Made
-          <br />
-          Simple
+          Multiplayer Made Simple
         </h1>
 
         {/* Subtitle */}
         <p className='mt-6 text-lg leading-8 text-gray-300'>
           Open-source solution to deploy, scale, and operate your multiplayer game
+          <br/>
+          Supports&nbsp;
+          {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
+            <span>
+              <Link
+                key={name}
+                href={href}
+                className={clsx(
+                  'inline font-semibold transition hover:scale-110',
+                  'bg-gradient-to-r bg-clip-text text-transparent',
+                  gradient[0],
+                  gradient[1]
+                )}>
+                {name}
+              </Link>
+              {join}
+            </span>
+          ))}.
         </p>
 
         {/* Engines */}
-        <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
+        {/* <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
           <div className='font-bold text-white'>Supports</div>
           <div className='mt-0 flex gap-5'>
             {supportedEngines.map(({ name, image, href, gradient }) => (
@@ -536,22 +553,14 @@ function Title() {
                   gradient[0],
                   gradient[1]
                 )}>
-                {/* {image && <Image src={image} alt={name} className='h-6 w-6' />} */}
                 <div>{name}</div>
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          {/* <Link
-            href='https://b8v8449klvp.typeform.com/rivet'
-            target='_blank'
-            className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
-            Sign Up
-          </Link> */}
-
           <Link
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
@@ -561,11 +570,11 @@ function Title() {
             transition-all
             duration-150 [box-shadow:0_4px_0_0_#7c3aed] active:translate-y-[4px]
             active:border-b-[0px] active:[box-shadow:0_0px_0_0_#7c3aed]'>
-            Sign Up
+            Get Started for Free
           </Link>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
-            Tutorials & Templates <span aria-hidden='true'>→</span>
+            5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
         </div>
 
@@ -582,7 +591,7 @@ function Title() {
       </div>
 
       {/* Demo */}
-      <Demo />
+      {/* <Demo /> */}
     </div>
   );
 }

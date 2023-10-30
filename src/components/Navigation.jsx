@@ -198,8 +198,8 @@ export function Navigation({ navigation, ...props }) {
             ))
           : null}
         <li className='sticky bottom-0 z-10 mt-6 min-[416px]:hidden'>
-          <Button href='https://hub.rivet.gg' target='_blank' variant='filled' className='w-full'>
-            Open Rivet
+          <Button href='https://hub.rivet.gg' target='_blank' variant='secondary' className='w-full'>
+            Sign In
           </Button>
         </li>
       </ul>
