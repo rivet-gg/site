@@ -40,15 +40,15 @@ export function Layout({ navigation, prose, inset, children, sections = [] }) {
         <div
           className={clsx('relative', (prose || inset) && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}
         >
-          <main className={clsx((prose || inset) && 'py-16', 'min-h-[50vh]')}>
-            {prose ? <Prose as='article'>{children}</Prose> : children}
+          <main className={clsx((prose || inset) && 'py-8', 'min-h-[50vh]')}>
+            {prose ? <Prose as='article' className='mx-auto max-w-5xl'>{children}</Prose> : children}
           </main>
           <Footer navigation={navigation} />
         </div>
       </div>
 
       {/* Star promp */}
-      <StarPrompt />
+      {/* <StarPrompt /> */}
     </SectionProvider>
   );
 }
@@ -85,7 +85,7 @@ function StarPrompt() {
                 onClick={onHide}
               />
 
-              <div className='ml-2'>Rivet is now open source!</div>
+              <div className='ml-2'>Rivet is open source!</div>
 
               {/* Hardcode the button height since the iframe has odd layout side effects */}
               <div className='ml-4 h-[28px]'>

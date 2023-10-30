@@ -19,12 +19,22 @@ const variantStyles = {
   primary:
     'rounded-full bg-violet-500 py-1 px-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400',
   secondary:
-    'rounded-full bg-zinc-100 py-1 px-3 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-400 dark:ring-1 dark:ring-inset dark:ring-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-300',
+    'rounded-full bg-zinc-100 py-1 px-3 text-sm text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-400 dark:ring-1 dark:ring-inset dark:ring-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-300',
   filled:
-    'rounded-full bg-zinc-900 py-1 px-3 text-white hover:bg-zinc-700 dark:bg-violet-500 dark:text-white dark:hover:bg-violet-400',
+    'rounded-full bg-zinc-900 py-1 px-3 text-sm text-white hover:bg-zinc-700 dark:bg-violet-500 dark:text-white dark:hover:bg-violet-400',
   outline:
-    'rounded-full py-1 px-3 text-zinc-700 ring-1 ring-inset ring-zinc-900/10 hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white',
-  text: 'text-violet-500 hover:text-violet-600 dark:text-violet-400 dark:hover:text-violet-500'
+    'rounded-full py-1 px-3 text-sm text-zinc-700 ring-1 ring-inset ring-zinc-900/10 hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white',
+  text: 'text-sm text-violet-500 hover:text-violet-600 dark:text-violet-400 dark:hover:text-violet-500',
+  juicy: clsx(
+    'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
+    'px-3.5 py-2.5',
+    'text-sm font-semibold text-white',
+    'transition-all duration-150 ',
+    'border-b-[1px] active:border-b-[0px]',
+    'mb-[0px] active:mb-[1px]',
+    '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
+    'hover:translate-y-[-1px] active:translate-y-[4px]'
+  )
 };
 
 export function ButtonGroup({ children }) {
@@ -35,7 +45,7 @@ export function Button({ variant = 'primary', className, children, arrow, icon, 
   let Component = props.href ? Link : 'button';
 
   className = clsx(
-    'inline-flex items-center justify-center gap-0.5 overflow-hidden text-sm font-semibold transition',
+    'inline-flex items-center justify-center gap-0.5 overflow-hidden font-semibold transition',
     variantStyles[variant],
     className
   );

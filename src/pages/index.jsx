@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import { GridPattern } from '@/components/GridPattern';
+import { PatternButton } from '@/components/PatternButton';
 import { Game } from '@/components/Game';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,6 +11,12 @@ import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Resource } from '@/components/Resources';
+import YCLogo from '@/components/YCLogo';
+import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { engineStyles } from '../lib/engineStyles';
+import logoWhite from '@/images/branding/white.svg';
+import GitHubButton from 'react-github-btn';
 import {
   faBolt,
   faBook,
@@ -91,29 +97,25 @@ import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
 import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
 
-const pages = [
+const featurePages = [
   {
     name: 'Game Servers',
-    description: 'Deploy and scale game servers globally in seconds',
+    description: 'Deploy your game on on Rivet, scale globally in seconds',
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
     screenshot: imgLobbies,
     learnHref: '/docs/serverless-lobbies',
     features: [
       {
-        name: 'Multi-cloud & on-prem autoscaling',
-        icon: faMap
+        name: 'Cost effective auto-scaling',
+        icon: faPiggyBank
       },
-      // {
-      //   name: 'Cost effective auto-scaling',
-      //   icon: faChartWaterfall
-      // },
-      // {
-      //   name: 'Infinite autoscaling',
-      //   icon: faChartWaterfall
-      // },
       {
-        name: 'Fast & no downtime deploys',
+        name: 'Scales to meet player spikes',
+        icon: faChartWaterfall
+      },
+      {
+        name: 'Fast & no downtime deploys (< 5 second boot times)',
         icon: faBolt
       },
       {
@@ -121,12 +123,12 @@ const pages = [
         icon: faCodeBranch
       },
       {
-        name: 'Cost saving',
-        icon: faPiggyBank
-      },
-      {
         name: 'Unified logging & monitoring',
         icon: faMonitorWaveform
+      },
+      {
+        name: 'Customize hardware, regions, & providers',
+        icon: faWrench
       }
     ]
   },
@@ -235,7 +237,7 @@ const pages = [
       { name: 'Free rivet.game subdomain', icon: faHome },
       { name: 'Bring your own domain', icon: faFileImport },
       { name: 'Managed SSL for custom domains', icon: faFileCertificate },
-      { name: 'Customize headers & routing rules', icon: faWrench },
+      { name: 'Customize headers & routing rules', icon: faWrench }
       // { name: 'Powered by Cloudflare', icon: faCloudflare }
     ]
   },
@@ -267,6 +269,7 @@ const pages = [
     image: [imgOssWhite, imgOssColor],
     screenshot: imgOss,
     learnHref: 'https://github.com/rivet-gg/rivet',
+    learnName: 'GitHub',
     features: [
       {
         name: 'Permissive license (Apache 2.0)',
@@ -297,26 +300,31 @@ let supportedEngines = [
     name: 'Unity',
     href: '/learn/unity',
     gradient: engineStyles.unity.gradient,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
     gradient: engineStyles.unreal.gradient,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'Godot',
     href: '/learn/godot',
     gradient: engineStyles.godot.gradient,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'HTML5',
     href: '/learn/html5',
     gradient: engineStyles.html5.gradient,
+    join: <span>,&nbsp;and&nbsp;</span>
   },
   {
     name: 'Custom',
     href: '/learn/custom',
     gradient: engineStyles.custom.gradient,
+    join: null
   }
 ];
 
@@ -332,7 +340,7 @@ let caseStudies = [
     name: 'Ev.io',
     href: 'https://ev.io',
     badge: () => (
-      <div className='align-center absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
+      <div className='absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
         <FontAwesomeIcon icon={faAward} className='text-2xl' />
         <div className=' flex flex-col'>
           <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
@@ -384,6 +392,8 @@ export default function Index() {
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <CaseStudies />
           </div>
+
+          <DemoSection />
 
           <UpAndRunning />
         </div>
@@ -452,8 +462,8 @@ function Background({ props }) {
       }
 
       // Fill overlay
-      let xPos = canvas.clientWidth > 1280 ? canvas.width / 2 - 410 * pixelRatio : canvas.width * 0.5;
-      let yPos = canvas.clientWidth > 1280 ? canvas.height * 0.5 : canvas.width * 0.25;
+      let xPos = canvas.width * 0.5;
+      let yPos = canvas.width * 0.25;
       const radGrd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
       radGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
       radGrd.addColorStop(1, 'rgba(24, 24, 27, 0)');
@@ -503,26 +513,42 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-8'>
+    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-12'>
       {/* Background */}
       <Background />
 
       {/* Text */}
-      <div className='max-w-2xl text-left'>
+      <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
-          Multiplayer Made
-          <br />
-          Simple
+        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
+          Multiplayer Made Simple
         </h1>
 
         {/* Subtitle */}
-        <p className='mt-6 text-lg leading-8 text-gray-300'>
-          Open-source solution to deploy, scale, and operate your multiplayer game
-        </p>
+        <div className='mt-6 text-lg text-gray-300 leading-8'>
+          <p>Open-source solution to deploy, scale, and operate your multiplayer game</p>
+          <p className='md:mt-0 mt-4'>
+            Supports&nbsp;
+            {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
+              <span key={name}>
+                <Link
+                  href={href}
+                  className={clsx(
+                    'inline font-semibold transition hover:scale-110',
+                    'bg-gradient-to-r bg-clip-text text-transparent',
+                    gradient[0],
+                    gradient[1]
+                  )}>
+                  {name}
+                </Link>
+                {join}
+              </span>
+            ))}
+          </p>
+        </div>
 
         {/* Engines */}
-        <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
+        {/* <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
           <div className='font-bold text-white'>Supports</div>
           <div className='mt-0 flex gap-5'>
             {supportedEngines.map(({ name, image, href, gradient }) => (
@@ -536,52 +562,61 @@ function Title() {
                   gradient[0],
                   gradient[1]
                 )}>
-                {/* {image && <Image src={image} alt={name} className='h-6 w-6' />} */}
                 <div>{name}</div>
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
-        <div className='justify-left mt-10 flex items-center gap-x-6'>
-          {/* <Link
-            href='https://b8v8449klvp.typeform.com/rivet'
-            target='_blank'
-            className='rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400'>
-            Sign Up
-          </Link> */}
-
-          <Link
-            href='https://b8v8449klvp.typeform.com/rivet'
-            target='_blank'
-            className='button cursor-pointer select-none rounded-lg border-b-[1px] border-violet-400 bg-violet-500
-            px-3.5 py-2.5
-            text-sm font-semibold text-white
-            transition-all
-            duration-150 [box-shadow:0_4px_0_0_#7c3aed] active:translate-y-[4px]
-            active:border-b-[0px] active:[box-shadow:0_0px_0_0_#7c3aed]'>
-            Sign Up
-          </Link>
+        <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
+          <JuicyButton>Sign Up for Beta</JuicyButton>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
-            Tutorials & Templates <span aria-hidden='true'>→</span>
+            5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
         </div>
 
-        {/* YC */}
-        <Link
-          href='https://www.ycombinator.com/'
-          target='_blank'
-          className='margin-auto mt-6 block w-max py-1.5 opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
-          <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
-            <div>Backed by</div>
-            <YCLogo className='h-[1.7em]' white={true} />
+        <div className='mt-9 flex sm:flex-row flex-col items-center justify-center'>
+          {/* YC */}
+          <Link
+            href='https://www.ycombinator.com/'
+            target='_blank'
+            className='margin-auto block w-max opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
+            <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
+              <div>Backed by</div>
+              <YCLogo className='h-[1.7em]' white={true} />
+            </div>
+          </Link>
+
+          {/* Separator */}
+          <div className='sm:block hidden mx-4 h-4 w-[1px] bg-white/50'></div>
+          <div className='sm:hidden block my-4 w-4 h-[1px] bg-white/50'></div>
+
+          {/* GitHub */}
+          <div className='h-[28px]'>
+            <GitHubButton
+              href='https://github.com/rivet-gg/rivet'
+              data-color-scheme='no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;'
+              data-size='large'
+              data-show-count='true'
+              aria-label='Star rivet-gg/rivet on GitHub'>
+              Star
+            </GitHubButton>
           </div>
-        </Link>
+        </div>
       </div>
 
       {/* Demo */}
+      {/* <Demo /> */}
+    </div>
+  );
+}
+
+function DemoSection() {
+  return (
+    <div className='mt-24 flex flex-col items-center justify-center'>
+      {/* <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl text-center'>Try it yourself</h2> */}
       <Demo />
     </div>
   );
@@ -632,8 +667,8 @@ const swipePower = (offset, velocity) => {
 
 function paginate(page, dir) {
   const newPage = page + dir;
-  if (newPage < 0) return { index: pages.length - (-newPage % pages.length), dir };
-  return { index: newPage % pages.length, dir };
+  if (newPage < 0) return { index: featurePages.length - (-newPage % featurePages.length), dir };
+  return { index: newPage % featurePages.length, dir };
 }
 
 function Features() {
@@ -652,46 +687,46 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div>
-      <div className='border-b border-white/10'>
-        <nav className='-mb-px flex' aria-label='Tabs'>
-          {pages.map((tab, i) => {
-            let isCurrent = i == index;
-            return (
-              <div
-                key={tab.name}
-                href={tab.href}
-                className={clsx(
-                  isCurrent
-                    ? 'border-b-4 border-[color:var(--tab-color)] text-white'
-                    : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
-                )}
-                style={{ '--tab-color': tab.color }}
-                aria-current={isCurrent ? 'page' : undefined}
-                onClick={() => onChangeTab(i)}>
-                <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                  <Image
-                    src={tab.image[0]}
-                    alt='Tab image'
-                    className={clsx(
-                      'absolute h-full w-full opacity-100 transition'
-                      // isCurrent && 'opacity-0'
-                    )}
-                  />
-                  {/* <Image
+      <nav className={clsx(
+        '-mb-px flex',
+        'sm:gap-x-4 sm:px-4 sm:pt-4',
+        'gap-x-2 px-2 pt-2',
+       )} aria-label='Tabs'>
+        {featurePages.map((tab, i) => {
+          let isCurrent = i == index;
+          return (
+            <PatternButton
+              key={tab.name}
+              className={clsx(
+                'group/tab flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
+              )}
+              style={{ '--tab-color': tab.color }}
+              suppress={isCurrent ? 0 : 1}
+              aria-current={isCurrent ? 'page' : undefined}
+              onClick={() => onChangeTab(i)}>
+              <div className='relative h-10 w-10 md:h-16 md:w-16'>
+                <Image
+                  src={tab.image[0]}
+                  alt='Tab image'
+                  className={clsx(
+                    'absolute h-full w-full opacity-100 transition',
+                    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
+                    // isCurrent && 'opacity-0'
+                  )}
+                />
+                {/* <Image
                     src={tab.image[1]}
                     className={clsx(
                       'absolute h-full w-full opacity-0 transition',
                       isCurrent && 'opacity-100'
                     )}
                   /> */}
-                </div>
-                <div className='hidden sm:block'>{tab.name}</div>
               </div>
-            );
-          })}
-        </nav>
-      </div>
+              <div className='hidden font-display text-white sm:block'>{tab.name}</div>
+            </PatternButton>
+          );
+        })}
+      </nav>
     </div>
   );
 }
@@ -699,7 +734,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[600px] w-full overflow-hidden'>
+    <div className='relative flex md:h-[600px] h-[550px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -725,7 +760,7 @@ function Pages({ page, onChangePage }) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          <PageContents page={pages[page.index]} />
+          <PageContents page={featurePages[page.index]} />
         </motion.div>
       </AnimatePresence>
     </div>
@@ -765,8 +800,10 @@ function PageContents({ page }) {
               {page.features.map((feature, i) => (
                 <div
                   key={i}
-                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'>
-                  <FontAwesomeIcon icon={feature.icon} />
+                  className='flex flex-row items-center gap-3 rounded-md font-semibold text-white transition'>
+                  <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
+                    <FontAwesomeIcon icon={feature.icon} className='w-4' />
+                  </div>
                   {feature.name}
                 </div>
               ))}
@@ -775,8 +812,8 @@ function PageContents({ page }) {
             {/* Learn more */}
             {page.learnHref && (
               <div className='mt-5'>
-                <Button href={page.learnHref} arrow='right'>
-                  Learn More
+                <Button href={page.learnHref} arrow='right' variant='juicy'>
+                  {page.learnName ?? 'Documentation'}
                 </Button>
               </div>
             )}
@@ -789,7 +826,7 @@ function PageContents({ page }) {
 
 function CaseStudies({ props }) {
   return (
-    <div className='mt-40'>
+    <div className='md:mt-40 mt-20'>
       {/* Title */}
       <div className='mx-auto max-w-2xl text-center'>
         <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl'>
@@ -801,12 +838,17 @@ function CaseStudies({ props }) {
       </div>
 
       {/* Grid */}
-      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10 sm:mx-0 sm:rounded-2xl md:grid-cols-3'>
+      <div className={clsx(
+        'mt-6 grid  gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10',
+        'sm:mx-0 sm:rounded-2xl md:grid-cols-3',
+        '-mx-6 grid-cols-1'
+
+      )}>
         {caseStudies.map((study, i) => (
           <Link
             key={i}
             href={study.href}
-            className='align-center group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
@@ -826,25 +868,9 @@ function CaseStudies({ props }) {
   );
 }
 
-import { CheckCircleIcon } from '@heroicons/react/20/solid';
-import { Resource, ResourceGroup } from '@/components/Resources';
-import YCLogo from '@/components/YCLogo';
-import { faCloudflare, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { engineStyles } from '../lib/engineStyles';
-// import YCLogo from '@/components/YCLogo';
-
-const benefits = [
-  'Competitive salaries',
-  'Flexible work hours',
-  '30 days of paid vacation',
-  'Annual team retreats',
-  'Benefits for you and your family',
-  'A great work environment'
-];
-
 function UpAndRunning() {
   return (
-    <div className='relative isolate mt-40'>
+    <div className='relative isolate mt-28'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-inset ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
@@ -900,6 +926,27 @@ function UpAndRunning() {
         /> */}
       </div>
     </div>
+  );
+}
+
+function JuicyButton({ children, ...props }) {
+  return (
+    <Link
+      href='https://b8v8449klvp.typeform.com/rivet'
+      target='_blank'
+      className={clsx(
+        'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
+        'px-3.5 py-2.5',
+        'text-sm font-semibold text-white',
+        'transition-all duration-150 ',
+        'border-b-[1px] active:border-b-[0px]',
+        'mb-[0px] active:mb-[1px]',
+        '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
+        'hover:translate-y-[-1px] active:translate-y-[4px]'
+      )}
+      {...props}>
+      {children}
+    </Link>
   );
 }
 

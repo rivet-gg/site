@@ -53,8 +53,8 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
     <Link
       href={initHref ?? href}
       className={clsx(
-        current ? 'bg-slate-200/10 text-white' : 'text-slate-300 hover:bg-slate-200/5 hover:text-white',
-        'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition'
+        current ? 'bg-white/5 text-white border-white/10' : 'text-slate-300 hover:bg-white/5 hover:text-white',
+        'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition border border-1 border-transparent'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
       <span className='font-display text-lg'>{children}</span>
@@ -203,8 +203,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           <MobileSearch />
           {/* <ModeToggle /> */}
           <div className='hidden min-[416px]:contents'>
-            <Button href='https://hub.rivet.gg' target='_blank'>
-              Open Rivet
+            <Button href='https://hub.rivet.gg' target='_blank' variant='secondary'>
+              Sign In
             </Button>
           </div>
         </div>
