@@ -123,7 +123,7 @@ const pages = [
       {
         name: 'Customize hardware, regions, & providers',
         icon: faWrench
-      },
+      }
     ]
   },
   {
@@ -231,7 +231,7 @@ const pages = [
       { name: 'Free rivet.game subdomain', icon: faHome },
       { name: 'Bring your own domain', icon: faFileImport },
       { name: 'Managed SSL for custom domains', icon: faFileCertificate },
-      { name: 'Customize headers & routing rules', icon: faWrench },
+      { name: 'Customize headers & routing rules', icon: faWrench }
       // { name: 'Powered by Cloudflare', icon: faCloudflare }
     ]
   },
@@ -293,31 +293,31 @@ let supportedEngines = [
     name: 'Unity',
     href: '/learn/unity',
     gradient: engineStyles.unity.gradient,
-    join: <span>,&nbsp;</span>,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
     gradient: engineStyles.unreal.gradient,
-    join: <span>,&nbsp;</span>,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'Godot',
     href: '/learn/godot',
     gradient: engineStyles.godot.gradient,
-    join: <span>,&nbsp;</span>,
+    join: <span>,&nbsp;</span>
   },
   {
     name: 'HTML5',
     href: '/learn/html5',
     gradient: engineStyles.html5.gradient,
-    join: <span>,&nbsp;and&nbsp;</span>,
+    join: <span>,&nbsp;and&nbsp;</span>
   },
   {
     name: 'Custom',
     href: '/learn/custom',
     gradient: engineStyles.custom.gradient,
-    join: null,
+    join: null
   }
 ];
 
@@ -518,7 +518,7 @@ function Title() {
         {/* Subtitle */}
         <p className='mt-6 text-lg leading-8 text-gray-300'>
           Open-source solution to deploy, scale, and operate your multiplayer game
-          <br/>
+          <br />
           Supports&nbsp;
           {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
             <span>
@@ -535,7 +535,8 @@ function Title() {
               </Link>
               {join}
             </span>
-          ))}.
+          ))}
+          .
         </p>
 
         {/* Engines */}
@@ -564,12 +565,16 @@ function Title() {
           <Link
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
-            className='button cursor-pointer select-none rounded-lg border-b-[1px] border-violet-400 bg-violet-500
-            px-3.5 py-2.5
-            text-sm font-semibold text-white
-            transition-all
-            duration-150 [box-shadow:0_4px_0_0_#7c3aed] active:translate-y-[4px]
-            active:border-b-[0px] active:[box-shadow:0_0px_0_0_#7c3aed]'>
+            className={clsx(
+              'button box-border rounded-lgbg-violet-500 cursor-pointer select-none, bg-violet-500 border-violet-400 rounded-lg',
+              'px-3.5 py-2.5',
+              'text-sm font-semibold text-white',
+              'transition-all duration-150 ',
+              'border-b-[1px] active:border-b-[0px]',
+              'mb-[0px] active:mb-[1px]',
+              '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
+              'hover:translate-y-[-1px] active:translate-y-[4px]'
+            )}>
             Get Started for Free
           </Link>
 

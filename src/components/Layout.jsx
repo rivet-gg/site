@@ -85,7 +85,7 @@ function StarPrompt() {
                 onClick={onHide}
               />
 
-              <div className='ml-2'>Rivet is now open source!</div>
+              <div className='ml-2'>Rivet is open source!</div>
 
               {/* Hardcode the button height since the iframe has odd layout side effects */}
               <div className='ml-4 h-[28px]'>
