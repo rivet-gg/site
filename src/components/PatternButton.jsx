@@ -88,11 +88,10 @@ export function PatternButton({ children, ...props }) {
 
   return (
     <Component
-      href={props.href}
-      key={props.href}
+      {...props}
       onMouseMove={onMouseMove}
       className={clsx(
-        'group relative flex rounded-2xl transition hover:scale-[1.03] active:scale-[0.95] hover:shadow-lg hover:shadow-black/15',
+        'group relative flex rounded-2xl transition hover:scale-[1.03] active:scale-[0.95] hover:shadow-lg hover:shadow-black/10',
         suppress ? 'bg-transparent' : 'bg-white/2.5',
         suppress && 'opacity-50 hover:opacity-100',
         props.className,
