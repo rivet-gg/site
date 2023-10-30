@@ -337,7 +337,7 @@ let caseStudies = [
     name: 'Ev.io',
     href: 'https://ev.io',
     badge: () => (
-      <div className='align-center absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
+      <div className='absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
         <FontAwesomeIcon icon={faAward} className='text-2xl' />
         <div className=' flex flex-col'>
           <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
@@ -513,7 +513,7 @@ function Title() {
       <Background />
 
       {/* Text */}
-      <div className='align-center flex flex-col items-center justify-center text-center'>
+      <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
         <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
           Multiplayer Made Simple
@@ -665,7 +665,7 @@ function Tabs({ index, onChangeTab }) {
             <PatternButton
               key={tab.name}
               className={clsx(
-                'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
+                'group/tab flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
               )}
               style={{ '--tab-color': tab.color }}
               suppress={!isCurrent}
@@ -766,8 +766,10 @@ function PageContents({ page }) {
               {page.features.map((feature, i) => (
                 <div
                   key={i}
-                  className='border-box outline-inset flex flex-row items-center gap-3 rounded-md px-4 py-2 font-semibold text-white outline outline-1 outline-white/10 transition'>
-                  <FontAwesomeIcon icon={feature.icon} />
+                  className='flex flex-row items-center gap-3 rounded-md font-semibold text-white transition'>
+                  <div className='flex rounded-lg w-9 h-9 justify-center items-center bg-white/[4%]'>
+                    <FontAwesomeIcon icon={feature.icon} className='w-4' />
+                  </div>
                   {feature.name}
                 </div>
               ))}
@@ -807,7 +809,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='align-center group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
