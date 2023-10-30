@@ -525,26 +525,27 @@ function Title() {
         </h1>
 
         {/* Subtitle */}
-        <p className='mt-6 text-lg leading-8 text-gray-300'>
-          Open-source solution to deploy, scale, and operate your multiplayer game
-          <br />
-          Supports&nbsp;
-          {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
-            <span key={name}>
-              <Link
-                href={href}
-                className={clsx(
-                  'inline font-semibold transition hover:scale-110',
-                  'bg-gradient-to-r bg-clip-text text-transparent',
-                  gradient[0],
-                  gradient[1]
-                )}>
-                {name}
-              </Link>
-              {join}
-            </span>
-          ))}
-        </p>
+        <div className='mt-6 text-lg text-gray-300 leading-8'>
+          <p>Open-source solution to deploy, scale, and operate your multiplayer game</p>
+          <p className='md:mt-0 mt-4'>
+            Supports&nbsp;
+            {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
+              <span key={name}>
+                <Link
+                  href={href}
+                  className={clsx(
+                    'inline font-semibold transition hover:scale-110',
+                    'bg-gradient-to-r bg-clip-text text-transparent',
+                    gradient[0],
+                    gradient[1]
+                  )}>
+                  {name}
+                </Link>
+                {join}
+              </span>
+            ))}
+          </p>
+        </div>
 
         {/* Engines */}
         {/* <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
@@ -568,7 +569,7 @@ function Title() {
         </div> */}
 
         {/* CTA */}
-        <div className='justify-left mt-10 flex items-center gap-x-6'>
+        <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
           <JuicyButton>Sign Up for Beta</JuicyButton>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
@@ -576,12 +577,12 @@ function Title() {
           </Link>
         </div>
 
-        <div className='mt-8 flex items-center justify-center'>
+        <div className='mt-9 flex sm:flex-row flex-col items-center justify-center'>
           {/* YC */}
           <Link
             href='https://www.ycombinator.com/'
             target='_blank'
-            className='margin-auto block w-max py-1.5 opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
+            className='margin-auto block w-max opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
             <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
               <div>Backed by</div>
               <YCLogo className='h-[1.7em]' white={true} />
@@ -589,7 +590,8 @@ function Title() {
           </Link>
 
           {/* Separator */}
-          <div className='h-4 w-[1px] bg-white/50 mx-4'></div>
+          <div className='sm:block hidden mx-4 h-4 w-[1px] bg-white/50'></div>
+          <div className='sm:hidden block my-4 w-4 h-[1px] bg-white/50'></div>
 
           {/* GitHub */}
           <div className='h-[28px]'>
@@ -685,7 +687,11 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div>
-      <nav className='-mb-px flex gap-x-4 pt-4' aria-label='Tabs'>
+      <nav className={clsx(
+        '-mb-px flex',
+        'sm:gap-x-4 sm:px-4 sm:pt-4',
+        'gap-x-2 px-2 pt-2',
+       )} aria-label='Tabs'>
         {featurePages.map((tab, i) => {
           let isCurrent = i == index;
           return (
@@ -727,7 +733,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[600px] w-full overflow-hidden'>
+    <div className='relative flex md:h-[600px] h-[500px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -819,7 +825,7 @@ function PageContents({ page }) {
 
 function CaseStudies({ props }) {
   return (
-    <div className='mt-40'>
+    <div className='md:mt-40 mt-20'>
       {/* Title */}
       <div className='mx-auto max-w-2xl text-center'>
         <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl'>
@@ -831,7 +837,12 @@ function CaseStudies({ props }) {
       </div>
 
       {/* Grid */}
-      <div className='-mx-6 mt-6 grid grid-cols-2 gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10 sm:mx-0 sm:rounded-2xl md:grid-cols-3'>
+      <div className={clsx(
+        'mt-6 grid  gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10',
+        'sm:mx-0 sm:rounded-2xl md:grid-cols-3',
+        '-mx-6 grid-cols-1'
+
+      )}>
         {caseStudies.map((study, i) => (
           <Link
             key={i}

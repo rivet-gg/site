@@ -22,11 +22,11 @@ export function Resource({ children, ...props }) {
   let splitTitle = props.title.split(/\./);
   let titleSegments = React.Children.map(splitTitle, (child, i) => {
     return (
-      <text>
+      <div>
         {child}
         {i != splitTitle.length - 1 ? '.' : ''}
         {i != splitTitle.length - 1 ? <wbr></wbr> : null}
-      </text>
+      </div>
     );
   });
 

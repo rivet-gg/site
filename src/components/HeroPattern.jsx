@@ -1,6 +1,7 @@
 import { GridPattern } from '@/components/GridPattern';
 
 export function HeroPattern() {
+  return null;
   return (
     <GridPattern className='absolute right-12 top-[120px] -z-10 m-0 w-[400px] max-w-[50%]'></GridPattern>
   );
