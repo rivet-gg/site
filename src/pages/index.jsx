@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import { GridPattern } from '@/components/GridPattern';
+import { PatternButton } from '@/components/PatternButton';
 import { Game } from '@/components/Game';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,6 +11,10 @@ import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Resource } from '@/components/Resources';
+import YCLogo from '@/components/YCLogo';
+import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { engineStyles } from '../lib/engineStyles';
 import {
   faBolt,
   faBook,
@@ -91,7 +95,7 @@ import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
 import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
 
-const pages = [
+const featurePages = [
   {
     name: 'Game Servers',
     description: 'Deploy your game on on Rivet, scale globally in seconds',
@@ -566,7 +570,7 @@ function Title() {
             href='https://b8v8449klvp.typeform.com/rivet'
             target='_blank'
             className={clsx(
-              'button box-border rounded-lgbg-violet-500 cursor-pointer select-none, bg-violet-500 border-violet-400 rounded-lg',
+              'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
               'px-3.5 py-2.5',
               'text-sm font-semibold text-white',
               'transition-all duration-150 ',
@@ -646,8 +650,8 @@ const swipePower = (offset, velocity) => {
 
 function paginate(page, dir) {
   const newPage = page + dir;
-  if (newPage < 0) return { index: pages.length - (-newPage % pages.length), dir };
-  return { index: newPage % pages.length, dir };
+  if (newPage < 0) return { index: featurePages.length - (-newPage % featurePages.length), dir };
+  return { index: newPage % featurePages.length, dir };
 }
 
 function Features() {
@@ -666,46 +670,41 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div>
-      <div className='border-b border-white/10'>
-        <nav className='-mb-px flex' aria-label='Tabs'>
-          {pages.map((tab, i) => {
-            let isCurrent = i == index;
-            return (
-              <div
-                key={tab.name}
-                href={tab.href}
-                className={clsx(
-                  isCurrent
-                    ? 'border-b-4 border-[color:var(--tab-color)] text-white'
-                    : 'opacity-50 hover:opacity-100',
-                  'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
-                )}
-                style={{ '--tab-color': tab.color }}
-                aria-current={isCurrent ? 'page' : undefined}
-                onClick={() => onChangeTab(i)}>
-                <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                  <Image
-                    src={tab.image[0]}
-                    alt='Tab image'
-                    className={clsx(
-                      'absolute h-full w-full opacity-100 transition'
-                      // isCurrent && 'opacity-0'
-                    )}
-                  />
-                  {/* <Image
+      <nav className='-mb-px flex gap-x-4 pt-4' aria-label='Tabs'>
+        {featurePages.map((tab, i) => {
+          let isCurrent = i == index;
+          return (
+            <PatternButton
+              key={tab.name}
+              className={clsx(
+                'group/tab align-center flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
+              )}
+              style={{ '--tab-color': tab.color }}
+              suppress={!isCurrent}
+              aria-current={isCurrent ? 'page' : undefined}
+              onClick={() => onChangeTab(i)}>
+              <div className='relative h-10 w-10 md:h-16 md:w-16'>
+                <Image
+                  src={tab.image[0]}
+                  alt='Tab image'
+                  className={clsx(
+                    'absolute h-full w-full opacity-100 transition'
+                    // isCurrent && 'opacity-0'
+                  )}
+                />
+                {/* <Image
                     src={tab.image[1]}
                     className={clsx(
                       'absolute h-full w-full opacity-0 transition',
                       isCurrent && 'opacity-100'
                     )}
                   /> */}
-                </div>
-                <div className='hidden sm:block'>{tab.name}</div>
               </div>
-            );
-          })}
-        </nav>
-      </div>
+              <div className='hidden font-display text-white sm:block'>{tab.name}</div>
+            </PatternButton>
+          );
+        })}
+      </nav>
     </div>
   );
 }
@@ -739,7 +738,7 @@ function Pages({ page, onChangePage }) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          <PageContents page={pages[page.index]} />
+          <PageContents page={featurePages[page.index]} />
         </motion.div>
       </AnimatePresence>
     </div>
@@ -839,22 +838,6 @@ function CaseStudies({ props }) {
     </div>
   );
 }
-
-import { CheckCircleIcon } from '@heroicons/react/20/solid';
-import { Resource, ResourceGroup } from '@/components/Resources';
-import YCLogo from '@/components/YCLogo';
-import { faCloudflare, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { engineStyles } from '../lib/engineStyles';
-// import YCLogo from '@/components/YCLogo';
-
-const benefits = [
-  'Competitive salaries',
-  'Flexible work hours',
-  '30 days of paid vacation',
-  'Annual team retreats',
-  'Benefits for you and your family',
-  'A great work environment'
-];
 
 function UpAndRunning() {
   return (

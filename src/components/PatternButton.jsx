@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
@@ -42,14 +43,14 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
   let gridHeight = 30;
 
   return (
-    <div className='pointer-events-none'>
+    <div className={clsx('pointer-events-none transition duration-300', gridProps.className)}>
       <div className='absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50'>
         <GridPattern
           width={gridWidth}
           height={gridHeight}
           x='50%'
-          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/[0.02] stroke-black/5 opacity-10 saturate-0 dark:fill-white/1 dark:stroke-white/2.5'
           {...gridProps}
+          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/[0.02] stroke-black/5 opacity-10 saturate-0 dark:fill-white/1 dark:stroke-white/2.5'
         />
       </div>
       <motion.div
@@ -63,8 +64,8 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
           width={gridWidth}
           height={gridHeight}
           x='50%'
-          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/50 stroke-black/70 dark:fill-white/2.5 dark:stroke-white/10'
           {...gridProps}
+          className='absolute inset-x-0 inset-y-[-30%] h-[160%] w-full fill-black/50 stroke-black/70 dark:fill-white/2.5 dark:stroke-white/10'
         />
       </motion.div>
     </div>
@@ -72,6 +73,8 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
 }
 
 export function PatternButton({ children, ...props }) {
+  let Component = props.href ? Link : 'button';
+
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
 
@@ -81,15 +84,28 @@ export function PatternButton({ children, ...props }) {
     mouseY.set(clientY - top);
   }
 
+  let suppress = props.suppress || false;
+
   return (
-    <Link
+    <Component
       href={props.href}
       key={props.href}
       onMouseMove={onMouseMove}
-      className='group relative flex rounded-2xl bg-zinc-50 transition hover:scale-[1.03] hover:shadow-md hover:shadow-zinc-900/5 active:scale-[0.95] dark:bg-white/2.5 dark:hover:shadow-black/5'>
-      <ResourcePattern {...props.pattern} mouseX={mouseX} mouseY={mouseY} />
+      className={clsx(
+        'group relative flex rounded-2xl transition hover:scale-[1.03] hover:shadow-md active:scale-[0.95] hover:shadow-black/5',
+        suppress ? 'bg-transparent' : 'bg-white/2.5',
+        suppress && 'opacity-75 hover:opacity-100',
+        props.className,
+      )}>
+      <ResourcePattern
+        {...props.pattern}
+        mouseX={mouseX} mouseY={mouseY}
+        className={clsx(
+          suppress && 'opacity-0 group-hover:opacity-100',
+          props.pattern?.className
+        )} />
       <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       {children}
-    </Link>
+    </Component>
   );
 }
