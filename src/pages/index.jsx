@@ -695,7 +695,7 @@ function Tabs({ index, onChangeTab }) {
                 'group/tab flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
               )}
               style={{ '--tab-color': tab.color }}
-              suppress={isCurrent ? 1 : 0}
+              suppress={isCurrent ? 0 : 1}
               aria-current={isCurrent ? 'page' : undefined}
               onClick={() => onChangeTab(i)}>
               <div className='relative h-10 w-10 md:h-16 md:w-16'>
