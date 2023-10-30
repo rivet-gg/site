@@ -191,11 +191,6 @@ function docsTabs(path) {
 function learnTabs(path) {
   return [
     {
-      title: 'Introduction',
-      href: '/learn',
-      current: path.length == 1
-    },
-    {
       title: 'Unity',
       href: '/learn/unity',
       gradient: ['from-cyan-300', 'to-cyan-500'],
