@@ -43,7 +43,7 @@ function ResourcePattern({ mouseX, mouseY, ...gridProps }) {
   let gridHeight = 30;
 
   return (
-    <div className={clsx('pointer-events-none transition duration-300', gridProps.className)}>
+    <div className={clsx('pointer-events-none transition duration-300 -z-20', gridProps.className)}>
       <div className='absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50'>
         <GridPattern
           width={gridWidth}
@@ -92,9 +92,9 @@ export function PatternButton({ children, ...props }) {
       key={props.href}
       onMouseMove={onMouseMove}
       className={clsx(
-        'group relative flex rounded-2xl transition hover:scale-[1.03] hover:shadow-md active:scale-[0.95] hover:shadow-black/5',
+        'group relative flex rounded-2xl transition hover:scale-[1.03] active:scale-[0.95] hover:shadow-lg hover:shadow-black/15',
         suppress ? 'bg-transparent' : 'bg-white/2.5',
-        suppress && 'opacity-75 hover:opacity-100',
+        suppress && 'opacity-50 hover:opacity-100',
         props.className,
       )}>
       <ResourcePattern
@@ -104,7 +104,7 @@ export function PatternButton({ children, ...props }) {
           suppress && 'opacity-0 group-hover:opacity-100',
           props.pattern?.className
         )} />
-      <div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
+      <div className='-z-10 absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       {children}
     </Component>
   );
