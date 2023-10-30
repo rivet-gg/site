@@ -709,7 +709,8 @@ function Tabs({ index, onChangeTab }) {
                   src={tab.image[0]}
                   alt='Tab image'
                   className={clsx(
-                    'absolute h-full w-full opacity-100 transition'
+                    'absolute h-full w-full opacity-100 transition',
+                    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
                     // isCurrent && 'opacity-0'
                   )}
                 />
