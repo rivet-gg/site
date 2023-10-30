@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { HeroPattern } from '@/components/HeroPattern';
 import { engineStyles } from '../../lib/engineStyles';
+import { PatternButton } from '@/components/PatternButton';
 
 let supportedEngines = [
   {
@@ -49,8 +50,8 @@ export default function LearnIndex() {
         <Resource title='Custom' icon={faBooks} href='/learn/custom/tutorials/crash-course' />
       </ResourceGroup> */}
 
-      <div className='h-[calc(100vh-180px)] flex flex-col items-stretch justify-center'>
-        <div className='text-center font-display text-2xl text-white'>Pick Your Engine</div>
+      <div className='flex h-[calc(100vh-180px)] flex-col items-stretch justify-center'>
+        <div className='text-center font-display text-3xl text-white'>Pick Your Engine</div>
         <div className='mt-10 grid grid-cols-6 gap-4'>
           {supportedEngines.map((engine, i) => (
             <GameEngine key={engine.name} engine={engine} long={i >= 3} />
@@ -62,15 +63,16 @@ export default function LearnIndex() {
 }
 
 function GameEngine({ engine, long } = { long: false }) {
-  let textClasses = clsx('absolute inset-0 flex items-center justify-center text-center', 'font-display text-3xl');
+  let textClasses = clsx(
+    'absolute inset-0 flex items-center justify-center text-center',
+    'font-display text-3xl',
+    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]'
+  );
   return (
-    <Link
+    <PatternButton
       href={engine.href}
       className={clsx(
-        'group relative flex items-center justify-center rounded-lg bg-zinc-800',
-        'border-1 border border-white/10',
-        'transition',
-        'opacity-50 hover:scale-[102%] hover:border-white/20 hover:opacity-100 hover:shadow-xl',
+        'group relative flex items-center justify-center rounded-lg',
         'h-[150px]',
         long ? 'col-span-3' : 'col-span-2'
       )}>
@@ -85,6 +87,6 @@ function GameEngine({ engine, long } = { long: false }) {
         )}>
         {engine.name}
       </span>
-    </Link>
+    </PatternButton>
   );
 }
