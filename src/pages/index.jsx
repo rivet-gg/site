@@ -566,21 +566,9 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <Link
-            href='https://b8v8449klvp.typeform.com/rivet'
-            target='_blank'
-            className={clsx(
-              'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
-              'px-3.5 py-2.5',
-              'text-sm font-semibold text-white',
-              'transition-all duration-150 ',
-              'border-b-[1px] active:border-b-[0px]',
-              'mb-[0px] active:mb-[1px]',
-              '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
-              'hover:translate-y-[-1px] active:translate-y-[4px]'
-            )}>
+          <JuicyButton>
             Get Started for Free
-          </Link>
+          </JuicyButton>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -788,7 +776,7 @@ function PageContents({ page }) {
             {/* Learn more */}
             {page.learnHref && (
               <div className='mt-5'>
-                <Button href={page.learnHref} arrow='right'>
+                <Button href={page.learnHref} arrow='right' variant='juicy'>
                   Learn More
                 </Button>
               </div>
@@ -897,6 +885,27 @@ function UpAndRunning() {
         /> */}
       </div>
     </div>
+  );
+}
+
+function JuicyButton({ children, ...props }) {
+  return (
+    <Link
+      href='https://b8v8449klvp.typeform.com/rivet'
+      target='_blank'
+      className={clsx(
+        'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
+        'px-3.5 py-2.5',
+        'text-sm font-semibold text-white',
+        'transition-all duration-150 ',
+        'border-b-[1px] active:border-b-[0px]',
+        'mb-[0px] active:mb-[1px]',
+        '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
+        'hover:translate-y-[-1px] active:translate-y-[4px]'
+      )}
+      {...props}>
+      {children}
+    </Link>
   );
 }
 
