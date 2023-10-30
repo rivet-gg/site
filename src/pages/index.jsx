@@ -569,7 +569,7 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <JuicyButton>Get Started for Free</JuicyButton>
+          <JuicyButton>Sign Up for Beta</JuicyButton>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
