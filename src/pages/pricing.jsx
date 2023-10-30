@@ -16,6 +16,7 @@ import imgMatchmaker from '@/images/products/matchmaker-duotone.svg';
 import imgGameGuard from '@/images/products/game-guard-duotone.svg';
 import imgAnalytics from '@/images/products/analytics-duotone.svg';
 import { faInfinity } from '@fortawesome/pro-solid-svg-icons';
+import { HeroPattern } from '../components/HeroPattern';
 
 // Target on-demand price: ~$22/mo
 // Hathora runs c6a.2xlarge, ~$27.54
@@ -201,180 +202,188 @@ export default function Pricing() {
     }
   ];
   return (
-    <div className='py-16 sm:py-24'>
-      {/* Modals */}
-      <PricingModal open={open} onClose={() => setOpen(false)} />
+    <>
+      <HeroPattern />
+      <div className='py-16 sm:py-24'>
+        {/* Modals */}
+        <PricingModal open={open} onClose={() => setOpen(false)} />
 
-      {/* Pricing */}
-      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        <div className='mx-auto max-w-4xl text-center'>
-          <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
-            Pricing
+        {/* Pricing */}
+        <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+          <div className='mx-auto max-w-4xl text-center'>
+            <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
+              Pricing
+            </p>
+          </div>
+          <p className='mx-auto mt-6 text-center text-lg leading-8 text-gray-300'>
+            Affordable for small studios & scalable for large studios.
+            <br />
+            Always predictable pricing.
           </p>
-        </div>
-        <p className='mx-auto mt-6 text-center text-lg leading-8 text-gray-300'>
-          Affordable for small studios & scalable for large studios.
-          <br />
-          Always predictable pricing.
-        </p>
 
-        {/* xs to lg */}
-        <div className='mx-auto mt-12 max-w-md space-y-8 sm:mt-16 lg:hidden'>
-          {tiers.map(tier => (
-            <section
-              key={tier.id}
-              className={clsx(
-                tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
-                'p-8'
-              )}>
-              <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>{tier.name}</h2>
-              <a
-                href={tier.href}
-                aria-describedby={tier.id}
+          {/* xs to lg */}
+          <div className='mx-auto mt-12 max-w-md space-y-8 sm:mt-16 lg:hidden'>
+            {tiers.map(tier => (
+              <section
+                key={tier.id}
                 className={clsx(
-                  tier.mostPopular
-                    ? 'bg-violet-500 text-white hover:bg-violet-400 focus-visible:outline-violet-500'
-                    : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
-                  'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+                  tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
+                  'p-8'
                 )}>
-                {tier.button}
-              </a>
-              <ul role='list' className='mt-10 space-y-4 text-sm leading-6 text-white'>
-                {sections.map(section => (
-                  <li key={section.name}>
-                    <ul role='list' className='space-y-4'>
-                      {section.features.map(feature =>
-                        feature.tiers[tier.id] ? (
-                          <li key={feature.name} className='flex gap-x-3'>
-                            <CheckIcon className='h-6 w-5 flex-none text-violet-400' aria-hidden='true' />
-                            <span>
-                              {feature.name}{' '}
+                <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>
+                  {tier.name}
+                </h2>
+                <a
+                  href={tier.href}
+                  aria-describedby={tier.id}
+                  className={clsx(
+                    tier.mostPopular
+                      ? 'bg-violet-500 text-white hover:bg-violet-400 focus-visible:outline-violet-500'
+                      : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
+                    'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+                  )}>
+                  {tier.button}
+                </a>
+                <ul role='list' className='mt-10 space-y-4 text-sm leading-6 text-white'>
+                  {sections.map(section => (
+                    <li key={section.name}>
+                      <ul role='list' className='space-y-4'>
+                        {section.features.map(feature =>
+                          feature.tiers[tier.id] ? (
+                            <li key={feature.name} className='flex gap-x-3'>
+                              <CheckIcon className='h-6 w-5 flex-none text-violet-400' aria-hidden='true' />
+                              <span>
+                                {feature.name}{' '}
+                                {typeof feature.tiers[tier.id] === 'string' ||
+                                typeof feature.tiers[tier.id] === 'object' ? (
+                                  <span className='text-sm leading-6 text-gray-400'>
+                                    ({feature.tiers[tier.id]})
+                                  </span>
+                                ) : null}
+                              </span>
+                            </li>
+                          ) : null
+                        )}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+
+          {/* lg+ */}
+          <div className='isolate mt-20 hidden lg:block'>
+            <div className='relative -mx-8'>
+              {tiers.some(tier => tier.mostPopular) ? (
+                <div className='absolute inset-x-4 inset-y-0 -z-10 flex'>
+                  <div
+                    className='flex w-1/4 px-4'
+                    aria-hidden='true'
+                    style={{ marginLeft: `${(tiers.findIndex(tier => tier.mostPopular) + 1) * 25}%` }}>
+                    <div className='w-full rounded-t-xl border-x border-t border-white/10 bg-white/5' />
+                  </div>
+                </div>
+              ) : null}
+              <table className='w-full table-fixed border-separate border-spacing-x-8 text-left'>
+                <caption className='sr-only'>Pricing plan comparison</caption>
+                <colgroup>
+                  <col className='w-1/4' />
+                  <col className='w-1/4' />
+                  <col className='w-1/4' />
+                  <col className='w-1/4' />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <td />
+                    {tiers.map(tier => (
+                      <th key={tier.id} scope='col' className='px-6 pt-6 align-top xl:px-8 xl:pt-8'>
+                        <h2 className='font-bolt text-4xl text-white'>{tier.name}</h2>
+                        <p className='mt-3 font-normal text-gray-300'>{tier.description}</p>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope='row'></th>
+                    {tiers.map(tier => (
+                      <td key={tier.id} className='px-6 pt-6 xl:px-8'>
+                        <a
+                          href={tier.href}
+                          className={clsx(
+                            tier.mostPopular
+                              ? 'bg-violet-500 hover:bg-violet-400 focus-visible:outline-violet-600'
+                              : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
+                            'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+                          )}>
+                          {tier.button}
+                        </a>
+                      </td>
+                    ))}
+                  </tr>
+                  {sections.map((section, sectionIdx) => (
+                    <Fragment key={section.name}>
+                      <tr>
+                        <th
+                          scope='colgroup'
+                          colSpan={4}
+                          className={clsx(
+                            sectionIdx === 0 ? 'pt-8' : 'pt-16',
+                            'pb-4 text-sm font-semibold leading-6 text-white'
+                          )}>
+                          {section.name}
+                          <div className='absolute inset-x-8 mt-4 h-px bg-white/10' />
+                        </th>
+                      </tr>
+                      {section.features.map(feature => (
+                        <tr key={feature.name}>
+                          <th scope='row' className='py-4 text-sm font-normal leading-6 text-white'>
+                            <div className='flex items-center gap-3'>
+                              {feature.icon && (
+                                <Image className='h-5 w-5' src={feature.icon} alt={section.name} />
+                              )}
+                              <div>{feature.name}</div>
+                            </div>
+                            {/* <div className='absolute inset-x-8 mt-4 h-px bg-white/5' /> */}
+                          </th>
+                          {tiers.map(tier => (
+                            <td key={tier.id} className='px-6 py-4 xl:px-8'>
                               {typeof feature.tiers[tier.id] === 'string' ||
                               typeof feature.tiers[tier.id] === 'object' ? (
-                                <span className='text-sm leading-6 text-gray-400'>
-                                  ({feature.tiers[tier.id]})
-                                </span>
-                              ) : null}
-                            </span>
-                          </li>
-                        ) : null
-                      )}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
+                                <div className='text-center text-sm leading-6 text-gray-300'>
+                                  {feature.tiers[tier.id]}
+                                </div>
+                              ) : (
+                                <>
+                                  {feature.tiers[tier.id] === true ? (
+                                    <CheckIcon
+                                      className='mx-auto h-5 w-5 text-violet-400'
+                                      aria-hidden='true'
+                                    />
+                                  ) : (
+                                    <MinusIcon className='mx-auto h-5 w-5 text-gray-500' aria-hidden='true' />
+                                  )}
 
-        {/* lg+ */}
-        <div className='isolate mt-20 hidden lg:block'>
-          <div className='relative -mx-8'>
-            {tiers.some(tier => tier.mostPopular) ? (
-              <div className='absolute inset-x-4 inset-y-0 -z-10 flex'>
-                <div
-                  className='flex w-1/4 px-4'
-                  aria-hidden='true'
-                  style={{ marginLeft: `${(tiers.findIndex(tier => tier.mostPopular) + 1) * 25}%` }}>
-                  <div className='w-full rounded-t-xl border-x border-t border-white/10 bg-white/5' />
-                </div>
-              </div>
-            ) : null}
-            <table className='w-full table-fixed border-separate border-spacing-x-8 text-left'>
-              <caption className='sr-only'>Pricing plan comparison</caption>
-              <colgroup>
-                <col className='w-1/4' />
-                <col className='w-1/4' />
-                <col className='w-1/4' />
-                <col className='w-1/4' />
-              </colgroup>
-              <thead>
-                <tr>
-                  <td />
-                  {tiers.map(tier => (
-                    <th key={tier.id} scope='col' className='px-6 pt-6 align-top xl:px-8 xl:pt-8'>
-                      <h2 className='font-bolt text-4xl text-white'>{tier.name}</h2>
-                      <p className='mt-3 font-normal text-gray-300'>{tier.description}</p>
-                    </th>
+                                  <span className='sr-only'>
+                                    {feature.tiers[tier.id] === true ? 'Included' : 'Not included'} in{' '}
+                                    {tier.name}
+                                  </span>
+                                </>
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </Fragment>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope='row'></th>
-                  {tiers.map(tier => (
-                    <td key={tier.id} className='px-6 pt-6 xl:px-8'>
-                      <a
-                        href={tier.href}
-                        className={clsx(
-                          tier.mostPopular
-                            ? 'bg-violet-500 hover:bg-violet-400 focus-visible:outline-violet-600'
-                            : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
-                          'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                        )}>
-                        {tier.button}
-                      </a>
-                    </td>
-                  ))}
-                </tr>
-                {sections.map((section, sectionIdx) => (
-                  <Fragment key={section.name}>
-                    <tr>
-                      <th
-                        scope='colgroup'
-                        colSpan={4}
-                        className={clsx(
-                          sectionIdx === 0 ? 'pt-8' : 'pt-16',
-                          'pb-4 text-sm font-semibold leading-6 text-white'
-                        )}>
-                        {section.name}
-                        <div className='absolute inset-x-8 mt-4 h-px bg-white/10' />
-                      </th>
-                    </tr>
-                    {section.features.map(feature => (
-                      <tr key={feature.name}>
-                        <th scope='row' className='py-4 text-sm font-normal leading-6 text-white'>
-                          <div className='flex items-center gap-3'>
-                            {feature.icon && (
-                              <Image className='h-5 w-5' src={feature.icon} alt={section.name} />
-                            )}
-                            <div>{feature.name}</div>
-                          </div>
-                          {/* <div className='absolute inset-x-8 mt-4 h-px bg-white/5' /> */}
-                        </th>
-                        {tiers.map(tier => (
-                          <td key={tier.id} className='px-6 py-4 xl:px-8'>
-                            {typeof feature.tiers[tier.id] === 'string' ||
-                            typeof feature.tiers[tier.id] === 'object' ? (
-                              <div className='text-center text-sm leading-6 text-gray-300'>
-                                {feature.tiers[tier.id]}
-                              </div>
-                            ) : (
-                              <>
-                                {feature.tiers[tier.id] === true ? (
-                                  <CheckIcon className='mx-auto h-5 w-5 text-violet-400' aria-hidden='true' />
-                                ) : (
-                                  <MinusIcon className='mx-auto h-5 w-5 text-gray-500' aria-hidden='true' />
-                                )}
-
-                                <span className='sr-only'>
-                                  {feature.tiers[tier.id] === true ? 'Included' : 'Not included'} in{' '}
-                                  {tier.name}
-                                </span>
-                              </>
-                            )}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </Fragment>
-                ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

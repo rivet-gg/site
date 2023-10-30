@@ -8,6 +8,7 @@ import { SimpleLayout } from '@/components/SimpleLayout';
 import { formatDate } from '@/lib/formatDate';
 import { getAllArticles } from '@/lib/getAllArticles';
 import { faRss } from '@fortawesome/pro-solid-svg-icons';
+import { HeroPattern } from '../../components/HeroPattern';
 
 function Article({ article }) {
   return (
@@ -70,6 +71,7 @@ function Article({ article }) {
 export default function ArticlesIndex({ articles }) {
   return (
     <>
+      <HeroPattern />
       <SimpleLayout title='Blog' intro={<Button icon={faRss} href='/rss/feed.xml'>RSS Feed</Button>}>
         <div className='mt-16 grid grid-cols-1 gap-x-8 gap-y-20 lg:grid-cols-3'>
           {articles.map(article => (

@@ -1,18 +1,18 @@
 module.exports = ({ theme }) => ({
   DEFAULT: {
     css: {
-      '--tw-prose-body': theme('colors.zinc.400'),
+      '--tw-prose-body': theme('colors.zinc.300'),
       '--tw-prose-headings': theme('colors.white'),
       '--tw-prose-links': theme('colors.violet.400'),
       '--tw-prose-links-hover': theme('colors.violet.500'),
       '--tw-prose-links-underline': theme('colors.violet.500 / 0.3'),
       '--tw-prose-bold': theme('colors.white'),
-      '--tw-prose-counters': theme('colors.zinc.400'),
+      '--tw-prose-counters': theme('colors.zinc.300'),
       '--tw-prose-bullets': theme('colors.zinc.600'),
       '--tw-prose-hr': theme('colors.white / 0.05'),
       '--tw-prose-quotes': theme('colors.zinc.100'),
       '--tw-prose-quote-borders': theme('colors.zinc.700'),
-      '--tw-prose-captions': theme('colors.zinc.400'),
+      '--tw-prose-captions': theme('colors.zinc.300'),
       '--tw-prose-code': theme('colors.white'),
       '--tw-prose-code-bg': theme('colors.zinc.700 / 0.15'),
       '--tw-prose-code-ring': theme('colors.white / 0.1'),
