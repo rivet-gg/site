@@ -48,7 +48,7 @@ export function Layout({ navigation, prose, inset, children, sections = [] }) {
       </div>
 
       {/* Star promp */}
-      <StarPrompt />
+      {/* <StarPrompt /> */}
     </SectionProvider>
   );
 }

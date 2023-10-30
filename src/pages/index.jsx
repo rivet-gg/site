@@ -16,6 +16,7 @@ import YCLogo from '@/components/YCLogo';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { engineStyles } from '../lib/engineStyles';
 import logoWhite from '@/images/branding/white.svg';
+import GitHubButton from 'react-github-btn';
 import {
   faBolt,
   faBook,
@@ -576,16 +577,33 @@ function Title() {
           </Link>
         </div>
 
-        {/* YC */}
-        <Link
-          href='https://www.ycombinator.com/'
-          target='_blank'
-          className='margin-auto mt-6 block w-max py-1.5 opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
-          <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
-            <div>Backed by</div>
-            <YCLogo className='h-[1.7em]' white={true} />
+        <div className='mt-8 flex items-center justify-center'>
+          {/* YC */}
+          <Link
+            href='https://www.ycombinator.com/'
+            target='_blank'
+            className='margin-auto block w-max py-1.5 opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
+            <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
+              <div>Backed by</div>
+              <YCLogo className='h-[1.7em]' white={true} />
+            </div>
+          </Link>
+
+          {/* Separator */}
+          <div className='h-4 w-[1px] bg-white/50 mx-4'></div>
+
+          {/* GitHub */}
+          <div className='h-[28px]'>
+            <GitHubButton
+              href='https://github.com/rivet-gg/rivet'
+              data-color-scheme='no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;'
+              data-size='large'
+              data-show-count='true'
+              aria-label='Star rivet-gg/rivet on GitHub'>
+              Star
+            </GitHubButton>
           </div>
-        </Link>
+        </div>
       </div>
 
       {/* Demo */}
@@ -596,7 +614,7 @@ function Title() {
 
 function DemoSection() {
   return (
-    <div className='flex flex-col items-center justify-center mt-24'>
+    <div className='mt-24 flex flex-col items-center justify-center'>
       {/* <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl text-center'>Try it yourself</h2> */}
       <Demo />
     </div>
@@ -777,7 +795,7 @@ function PageContents({ page }) {
                 <div
                   key={i}
                   className='flex flex-row items-center gap-3 rounded-md font-semibold text-white transition'>
-                  <div className='flex rounded-lg w-9 h-9 justify-center items-center bg-white/[4%] outline outline-1 outline-white/[8%]'>
+                  <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
                     <FontAwesomeIcon icon={feature.icon} className='w-4' />
                   </div>
                   {feature.name}
@@ -789,7 +807,7 @@ function PageContents({ page }) {
             {page.learnHref && (
               <div className='mt-5'>
                 <Button href={page.learnHref} arrow='right' variant='juicy'>
-                  {page.learnName ?? "Documentation"}
+                  {page.learnName ?? 'Documentation'}
                 </Button>
               </div>
             )}
