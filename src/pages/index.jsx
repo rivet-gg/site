@@ -15,6 +15,7 @@ import { Resource } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { engineStyles } from '../lib/engineStyles';
+import logoWhite from '@/images/branding/white.svg';
 import {
   faBolt,
   faBook,
@@ -267,6 +268,7 @@ const featurePages = [
     image: [imgOssWhite, imgOssColor],
     screenshot: imgOss,
     learnHref: 'https://github.com/rivet-gg/rivet',
+    learnName: 'GitHub',
     features: [
       {
         name: 'Permissive license (Apache 2.0)',
@@ -389,6 +391,8 @@ export default function Index() {
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <CaseStudies />
           </div>
+
+          <DemoSection />
 
           <UpAndRunning />
         </div>
@@ -515,7 +519,7 @@ function Title() {
       {/* Text */}
       <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
+        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
           Multiplayer Made Simple
         </h1>
 
@@ -540,7 +544,6 @@ function Title() {
               {join}
             </span>
           ))}
-          .
         </p>
 
         {/* Engines */}
@@ -566,9 +569,7 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-left mt-10 flex items-center gap-x-6'>
-          <JuicyButton>
-            Get Started for Free
-          </JuicyButton>
+          <JuicyButton>Get Started for Free</JuicyButton>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -589,6 +590,15 @@ function Title() {
 
       {/* Demo */}
       {/* <Demo /> */}
+    </div>
+  );
+}
+
+function DemoSection() {
+  return (
+    <div className='flex flex-col items-center justify-center mt-24'>
+      {/* <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl text-center'>Try it yourself</h2> */}
+      <Demo />
     </div>
   );
 }
@@ -767,7 +777,7 @@ function PageContents({ page }) {
                 <div
                   key={i}
                   className='flex flex-row items-center gap-3 rounded-md font-semibold text-white transition'>
-                  <div className='flex rounded-lg w-9 h-9 justify-center items-center bg-white/[4%]'>
+                  <div className='flex rounded-lg w-9 h-9 justify-center items-center bg-white/[4%] outline outline-1 outline-white/[8%]'>
                     <FontAwesomeIcon icon={feature.icon} className='w-4' />
                   </div>
                   {feature.name}
@@ -779,7 +789,7 @@ function PageContents({ page }) {
             {page.learnHref && (
               <div className='mt-5'>
                 <Button href={page.learnHref} arrow='right' variant='juicy'>
-                  Learn More
+                  {page.learnName ?? "Documentation"}
                 </Button>
               </div>
             )}
@@ -831,7 +841,7 @@ function CaseStudies({ props }) {
 
 function UpAndRunning() {
   return (
-    <div className='relative isolate mt-40'>
+    <div className='relative isolate mt-28'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-inset ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
