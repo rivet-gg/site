@@ -733,7 +733,7 @@ function Tabs({ index, onChangeTab }) {
 function Pages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex md:h-[600px] h-[500px] w-full overflow-hidden'>
+    <div className='relative flex md:h-[600px] h-[550px] w-full overflow-hidden'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
