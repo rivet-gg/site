@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Button';
 import { Feedback } from '@/components/Feedback';
+import clsx from 'clsx';
 
 import imgLogo from '@/images/branding/white.svg';
 import {
@@ -23,7 +24,7 @@ const footer = {
     { name: 'Documentation', href: '/docs/general' }
   ],
   company: [
-    { name: 'Blog', href: '/blog' },
+    { name: 'We\'re hiring!', href: 'https://rivet-gg.notion.site/Job-Board-eed66f2eab2b4d7ea3e21ccd63b22efe?pvs=4', newTab: true, highlight: true, badge: '1' },
     { name: 'Support', href: '/support' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Status Page', href: 'https://rivet-gg.betteruptime.com/' },
@@ -158,8 +159,9 @@ function SmallPrint() {
             <ul role='list' className='mt-3 space-y-2'>
               {footer.company.map(item => (
                 <li key={item.name}>
-                  <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
-                    {item.name}
+                  <Link href={item.href} target={item.newTab ? '_blank' : null} className={clsx('text-sm leading-4 text-gray-300 hover:text-white')}>
+                    <span className={clsx(item.highlight && 'text-violet-200 drop-shadow-[0_0_10px_rgba(221,214,254,0.5)]')}>{item.name}</span>
+                    {item.badge && <span className='rounded-full bg-violet-500 px-2 ml-2'>{item.badge}</span>}
                   </Link>
                 </li>
               ))}
