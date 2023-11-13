@@ -73,7 +73,7 @@ function GameEngine({ engine, long } = { long: false }) {
         'h-[150px]',
         long ? 'col-span-3' : 'col-span-2'
       )}>
-      <span className={clsx(textClasses, 'text-white')}>{engine.name}</span>
+      <span className={clsx(textClasses, 'text-white opacity-100 hover:opacity-0')}>{engine.name}</span>
       <span
         className={clsx(
           textClasses,
