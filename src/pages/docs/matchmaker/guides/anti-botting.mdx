@@ -200,13 +200,13 @@ The request payload will look something like this:
   "verification_data": {
     // ...
   },
-  "lobby": {
+  "game": {
     "namespace_id": "NAMESPACE_ID",
     "game_mode_id": "GAME_MODE_ID",
     "game_mode_name_id": "default",
 
     // Info about the lobby only if it is already running. Null otherwise.
-    "info": {
+    "lobby": {
       "lobby_id": "LOBBY_ID",
       "region_id": "REGION_ID",
       "region_name_id": "lnd-atl",
@@ -223,6 +223,16 @@ The request payload will look something like this:
     // lobby creation. ††
     "config": {
       // ...
+    }
+  },
+  // IP info about all connecting players in this request.
+  "clients": {
+    "1.2.3.4": {
+      // Null if `User-Agent` header was not set.
+      "user_agent": "...",
+      // Coordinates can be null if IP fetching failed.
+      "latitude": 0.0,
+      "longitude": 0.0
     }
   },
   "join_kind": "normal", // Either "normal", or "party"
