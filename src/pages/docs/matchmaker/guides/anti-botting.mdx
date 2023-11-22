@@ -206,6 +206,7 @@ The request payload will look something like this:
     "game_mode_name_id": "default",
 
     // Info about the lobby only if it is already running. Null otherwise.
+    // When this value is null and `kind` is "find", that implies this lobby is being auto-created.
     "lobby": {
       "lobby_id": "LOBBY_ID",
       "region_id": "REGION_ID",
