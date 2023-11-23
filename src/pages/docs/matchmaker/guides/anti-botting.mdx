@@ -230,7 +230,9 @@ The request payload will look something like this:
     // the user
     "tags": {
       // ...
-    }
+    },
+    // Set by the user in /find and /create requests. Null if unset.
+    "dynamic_max_players": 4
   },
   // IP info about all connecting players in this request.
   "clients": {
