@@ -5,7 +5,7 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": ["concepts/game-guard", "concepts/protocols", "concepts/ports"]
+        "pages": ["concepts/game-guard", "concepts/protocols", "concepts/ports", "concepts/logging"]
       }
     ]
   }
