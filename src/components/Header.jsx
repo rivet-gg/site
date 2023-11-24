@@ -203,7 +203,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           <MobileSearch />
           {/* <ModeToggle /> */}
           <div className='hidden min-[416px]:contents'>
-            <Button href='https://hub.rivet.gg' target='_blank' variant='secondary'>
+            <Button href='https://hub.rivet.gg' variant='secondary'>
                 Open Rivet
             </Button>
           </div>
