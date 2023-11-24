@@ -104,7 +104,7 @@ const featurePages = [
     color: '#8A7ED8',
     image: [imgComputeWhite, imgComputeColor],
     screenshot: imgLobbies,
-    learnHref: '/docs/',
+    learnHref: '/docs/serverless-lobbies',
     features: [
       {
         name: 'Cost effective auto-scaling',
@@ -138,7 +138,7 @@ const featurePages = [
     color: '#8A7ED8',
     image: [imgGameGuardWhite, imgGameGuardColor],
     screenshot: imgGameGuard,
-    learnHref: '/docs//concepts/game-guard',
+    learnHref: '/docs/serverless-lobbies/concepts/game-guard',
     features: [
       {
         name: 'Mitigates DDoS & botting attacks',

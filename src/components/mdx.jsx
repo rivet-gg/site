@@ -152,10 +152,10 @@ export function ProtocolSupportMatrix() {
       <tr>
         <th>Protocol</th>
         <th>
-          <Link href='/docs//concepts/game-guard'>Rivet Game Guard</Link>
+          <Link href='/docs/serverless-lobbies/concepts/game-guard'>Rivet Game Guard</Link>
         </th>
         <th>
-          <Link href='/docs//concepts/host-bridge-networking'>Host Network</Link>
+          <Link href='/docs/serverless-lobbies/concepts/host-bridge-networking'>Host Network</Link>
         </th>
       </tr>
       <tr>
