@@ -14,7 +14,7 @@ For example:
 
 ```ts
 import { RivetClient } from "@rivet-gg/api";
-const RIVET = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 ```
 
 </CodeGroup>
@@ -23,7 +23,7 @@ This document will talk about handling [public](/docs/general/concepts/token-typ
 
 ## Server-side lobby tokens
 
-All lobby servers running on Rivet are automatically provided a unique [lobby token](/docs/general/concepts/token-types#matchmaker-lobby) in the `RIVET_LOBBY_TOKEN` environment variable. No extra work is required.
+All lobby servers running on Rivet are automatically provided a unique [lobby token](/docs/general/concepts/token-types#matchmaker-lobby) in the `RIVET_TOKEN` environment variable. No extra work is required.
 
 <Warning>
   Make sure that your lobby token is never leaked. It has permission to perform sensitive actions.
