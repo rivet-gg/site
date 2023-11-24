@@ -1,4 +1,6 @@
 /docs /docs/general
+/docs/serverless-lobbies /docs/dynamic-servers
+/docs/serverless-lobbies/* /docs/dynamic-servers/:splat
 /learn/html5/crash-course /learn/html5/tutorials/crash-course
 /learn/html5/tanks-canvas-socketio /learn/html5/tutorials/tanks-canvas-socketio
 /learn/unity/crash-course /learn/unity/tutorials/crash-course
