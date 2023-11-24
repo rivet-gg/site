@@ -16,12 +16,12 @@
 
 	# The hardware to provide for lobbies.
 	#
-	# Available tiers: https://docs.rivet.gg/serverless-lobbies/concepts/available-tiers
+	# Available tiers: https://docs.rivet.gg/dynamic-servers/concepts/available-tiers
 	tier = "basic-1d1"
 
 # Which regions the game should be available in.
 #
-# Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
+# Available regions: https://docs.rivet.gg/dynamic-servers/concepts/available-regions
 [matchmaker.regions]
 	lnd-sfo = {}
 	lnd-fra = {}
@@ -36,7 +36,7 @@
 	# Which ports to allow players to connect to. Multiple ports can be defined
 	# with different protocols.
 	#
-	# How ports work: https://docs.rivet.gg/serverless-lobbies/concepts/ports
+	# How ports work: https://docs.rivet.gg/dynamic-servers/concepts/ports
 	ports.default = { port = 3000 }
 
 # What game modes are avaiable.

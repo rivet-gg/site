@@ -141,8 +141,8 @@ function docsTabs(path) {
     {
       title: 'Dynamic Servers',
       icon: 'compute',
-      href: '/docs/serverless-lobbies',
-      current: path[1] === 'serverless-lobbies'
+      href: '/docs/dynamic-servers',
+      current: path[1] === 'dynamic-servers'
     },
     {
       title: 'Matchmaker',
