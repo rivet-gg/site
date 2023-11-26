@@ -78,7 +78,7 @@ Copy the following pseudocode into the appropriate places in your source:
 
 ```typescript
 import { RivetClient } from '@rivet-gg/api';
-let rivet = new RivetClient({ token: process.env.RIVET_PUBLIC_TOKEN });
+let rivet = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 // Find a lobby (a new lobby will automatically be created on demand if needed)
 let res = await rivet.matchmaker.lobbies.find({ gameModes: ['default'] });
@@ -87,16 +87,16 @@ let res = await rivet.matchmaker.lobbies.find({ gameModes: ['default'] });
 let ws = new WebSocket(`wss://${res.ports['default'].host}/?token=${res.player.token}`);
 ```
 
-<EnvPublicToken />
+<EnvTokenClient />
 
 ### Update your server
 
 Copy the following pseudocode into the appropriate places in your source:
 
 ```typescript
-// `RIVET_LOBBY_TOKEN` is automatically added to the environment by Rivet.
+// `RIVET_TOKEN` is automatically added to the environment by Rivet.
 import { RivetClient } from "@rivet-gg/api";
-let rivet = new RivetClient({ token: process.env.RIVET_LOBBY_TOKEN });
+let rivet = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 // Tell Rivet your server is ready. This gives you time to load maps and
 // other data before accepting players.
@@ -117,7 +117,7 @@ myGameServer.on("connect", await (socket) => {
 });
 ```
 
-<EnvLobbyToken />
+<EnvTokenServer />
 
 ---
 
