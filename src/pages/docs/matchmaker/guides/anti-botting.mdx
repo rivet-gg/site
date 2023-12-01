@@ -206,6 +206,8 @@ The request payload will look something like this:
     "game_mode_name_id": "default",
 
     // Info about the lobby only if it is already running. Null otherwise.
+    // When this value is null and `kind` is "find", that implies this lobby
+    // is being auto-created.
     "lobby": {
       "lobby_id": "LOBBY_ID",
       "region_id": "REGION_ID",
@@ -223,7 +225,14 @@ The request payload will look something like this:
     // lobby creation. ††
     "config": {
       // ...
-    }
+    },
+    // This is an arbitrary string hashmap provided by /find or /create by
+    // the user
+    "tags": {
+      // ...
+    },
+    // Set by the user in /find and /create requests. Null if unset.
+    "dynamic_max_players": 4
   },
   // IP info about all connecting players in this request.
   "clients": {
