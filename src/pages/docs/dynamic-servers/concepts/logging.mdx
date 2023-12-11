@@ -1,10 +1,10 @@
 # Logging
 
-Rivet provides system for collecting logs from your servers automatically for free.
+Rivet provides a system for collecting logs from your servers automatically for free.
 
 ## Limitations
 
-Our logs are tailored to support logging infrequent events like players joining/leaving or map rotations. We don't recommend logging things that happen every tick.
+Our logs are tailored to support logging infrequent events like players joining/leaving or occasional in-game events. We don't recommend logging things that happen every tick.
 
 | Limitation            | Value                                                                                | What happens when exceeding?              |
 | --------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------- |
@@ -13,6 +13,6 @@ Our logs are tailored to support logging infrequent events like players joining/
 
 ## Why add limitations?
 
-Most cloud providers charge [exorbandant](https://www.datadoghq.com/pricing/?product=log-management#products) [amounts](https://grafana.com/pricing/) of [money](https://aws.amazon.com/cloudwatch/pricing/) for their logging services. Developers frequently accidentally add verbose logging to their application that either (a) racks up a large bill or (b) hits a rate limit and suddenly can't read any of their logs.
+Most cloud providers charge [exorbitant](https://www.datadoghq.com/pricing/?product=log-management#products) [amounts](https://grafana.com/pricing/) of [money](https://aws.amazon.com/cloudwatch/pricing/) for their logging services. Developers frequently accidentally add verbose logging to their application that either (a) racks up a large bill or (b) hits a usage limit and suddenly can't read any of their logs without paying a lot of money.
 
-Instead, Rivet chooses to provide sane defaults for logging for free and ignore excessive logs. This means that if you accidentally deploy a game with excessive logging, we'll only collect a fraction of the logs.
+Instead, Rivet provides sane limits on logging while still providing the service for free. This means that if you accidentally deploy a game with excessive logging, we'll only collect a fraction of the logs and you won't have to worry about your bill.
