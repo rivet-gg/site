@@ -156,30 +156,30 @@ function docsTabs(path) {
       href: '/docs/cdn',
       current: path[1] === 'cdn'
     },
-    {
-      title: 'KV',
-      icon: 'kv',
-      href: '/docs/kv',
-      current: path[1] === 'kv'
-    },
-    {
-      title: 'Identity',
-      icon: 'identity',
-      href: '/docs/identity',
-      current: path[1] === 'identity'
-    },
-    {
-      title: 'Chat',
-      icon: 'chat',
-      href: '/docs/chat',
-      current: path[1] === 'chat'
-    },
-    {
-      title: 'Groups',
-      icon: 'group',
-      href: '/docs/group',
-      current: path[1] === 'group'
-    },
+    // {
+    //   title: 'KV',
+    //   icon: 'kv',
+    //   href: '/docs/kv',
+    //   current: path[1] === 'kv'
+    // },
+    // {
+    //   title: 'Identity',
+    //   icon: 'identity',
+    //   href: '/docs/identity',
+    //   current: path[1] === 'identity'
+    // },
+    // {
+    //   title: 'Chat',
+    //   icon: 'chat',
+    //   href: '/docs/chat',
+    //   current: path[1] === 'chat'
+    // },
+    // {
+    //   title: 'Groups',
+    //   icon: 'group',
+    //   href: '/docs/group',
+    //   current: path[1] === 'group'
+    // },
     {
       title: 'Cloud',
       href: '/docs/cloud',
