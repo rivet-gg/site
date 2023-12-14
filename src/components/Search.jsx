@@ -148,7 +148,7 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
               <HighlightQuery text={item} query={query} />
               <span
                 className={
-                  itemIndex === items.length - 1 ? 'sr-only' : 'mx-2 text-cream-300 dark:text-charcole-700'
+                  itemIndex === items.length - 1 ? 'sr-only' : 'mx-2 text-cream-100 dark:text-charcole-700'
                 }>
                 /
               </span>

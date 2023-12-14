@@ -54,7 +54,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
     <Link
       href={initHref ?? href}
       className={clsx(
-        current ? 'bg-white/5 text-white border-white/10' : 'text-cream-300 hover:bg-white/5 hover:text-white',
+        current ? 'bg-white/5 text-white border-white/10' : 'text-cream-100 hover:bg-white/5 hover:text-white',
         'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition border border-1 border-transparent'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
@@ -136,7 +136,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       ref={ref}
       className={clsx(
         className,
-        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col divide-y divide-charcole-900/10 transition md:dark:divide-white/15',
+        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
         !isInsideMobileNavigation && 'backdrop-blur-sm dark:backdrop-blur',
         isInsideMobileNavigation
           ? 'bg-white dark:bg-charcole-950'
@@ -148,12 +148,13 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       }}>
       {/* Main header */}
       <div className='flex h-14 items-center justify-between gap-12 px-6 lg:z-30'>
-        <div
+        {/* TODO: Auto-show on scroll */}
+        {/* <div
           className={clsx(
             'absolute inset-x-0 top-full h-px transition',
             (isInsideMobileNavigation || !mobileNavIsOpen) && 'bg-charcole-950/7.5 dark:bg-white/7.5'
           )}
-        />
+        /> */}
 
         <div className='flex items-center gap-5 md:hidden'>
           <MobileNavigation navigation={navigation} />

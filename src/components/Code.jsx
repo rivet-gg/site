@@ -137,7 +137,7 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
                 'border-b py-3 transition focus:[&:not(:focus-visible)]:outline-none',
                 childIndex === selectedIndex
                   ? 'border-violet-500 text-violet-400'
-                  : 'border-transparent text-cream-400 hover:text-cream-300'
+                  : 'border-transparent text-cream-400 hover:text-cream-100'
               )}>
               {getPanelTitle(child.props)}
             </Tab>

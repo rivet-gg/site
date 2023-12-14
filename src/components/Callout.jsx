@@ -6,12 +6,12 @@ const styles = {
   note: {
     container: 'bg-sky-50 dark:bg-charcole-950/60 dark:ring-1 dark:ring-cream-300/10',
     title: 'text-sky-900 dark:text-sky-400',
-    body: 'text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-cream-300 dark:prose-code:text-cream-300'
+    body: 'text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-cream-100 dark:prose-code:text-cream-100'
   },
   warning: {
     container: 'bg-amber-50 dark:bg-charcole-950/60 dark:ring-1 dark:ring-cream-300/10',
     title: 'text-amber-900 dark:text-amber-500',
-    body: 'text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-cream-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-cream-300'
+    body: 'text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-cream-100 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-cream-100'
   }
 };
 
