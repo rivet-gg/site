@@ -16,24 +16,22 @@ function ArrowIcon(props) {
 }
 
 const variantStyles = {
-  primary:
-    'rounded-full bg-orange-500 py-1 px-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400',
-  secondary:
-    'rounded-full bg-cream-100 py-1 px-3 text-sm text-charcole-900 hover:bg-cream-200 dark:bg-charcole-800/40 dark:text-cream-400 dark:ring-1 dark:ring-inset dark:ring-charcole-800 dark:hover:bg-charcole-800 dark:hover:text-cream-100',
-  filled:
-    'rounded-full bg-charcole-950 py-1 px-3 text-sm text-white hover:bg-charcole-700 dark:bg-orange-500 dark:text-white dark:hover:bg-orange-400',
-  outline:
-    'rounded-full py-1 px-3 text-sm text-charcole-700 ring-1 ring-inset ring-charcole-900/10 hover:bg-charcole-950/2.5 hover:text-charcole-900 dark:text-cream-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white',
+  primary: clsx(
+    'text-charcole-950 text-sm font-semibold',
+    'bg-cream-100',
+    'px-3 py-1',
+  ),
+  secondary: clsx(
+    'text-cream-100 text-sm font-semibold',
+    'border-2 border-cream-100',
+    'px-3 py-1',
+  ),
   text: 'text-sm text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-500',
   juicy: clsx(
-    'button rounded-lgbg-orange-600 select-none, box-border cursor-pointer rounded-lg border-orange-400 bg-orange-600',
+    'text-cream-100 font-sm text-semibold',
+    'border-2 border-cream-100',
+    'bg-transparent hover:bg-cream-100 hover:text-charcole-950',
     'px-3.5 py-2.5',
-    'text-sm font-semibold text-white',
-    'transition-all duration-150 ',
-    'border-b-[1px] active:border-b-[0px]',
-    'mb-[0px] active:mb-[1px]',
-    '[box-shadow:0_4px_0_0_#a1460b] hover:[box-shadow:0_5px_0_0_#a1460b] active:[box-shadow:0_0px_0_0_#a1460b]',
-    'hover:translate-y-[-1px] active:translate-y-[4px]'
   )
 };
 
