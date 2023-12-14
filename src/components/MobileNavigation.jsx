@@ -45,11 +45,11 @@ export function MobileNavigation({ navigation }) {
     <IsInsideMobileNavigationContext.Provider value={true}>
       <button
         type='button'
-        className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5'
+        className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-white/5'
         aria-label='Toggle navigation'
         onClick={toggle}
       >
-        <ToggleIcon className='w-2.5 stroke-zinc-900 dark:stroke-white' />
+        <ToggleIcon className='w-2.5 stroke-charcole-900 dark:stroke-white' />
       </button>
 
       {!isInsideMobileNavigation && (
@@ -64,7 +64,7 @@ export function MobileNavigation({ navigation }) {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              <div className='fixed inset-0 top-14 bg-zinc-400/20 backdrop-blur-sm dark:bg-black/40' />
+              <div className='fixed inset-0 top-14 bg-cream-400/20 backdrop-blur-sm dark:bg-black/40' />
             </Transition.Child>
 
             <Dialog.Panel>
@@ -92,7 +92,7 @@ export function MobileNavigation({ navigation }) {
                 <motion.div
                   layoutScroll
                   className={clsx(
-                    'fixed bottom-0 left-0 w-full overflow-y-auto bg-white px-4 pb-4 pt-6 shadow-lg shadow-zinc-900/10 ring-1 ring-zinc-900/7.5 dark:bg-zinc-900 dark:ring-zinc-800 min-[416px]:max-w-sm sm:px-6 sm:pb-10',
+                    'fixed bottom-0 left-0 w-full overflow-y-auto bg-white px-4 pb-4 pt-6 shadow-lg shadow-charcole-900/10 ring-1 ring-charcole-900/7.5 dark:bg-charcole-950 dark:ring-charcole-800 min-[416px]:max-w-sm sm:px-6 sm:pb-10',
                     navigation.tabs ? 'top-26' : 'top-14'
                   )}
                 >

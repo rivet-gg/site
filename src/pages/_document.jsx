@@ -71,7 +71,7 @@ export default function Document() {
         <meta name='msapplication-config' content='/icons/browserconfig.xml?v=3' />
         <meta name='theme-color' content='#ffffff' />
       </Head>
-      <body className='bg-white antialiased dark:bg-zinc-900'>
+      <body className='bg-white antialiased dark:bg-charcole-950'>
         <Main />
         <NextScript />
       </body>

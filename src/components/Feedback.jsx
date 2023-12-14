@@ -10,7 +10,7 @@ function FeedbackButton(props) {
     return (
         <button
             type='submit'
-            className='px-3 text-sm font-medium text-zinc-600 transition hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white'
+            className='px-3 text-sm font-medium text-charcole-600 transition hover:bg-charcole-950/2.5 hover:text-charcole-900 dark:text-cream-400 dark:hover:bg-white/5 dark:hover:text-white'
             {...props}
         />
     );
@@ -33,10 +33,10 @@ const FeedbackForm = forwardRef(function FeedbackForm({ onSubmit }, ref) {
             onSubmit={onSubmit}
             className='absolute inset-0 flex items-center justify-center md:justify-start'
         >
-            <p className='text-sm text-zinc-600 dark:text-zinc-400 mr-5'>Was this page helpful?</p>
-            <div className='group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-zinc-900/10 dark:border-white/10 mr-5'>
+            <p className='text-sm text-charcole-600 dark:text-cream-400 mr-5'>Was this page helpful?</p>
+            <div className='group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-charcole-900/10 dark:border-white/10 mr-5'>
                 <FeedbackButton data-response='yes'>Yes</FeedbackButton>
-                <div className='bg-zinc-900/10 dark:bg-white/10' />
+                <div className='bg-charcole-950/10 dark:bg-white/10' />
                 <FeedbackButton data-response='no'>No</FeedbackButton>
             </div>
             <EditButton/>

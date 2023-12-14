@@ -54,7 +54,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
     <Link
       href={initHref ?? href}
       className={clsx(
-        current ? 'bg-white/5 text-white border-white/10' : 'text-slate-300 hover:bg-white/5 hover:text-white',
+        current ? 'bg-white/5 text-white border-white/10' : 'text-cream-300 hover:bg-white/5 hover:text-white',
         'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition border border-1 border-transparent'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
@@ -66,7 +66,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
 function TopLevelNavPopover({ solutions, callsToAction, children }) {
   return (
     <Popover className='relative'>
-      <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'>
+      <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-charcole-600 transition hover:text-charcole-900 dark:text-cream-400 dark:hover:text-white'>
         <span>{children}</span>
         {/* <ChevronDownIcon className='h-5 w-5' aria-hidden='true' /> */}
       </Popover.Button>
@@ -136,11 +136,11 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       ref={ref}
       className={clsx(
         className,
-        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col divide-y divide-zinc-900/10 transition md:dark:divide-white/15',
+        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col divide-y divide-charcole-900/10 transition md:dark:divide-white/15',
         !isInsideMobileNavigation && 'backdrop-blur-sm dark:backdrop-blur',
         isInsideMobileNavigation
-          ? 'bg-white dark:bg-zinc-900'
-          : 'bg-white/[var(--bg-opacity-light)] dark:bg-zinc-900/[var(--bg-opacity-dark)]'
+          ? 'bg-white dark:bg-charcole-950'
+          : 'bg-white/[var(--bg-opacity-light)] dark:bg-charcole-950/[var(--bg-opacity-dark)]'
       )}
       style={{
         '--bg-opacity-light': bgOpacityLight,
@@ -151,7 +151,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         <div
           className={clsx(
             'absolute inset-x-0 top-full h-px transition',
-            (isInsideMobileNavigation || !mobileNavIsOpen) && 'bg-zinc-900/7.5 dark:bg-white/7.5'
+            (isInsideMobileNavigation || !mobileNavIsOpen) && 'bg-charcole-950/7.5 dark:bg-white/7.5'
           )}
         />
 
@@ -216,7 +216,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
           <nav className='flex h-full space-x-8'>
             {/* Title */}
-            <div className='text-md flex items-center font-display font-bold text-zinc-900 dark:text-white'>
+            <div className='text-md flex items-center font-display font-bold text-charcole-900 dark:text-white'>
               {navigation.tabsTitle}
             </div>
 
@@ -227,8 +227,8 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 href={tab.href}
                 className={clsx(
                   tab.current
-                    ? 'border-zinc-900 text-zinc-900 dark:border-white dark:text-white'
-                    : 'border-transparent text-zinc-600 hover:border-zinc-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
+                    ? 'border-charcole-900 text-charcole-900 dark:border-white dark:text-white'
+                    : 'border-transparent text-charcole-600 hover:border-charcole-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
                   'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium',
                   tab.gradient ? 'opacity-90' : 'opacity-80'
                 )}

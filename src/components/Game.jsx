@@ -21,7 +21,7 @@ export function Game({ className, ...props }) {
   }, [isRunning, gameClient]);
 
   return (
-    <div className={clsx(className, 'pointer-events-auto bg-slate-950')} {...props}>
+    <div className={clsx(className, 'pointer-events-auto bg-charcole-950')} {...props}>
       {isRunning && (
         <motion.div
           className='relative h-full w-full'

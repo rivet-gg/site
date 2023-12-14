@@ -26,7 +26,7 @@ export const engineStyles = {
   custom: {
     name: 'Custom',
     href: '/learn/custom',
-    gradient: ['from-slate-300', 'to-slate-500'],
-    shadow: 'shadow-slate-300',
+    gradient: ['from-cream-300', 'to-charcole-500'],
+    shadow: 'shadow-cream-300',
   }
 };

@@ -898,7 +898,7 @@ function UpAndRunning() {
               {`Just 5 lines of code and you're off to the races.`}
             </p>
 
-            <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
+            <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
               <Resource title='Learn' icon={faHammer} href='/learn' />
               <Resource title='Docs' icon={faBooks} href='/docs/general' />
               <Resource title='Blog' icon={faCode} href='/blog' />

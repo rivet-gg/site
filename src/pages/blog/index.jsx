@@ -28,23 +28,23 @@ function Article({ article }) {
 
         {/* Date & category */}
         <div className='mt-8 flex items-center gap-x-4 text-xs'>
-          <time dateTime='2020-03-16' className='text-slate-500'>
+          <time dateTime='2020-03-16' className='text-charcole-500'>
             {formatDate(article.date)}
           </time>
-          <div className='relative z-10 rounded-full px-3 py-1.5 font-medium bg-slate-800 text-slate-400'>
+          <div className='relative z-10 rounded-full px-3 py-1.5 font-medium bg-charcole-950 text-cream-400'>
             {article.categoryInfo.name}
           </div>
         </div>
 
         {/* Description */}
         <div className='group relative'>
-          <h3 className='mt-3 text-lg font-semibold leading-6 text-slate-100 group-hover:text-slate-400'>
+          <h3 className='mt-3 text-lg font-semibold leading-6 text-cream-100 group-hover:text-cream-400'>
             <Link href={article.href}>
               <span className='absolute inset-0'></span>
               {article.title}
             </Link>
           </h3>
-          <p className='mt-5 line-clamp-3 text-sm leading-6 text-slate-400'>
+          <p className='mt-5 line-clamp-3 text-sm leading-6 text-cream-400'>
             {article.description}
           </p>
         </div>
@@ -56,11 +56,11 @@ function Article({ article }) {
           <Image
             src={article.authorInfo.avatar}
             alt=''
-            className='h-10 w-10 rounded-full bg-slate-100'
+            className='h-10 w-10 rounded-full bg-cream-100'
           />
           <div className='text-sm leading-6'>
-            <div className='font-semibold text-slate-100'>{article.authorInfo.name}</div>
-            <div className='text-slate-400'>{article.authorInfo.role}</div>
+            <div className='font-semibold text-cream-100'>{article.authorInfo.name}</div>
+            <div className='text-cream-400'>{article.authorInfo.role}</div>
           </div>
         </div>
       </div>

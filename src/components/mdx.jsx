@@ -33,7 +33,7 @@ export const table = function Table(props) {
 export function Tooltip({ tip, children }) {
   return (
     <span className='group relative z-10 inline'>
-      <span className='underline decoration-zinc-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-zinc-500'>
+      <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
         {children}
       </span>
       <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-lg border border-gray-50 bg-black/50 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover:flex dark:border-gray-500'>
@@ -64,7 +64,7 @@ export function Properties({ children }) {
     <div className='my-6'>
       <ul
         role='list'
-        className='m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-zinc-900/5 p-0 dark:divide-white/5'>
+        className='m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-charcole-900/5 p-0 dark:divide-white/5'>
         {children}
       </ul>
     </div>
@@ -80,7 +80,7 @@ export function Property({ name, type, children }) {
           <code>{name}</code>
         </dd>
         <dt className='sr-only'>Type</dt>
-        <dd className='font-mono text-xs text-zinc-400 dark:text-zinc-500'>{type}</dd>
+        <dd className='font-mono text-xs text-cream-400 dark:text-charcole-500'>{type}</dd>
         <dt className='sr-only'>Description</dt>
         <dd className='w-full flex-none [&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</dd>
       </dl>
