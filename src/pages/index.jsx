@@ -528,7 +528,7 @@ function Title() {
         </h1>
 
         {/* Subtitle */}
-        <div className='mt-6 text-lg text-gray-300 leading-8'>
+        <div className='mt-6 text-lg text-cream-100 leading-8 font-display'>
           <p>Open-source solution to deploy, scale, and operate your multiplayer game</p>
           <p className='md:mt-0 mt-4'>
             Supports&nbsp;
@@ -573,7 +573,7 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
-          <JuicyButton>Sign Up for Beta</JuicyButton>
+          <Button variant='juicy'>Sign Up for Beta</Button>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -929,27 +929,6 @@ function UpAndRunning() {
         /> */}
       </div>
     </div>
-  );
-}
-
-function JuicyButton({ children, ...props }) {
-  return (
-    <Link
-      href='https://b8v8449klvp.typeform.com/rivet'
-      target='_blank'
-      className={clsx(
-        'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
-        'px-3.5 py-2.5',
-        'text-sm font-semibold text-white',
-        'transition-all duration-150 ',
-        'border-b-[1px] active:border-b-[0px]',
-        'mb-[0px] active:mb-[1px]',
-        '[box-shadow:0_4px_0_0_#7c3aed] hover:[box-shadow:0_5px_0_0_#7c3aed] active:[box-shadow:0_0px_0_0_#7c3aed]',
-        'hover:translate-y-[-1px] active:translate-y-[4px]'
-      )}
-      {...props}>
-      {children}
-    </Link>
   );
 }
 
