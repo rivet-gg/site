@@ -18,6 +18,7 @@ fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen'))
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/outfit')));
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/prompt')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/cartridge')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/perfectly-nineties')));
 
 // Filter out non-TTF files (optional)
 fonts = fonts
@@ -71,6 +72,9 @@ fonts.forEach(font => {
   } else if (font.includes('Cartridge')) {
     slug = 'cartridge';
     family = 'Cartridge';
+  } else if (font.includes('PerfectlyNineties')) {
+    slug = 'perfectly-nineties';
+    family = 'Perfectly Nineties';
   } else {
     throw new Error('Unknown font family');
   }
