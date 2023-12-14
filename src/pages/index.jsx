@@ -96,6 +96,7 @@ import imgDiepScreenshot from '@/images/case-studies/screenshots/diep.jpg';
 import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
 import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
+import { RainbowBar } from '../components/RainbowBar';
 
 const featurePages = [
   {
@@ -386,6 +387,8 @@ export default function Index() {
       <div className='relative isolate overflow-x-hidden'>
         <div className='pb-12 sm:pb-16 lg:pb-20'>
           <Title />
+
+          <RainbowBar className='w-full h-1'/>
 
           <Features />
 
@@ -678,11 +681,9 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='border border-white/10'>
-      <div className='mx-auto w-full max-w-7xl'>
-        <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
-        <Pages page={page} onChangePage={setPage} />
-      </div>
+    <div className='mx-auto w-full max-w-7xl'>
+      <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
+      <Pages page={page} onChangePage={setPage} />
     </div>
   );
 }
