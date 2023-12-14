@@ -7,7 +7,7 @@ import { Button } from '@/components/Button';
 import { Prose } from '@/components/Prose';
 import { formatDate } from '@/lib/formatDate';
 import { processArticleMeta } from '@/lib/articleMetadata';
-import { faRss, faRssSquare } from '@fortawesome/pro-solid-svg-icons';
+import { faRss, faRssSquare } from '@fortawesome/sharp-solid-svg-icons';
 import { getSiteUrl } from '../lib/siteUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter, faHackerNews, faReddit } from '@fortawesome/free-brands-svg-icons';

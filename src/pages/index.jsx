@@ -64,7 +64,7 @@ import {
   faAward,
   faHome,
   faFileImport
-} from '@fortawesome/pro-solid-svg-icons';
+} from '@fortawesome/sharp-solid-svg-icons';
 
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';

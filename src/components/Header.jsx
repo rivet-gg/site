@@ -21,7 +21,7 @@ import {
   faHammer,
   faNewspaper,
   faUserGroup
-} from '@fortawesome/pro-solid-svg-icons';
+} from '@fortawesome/sharp-solid-svg-icons';
 import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { useRouter } from 'next/router';
 

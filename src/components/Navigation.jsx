@@ -11,7 +11,7 @@ import {
   faHammer,
   faNewspaper,
   faUserGroup
-} from '@fortawesome/pro-solid-svg-icons';
+} from '@fortawesome/sharp-solid-svg-icons';
 import routes from '@/generated/routes.json';
 
 import { Button } from '@/components/Button';
