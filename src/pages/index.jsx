@@ -304,7 +304,6 @@ let caseStudies = [
     href: 'https://apes.io',
     screenshot: imgApesScreenshot,
     logo: imgApesLogo,
-    gradient: 'from-[#a8271d] to-[#ad7b3d]'
   },
   {
     name: 'Ev.io',
@@ -322,14 +321,12 @@ let caseStudies = [
     ),
     screenshot: imgEvScreenshot,
     logo: imgEvLogo,
-    gradient: 'from-[#7d56d6] to-[#2a4080]'
   },
   {
     name: 'Diep.io',
     href: 'https://diep.io',
     screenshot: imgDiepScreenshot,
     logo: imgDiepLogo,
-    gradient: 'from-[#56a0d9] to-[#3d5db8]'
   }
 ];
 
@@ -495,7 +492,7 @@ function Title() {
       {/* Text */}
       <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl text-cream-100'>
+        <h1 className='mt-8 text-6xl font-extrabold tracking-tight sm:text-7xl text-cream-100'>
           Multiplayer Made Simple
         </h1>
 
@@ -746,17 +743,17 @@ function PageContents({ page }) {
       {/* Image */}
       <div className='relative hidden flex-1 md:block'>
         <motion.div
-          className='absolute left-1/2 top-1/2 w-full rounded-lg'
+          className='absolute left-1/2 top-1/2 w-full'
           key={page.index}
-          initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
+          initial={{ transform: 'translateX(-75%) translateY(-25%) scale(75%)', opacity: 0 }}
           whileInView={{
-            transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)',
+            transform: 'translateX(-50%) translateY(-50%) scale(75%)',
             opacity: 1
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
           <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
-          <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
+          <div className='absolute inset-0 ring-1 border-2 ring-inset ring-gray-800/10 border-cream-100 dark:ring-gray-200/10' />
         </motion.div>
       </div>
 
@@ -812,8 +809,8 @@ function CaseStudies({ props }) {
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10',
-        'sm:mx-0 sm:rounded-2xl md:grid-cols-3',
+        'mt-6 grid gap-4 overflow-hidden ring-1 ring-inset ring-white/10',
+        'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
       )}>
@@ -823,7 +820,7 @@ function CaseStudies({ props }) {
             href={study.href}
             className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
             <Image
-              className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
+              className='absolute inset-0 -z-20 h-full w-full w-full object-cover border-2 border-cream-100'
               src={study.screenshot}
               alt=''
             />
