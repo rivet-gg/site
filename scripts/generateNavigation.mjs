@@ -3,6 +3,7 @@ import { remark } from 'remark';
 import glob from 'fast-glob';
 import errorPages from '../src/generated/errorPages.json' assert { type: 'json' };
 import apiPages from '../src/generated/apiPages.json' assert { type: 'json' };
+import engineStyles from '../src/lib/engineStyles.json' assert { type: 'json' };
 
 export async function generateNavigation() {
   // Process all pages
@@ -121,7 +122,7 @@ async function buildRoute({ path, pages }) {
   if (pathSplit[0] === 'docs') {
     output.tabsTitle = 'Documentation';
     output.tabs = docsTabs(pathSplit);
-  } else if (pathSplit[0] === 'learn') {
+  } else if (pathSplit[0] === 'learn' && pathSplit.length > 1) {
     output.tabsTitle = 'Learn';
     output.tabs = learnTabs(pathSplit);
   } else {
@@ -191,37 +192,37 @@ function docsTabs(path) {
 function learnTabs(path) {
   return [
     {
+      title: 'Godot',
+      // icon: 'godot',
+      href: '/learn/godot',
+      current: path[1] === 'godot',
+      styles: engineStyles.godot,
+    },
+    {
       title: 'Unity',
       href: '/learn/unity',
-      gradient: ['from-cyan-300', 'to-cyan-500'],
-      current: path[1] === 'unity'
+      current: path[1] === 'unity',
+      styles: engineStyles.unity,
     },
     {
       title: 'Unreal Engine',
       href: '/learn/unreal',
-      gradient: ['from-rose-400', 'to-rose-600'],
-      current: path[1] === 'unreal'
-    },
-    {
-      title: 'Godot',
-      // icon: 'godot',
-      href: '/learn/godot',
-      gradient: ['from-blue-300', 'to-blue-500'],
-      current: path[1] === 'godot'
+      current: path[1] === 'unreal',
+      styles: engineStyles.unreal,
     },
     {
       title: 'HTML5',
       // icon: 'html5',
       href: '/learn/html5',
-      gradient: ['from-orange-400', 'to-orange-600'],
-      current: path[1] === 'html5'
+      current: path[1] === 'html5',
+      styles: engineStyles.html5,
     },
     {
       title: 'Custom',
       // icon: 'docker',
       href: '/learn/custom',
-      gradient: ['from-cream-300', 'to-charcole-500'],
-      current: path[1] === 'custom'
+      current: path[1] === 'custom',
+      styles: engineStyles.custom.text,
     }
   ];
 }

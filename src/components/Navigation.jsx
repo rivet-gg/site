@@ -30,7 +30,7 @@ function TopLevelNavItem({ href, children }) {
     <li className='md:hidden'>
       <Link
         href={href}
-        className='block py-1 text-sm text-charcole-600 transition hover:text-charcole-900 dark:text-cream-400 dark:hover:text-white'>
+        className='block py-1 text-sm transition text-charcole-400 hover:text-white'>
         {children}
       </Link>
     </li>
@@ -46,8 +46,8 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
         'flex justify-between gap-2 py-1 pr-3 text-sm transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
         active
-          ? 'text-charcole-900 dark:text-white'
-          : 'text-charcole-600 hover:text-charcole-900 dark:text-cream-400 dark:hover:text-white'
+          ? 'text-white'
+          : 'text-charcole-400 hover:text-white'
       )}>
       <span className='truncate'>{children}</span>
       {tag && (
@@ -97,7 +97,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className='absolute left-2 h-6 w-px bg-violet-500'
+      className='absolute left-2 h-6 w-px bg-cream-500'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}

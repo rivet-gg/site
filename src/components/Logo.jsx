@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import textBlack from '@/images/branding/black.svg';
-import textWhite from '@/images/branding/white.svg';
+import textBlack from '@/images/rivet-logos/icon-cream.svg';
+import textWhite from '@/images/rivet-logos/icon-black.svg';
 
 export function Logo({ ...props }) {
   return (

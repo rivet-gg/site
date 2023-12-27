@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,mjs,jsx,mdx}'],
+  content: ['./src/**/*.{js,mjs,jsx,mdx,json}'],
   darkMode: 'class',
   theme: {
     fontFamily: {

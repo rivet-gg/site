@@ -20,31 +20,31 @@ function Article({ article }) {
             <Image
               src={article.image}
               alt={article.imageAlt}
-              className='aspect-[2/1] w-full rounded-2xl object-cover'
+              className='aspect-[2/1] w-full object-cover'
             />
           </Link>
-          <div className='pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-200/10'></div>
+          <div className='pointer-events-none absolute inset-0 border-2 ring-white/50'></div>
         </div>
 
         {/* Date & category */}
-        <div className='mt-8 flex items-center gap-x-4 text-xs'>
+        <div className='mt-8 flex items-center gap-x-3 text-xs'>
           <time dateTime='2020-03-16' className='text-charcole-500'>
             {formatDate(article.date)}
           </time>
-          <div className='relative z-10 rounded-full px-3 py-1.5 font-medium bg-charcole-950 text-cream-400'>
+          <div className='relative z-10 font-medium bg-charcole-950 text-cream-400'>
             {article.categoryInfo.name}
           </div>
         </div>
 
         {/* Description */}
         <div className='group relative'>
-          <h3 className='mt-3 text-lg font-semibold leading-6 text-cream-100 group-hover:text-cream-400'>
+          <h3 className='mt-2 text-lg font-semibold leading-6 text-cream-100 group-hover:text-cream-200'>
             <Link href={article.href}>
               <span className='absolute inset-0'></span>
               {article.title}
             </Link>
           </h3>
-          <p className='mt-5 line-clamp-3 text-sm leading-6 text-cream-400'>
+          <p className='mt-3 line-clamp-3 text-sm leading-6 text-white/80'>
             {article.description}
           </p>
         </div>
@@ -60,7 +60,7 @@ function Article({ article }) {
           />
           <div className='text-sm leading-6'>
             <div className='font-semibold text-cream-100'>{article.authorInfo.name}</div>
-            <div className='text-cream-400'>{article.authorInfo.role}</div>
+            {/* <div className='text-cream-400'>{article.authorInfo.role}</div> */}
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function ArticlesIndex({ articles }) {
   return (
     <>
       <HeroPattern />
-      <SimpleLayout title='Blog' intro={<Button icon={faRss} href='/rss/feed.xml'>RSS Feed</Button>}>
+      <SimpleLayout title='Blog' floatRight={<Button icon={faRss} href='/rss/feed.xml'>RSS Feed</Button>}>
         <div className='mt-16 grid grid-cols-1 gap-x-8 gap-y-20 lg:grid-cols-3'>
           {articles.map(article => (
             <Article key={article.slug} article={article} />

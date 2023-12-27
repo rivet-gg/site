@@ -14,8 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Resource } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { engineStyles } from '../lib/engineStyles';
-import logoWhite from '@/images/branding/white.svg';
+import engineStyles from '../lib/engineStyles.json';
 import GitHubButton from 'react-github-btn';
 import {
   faBolt,
@@ -102,7 +101,7 @@ const featurePages = [
   {
     name: 'Game Servers',
     description: 'Deploy your game on on Rivet, scale globally in seconds',
-    color: '#8A7ED8',
+    color: 'blue',
     image: [imgComputeWhite, imgComputeColor],
     screenshot: imgLobbies,
     learnHref: '/docs/dynamic-servers',
@@ -136,7 +135,7 @@ const featurePages = [
   {
     name: 'DDoS Mitigation',
     description: 'Protect your game servers from DDoS attacks with Game Guard',
-    color: '#8A7ED8',
+    color: 'purple',
     image: [imgGameGuardWhite, imgGameGuardColor],
     screenshot: imgGameGuard,
     learnHref: '/docs/dynamic-servers/concepts/game-guard',
@@ -166,7 +165,7 @@ const featurePages = [
   {
     name: 'Matchmaker',
     description: 'Intelligently matchmake players into game servers',
-    color: '#4DB1F9',
+    color: 'pink',
     image: [imgMatchmakerWhite, imgMatchmakerColor],
     screenshot: imgMatchmaker,
     learnHref: '/docs/matchmaker',
@@ -197,40 +196,10 @@ const featurePages = [
       // }
     ]
   },
-  // {
-  //   name: 'Social',
-  //   description: 'Leverage a community of millions of players in your game with 1 line of code',
-  //   color: '#F2B046',
-  //   image: [imgSocialWhite, imgSocialColor],
-  //   screenshot: imgSocial,
-  //   learnHref: '/docs/identity',
-  //   features: [
-  //     {
-  //       name: '100% free, open, and privacy-centric',
-  //       icon: faHundredPoints
-  //     },
-  //     {
-  //       name: 'Cross-game & cross-platform identities',
-  //       icon: faInfinity
-  //     },
-  //     {
-  //       name: 'Friends, groups, chat & presence',
-  //       icon: faUserGroup
-  //     },
-  //     {
-  //       name: 'Parties integrated with matchmaking',
-  //       icon: faPartyHorn
-  //     },
-  //     {
-  //       name: 'Guest accounts',
-  //       icon: faGhost
-  //     }
-  //   ]
-  // },
   {
     name: 'CDN',
     description: 'Serve game assets & web pages',
-    color: '#8A7ED8',
+    color: 'red',
     image: [imgCdnWhite, imgCdnColor],
     screenshot: imgCdn,
     learnHref: '/docs/cdn',
@@ -245,7 +214,7 @@ const featurePages = [
   {
     name: 'Analytics',
     description: 'Understand your players & game servers',
-    color: '#4DB1F9',
+    color: 'blue',
     image: [imgAnalyticsWhite, imgAnalyticsColor],
     screenshot: imgAnalytics,
     features: [
@@ -266,7 +235,7 @@ const featurePages = [
   {
     name: 'Open Source',
     description: 'Source code available to read, modify, and self-host',
-    color: '#8A7ED8',
+    color: 'green',
     image: [imgOssWhite, imgOssColor],
     screenshot: imgOss,
     learnHref: 'https://github.com/rivet-gg/rivet',
@@ -298,33 +267,33 @@ const featurePages = [
 
 let supportedEngines = [
   {
+    name: 'Godot',
+    href: '/learn/godot',
+    styles: engineStyles.godot,
+    join: <span>,&nbsp;</span>
+  },
+  {
     name: 'Unity',
     href: '/learn/unity',
-    gradient: engineStyles.unity.gradient,
-    join: <span>,&nbsp;</span>
+    styles: engineStyles.unity,
+    join: <span>,&nbsp;</span>,
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
-    gradient: engineStyles.unreal.gradient,
-    join: <span>,&nbsp;</span>
-  },
-  {
-    name: 'Godot',
-    href: '/learn/godot',
-    gradient: engineStyles.godot.gradient,
+    styles: engineStyles.unreal,
     join: <span>,&nbsp;</span>
   },
   {
     name: 'HTML5',
     href: '/learn/html5',
-    gradient: engineStyles.html5.gradient,
+    styles: engineStyles.html5,
     join: <span>,&nbsp;and&nbsp;</span>
   },
   {
     name: 'Custom',
     href: '/learn/custom',
-    gradient: engineStyles.custom.gradient,
+    styles: engineStyles.custom,
     join: null
   }
 ];
@@ -531,19 +500,17 @@ function Title() {
         </h1>
 
         {/* Subtitle */}
-        <div className='mt-6 text-lg text-cream-100 leading-8 font-display'>
+        <div className='mt-6 text-lg text-cream-100 leading-8'>
           <p>Open-source solution to deploy, scale, and operate your multiplayer game</p>
           <p className='md:mt-0 mt-4'>
             Supports&nbsp;
-            {supportedEngines.map(({ name, image, href, gradient, join }, i) => (
+            {supportedEngines.map(({ name, image, href, styles, join }, i) => (
               <span key={name}>
                 <Link
                   href={href}
                   className={clsx(
                     'inline font-semibold transition hover:scale-110',
-                    'bg-gradient-to-r bg-clip-text text-transparent',
-                    gradient[0],
-                    gradient[1]
+                    styles.text,
                   )}>
                   {name}
                 </Link>
@@ -702,31 +669,33 @@ function Tabs({ index, onChangeTab }) {
             <PatternButton
               key={tab.name}
               className={clsx(
-                'group/tab flex w-1/4 cursor-pointer flex-col items-center py-2 text-center text-xs font-bold text-white transition md:text-base'
+                'group/tab flex w-1/4 transition'
               )}
-              style={{ '--tab-color': tab.color }}
-              suppress={isCurrent ? 0 : 1}
+              pattern={{ color: tab.color }}
+              highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
               onClick={() => onChangeTab(i)}>
-              <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                <Image
-                  src={tab.image[0]}
-                  alt='Tab image'
-                  className={clsx(
-                    'absolute h-full w-full opacity-100 transition',
-                    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
-                    // isCurrent && 'opacity-0'
-                  )}
-                />
-                {/* <Image
-                    src={tab.image[1]}
+              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-base font-bold text-white')}>
+                <div className='relative h-10 w-10 md:h-16 md:w-16'>
+                  <Image
+                    src={tab.image[0]}
+                    alt='Tab image'
                     className={clsx(
-                      'absolute h-full w-full opacity-0 transition',
-                      isCurrent && 'opacity-100'
+                      'absolute h-full w-full opacity-100 transition',
+                      'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
+                      // isCurrent && 'opacity-0'
                     )}
-                  /> */}
+                  />
+                  {/* <Image
+                      src={tab.image[1]}
+                      className={clsx(
+                        'absolute h-full w-full opacity-0 transition',
+                        isCurrent && 'opacity-100'
+                      )}
+                    /> */}
+                </div>
+                <div className='hidden font-display text-white sm:block'>{tab.name}</div>
               </div>
-              <div className='hidden font-display text-white sm:block'>{tab.name}</div>
             </PatternButton>
           );
         })}
@@ -878,7 +847,7 @@ function UpAndRunning() {
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-inset ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
-          <div className='h-96 w-full flex-none overflow-hidden rounded-2xl object-cover shadow-xl lg:aspect-video lg:h-auto lg:max-w-sm'>
+          <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-cream-100'>
             <iframe
               className='h-full w-full'
               src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'

@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { Button } from '@/components/Button';
 import { Feedback } from '@/components/Feedback';
 import clsx from 'clsx';
+import routes from '@/generated/routes.json';
 
-import imgLogo from '@/images/branding/white.svg';
+import imgLogo from '@/images/rivet-logos/icon-cream.svg';
 import {
   faDiscord,
   faFacebook,
@@ -24,7 +25,7 @@ const footer = {
     { name: 'Documentation', href: '/docs/general' }
   ],
   company: [
-    { name: 'We\'re hiring!', href: 'https://rivet-gg.notion.site/Job-Board-eed66f2eab2b4d7ea3e21ccd63b22efe?pvs=4', newTab: true, highlight: true, badge: '1' },
+    // { name: 'We\'re hiring!', href: 'https://rivet-gg.notion.site/Job-Board-eed66f2eab2b4d7ea3e21ccd63b22efe?pvs=4', newTab: true, highlight: true, badge: '1' },
     { name: 'Support', href: '/support' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Status Page', href: 'https://rivet-gg.betteruptime.com/' },
@@ -65,6 +66,8 @@ const footer = {
 };
 
 function PageLink({ label, page, previous = false }) {
+  console.log('page.href', page.href)
+  let title = routes.pages[page.href]?.title ?? page.title ?? label;
   return (
     <>
       <Button
@@ -72,15 +75,8 @@ function PageLink({ label, page, previous = false }) {
         aria-label={`${label}: ${page.title}`}
         variant='secondary'
         arrow={previous ? 'left' : 'right'}>
-        {label}
+        {title}
       </Button>
-      <Link
-        href={page.href}
-        tabIndex={-1}
-        aria-hidden='true'
-        className='text-base font-semibold text-charcole-900 transition hover:text-charcole-600 dark:text-white dark:hover:text-cream-100'>
-        {page.title}
-      </Link>
     </>
   );
 }
@@ -102,7 +98,7 @@ function PageNextPrevious({ navigation }) {
   }
 
   return (
-    <div className='mt-16 flex border-t border-white/10 pt-8'>
+    <div className={clsx('mt-4 flex', 'mx-auto max-w-5xl')}>
       {previousPage && (
         <div className='flex flex-col items-start gap-3'>
           <PageLink label='Previous' page={previousPage} previous />
@@ -222,8 +218,9 @@ export function Footer({ navigation }) {
 
   return (
     <div>
-      {navigation.feedback && <Feedback />}
       {navigation.sidebar && <PageNextPrevious navigation={navigation} />}
+      <hr className='my-8' />
+      {navigation.feedback && <Feedback />}
 
       <footer aria-labelledby='footer-heading'>
         <h2 id='footer-heading' className='sr-only'>

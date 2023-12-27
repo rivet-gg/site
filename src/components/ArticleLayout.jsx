@@ -72,9 +72,9 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
                 <Image
                   src={article.image}
                   alt={article.imageAlt}
-                  className='aspect-[2/1] w-full rounded-2xl object-cover'
+                  className='aspect-[2/1] w-full object-cover'
                 />
-                <div className='pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-200/10'></div>
+                <div className='pointer-events-none absolute inset-0 border-4 border-white/80'></div>
               </div>
 
               {/* Title */}
@@ -101,7 +101,7 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
                   <div className='font-semibold text-charcole-900 dark:text-cream-100'>
                     {article.authorInfo.name}
                   </div>
-                  <div className='text-charcole-600 dark:text-cream-400'>{article.authorInfo.role}</div>
+                  {/* <div className='text-charcole-600 dark:text-cream-400'>{article.authorInfo.role}</div> */}
                 </div>
               </div>
             </header>
