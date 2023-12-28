@@ -25,7 +25,16 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true
-  }
+  },
+  redirects: () => {
+    return [
+      {
+        source: "/discord",
+        destination: "https://discord.gg/aXYfyNxYVn",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default async function () {
