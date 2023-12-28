@@ -91,7 +91,8 @@ async function buildRoute({ path, pages }) {
             href: page.href
           });
         }
-      } else if (inputGroup.template?.api) {
+      } else if (inputGroup.template?.api && apiPages[inputGroup.template.api]) {
+
         // API
         for (let page of apiPages[inputGroup.template.api].pages) {
           outputGroup.pages.push({
