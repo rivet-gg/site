@@ -6,16 +6,16 @@ import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 ## Description
 
-Toggles whether or not to allow authentication based on domain for the given game namesapce.
+Toggles whether or not to allow authentication based on domain for the given game namespace.
 
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='PUT' label='https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'>
+<CodeGroup title='Request' tag='PUT' label='https://api.rivet.gg/cloud/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X PUT -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'
+curl -X PUT -d '@body.json' 'https://api.rivet.gg/cloud/games/{game_id}/namespaces/{namespace_id}/domain-public-auth'
 ```
 
 ```ts

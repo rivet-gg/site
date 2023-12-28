@@ -11,10 +11,10 @@ Deletes a matchmaker lobby, stopping it immediately.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='DELETE' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}'>
+<CodeGroup title='Request' tag='DELETE' label='https://api.rivet.gg/cloud/games/{game_id}/matchmaker/lobbies/{lobby_id}'>
 
 ```bash {{ title: 'cURL' }}
-curl -X DELETE 'https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/{lobby_id}'
+curl -X DELETE 'https://api.rivet.gg/cloud/games/{game_id}/matchmaker/lobbies/{lobby_id}'
 ```
 
 ```ts
@@ -52,5 +52,5 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"did_remove":{"type":"boolean","description":"Whether or not the lobby was successfully stopped."}}}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"did_remove":{"type":"boolean","description":"Whether or not the lobby was successfully stopped."}},"required":["did_remove"]}} />
 

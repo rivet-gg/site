@@ -12,11 +12,11 @@ Creates a custom lobby.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
+<CodeGroup title='Request' tag='POST' label='https://api.rivet.gg/matchmaker/lobbies/create'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/create'
+curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/lobbies/create'
 ```
 
 ```ts
@@ -38,7 +38,7 @@ await RIVET.matchmaker.lobbies.create({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_mode":{"type":"string"},"region":{"type":"string"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"publicity":{"type":"string","enum":["public","private"]},"lobby_config":{},"verification_data":{}},"required":["game_mode","publicity"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_mode":{"type":"string"},"region":{"type":"string"},"publicity":{"type":"string","enum":["public","private"]},"tags":{"type":"object","additionalProperties":{"type":"string"}},"max_players":{"type":"integer"},"lobby_config":{},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"verification_data":{}},"required":["game_mode"]}} />
 
 
 ## Response Body

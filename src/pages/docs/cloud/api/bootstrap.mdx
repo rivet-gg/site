@@ -1,0 +1,40 @@
+
+import { CodeGroup, Code } from '@/components/Code';
+import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
+
+# bootstrap
+
+## Description
+
+Returns the basic information required to use the cloud APIs.
+
+
+## Code Examples
+
+<CodeGroup title='Request' tag='GET' label='https://api.rivet.gg/cloud/bootstrap'>
+
+```bash {{ title: 'cURL' }}
+curl -X GET 'https://api.rivet.gg/cloud/bootstrap'
+```
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.cloud.bootstrap({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+
+## Request Parameters
+
+
+## Response Body
+
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"cluster":{"type":"string","enum":["enterprise","oss"],"description":"The type of cluster that the backend is currently running."},"domains":{"type":"object","description":"Domains that host parts of Rivet","properties":{"main":{"type":"string"},"cdn":{"type":"string"},"job":{"type":"string"}},"required":["main","cdn","job"]},"origins":{"type":"object","description":"Origins used to build URLs from","properties":{"hub":{"type":"string"}},"required":["hub"]},"captcha":{"type":"object","properties":{"turnstile":{"type":"object","properties":{"site_key":{"type":"string"}},"required":["site_key"]}}}},"required":["cluster","origins","captcha"]}} />
+

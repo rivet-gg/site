@@ -2,7 +2,7 @@
 import { CodeGroup, Code } from '@/components/Code';
 import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
-# ⭐️ lobbies.find
+# lobbies.find
 
 ## Description
 
@@ -14,11 +14,11 @@ a new lobby will be created.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
+<CodeGroup title='Request' tag='POST' label='https://api.rivet.gg/matchmaker/lobbies/find'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/find'
+curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/lobbies/find'
 ```
 
 ```ts
@@ -48,7 +48,7 @@ _Query parameter, optional_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_modes":{"type":"array","items":{"type":"string"}},"regions":{"type":"array","items":{"type":"string"}},"prevent_auto_create_lobby":{"type":"boolean"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"verification_data":{}},"required":["game_modes"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_modes":{"type":"array","items":{"type":"string"}},"regions":{"type":"array","items":{"type":"string"}},"prevent_auto_create_lobby":{"type":"boolean"},"tags":{"type":"object","additionalProperties":{"type":"string"}},"max_players":{"type":"integer"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"verification_data":{}},"required":["game_modes"]}} />
 
 
 ## Response Body
