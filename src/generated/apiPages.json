@@ -2,6 +2,18 @@
   "cloud": {
     "pages": [
       {
+        "href": "/docs/cloud/api/games/namespaces/create-game-namespace",
+        "sortingKey": "0 /cloud/games/{game_id}/namespaces post"
+      },
+      {
+        "href": "/docs/cloud/api/games/namespaces/update-game-namespace-version",
+        "sortingKey": "0 /cloud/games/{game_id}/namespaces/{namespace_id}/version put"
+      },
+      {
+        "href": "/docs/cloud/api/games/versions/create-game-version",
+        "sortingKey": "0 /cloud/games/{game_id}/versions post"
+      },
+      {
         "href": "/docs/cloud/api/auth/inspect",
         "sortingKey": "999 -1 /cloud/auth/inspect get"
       },
@@ -90,10 +102,6 @@
         "sortingKey": "999 -1 /cloud/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export post"
       },
       {
-        "href": "/docs/cloud/api/games/namespaces/create-game-namespace",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces post"
-      },
-      {
         "href": "/docs/cloud/api/games/namespaces/validate-game-namespace",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/validate post"
       },
@@ -158,10 +166,6 @@
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/tokens/public post"
       },
       {
-        "href": "/docs/cloud/api/games/namespaces/update-game-namespace-version",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/version put"
-      },
-      {
         "href": "/docs/cloud/api/games/namespaces/-get-game-namespace-version-history-list",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/version-history get"
       },
@@ -172,10 +176,6 @@
       {
         "href": "/docs/cloud/api/games/tokens/create-cloud-token",
         "sortingKey": "999 -1 /cloud/games/{game_id}/tokens/cloud post"
-      },
-      {
-        "href": "/docs/cloud/api/games/versions/create-game-version",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/versions post"
       },
       {
         "href": "/docs/cloud/api/games/versions/reserve-version-name",
@@ -307,19 +307,19 @@
     "pages": [
       {
         "href": "/docs/identity/api/events/watch",
-        "sortingKey": "999 -1 /identity/events/live get"
+        "sortingKey": "0 /identity/events/live get"
+      },
+      {
+        "href": "/docs/identity/api/links/prepare",
+        "sortingKey": "0 /identity/game-links post"
+      },
+      {
+        "href": "/docs/identity/api/setup",
+        "sortingKey": "0 /identity/identities post"
       },
       {
         "href": "/docs/identity/api/links/get",
         "sortingKey": "999 -1 /identity/game-links get"
-      },
-      {
-        "href": "/docs/identity/api/links/prepare",
-        "sortingKey": "999 -1 /identity/game-links post"
-      },
-      {
-        "href": "/docs/identity/api/setup",
-        "sortingKey": "999 -1 /identity/identities post"
       },
       {
         "href": "/docs/identity/api/prepare-avatar-upload",
@@ -423,15 +423,15 @@
     "pages": [
       {
         "href": "/docs/kv/api/delete",
-        "sortingKey": "999 -1 /kv/entries delete"
+        "sortingKey": "0 /kv/entries delete"
       },
       {
         "href": "/docs/kv/api/get",
-        "sortingKey": "999 -1 /kv/entries get"
+        "sortingKey": "0 /kv/entries get"
       },
       {
         "href": "/docs/kv/api/put",
-        "sortingKey": "999 -1 /kv/entries put"
+        "sortingKey": "0 /kv/entries put"
       },
       {
         "href": "/docs/kv/api/delete-batch",
@@ -450,6 +450,26 @@
   "matchmaker": {
     "pages": [
       {
+        "href": "/docs/matchmaker/api/lobbies/find",
+        "sortingKey": "0 /matchmaker/lobbies/find post"
+      },
+      {
+        "href": "/docs/matchmaker/api/lobbies/join",
+        "sortingKey": "0 /matchmaker/lobbies/join post"
+      },
+      {
+        "href": "/docs/matchmaker/api/lobbies/ready",
+        "sortingKey": "0 /matchmaker/lobbies/ready post"
+      },
+      {
+        "href": "/docs/matchmaker/api/players/connected",
+        "sortingKey": "0 /matchmaker/players/connected post"
+      },
+      {
+        "href": "/docs/matchmaker/api/players/disconnected",
+        "sortingKey": "0 /matchmaker/players/disconnected post"
+      },
+      {
         "href": "/docs/matchmaker/api/lobbies/set-closed",
         "sortingKey": "999 -1 /matchmaker/lobbies/closed put"
       },
@@ -458,20 +478,8 @@
         "sortingKey": "999 -1 /matchmaker/lobbies/create post"
       },
       {
-        "href": "/docs/matchmaker/api/lobbies/find",
-        "sortingKey": "999 -1 /matchmaker/lobbies/find post"
-      },
-      {
-        "href": "/docs/matchmaker/api/lobbies/join",
-        "sortingKey": "999 -1 /matchmaker/lobbies/join post"
-      },
-      {
         "href": "/docs/matchmaker/api/lobbies/list",
         "sortingKey": "999 -1 /matchmaker/lobbies/list get"
-      },
-      {
-        "href": "/docs/matchmaker/api/lobbies/ready",
-        "sortingKey": "999 -1 /matchmaker/lobbies/ready post"
       },
       {
         "href": "/docs/matchmaker/api/lobbies/set-state",
@@ -480,14 +488,6 @@
       {
         "href": "/docs/matchmaker/api/lobbies/get-state",
         "sortingKey": "999 -1 /matchmaker/lobbies/{lobby_id}/state get"
-      },
-      {
-        "href": "/docs/matchmaker/api/players/connected",
-        "sortingKey": "999 -1 /matchmaker/players/connected post"
-      },
-      {
-        "href": "/docs/matchmaker/api/players/disconnected",
-        "sortingKey": "999 -1 /matchmaker/players/disconnected post"
       },
       {
         "href": "/docs/matchmaker/api/players/get-statistics",

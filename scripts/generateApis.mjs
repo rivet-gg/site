@@ -63,11 +63,11 @@ export async function generateApis() {
 
       // TODO: (still) Hack
       // pathName = /product/.../...
-      let product = pathName.split("/")[1];
+      let [__, product, ...relativePath]  = pathName.split("/");
       let productConfig = products[product];
       if (!productConfig) continue;
 
-      let indexableName = `${method.toUpperCase()} ${pathName}`;
+      let indexableName = `${method.toUpperCase()} /${relativePath.join("/")}`;
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
