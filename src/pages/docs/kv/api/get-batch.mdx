@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # getBatch
 
@@ -34,7 +33,7 @@ await RIVET.kv.getBatch({
 ## Request Parameters
 
 
-### keys
+### `keys`
 
 _Query parameter, required_
 
@@ -42,7 +41,7 @@ _Query parameter, required_
 
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -50,7 +49,7 @@ _Query parameter, optional_
 A query parameter denoting the requests watch index.
 
 
-### namespace_id
+### `namespace_id`
 
 _Query parameter, optional_
 
@@ -60,5 +59,39 @@ _Query parameter, optional_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"entries":{"type":"array","items":{"type":"object","description":"A key-value entry.","properties":{"key":{"type":"string","description":"A string representing a key in the key-value database.\nMaximum length of 512 characters.\n*Recommended Key Path Format*\nKey path components are split by a slash (e.g. `a/b/c` has the path components `[\"a\", \"b\", \"c\"]`). Slashes can be escaped by using a backslash (e.g. `a/b\\/c/d` has the path components `[\"a\", \"b/c\", \"d\"]`).\nThis format is not enforced by Rivet, but the tools built around Rivet KV work better if this format is used."},"value":{"description":"A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."},"deleted":{"type":"boolean"}},"required":["key","value"]}},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["entries","watch"]}} />
+### `entries`
+
+_array, required_
+
+### `entries[*].description`
+
+_object_
+
+### `entries[*].properties`
+
+_object_
+
+### `entries[*].required`
+
+_object_
+
+### `entries[*].type`
+
+_object_
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

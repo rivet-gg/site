@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # updateStatus
 
@@ -37,7 +36,13 @@ await RIVET.identity.updateStatus({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"status":{"type":"string","enum":["online","away","offline"],"description":"The current status of an identity. This helps players understand if another player is currently playing or has their game in the background."}},"required":["status"]}} />
+### `status`
+
+_string, required_
+
+The current status of an identity. This helps players understand if another player is currently playing or has their game in the background.
+
+
 
 
 ## Response Body

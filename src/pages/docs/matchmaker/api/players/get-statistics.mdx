@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # players.getStatistics
 
@@ -36,5 +35,25 @@ await RIVET.matchmaker.players.getStatistics({
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"},"game_modes":{"type":"object","additionalProperties":{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"},"regions":{"type":"object","additionalProperties":{"type":"object","properties":{"player_count":{"type":"integer","format":"int64"}},"required":["player_count"]}}},"required":["player_count","regions"]}}},"required":["player_count","game_modes"]}} />
+### `game_modes`
+
+_object, required_
+
+### `game_modes.*.properties`
+
+_object_
+
+### `game_modes.*.required`
+
+_object_
+
+### `game_modes.*.type`
+
+_object_
+
+### `player_count`
+
+_integer, required_
+
+
 

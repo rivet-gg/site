@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # joinRequests.resolveJoinRequest
 
@@ -35,7 +34,7 @@ await RIVET.group.joinRequests.resolveJoinRequest({
 ## Request Parameters
 
 
-### group_id
+### `group_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### identity_id
+### `identity_id`
 
 _Path parameter, required_
 
@@ -53,7 +52,11 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"resolution":{"type":"boolean"}}}} />
+### `resolution`
+
+_boolean_
+
+
 
 
 ## Response Body

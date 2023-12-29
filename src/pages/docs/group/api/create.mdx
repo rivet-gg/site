@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # create
 
@@ -37,10 +36,20 @@ await RIVET.group.create({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["display_name"]}} />
+### `display_name`
+
+_string, required_
+
+Represent a resource's readable display name.
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}},"required":["group_id"]}} />
+### `group_id`
+
+_string, required_
+
+
 

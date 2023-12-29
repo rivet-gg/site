@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.builds.listGameBuilds
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.builds.listGameBuilds({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -44,5 +43,27 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"builds":{"type":"array","items":{"type":"object","description":"A build summary.","properties":{"build_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this build has completely been uploaded."}},"required":["build_id","upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of build summaries."}},"required":["builds"]}} />
+### `builds`
+
+_array, required_
+
+A list of build summaries.
+
+### `builds[*].description`
+
+_object_
+
+### `builds[*].properties`
+
+_object_
+
+### `builds[*].required`
+
+_object_
+
+### `builds[*].type`
+
+_object_
+
+
 

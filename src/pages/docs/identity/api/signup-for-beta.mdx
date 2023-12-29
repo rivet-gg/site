@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # signupForBeta
 
@@ -37,7 +36,27 @@ await RIVET.identity.signupForBeta({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"name":{"type":"string"},"company_name":{"type":"string"},"company_size":{"type":"string"},"preferred_tools":{"type":"string"},"goals":{"type":"string"}},"required":["name","company_size","preferred_tools","goals"]}} />
+### `company_name`
+
+_string_
+
+### `company_size`
+
+_string, required_
+
+### `goals`
+
+_string, required_
+
+### `name`
+
+_string, required_
+
+### `preferred_tools`
+
+_string, required_
+
+
 
 
 ## Response Body

@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # devices.links.get
 
@@ -34,7 +33,7 @@ await RIVET.cloud.devices.links.get({
 ## Request Parameters
 
 
-### device_link_token
+### `device_link_token`
 
 _Query parameter, required_
 
@@ -42,7 +41,7 @@ _Query parameter, required_
 
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -52,5 +51,23 @@ _Query parameter, optional_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"cloud_token":{"type":"string"},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["watch"]}} />
+### `cloud_token`
+
+_string_
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

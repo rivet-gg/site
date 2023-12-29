@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # ⭐️ put
 
@@ -37,7 +36,29 @@ await RIVET.kv.put({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"namespace_id":{"type":"string","format":"uuid"},"key":{"type":"string","description":"A string representing a key in the key-value database.\nMaximum length of 512 characters.\n*Recommended Key Path Format*\nKey path components are split by a slash (e.g. `a/b/c` has the path components `[\"a\", \"b\", \"c\"]`). Slashes can be escaped by using a backslash (e.g. `a/b\\/c/d` has the path components `[\"a\", \"b/c\", \"d\"]`).\nThis format is not enforced by Rivet, but the tools built around Rivet KV work better if this format is used."},"value":{"description":"A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."}},"required":["key","value"]}} />
+### `key`
+
+_string, required_
+
+A string representing a key in the key-value database.
+Maximum length of 512 characters.
+*Recommended Key Path Format*
+Key path components are split by a slash (e.g. `a/b/c` has the path components `["a", "b", "c"]`). Slashes can be escaped by using a backslash (e.g. `a/b\/c/d` has the path components `["a", "b/c", "d"]`).
+This format is not enforced by Rivet, but the tools built around Rivet KV work better if this format is used.
+
+### `namespace_id`
+
+_string_
+
+### `value`
+
+_object, required_
+
+A JSON object stored in the KV database.
+A `null` value indicates the entry is deleted.
+Maximum length of 262,144 bytes when encoded.
+
+
 
 
 ## Response Body

@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # auth.inspect
 
@@ -36,5 +35,31 @@ await RIVET.cloud.auth.inspect({
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"agent":{"type":"object","description":"The current authenticated agent.","properties":{"identity":{"type":"object","description":"The current authenticated identity.","properties":{"identity_id":{"type":"string","format":"uuid"}},"required":["identity_id"]},"game_cloud":{"type":"object","description":"The current authenticated game cloud.","properties":{"game_id":{"type":"string","format":"uuid"}},"required":["game_id"]}}}},"required":["agent"]}} />
+### `agent`
+
+_object, required_
+
+The current authenticated agent.
+
+### `agent.game_cloud`
+
+_object_
+
+The current authenticated game cloud.
+
+### `agent.game_cloud.game_id`
+
+_string_
+
+### `agent.identity`
+
+_object_
+
+The current authenticated identity.
+
+### `agent.identity.identity_id`
+
+_string_
+
+
 

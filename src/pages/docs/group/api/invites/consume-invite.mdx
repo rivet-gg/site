@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.consumeInvite
 
@@ -34,7 +33,7 @@ await RIVET.group.invites.consumeInvite({
 ## Request Parameters
 
 
-### group_invite_code
+### `group_invite_code`
 
 _Path parameter, required_
 
@@ -44,5 +43,9 @@ Provided by `rivet.api.group#CreateInviteResponse$code`.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"}}}} />
+### `group_id`
+
+_string_
+
+
 

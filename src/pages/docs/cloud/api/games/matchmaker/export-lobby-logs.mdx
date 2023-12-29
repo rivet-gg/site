@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.matchmaker.exportLobbyLogs
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.matchmaker.exportLobbyLogs({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### lobby_id
+### `lobby_id`
 
 _Path parameter, required_
 
@@ -53,10 +52,20 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"stream":{"type":"string","enum":["std_out","std_err"]}},"required":["stream"]}} />
+### `stream`
+
+_string, required_
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"url":{"type":"string","description":"The URL to a CSV file for the given lobby history."}},"required":["url"]}} />
+### `url`
+
+_string, required_
+
+The URL to a CSV file for the given lobby history.
+
+
 

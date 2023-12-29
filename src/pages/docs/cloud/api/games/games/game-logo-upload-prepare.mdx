@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.games.gameLogoUploadPrepare
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.games.gameLogoUploadPrepare({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -45,10 +44,65 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the game logo."},"mime":{"type":"string","description":"The MIME type of the game logo."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}} />
+### `content_length`
+
+_integer, required_
+
+Unsigned 64 bit integer.
+
+### `mime`
+
+_string_
+
+The MIME type of the game logo.
+
+### `path`
+
+_string, required_
+
+The path/filename of the game logo.
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files. Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"},"byte_offset":{"type":"integer","format":"int64","description":"The byte offset for this multipart chunk. Always 0 if not a multipart upload."},"content_length":{"type":"integer","format":"int64","description":"Expected size of this upload."}},"required":["path","url","byte_offset","content_length"]}},"required":["upload_id","presigned_request"]}} />
+### `presigned_request`
+
+_object, required_
+
+A presigned request used to upload files. Upload your file to the given URL via a PUT request.
+
+
+### `presigned_request.byte_offset`
+
+_integer_
+
+The byte offset for this multipart chunk. Always 0 if not a multipart upload.
+
+### `presigned_request.content_length`
+
+_integer_
+
+Expected size of this upload.
+
+### `presigned_request.path`
+
+_string_
+
+The name of the file to upload.  This is the same as the one given in the upload prepare file.
+
+
+### `presigned_request.url`
+
+_string_
+
+The URL of the presigned request for which to upload your file to.
+
+
+### `upload_id`
+
+_string, required_
+
+
 

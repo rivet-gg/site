@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.games.getGameById
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.games.getGameById({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -52,5 +51,135 @@ A query parameter denoting the requests watch index.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game":{"type":"object","description":"A full game.","properties":{"game_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"developer_group_id":{"type":"string","format":"uuid"},"total_player_count":{"type":"integer","description":"Unsigned 32 bit integer."},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."},"namespaces":{"type":"array","items":{"type":"object","description":"A namespace summary.","properties":{"namespace_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"version_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."}},"required":["namespace_id","create_ts","display_name","version_id","name_id"]},"description":"A list of namespace summaries."},"versions":{"type":"array","items":{"type":"object","description":"A version summary.","properties":{"version_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["version_id","create_ts","display_name"]},"description":"A list of version summaries."},"available_regions":{"type":"array","items":{"type":"object","description":"A region summary.","properties":{"region_id":{"type":"string","format":"uuid"},"region_name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"provider":{"type":"string","description":"The server provider of this region."},"universal_region":{"type":"string","enum":["unknown","local","amsterdam","atlanta","bangalore","dallas","frankfurt","london","mumbai","newark","new_york_city","san_francisco","singapore","sydney","tokyo","toronto","washington_dc","chicago","paris","seattle","sao_paulo","stockholm","chennai","osaka","milan","miami","jakarta","los_angeles"],"description":"A universal region label given to this region."},"provider_display_name":{"type":"string","description":"Represent a resource's readable display name."},"region_display_name":{"type":"string","description":"Represent a resource's readable display name."}},"required":["region_id","region_name_id","provider","universal_region","provider_display_name","region_display_name"]},"description":"A list of region summaries."}},"required":["game_id","create_ts","name_id","display_name","developer_group_id","total_player_count","namespaces","versions","available_regions"]},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["game","watch"]}} />
+### `game`
+
+_object, required_
+
+A full game.
+
+### `game.available_regions`
+
+_array_
+
+A list of region summaries.
+
+### `game.available_regions[*].description`
+
+_object_
+
+### `game.available_regions[*].properties`
+
+_object_
+
+### `game.available_regions[*].required`
+
+_object_
+
+### `game.available_regions[*].type`
+
+_object_
+
+### `game.banner_url`
+
+_string_
+
+The URL of this game's banner image.
+
+### `game.create_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `game.developer_group_id`
+
+_string_
+
+### `game.display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `game.game_id`
+
+_string_
+
+### `game.logo_url`
+
+_string_
+
+The URL of this game's logo image.
+
+### `game.name_id`
+
+_string_
+
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+
+### `game.namespaces`
+
+_array_
+
+A list of namespace summaries.
+
+### `game.namespaces[*].description`
+
+_object_
+
+### `game.namespaces[*].properties`
+
+_object_
+
+### `game.namespaces[*].required`
+
+_object_
+
+### `game.namespaces[*].type`
+
+_object_
+
+### `game.total_player_count`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `game.versions`
+
+_array_
+
+A list of version summaries.
+
+### `game.versions[*].description`
+
+_object_
+
+### `game.versions[*].properties`
+
+_object_
+
+### `game.versions[*].required`
+
+_object_
+
+### `game.versions[*].type`
+
+_object_
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

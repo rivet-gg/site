@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.GetGameNamespaceVersionHistoryList
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.namespaces.GetGameNamespaceVersionHistoryList({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 A universally unique identifier.
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -50,7 +49,7 @@ _Path parameter, required_
 A universally unique identifier.
 
 
-### anchor
+### `anchor`
 
 _Query parameter, optional_
 
@@ -58,7 +57,7 @@ _Query parameter, optional_
 How many items to offset the search by.
 
 
-### limit
+### `limit`
 
 _Query parameter, optional_
 
@@ -68,5 +67,27 @@ Amount of items to return. Must be between 1 and 32 inclusive.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"versions":{"type":"array","items":{"type":"object","description":"A previously deployed namespace version.","properties":{"namespace_id":{"type":"string","description":"A universally unique identifier."},"version_id":{"type":"string","description":"A universally unique identifier."},"deploy_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."}},"required":["namespace_id","version_id","deploy_ts"]},"description":"A list of previously deployed namespace versions."}},"required":["versions"]}} />
+### `versions`
+
+_array, required_
+
+A list of previously deployed namespace versions.
+
+### `versions[*].description`
+
+_object_
+
+### `versions[*].properties`
+
+_object_
+
+### `versions[*].required`
+
+_object_
+
+### `versions[*].type`
+
+_object_
+
+
 

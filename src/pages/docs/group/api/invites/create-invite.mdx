@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.createInvite
 
@@ -35,7 +34,7 @@ await RIVET.group.invites.createInvite({
 ## Request Parameters
 
 
-### group_id
+### `group_id`
 
 _Path parameter, required_
 
@@ -45,10 +44,28 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"ttl":{"type":"number","format":"double","description":"How long until the group invite expires (in milliseconds)."},"use_count":{"type":"number","format":"double","description":"How many times the group invite can be used."}}}} />
+### `ttl`
+
+_number_
+
+How long until the group invite expires (in milliseconds).
+
+### `use_count`
+
+_number_
+
+How many times the group invite can be used.
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"code":{"type":"string","description":"The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group."}},"required":["code"]}} />
+### `code`
+
+_string, required_
+
+The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group.
+
+
 

@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.createGameNamespaceTokenDevelopment
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.namespaces.createGameNamespaceTokenDevelopment({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -53,10 +52,44 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"hostname":{"type":"string","description":"The hostname used for the token."},"ports":{"type":"object","additionalProperties":{"type":"object","description":"A port configuration used to create development tokens.","properties":{"port":{"type":"integer"},"port_range":{"type":"object","description":"Range of ports that can be connected to.","properties":{"min":{"type":"integer","description":"Unsigned 32 bit integer."},"max":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["min","max"]},"protocol":{"type":"string","enum":["http","https","tcp","tcp_tls","udp"],"description":"A port protocol."}},"required":["protocol"]}},"lobby_ports":null},"required":["hostname"]}} />
+### `hostname`
+
+_string, required_
+
+The hostname used for the token.
+
+### `ports`
+
+_object_
+
+### `ports.*.description`
+
+_object_
+
+### `ports.*.properties`
+
+_object_
+
+### `ports.*.required`
+
+_object_
+
+### `ports.*.type`
+
+_object_
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"token":{"type":"string","description":"A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."}},"required":["token"]}} />
+### `token`
+
+_string, required_
+
+A JSON Web Token.
+Slightly modified to include a description prefix and use Protobufs of
+JSON.
+
+
 

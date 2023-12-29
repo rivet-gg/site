@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # getSelfProfile
 
@@ -34,7 +33,7 @@ await RIVET.identity.getSelfProfile({
 ## Request Parameters
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -44,5 +43,247 @@ _Query parameter, optional_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"identity":{"type":"object","description":"An identity profile.","properties":{"identity_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"account_number":{"type":"integer"},"avatar_url":{"type":"string","description":"The URL of this identity's avatar image."},"presence":{"type":"object","description":"Information about the identity's current status, party, and active game.","properties":{"update_ts":{"type":"string","format":"date-time"},"status":{"type":"string","enum":["online","away","offline"],"description":"The current status of an identity. This helps players understand if another player is currently playing or has their game in the background."},"game_activity":{"type":"object","description":"The game an identity is currently participating in.","properties":{"game":{"type":"object","properties":{"game_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","name_id","display_name"]},"message":{"type":"string","description":"A short activity message about the current game activity."},"public_metadata":{"description":"JSON data seen by anyone."},"mutual_metadata":{"description":"JSON data seen only by the given identity and their mutual followers."}},"required":["game","message"]}},"required":["update_ts","status"]},"is_registered":{"type":"boolean","description":"Whether or not this identity is registered with a linked account."},"external":{"type":"object","description":"External links for an identity.","properties":{"profile":{"type":"string","description":"A link to this identity's profile page."},"settings":{"type":"string","description":"A link to the Rivet settings page."}},"required":["profile"]},"is_admin":{"type":"boolean","description":"Whether or not this identity is an admin."},"is_game_linked":{"type":"boolean","description":"Whether or not this game user has been linked through the Rivet dashboard."},"dev_state":null,"follower_count":{"type":"integer","format":"int64"},"following_count":{"type":"integer","format":"int64"},"following":{"type":"boolean","description":"Whether or not the requestee's identity is following this identity."},"is_following_me":{"type":"boolean","description":"Whether or not this identity is both following and is followed by the requestee's identity."},"is_mutual_following":{"type":"boolean"},"join_ts":{"type":"string","format":"date-time"},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"},"linked_accounts":{"type":"array","items":{"type":"object","description":"A union representing an identity's linked accounts.","properties":{"email":{"type":"object","description":"An identity's linked email.","properties":{"email":{"type":"string","description":"A valid email address"}},"required":["email"]},"access_token":{"type":"object","description":"An identity's access token identity.","properties":{"name":{"type":"string"}},"required":["name"]}}}},"groups":{"type":"array","items":{"type":"object","description":"A group that the given identity.","properties":{"group":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."}},"required":["profile"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]}},"required":["group"]}},"games":{"type":"array","items":{"type":"object","description":"A game statistic summary.","properties":{"game":{"type":"object","properties":{"game_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","name_id","display_name"]},"stats":{"type":"array","items":{"type":"object","description":"A game statistic.","properties":{"config":{"type":"object","description":"A game statistic config.","properties":{"record_id":{"type":"string","format":"uuid"},"icon_id":{"type":"string","format":"uuid"},"format":{"type":"string","enum":["integer","float_1","float_2","float_3","duration_minute","duration_second","duration_hundredth_second"],"description":"A value denoting the format method of a game statistic."},"aggregation":{"type":"string","enum":["sum","average","min","max"],"description":"A value denoting the aggregation method of a game statistic."},"sorting":{"type":"string","enum":["desc","asc"],"description":"A value denoting the sorting method of a game statistic."},"priority":{"type":"integer"},"display_name":{"type":"string"},"postfix_singular":{"type":"string","description":"A string appended to the end of a singular game statistic's value. Example: 1 **dollar**."},"postfix_plural":{"type":"string","description":"A string appended to the end of a game statistic's value that is not exactly 1. Example: 45 **dollars**."},"prefix_singular":{"type":"string","description":"A string appended to the beginning of a singular game statistic's value. Example: **value** 1."},"prefix_plural":{"type":"string","description":"A string prepended to the beginning of a game statistic's value that is not exactly 1. Example: **values** 45."}},"required":["record_id","icon_id","format","aggregation","sorting","priority","display_name"]},"overall_value":{"type":"number","format":"double","description":"A single overall value of the given statistic."}},"required":["config","overall_value"]}}},"required":["game","stats"]}},"awaiting_deletion":{"type":"boolean","description":"Whether or not this identity is awaiting account deletion. Only visible to when the requestee is\nthis identity.\n"}},"required":["identity_id","display_name","account_number","avatar_url","is_registered","external","is_admin","follower_count","following_count","following","is_following_me","is_mutual_following","join_ts","bio","linked_accounts","groups","games"]},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["identity","watch"]}} />
+### `identity`
+
+_object, required_
+
+An identity profile.
+
+### `identity.account_number`
+
+_integer_
+
+### `identity.avatar_url`
+
+_string_
+
+The URL of this identity's avatar image.
+
+### `identity.awaiting_deletion`
+
+_boolean_
+
+Whether or not this identity is awaiting account deletion. Only visible to when the requestee is
+this identity.
+
+
+### `identity.bio`
+
+_string_
+
+Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
+
+### `identity.display_name`
+
+_string_
+
+### `identity.external`
+
+_object_
+
+External links for an identity.
+
+### `identity.external.profile`
+
+_string_
+
+A link to this identity's profile page.
+
+### `identity.external.settings`
+
+_string_
+
+A link to the Rivet settings page.
+
+### `identity.follower_count`
+
+_integer_
+
+### `identity.following`
+
+_boolean_
+
+Whether or not the requestee's identity is following this identity.
+
+### `identity.following_count`
+
+_integer_
+
+### `identity.games`
+
+_array_
+
+### `identity.games[*].description`
+
+_object_
+
+### `identity.games[*].properties`
+
+_object_
+
+### `identity.games[*].required`
+
+_object_
+
+### `identity.games[*].type`
+
+_object_
+
+### `identity.groups`
+
+_array_
+
+### `identity.groups[*].description`
+
+_object_
+
+### `identity.groups[*].properties`
+
+_object_
+
+### `identity.groups[*].required`
+
+_object_
+
+### `identity.groups[*].type`
+
+_object_
+
+### `identity.identity_id`
+
+_string_
+
+### `identity.is_admin`
+
+_boolean_
+
+Whether or not this identity is an admin.
+
+### `identity.is_following_me`
+
+_boolean_
+
+Whether or not this identity is both following and is followed by the requestee's identity.
+
+### `identity.is_game_linked`
+
+_boolean_
+
+Whether or not this game user has been linked through the Rivet dashboard.
+
+### `identity.is_mutual_following`
+
+_boolean_
+
+### `identity.is_registered`
+
+_boolean_
+
+Whether or not this identity is registered with a linked account.
+
+### `identity.join_ts`
+
+_string_
+
+### `identity.linked_accounts`
+
+_array_
+
+### `identity.linked_accounts[*].description`
+
+_object_
+
+### `identity.linked_accounts[*].properties`
+
+_object_
+
+### `identity.linked_accounts[*].type`
+
+_object_
+
+### `identity.presence`
+
+_object_
+
+Information about the identity's current status, party, and active game.
+
+### `identity.presence.game_activity`
+
+_object_
+
+The game an identity is currently participating in.
+
+### `identity.presence.game_activity.game`
+
+_object_
+
+### `identity.presence.game_activity.game.banner_url`
+
+_string_
+
+The URL of this game's banner image.
+
+### `identity.presence.game_activity.game.display_name`
+
+_string_
+
+### `identity.presence.game_activity.game.game_id`
+
+_string_
+
+### `identity.presence.game_activity.game.logo_url`
+
+_string_
+
+The URL of this game's logo image.
+
+### `identity.presence.game_activity.game.name_id`
+
+_string_
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `identity.presence.game_activity.message`
+
+_string_
+
+A short activity message about the current game activity.
+
+### `identity.presence.game_activity.mutual_metadata`
+
+_object_
+
+JSON data seen only by the given identity and their mutual followers.
+
+### `identity.presence.game_activity.public_metadata`
+
+_object_
+
+JSON data seen by anyone.
+
+### `identity.presence.status`
+
+_string_
+
+The current status of an identity. This helps players understand if another player is currently playing or has their game in the background.
+
+### `identity.presence.update_ts`
+
+_string_
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

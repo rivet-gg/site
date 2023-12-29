@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.versions.reserveVersionName
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.versions.reserveVersionName({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -44,5 +43,9 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"version_display_name":{"type":"string"}},"required":["version_display_name"]}} />
+### `version_display_name`
+
+_string, required_
+
+
 

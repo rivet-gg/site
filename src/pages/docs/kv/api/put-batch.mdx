@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # putBatch
 
@@ -37,7 +36,31 @@ await RIVET.kv.putBatch({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"namespace_id":{"type":"string","format":"uuid"},"entries":{"type":"array","items":{"type":"object","description":"A new entry to insert into the key-value database.","properties":{"key":{"type":"string","description":"A string representing a key in the key-value database.\nMaximum length of 512 characters.\n*Recommended Key Path Format*\nKey path components are split by a slash (e.g. `a/b/c` has the path components `[\"a\", \"b\", \"c\"]`). Slashes can be escaped by using a backslash (e.g. `a/b\\/c/d` has the path components `[\"a\", \"b/c\", \"d\"]`).\nThis format is not enforced by Rivet, but the tools built around Rivet KV work better if this format is used."},"value":{"description":"A JSON object stored in the KV database.\nA `null` value indicates the entry is deleted.\nMaximum length of 262,144 bytes when encoded."}},"required":["key","value"]}}},"required":["entries"]}} />
+### `entries`
+
+_array, required_
+
+### `entries[*].description`
+
+_object_
+
+### `entries[*].properties`
+
+_object_
+
+### `entries[*].required`
+
+_object_
+
+### `entries[*].type`
+
+_object_
+
+### `namespace_id`
+
+_string_
+
+
 
 
 ## Response Body

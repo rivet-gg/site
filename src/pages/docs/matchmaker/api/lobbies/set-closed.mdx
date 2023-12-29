@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # lobbies.setClosed
 
@@ -41,7 +40,11 @@ await RIVET.matchmaker.lobbies.setClosed({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"is_closed":{"type":"boolean"}},"required":["is_closed"]}} />
+### `is_closed`
+
+_boolean, required_
+
+
 
 
 ## Response Body

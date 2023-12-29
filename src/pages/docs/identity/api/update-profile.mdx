@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # updateProfile
 
@@ -37,7 +36,21 @@ await RIVET.identity.updateProfile({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string"},"account_number":{"type":"integer"},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"}}}} />
+### `account_number`
+
+_integer_
+
+### `bio`
+
+_string_
+
+Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
+
+### `display_name`
+
+_string_
+
+
 
 
 ## Response Body

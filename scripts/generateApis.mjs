@@ -81,7 +81,6 @@ export async function generateApis() {
 
       let file = `
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # ${title}
 
@@ -131,7 +130,7 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
 `;
         for (let parameter of specPath.parameters) {
           file += `
-### ${parameter.name}
+### \`${parameter.name}\`
 
 _${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${
             parameter.required ? 'required' : 'optional'
@@ -150,7 +149,7 @@ ${parameter.description || parameter.schema.description || ''}
           file += `
 ## Request Body
 
-<DocsJsonSchemaViewer schema={${JSON.stringify(specPath.requestBody?.content['application/json'].schema)}} />
+${docsForJsonSchema(specPath.requestBody?.content['application/json'].schema)}
 
 `;
         } else {
@@ -167,9 +166,7 @@ _Empty request body._
         file += `
 ## Response Body
 
-<DocsJsonSchemaViewer schema={${JSON.stringify(
-          specPath.responses['200'].content['application/json'].schema
-        )}} />
+${docsForJsonSchema(specPath.responses['200'].content['application/json'].schema)}
 
 `;
       } else {
@@ -214,7 +211,7 @@ function camelToKebab(input) {
   return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-// Reads a schema and flattens $refs.
+/// Reads a schema and flattens $refs.
 async function flattenOpenAPISpec(specPath) {
   const fileContents = fs.readFileSync(specPath, 'utf8');
   const spec = YAML.parse(fileContents, { maxAliasCount: -1 });
@@ -247,7 +244,7 @@ async function flattenOpenAPISpec(specPath) {
 /// Flattens $ref in to the root object. We use this for exposing the full schema in the docs.
 function flattenRefs(schema, schemas) {
   // Exclude if deprecated
-  if (schema?.deprecated || schema?.description?.indexOf('Deprecated') >= 0) return null;
+  if (schema?.description?.indexOf('Deprecated') >= 0) return null;
 
   // Iterate properties
   if (schema?.properties) {
@@ -273,7 +270,6 @@ function flattenRefs(schema, schemas) {
     schema.additionalProperties = flattenRefs(schema.additionalProperties, schemas);
   }
 
-
   // Resolve refs
   if (schema?.$ref) {
     let ref = schema.$ref;
@@ -287,57 +283,52 @@ function flattenRefs(schema, schemas) {
   return schema;
 }
 
-// async function loadOpenAPISpec(specPath) {
-//   console.log('Loading', specPath)
-//   try {
-//     return spec;
-//   } catch (error) {
-//     throw new Error(`Error loading OpenAPI spec: ${error}`);
-//   }
-// }
+/// Generates Markdown string for a given JSON schema.
+function docsForJsonSchema(schema, heading = 3) {
+  let h = '#'.repeat(heading);
 
-// async function resolveRefs(schema, baseSchema) {
-//   if (typeof schema == 'object' && '$ref' in schema) {
-//     const refUrl = schema.$ref;
-//     const refSchema = await resolveRef(refUrl, baseSchema);
-//     return resolveRefs(refSchema, baseSchema);
-//   } else if (Array.isArray(schema)) {
-//     const resolvedItems = await Promise.all(schema.map(async item => await resolveRefs(item, baseSchema)));
-//     return resolvedItems;
-//   } else if (typeof schema === 'object' && schema !== null) {
-//     const resolvedObject = {};
-//     for (const [key, value] of Object.entries(schema)) {
-//       const resolvedValue = await resolveRefs(value, baseSchema);
-//       resolvedObject[key] = resolvedValue;
-//     }
-//     return resolvedObject;
-//   } else {
-//     return schema;
-//   }
-// }
+  let markdownContent = "";
 
-// async function resolveRef(refUrl, baseSchema) {
-//   const schemaName = refUrl.split('#/components/schemas/')[1];
-//   return baseSchema.components.schemas[schemaName];
-// }
+  function documentProperties(obj, path = "") {
+    let entries = Object.entries(obj);
+    entries.sort((a, b) => a[0].localeCompare(b[0]));
 
-// function flattenRefs(schema) {
-//   if (typeof schema == 'object' && '$ref' in schema) {
-//     const refUrl = schema.$ref;
-//     const refName = refUrl.substring(refUrl.lastIndexOf('/') + 1);
-//     return { $ref: refName };
-//   } else if (Array.isArray(schema)) {
-//     return schema.map(item => flattenRefs(item));
-//   } else if (typeof schema === 'object' && schema !== null) {
-//     const flattenedObject = {};
-//     for (const [key, value] of Object.entries(schema)) {
-//       const flattenedValue = flattenRefs(value);
-//       Object.assign(flattenedObject, flattenedValue);
-//     }
-//     return flattenedObject;
-//   } else {
-//     return schema;
-//   }
-// }
+    for (const [key, value] of entries) {
+      // Determine path for this key's header
+      let fullPath;
+      if (path == "") fullPath = key;
+      else fullPath = `${path}.${key}`;
+
+      if (!value) {
+        // markdownContent += `## \`${fullPath}\`\n\n**Type:** null\n\n`;
+        continue;
+      }
+
+      let required = schema.required?.includes(key) ?? false;
+
+      markdownContent += `${h} \`${fullPath}\`\n\n`;
+      markdownContent += `_${value.type || 'object'}${required ? ', required' : ''}_\n\n`;
+      if (value.description) {
+        markdownContent += `${value.description}\n\n`;
+      }
+
+      if (value.type == 'object' && value.properties) {
+          documentProperties(value.properties, fullPath);
+      } else if (value.type == 'object' && value.additionalProperties) {
+          documentProperties(value.additionalProperties, `${fullPath}.*`);
+      } else if (value.type == 'array' && value.items) {
+        documentProperties(value.items, `${fullPath}[*]`);
+      }
+    }
+  }
+
+  if (schema.properties && typeof schema.properties === 'object') {
+    documentProperties(schema.properties);
+  } else {
+    documentProperties(schema);
+  }
+
+  return markdownContent;
+}
 
 generateApis();

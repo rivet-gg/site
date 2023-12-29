@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # bootstrap
 
@@ -36,5 +35,51 @@ await RIVET.cloud.bootstrap({
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"cluster":{"type":"string","enum":["enterprise","oss"],"description":"The type of cluster that the backend is currently running."},"domains":{"type":"object","description":"Domains that host parts of Rivet","properties":{"main":{"type":"string"},"cdn":{"type":"string"},"job":{"type":"string"}},"required":["main","cdn","job"]},"origins":{"type":"object","description":"Origins used to build URLs from","properties":{"hub":{"type":"string"}},"required":["hub"]},"captcha":{"type":"object","properties":{"turnstile":{"type":"object","properties":{"site_key":{"type":"string"}},"required":["site_key"]}}}},"required":["cluster","origins","captcha"]}} />
+### `captcha`
+
+_object, required_
+
+### `captcha.turnstile`
+
+_object_
+
+### `captcha.turnstile.site_key`
+
+_string_
+
+### `cluster`
+
+_string, required_
+
+The type of cluster that the backend is currently running.
+
+### `domains`
+
+_object_
+
+Domains that host parts of Rivet
+
+### `domains.cdn`
+
+_string_
+
+### `domains.job`
+
+_string_
+
+### `domains.main`
+
+_string_
+
+### `origins`
+
+_object, required_
+
+Origins used to build URLs from
+
+### `origins.hub`
+
+_string_
+
+
 

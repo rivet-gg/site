@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # validateProfile
 
@@ -37,10 +36,50 @@ await RIVET.group.validateProfile({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"bio":{"type":"string","description":"Detailed information about a profile."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."}}}} />
+### `bio`
+
+_string_
+
+Detailed information about a profile.
+
+### `display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `publicity`
+
+_string_
+
+The current publicity value for the given group.
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","description":"An error given by failed content validation.","properties":{"path":{"type":"array","items":{"type":"string"},"description":"A list of strings denoting the origin of a validation error."}},"required":["path"]},"description":"A list of validation errors."}},"required":["errors"]}} />
+### `errors`
+
+_array, required_
+
+A list of validation errors.
+
+### `errors[*].description`
+
+_object_
+
+### `errors[*].properties`
+
+_object_
+
+### `errors[*].required`
+
+_object_
+
+### `errors[*].type`
+
+_object_
+
+
 

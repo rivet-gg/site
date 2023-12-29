@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.tokens.createCloudToken
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.tokens.createCloudToken({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -44,5 +43,13 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"token":{"type":"string","description":"A JSON Web Token.\nSlightly modified to include a description prefix and use Protobufs of\nJSON."}},"required":["token"]}} />
+### `token`
+
+_string, required_
+
+A JSON Web Token.
+Slightly modified to include a description prefix and use Protobufs of
+JSON.
+
+
 

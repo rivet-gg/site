@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # invites.getInvite
 
@@ -34,7 +33,7 @@ await RIVET.group.invites.getInvite({
 ## Request Parameters
 
 
-### group_invite_code
+### `group_invite_code`
 
 _Path parameter, required_
 
@@ -44,5 +43,43 @@ Provided by `rivet.api.group#CreateInviteResponse$code`.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."}},"required":["profile"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]}},"required":["group"]}} />
+### `group`
+
+_object, required_
+
+A group handle.
+
+### `group.avatar_url`
+
+_string_
+
+The URL of this group's avatar image
+
+### `group.display_name`
+
+_string_
+
+### `group.external`
+
+_object_
+
+External links for this group.
+
+### `group.external.profile`
+
+_string_
+
+A link to this group's profile page.
+
+### `group.group_id`
+
+_string_
+
+### `group.is_developer`
+
+_boolean_
+
+Whether or not this group is a developer group.
+
+
 

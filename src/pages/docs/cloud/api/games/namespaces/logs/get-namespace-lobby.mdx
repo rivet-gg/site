@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.logs.getNamespaceLobby
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.namespaces.logs.getNamespaceLobby({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -50,7 +49,7 @@ _Path parameter, required_
 
 
 
-### lobby_id
+### `lobby_id`
 
 _Path parameter, required_
 
@@ -60,5 +59,125 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby":{"type":"object","description":"A logs summary for a lobby.","properties":{"lobby_id":{"type":"string","format":"uuid"},"namespace_id":{"type":"string","format":"uuid"},"lobby_group_name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"region_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"start_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"ready_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"status":{"type":"object","description":"A union representing the state of a lobby.","properties":{"running":{"type":"object","properties":{}},"stopped":{"type":"object","description":"The status of a stopped lobby.","properties":{"stop_ts":{"type":"string","format":"date-time"},"failed":{"type":"boolean","description":"Whether or not the lobby failed or stopped successfully."},"exit_code":{"type":"integer","description":"The exit code returned by the lobby's main process when stopped."}},"required":["stop_ts","failed","exit_code"]}},"required":["running"]}},"required":["lobby_id","namespace_id","lobby_group_name_id","region_id","create_ts","status"]},"metrics":{"type":"object","description":"Metrics relating to a job service.","properties":{"job":{"type":"string","description":"The job name."},"cpu":{"type":"array","items":{"type":"number","format":"double"},"description":"CPU metrics."},"memory":{"type":"array","items":{"type":"number","format":"double"},"description":"Memory metrics."},"allocated_memory":{"type":"number","format":"double","description":"Total allocated memory (MB)."}},"required":["job","cpu","memory"]},"stdout_presigned_urls":null,"stderr_presigned_urls":null,"perf_lists":null},"required":["lobby","stdout_presigned_urls","stderr_presigned_urls","perf_lists"]}} />
+### `lobby`
+
+_object, required_
+
+A logs summary for a lobby.
+
+### `lobby.create_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `lobby.lobby_group_name_id`
+
+_string_
+
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+
+### `lobby.lobby_id`
+
+_string_
+
+### `lobby.namespace_id`
+
+_string_
+
+### `lobby.ready_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `lobby.region_id`
+
+_string_
+
+### `lobby.start_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `lobby.status`
+
+_object_
+
+A union representing the state of a lobby.
+
+### `lobby.status.running`
+
+_object_
+
+### `lobby.status.stopped`
+
+_object_
+
+The status of a stopped lobby.
+
+### `lobby.status.stopped.exit_code`
+
+_integer_
+
+The exit code returned by the lobby's main process when stopped.
+
+### `lobby.status.stopped.failed`
+
+_boolean_
+
+Whether or not the lobby failed or stopped successfully.
+
+### `lobby.status.stopped.stop_ts`
+
+_string_
+
+### `metrics`
+
+_object_
+
+Metrics relating to a job service.
+
+### `metrics.allocated_memory`
+
+_number_
+
+Total allocated memory (MB).
+
+### `metrics.cpu`
+
+_array_
+
+CPU metrics.
+
+### `metrics.cpu[*].format`
+
+_object_
+
+### `metrics.cpu[*].type`
+
+_object_
+
+### `metrics.job`
+
+_string_
+
+The job name.
+
+### `metrics.memory`
+
+_array_
+
+Memory metrics.
+
+### `metrics.memory[*].format`
+
+_object_
+
+### `metrics.memory[*].type`
+
+_object_
+
+
 

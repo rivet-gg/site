@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.matchmaker.getLobbyLogs
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.matchmaker.getLobbyLogs({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### lobby_id
+### `lobby_id`
 
 _Path parameter, required_
 
@@ -50,7 +49,7 @@ _Path parameter, required_
 
 
 
-### stream
+### `stream`
 
 _Query parameter, required_
 
@@ -58,7 +57,7 @@ _Query parameter, required_
 
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -68,5 +67,39 @@ A query parameter denoting the requests watch index.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lines":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"timestamps":{"type":"array","items":{"type":"string"},"description":"Sorted old to new."},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["lines","timestamps","watch"]}} />
+### `lines`
+
+_array, required_
+
+Sorted old to new.
+
+### `lines[*].type`
+
+_object_
+
+### `timestamps`
+
+_array, required_
+
+Sorted old to new.
+
+### `timestamps[*].type`
+
+_object_
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

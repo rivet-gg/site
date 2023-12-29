@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # report
 
@@ -35,7 +34,7 @@ await RIVET.identity.report({
 ## Request Parameters
 
 
-### identity_id
+### `identity_id`
 
 _Path parameter, required_
 
@@ -45,7 +44,11 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"reason":{"type":"string"}}}} />
+### `reason`
+
+_string_
+
+
 
 
 ## Response Body

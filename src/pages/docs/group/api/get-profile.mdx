@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # getProfile
 
@@ -34,7 +33,7 @@ await RIVET.group.getProfile({
 ## Request Parameters
 
 
-### group_id
+### `group_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### watch_index
+### `watch_index`
 
 _Query parameter, optional_
 
@@ -52,5 +51,137 @@ A query parameter denoting the requests watch index.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group":{"type":"object","description":"A list of group profiles.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"avatar_url":{"type":"string","description":"The URL of this group's avatar image."},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."}},"required":["profile"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer."},"bio":{"type":"string","description":"Detailed information about a profile."},"is_current_identity_member":{"type":"boolean","description":"Whether or not the current identity is a member of this group."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."},"member_count":{"type":"integer","description":"Unsigned 32 bit integer."},"members":{"type":"array","items":{"type":"object","description":"A group member.","properties":{"identity":{"type":"object","description":"An identity handle.","properties":{"identity_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"account_number":{"type":"integer"},"avatar_url":{"type":"string","description":"The URL of this identity's avatar image."},"presence":{"type":"object","description":"Information about the identity's current status, party, and active game.","properties":{"update_ts":{"type":"string","format":"date-time"},"status":{"type":"string","enum":["online","away","offline"],"description":"The current status of an identity. This helps players understand if another player is currently playing or has their game in the background."},"game_activity":{"type":"object","description":"The game an identity is currently participating in.","properties":{"game":{"type":"object","properties":{"game_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","name_id","display_name"]},"message":{"type":"string","description":"A short activity message about the current game activity."},"public_metadata":{"description":"JSON data seen by anyone."},"mutual_metadata":{"description":"JSON data seen only by the given identity and their mutual followers."}},"required":["game","message"]}},"required":["update_ts","status"]},"is_registered":{"type":"boolean","description":"Whether or not this identity is registered with a linked account."},"external":{"type":"object","description":"External links for an identity.","properties":{"profile":{"type":"string","description":"A link to this identity's profile page."},"settings":{"type":"string","description":"A link to the Rivet settings page."}},"required":["profile"]}},"required":["identity_id","display_name","account_number","avatar_url","is_registered","external"]}},"required":["identity"]},"description":"A list of group members."},"join_requests":{"type":"array","items":{"type":"object","description":"A group join request.","properties":{"identity":{"type":"object","description":"An identity handle.","properties":{"identity_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"account_number":{"type":"integer"},"avatar_url":{"type":"string","description":"The URL of this identity's avatar image."},"presence":{"type":"object","description":"Information about the identity's current status, party, and active game.","properties":{"update_ts":{"type":"string","format":"date-time"},"status":{"type":"string","enum":["online","away","offline"],"description":"The current status of an identity. This helps players understand if another player is currently playing or has their game in the background."},"game_activity":{"type":"object","description":"The game an identity is currently participating in.","properties":{"game":{"type":"object","properties":{"game_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"},"logo_url":{"type":"string","description":"The URL of this game's logo image."},"banner_url":{"type":"string","description":"The URL of this game's banner image."}},"required":["game_id","name_id","display_name"]},"message":{"type":"string","description":"A short activity message about the current game activity."},"public_metadata":{"description":"JSON data seen by anyone."},"mutual_metadata":{"description":"JSON data seen only by the given identity and their mutual followers."}},"required":["game","message"]}},"required":["update_ts","status"]},"is_registered":{"type":"boolean","description":"Whether or not this identity is registered with a linked account."},"external":{"type":"object","description":"External links for an identity.","properties":{"profile":{"type":"string","description":"A link to this identity's profile page."},"settings":{"type":"string","description":"A link to the Rivet settings page."}},"required":["profile"]}},"required":["identity_id","display_name","account_number","avatar_url","is_registered","external"]},"ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."}},"required":["identity","ts"]},"description":"A list of group join requests."},"is_current_identity_requesting_join":{"type":"boolean","description":"Whether or not the current identity is currently requesting to join this group."},"owner_identity_id":{"type":"string","format":"uuid"}},"required":["group_id","display_name","external","bio","publicity","members","join_requests","owner_identity_id"]},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response.\n"}},"required":["index"]}},"required":["group","watch"]}} />
+### `group`
+
+_object, required_
+
+A list of group profiles.
+
+### `group.avatar_url`
+
+_string_
+
+The URL of this group's avatar image.
+
+### `group.bio`
+
+_string_
+
+Detailed information about a profile.
+
+### `group.display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `group.external`
+
+_object_
+
+External links for this group.
+
+### `group.external.profile`
+
+_string_
+
+A link to this group's profile page.
+
+### `group.group_id`
+
+_string_
+
+### `group.is_current_identity_member`
+
+_boolean_
+
+Whether or not the current identity is a member of this group.
+
+### `group.is_current_identity_requesting_join`
+
+_boolean_
+
+Whether or not the current identity is currently requesting to join this group.
+
+### `group.is_developer`
+
+_boolean_
+
+Whether or not this group is a developer.
+
+### `group.join_requests`
+
+_array_
+
+A list of group join requests.
+
+### `group.join_requests[*].description`
+
+_object_
+
+### `group.join_requests[*].properties`
+
+_object_
+
+### `group.join_requests[*].required`
+
+_object_
+
+### `group.join_requests[*].type`
+
+_object_
+
+### `group.member_count`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `group.members`
+
+_array_
+
+A list of group members.
+
+### `group.members[*].description`
+
+_object_
+
+### `group.members[*].properties`
+
+_object_
+
+### `group.members[*].required`
+
+_object_
+
+### `group.members[*].type`
+
+_object_
+
+### `group.owner_identity_id`
+
+_string_
+
+### `group.publicity`
+
+_string_
+
+The current publicity value for the given group.
+
+### `watch`
+
+_object, required_
+
+Provided by watchable endpoints used in blocking loops.
+
+### `watch.index`
+
+_string_
+
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+
+
+
 

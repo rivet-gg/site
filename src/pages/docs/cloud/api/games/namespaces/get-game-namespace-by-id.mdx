@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.getGameNamespaceById
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.namespaces.getGameNamespaceById({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -52,5 +51,159 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"namespace":{"type":"object","description":"A full namespace.","properties":{"namespace_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"version_id":{"type":"string","format":"uuid"},"name_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short."},"config":{"type":"object","description":"Cloud configuration for a given namespace.","properties":{"cdn":{"type":"object","description":"CDN configuration for a given namespace.","properties":{"enable_domain_public_auth":{"type":"boolean","description":"Whether or not to allow users to connect to the given namespace via domain name."},"domains":{"type":"array","items":{"type":"object","description":"A CDN domain for a given namespace.","properties":{"domain":{"type":"string","description":"A valid domain name (no protocol)."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"verification_status":{"type":"string","enum":["active","pending","failed"],"description":"A value denoting the status of a CDN domain's verification status."},"verification_method":{"type":"object","description":"A union representing the verification method used for this CDN domain.","properties":{"invalid":{"type":"object","properties":{}},"http":{"type":"object","properties":{"cname_record":{"type":"string"}},"required":["cname_record"]}}},"verification_errors":{"type":"array","items":{"type":"string"}}},"required":["domain","create_ts","verification_status","verification_method","verification_errors"]},"description":"A list of CDN domains for a given namespace."},"auth_type":{"type":"string","enum":["none","basic"],"description":"A value denoting what type of authentication to use for a game namespace's CDN."},"auth_user_list":{"type":"array","items":{"type":"object","description":"An authenticated CDN user for a given namespace.","properties":{"user":{"type":"string","description":"A user name."}},"required":["user"]},"description":"A list of CDN authenticated users for a given namespace."}},"required":["enable_domain_public_auth","domains","auth_type","auth_user_list"]},"matchmaker":{"type":"object","description":"Matchmaker configuration for a given namespace.","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players_per_client":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players_per_client_vpn":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players_per_client_proxy":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players_per_client_tor":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players_per_client_hosting":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players_per_client","max_players_per_client_vpn","max_players_per_client_proxy","max_players_per_client_tor","max_players_per_client_hosting"]},"kv":{"type":"object","description":"KV configuration for a given namespace.","properties":{}},"identity":{"type":"object","description":"Identity configuration for a given namespace.","properties":{}}},"required":["cdn","matchmaker","kv","identity"]}},"required":["namespace_id","create_ts","display_name","version_id","name_id","config"]}},"required":["namespace"]}} />
+### `namespace`
+
+_object, required_
+
+A full namespace.
+
+### `namespace.config`
+
+_object_
+
+Cloud configuration for a given namespace.
+
+### `namespace.config.cdn`
+
+_object_
+
+CDN configuration for a given namespace.
+
+### `namespace.config.cdn.auth_type`
+
+_string_
+
+A value denoting what type of authentication to use for a game namespace's CDN.
+
+### `namespace.config.cdn.auth_user_list`
+
+_array_
+
+A list of CDN authenticated users for a given namespace.
+
+### `namespace.config.cdn.auth_user_list[*].description`
+
+_object_
+
+### `namespace.config.cdn.auth_user_list[*].properties`
+
+_object_
+
+### `namespace.config.cdn.auth_user_list[*].required`
+
+_object_
+
+### `namespace.config.cdn.auth_user_list[*].type`
+
+_object_
+
+### `namespace.config.cdn.domains`
+
+_array_
+
+A list of CDN domains for a given namespace.
+
+### `namespace.config.cdn.domains[*].description`
+
+_object_
+
+### `namespace.config.cdn.domains[*].properties`
+
+_object_
+
+### `namespace.config.cdn.domains[*].required`
+
+_object_
+
+### `namespace.config.cdn.domains[*].type`
+
+_object_
+
+### `namespace.config.cdn.enable_domain_public_auth`
+
+_boolean_
+
+Whether or not to allow users to connect to the given namespace via domain name.
+
+### `namespace.config.identity`
+
+_object_
+
+Identity configuration for a given namespace.
+
+### `namespace.config.kv`
+
+_object_
+
+KV configuration for a given namespace.
+
+### `namespace.config.matchmaker`
+
+_object_
+
+Matchmaker configuration for a given namespace.
+
+### `namespace.config.matchmaker.lobby_count_max`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.config.matchmaker.max_players_per_client`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.config.matchmaker.max_players_per_client_hosting`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.config.matchmaker.max_players_per_client_proxy`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.config.matchmaker.max_players_per_client_tor`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.config.matchmaker.max_players_per_client_vpn`
+
+_integer_
+
+Unsigned 32 bit integer.
+
+### `namespace.create_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `namespace.display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `namespace.name_id`
+
+_string_
+
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+
+### `namespace.namespace_id`
+
+_string_
+
+### `namespace.version_id`
+
+_string_
+
+
 

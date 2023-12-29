@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # ⭐️ links.prepare
 
@@ -48,5 +47,19 @@ await RIVET.identity.links.prepare({
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"identity_link_token":{"type":"string","description":"Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes."},"identity_link_url":{"type":"string"},"expire_ts":{"type":"string","format":"date-time"}},"required":["identity_link_token","identity_link_url","expire_ts"]}} />
+### `expire_ts`
+
+_string, required_
+
+### `identity_link_token`
+
+_string, required_
+
+Pass this to `GetGameLink` to get the linking status. Valid for 15 minutes.
+
+### `identity_link_url`
+
+_string, required_
+
+
 

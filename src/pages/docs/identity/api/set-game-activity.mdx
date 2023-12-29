@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # setGameActivity
 
@@ -37,7 +36,31 @@ await RIVET.identity.setGameActivity({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_activity":{"type":"object","description":"Information about the identity's current game. This is information that all other identities can see about what the current identity is doing.","properties":{"message":{"type":"string","description":"A short message about the current game activity."},"public_metadata":{"description":"JSON data seen by anyone."},"mutual_metadata":{"description":"JSON data seen only by the given identity and their mutual followers."}}}},"required":["game_activity"]}} />
+### `game_activity`
+
+_object, required_
+
+Information about the identity's current game. This is information that all other identities can see about what the current identity is doing.
+
+### `game_activity.message`
+
+_string_
+
+A short message about the current game activity.
+
+### `game_activity.mutual_metadata`
+
+_object_
+
+JSON data seen only by the given identity and their mutual followers.
+
+### `game_activity.public_metadata`
+
+_object_
+
+JSON data seen by anyone.
+
+
 
 
 ## Response Body

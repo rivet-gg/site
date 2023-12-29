@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.addNamespaceDomain
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.namespaces.addNamespaceDomain({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -53,7 +52,13 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"domain":{"type":"string","description":"A valid domain name (no protocol)."}},"required":["domain"]}} />
+### `domain`
+
+_string, required_
+
+A valid domain name (no protocol).
+
+
 
 
 ## Response Body

@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.versions.getGameVersionById
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.versions.getGameVersionById({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -42,7 +41,7 @@ _Path parameter, required_
 
 
 
-### version_id
+### `version_id`
 
 _Path parameter, required_
 
@@ -52,5 +51,315 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"version":{"type":"object","description":"A full version.","properties":{"version_id":{"type":"string","format":"uuid"},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"config":{"type":"object","description":"Cloud configuration for a given version.","properties":{"engine":{"type":"object","properties":{"unity":{"type":"object","properties":{}},"unreal":{"type":"object","properties":{"game_module":{"type":"string","description":"Name of the Unreal module that holds the game code.\nThis is usually the value of `$.Modules[0].Name` in the file `MyProject.unproject`.\n_Configures Rivet CLI behavior. Has no effect on server behavior._"}},"required":["game_module"]},"godot":{"type":"object","properties":{}},"html5":{"type":"object","properties":{}},"custom":{"type":"object","properties":{}}}},"cdn":{"type":"object","description":"CDN configuration for a given version.","properties":{"build_command":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"build_output":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"site_id":{"type":"string","format":"uuid"},"routes":{"type":"array","items":{"type":"object","properties":{"glob":{"type":"string"},"priority":{"type":"integer","description":"Unsigned 32 bit integer."},"middlewares":{"type":"array","items":{"type":"object","properties":{"kind":{"type":"object","properties":{"custom_headers":{"type":"object","properties":{"headers":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"value":{"type":"string"}},"required":["name","value"]}}},"required":["headers"]}}}},"required":["kind"]},"description":"Multiple CDN version middleware."}},"required":["glob","priority","middlewares"]},"description":"Multiple CDN version routes."}}},"matchmaker":{"type":"object","description":"Matchmaker configuration for a given version.","properties":{"game_modes":{"type":"object","additionalProperties":{"type":"object","description":"A game mode.","properties":{"regions":{"type":"object","additionalProperties":{"type":"object","description":"A game mode region.","properties":{"tier":{"type":"string"},"idle_lobbies":{"type":"object","description":"Configuration for how many idle lobbies a game version should have.","properties":{"min":{"type":"integer"},"max":{"type":"integer"}},"required":["min","max"]}}}},"max_players":{"type":"integer"},"max_players_direct":{"type":"integer"},"max_players_party":{"type":"integer"},"docker":{"type":"object","description":"A game mode runtime running through Docker.","properties":{"dockerfile":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"image":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"image_id":{"type":"string","format":"uuid"},"args":{"type":"array","items":{"type":"string"}},"env":{"type":"object","additionalProperties":{"type":"string"}},"network_mode":{"type":"string","enum":["bridge","host"]},"ports":{"type":"object","additionalProperties":{"type":"object","description":"A docker port.","properties":{"port":{"type":"integer","description":"The port number to connect to."},"port_range":{"type":"object","description":"Range of ports that can be connected to.","properties":{"min":{"type":"integer","description":"Unsigned 32 bit integer."},"max":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["min","max"]},"protocol":{"type":"string","enum":["http","https","tcp","tcp_tls","udp"],"description":"A port protocol."},"proxy":{"type":"string","enum":["none","game_guard"],"description":"How this port should be proxied. Defaults to 'game-guard`."},"dev_port":{"type":"integer","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"dev_port_range":{"type":"object","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._","properties":{"min":{"type":"integer","description":"Unsigned 32 bit integer."},"max":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["min","max"]},"dev_protocol":{"type":"string","enum":["http","https","tcp","tcp_tls","udp"],"description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"}}}}}},"listable":{"type":"boolean"},"taggable":{"type":"boolean"},"allow_dynamic_max_players":{"type":"boolean"},"actions":{"type":"object","description":"Configuration for the connection types allowed for a game mode.","properties":{"find":{"type":"object","description":"Configures the requirements and authentication for the /find endpoint. If this value is not set in the config, the /find endpoint is still enabled.","properties":{"enabled":{"type":"boolean","description":"Sets whether or not the /find endpoint is enabled."},"identity_requirement":{"type":"string","enum":["none","guest","registered"],"description":"The registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."},"verification":{"type":"object","description":"Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.","properties":{"url":{"type":"string"},"headers":{"type":"object","additionalProperties":{"type":"string"}}},"required":["url","headers"]}},"required":["enabled"]},"join":{"type":"object","description":"Configures the requirements and authentication for the /join endpoint. If this value is not set in the config, the /join endpoint is still enabled.","properties":{"enabled":{"type":"boolean","description":"Sets whether or not the /join endpoint is enabled."},"identity_requirement":{"type":"string","enum":["none","guest","registered"],"description":"The registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."},"verification":{"type":"object","description":"Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.","properties":{"url":{"type":"string"},"headers":{"type":"object","additionalProperties":{"type":"string"}}},"required":["url","headers"]}},"required":["enabled"]},"create":{"type":"object","description":"Configures the requirements and authentication for the /create endpoint. If this value is not set in the config, the /create endpoint is NOT enabled.","properties":{"enabled":{"type":"boolean","description":"Sets whether or not the /create endpoint is enabled."},"identity_requirement":{"type":"string","enum":["none","guest","registered"],"description":"The registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."},"verification":{"type":"object","description":"Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.","properties":{"url":{"type":"string"},"headers":{"type":"object","additionalProperties":{"type":"string"}}},"required":["url","headers"]},"enable_public":{"type":"boolean","description":"Defaults to false when unset."},"enable_private":{"type":"boolean","description":"Defaults to true when unset."},"max_lobbies_per_identity":{"type":"integer"}},"required":["enabled"]}}},"tier":{"type":"string"},"idle_lobbies":{"type":"object","description":"Configuration for how many idle lobbies a game version should have.","properties":{"min":{"type":"integer"},"max":{"type":"integer"}},"required":["min","max"]}}},"description":"A list of game modes."},"captcha":{"type":"object","description":"Matchmaker captcha configuration.","properties":{"requests_before_reverify":{"type":"integer","description":"Denotes how many requests a connection can make before it is required to reverify a captcha."},"verification_ttl":{"type":"integer","format":"int64","description":"Denotes how long a connection can continue to reconnect without having to reverify a captcha (in milliseconds)."},"hcaptcha":{"type":"object","description":"hCpatcha configuration.","properties":{"level":{"type":"string","enum":["easy","moderate","difficult","always_on"],"description":"How hard a captcha should be."}},"required":["level"]},"turnstile":{"type":"object","description":"Turnstile captcha configuration.","properties":{"site_key":{"type":"string"},"secret_key":{"type":"string"}},"required":["site_key","secret_key"]}},"required":["requests_before_reverify","verification_ttl"]},"dev_hostname":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"regions":{"type":"object","additionalProperties":{"type":"object","description":"A game mode region.","properties":{"tier":{"type":"string"},"idle_lobbies":{"type":"object","description":"Configuration for how many idle lobbies a game version should have.","properties":{"min":{"type":"integer"},"max":{"type":"integer"}},"required":["min","max"]}}}},"max_players":{"type":"integer"},"max_players_direct":{"type":"integer"},"max_players_party":{"type":"integer"},"docker":{"type":"object","description":"A game mode runtime running through Docker.","properties":{"dockerfile":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"image":{"type":"string","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"image_id":{"type":"string","format":"uuid"},"args":{"type":"array","items":{"type":"string"}},"env":{"type":"object","additionalProperties":{"type":"string"}},"network_mode":{"type":"string","enum":["bridge","host"]},"ports":{"type":"object","additionalProperties":{"type":"object","description":"A docker port.","properties":{"port":{"type":"integer","description":"The port number to connect to."},"port_range":{"type":"object","description":"Range of ports that can be connected to.","properties":{"min":{"type":"integer","description":"Unsigned 32 bit integer."},"max":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["min","max"]},"protocol":{"type":"string","enum":["http","https","tcp","tcp_tls","udp"],"description":"A port protocol."},"proxy":{"type":"string","enum":["none","game_guard"],"description":"How this port should be proxied. Defaults to 'game-guard`."},"dev_port":{"type":"integer","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"},"dev_port_range":{"type":"object","description":"_Configures Rivet CLI behavior. Has no effect on server behavior._","properties":{"min":{"type":"integer","description":"Unsigned 32 bit integer."},"max":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["min","max"]},"dev_protocol":{"type":"string","enum":["http","https","tcp","tcp_tls","udp"],"description":"_Configures Rivet CLI behavior. Has no effect on server behavior._"}}}}}},"tier":{"type":"string"},"idle_lobbies":{"type":"object","description":"Configuration for how many idle lobbies a game version should have.","properties":{"min":{"type":"integer"},"max":{"type":"integer"}},"required":["min","max"]},"lobby_groups":null}},"kv":{"type":"object","description":"KV configuration for a given version.","properties":{}},"identity":{"type":"object","description":"Identity configuration for a given version.","properties":{"display_names":{"type":"array","items":{"type":"string"}},"avatars":{"type":"array","items":{"type":"string","format":"uuid"}},"custom_display_names":null,"custom_avatars":null}}}}},"required":["version_id","create_ts","display_name","config"]}},"required":["version"]}} />
+### `version`
+
+_object, required_
+
+A full version.
+
+### `version.config`
+
+_object_
+
+Cloud configuration for a given version.
+
+### `version.config.cdn`
+
+_object_
+
+CDN configuration for a given version.
+
+### `version.config.cdn.build_command`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.cdn.build_output`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.cdn.routes`
+
+_array_
+
+Multiple CDN version routes.
+
+### `version.config.cdn.routes[*].properties`
+
+_object_
+
+### `version.config.cdn.routes[*].required`
+
+_object_
+
+### `version.config.cdn.routes[*].type`
+
+_object_
+
+### `version.config.cdn.site_id`
+
+_string_
+
+### `version.config.engine`
+
+_object_
+
+### `version.config.engine.custom`
+
+_object_
+
+### `version.config.engine.godot`
+
+_object_
+
+### `version.config.engine.html5`
+
+_object_
+
+### `version.config.engine.unity`
+
+_object_
+
+### `version.config.engine.unreal`
+
+_object_
+
+### `version.config.engine.unreal.game_module`
+
+_string_
+
+Name of the Unreal module that holds the game code.
+This is usually the value of `$.Modules[0].Name` in the file `MyProject.unproject`.
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.identity`
+
+_object_
+
+Identity configuration for a given version.
+
+### `version.config.identity.avatars`
+
+_array_
+
+### `version.config.identity.avatars[*].format`
+
+_object_
+
+### `version.config.identity.avatars[*].type`
+
+_object_
+
+### `version.config.identity.display_names`
+
+_array_
+
+### `version.config.identity.display_names[*].type`
+
+_object_
+
+### `version.config.kv`
+
+_object_
+
+KV configuration for a given version.
+
+### `version.config.matchmaker`
+
+_object_
+
+Matchmaker configuration for a given version.
+
+### `version.config.matchmaker.captcha`
+
+_object_
+
+Matchmaker captcha configuration.
+
+### `version.config.matchmaker.captcha.hcaptcha`
+
+_object_
+
+hCpatcha configuration.
+
+### `version.config.matchmaker.captcha.hcaptcha.level`
+
+_string_
+
+How hard a captcha should be.
+
+### `version.config.matchmaker.captcha.requests_before_reverify`
+
+_integer_
+
+Denotes how many requests a connection can make before it is required to reverify a captcha.
+
+### `version.config.matchmaker.captcha.turnstile`
+
+_object_
+
+Turnstile captcha configuration.
+
+### `version.config.matchmaker.captcha.turnstile.secret_key`
+
+_string_
+
+### `version.config.matchmaker.captcha.turnstile.site_key`
+
+_string_
+
+### `version.config.matchmaker.captcha.verification_ttl`
+
+_integer_
+
+Denotes how long a connection can continue to reconnect without having to reverify a captcha (in milliseconds).
+
+### `version.config.matchmaker.dev_hostname`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.matchmaker.docker`
+
+_object_
+
+A game mode runtime running through Docker.
+
+### `version.config.matchmaker.docker.args`
+
+_array_
+
+### `version.config.matchmaker.docker.args[*].type`
+
+_object_
+
+### `version.config.matchmaker.docker.dockerfile`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.matchmaker.docker.env`
+
+_object_
+
+### `version.config.matchmaker.docker.env.*.type`
+
+_object_
+
+### `version.config.matchmaker.docker.image`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+### `version.config.matchmaker.docker.image_id`
+
+_string_
+
+### `version.config.matchmaker.docker.network_mode`
+
+_string_
+
+### `version.config.matchmaker.docker.ports`
+
+_object_
+
+### `version.config.matchmaker.docker.ports.*.description`
+
+_object_
+
+### `version.config.matchmaker.docker.ports.*.properties`
+
+_object_
+
+### `version.config.matchmaker.docker.ports.*.type`
+
+_object_
+
+### `version.config.matchmaker.game_modes`
+
+_object_
+
+A list of game modes.
+
+### `version.config.matchmaker.game_modes.*.description`
+
+_object_
+
+### `version.config.matchmaker.game_modes.*.properties`
+
+_object_
+
+### `version.config.matchmaker.game_modes.*.type`
+
+_object_
+
+### `version.config.matchmaker.idle_lobbies`
+
+_object_
+
+Configuration for how many idle lobbies a game version should have.
+
+### `version.config.matchmaker.idle_lobbies.max`
+
+_integer_
+
+### `version.config.matchmaker.idle_lobbies.min`
+
+_integer_
+
+### `version.config.matchmaker.max_players`
+
+_integer_
+
+### `version.config.matchmaker.max_players_direct`
+
+_integer_
+
+### `version.config.matchmaker.max_players_party`
+
+_integer_
+
+### `version.config.matchmaker.regions`
+
+_object_
+
+### `version.config.matchmaker.regions.*.description`
+
+_object_
+
+### `version.config.matchmaker.regions.*.properties`
+
+_object_
+
+### `version.config.matchmaker.regions.*.type`
+
+_object_
+
+### `version.config.matchmaker.tier`
+
+_string_
+
+### `version.create_ts`
+
+_string_
+
+RFC3339 timestamp.
+
+### `version.display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `version.version_id`
+
+_string_
+
+
 

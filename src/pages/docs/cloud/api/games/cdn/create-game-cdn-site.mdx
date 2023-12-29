@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.cdn.createGameCdnSite
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.cdn.createGameCdnSite({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -45,10 +44,66 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"files":{"type":"array","items":{"type":"object","description":"A file being prepared to upload.","properties":{"path":{"type":"string","description":"The path/filename of the file."},"content_type":{"type":"string","description":"The MIME type of the file."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]},"description":"A list of files preparing to upload."}},"required":["display_name","files"]}} />
+### `display_name`
+
+_string, required_
+
+Represent a resource's readable display name.
+
+### `files`
+
+_array, required_
+
+A list of files preparing to upload.
+
+### `files[*].description`
+
+_object_
+
+### `files[*].properties`
+
+_object_
+
+### `files[*].required`
+
+_object_
+
+### `files[*].type`
+
+_object_
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"site_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"presigned_requests":{"type":"array","items":{"type":"object","description":"A presigned request used to upload files. Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"},"byte_offset":{"type":"integer","format":"int64","description":"The byte offset for this multipart chunk. Always 0 if not a multipart upload."},"content_length":{"type":"integer","format":"int64","description":"Expected size of this upload."}},"required":["path","url","byte_offset","content_length"]}}},"required":["site_id","upload_id","presigned_requests"]}} />
+### `presigned_requests`
+
+_array, required_
+
+### `presigned_requests[*].description`
+
+_object_
+
+### `presigned_requests[*].properties`
+
+_object_
+
+### `presigned_requests[*].required`
+
+_object_
+
+### `presigned_requests[*].type`
+
+_object_
+
+### `site_id`
+
+_string, required_
+
+### `upload_id`
+
+_string, required_
+
+
 

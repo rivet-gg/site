@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.builds.createGameBuild
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.builds.createGameBuild({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -45,10 +44,119 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"image_tag":{"type":"string","description":"A tag given to the game build."},"image_file":{"type":"object","description":"A file being prepared to upload.","properties":{"path":{"type":"string","description":"The path/filename of the file."},"content_type":{"type":"string","description":"The MIME type of the file."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]},"multipart_upload":{"type":"boolean"},"kind":{"type":"string","enum":["docker_image","oci_bundle"]},"compression":{"type":"string","enum":["none","lz4"]}},"required":["display_name","image_tag","image_file"]}} />
+### `compression`
+
+_string_
+
+### `display_name`
+
+_string, required_
+
+Represent a resource's readable display name.
+
+### `image_file`
+
+_object, required_
+
+A file being prepared to upload.
+
+### `image_file.content_length`
+
+_integer_
+
+Unsigned 64 bit integer.
+
+### `image_file.content_type`
+
+_string_
+
+The MIME type of the file.
+
+### `image_file.path`
+
+_string_
+
+The path/filename of the file.
+
+### `image_tag`
+
+_string, required_
+
+A tag given to the game build.
+
+### `kind`
+
+_string_
+
+### `multipart_upload`
+
+_boolean_
+
+
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"build_id":{"type":"string","format":"uuid"},"upload_id":{"type":"string","format":"uuid"},"image_presigned_request":{"type":"object","description":"A presigned request used to upload files. Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"},"byte_offset":{"type":"integer","format":"int64","description":"The byte offset for this multipart chunk. Always 0 if not a multipart upload."},"content_length":{"type":"integer","format":"int64","description":"Expected size of this upload."}},"required":["path","url","byte_offset","content_length"]},"image_presigned_requests":{"type":"array","items":{"type":"object","description":"A presigned request used to upload files. Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"},"byte_offset":{"type":"integer","format":"int64","description":"The byte offset for this multipart chunk. Always 0 if not a multipart upload."},"content_length":{"type":"integer","format":"int64","description":"Expected size of this upload."}},"required":["path","url","byte_offset","content_length"]}}},"required":["build_id","upload_id"]}} />
+### `build_id`
+
+_string, required_
+
+### `image_presigned_request`
+
+_object_
+
+A presigned request used to upload files. Upload your file to the given URL via a PUT request.
+
+
+### `image_presigned_request.byte_offset`
+
+_integer_
+
+The byte offset for this multipart chunk. Always 0 if not a multipart upload.
+
+### `image_presigned_request.content_length`
+
+_integer_
+
+Expected size of this upload.
+
+### `image_presigned_request.path`
+
+_string_
+
+The name of the file to upload.  This is the same as the one given in the upload prepare file.
+
+
+### `image_presigned_request.url`
+
+_string_
+
+The URL of the presigned request for which to upload your file to.
+
+
+### `image_presigned_requests`
+
+_array_
+
+### `image_presigned_requests[*].description`
+
+_object_
+
+### `image_presigned_requests[*].properties`
+
+_object_
+
+### `image_presigned_requests[*].required`
+
+_object_
+
+### `image_presigned_requests[*].type`
+
+_object_
+
+### `upload_id`
+
+_string, required_
+
+
 

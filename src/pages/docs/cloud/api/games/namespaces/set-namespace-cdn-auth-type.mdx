@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.setNamespaceCdnAuthType
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.namespaces.setNamespaceCdnAuthType({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -53,7 +52,13 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"auth_type":{"type":"string","enum":["none","basic"],"description":"A value denoting what type of authentication to use for a game namespace's CDN."}},"required":["auth_type"]}} />
+### `auth_type`
+
+_string, required_
+
+A value denoting what type of authentication to use for a game namespace's CDN.
+
+
 
 
 ## Response Body

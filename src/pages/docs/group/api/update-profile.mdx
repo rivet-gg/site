@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # updateProfile
 
@@ -35,7 +34,7 @@ await RIVET.group.updateProfile({
 ## Request Parameters
 
 
-### group_id
+### `group_id`
 
 _Path parameter, required_
 
@@ -45,7 +44,25 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"display_name":{"type":"string","description":"Represent a resource's readable display name."},"bio":{"type":"string","description":"Detailed information about a profile."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."}}}} />
+### `bio`
+
+_string_
+
+Detailed information about a profile.
+
+### `display_name`
+
+_string_
+
+Represent a resource's readable display name.
+
+### `publicity`
+
+_string_
+
+The current publicity value for the given group.
+
+
 
 
 ## Response Body

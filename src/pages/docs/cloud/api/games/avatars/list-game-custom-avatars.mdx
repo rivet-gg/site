@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.avatars.listGameCustomAvatars
 
@@ -34,7 +33,7 @@ await RIVET.cloud.games.avatars.listGameCustomAvatars({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -44,5 +43,27 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"custom_avatars":{"type":"array","items":{"type":"object","description":"A custom avatar summary.","properties":{"upload_id":{"type":"string","format":"uuid"},"display_name":{"type":"string","description":"Represent a resource's readable display name."},"create_ts":{"type":"string","format":"date-time","description":"RFC3339 timestamp."},"url":{"type":"string","description":"The URL of this custom avatar image. Only present if upload is complete."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"complete":{"type":"boolean","description":"Whether or not this custom avatar has completely been uploaded."}},"required":["upload_id","display_name","create_ts","content_length","complete"]},"description":"A list of custom avatar summaries."}},"required":["custom_avatars"]}} />
+### `custom_avatars`
+
+_array, required_
+
+A list of custom avatar summaries.
+
+### `custom_avatars[*].description`
+
+_object_
+
+### `custom_avatars[*].properties`
+
+_object_
+
+### `custom_avatars[*].required`
+
+_object_
+
+### `custom_avatars[*].type`
+
+_object_
+
+
 

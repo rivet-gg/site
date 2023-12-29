@@ -1,6 +1,5 @@
 
 import { CodeGroup, Code } from '@/components/Code';
-import { DocsJsonSchemaViewer } from '@/components/DocsJsonSchemaViewer';
 
 # games.namespaces.updateGameNamespaceMatchmakerConfig
 
@@ -35,7 +34,7 @@ await RIVET.cloud.games.namespaces.updateGameNamespaceMatchmakerConfig({
 ## Request Parameters
 
 
-### game_id
+### `game_id`
 
 _Path parameter, required_
 
@@ -43,7 +42,7 @@ _Path parameter, required_
 
 
 
-### namespace_id
+### `namespace_id`
 
 _Path parameter, required_
 
@@ -53,7 +52,19 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby_count_max":{"type":"integer","description":"Unsigned 32 bit integer."},"max_players":{"type":"integer","description":"Unsigned 32 bit integer."}},"required":["lobby_count_max","max_players"]}} />
+### `lobby_count_max`
+
+_integer, required_
+
+Unsigned 32 bit integer.
+
+### `max_players`
+
+_integer, required_
+
+Unsigned 32 bit integer.
+
+
 
 
 ## Response Body
