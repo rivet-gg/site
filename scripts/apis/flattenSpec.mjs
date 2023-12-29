@@ -1,10 +1,7 @@
-import fs from 'fs';
-import YAML from 'yaml';
-
 /// Reads a schema and flattens $refs.
-export async function flattenOpenAPISpec(specPath) {
-  const fileContents = fs.readFileSync(specPath, 'utf8');
-  const spec = YAML.parse(fileContents, { maxAliasCount: -1 });
+export async function flattenOpenAPISpec(spec) {
+  // Deep clone since we'll be modifying this directly
+  spec = JSON.parse(JSON.stringify(spec))
 
   let schemas = spec.components.schemas;
 

@@ -1,12 +1,25 @@
+import fs from 'fs';
+import YAML from 'yaml';
 import { flattenOpenAPISpec } from './flattenSpec.mjs';
 import { generateApiPages } from './generateApiPages.mjs';
+import { generateRivetSchema } from './generateRivetSchema.mjs';
 
 let BACKEND_PATH = '../rivet';
 
 export async function main() {
-  const spec = await flattenOpenAPISpec(`${BACKEND_PATH}/gen/openapi/external/spec/openapi.yml`);
+  // Read spec
+  let specPath = `${BACKEND_PATH}/gen/openapi/external/spec/openapi.yml`
+  const fileContents = fs.readFileSync(specPath, 'utf8');
+  const fullSpec = YAML.parse(fileContents, { maxAliasCount: -1 });
 
-  await generateApiPages(spec);
+  // Flatten spec
+  const flatSpec = await flattenOpenAPISpec(fullSpec);
+
+  // Generate API pages
+  await generateApiPages(flatSpec);
+
+  // Generate rivet.yaml schema
+  await generateRivetSchema(fullSpec);
 }
 
 main();
