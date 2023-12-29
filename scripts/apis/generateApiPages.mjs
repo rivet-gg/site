@@ -1,14 +1,17 @@
 import fs from 'fs';
-import YAML from 'yaml';
 import path from 'path';
 
-let backendPath = '../rivet';
+import { jsonToMarkdown } from './jsonToMarkdown.mjs';
 
 function apiPath(product) {
   return `src/pages/docs/${product}/api`;
 }
 
-let products = {
+function camelToKebab(input) {
+  return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+let PRODUCTS = {
   matchmaker: {
     importantEndpoints: [
       'POST /lobbies/find',
@@ -39,16 +42,12 @@ let products = {
   }
 };
 
-export async function generateApis() {
+export async function generateApiPages(spec) {
   let apiPages = {};
-
-  // let specYaml = fs.readFileSync(`${backendPath}/gen/openapi/external/spec/openapi.yml`, 'utf8');
-  // let spec = YAML.parse(specYaml, { maxAliasCount: -1 });
-  const spec = await flattenOpenAPISpec(`${backendPath}/gen/openapi/external/spec/openapi.yml`);
 
   const apiBaseUrl = spec.servers[0].url;
 
-  for (let product in products) {
+  for (let product in PRODUCTS) {
     fs.rmSync(apiPath(product), { recursive: true, force: true });
     fs.mkdirSync(apiPath(product), { recursive: true });
   }
@@ -63,7 +62,7 @@ export async function generateApis() {
 
       // pathName = /product/.../...
       let [__, product, ...relativePath]  = pathName.split("/");
-      let productConfig = products[product];
+      let productConfig = PRODUCTS[product];
       if (!productConfig) continue;
 
       let indexableName = `${method.toUpperCase()} /${relativePath.join("/")}`;
@@ -149,7 +148,7 @@ ${parameter.description || parameter.schema.description || ''}
           file += `
 ## Request Body
 
-${docsForJsonSchema(specPath.requestBody?.content['application/json'].schema)}
+${jsonToMarkdown(specPath.requestBody?.content['application/json'].schema)}
 
 `;
         } else {
@@ -166,7 +165,7 @@ _Empty request body._
         file += `
 ## Response Body
 
-${docsForJsonSchema(specPath.responses['200'].content['application/json'].schema)}
+${jsonToMarkdown(specPath.responses['200'].content['application/json'].schema)}
 
 `;
       } else {
@@ -206,129 +205,3 @@ _Empty response body._
 
   fs.writeFileSync('src/generated/apiPages.json', JSON.stringify(apiPages, null, 2));
 }
-
-function camelToKebab(input) {
-  return input.replace(/(.)([A-Z])/g, '$1-$2').toLowerCase();
-}
-
-/// Reads a schema and flattens $refs.
-async function flattenOpenAPISpec(specPath) {
-  const fileContents = fs.readFileSync(specPath, 'utf8');
-  const spec = YAML.parse(fileContents, { maxAliasCount: -1 });
-
-  let schemas = spec.components.schemas;
-
-  for (let pathKey in spec.paths) {
-    let path = spec.paths[pathKey];
-
-    for (let methodKey in path) {
-      let method = path[methodKey];
-
-      if (method.requestBody?.content) {
-        let requestBodySchema = method.requestBody.content['application/json'].schema;
-        method.requestBody.content['application/json'].schema = flattenRefs(requestBodySchema, schemas);
-      }
-
-      for (let response in method.responses) {
-        if (!method.responses[response].content) continue;
-        let responseSchema = method.responses[response].content['application/json'].schema;
-
-        method.responses[response].content['application/json'].schema = flattenRefs(responseSchema, schemas);
-      }
-    }
-  }
-
-  return spec;
-}
-
-/// Flattens $ref in to the root object. We use this for exposing the full schema in the docs.
-function flattenRefs(schema, schemas) {
-  // Exclude if deprecated
-  if (schema?.description?.indexOf('Deprecated') >= 0) return null;
-
-  // Iterate properties
-  if (schema?.properties) {
-    for (let property in schema.properties) {
-      schema.properties[property] = flattenRefs(schema.properties[property], schemas);
-    }
-  }
-
-  // Iterate parameters
-  if (schema?.parameters) {
-    for (let parameter in schema.parameters) {
-      schema.parameters[parameter].schema = flattenRefs(schema.parameters[parameter].schema, schemas);
-    }
-  }
-
-  // Iterate arrays
-  if (schema?.items) {
-    schema.items = flattenRefs(schema.items, schemas);
-  }
-
-  // Iterate additional properties
-  if (schema?.additionalProperties) {
-    schema.additionalProperties = flattenRefs(schema.additionalProperties, schemas);
-  }
-
-  // Resolve refs
-  if (schema?.$ref) {
-    let ref = schema.$ref;
-    let refPath = ref.replace('#/components/schemas/', '');
-    let refSchema = JSON.parse(JSON.stringify(flattenRefs(schemas[refPath], schemas)));
-    if (schema.description) refSchema.description = schema.description;
-    return refSchema;
-  }
-
-  // No ref
-  return schema;
-}
-
-/// Generates Markdown string for a given JSON schema.
-function docsForJsonSchema(schema, heading = 3) {
-  let h = '#'.repeat(heading);
-
-  let markdownContent = "";
-
-  function documentProperties(obj, path = "") {
-    let entries = Object.entries(obj);
-    entries.sort((a, b) => a[0].localeCompare(b[0]));
-
-    for (const [key, value] of entries) {
-      // Determine path for this key's header
-      let fullPath;
-      if (path == "") fullPath = key;
-      else fullPath = `${path}.${key}`;
-
-      if (!value) {
-        // markdownContent += `## \`${fullPath}\`\n\n**Type:** null\n\n`;
-        continue;
-      }
-
-      let required = schema.required?.includes(key) ?? false;
-
-      markdownContent += `${h} \`${fullPath}\`\n\n`;
-      markdownContent += `_${value.type || 'object'}${required ? ', required' : ''}_\n\n`;
-      if (value.description) {
-        markdownContent += `${value.description}\n\n`;
-      }
-
-      if (value.type == 'object' && value.properties) {
-          documentProperties(value.properties, fullPath);
-      } else if (value.type == 'object' && value.additionalProperties) {
-          documentProperties(value.additionalProperties, `${fullPath}.*`);
-      } else if (value.type == 'array' && value.items) {
-        documentProperties(value.items, `${fullPath}[*]`);
-      }
-    }
-  }
-
-  if (schema.properties && typeof schema.properties === 'object') {
-    documentProperties(schema.properties);
-  } else {
-    documentProperties(schema);
-  }
-
-  return markdownContent;
-}
-
-generateApis();
