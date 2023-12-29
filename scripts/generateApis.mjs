@@ -44,7 +44,9 @@ export async function generateApis() {
 
   // let specYaml = fs.readFileSync(`${backendPath}/gen/openapi/external/spec/openapi.yml`, 'utf8');
   // let spec = YAML.parse(specYaml, { maxAliasCount: -1 });
-  let spec = await flattenOpenAPISpec(`${backendPath}/gen/openapi/external/spec/openapi.yml`);
+  const spec = await flattenOpenAPISpec(`${backendPath}/gen/openapi/external/spec/openapi.yml`);
+
+  const apiBaseUrl = spec.servers[0].url;
 
   for (let product in products) {
     fs.rmSync(apiPath(product), { recursive: true, force: true });
@@ -57,15 +59,14 @@ export async function generateApis() {
 
       console.log('Registering', method, pathName);
 
-      let url = specPath.servers[0].url;
-      let fullUrl = url + pathName;
+      let fullUrl = apiBaseUrl + pathName;
 
-      // TODO: Hack
-      let product = url.replace('https://', '').replace('.api.rivet.gg/v1', '');
+      // pathName = /product/.../...
+      let [__, product, ...relativePath]  = pathName.split("/");
       let productConfig = products[product];
       if (!productConfig) continue;
 
-      let indexableName = `${method.toUpperCase()} ${pathName}`;
+      let indexableName = `${method.toUpperCase()} /${relativePath.join("/")}`;
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
@@ -266,6 +267,12 @@ function flattenRefs(schema, schemas) {
   if (schema?.items) {
     schema.items = flattenRefs(schema.items, schemas);
   }
+
+  // Iterate additional properties
+  if (schema?.additionalProperties) {
+    schema.additionalProperties = flattenRefs(schema.additionalProperties, schemas);
+  }
+
 
   // Resolve refs
   if (schema?.$ref) {
