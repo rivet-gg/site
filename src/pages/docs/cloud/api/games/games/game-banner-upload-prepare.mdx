@@ -11,11 +11,11 @@ Prepares a game banner image upload.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/banner-upload/prepare'>
+<CodeGroup title='Request' tag='POST' label='https://api.rivet.gg/cloud/games/{game_id}/banner-upload/prepare'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/banner-upload/prepare'
+curl -X POST -d '@body.json' 'https://api.rivet.gg/cloud/games/{game_id}/banner-upload/prepare'
 ```
 
 ```ts
@@ -45,10 +45,10 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the game banner."},"mime":{"type":"string","description":"The MIME type of the game banner."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"path":{"type":"string","description":"The path/filename of the game banner."},"mime":{"type":"string","description":"The MIME type of the game banner."},"content_length":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["path","content_length"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files.  Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"}},"required":["path","url"]}},"required":["upload_id","presigned_request"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"upload_id":{"type":"string","format":"uuid"},"presigned_request":{"type":"object","description":"A presigned request used to upload files. Upload your file to the given URL via a PUT request.\n","properties":{"path":{"type":"string","description":"The name of the file to upload.  This is the same as the one given in the upload prepare file.\n"},"url":{"type":"string","description":"The URL of the presigned request for which to upload your file to.\n"},"byte_offset":{"type":"integer","format":"int64","description":"The byte offset for this multipart chunk. Always 0 if not a multipart upload."},"content_length":{"type":"integer","format":"int64","description":"Expected size of this upload."}},"required":["path","url","byte_offset","content_length"]}},"required":["upload_id","presigned_request"]}} />
 

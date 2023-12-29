@@ -11,11 +11,11 @@ Exports lobby history over a given query time span.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/export-history'>
+<CodeGroup title='Request' tag='POST' label='https://api.rivet.gg/cloud/games/{game_id}/matchmaker/lobbies/export-history'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://cloud.api.rivet.gg/v1/games/{game_id}/matchmaker/lobbies/export-history'
+curl -X POST -d '@body.json' 'https://api.rivet.gg/cloud/games/{game_id}/matchmaker/lobbies/export-history'
 ```
 
 ```ts
@@ -45,7 +45,7 @@ _Path parameter, required_
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"query_start":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"query_end":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}}}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"query_start":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."},"query_end":{"type":"integer","format":"int64","description":"Unsigned 64 bit integer."}},"required":["query_start","query_end"]}} />
 
 
 ## Response Body

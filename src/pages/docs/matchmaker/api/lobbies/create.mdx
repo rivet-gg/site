@@ -12,11 +12,11 @@ Creates a custom lobby.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
+<CodeGroup title='Request' tag='POST' label='https://api.rivet.gg/matchmaker/lobbies/create'>
 
 ```bash {{ title: 'cURL' }}
 # Write the request body to body.json before running
-curl -X POST -d '@body.json' 'https://matchmaker.api.rivet.gg/v1/lobbies/create'
+curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/lobbies/create'
 ```
 
 ```ts
@@ -38,10 +38,10 @@ await RIVET.matchmaker.lobbies.create({
 
 ## Request Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_mode":{"type":"string"},"region":{"type":"string"},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"publicity":{"type":"string","enum":["public","private"]},"lobby_config":{},"verification_data":{}},"required":["game_mode","publicity"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"game_mode":{"type":"string"},"region":{"type":"string"},"publicity":{"type":"string","enum":["public","private"]},"tags":{"type":"object","additionalProperties":{"type":"string"}},"max_players":{"type":"integer"},"lobby_config":{},"captcha":{"type":"object","description":"Methods to verify a captcha","properties":{"hcaptcha":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]},"turnstile":{"type":"object","description":"Captcha configuration.","properties":{"client_response":{"type":"string"}},"required":["client_response"]}}},"verification_data":{}},"required":["game_mode"]}} />
 
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby":{"type":"object","description":"A matchmaker lobby.","properties":{"lobby_id":{"type":"string","format":"uuid"},"region":{"type":"object","description":"A matchmaker lobby region.","properties":{"region_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"}},"required":["region_id","display_name"]},"ports":null,"player":null},"required":["lobby_id","region","ports","player"]},"ports":{"type":"object","additionalProperties":{"$ref":"#/components/schemas/MatchmakerJoinPort"}},"player":{"type":"object","description":"A matchmaker lobby player.","properties":{"token":{"type":"string","description":"Pass this token through the socket to the lobby server. The lobby server will validate this token with `PlayerConnected.player_token`\n"}},"required":["token"]}},"required":["lobby","ports","player"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"lobby":{"type":"object","description":"A matchmaker lobby.","properties":{"lobby_id":{"type":"string","format":"uuid"},"region":{"type":"object","description":"A matchmaker lobby region.","properties":{"region_id":{"type":"string","description":"A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short."},"display_name":{"type":"string"}},"required":["region_id","display_name"]},"ports":null,"player":null},"required":["lobby_id","region","ports","player"]},"ports":{"type":"object","additionalProperties":{"type":"object","properties":{"host":{"type":"string","description":"The host for the given port. Will be null if using a port range.\n"},"hostname":{"type":"string"},"port":{"type":"integer","description":"The port number for this lobby. Will be null if using a port range.\n"},"port_range":{"type":"object","description":"Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.\n","properties":{"min":{"type":"integer","description":"Minimum port that can be connected to. Inclusive range."},"max":{"type":"integer","description":"Maximum port that can be connected to. Inclusive range."}},"required":["min","max"]},"is_tls":{"type":"boolean"}},"required":["hostname","is_tls"]}},"player":{"type":"object","description":"A matchmaker lobby player.","properties":{"token":{"type":"string","description":"Pass this token through the socket to the lobby server. The lobby server will validate this token with `PlayerConnected.player_token`\n"}},"required":["token"]}},"required":["lobby","ports","player"]}} />
 

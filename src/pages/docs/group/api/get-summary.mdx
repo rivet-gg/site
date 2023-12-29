@@ -11,10 +11,10 @@ undefined
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='GET' label='https://group.api.rivet.gg/v1/groups/{group_id}/summary'>
+<CodeGroup title='Request' tag='GET' label='https://api.rivet.gg/group/groups/{group_id}/summary'>
 
 ```bash {{ title: 'cURL' }}
-curl -X GET 'https://group.api.rivet.gg/v1/groups/{group_id}/summary'
+curl -X GET 'https://api.rivet.gg/group/groups/{group_id}/summary'
 ```
 
 ```ts
@@ -44,5 +44,5 @@ _Path parameter, required_
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group":{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image."},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer."},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"},"is_current_identity_member":{"type":"boolean","description":"Whether or not the current identity is a member of this group."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."},"member_count":{"type":"integer"},"owner_identity_id":{"type":"string","format":"uuid"}},"required":["group_id","display_name","external","is_developer","bio","is_current_identity_member","publicity","member_count","owner_identity_id"]}},"required":["group"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"group":{"type":"object","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image."},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."}},"required":["profile"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer."},"bio":{"type":"string","description":"Follows regex ^(?:[^\\n\\r]+\\n?|\\n){1,5}$"},"is_current_identity_member":{"type":"boolean","description":"Whether or not the current identity is a member of this group."},"publicity":{"type":"string","enum":["open","closed"],"description":"The current publicity value for the given group."},"member_count":{"type":"integer"},"owner_identity_id":{"type":"string","format":"uuid"}},"required":["group_id","display_name","external","is_developer","bio","is_current_identity_member","publicity","member_count","owner_identity_id"]}},"required":["group"]}} />
 

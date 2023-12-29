@@ -11,10 +11,10 @@ Fuzzy search for groups.
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='GET' label='https://group.api.rivet.gg/v1/groups/search'>
+<CodeGroup title='Request' tag='GET' label='https://api.rivet.gg/group/groups/search'>
 
 ```bash {{ title: 'cURL' }}
-curl -X GET 'https://group.api.rivet.gg/v1/groups/search'
+curl -X GET 'https://api.rivet.gg/group/groups/search'
 ```
 
 ```ts
@@ -60,5 +60,5 @@ Unsigned 32 bit integer.
 
 ## Response Body
 
-<DocsJsonSchemaViewer schema={{"type":"object","properties":{"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."},"chat":{"type":"string","description":"A link to this group's chat page."}},"required":["profile","chat"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group handles."},"anchor":{"type":"string"}},"required":["groups"]}} />
+<DocsJsonSchemaViewer schema={{"type":"object","properties":{"groups":{"type":"array","items":{"type":"object","description":"A group handle.","properties":{"group_id":{"type":"string","format":"uuid"},"display_name":{"type":"string"},"avatar_url":{"type":"string","description":"The URL of this group's avatar image"},"external":{"type":"object","description":"External links for this group.","properties":{"profile":{"type":"string","description":"A link to this group's profile page."}},"required":["profile"]},"is_developer":{"type":"boolean","description":"Whether or not this group is a developer group."}},"required":["group_id","display_name","external"]},"description":"A list of group handles."},"anchor":{"type":"string"}},"required":["groups"]}} />
 
