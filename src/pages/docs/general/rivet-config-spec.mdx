@@ -1,0 +1,292 @@
+# rivet.yaml Specification
+
+## Naming
+
+Workflow files must be name `rivet.yaml`, `rivet.toml`, or `rivet.json`. We recommend using YAML for your configuration since it is easiest to read/write and [provides validation & suggestions through our schema](https://github.com/redhat-developer/yaml-language-server).
+
+## Namespacing
+
+Rivet configs can override properties by naming them `rivet.{namespace}.yaml`. For example, you can configure your generic config in `rivet.yaml` and override the properties for production in `rivet.prod.yaml`.
+
+## `cdn`
+
+_object_
+
+CDN configuration for a given version.
+
+## `cdn.build_command`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `cdn.build_output`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `cdn.routes`
+
+_array_
+
+Multiple CDN version routes.
+
+## `cdn.routes[*].properties`
+
+_object_
+
+## `cdn.routes[*].required`
+
+_object_
+
+## `cdn.routes[*].type`
+
+_object_
+
+## `cdn.site_id`
+
+_string_
+
+## `engine`
+
+_object_
+
+## `engine.custom`
+
+_object_
+
+## `engine.godot`
+
+_object_
+
+## `engine.html5`
+
+_object_
+
+## `engine.unity`
+
+_object_
+
+## `engine.unreal`
+
+_object_
+
+## `engine.unreal.game_module`
+
+_string_
+
+Name of the Unreal module that holds the game code.
+This is usually the value of `$.Modules[0].Name` in the file `MyProject.unproject`.
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `identity`
+
+_object_
+
+Identity configuration for a given version.
+
+## `identity.avatars`
+
+_array_
+
+## `identity.avatars[*].format`
+
+_object_
+
+## `identity.avatars[*].type`
+
+_object_
+
+## `identity.display_names`
+
+_array_
+
+## `identity.display_names[*].type`
+
+_object_
+
+## `kv`
+
+_object_
+
+KV configuration for a given version.
+
+## `matchmaker`
+
+_object_
+
+Matchmaker configuration for a given version.
+
+## `matchmaker.captcha`
+
+_object_
+
+Matchmaker captcha configuration.
+
+## `matchmaker.captcha.hcaptcha`
+
+_object_
+
+hCpatcha configuration.
+
+## `matchmaker.captcha.hcaptcha.level`
+
+_string_
+
+How hard a captcha should be.
+
+## `matchmaker.captcha.requests_before_reverify`
+
+_integer_
+
+Denotes how many requests a connection can make before it is required to reverify a captcha.
+
+## `matchmaker.captcha.turnstile`
+
+_object_
+
+Turnstile captcha configuration.
+
+## `matchmaker.captcha.turnstile.secret_key`
+
+_string_
+
+## `matchmaker.captcha.turnstile.site_key`
+
+_string_
+
+## `matchmaker.captcha.verification_ttl`
+
+_integer_
+
+Denotes how long a connection can continue to reconnect without having to reverify a captcha (in milliseconds).
+
+## `matchmaker.dev_hostname`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.docker`
+
+_object_
+
+A game mode runtime running through Docker.
+
+## `matchmaker.docker.args`
+
+_array_
+
+## `matchmaker.docker.args[*].type`
+
+_object_
+
+## `matchmaker.docker.dockerfile`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.docker.env`
+
+_object_
+
+## `matchmaker.docker.env.*.type`
+
+_object_
+
+## `matchmaker.docker.image`
+
+_string_
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.docker.image_id`
+
+_string_
+
+## `matchmaker.docker.network_mode`
+
+_string_
+
+## `matchmaker.docker.ports`
+
+_object_
+
+## `matchmaker.docker.ports.*.description`
+
+_object_
+
+## `matchmaker.docker.ports.*.properties`
+
+_object_
+
+## `matchmaker.docker.ports.*.type`
+
+_object_
+
+## `matchmaker.game_modes`
+
+_object_
+
+A list of game modes.
+
+## `matchmaker.game_modes.*.description`
+
+_object_
+
+## `matchmaker.game_modes.*.properties`
+
+_object_
+
+## `matchmaker.game_modes.*.type`
+
+_object_
+
+## `matchmaker.idle_lobbies`
+
+_object_
+
+Configuration for how many idle lobbies a game version should have.
+
+## `matchmaker.idle_lobbies.max`
+
+_integer_
+
+## `matchmaker.idle_lobbies.min`
+
+_integer_
+
+## `matchmaker.max_players`
+
+_integer_
+
+## `matchmaker.max_players_direct`
+
+_integer_
+
+## `matchmaker.max_players_party`
+
+_integer_
+
+## `matchmaker.regions`
+
+_object_
+
+## `matchmaker.regions.*.description`
+
+_object_
+
+## `matchmaker.regions.*.properties`
+
+_object_
+
+## `matchmaker.regions.*.type`
+
+_object_
+
+## `matchmaker.tier`
+
+_string_
+

@@ -92,6 +92,10 @@ export function ComingSoon() {
   return <Info>🚧 This documentation page is coming soon 🚧</Info>;
 }
 
+export function Outdated() {
+  return <Info>🚧 This documentation page is no longer maintained and potentially outdated 🚧</Info>;
+}
+
 export function WorkInProgress() {
   return <Info>🚧 This documentation page is a work in progress 🚧</Info>;
 }

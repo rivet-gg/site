@@ -3,6 +3,7 @@ import YAML from 'yaml';
 import { flattenOpenAPISpec } from './flattenSpec.mjs';
 import { generateApiPages } from './generateApiPages.mjs';
 import { generateRivetSchema } from './generateRivetSchema.mjs';
+import { generateRivetSchemaPage } from './generateRivetSchemaPage.mjs';
 
 let BACKEND_PATH = '../rivet';
 
@@ -20,6 +21,9 @@ export async function main() {
 
   // Generate rivet.yaml schema
   await generateRivetSchema(fullSpec);
+
+  // Generate rivet.yaml schema docs
+  await generateRivetSchemaPage(flatSpec);
 }
 
 main();
