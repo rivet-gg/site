@@ -62,9 +62,10 @@ import {
   faLifeRing,
   faAward,
   faHome,
-  faFileImport
+  faFileImport,
+  faAlien8bit,
+  faHeart
 } from '@fortawesome/sharp-solid-svg-icons';
-
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';
 import imgMatchmaker from '@/images/screenshots/matchmaker.png';
@@ -545,7 +546,7 @@ function Title() {
         <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
           <Button variant='juicy'>Sign Up for Beta</Button>
 
-          <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
+          <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover-effect'>
             5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
         </div>
@@ -801,14 +802,19 @@ function CaseStudies({ props }) {
   return (
     <div className='md:mt-40 mt-20'>
       {/* Title */}
-      <div className='mx-auto max-w-2xl text-center'>
-        <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl'>
+      <div className='mx-auto max-w-3xl text-center'>
+        <h2 className='text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
           {/* Trusted to serve millions of players. */}
           {/* Used by companies that forget about infrastructure */}
           {/* Used by companies that prefer game development over infrastructure */}
-          Serving <span className='text-violet-300'>millions</span> of players at scale
-        </h2>
+          Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/> at scale around the globe
+          <span style={{ display: 'inline-block', width: '.2em' }}></span> {/* Explicit space */}
+          <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' style={{ transform: 'scaleX(1.35)' }} />
+        </h2>  
       </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
 
       {/* Grid */}
       <div className={clsx(
@@ -821,7 +827,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[275px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
@@ -836,6 +842,16 @@ function CaseStudies({ props }) {
             {study.badge && study.badge()}
           </Link>
         ))}
+      </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
+
+      {/* sub-text */}
+      <div className='mx-auto max-w-1xl text-center'>
+        <h3 className='italic tracking-tight text-cream-100 sm:text-5xl'>
+          Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
+        </h3>  
       </div>
     </div>
   );

@@ -46,6 +46,9 @@ module.exports = {
       },
       spacing: {
         26: '6.5rem'
+      },
+      backgroundImage: {
+        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
       }
     }
   },

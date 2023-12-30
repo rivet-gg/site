@@ -25,6 +25,46 @@
   }
 }
 
+/* animation for the rainbow bar under '5 minutes crash course' */
+
+@keyframes rainbowCycle {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.rainbow-gradient {
+  background: linear-gradient(
+    to right, 
+    violet, indigo, blue, green, yellow, orange, red,
+    orange, yellow, green, blue, indigo, violet,
+    violet, indigo, blue, green, yellow, orange, red
+  );
+  background-size: 300% 100%;
+}
+
+
+.hover-effect:hover::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right, 
+    violet, indigo, blue, green, yellow, orange, red,
+    orange, yellow, green, blue, indigo, violet,
+    violet, indigo, blue, green, yellow, orange, red
+  );
+  background-size: 300% 100%;
+  animation: rainbowCycle 3s linear infinite;
+  position: absolute;
+  bottom: 0;
+}
+
+.hover-effect {
+  position: relative;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
