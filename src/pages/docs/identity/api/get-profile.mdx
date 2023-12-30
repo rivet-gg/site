@@ -53,23 +53,23 @@ _Query parameter, optional_
 
 ### `identity`
 
-_object, required_
+`object` (required)
 
 An identity profile.
 
 ### `identity.account_number`
 
-_integer_
+`integer` (required)
 
 ### `identity.avatar_url`
 
-_string_
+`string` (required)
 
 The URL of this identity's avatar image.
 
 ### `identity.awaiting_deletion`
 
-_boolean_
+`boolean`
 
 Whether or not this identity is awaiting account deletion. Only visible to when the requestee is
 this identity.
@@ -77,217 +77,337 @@ this identity.
 
 ### `identity.bio`
 
-_string_
+`string` (required)
 
 Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
 
 ### `identity.display_name`
 
-_string_
+`string` (required)
 
 ### `identity.external`
 
-_object_
+`object` (required)
 
 External links for an identity.
 
 ### `identity.external.profile`
 
-_string_
+`string` (required)
 
 A link to this identity's profile page.
 
 ### `identity.external.settings`
 
-_string_
+`string`
 
 A link to the Rivet settings page.
 
 ### `identity.follower_count`
 
-_integer_
+`integer` (required)
 
 ### `identity.following`
 
-_boolean_
+`boolean` (required)
 
 Whether or not the requestee's identity is following this identity.
 
 ### `identity.following_count`
 
-_integer_
+`integer` (required)
 
 ### `identity.games`
 
-_array_
+`array<object>` (required)
 
-### `identity.games[*].description`
+### `identity.games[*].game`
 
-_object_
+`object` (required)
 
-### `identity.games[*].properties`
+### `identity.games[*].game.banner_url`
 
-_object_
+`string`
 
-### `identity.games[*].required`
+The URL of this game's banner image.
 
-_object_
+### `identity.games[*].game.display_name`
 
-### `identity.games[*].type`
+`string` (required)
 
-_object_
+### `identity.games[*].game.game_id`
+
+`string` (required)
+
+### `identity.games[*].game.logo_url`
+
+`string`
+
+The URL of this game's logo image.
+
+### `identity.games[*].game.name_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `identity.games[*].stats`
+
+`array<object>` (required)
+
+### `identity.games[*].stats[*].config`
+
+`object` (required)
+
+A game statistic config.
+
+### `identity.games[*].stats[*].config.aggregation`
+
+`string` (required)
+
+A value denoting the aggregation method of a game statistic.
+
+### `identity.games[*].stats[*].config.display_name`
+
+`string` (required)
+
+### `identity.games[*].stats[*].config.format`
+
+`string` (required)
+
+A value denoting the format method of a game statistic.
+
+### `identity.games[*].stats[*].config.icon_id`
+
+`string` (required)
+
+### `identity.games[*].stats[*].config.postfix_plural`
+
+`string`
+
+A string appended to the end of a game statistic's value that is not exactly 1. Example: 45 **dollars**.
+
+### `identity.games[*].stats[*].config.postfix_singular`
+
+`string`
+
+A string appended to the end of a singular game statistic's value. Example: 1 **dollar**.
+
+### `identity.games[*].stats[*].config.prefix_plural`
+
+`string`
+
+A string prepended to the beginning of a game statistic's value that is not exactly 1. Example: **values** 45.
+
+### `identity.games[*].stats[*].config.prefix_singular`
+
+`string`
+
+A string appended to the beginning of a singular game statistic's value. Example: **value** 1.
+
+### `identity.games[*].stats[*].config.priority`
+
+`integer` (required)
+
+### `identity.games[*].stats[*].config.record_id`
+
+`string` (required)
+
+### `identity.games[*].stats[*].config.sorting`
+
+`string` (required)
+
+A value denoting the sorting method of a game statistic.
+
+### `identity.games[*].stats[*].overall_value`
+
+`number` (required)
+
+A single overall value of the given statistic.
 
 ### `identity.groups`
 
-_array_
+`array<object>` (required)
 
-### `identity.groups[*].description`
+### `identity.groups[*].group`
 
-_object_
+`object` (required)
 
-### `identity.groups[*].properties`
+A group handle.
 
-_object_
+### `identity.groups[*].group.avatar_url`
 
-### `identity.groups[*].required`
+`string`
 
-_object_
+The URL of this group's avatar image
 
-### `identity.groups[*].type`
+### `identity.groups[*].group.display_name`
 
-_object_
+`string` (required)
+
+### `identity.groups[*].group.external`
+
+`object` (required)
+
+External links for this group.
+
+### `identity.groups[*].group.external.profile`
+
+`string` (required)
+
+A link to this group's profile page.
+
+### `identity.groups[*].group.group_id`
+
+`string` (required)
+
+### `identity.groups[*].group.is_developer`
+
+`boolean`
+
+Whether or not this group is a developer group.
 
 ### `identity.identity_id`
 
-_string_
+`string` (required)
 
 ### `identity.is_admin`
 
-_boolean_
+`boolean` (required)
 
 Whether or not this identity is an admin.
 
 ### `identity.is_following_me`
 
-_boolean_
+`boolean` (required)
 
 Whether or not this identity is both following and is followed by the requestee's identity.
 
 ### `identity.is_game_linked`
 
-_boolean_
+`boolean`
 
 Whether or not this game user has been linked through the Rivet dashboard.
 
 ### `identity.is_mutual_following`
 
-_boolean_
+`boolean` (required)
 
 ### `identity.is_registered`
 
-_boolean_
+`boolean` (required)
 
 Whether or not this identity is registered with a linked account.
 
 ### `identity.join_ts`
 
-_string_
+`string` (required)
 
 ### `identity.linked_accounts`
 
-_array_
+`array<object>` (required)
 
-### `identity.linked_accounts[*].description`
+### `identity.linked_accounts[*].access_token`
 
-_object_
+`object`
 
-### `identity.linked_accounts[*].properties`
+An identity's access token identity.
 
-_object_
+### `identity.linked_accounts[*].access_token.name`
 
-### `identity.linked_accounts[*].type`
+`string` (required)
 
-_object_
+### `identity.linked_accounts[*].email`
+
+`object`
+
+An identity's linked email.
+
+### `identity.linked_accounts[*].email.email`
+
+`string` (required)
+
+A valid email address
 
 ### `identity.presence`
 
-_object_
+`object`
 
 Information about the identity's current status, party, and active game.
 
 ### `identity.presence.game_activity`
 
-_object_
+`object`
 
 The game an identity is currently participating in.
 
 ### `identity.presence.game_activity.game`
 
-_object_
+`object` (required)
 
 ### `identity.presence.game_activity.game.banner_url`
 
-_string_
+`string`
 
 The URL of this game's banner image.
 
 ### `identity.presence.game_activity.game.display_name`
 
-_string_
+`string` (required)
 
 ### `identity.presence.game_activity.game.game_id`
 
-_string_
+`string` (required)
 
 ### `identity.presence.game_activity.game.logo_url`
 
-_string_
+`string`
 
 The URL of this game's logo image.
 
 ### `identity.presence.game_activity.game.name_id`
 
-_string_
+`string` (required)
 
 A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
 
 ### `identity.presence.game_activity.message`
 
-_string_
+`string` (required)
 
 A short activity message about the current game activity.
 
 ### `identity.presence.game_activity.mutual_metadata`
 
-_object_
+`object`
 
 JSON data seen only by the given identity and their mutual followers.
 
 ### `identity.presence.game_activity.public_metadata`
 
-_object_
+`object`
 
 JSON data seen by anyone.
 
 ### `identity.presence.status`
 
-_string_
+`string` (required)
 
 The current status of an identity. This helps players understand if another player is currently playing or has their game in the background.
 
 ### `identity.presence.update_ts`
 
-_string_
+`string` (required)
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

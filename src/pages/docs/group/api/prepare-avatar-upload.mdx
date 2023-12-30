@@ -39,19 +39,19 @@ await RIVET.group.prepareAvatarUpload({
 
 ### `content_length`
 
-_integer, required_
+`integer` (required)
 
 Unsigned 64 bit integer.
 
 ### `mime`
 
-_string_
+`string`
 
 The MIME type of the group avatar.
 
 ### `path`
 
-_string, required_
+`string` (required)
 
 The path/filename of the group avatar.
 
@@ -62,40 +62,40 @@ The path/filename of the group avatar.
 
 ### `presigned_request`
 
-_object, required_
+`object` (required)
 
 A presigned request used to upload files. Upload your file to the given URL via a PUT request.
 
 
 ### `presigned_request.byte_offset`
 
-_integer_
+`integer` (required)
 
 The byte offset for this multipart chunk. Always 0 if not a multipart upload.
 
 ### `presigned_request.content_length`
 
-_integer_
+`integer` (required)
 
 Expected size of this upload.
 
 ### `presigned_request.path`
 
-_string_
+`string` (required)
 
 The name of the file to upload.  This is the same as the one given in the upload prepare file.
 
 
 ### `presigned_request.url`
 
-_string_
+`string` (required)
 
 The URL of the presigned request for which to upload your file to.
 
 
 ### `upload_id`
 
-_string, required_
+`string` (required)
 
 
 

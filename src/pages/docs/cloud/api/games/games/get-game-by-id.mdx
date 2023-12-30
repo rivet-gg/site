@@ -53,129 +53,157 @@ A query parameter denoting the requests watch index.
 
 ### `game`
 
-_object, required_
+`object` (required)
 
 A full game.
 
 ### `game.available_regions`
 
-_array_
+`array<object>` (required)
 
 A list of region summaries.
 
-### `game.available_regions[*].description`
+### `game.available_regions[*].provider`
 
-_object_
+`string` (required)
 
-### `game.available_regions[*].properties`
+The server provider of this region.
 
-_object_
+### `game.available_regions[*].provider_display_name`
 
-### `game.available_regions[*].required`
+`string` (required)
 
-_object_
+Represent a resource's readable display name.
 
-### `game.available_regions[*].type`
+### `game.available_regions[*].region_display_name`
 
-_object_
+`string` (required)
+
+Represent a resource's readable display name.
+
+### `game.available_regions[*].region_id`
+
+`string` (required)
+
+### `game.available_regions[*].region_name_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+
+### `game.available_regions[*].universal_region`
+
+`string` (required)
+
+A universal region label given to this region.
 
 ### `game.banner_url`
 
-_string_
+`string`
 
 The URL of this game's banner image.
 
 ### `game.create_ts`
 
-_string_
+`string` (required)
 
 RFC3339 timestamp.
 
 ### `game.developer_group_id`
 
-_string_
+`string` (required)
 
 ### `game.display_name`
 
-_string_
+`string` (required)
 
 Represent a resource's readable display name.
 
 ### `game.game_id`
 
-_string_
+`string` (required)
 
 ### `game.logo_url`
 
-_string_
+`string`
 
 The URL of this game's logo image.
 
 ### `game.name_id`
 
-_string_
+`string` (required)
 
 A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
 ### `game.namespaces`
 
-_array_
+`array<object>` (required)
 
 A list of namespace summaries.
 
-### `game.namespaces[*].description`
+### `game.namespaces[*].create_ts`
 
-_object_
+`string` (required)
 
-### `game.namespaces[*].properties`
+RFC3339 timestamp.
 
-_object_
+### `game.namespaces[*].display_name`
 
-### `game.namespaces[*].required`
+`string` (required)
 
-_object_
+Represent a resource's readable display name.
 
-### `game.namespaces[*].type`
+### `game.namespaces[*].name_id`
 
-_object_
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+
+### `game.namespaces[*].namespace_id`
+
+`string` (required)
+
+### `game.namespaces[*].version_id`
+
+`string` (required)
 
 ### `game.total_player_count`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `game.versions`
 
-_array_
+`array<object>` (required)
 
 A list of version summaries.
 
-### `game.versions[*].description`
+### `game.versions[*].create_ts`
 
-_object_
+`string` (required)
 
-### `game.versions[*].properties`
+RFC3339 timestamp.
 
-_object_
+### `game.versions[*].display_name`
 
-### `game.versions[*].required`
+`string` (required)
 
-_object_
+Represent a resource's readable display name.
 
-### `game.versions[*].type`
+### `game.versions[*].version_id`
 
-_object_
+`string` (required)
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

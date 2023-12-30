@@ -45,63 +45,95 @@ _Query parameter, optional_
 
 ### `game_modes`
 
-_array, required_
+`array<object>` (required)
 
-### `game_modes[*].description`
+### `game_modes[*].game_mode_id`
 
-_object_
+`string` (required)
 
-### `game_modes[*].properties`
-
-_object_
-
-### `game_modes[*].required`
-
-_object_
-
-### `game_modes[*].type`
-
-_object_
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
 
 ### `lobbies`
 
-_array, required_
+`array<object>` (required)
 
-### `lobbies[*].description`
+### `lobbies[*].game_mode_id`
 
-_object_
+`string` (required)
 
-### `lobbies[*].properties`
+### `lobbies[*].lobby_id`
 
-_object_
+`string` (required)
 
-### `lobbies[*].required`
+### `lobbies[*].max_players_direct`
 
-_object_
+`integer` (required)
 
-### `lobbies[*].type`
+### `lobbies[*].max_players_normal`
 
-_object_
+`integer` (required)
+
+### `lobbies[*].max_players_party`
+
+`integer` (required)
+
+### `lobbies[*].region_id`
+
+`string` (required)
+
+### `lobbies[*].state`
+
+`object`
+
+### `lobbies[*].total_player_count`
+
+`integer` (required)
 
 ### `regions`
 
-_array, required_
+`array<object>` (required)
 
-### `regions[*].description`
+### `regions[*].datacenter_coord`
 
-_object_
+`object` (required)
 
-### `regions[*].properties`
+Geographical coordinates for a location on Planet Earth.
 
-_object_
+### `regions[*].datacenter_coord.latitude`
 
-### `regions[*].required`
+`number` (required)
 
-_object_
+### `regions[*].datacenter_coord.longitude`
 
-### `regions[*].type`
+`number` (required)
 
-_object_
+### `regions[*].datacenter_distance_from_client`
+
+`object` (required)
+
+Distance available in multiple units.
+
+### `regions[*].datacenter_distance_from_client.kilometers`
+
+`number` (required)
+
+### `regions[*].datacenter_distance_from_client.miles`
+
+`number` (required)
+
+### `regions[*].provider_display_name`
+
+`string` (required)
+
+### `regions[*].region_display_name`
+
+`string` (required)
+
+### `regions[*].region_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
 
 
 

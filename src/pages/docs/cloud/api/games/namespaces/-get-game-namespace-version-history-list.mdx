@@ -69,25 +69,27 @@ Amount of items to return. Must be between 1 and 32 inclusive.
 
 ### `versions`
 
-_array, required_
+`array<object>` (required)
 
 A list of previously deployed namespace versions.
 
-### `versions[*].description`
+### `versions[*].deploy_ts`
 
-_object_
+`string` (required)
 
-### `versions[*].properties`
+RFC3339 timestamp.
 
-_object_
+### `versions[*].namespace_id`
 
-### `versions[*].required`
+`string` (required)
 
-_object_
+A universally unique identifier.
 
-### `versions[*].type`
+### `versions[*].version_id`
 
-_object_
+`string` (required)
+
+A universally unique identifier.
 
 
 

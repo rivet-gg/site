@@ -45,25 +45,41 @@ _Path parameter, required_
 
 ### `builds`
 
-_array, required_
+`array<object>` (required)
 
 A list of build summaries.
 
-### `builds[*].description`
+### `builds[*].build_id`
 
-_object_
+`string` (required)
 
-### `builds[*].properties`
+### `builds[*].complete`
 
-_object_
+`boolean` (required)
 
-### `builds[*].required`
+Whether or not this build has completely been uploaded.
 
-_object_
+### `builds[*].content_length`
 
-### `builds[*].type`
+`integer` (required)
 
-_object_
+Unsigned 64 bit integer.
+
+### `builds[*].create_ts`
+
+`string` (required)
+
+RFC3339 timestamp.
+
+### `builds[*].display_name`
+
+`string` (required)
+
+Represent a resource's readable display name.
+
+### `builds[*].upload_id`
+
+`string` (required)
 
 
 

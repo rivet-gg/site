@@ -45,25 +45,41 @@ _Path parameter, required_
 
 ### `sites`
 
-_array, required_
+`array<object>` (required)
 
 A list of CDN site summaries.
 
-### `sites[*].description`
+### `sites[*].complete`
 
-_object_
+`boolean` (required)
 
-### `sites[*].properties`
+Whether or not this site has completely been uploaded.
 
-_object_
+### `sites[*].content_length`
 
-### `sites[*].required`
+`integer` (required)
 
-_object_
+Unsigned 64 bit integer.
 
-### `sites[*].type`
+### `sites[*].create_ts`
 
-_object_
+`string` (required)
+
+RFC3339 timestamp.
+
+### `sites[*].display_name`
+
+`string` (required)
+
+Represent a resource's readable display name.
+
+### `sites[*].site_id`
+
+`string` (required)
+
+### `sites[*].upload_id`
+
+`string` (required)
 
 
 

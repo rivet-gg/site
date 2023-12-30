@@ -61,25 +61,77 @@ Returns lobbies created before this timestamp.
 
 ### `lobbies`
 
-_array, required_
+`array<object>` (required)
 
 A list of lobby log summaries.
 
-### `lobbies[*].description`
+### `lobbies[*].create_ts`
 
-_object_
+`string` (required)
 
-### `lobbies[*].properties`
+RFC3339 timestamp.
 
-_object_
+### `lobbies[*].lobby_group_name_id`
 
-### `lobbies[*].required`
+`string` (required)
 
-_object_
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
-### `lobbies[*].type`
+### `lobbies[*].lobby_id`
 
-_object_
+`string` (required)
+
+### `lobbies[*].namespace_id`
+
+`string` (required)
+
+### `lobbies[*].ready_ts`
+
+`string`
+
+RFC3339 timestamp.
+
+### `lobbies[*].region_id`
+
+`string` (required)
+
+### `lobbies[*].start_ts`
+
+`string`
+
+RFC3339 timestamp.
+
+### `lobbies[*].status`
+
+`object` (required)
+
+A union representing the state of a lobby.
+
+### `lobbies[*].status.running`
+
+`object` (required)
+
+### `lobbies[*].status.stopped`
+
+`object`
+
+The status of a stopped lobby.
+
+### `lobbies[*].status.stopped.exit_code`
+
+`integer` (required)
+
+The exit code returned by the lobby's main process when stopped.
+
+### `lobbies[*].status.stopped.failed`
+
+`boolean` (required)
+
+Whether or not the lobby failed or stopped successfully.
+
+### `lobbies[*].status.stopped.stop_ts`
+
+`string` (required)
 
 
 

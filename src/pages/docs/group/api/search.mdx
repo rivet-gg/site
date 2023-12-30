@@ -61,29 +61,45 @@ Unsigned 32 bit integer.
 
 ### `anchor`
 
-_string_
+`string`
 
 ### `groups`
 
-_array, required_
+`array<object>` (required)
 
 A list of group handles.
 
-### `groups[*].description`
+### `groups[*].avatar_url`
 
-_object_
+`string`
 
-### `groups[*].properties`
+The URL of this group's avatar image
 
-_object_
+### `groups[*].display_name`
 
-### `groups[*].required`
+`string` (required)
 
-_object_
+### `groups[*].external`
 
-### `groups[*].type`
+`object` (required)
 
-_object_
+External links for this group.
+
+### `groups[*].external.profile`
+
+`string` (required)
+
+A link to this group's profile page.
+
+### `groups[*].group_id`
+
+`string` (required)
+
+### `groups[*].is_developer`
+
+`boolean`
+
+Whether or not this group is a developer group.
 
 
 

@@ -3,6 +3,12 @@
   "title": "rivet.yaml Config",
   "type": "object",
   "properties": {
+    "scripts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
     "engine": {
       "$ref": "#/definitions/CloudVersionEngineConfig"
     },
@@ -123,20 +129,22 @@
     },
     "CloudVersionIdentityConfig": {
       "type": "object",
-      "description": "Identity configuration for a given version.",
+      "description": "**Deprecated**\nIdentity configuration for a given version.",
       "properties": {
         "display_names": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "**Deprecated**"
         },
         "avatars": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "uuid"
-          }
+          },
+          "description": "**Deprecated**"
         },
         "custom_display_names": {
           "type": "array",
@@ -291,6 +299,13 @@
       "properties": {
         "dockerfile": {
           "type": "string",
+          "description": "_Configures Rivet CLI behavior. Has no effect on server behavior._"
+        },
+        "build_args": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "_Configures Rivet CLI behavior. Has no effect on server behavior._"
         },
         "image": {
@@ -595,7 +610,8 @@
           "description": "Defaults to true when unset."
         },
         "max_lobbies_per_identity": {
-          "type": "integer"
+          "type": "integer",
+          "description": "**Deprecated**"
         }
       },
       "required": [
@@ -723,7 +739,7 @@
         "guest",
         "registered"
       ],
-      "description": "The registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."
+      "description": "**Deprecated**\nThe registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."
     },
     "CloudVersionMatchmakerGameModeVerificationConfig": {
       "type": "object",

@@ -54,29 +54,41 @@ _Path parameter, required_
 
 ### `hostname`
 
-_string, required_
+`string` (required)
 
 The hostname used for the token.
 
 ### `ports`
 
-_object_
+`map<string, object>`
 
-### `ports.*.description`
+### `ports.<port>.port`
 
-_object_
+`integer`
 
-### `ports.*.properties`
+### `ports.<port>.port_range`
 
-_object_
+`object`
 
-### `ports.*.required`
+Range of ports that can be connected to.
 
-_object_
+### `ports.<port>.port_range.max`
 
-### `ports.*.type`
+`integer` (required)
 
-_object_
+Unsigned 32 bit integer.
+
+### `ports.<port>.port_range.min`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+### `ports.<port>.protocol`
+
+`string` (required)
+
+A port protocol.
 
 
 
@@ -85,7 +97,7 @@ _object_
 
 ### `token`
 
-_string, required_
+`string` (required)
 
 A JSON Web Token.
 Slightly modified to include a description prefix and use Protobufs of

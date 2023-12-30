@@ -45,25 +45,43 @@ _Path parameter, required_
 
 ### `custom_avatars`
 
-_array, required_
+`array<object>` (required)
 
 A list of custom avatar summaries.
 
-### `custom_avatars[*].description`
+### `custom_avatars[*].complete`
 
-_object_
+`boolean` (required)
 
-### `custom_avatars[*].properties`
+Whether or not this custom avatar has completely been uploaded.
 
-_object_
+### `custom_avatars[*].content_length`
 
-### `custom_avatars[*].required`
+`integer` (required)
 
-_object_
+Unsigned 64 bit integer.
 
-### `custom_avatars[*].type`
+### `custom_avatars[*].create_ts`
 
-_object_
+`string` (required)
+
+RFC3339 timestamp.
+
+### `custom_avatars[*].display_name`
+
+`string` (required)
+
+Represent a resource's readable display name.
+
+### `custom_avatars[*].upload_id`
+
+`string` (required)
+
+### `custom_avatars[*].url`
+
+`string`
+
+The URL of this custom avatar image. Only present if upload is complete.
 
 
 

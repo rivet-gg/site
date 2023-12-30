@@ -46,13 +46,13 @@ _Path parameter, required_
 
 ### `display_name`
 
-_string, required_
+`string` (required)
 
 Represent a resource's readable display name.
 
 ### `name_id`
 
-_string, required_
+`string` (required)
 
 A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
@@ -63,25 +63,15 @@ A human readable short identifier used to references resources. Different than a
 
 ### `errors`
 
-_array, required_
+`array<object>` (required)
 
 A list of validation errors.
 
-### `errors[*].description`
+### `errors[*].path`
 
-_object_
+`array<string>` (required)
 
-### `errors[*].properties`
-
-_object_
-
-### `errors[*].required`
-
-_object_
-
-### `errors[*].type`
-
-_object_
+A list of strings denoting the origin of a validation error.
 
 
 

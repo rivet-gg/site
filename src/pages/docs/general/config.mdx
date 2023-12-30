@@ -10,283 +10,601 @@ Rivet configs can override properties by naming them `rivet.{namespace}.yaml`. F
 
 ## `cdn`
 
-_object_
+`object`
 
 CDN configuration for a given version.
 
 ## `cdn.build_command`
 
-_string_
+`string`
 
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `cdn.build_output`
 
-_string_
+`string`
 
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `cdn.routes`
 
-_array_
+`array<object>`
 
 Multiple CDN version routes.
 
-## `cdn.routes[*].properties`
+## `cdn.routes[*].glob`
 
-_object_
+`string` (required)
 
-## `cdn.routes[*].required`
+## `cdn.routes[*].middlewares`
 
-_object_
+`array<object>` (required)
 
-## `cdn.routes[*].type`
+Multiple CDN version middleware.
 
-_object_
+## `cdn.routes[*].middlewares[*].kind`
+
+`object` (required)
+
+## `cdn.routes[*].middlewares[*].kind.custom_headers`
+
+`object`
+
+## `cdn.routes[*].middlewares[*].kind.custom_headers.headers`
+
+`array<object>` (required)
+
+## `cdn.routes[*].middlewares[*].kind.custom_headers.headers[*].name`
+
+`string` (required)
+
+## `cdn.routes[*].middlewares[*].kind.custom_headers.headers[*].value`
+
+`string` (required)
+
+## `cdn.routes[*].priority`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
 
 ## `cdn.site_id`
 
-_string_
+`string`
 
 ## `engine`
 
-_object_
+`object`
 
 ## `engine.custom`
 
-_object_
+`object`
 
 ## `engine.godot`
 
-_object_
+`object`
 
 ## `engine.html5`
 
-_object_
+`object`
 
 ## `engine.unity`
 
-_object_
+`object`
 
 ## `engine.unreal`
 
-_object_
+`object`
 
 ## `engine.unreal.game_module`
 
-_string_
+`string` (required)
 
 Name of the Unreal module that holds the game code.
 This is usually the value of `$.Modules[0].Name` in the file `MyProject.unproject`.
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
-## `identity`
-
-_object_
-
-Identity configuration for a given version.
-
-## `identity.avatars`
-
-_array_
-
-## `identity.avatars[*].format`
-
-_object_
-
-## `identity.avatars[*].type`
-
-_object_
-
-## `identity.display_names`
-
-_array_
-
-## `identity.display_names[*].type`
-
-_object_
-
 ## `kv`
 
-_object_
+`object`
 
 KV configuration for a given version.
 
 ## `matchmaker`
 
-_object_
+`object`
 
 Matchmaker configuration for a given version.
 
 ## `matchmaker.captcha`
 
-_object_
+`object`
 
 Matchmaker captcha configuration.
 
 ## `matchmaker.captcha.hcaptcha`
 
-_object_
+`object`
 
 hCpatcha configuration.
 
 ## `matchmaker.captcha.hcaptcha.level`
 
-_string_
+`string` (required)
 
 How hard a captcha should be.
 
 ## `matchmaker.captcha.requests_before_reverify`
 
-_integer_
+`integer` (required)
 
 Denotes how many requests a connection can make before it is required to reverify a captcha.
 
 ## `matchmaker.captcha.turnstile`
 
-_object_
+`object`
 
 Turnstile captcha configuration.
 
 ## `matchmaker.captcha.turnstile.secret_key`
 
-_string_
+`string` (required)
 
 ## `matchmaker.captcha.turnstile.site_key`
 
-_string_
+`string` (required)
 
 ## `matchmaker.captcha.verification_ttl`
 
-_integer_
+`integer` (required)
 
 Denotes how long a connection can continue to reconnect without having to reverify a captcha (in milliseconds).
 
 ## `matchmaker.dev_hostname`
 
-_string_
+`string`
 
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `matchmaker.docker`
 
-_object_
+`object`
 
 A game mode runtime running through Docker.
 
 ## `matchmaker.docker.args`
 
-_array_
+`array<string>`
 
-## `matchmaker.docker.args[*].type`
+## `matchmaker.docker.build_args`
 
-_object_
+`map<string, string>`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `matchmaker.docker.dockerfile`
 
-_string_
+`string`
 
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `matchmaker.docker.env`
 
-_object_
-
-## `matchmaker.docker.env.*.type`
-
-_object_
+`map<string, string>`
 
 ## `matchmaker.docker.image`
 
-_string_
+`string`
 
 _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 ## `matchmaker.docker.image_id`
 
-_string_
+`string`
 
 ## `matchmaker.docker.network_mode`
 
-_string_
+`string`
 
 ## `matchmaker.docker.ports`
 
-_object_
+`map<string, object>`
 
-## `matchmaker.docker.ports.*.description`
+## `matchmaker.docker.ports.<port>.dev_port`
 
-_object_
+`integer`
 
-## `matchmaker.docker.ports.*.properties`
+_Configures Rivet CLI behavior. Has no effect on server behavior._
 
-_object_
+## `matchmaker.docker.ports.<port>.dev_port_range`
 
-## `matchmaker.docker.ports.*.type`
+`object`
 
-_object_
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.docker.ports.<port>.dev_port_range.max`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.docker.ports.<port>.dev_port_range.min`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.docker.ports.<port>.dev_protocol`
+
+`string`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.docker.ports.<port>.port`
+
+`integer`
+
+The port number to connect to.
+
+## `matchmaker.docker.ports.<port>.port_range`
+
+`object`
+
+Range of ports that can be connected to.
+
+## `matchmaker.docker.ports.<port>.port_range.max`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.docker.ports.<port>.port_range.min`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.docker.ports.<port>.protocol`
+
+`string`
+
+A port protocol.
+
+## `matchmaker.docker.ports.<port>.proxy`
+
+`string`
+
+How this port should be proxied. Defaults to 'game-guard`.
 
 ## `matchmaker.game_modes`
 
-_object_
+`map<string, object>`
 
 A list of game modes.
 
-## `matchmaker.game_modes.*.description`
+## `matchmaker.game_modes.<game_mode>.actions`
 
-_object_
+`object`
 
-## `matchmaker.game_modes.*.properties`
+Configuration for the connection types allowed for a game mode.
 
-_object_
+## `matchmaker.game_modes.<game_mode>.actions.create`
 
-## `matchmaker.game_modes.*.type`
+`object`
 
-_object_
+Configures the requirements and authentication for the /create endpoint. If this value is not set in the config, the /create endpoint is NOT enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.create.enable_private`
+
+`boolean`
+
+Defaults to true when unset.
+
+## `matchmaker.game_modes.<game_mode>.actions.create.enable_public`
+
+`boolean`
+
+Defaults to false when unset.
+
+## `matchmaker.game_modes.<game_mode>.actions.create.enabled`
+
+`boolean` (required)
+
+Sets whether or not the /create endpoint is enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.create.verification`
+
+`object`
+
+Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.
+
+## `matchmaker.game_modes.<game_mode>.actions.create.verification.headers`
+
+`map<string, string>` (required)
+
+## `matchmaker.game_modes.<game_mode>.actions.create.verification.url`
+
+`string` (required)
+
+## `matchmaker.game_modes.<game_mode>.actions.find`
+
+`object`
+
+Configures the requirements and authentication for the /find endpoint. If this value is not set in the config, the /find endpoint is still enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.find.enabled`
+
+`boolean` (required)
+
+Sets whether or not the /find endpoint is enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.find.verification`
+
+`object`
+
+Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.
+
+## `matchmaker.game_modes.<game_mode>.actions.find.verification.headers`
+
+`map<string, string>` (required)
+
+## `matchmaker.game_modes.<game_mode>.actions.find.verification.url`
+
+`string` (required)
+
+## `matchmaker.game_modes.<game_mode>.actions.join`
+
+`object`
+
+Configures the requirements and authentication for the /join endpoint. If this value is not set in the config, the /join endpoint is still enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.join.enabled`
+
+`boolean` (required)
+
+Sets whether or not the /join endpoint is enabled.
+
+## `matchmaker.game_modes.<game_mode>.actions.join.verification`
+
+`object`
+
+Configuration that tells Rivet where to send validation requests and with what headers. When set, Rivet will send the `verification_data` property (given by the user in the find/join/create endpoint) to the given url along with the headers provided and some information about the requested lobby. The response of this request will determine if the user can join that lobby or not.
+
+## `matchmaker.game_modes.<game_mode>.actions.join.verification.headers`
+
+`map<string, string>` (required)
+
+## `matchmaker.game_modes.<game_mode>.actions.join.verification.url`
+
+`string` (required)
+
+## `matchmaker.game_modes.<game_mode>.allow_dynamic_max_players`
+
+`boolean`
+
+## `matchmaker.game_modes.<game_mode>.docker`
+
+`object`
+
+A game mode runtime running through Docker.
+
+## `matchmaker.game_modes.<game_mode>.docker.args`
+
+`array<string>`
+
+## `matchmaker.game_modes.<game_mode>.docker.build_args`
+
+`map<string, string>`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.dockerfile`
+
+`string`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.env`
+
+`map<string, string>`
+
+## `matchmaker.game_modes.<game_mode>.docker.image`
+
+`string`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.image_id`
+
+`string`
+
+## `matchmaker.game_modes.<game_mode>.docker.network_mode`
+
+`string`
+
+## `matchmaker.game_modes.<game_mode>.docker.ports`
+
+`map<string, object>`
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.dev_port`
+
+`integer`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.dev_port_range`
+
+`object`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.dev_port_range.max`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.dev_port_range.min`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.dev_protocol`
+
+`string`
+
+_Configures Rivet CLI behavior. Has no effect on server behavior._
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.port`
+
+`integer`
+
+The port number to connect to.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.port_range`
+
+`object`
+
+Range of ports that can be connected to.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.port_range.max`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.port_range.min`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.protocol`
+
+`string`
+
+A port protocol.
+
+## `matchmaker.game_modes.<game_mode>.docker.ports.<port>.proxy`
+
+`string`
+
+How this port should be proxied. Defaults to 'game-guard`.
+
+## `matchmaker.game_modes.<game_mode>.idle_lobbies`
+
+`object`
+
+Configuration for how many idle lobbies a game version should have.
+
+## `matchmaker.game_modes.<game_mode>.idle_lobbies.max`
+
+`integer` (required)
+
+## `matchmaker.game_modes.<game_mode>.idle_lobbies.min`
+
+`integer` (required)
+
+## `matchmaker.game_modes.<game_mode>.listable`
+
+`boolean`
+
+## `matchmaker.game_modes.<game_mode>.max_players`
+
+`integer`
+
+## `matchmaker.game_modes.<game_mode>.max_players_direct`
+
+`integer`
+
+## `matchmaker.game_modes.<game_mode>.max_players_party`
+
+`integer`
+
+## `matchmaker.game_modes.<game_mode>.regions`
+
+`map<string, object>`
+
+## `matchmaker.game_modes.<game_mode>.regions.<region>.idle_lobbies`
+
+`object`
+
+Configuration for how many idle lobbies a game version should have.
+
+## `matchmaker.game_modes.<game_mode>.regions.<region>.idle_lobbies.max`
+
+`integer` (required)
+
+## `matchmaker.game_modes.<game_mode>.regions.<region>.idle_lobbies.min`
+
+`integer` (required)
+
+## `matchmaker.game_modes.<game_mode>.regions.<region>.tier`
+
+`string`
+
+## `matchmaker.game_modes.<game_mode>.taggable`
+
+`boolean`
+
+## `matchmaker.game_modes.<game_mode>.tier`
+
+`string`
 
 ## `matchmaker.idle_lobbies`
 
-_object_
+`object`
 
 Configuration for how many idle lobbies a game version should have.
 
 ## `matchmaker.idle_lobbies.max`
 
-_integer_
+`integer` (required)
 
 ## `matchmaker.idle_lobbies.min`
 
-_integer_
+`integer` (required)
 
 ## `matchmaker.max_players`
 
-_integer_
+`integer`
 
 ## `matchmaker.max_players_direct`
 
-_integer_
+`integer`
 
 ## `matchmaker.max_players_party`
 
-_integer_
+`integer`
 
 ## `matchmaker.regions`
 
-_object_
+`map<string, object>`
 
-## `matchmaker.regions.*.description`
+## `matchmaker.regions.<region>.idle_lobbies`
 
-_object_
+`object`
 
-## `matchmaker.regions.*.properties`
+Configuration for how many idle lobbies a game version should have.
 
-_object_
+## `matchmaker.regions.<region>.idle_lobbies.max`
 
-## `matchmaker.regions.*.type`
+`integer` (required)
 
-_object_
+## `matchmaker.regions.<region>.idle_lobbies.min`
+
+`integer` (required)
+
+## `matchmaker.regions.<region>.tier`
+
+`string`
 
 ## `matchmaker.tier`
 
-_string_
+`string`
+
+## `scripts`
+
+`map<string, string>`
 

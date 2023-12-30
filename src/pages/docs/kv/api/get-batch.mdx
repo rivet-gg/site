@@ -61,33 +61,39 @@ _Query parameter, optional_
 
 ### `entries`
 
-_array, required_
+`array<object>` (required)
 
-### `entries[*].description`
+### `entries[*].deleted`
 
-_object_
+`boolean`
 
-### `entries[*].properties`
+### `entries[*].key`
 
-_object_
+`string` (required)
 
-### `entries[*].required`
+A string representing a key in the key-value database.
+Maximum length of 512 characters.
+*Recommended Key Path Format*
+Key path components are split by a slash (e.g. `a/b/c` has the path components `["a", "b", "c"]`). Slashes can be escaped by using a backslash (e.g. `a/b\/c/d` has the path components `["a", "b/c", "d"]`).
+This format is not enforced by Rivet, but the tools built around Rivet KV work better if this format is used.
 
-_object_
+### `entries[*].value`
 
-### `entries[*].type`
+`object` (required)
 
-_object_
+A JSON object stored in the KV database.
+A `null` value indicates the entry is deleted.
+Maximum length of 262,144 bytes when encoded.
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

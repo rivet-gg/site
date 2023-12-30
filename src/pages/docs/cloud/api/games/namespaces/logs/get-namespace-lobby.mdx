@@ -61,123 +61,107 @@ _Path parameter, required_
 
 ### `lobby`
 
-_object, required_
+`object` (required)
 
 A logs summary for a lobby.
 
 ### `lobby.create_ts`
 
-_string_
+`string` (required)
 
 RFC3339 timestamp.
 
 ### `lobby.lobby_group_name_id`
 
-_string_
+`string` (required)
 
 A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
 ### `lobby.lobby_id`
 
-_string_
+`string` (required)
 
 ### `lobby.namespace_id`
 
-_string_
+`string` (required)
 
 ### `lobby.ready_ts`
 
-_string_
+`string`
 
 RFC3339 timestamp.
 
 ### `lobby.region_id`
 
-_string_
+`string` (required)
 
 ### `lobby.start_ts`
 
-_string_
+`string`
 
 RFC3339 timestamp.
 
 ### `lobby.status`
 
-_object_
+`object` (required)
 
 A union representing the state of a lobby.
 
 ### `lobby.status.running`
 
-_object_
+`object` (required)
 
 ### `lobby.status.stopped`
 
-_object_
+`object`
 
 The status of a stopped lobby.
 
 ### `lobby.status.stopped.exit_code`
 
-_integer_
+`integer` (required)
 
 The exit code returned by the lobby's main process when stopped.
 
 ### `lobby.status.stopped.failed`
 
-_boolean_
+`boolean` (required)
 
 Whether or not the lobby failed or stopped successfully.
 
 ### `lobby.status.stopped.stop_ts`
 
-_string_
+`string` (required)
 
 ### `metrics`
 
-_object_
+`object`
 
 Metrics relating to a job service.
 
 ### `metrics.allocated_memory`
 
-_number_
+`number`
 
 Total allocated memory (MB).
 
 ### `metrics.cpu`
 
-_array_
+`array<number>` (required)
 
 CPU metrics.
 
-### `metrics.cpu[*].format`
-
-_object_
-
-### `metrics.cpu[*].type`
-
-_object_
-
 ### `metrics.job`
 
-_string_
+`string` (required)
 
 The job name.
 
 ### `metrics.memory`
 
-_array_
+`array<number>` (required)
 
 Memory metrics.
-
-### `metrics.memory[*].format`
-
-_object_
-
-### `metrics.memory[*].type`
-
-_object_
 
 
 

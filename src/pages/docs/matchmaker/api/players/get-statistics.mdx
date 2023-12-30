@@ -37,23 +37,23 @@ await RIVET.matchmaker.players.getStatistics({
 
 ### `game_modes`
 
-_object, required_
+`map<string, object>` (required)
 
-### `game_modes.*.properties`
+### `game_modes.<game_mode>.player_count`
 
-_object_
+`integer` (required)
 
-### `game_modes.*.required`
+### `game_modes.<game_mode>.regions`
 
-_object_
+`map<string, object>` (required)
 
-### `game_modes.*.type`
+### `game_modes.<game_mode>.regions.<region>.player_count`
 
-_object_
+`integer` (required)
 
 ### `player_count`
 
-_integer, required_
+`integer` (required)
 
 
 

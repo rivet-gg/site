@@ -69,33 +69,25 @@ A query parameter denoting the requests watch index.
 
 ### `lines`
 
-_array, required_
+`array<string>` (required)
 
 Sorted old to new.
-
-### `lines[*].type`
-
-_object_
 
 ### `timestamps`
 
-_array, required_
+`array<string>` (required)
 
 Sorted old to new.
 
-### `timestamps[*].type`
-
-_object_
-
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

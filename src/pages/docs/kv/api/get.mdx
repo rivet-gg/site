@@ -61,13 +61,13 @@ _Query parameter, optional_
 
 ### `deleted`
 
-_boolean_
+`boolean`
 
 Whether or not the entry has been deleted. Only set when watching this endpoint.
 
 ### `value`
 
-_object, required_
+`object` (required)
 
 A JSON object stored in the KV database.
 A `null` value indicates the entry is deleted.
@@ -75,13 +75,13 @@ Maximum length of 262,144 bytes when encoded.
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

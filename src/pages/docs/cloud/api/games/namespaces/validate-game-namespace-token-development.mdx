@@ -54,11 +54,11 @@ _Path parameter, required_
 
 ### `hostname`
 
-_string, required_
+`string` (required)
 
 ### `lobby_ports`
 
-_array, required_
+`array<object>` (required)
 
 A list of docker ports.
 
@@ -69,25 +69,15 @@ A list of docker ports.
 
 ### `errors`
 
-_array, required_
+`array<object>` (required)
 
 A list of validation errors.
 
-### `errors[*].description`
+### `errors[*].path`
 
-_object_
+`array<string>` (required)
 
-### `errors[*].properties`
-
-_object_
-
-### `errors[*].required`
-
-_object_
-
-### `errors[*].type`
-
-_object_
+A list of strings denoting the origin of a validation error.
 
 
 

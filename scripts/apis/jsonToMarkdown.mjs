@@ -4,44 +4,70 @@ export function jsonToMarkdown(schema, heading = 3) {
 
   let markdownContent = "";
 
-  function documentProperties(obj, path = "") {
-    let entries = Object.entries(obj);
-    entries.sort((a, b) => a[0].localeCompare(b[0]));
-
-    for (const [key, value] of entries) {
-      // Determine path for this key's header
-      let fullPath;
-      if (path == "") fullPath = key;
-      else fullPath = `${path}.${key}`;
+  function documentProperty(value, required, path, skip = false) {
+    if (!skip) {
+      // Document property
 
       if (!value) {
-        // markdownContent += `## \`${fullPath}\`\n\n**Type:** null\n\n`;
-        continue;
+        // markdownContent += `## \`${path}\`\n\n**Type:** null\n\n`;
+        return;
       }
 
-      let required = schema.required?.includes(key) ?? false;
+      let type = value.type || 'object';
+      if (type == 'array') {
+        type = `array\<${value.items?.type || 'object'}\>`;
+      } else if (type == 'object' && value.additionalProperties){
+        type = `map\<string, ${value.additionalProperties?.type || 'object'}\>`;
+      }
 
-      markdownContent += `${h} \`${fullPath}\`\n\n`;
-      markdownContent += `_${value.type || 'object'}${required ? ', required' : ''}_\n\n`;
+      markdownContent += `${h} \`${path}\`\n\n`;
+      markdownContent += `\`${type}\`${required ? " (required)" : ""}\n\n`;
       if (value.description) {
         markdownContent += `${value.description}\n\n`;
       }
-
-      if (value.type == 'object' && value.properties) {
-          documentProperties(value.properties, fullPath);
-      } else if (value.type == 'object' && value.additionalProperties) {
-          documentProperties(value.additionalProperties, `${fullPath}.*`);
-      } else if (value.type == 'array' && value.items) {
-        documentProperties(value.items, `${fullPath}[*]`);
-      }
     }
+
+    // Recurse
+    if (value.type == 'object' && value.properties) {
+      let entries = Object.entries(value.properties);
+      entries.sort((a, b) => a[0].localeCompare(b[0]));
+
+      for (const [key, childValue] of entries) {
+        let entryPath;
+        if (path == "") entryPath = key;
+        else entryPath = `${path}.${key}`;
+
+        let required = value.required?.includes(key) ?? false;
+
+        documentProperty(childValue, required, entryPath);
+      }
+    } else if (value.type == 'object' && value.additionalProperties) {
+      documentProperty(value.additionalProperties, false, `${path}.<${getKeyName(path)}>`, true);
+    } else if (value.type == 'array' && value.items) {
+      documentProperty(value.items, false, `${path}[*]`, true);
+    }
+
   }
 
-  if (schema.properties && typeof schema.properties === 'object') {
-    documentProperties(schema.properties);
-  } else {
-    documentProperties(schema);
-  }
+  documentProperty(schema, true, "", true);
 
   return markdownContent;
+}
+
+function getKeyName(path) {
+  let pathComponents = path.split('.');
+  let lastComponent = pathComponents[pathComponents.length - 1];
+
+  // Hardcoded
+  switch (lastComponent) {
+    case "env":
+      return "key";
+  }
+
+  // YOLO it
+  return stripSuffix(lastComponent, 's');
+}
+
+function stripSuffix(str, suffix) {
+  return str.endsWith(suffix) ? str.slice(0, -suffix.length) : str;
 }

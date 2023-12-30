@@ -53,157 +53,171 @@ _Path parameter, required_
 
 ### `namespace`
 
-_object, required_
+`object` (required)
 
 A full namespace.
 
 ### `namespace.config`
 
-_object_
+`object` (required)
 
 Cloud configuration for a given namespace.
 
 ### `namespace.config.cdn`
 
-_object_
+`object` (required)
 
 CDN configuration for a given namespace.
 
 ### `namespace.config.cdn.auth_type`
 
-_string_
+`string` (required)
 
 A value denoting what type of authentication to use for a game namespace's CDN.
 
 ### `namespace.config.cdn.auth_user_list`
 
-_array_
+`array<object>` (required)
 
 A list of CDN authenticated users for a given namespace.
 
-### `namespace.config.cdn.auth_user_list[*].description`
+### `namespace.config.cdn.auth_user_list[*].user`
 
-_object_
+`string` (required)
 
-### `namespace.config.cdn.auth_user_list[*].properties`
-
-_object_
-
-### `namespace.config.cdn.auth_user_list[*].required`
-
-_object_
-
-### `namespace.config.cdn.auth_user_list[*].type`
-
-_object_
+A user name.
 
 ### `namespace.config.cdn.domains`
 
-_array_
+`array<object>` (required)
 
 A list of CDN domains for a given namespace.
 
-### `namespace.config.cdn.domains[*].description`
+### `namespace.config.cdn.domains[*].create_ts`
 
-_object_
+`string` (required)
 
-### `namespace.config.cdn.domains[*].properties`
+RFC3339 timestamp.
 
-_object_
+### `namespace.config.cdn.domains[*].domain`
 
-### `namespace.config.cdn.domains[*].required`
+`string` (required)
 
-_object_
+A valid domain name (no protocol).
 
-### `namespace.config.cdn.domains[*].type`
+### `namespace.config.cdn.domains[*].verification_errors`
 
-_object_
+`array<string>` (required)
+
+### `namespace.config.cdn.domains[*].verification_method`
+
+`object` (required)
+
+A union representing the verification method used for this CDN domain.
+
+### `namespace.config.cdn.domains[*].verification_method.http`
+
+`object`
+
+### `namespace.config.cdn.domains[*].verification_method.http.cname_record`
+
+`string` (required)
+
+### `namespace.config.cdn.domains[*].verification_method.invalid`
+
+`object`
+
+### `namespace.config.cdn.domains[*].verification_status`
+
+`string` (required)
+
+A value denoting the status of a CDN domain's verification status.
 
 ### `namespace.config.cdn.enable_domain_public_auth`
 
-_boolean_
+`boolean` (required)
 
 Whether or not to allow users to connect to the given namespace via domain name.
 
 ### `namespace.config.identity`
 
-_object_
+`object` (required)
 
 Identity configuration for a given namespace.
 
 ### `namespace.config.kv`
 
-_object_
+`object` (required)
 
 KV configuration for a given namespace.
 
 ### `namespace.config.matchmaker`
 
-_object_
+`object` (required)
 
 Matchmaker configuration for a given namespace.
 
 ### `namespace.config.matchmaker.lobby_count_max`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.config.matchmaker.max_players_per_client`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.config.matchmaker.max_players_per_client_hosting`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.config.matchmaker.max_players_per_client_proxy`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.config.matchmaker.max_players_per_client_tor`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.config.matchmaker.max_players_per_client_vpn`
 
-_integer_
+`integer` (required)
 
 Unsigned 32 bit integer.
 
 ### `namespace.create_ts`
 
-_string_
+`string` (required)
 
 RFC3339 timestamp.
 
 ### `namespace.display_name`
 
-_string_
+`string` (required)
 
 Represent a resource's readable display name.
 
 ### `namespace.name_id`
 
-_string_
+`string` (required)
 
 A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
 ### `namespace.namespace_id`
 
-_string_
+`string` (required)
 
 ### `namespace.version_id`
 
-_string_
+`string` (required)
 
 
 

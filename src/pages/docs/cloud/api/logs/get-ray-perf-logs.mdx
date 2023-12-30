@@ -45,25 +45,85 @@ _Path parameter, required_
 
 ### `perf_lists`
 
-_array, required_
+`array<object>` (required)
 
 A list of service performance summaries.
 
-### `perf_lists[*].description`
+### `perf_lists[*].duration`
 
-_object_
+`integer` (required)
 
-### `perf_lists[*].properties`
+Unsigned 64 bit integer.
 
-_object_
+### `perf_lists[*].marks`
 
-### `perf_lists[*].required`
+`array<object>` (required)
 
-_object_
+A list of performance marks.
 
-### `perf_lists[*].type`
+### `perf_lists[*].marks[*].label`
 
-_object_
+`string` (required)
+
+The label given to this performance mark.
+
+### `perf_lists[*].marks[*].ray_id`
+
+`string`
+
+### `perf_lists[*].marks[*].req_id`
+
+`string`
+
+### `perf_lists[*].marks[*].ts`
+
+`string` (required)
+
+RFC3339 timestamp.
+
+### `perf_lists[*].req_id`
+
+`string`
+
+### `perf_lists[*].spans`
+
+`array<object>` (required)
+
+A list of performance spans.
+
+### `perf_lists[*].spans[*].finish_ts`
+
+`string`
+
+RFC3339 timestamp.
+
+### `perf_lists[*].spans[*].label`
+
+`string` (required)
+
+The label given to this performance span.
+
+### `perf_lists[*].spans[*].req_id`
+
+`string`
+
+### `perf_lists[*].spans[*].start_ts`
+
+`string` (required)
+
+RFC3339 timestamp.
+
+### `perf_lists[*].svc_name`
+
+`string` (required)
+
+The name of the service.
+
+### `perf_lists[*].ts`
+
+`string` (required)
+
+RFC3339 timestamp.
 
 
 

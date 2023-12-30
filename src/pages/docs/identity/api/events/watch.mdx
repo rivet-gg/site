@@ -45,33 +45,508 @@ _Query parameter, optional_
 
 ### `events`
 
-_array, required_
+`array<object>` (required)
 
-### `events[*].description`
+### `events[*].kind`
 
-_object_
+`object` (required)
 
-### `events[*].properties`
+### `events[*].kind.identity_update`
 
-_object_
+`object`
 
-### `events[*].required`
+### `events[*].kind.identity_update.identity`
 
-_object_
+`object` (required)
 
-### `events[*].type`
+An identity profile.
 
-_object_
+### `events[*].kind.identity_update.identity.account_number`
+
+`integer` (required)
+
+### `events[*].kind.identity_update.identity.avatar_url`
+
+`string` (required)
+
+The URL of this identity's avatar image.
+
+### `events[*].kind.identity_update.identity.awaiting_deletion`
+
+`boolean`
+
+Whether or not this identity is awaiting account deletion. Only visible to when the requestee is
+this identity.
+
+
+### `events[*].kind.identity_update.identity.bio`
+
+`string` (required)
+
+Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
+
+### `events[*].kind.identity_update.identity.display_name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.external`
+
+`object` (required)
+
+External links for an identity.
+
+### `events[*].kind.identity_update.identity.external.profile`
+
+`string` (required)
+
+A link to this identity's profile page.
+
+### `events[*].kind.identity_update.identity.external.settings`
+
+`string`
+
+A link to the Rivet settings page.
+
+### `events[*].kind.identity_update.identity.follower_count`
+
+`integer` (required)
+
+### `events[*].kind.identity_update.identity.following`
+
+`boolean` (required)
+
+Whether or not the requestee's identity is following this identity.
+
+### `events[*].kind.identity_update.identity.following_count`
+
+`integer` (required)
+
+### `events[*].kind.identity_update.identity.games`
+
+`array<object>` (required)
+
+### `events[*].kind.identity_update.identity.games[*].game`
+
+`object` (required)
+
+### `events[*].kind.identity_update.identity.games[*].game.banner_url`
+
+`string`
+
+The URL of this game's banner image.
+
+### `events[*].kind.identity_update.identity.games[*].game.display_name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.games[*].game.game_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.games[*].game.logo_url`
+
+`string`
+
+The URL of this game's logo image.
+
+### `events[*].kind.identity_update.identity.games[*].game.name_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `events[*].kind.identity_update.identity.games[*].stats`
+
+`array<object>` (required)
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config`
+
+`object` (required)
+
+A game statistic config.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.aggregation`
+
+`string` (required)
+
+A value denoting the aggregation method of a game statistic.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.display_name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.format`
+
+`string` (required)
+
+A value denoting the format method of a game statistic.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.icon_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.postfix_plural`
+
+`string`
+
+A string appended to the end of a game statistic's value that is not exactly 1. Example: 45 **dollars**.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.postfix_singular`
+
+`string`
+
+A string appended to the end of a singular game statistic's value. Example: 1 **dollar**.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.prefix_plural`
+
+`string`
+
+A string prepended to the beginning of a game statistic's value that is not exactly 1. Example: **values** 45.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.prefix_singular`
+
+`string`
+
+A string appended to the beginning of a singular game statistic's value. Example: **value** 1.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.priority`
+
+`integer` (required)
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.record_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].config.sorting`
+
+`string` (required)
+
+A value denoting the sorting method of a game statistic.
+
+### `events[*].kind.identity_update.identity.games[*].stats[*].overall_value`
+
+`number` (required)
+
+A single overall value of the given statistic.
+
+### `events[*].kind.identity_update.identity.groups`
+
+`array<object>` (required)
+
+### `events[*].kind.identity_update.identity.groups[*].group`
+
+`object` (required)
+
+A group handle.
+
+### `events[*].kind.identity_update.identity.groups[*].group.avatar_url`
+
+`string`
+
+The URL of this group's avatar image
+
+### `events[*].kind.identity_update.identity.groups[*].group.display_name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.groups[*].group.external`
+
+`object` (required)
+
+External links for this group.
+
+### `events[*].kind.identity_update.identity.groups[*].group.external.profile`
+
+`string` (required)
+
+A link to this group's profile page.
+
+### `events[*].kind.identity_update.identity.groups[*].group.group_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.groups[*].group.is_developer`
+
+`boolean`
+
+Whether or not this group is a developer group.
+
+### `events[*].kind.identity_update.identity.identity_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.is_admin`
+
+`boolean` (required)
+
+Whether or not this identity is an admin.
+
+### `events[*].kind.identity_update.identity.is_following_me`
+
+`boolean` (required)
+
+Whether or not this identity is both following and is followed by the requestee's identity.
+
+### `events[*].kind.identity_update.identity.is_game_linked`
+
+`boolean`
+
+Whether or not this game user has been linked through the Rivet dashboard.
+
+### `events[*].kind.identity_update.identity.is_mutual_following`
+
+`boolean` (required)
+
+### `events[*].kind.identity_update.identity.is_registered`
+
+`boolean` (required)
+
+Whether or not this identity is registered with a linked account.
+
+### `events[*].kind.identity_update.identity.join_ts`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.linked_accounts`
+
+`array<object>` (required)
+
+### `events[*].kind.identity_update.identity.linked_accounts[*].access_token`
+
+`object`
+
+An identity's access token identity.
+
+### `events[*].kind.identity_update.identity.linked_accounts[*].access_token.name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.linked_accounts[*].email`
+
+`object`
+
+An identity's linked email.
+
+### `events[*].kind.identity_update.identity.linked_accounts[*].email.email`
+
+`string` (required)
+
+A valid email address
+
+### `events[*].kind.identity_update.identity.presence`
+
+`object`
+
+Information about the identity's current status, party, and active game.
+
+### `events[*].kind.identity_update.identity.presence.game_activity`
+
+`object`
+
+The game an identity is currently participating in.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game`
+
+`object` (required)
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game.banner_url`
+
+`string`
+
+The URL of this game's banner image.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game.display_name`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game.game_id`
+
+`string` (required)
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game.logo_url`
+
+`string`
+
+The URL of this game's logo image.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.game.name_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.message`
+
+`string` (required)
+
+A short activity message about the current game activity.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.mutual_metadata`
+
+`object`
+
+JSON data seen only by the given identity and their mutual followers.
+
+### `events[*].kind.identity_update.identity.presence.game_activity.public_metadata`
+
+`object`
+
+JSON data seen by anyone.
+
+### `events[*].kind.identity_update.identity.presence.status`
+
+`string` (required)
+
+The current status of an identity. This helps players understand if another player is currently playing or has their game in the background.
+
+### `events[*].kind.identity_update.identity.presence.update_ts`
+
+`string` (required)
+
+### `events[*].kind.matchmaker_lobby_join`
+
+`object`
+
+### `events[*].kind.matchmaker_lobby_join.lobby`
+
+`object` (required)
+
+A matchmaker lobby.
+
+### `events[*].kind.matchmaker_lobby_join.lobby.lobby_id`
+
+`string` (required)
+
+### `events[*].kind.matchmaker_lobby_join.lobby.region`
+
+`object` (required)
+
+A matchmaker lobby region.
+
+### `events[*].kind.matchmaker_lobby_join.lobby.region.display_name`
+
+`string` (required)
+
+### `events[*].kind.matchmaker_lobby_join.lobby.region.region_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `events[*].kind.matchmaker_lobby_join.player`
+
+`object` (required)
+
+A matchmaker lobby player.
+
+### `events[*].kind.matchmaker_lobby_join.player.token`
+
+`string` (required)
+
+Pass this token through the socket to the lobby server. The lobby server will validate this token with `PlayerConnected.player_token`
+
+
+### `events[*].kind.matchmaker_lobby_join.ports`
+
+`map<string, object>` (required)
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.host`
+
+`string`
+
+The host for the given port. Will be null if using a port range.
+
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.hostname`
+
+`string` (required)
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.is_tls`
+
+`boolean` (required)
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.port`
+
+`integer`
+
+The port number for this lobby. Will be null if using a port range.
+
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.port_range`
+
+`object`
+
+Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.
+
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.port_range.max`
+
+`integer` (required)
+
+Maximum port that can be connected to. Inclusive range.
+
+### `events[*].kind.matchmaker_lobby_join.ports.<port>.port_range.min`
+
+`integer` (required)
+
+Minimum port that can be connected to. Inclusive range.
+
+### `events[*].notification`
+
+`object`
+
+Notifications represent information that should be presented to the user
+immediately.
+At the moment, only chat message events have associated notifications.
+# Display
+Notifications should be displayed in an unobtrusive manner throughout the
+entire game. Notifications should disappear after a few seconds if not
+interacted with.
+# Interactions
+If your platform supports it, notifications should be able to be clicked or
+tapped in order to open the relevant context for the event.
+For a simple implementation of notification interactions, open `url` in a
+web browser to present the relevant context. For example, a chat message
+notification will open the thread the chat message was sent in.
+For advanced implementations that implement a custom chat UI, use
+`GlobalEvent.kind` to determine what action to take when the notification is interacted with. 
+For example, if the global event kind is `GlobalEventChatMessage`, then open
+the chat UI for the given thread.
+
+
+### `events[*].notification.description`
+
+`string` (required)
+
+### `events[*].notification.thumbnail_url`
+
+`string` (required)
+
+URL to an image thumbnail that should be shown for this notification.
+
+### `events[*].notification.title`
+
+`string` (required)
+
+### `events[*].notification.url`
+
+`string` (required)
+
+Rivet Hub URL that holds the relevant context for this notification.
+
+### `events[*].ts`
+
+`string` (required)
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

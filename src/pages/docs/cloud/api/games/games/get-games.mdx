@@ -45,49 +45,157 @@ A query parameter denoting the requests watch index.
 
 ### `games`
 
-_array, required_
+`array<object>` (required)
 
 A list of game summaries.
 
-### `games[*].properties`
+### `games[*].banner_url`
 
-_object_
+`string`
 
-### `games[*].required`
+The URL of this game's banner image.
 
-_object_
+### `games[*].developer`
 
-### `games[*].type`
+`object` (required)
 
-_object_
+A group handle.
+
+### `games[*].developer.avatar_url`
+
+`string`
+
+The URL of this group's avatar image
+
+### `games[*].developer.display_name`
+
+`string` (required)
+
+### `games[*].developer.external`
+
+`object` (required)
+
+External links for this group.
+
+### `games[*].developer.external.profile`
+
+`string` (required)
+
+A link to this group's profile page.
+
+### `games[*].developer.group_id`
+
+`string` (required)
+
+### `games[*].developer.is_developer`
+
+`boolean`
+
+Whether or not this group is a developer group.
+
+### `games[*].display_name`
+
+`string` (required)
+
+### `games[*].game_id`
+
+`string` (required)
+
+### `games[*].logo_url`
+
+`string`
+
+The URL of this game's logo image.
+
+### `games[*].name_id`
+
+`string` (required)
+
+A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
+
+### `games[*].total_player_count`
+
+`integer` (required)
+
+Unsigned 32 bit integer.
+
+### `games[*].url`
+
+`string` (required)
 
 ### `groups`
 
-_array, required_
+`array<object>` (required)
 
 A list of group summaries.
 
-### `groups[*].properties`
+### `groups[*].avatar_url`
 
-_object_
+`string`
 
-### `groups[*].required`
+The URL of this group's avatar image.
 
-_object_
+### `groups[*].bio`
 
-### `groups[*].type`
+`string` (required)
 
-_object_
+Follows regex ^(?:[^\n\r]+\n?|\n){1,5}$
+
+### `groups[*].display_name`
+
+`string` (required)
+
+### `groups[*].external`
+
+`object` (required)
+
+External links for this group.
+
+### `groups[*].external.profile`
+
+`string` (required)
+
+A link to this group's profile page.
+
+### `groups[*].group_id`
+
+`string` (required)
+
+### `groups[*].is_current_identity_member`
+
+`boolean` (required)
+
+Whether or not the current identity is a member of this group.
+
+### `groups[*].is_developer`
+
+`boolean` (required)
+
+Whether or not this group is a developer.
+
+### `groups[*].member_count`
+
+`integer` (required)
+
+### `groups[*].owner_identity_id`
+
+`string` (required)
+
+### `groups[*].publicity`
+
+`string` (required)
+
+The current publicity value for the given group.
 
 ### `watch`
 
-_object, required_
+`object` (required)
 
 Provided by watchable endpoints used in blocking loops.
 
 ### `watch.index`
 
-_string_
+`string` (required)
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.

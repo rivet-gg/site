@@ -38,19 +38,19 @@ await RIVET.group.validateProfile({
 
 ### `bio`
 
-_string_
+`string`
 
 Detailed information about a profile.
 
 ### `display_name`
 
-_string_
+`string`
 
 Represent a resource's readable display name.
 
 ### `publicity`
 
-_string_
+`string`
 
 The current publicity value for the given group.
 
@@ -61,25 +61,15 @@ The current publicity value for the given group.
 
 ### `errors`
 
-_array, required_
+`array<object>` (required)
 
 A list of validation errors.
 
-### `errors[*].description`
+### `errors[*].path`
 
-_object_
+`array<string>` (required)
 
-### `errors[*].properties`
-
-_object_
-
-### `errors[*].required`
-
-_object_
-
-### `errors[*].type`
-
-_object_
+A list of strings denoting the origin of a validation error.
 
 
 
