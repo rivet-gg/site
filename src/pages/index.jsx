@@ -405,6 +405,9 @@ export default function Index() {
 function Background({ props }) {
   const canvasRef = useRef(null);
 
+  const bg = '9, 9, 9';
+  const fg = '255, 124, 0';
+
   useEffect(() => {
     let lastUpdate = Date.now();
     let offsetX = 0;
@@ -435,14 +438,14 @@ function Background({ props }) {
       ctx.save();
 
       // Fill background
-      ctx.fillStyle = 'rgb(24, 24, 27)';
+      ctx.fillStyle = `rgb(${bg})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw grid
       let size = 0.1;
       let xRange = 4;
       let yRange = 3;
-      ctx.strokeStyle = 'rgba(139, 92, 246, 1)'; // color of the grid lines
+      ctx.strokeStyle = `rgba(${fg}, 1)`; // color of the grid lines
       ctx.lineWidth = 2 * pixelRatio;
 
       // X
@@ -465,15 +468,15 @@ function Background({ props }) {
       let xPos = canvas.width * 0.5;
       let yPos = canvas.width * 0.25;
       const radGrd = ctx.createRadialGradient(xPos, yPos, canvas.width * 0.1, xPos, yPos, canvas.width / 2);
-      radGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
-      radGrd.addColorStop(1, 'rgba(24, 24, 27, 0)');
+      radGrd.addColorStop(0, `rgba(${bg}, 1)`);
+      radGrd.addColorStop(1, `rgba(${bg}, 0)`);
       ctx.fillStyle = radGrd;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Fill gradient
       const fadeGrd = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      fadeGrd.addColorStop(0, 'rgba(24, 24, 27, 1)');
-      fadeGrd.addColorStop(1, 'rgba(24, 24, 27, 0.8)');
+      fadeGrd.addColorStop(0, `rgba(${bg}, 1)`);
+      fadeGrd.addColorStop(1, `rgba(${bg}, 0.8)`);
       ctx.fillStyle = fadeGrd;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -520,7 +523,7 @@ function Title() {
       {/* Text */}
       <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl'>
+        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl text-cream-100'>
           Multiplayer Made Simple
         </h1>
 

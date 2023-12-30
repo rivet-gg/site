@@ -19,7 +19,7 @@ const variantStyles = {
   primary:
     'rounded-full bg-violet-500 py-1 px-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400',
   secondary:
-    'rounded-full bg-cream-100 py-1 px-3 text-sm text-charcole-900 hover:bg-cream-200 dark:bg-charcole-800/40 dark:text-cream-400 dark:ring-1 dark:ring-inset dark:ring-charcole-800 dark:hover:bg-charcole-800 dark:hover:text-cream-300',
+    'rounded-full bg-cream-100 py-1 px-3 text-sm text-charcole-900 hover:bg-cream-200 dark:bg-charcole-800/40 dark:text-cream-400 dark:ring-1 dark:ring-inset dark:ring-charcole-800 dark:hover:bg-charcole-800 dark:hover:text-cream-100',
   filled:
     'rounded-full bg-charcole-950 py-1 px-3 text-sm text-white hover:bg-charcole-700 dark:bg-violet-500 dark:text-white dark:hover:bg-violet-400',
   outline:
