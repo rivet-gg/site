@@ -546,7 +546,7 @@ function Title() {
         <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
           <Button variant='juicy'>Sign Up for Beta</Button>
 
-          <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover-effect'>
+          <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover:after:content-[""] hover:after:block hover:after:w-full hover:after:h-1 hover:after:bg-rainbow-gradient' >
             5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
         </div>
@@ -827,7 +827,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[275px] items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
