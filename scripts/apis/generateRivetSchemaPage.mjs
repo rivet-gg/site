@@ -11,6 +11,6 @@ export async function generateRivetSchemaPage(spec) {
 
   file += jsonToMarkdown(spec.components.schemas['CloudVersionConfig'], 2);
 
-  fs.writeFileSync('src/pages/docs/general/rivet-config-spec.mdx', file);
+  fs.writeFileSync('src/pages/docs/general/config.mdx', file);
 }
 
