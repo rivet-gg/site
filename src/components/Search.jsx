@@ -394,7 +394,16 @@ export function Search() {
     <div className='hidden lg:block lg:max-w-md lg:flex-auto'>
       <button
         type='button'
-        className='hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-charcole-500 ring-1 ring-charcole-900/10 transition hover:ring-charcole-900/20 dark:bg-white/5 dark:text-cream-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
+        className={clsx(
+          'hidden lg:flex',
+          'h-9 w-full',
+          'items-center gap-2',
+          'text-sm text-cream-100/75',
+          'pl-2 pr-3',
+          'border-b-2 border-cream-100'
+
+        )}
+        // className='hidden h-10 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-charcole-500 ring-1 ring-charcole-900/10 transition hover:ring-charcole-900/20 dark:bg-white/5 dark:text-cream-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
         {...buttonProps}>
         <SearchIcon className='h-5 w-5 stroke-current' />
         Search...
