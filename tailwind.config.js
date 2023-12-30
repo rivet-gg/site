@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
-      display: ['Cartridge', 'ui-sans-serif', 'system-ui'],
+      display: ['Perfectly Nineties', 'ui-sans-serif', 'system-ui'],
       pixel: ['Silkscreen', 'ui-sans-serif', 'system-ui']
     },
     fontSize: {
@@ -28,6 +28,7 @@ module.exports = {
     },
     typography: require('./typography'),
     extend: {
+      colors: require('./colors'),
       boxShadow: {
         glow: '0 0 4px rgb(0 0 0 / 0.1)'
       },
