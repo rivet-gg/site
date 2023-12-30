@@ -8,7 +8,6 @@ import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 
 import { Button } from '@/components/Button';
-import { Logo } from '@/components/Logo';
 import { MobileNavigation, useIsInsideMobileNavigation } from '@/components/MobileNavigation';
 import { useMobileNavigationStore } from '@/components/MobileNavigation';
 import { ModeToggle } from '@/components/ModeToggle';
@@ -33,6 +32,8 @@ import imgGroupWhite from '@/images/products/group-white.svg';
 import imgIdentityWhite from '@/images/products/identity-white.svg';
 import imgKvWhite from '@/images/products/kv-white.svg';
 import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
+import imgLogoText from '@/images/rivet-logos/icon-text-cream.svg';
+import imgLogo from '@/images/rivet-logos/icon-cream.svg';
 
 const ICONS = {
   // Products
@@ -157,13 +158,13 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
         <div className='flex items-center gap-5 md:hidden'>
           <MobileNavigation navigation={navigation} />
           <Link href='/' aria-label='Home'>
-            <Logo className='h-6' />
+            <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
           </Link>
         </div>
 
         <div className='hidden items-center gap-6 md:flex'>
           <Link href='/' aria-label='Home'>
-            <Logo className='h-6' />
+            <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
           </Link>
 
           <div className='flex items-center gap-1'>
