@@ -365,8 +365,10 @@ export default function Index() {
           <div className='mx-auto max-w-7xl px-6 lg:px-8'>
             <CaseStudies />
           </div>
-
+         
           <DemoSection />
+
+          <EngineGrid />
 
           <UpAndRunning />
         </div>
@@ -591,6 +593,7 @@ function DemoSection() {
   return (
     <div className='mt-24 flex flex-col items-center justify-center'>
       {/* <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl text-center'>Try it yourself</h2> */}
+      <RainbowBar className='w-full h-1'/>
       <Demo />
     </div>
   );
@@ -598,20 +601,109 @@ function DemoSection() {
 
 function Demo() {
   return (
-    <div className='pointer-events-none relative h-[412px] w-[320px] shrink-0 grow-0 md:h-[825px] md:w-[640px]'>
-      <div className='absolute h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
+    
+    <div className='relative w-full md:h-[825px]'>
+      <div className='relative w-auto h-auto'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
-          className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
+          className='w-full h-auto'
         />
-        <div className='absolute left-[200px] top-[236px] h-[400px] w-[620px]'>
-          <Game className='h-full w-full' />
+        <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-10' style={{
+          backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
+          backgroundSize: '100% 20px',
+          animation: 'moveVerticalLines 5s linear infinite'
+        }}></div>
+      </div>
+      {/* Text and New Grid Layout */}
+      <div className='absolute bottom-0 left-0 p-4'>
+        <h2 className='text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>Build Riveting Experiences</h2>
+        
+        {/* Grid Container for Bullet Points */}
+        <div className='grid grid-cols-2 gap-4 mt-4'>
+          {/* First Column */}
+          <div>
+            <ul className='list-disc list-inside text-cream-100'>
+              <li>Game servers launch & scale in minutes </li>
+              <li>Built in analytics & team management for your whole game studio</li>
+            </ul>
+          </div>
+
+          {/* Second Column */}
+          <div>
+            <ul className='list-disc list-inside text-cream-100'>
+              <li>Quickstart game templates for most engines</li>
+              <li>Module marketplace to plugin game features & services</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+function EngineGrid() {
+  return (
+    <div className="bg-black text-white p-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 auto-rows-fr text-center">
+          {/* Grid Item 1 */}
+          <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className="mt-2 text-5xl">Unity</h3>
+          </div>
+
+          {/* Grid Item 2 */}
+          <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className='text-purple-800 sm:text-7xl'>
+            <FontAwesomeIcon icon={faAlien8bit}/>
+            </h3>
+          </div>
+
+          {/* Grid Item 3 */}
+          <div className="">
+            <h2 className="text-left text-5xl font-bold">Get started with Your Engine.</h2>
+          </div>
+
+          {/* Grid Item 4 */}
+          <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className='text-purple-800 sm:text-7xl'>
+            <FontAwesomeIcon icon={faAlien8bit}/>
+            </h3>
+          </div>
+
+          {/* Grid Item 5 */}
+          <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className="mt-2 text-5xl">Godot</h3>
+          </div>
+
+          {/* Grid Item 6 */}
+          <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className='text-purple-800 sm:text-7xl'>
+            <FontAwesomeIcon icon={faAlien8bit}/>
+            </h3>
+          </div>
+
+           {/* Grid Item 7 */}
+           <div className="p-4 border border-white flex flex-col justify-center flex flex-col justify-center">
+            <h3 className="mt-2 text-5xl">Unreal</h3>
+          </div>
+
+           {/* Grid Item 8 */}
+           <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className="mt-2 text-5xl">HTML5</h3>
+          </div>
+
+           {/* Grid Item 9 */}
+           <div className="p-4 border border-white flex flex-col justify-center">
+            <h3 className="mt-2 text-5xl">Custom</h3>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 const variants = {
   enter: direction => {
@@ -804,9 +896,6 @@ function CaseStudies({ props }) {
       {/* Title */}
       <div className='mx-auto max-w-3xl text-center'>
         <h2 className='text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-          {/* Trusted to serve millions of players. */}
-          {/* Used by companies that forget about infrastructure */}
-          {/* Used by companies that prefer game development over infrastructure */}
           Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/> at scale around the globe
           <span style={{ display: 'inline-block', width: '.2em' }}></span> {/* Explicit space */}
           <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' style={{ transform: 'scaleX(1.35)' }} />
@@ -849,7 +938,7 @@ function CaseStudies({ props }) {
 
       {/* sub-text */}
       <div className='mx-auto max-w-1xl text-center'>
-        <h3 className='italic tracking-tight text-cream-100 sm:text-5xl'>
+        <h3 className='tracking-tight text-cream-100 sm:text-5xl'>
           Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
         </h3>  
       </div>
