@@ -366,12 +366,13 @@ export default function Index() {
             <CaseStudies />
           </div>
          
-          <DemoSection />
+          {/* <DemoSection /> */}
 
-          <EngineGrid />
+          {/* <EngineGrid /> */}
 
           <UpAndRunning />
-          
+
+          {/* <LevelUpSection />*/}
         </div>
       </div>
     </div>
@@ -547,7 +548,9 @@ function Title() {
 
         {/* CTA */}
         <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
-          <Button variant='juicy'>Sign Up for Beta</Button>
+           <a href="https://b8v8449klvp.typeform.com/rivet">
+            <Button variant='juicy'>Sign Up for Beta</Button>
+            </a>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover:after:content-[""] hover:after:block hover:after:w-full hover:after:h-1 hover:after:bg-rainbow-gradient' >
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -752,7 +755,6 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div>
-      <h2 className="text-center text-cream-100 text-4xl">One game development platform to run your whole multiplayer game.</h2>
       <nav className={clsx(
         '-mb-px flex',
         'sm:gap-x-4 sm:px-4 sm:pt-4',
@@ -1009,24 +1011,23 @@ function UpAndRunning() {
   );
 }
 
-function LevelUpSection() {
+{/* function LevelUpSection() {
   return (
     <div className="w-full bg-white text-black p-8">
       <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center text-center">
-        {/* Assuming you have a separate component or SVG for the colored blocks */}
-        <ColoredBlocksComponent />
+       
+      //<ColoredBlocksComponent />
 
         <h1 className="text-6xl font-bold mt-4">
           Level Up With Rivet
         </h1>
-        <p className="text-2xl mt-2">
+        <h2 className="text-2xl mt-2 italic">
           And Get Back To Game Development
-        </p>
+        </h2>
 
-        <div className="flex space-x-4 mt-4">
-          <button className="bg-black text-white px-6 py-2 rounded">
-            Sign Up for Beta
-          </button>
+        <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
+          <Button variant='juicy'>Sign Up for Beta</Button>
+
           <button className="text-black underline">
             5 minute crash course →
           </button>
@@ -1034,18 +1035,16 @@ function LevelUpSection() {
       </div>
     </div>
   );
-}
+  */}
 
-function ColoredBlocksComponent() {
+ {/*function ColoredBlocksComponent() {
   // Replace with actual SVG or component that renders the colored blocks
   return <div className="flex justify-center space-x-2">
-    {/* Each div here is a placeholder for your colored block */}
     <div className="w-12 h-12 bg-red-500"></div>
     <div className="w-12 h-12 bg-blue-500"></div>
     <div className="w-12 h-12 bg-green-500"></div>
-    {/* ... other blocks ... */}
   </div>;
-}
+}*/} 
 
 Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;
