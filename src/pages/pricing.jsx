@@ -309,16 +309,12 @@ export default function Pricing() {
                     <th scope='row'></th>
                     {tiers.map(tier => (
                       <td key={tier.id} className='px-6 pt-6 xl:px-8'>
-                        <a
+                        <Button
                           href={tier.href}
-                          className={clsx(
-                            tier.mostPopular
-                              ? 'bg-violet-500 hover:bg-violet-400 focus-visible:outline-violet-600'
-                              : 'bg-white/10 hover:bg-white/20 focus-visible:outline-white',
-                            'block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                          )}>
+                          variant={tier.mostPopular ? 'primary' : 'secondary'}
+                          className='w-full text-sm px-3 py-2'>
                           {tier.button}
-                        </a>
+                        </Button>
                       </td>
                     ))}
                   </tr>

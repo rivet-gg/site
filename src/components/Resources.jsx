@@ -1,6 +1,5 @@
-import Link from 'next/link';
+import clsx from 'clsx';
 import React from 'react';
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
 import { Heading } from '@/components/Heading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,10 +7,15 @@ import { PATTERNS, PatternButton } from '@/components/PatternButton';
 
 function ResourceIcon({ icon }) {
   return (
-    <div className='flex h-7 w-7 items-center justify-center rounded-full bg-charcole-950/5 ring-1 ring-charcole-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-charcole-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-violet-300/10 dark:group-hover:ring-violet-400'>
+    <div className={clsx(
+      'flex h-7 w-7 items-center justify-center',
+      'transition duration-300',
+      'rounded-full bg-charcole-950/5 ring-1 ring-charcole-900/25 ring-white/15 group-hover:ring-white-400',
+      ':bg-white/7.5 group-hover:bg-white-300/10'
+    )}>
       <FontAwesomeIcon
         icon={icon}
-        className='h-5 w-5 text-cream-400 transition duration-300 group-hover:text-violet-400'
+        className='h-5 w-5 text-white-400 transition duration-300 group-hover:text-white-400'
       />
     </div>
   );
@@ -36,11 +40,11 @@ export function Resource({ children, ...props }) {
       key={props.href}>
       <div className='relative rounded-2xl px-4 pb-4 pt-16'>
         <ResourceIcon icon={props.icon} />
-        <div className='mt-4 font-display text-xl font-semibold leading-7 text-charcole-900 [word-break:break-word] dark:text-white'>
+        <div className='mt-1 font-display text-xl font-semibold leading-7 text-charcole-900 [word-break:break-word] dark:text-white'>
           <span className='absolute inset-0 rounded-2xl' />
           {titleSegments}
         </div>
-        <span className='mt-1 text-sm text-charcole-600 dark:text-cream-400'>{children}</span>
+        <div className='mt-2 text-sm leading-5 text-white/75'>{children}</div>
       </div>
     </PatternButton>
   );

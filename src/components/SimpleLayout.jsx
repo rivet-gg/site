@@ -1,7 +1,8 @@
-export function SimpleLayout({ title, intro, children }) {
+export function SimpleLayout({ title, intro, floatRight, children }) {
   return (
     <div className='mt-8 sm:mt-16 max-w-5xl mx-auto'>
-      <header className='max-w-2xl'>
+      <header>
+        {floatRight && (<div className='float-right'>{floatRight}</div>)}
         <h1 className='text-4xl font-bold tracking-tight text-charcole-800 dark:text-cream-100 sm:text-5xl'>
           {title}
         </h1>

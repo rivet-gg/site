@@ -24,9 +24,11 @@ const variantStyles = {
   secondary: clsx(
     'text-cream-100 text-sm font-semibold',
     'border-2 border-cream-100',
+    'bg-transparent hover:bg-cream-100 hover:text-charcole-950',
     'px-3 py-1',
   ),
-  text: 'text-sm text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-500',
+  text: 'text-sm text-orange-500 hover:text-orange-600',
+  'text-subtle': 'text-sm text-charcole-400 hover:text-charcole-300',
   juicy: clsx(
     'text-cream-100 font-sm text-semibold',
     'border-2 border-cream-100',

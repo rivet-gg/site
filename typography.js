@@ -3,13 +3,13 @@ module.exports = ({ theme }) => ({
     css: {
       '--tw-prose-body': theme('colors.zinc.300'),
       '--tw-prose-headings': theme('colors.white'),
-      '--tw-prose-links': theme('colors.violet.400'),
-      '--tw-prose-links-hover': theme('colors.violet.500'),
-      '--tw-prose-links-underline': theme('colors.violet.500 / 0.3'),
+      '--tw-prose-links': theme('colors.orange.300'),
+      '--tw-prose-links-hover': theme('colors.orange.500'),
+      '--tw-prose-links-underline': theme('colors.orange.500 / 0.5'),
       '--tw-prose-bold': theme('colors.white'),
       '--tw-prose-counters': theme('colors.zinc.300'),
       '--tw-prose-bullets': theme('colors.zinc.600'),
-      '--tw-prose-hr': theme('colors.white / 0.05'),
+      '--tw-prose-hr': theme('colors.cream.100 / 0.3'),
       '--tw-prose-quotes': theme('colors.zinc.100'),
       '--tw-prose-quote-borders': theme('colors.zinc.700'),
       '--tw-prose-captions': theme('colors.zinc.300'),
@@ -112,7 +112,7 @@ module.exports = ({ theme }) => ({
       // Horizontal rules
       hr: {
         borderColor: 'var(--tw-prose-hr)',
-        borderTopWidth: 1,
+        borderTopWidth: 2,
         marginTop: theme('spacing.16'),
         marginBottom: theme('spacing.16'),
         maxWidth: 'none',

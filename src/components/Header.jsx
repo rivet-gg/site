@@ -55,7 +55,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
       href={initHref ?? href}
       className={clsx(
         current ? 'bg-white/5 text-white border-white/10' : 'text-cream-100 hover:bg-white/5 hover:text-white',
-        'flex items-center gap-2.5 rounded-md px-3.5 py-1.5 transition border border-1 border-transparent'
+        'flex items-center gap-2.5 px-3.5 py-1.5 transition border border-1 border-transparent'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
       <span className='font-display text-lg'>{children}</span>
@@ -215,9 +215,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       {/* Tabs */}
       {navigation.tabs && (
         <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
+          {/* Border */}
+          <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
+
           <nav className='flex h-full space-x-8'>
             {/* Title */}
-            <div className='text-md flex items-center font-display font-bold text-charcole-900 dark:text-white'>
+            <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
               {navigation.tabsTitle}
             </div>
 
@@ -227,19 +230,16 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 key={tab.title}
                 href={tab.href}
                 className={clsx(
-                  tab.current
-                    ? 'border-charcole-900 text-charcole-900 dark:border-white dark:text-white'
-                    : 'border-transparent text-charcole-600 hover:border-charcole-900 dark:text-white dark:hover:border-white dark:hover:opacity-100',
                   'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium',
-                  tab.gradient ? 'opacity-90' : 'opacity-80'
+                  tab.current
+                    ? 'border-charcole-900 border-cream-50 opacity-80'
+                    : 'border-transparent hover:border-charcole-900 hover:border-white hover:opacity-100',
+                  tab.styles?.text ?? 'text-white',
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
                 {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
                 <span
                   className={clsx(
-                    // tab.gradient && 'from-cyan-300 to-violet-600 bg-clip-text text-transparent'
-                    tab.gradient && 'bg-clip-text bg-gradient-to-r text-transparent font-semibold',
-                    tab.gradient && tab.gradient.join(' '),
                   )}>
                   {tab.title}
                 </span>
