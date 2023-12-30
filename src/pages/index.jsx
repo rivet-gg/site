@@ -371,6 +371,7 @@ export default function Index() {
           <EngineGrid />
 
           <UpAndRunning />
+          
         </div>
       </div>
     </div>
@@ -602,7 +603,7 @@ function DemoSection() {
 function Demo() {
   return (
     
-    <div className='relative w-full md:h-[825px]'>
+    <div className='relative w-full'>
       <div className='relative w-auto h-auto'>
         <Image
           src={imgComputerFrame}
@@ -739,7 +740,7 @@ function paginate(page, dir) {
 
 function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
-
+  
   return (
     <div className='mx-auto w-full max-w-7xl'>
       <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
@@ -751,6 +752,7 @@ function Features() {
 function Tabs({ index, onChangeTab }) {
   return (
     <div>
+      <h2 className="text-center text-cream-100 text-4xl">One game development platform to run your whole multiplayer game.</h2>
       <nav className={clsx(
         '-mb-px flex',
         'sm:gap-x-4 sm:px-4 sm:pt-4',
@@ -973,7 +975,7 @@ function UpAndRunning() {
               Launch your game in <span className='text-violet-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              {`Just 5 lines of code and you're off to the races.`}
+              {`Just 5 lines of code and have AAA game scale.`}
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
@@ -1005,6 +1007,44 @@ function UpAndRunning() {
       </div>
     </div>
   );
+}
+
+function LevelUpSection() {
+  return (
+    <div className="w-full bg-white text-black p-8">
+      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center text-center">
+        {/* Assuming you have a separate component or SVG for the colored blocks */}
+        <ColoredBlocksComponent />
+
+        <h1 className="text-6xl font-bold mt-4">
+          Level Up With Rivet
+        </h1>
+        <p className="text-2xl mt-2">
+          And Get Back To Game Development
+        </p>
+
+        <div className="flex space-x-4 mt-4">
+          <button className="bg-black text-white px-6 py-2 rounded">
+            Sign Up for Beta
+          </button>
+          <button className="text-black underline">
+            5 minute crash course →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ColoredBlocksComponent() {
+  // Replace with actual SVG or component that renders the colored blocks
+  return <div className="flex justify-center space-x-2">
+    {/* Each div here is a placeholder for your colored block */}
+    <div className="w-12 h-12 bg-red-500"></div>
+    <div className="w-12 h-12 bg-blue-500"></div>
+    <div className="w-12 h-12 bg-green-500"></div>
+    {/* ... other blocks ... */}
+  </div>;
 }
 
 Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
