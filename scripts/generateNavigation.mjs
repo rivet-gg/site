@@ -220,7 +220,7 @@ function learnTabs(path) {
       title: 'Custom',
       // icon: 'docker',
       href: '/learn/custom',
-      gradient: ['from-slate-300', 'to-slate-500'],
+      gradient: ['from-cream-300', 'to-charcole-500'],
       current: path[1] === 'custom'
     }
   ];

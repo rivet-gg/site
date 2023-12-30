@@ -27,7 +27,7 @@ export function Layout({ navigation, prose, inset, children, sections = [] }) {
           {navigation.sidebar ? (
             <div
               className={clsx(
-                `contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80`,
+                `contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80`,
                 navigation.tabs ? 'mt-26' : 'mt-14'
               )}
             >
@@ -72,13 +72,13 @@ function StarPrompt() {
       <AnimatePresence>
         {!isHidden && (
           <motion.div
-            className='mx-4 flex w-max rounded-full bg-zinc-900/80 backdrop-blur'
+            className='mx-4 flex w-max rounded-full bg-charcole-950/80 backdrop-blur'
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ ease: 'easeOut', duration: 0.4 }}
           >
-            <div className='relative flex items-center justify-center rounded-full py-2 pl-4 pr-6 text-sm font-semibold text-slate-300 ring-1 ring-inset ring-white/10 sm:text-base'>
+            <div className='relative flex items-center justify-center rounded-full py-2 pl-4 pr-6 text-sm font-semibold text-cream-300 ring-1 ring-inset ring-white/10 sm:text-base'>
               <FontAwesomeIcon
                 icon={faXmark}
                 className='h-full cursor-pointer px-1 hover:text-white'

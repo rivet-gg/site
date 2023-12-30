@@ -103,7 +103,7 @@ export function PatternButton({ children, ...props }) {
           suppress && 'opacity-0 group-hover:opacity-100',
           props.pattern?.className
         )} />
-      <div className='-z-10 absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
+      <div className='-z-10 absolute inset-0 rounded-2xl ring-1 ring-inset ring-charcole-900/7.5 group-hover:ring-charcole-900/10 dark:ring-white/10 dark:group-hover:ring-white/20' />
       {children}
     </Component>
   );

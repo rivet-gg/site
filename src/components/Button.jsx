@@ -19,11 +19,11 @@ const variantStyles = {
   primary:
     'rounded-full bg-violet-500 py-1 px-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400',
   secondary:
-    'rounded-full bg-zinc-100 py-1 px-3 text-sm text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800/40 dark:text-zinc-400 dark:ring-1 dark:ring-inset dark:ring-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-300',
+    'rounded-full bg-cream-100 py-1 px-3 text-sm text-charcole-900 hover:bg-cream-200 dark:bg-charcole-800/40 dark:text-cream-400 dark:ring-1 dark:ring-inset dark:ring-charcole-800 dark:hover:bg-charcole-800 dark:hover:text-cream-300',
   filled:
-    'rounded-full bg-zinc-900 py-1 px-3 text-sm text-white hover:bg-zinc-700 dark:bg-violet-500 dark:text-white dark:hover:bg-violet-400',
+    'rounded-full bg-charcole-950 py-1 px-3 text-sm text-white hover:bg-charcole-700 dark:bg-violet-500 dark:text-white dark:hover:bg-violet-400',
   outline:
-    'rounded-full py-1 px-3 text-sm text-zinc-700 ring-1 ring-inset ring-zinc-900/10 hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white',
+    'rounded-full py-1 px-3 text-sm text-charcole-700 ring-1 ring-inset ring-charcole-900/10 hover:bg-charcole-950/2.5 hover:text-charcole-900 dark:text-cream-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white',
   text: 'text-sm text-violet-500 hover:text-violet-600 dark:text-violet-400 dark:hover:text-violet-500',
   juicy: clsx(
     'button rounded-lgbg-violet-500 select-none, box-border cursor-pointer rounded-lg border-violet-400 bg-violet-500',
