@@ -9,7 +9,7 @@ import { Navigation } from '@/components/Navigation';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faXmark } from '@fortawesome/pro-solid-svg-icons';
+import { faX, faXmark } from '@fortawesome/sharp-solid-svg-icons';
 
 export function Layout({ navigation, prose, inset, children, sections = [] }) {
   return (

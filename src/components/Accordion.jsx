@@ -1,4 +1,4 @@
-import { faCaretDown, faCaretRight } from '@fortawesome/pro-solid-svg-icons';
+import { faCaretDown, faCaretRight } from '@fortawesome/sharp-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { clsx } from 'clsx';
 import React, { ReactNode, useState } from 'react';

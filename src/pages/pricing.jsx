@@ -15,7 +15,7 @@ import imgKv from '@/images/products/kv-duotone.svg';
 import imgMatchmaker from '@/images/products/matchmaker-duotone.svg';
 import imgGameGuard from '@/images/products/game-guard-duotone.svg';
 import imgAnalytics from '@/images/products/analytics-duotone.svg';
-import { faInfinity } from '@fortawesome/pro-solid-svg-icons';
+import { faInfinity } from '@fortawesome/sharp-solid-svg-icons';
 import { HeroPattern } from '../components/HeroPattern';
 
 // Target on-demand price: ~$22/mo

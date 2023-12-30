@@ -1,4 +1,4 @@
-import { faCalendar, faEnvelope, faHeart, faHeartbeat } from "@fortawesome/pro-solid-svg-icons";
+import { faCalendar, faEnvelope, faHeart, faHeartbeat } from "@fortawesome/sharp-solid-svg-icons";
 import { Resource } from '@/components/Resources';
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 
