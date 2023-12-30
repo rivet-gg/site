@@ -76,6 +76,10 @@ export async function generateApiPages(spec) {
       let title = operationIdStripped.replace(/_/g, '.');
       if (isImportant) title = '⭐️ ' + title;
 
+      // Get description with a default fallback
+      let description = "*Coming Soon!*";
+      if (specPath.description) description = specPath.description;
+
       let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
 
       let file = `
@@ -85,7 +89,7 @@ import { CodeGroup, Code } from '@/components/Code';
 
 ## Description
 
-${specPath.description}
+${description}
 
 `;
 
