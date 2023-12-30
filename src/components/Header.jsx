@@ -163,7 +163,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           </Link>
         </div>
 
-        <div className='hidden items-center gap-6 md:flex'>
+        <div className='hidden items-center gap-4 md:flex'>
           <Link href='/' aria-label='Home'>
             <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
           </Link>
