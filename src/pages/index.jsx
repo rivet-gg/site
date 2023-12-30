@@ -599,13 +599,13 @@ function DemoSection() {
 function Demo() {
   return (
     <div className='pointer-events-none relative h-[412px] w-[320px] shrink-0 grow-0 md:h-[825px] md:w-[640px]'>
-      <div className='absolute left-[50%] h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
+      <div className='absolute h-[1000px] w-[1000px] origin-top -translate-x-1/2 scale-[calc(640/1000*0.65)] md:scale-[calc(640/1000*1.3)]'>
         <Image
           src={imgComputerFrame}
           alt='Rivet'
           className='pointer-events-none absolute z-10 h-[1000px] w-[1000px] max-w-none'
         />
-        <div className='absolute left-[264px] top-[195px] h-[314px] w-[465px]'>
+        <div className='absolute left-[200px] top-[236px] h-[400px] w-[620px]'>
           <Game className='h-full w-full' />
         </div>
       </div>
@@ -861,9 +861,9 @@ function UpAndRunning() {
   return (
     <div className='relative isolate mt-28'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-        <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-inset ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
+        <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 border-2 b-white ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Image */}
-          <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-cream-100'>
+          <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-white'>
             <iframe
               className='h-full w-full'
               src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
