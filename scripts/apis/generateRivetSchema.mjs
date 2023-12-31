@@ -1,5 +1,12 @@
 import fs from 'fs';
 
+// Beware when changing this path, as it is referenced
+// within the schema store
+// 
+// If it requires a change for some critical reason
+// refer to https://github.com/SchemaStore/schemastore/pull/3485
+const SCHEMA_LOCATION = "public/rivet.schema.json";
+
 export async function generateRivetSchema(spec) {
   // Deep clone since we'll be modifying this directly
   spec = JSON.parse(JSON.stringify(spec))
@@ -31,7 +38,7 @@ export async function generateRivetSchema(spec) {
     definitions: definitions
   }
 
-  fs.writeFileSync("public/rivet.schema.json", JSON.stringify(standardSchema, null, 2));
+  fs.writeFileSync(SCHEMA_LOCATION, JSON.stringify(standardSchema, null, 2));
 }
 
 // Rough converter OpenAPI schema into JSON schema (v7) draft
