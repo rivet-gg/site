@@ -899,10 +899,9 @@ function CaseStudies({ props }) {
     <div className='md:mt-40 mt-20'>
       {/* Title */}
       <div className='mx-auto max-w-3xl text-center'>
-        <h2 className='text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-          Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/> at scale around the globe
-          <span style={{ display: 'inline-block', width: '.2em' }}></span> {/* Explicit space */}
-          <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' style={{ transform: 'scaleX(1.35)' }} />
+        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
+          Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/><br/>
+          at scale around the globe <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' />
         </h2>  
       </div>
 
