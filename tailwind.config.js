@@ -48,7 +48,7 @@ module.exports = {
         26: '6.5rem'
       },
       backgroundImage: {
-        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
+        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)'
       }
     }
   },
