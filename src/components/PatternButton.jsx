@@ -3,35 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import cloud from 'src/images/effects/cloud.png';
-
-export const PATTERNS = [
-  {
-    y: 16,
-    squares: [
-      [0, 1],
-      [1, 3]
-    ]
-  },
-  {
-    y: -6,
-    squares: [
-      [-1, 2],
-      [1, 3]
-    ]
-  },
-  {
-    y: 32,
-    squares: [
-      [0, 2],
-      [1, 4]
-    ]
-  },
-  {
-    y: 22,
-    squares: [[0, 1]]
-  }
-];
+import cloudImg from 'src/images/effects/cloud.png';
 
 let COLOR_HUES = {
   'blue': 'hue-rotate-[0deg]',
@@ -45,7 +17,7 @@ let COLOR_HUES = {
   'gray': null,
 };
 
-function ResourcePattern({ color, mouseX, mouseY, highlight, ...gridProps }) {
+function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps }) {
   let maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, white, transparent)`;
   let style = { maskImage, WebkitMaskImage: maskImage };
 
@@ -58,6 +30,8 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, ...gridProps }) {
     saturate = 'saturate-0';
   }
 
+  image = image ?? cloudImg;
+
   return (
     <div className={clsx('pointer-events-none transition duration-300 -z-20', gridProps.className)}>
       <div className={clsx(
@@ -65,7 +39,7 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, ...gridProps }) {
         highlight ? 'opacity-50' : 'group-hover:opacity-50'
       )}>
         <Image
-          src={cloud}
+          src={image}
           width={gridWidth}
           height={gridHeight}
           x='50%'
@@ -87,7 +61,7 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, ...gridProps }) {
         )}
         style={style}>
         <Image
-          src={cloud}
+          src={image}
           width={gridWidth}
           height={gridHeight}
           x='50%'
@@ -133,7 +107,7 @@ export function PatternButton({ children, ...props }) {
         className={clsx(
           props.pattern?.className
         )} />
-      <div className={clsx('w-full h-full', highlight ? 'opacity-100' : 'opacity-75 group-hover:opacity-100')}>
+      <div className={clsx('w-full h-full flex', highlight ? 'opacity-100' : 'opacity-75 group-hover:opacity-100')}>
         {children}
       </div>
     </Component>

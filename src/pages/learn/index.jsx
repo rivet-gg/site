@@ -8,25 +8,25 @@ let supportedEngines = [
   {
     id: 'godot',
     name: 'Godot',
-    href: '/learn/godot/tutorials/crash-course',
+    href: '/learn/godot',
     join: <span>,&nbsp;</span>
   },
   {
     id: 'unity',
     name: 'Unity',
-    href: '/learn/unity/tutorials/fishnet/crash-course',
+    href: '/learn/unity',
     join: <span>,&nbsp;</span>
   },
   {
     id: 'unreal',
     name: 'Unreal Engine',
-    href: '/learn/unreal/tutorials/crash-course',
+    href: '/learn/unreal',
     join: <span>,&nbsp;</span>
   },
   {
     id: 'html5',
     name: 'HTML5',
-    href: '/learn/html5/tutorials/crash-course',
+    href: '/learn/html5',
     join: <span>,&nbsp;and&nbsp;</span>
   },
   {

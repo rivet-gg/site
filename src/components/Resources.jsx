@@ -37,33 +37,41 @@ export function Resource({ children, ...props }) {
   return (
     <PatternButton
       href={props.href}
-      key={props.href}>
-      <div className='relative rounded-2xl px-4 pb-4 pt-16'>
-        <ResourceIcon icon={props.icon} />
+      key={props.href}
+      {...props}>
+      <div className='relative rounded-2xl px-4 pb-4 pt-16 flex flex-col grow'>
+        <div className='grow' />
+        {props.icon && <ResourceIcon icon={props.icon} />}
         <div className='mt-1 font-display text-xl font-semibold leading-7 text-charcole-900 [word-break:break-word] dark:text-white'>
           <span className='absolute inset-0 rounded-2xl' />
           {titleSegments}
         </div>
-        <div className='mt-2 text-sm leading-5 text-white/75'>{children}</div>
+        {children && <div className='mt-2 text-sm leading-5 text-white/75'>{children}</div>}
       </div>
     </PatternButton>
   );
 }
 
-export function ResourceGroup({ title = 'Resources', children }) {
+export function ResourceGroup({ title = 'Resources', columns = 3, children }) {
   let clonedChildren = React.Children.map(children, (child, i) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, { pattern: PATTERNS[i % PATTERNS.length] });
-    }
+    // if (React.isValidElement(child)) {
+    //   return React.cloneElement(child, { pattern: PATTERNS[i % PATTERNS.length] });
+    // }
     return child;
   });
 
   return (
     <div className='my-16'>
-      <Heading level={2} id='resources'>
+      {title && <Heading level={2} id='resources'>
         {title}
-      </Heading>
-      <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4'>
+      </Heading>}
+      <div className={clsx(
+        'not-prose mt-4 grid gap-8 pt-6',
+        'grid-cols-1',
+        columns >= 2 && 'sm:grid-cols-2',
+        columns == 3 &&  'xl:grid-cols-3',
+        columns == 4 &&  'xl:grid-cols-4'
+      )}>
         {clonedChildren}
       </div>
     </div>

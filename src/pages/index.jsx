@@ -772,7 +772,7 @@ function Tabs({ index, onChangeTab }) {
               highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
               onClick={() => onChangeTab(i)}>
-              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white')}>
+              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white grow')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
