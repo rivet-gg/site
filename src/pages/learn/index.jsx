@@ -9,31 +9,26 @@ let supportedEngines = [
     id: 'godot',
     name: 'Godot',
     href: '/learn/godot/tutorials/crash-course',
-    join: <span>,&nbsp;</span>
-  },
-  {
-    id: 'unity',
-    name: 'Unity',
-    href: '/learn/unity/tutorials/fishnet/crash-course',
-    join: <span>,&nbsp;</span>
-  },
-  {
-    id: 'unreal',
-    name: 'Unreal Engine',
-    href: '/learn/unreal/tutorials/crash-course',
-    join: <span>,&nbsp;</span>
   },
   {
     id: 'html5',
     name: 'HTML5',
     href: '/learn/html5/tutorials/crash-course',
-    join: <span>,&nbsp;and&nbsp;</span>
+  },
+  {
+    id: 'unity',
+    name: 'Unity',
+    href: '/learn/unity/tutorials/fishnet/crash-course',
+  },
+  {
+    id: 'unreal',
+    name: 'Unreal Engine',
+    href: '/learn/unreal/tutorials/crash-course',
   },
   {
     id: 'custom',
     name: 'Custom',
     href: '/learn/custom',
-    join: null
   }
 ];
 
@@ -46,7 +41,7 @@ export default function LearnIndex() {
         <div className='text-center font-display text-5xl text-white font-bold'>Pick Your Engine</div>
         <div className='mt-14 grid grid-cols-6 gap-4'>
           {supportedEngines.map((engine, i) => (
-            <GameEngine key={engine.name} engine={engine} long={i >= 3} />
+            <GameEngine key={engine.name} engine={engine} long={i < 2} />
           ))}
         </div>
       </div>
