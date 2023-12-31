@@ -1,9 +1,5 @@
 [
   {
-    "title": "Already In Party",
-    "href": "/docs/general/errors/party/already-in-party"
-  },
-  {
     "title": "API Bad Body",
     "href": "/docs/general/errors/api/bad-body"
   },
@@ -14,10 +10,6 @@
   {
     "title": "API Bad Content Length",
     "href": "/docs/general/errors/api/bad-content-length"
-  },
-  {
-    "title": "API Bad Cookie",
-    "href": "/docs/general/errors/api/bad-cookie"
   },
   {
     "title": "API Bad Header",
@@ -56,8 +48,8 @@
     "href": "/docs/general/errors/api/invalid-ip"
   },
   {
-    "title": "API Missing Cookie",
-    "href": "/docs/general/errors/api/missing-cookie"
+    "title": "API Method Not Allowed",
+    "href": "/docs/general/errors/api/method-not-allowed"
   },
   {
     "title": "API Missing Header",
@@ -76,32 +68,12 @@
     "href": "/docs/general/errors/api/unauthorized"
   },
   {
-    "title": "Bad Invite Alias Length",
-    "href": "/docs/general/errors/party/bad-invite-alias-length"
-  },
-  {
-    "title": "Bad Party Size",
-    "href": "/docs/general/errors/party/bad-size"
-  },
-  {
-    "title": "Cannot Kick Self",
-    "href": "/docs/general/errors/party/cannot-kick-self"
-  },
-  {
-    "title": "Cannot Set Party Leader To Self",
-    "href": "/docs/general/errors/party/cannot-set-party-leader-to-self"
-  },
-  {
     "title": "Captcha Failed",
     "href": "/docs/general/errors/captcha/captcha-failed"
   },
   {
     "title": "Captcha Invalid",
     "href": "/docs/general/errors/captcha/captcha-invalid"
-  },
-  {
-    "title": "Captcha Origin Not Allowed",
-    "href": "/docs/general/errors/captcha/captcha-origin-not-allowed"
   },
   {
     "title": "Captcha Required",
@@ -122,10 +94,6 @@
   {
     "title": "CDN Too Many Domains",
     "href": "/docs/general/errors/cdn/too-many-domains"
-  },
-  {
-    "title": "Chat Thread Not Found",
-    "href": "/docs/general/errors/chat/thread-not-found"
   },
   {
     "title": "Cloud Invalid Config",
@@ -150,10 +118,6 @@
   {
     "title": "Game Not Found",
     "href": "/docs/general/errors/game/game-not-found"
-  },
-  {
-    "title": "Game User Link Failed",
-    "href": "/docs/general/errors/game-user/link-failed"
   },
   {
     "title": "Generic Token Error",
@@ -240,36 +204,8 @@
     "href": "/docs/general/errors/identity/not-found"
   },
   {
-    "title": "Identity Not In Any Party",
-    "href": "/docs/general/errors/party/identity-not-in-any-party"
-  },
-  {
-    "title": "Identity Not Party Leader",
-    "href": "/docs/general/errors/party/identity-not-party-leader"
-  },
-  {
     "title": "Identity Not Registered",
     "href": "/docs/general/errors/identity/not-registered"
-  },
-  {
-    "title": "Invalid Chat Body",
-    "href": "/docs/general/errors/chat/invalid-body"
-  },
-  {
-    "title": "Invalid Chat Topic",
-    "href": "/docs/general/errors/chat/invalid-topic"
-  },
-  {
-    "title": "Invite Alias Not Found",
-    "href": "/docs/general/errors/party/invite-alias-not-found"
-  },
-  {
-    "title": "Invite Alias Not Unique",
-    "href": "/docs/general/errors/party/invite-alias-not-unique"
-  },
-  {
-    "title": "Invite Not Found",
-    "href": "/docs/general/errors/party/invite-not-found"
   },
   {
     "title": "KV Batch Too Large",
@@ -292,10 +228,6 @@
     "href": "/docs/general/errors/kv/value-too-long"
   },
   {
-    "title": "Leader Not In Same Party",
-    "href": "/docs/general/errors/party/leader-not-in-same-party"
-  },
-  {
     "title": "Matchmaker Auto Create Failed",
     "href": "/docs/general/errors/mm/auto-create-failed"
   },
@@ -310,6 +242,14 @@
   {
     "title": "Matchmaker Custom Lobby Limit Reached",
     "href": "/docs/general/errors/mm/custom-lobby-limit-reached"
+  },
+  {
+    "title": "Matchmaker Dynamic Max Players Disabled",
+    "href": "/docs/general/errors/mm/dynamic-player-count-disabled"
+  },
+  {
+    "title": "Matchmaker Dynamic Max Players Invalid",
+    "href": "/docs/general/errors/mm/dynamic-player-count-invalid"
   },
   {
     "title": "Matchmaker Find Disabled",
@@ -352,6 +292,10 @@
     "href": "/docs/general/errors/mm/no-available-lobbies"
   },
   {
+    "title": "Matchmaker No Game Mode Provided",
+    "href": "/docs/general/errors/mm/no-game-mode-provided"
+  },
+  {
     "title": "Matchmaker Player Already Connected",
     "href": "/docs/general/errors/mm/player-already-connected"
   },
@@ -380,6 +324,18 @@
     "href": "/docs/general/errors/mm/registration-required"
   },
   {
+    "title": "Matchmaker Tag Name Too Long",
+    "href": "/docs/general/errors/mm/tag-name-too-long"
+  },
+  {
+    "title": "Matchmaker Tag Too Long",
+    "href": "/docs/general/errors/mm/tag-too-long"
+  },
+  {
+    "title": "Matchmaker Tags Disabled",
+    "href": "/docs/general/errors/mm/tags-disabled"
+  },
+  {
     "title": "Matchmaker Too Many Lobbies",
     "href": "/docs/general/errors/mm/too-many-lobbies"
   },
@@ -388,8 +344,16 @@
     "href": "/docs/general/errors/mm/too-many-players-from-source"
   },
   {
+    "title": "Matchmaker Too Many Tags",
+    "href": "/docs/general/errors/mm/too-many-tags"
+  },
+  {
     "title": "Matchmaker Verification Failed",
     "href": "/docs/general/errors/mm/verification-failed"
+  },
+  {
+    "title": "Matchmaker Verification Request Failed",
+    "href": "/docs/general/errors/mm/verification-request-failed"
   },
   {
     "title": "Missing Entitlement",
@@ -400,24 +364,12 @@
     "href": "/docs/general/errors/upload/nsfw-content-detected"
   },
   {
-    "title": "Party Full",
-    "href": "/docs/general/errors/party/party-full"
-  },
-  {
-    "title": "Party Not Found",
-    "href": "/docs/general/errors/party/party-not-found"
-  },
-  {
-    "title": "Party Not in Game",
-    "href": "/docs/general/errors/party/party-not-in-game"
-  },
-  {
-    "title": "Party Not Joinable",
-    "href": "/docs/general/errors/party/party-not-joinable"
-  },
-  {
     "title": "Refresh Token Not Found",
     "href": "/docs/general/errors/token/refresh-not-found"
+  },
+  {
+    "title": "Script Not Found",
+    "href": "/docs/general/errors/cli/script-not-found"
   },
   {
     "title": "Token Exchange Failed",
@@ -436,16 +388,12 @@
     "href": "/docs/general/errors/token/revoked"
   },
   {
-    "title": "Too Many Invites",
-    "href": "/docs/general/errors/party/too-many-invites"
-  },
-  {
     "title": "Too Many Pending Hostnames",
     "href": "/docs/general/errors/cloud/too-many-pending-hostnames-for-group"
   },
   {
-    "title": "Unexpected Invite Alias",
-    "href": "/docs/general/errors/party/unexpected-invite-alias"
+    "title": "Upload Invalid",
+    "href": "/docs/general/errors/upload/invalid"
   },
   {
     "title": "Upload Too Large",

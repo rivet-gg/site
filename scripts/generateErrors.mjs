@@ -34,16 +34,21 @@ export async function generateErrors() {
         if (httpStatus >= 500 && httpStatus < 600) {
           continue;
         }
+        let isDeprecated = errorDoc.match(/^deprecated\s*=\s*true\s*$/m);
+        let isExperimental = errorDoc.match(/^experimental\s*=\s*true\s*$/m);
 
         // Strip error doc
         errorDoc = errorDoc.replace(/---.*---\s+#[^\n]+\s+/gs, '');
         errorDoc = `# ${title}\n\n<Summary>{\`${name}\`}</Summary>\n\n${errorDoc}`;
         fs.writeFileSync(outputPathEntry.replace('.md', '.mdx'), errorDoc);
 
-        pages.push({
-          title,
-          href: outputPathEntry.replace('.md', '').substring('src/pages'.length)
-        });
+        // Add to index of error pages if not deprecated
+        if (!isDeprecated && !isExperimental) {
+          pages.push({
+            title,
+            href: outputPathEntry.replace('.md', '').substring('src/pages'.length)
+          });
+        }
       } else if (stat.isDirectory) {
         processErrorDir(inputPathEntry, outputPathEntry, pages);
 
