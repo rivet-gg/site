@@ -66,8 +66,7 @@ export function Feedback() {
 
 function EditButton() {
     let router = useRouter();
-    // let href = `https://github.com/rivet-gg/site/tree/main/src/pages/${router.pathname}.mdx`;
-    let href = `https://github.com/rivet-gg/site/edit/main/src/pages/${router.pathname}.mdx`;
+    let href = `https://github.com/rivet-gg/site/edit/main/src/pages${router.pathname}.mdx`;
 
     return (
         <Button variant='text-subtle' icon={faGithub} href={href} target='_blank'>Edit Page</Button>
