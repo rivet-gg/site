@@ -910,8 +910,8 @@ function CaseStudies({ props }) {
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-0.5 overflow-hidden ring-1 ring-inset ring-white/10',
-        'sm:mx-0 sm:rounded-2xl md:grid-cols-3',
+        'mt-6 grid  gap-4 overflow-hidden ring-1 ring-inset ring-white/10',
+        'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
       )}>
@@ -919,7 +919,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[175px] items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[575px] border-2 items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
