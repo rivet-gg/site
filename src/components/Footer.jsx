@@ -115,8 +115,8 @@ function PageNextPrevious({ navigation }) {
 
 function SmallPrint() {
   return (
-    <div className='mx-auto max-w-7xl pb-8 pt-16 sm:pt-20'>
-      <div className='px-4 sm:px-6 lg:px-8 xl:grid xl:grid-cols-2 xl:gap-8'>
+    <div className='mx-auto max-w-5xl pb-8 pt-16 sm:pt-20'>
+      <div className='xl:grid xl:grid-cols-2 xl:gap-8'>
         {/* Brands & links */}
         <div className='space-y-8'>
           {/* Logo */}
@@ -179,7 +179,7 @@ function SmallPrint() {
       </div>
 
       {/* Trademarks */}
-      <div className='mt-6 space-y-3 px-4 text-2xs italic leading-4 text-white/50 sm:px-6 md:mt-12 md:mt-12 lg:px-8'>
+      <div className='mt-6 space-y-3 text-2xs italic leading-4 text-white/50 md:mt-12 md:mt-12'>
         {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
         {`This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates in the U.S. and elsewhere.`}
         &nbsp;|&nbsp;
@@ -204,7 +204,7 @@ function SmallPrint() {
       </div>
 
       {/* Footer */}
-      <div className='mt-4 border-t border-white/10 px-4 pt-8 sm:px-6 md:mt-8 lg:px-8'>
+      <div className='mt-4 border-t border-white/10 md:mt-8'>
         <p className='text-xs leading-5 text-gray-400'>
           &copy; {new Date().getFullYear()} Rivet Gaming, Inc. All rights reserved.
         </p>
