@@ -58,8 +58,6 @@ module.exports = {
     plugin(function ({ addBase, theme }) {
       addBase({
         h1: { fontFamily: theme('fontFamily.display') },
-        h2: { fontFamily: theme('fontFamily.display') },
-        h3: { fontFamily: theme('fontFamily.display') }
       });
     })
   ]

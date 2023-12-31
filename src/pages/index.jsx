@@ -500,7 +500,7 @@ function Title() {
       {/* Text */}
       <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl text-cream-100'>
+        <h1 className='font-display mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl text-cream-100'>
           Multiplayer Made Simple
         </h1>
 
@@ -621,7 +621,7 @@ function Demo() {
       </div>
       {/* Text and New Grid Layout */}
       <div className='absolute bottom-0 left-0 p-4'>
-        <h2 className='text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>Build Riveting Experiences</h2>
+        <h2 className='text-xl font-display font-bold tracking-tight text-cream-100 sm:text-7xl'>Build Riveting Experiences</h2>
         
         {/* Grid Container for Bullet Points */}
         <div className='grid grid-cols-2 gap-4 mt-4'>
@@ -653,53 +653,53 @@ function EngineGrid() {
         <div className="grid grid-cols-3 auto-rows-fr text-center">
           {/* Grid Item 1 */}
           <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className="mt-2 text-5xl">Unity</h3>
+            <h3 className="mt-2 font-display text-5xl">Unity</h3>
           </div>
 
           {/* Grid Item 2 */}
           <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className='text-purple-800 sm:text-7xl'>
+            <h3 className='text-purple-800 font-display sm:text-7xl'>
             <FontAwesomeIcon icon={faAlien8bit}/>
             </h3>
           </div>
 
           {/* Grid Item 3 */}
           <div className="">
-            <h2 className="text-left text-5xl font-bold">Get started with Your Engine.</h2>
+            <h2 className="text-left font-display text-5xl font-bold">Get started with Your Engine.</h2>
           </div>
 
           {/* Grid Item 4 */}
           <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className='text-purple-800 sm:text-7xl'>
+            <h3 className='text-purple-800 sm:text-7xl font-display'>
             <FontAwesomeIcon icon={faAlien8bit}/>
             </h3>
           </div>
 
           {/* Grid Item 5 */}
           <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className="mt-2 text-5xl">Godot</h3>
+            <h3 className="mt-2 text-5xl font-display">Godot</h3>
           </div>
 
           {/* Grid Item 6 */}
           <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className='text-purple-800 sm:text-7xl'>
+            <h3 className='text-purple-800 sm:text-7xl font-display'>
             <FontAwesomeIcon icon={faAlien8bit}/>
             </h3>
           </div>
 
            {/* Grid Item 7 */}
            <div className="p-4 border border-white flex flex-col justify-center flex flex-col justify-center">
-            <h3 className="mt-2 text-5xl">Unreal</h3>
+            <h3 className="mt-2 text-5xl font-display">Unreal</h3>
           </div>
 
            {/* Grid Item 8 */}
            <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className="mt-2 text-5xl">HTML5</h3>
+            <h3 className="mt-2 text-5xl font-display">HTML5</h3>
           </div>
 
            {/* Grid Item 9 */}
            <div className="p-4 border border-white flex flex-col justify-center">
-            <h3 className="mt-2 text-5xl">Custom</h3>
+            <h3 className="mt-2 text-5xl font-display">Custom</h3>
           </div>
 
         </div>
@@ -772,7 +772,7 @@ function Tabs({ index, onChangeTab }) {
               highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
               onClick={() => onChangeTab(i)}>
-              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-base font-bold text-white')}>
+              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
@@ -791,7 +791,7 @@ function Tabs({ index, onChangeTab }) {
                       )}
                     /> */}
                 </div>
-                <div className='hidden font-display text-white sm:block'>{tab.name}</div>
+                <div className='hidden text-white sm:block'>{tab.name}</div>
               </div>
             </PatternButton>
           );
@@ -862,7 +862,7 @@ function PageContents({ page }) {
         <div className='px-2 lg:px-4'>
           <div className='lg:max-w-lg'>
             {/* Title */}
-            <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl'>{page.name}</h2>
+            <h2 className='mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl font-display'>{page.name}</h2>
             <p className='text-m mt-4 text-gray-300'>{page.description}</p>
 
             {/* Features */}
@@ -942,7 +942,7 @@ function CaseStudies({ props }) {
 
       {/* sub-text */}
       <div className='mx-auto max-w-1xl text-center'>
-        <h3 className='tracking-tight text-cream-100 sm:text-5xl'>
+        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
           Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
         </h3>  
       </div>
@@ -973,7 +973,7 @@ function UpAndRunning() {
 
           {/* Body */}
           <div className='w-full flex-auto'>
-            <h2 className='text-3xl font-bold tracking-tight text-white sm:text-4xl'>
+            <h2 className='font-display text-3xl font-bold tracking-tight text-white sm:text-4xl'>
               Launch your game in <span className='text-violet-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
@@ -1018,7 +1018,7 @@ function UpAndRunning() {
        
       //<ColoredBlocksComponent />
 
-        <h1 className="text-6xl font-bold mt-4">
+        <h1 className="font-display text-6xl font-bold mt-4">
           Level Up With Rivet
         </h1>
         <h2 className="text-2xl mt-2 italic">
