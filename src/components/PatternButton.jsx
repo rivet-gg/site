@@ -39,6 +39,7 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps
         highlight ? 'opacity-50' : 'group-hover:opacity-50'
       )}>
         <Image
+          alt='Button background'
           src={image}
           width={gridWidth}
           height={gridHeight}
@@ -61,6 +62,7 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps
         )}
         style={style}>
         <Image
+          alt='Button background'
           src={image}
           width={gridWidth}
           height={gridHeight}
