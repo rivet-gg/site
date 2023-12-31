@@ -27,35 +27,32 @@
 
 /* animation for the rainbow bar under '5 minutes crash course' */
 
-@keyframes rainbowCycle {
-  0% { background-position: 0% 50%; }
-  100% { background-position: -100% 50%; }
-}
-
 .hover-effect::after {
   content: '';
   display: block;
-  width: 0; /* Start with 0 width */
-  height: 2px;
-  background: linear-gradient(
-    to right, /* Adjust the direction to `to right` */
-    violet, indigo, blue, green, yellow, orange, red,
-    violet /* End with the same color to make the gradient seamless */
-  );
-  background-size: 200% 100%; /* Set the size to 200% to have the gradient twice */
+  width: 0; /* Initial width is 0 so the bar is not visible */
+  height: 2px; /* Height of the bar */
+  background: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); /* The gradient */
+  background-size: 200% 100%;
   position: absolute;
   bottom: 0;
-  right: 0;
-  left: auto;
-  transition: width 0.5s ease-in-out; /* Apply transition only to width */
+  right: 0; /* Positioned to the right */
+  left: auto; /* Initially set to auto */
+  transition: width 0.5s ease-in-out, left 0.5s ease-in-out; /* Transition for the slide-out effect */
   z-index: 10;
 }
 
+/* When hovered, the bar stretches from right to left */
 .hover-effect:hover::after {
-  width: 100%; /* Full width on hover */
-  left: 0;
-  transition: width 0.5s ease-in-out; /* Apply transition only to width */
-  animation: rainbowCycle 3s linear infinite; /* Corrected the duration */
+  width: 100%; /* Full width */
+  left: 0; /* Align to the left side */
+  transition: width 0.5s ease-in-out, left 0s 0.5s; /* Delay the left transition until the bar is full width */
+  animation: rainbowCycle 3s linear infinite;
+}
+
+@keyframes rainbowCycle {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hover-effect {

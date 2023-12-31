@@ -552,9 +552,10 @@ function Title() {
             <Button variant='juicy'>Sign Up for Beta</Button>
             </a>
 
-          <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover:after:content-[""] hover:after:block hover:after:w-full hover:after:h-1 hover:after:bg-rainbow-gradient' >
-            5 minute crash course <span aria-hidden='true'>→</span>
-          </Link>
+            <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover-effect'>
+              5 minute crash course <span aria-hidden='true'>→</span>
+            </Link>
+
         </div>
 
         <div className='mt-9 flex sm:flex-row flex-col items-center justify-center'>
