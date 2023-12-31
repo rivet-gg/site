@@ -230,10 +230,10 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                 key={tab.title}
                 href={tab.href}
                 className={clsx(
-                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-medium',
+                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
                   tab.current
-                    ? 'border-charcole-900 border-cream-50 opacity-80'
-                    : 'border-transparent hover:border-charcole-900 hover:border-white hover:opacity-100',
+                    ? 'border-charcole-900 border-cream-50'
+                    : 'border-transparent hover:border-charcole-900 hover:border-white opacity-80 hover:opacity-100',
                   tab.styles?.text ?? 'text-white',
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
