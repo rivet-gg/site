@@ -28,9 +28,7 @@ function useInitialValue(value, condition = true) {
 function TopLevelNavItem({ href, children }) {
   return (
     <li className='md:hidden'>
-      <Link
-        href={href}
-        className='block py-1 text-sm transition text-charcole-400 hover:text-white'>
+      <Link href={href} className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
         {children}
       </Link>
     </li>
@@ -45,9 +43,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
       className={clsx(
         'flex justify-between gap-2 py-1 pr-3 text-sm transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
-        active
-          ? 'text-white'
-          : 'text-charcole-400 hover:text-white'
+        active ? 'text-white' : 'text-charcole-400 hover:text-white'
       )}>
       <span className='truncate'>{children}</span>
       {tag && (
@@ -120,7 +116,7 @@ function NavigationGroup({ group, className }) {
 
   return (
     <li className={clsx('relative mt-6', className)}>
-      <motion.h2 layout='position' className='text-xs font-semibold font-sans text-white'>
+      <motion.h2 layout='position' className='font-sans text-xs font-semibold text-white'>
         {group.title}
       </motion.h2>
       <div className='relative mt-3 pl-2'>
@@ -194,7 +190,7 @@ export function Navigation({ navigation, ...props }) {
         {/* Sidebar */}
         {navigation.sidebar
           ? [overviewGroup, ...navigation.sidebar.groups].map((group, groupIndex) => (
-              <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-0'} />
+              <NavigationGroup key={group.title} group={group} className={groupIndex === 0 && 'md:mt-6'} />
             ))
           : null}
         <li className='sticky bottom-0 z-10 mt-6 min-[416px]:hidden'>
