@@ -74,6 +74,7 @@ import imgGameGuard from '@/images/screenshots/gameGuard.png';
 import imgSocial from '@/images/screenshots/social.png';
 import imgAnalytics from '@/images/screenshots/analytics.png';
 import imgCdn from '@/images/screenshots/cdn.png';
+import img551Regions from '@/images/effects/551 regions.png';
 
 import imgComputerFrame from '@/images/effects/computer-frame.png';
 import imgComputerOverlay from '@/images/effects/computer-overlay.png';
@@ -104,9 +105,16 @@ import { RainbowBar } from '../components/RainbowBar';
 import { RainbowBarAnimated } from '../components/RainbowBarAnimated';
 import grain from 'src/images/effects/grain.png';
 
-import imgTanks from '@/images/case-studies/screenshots/tanks.png'
-import imgAstro from '@/images/case-studies/screenshots/astro.png'
-import imgBomber from '@/images/case-studies/screenshots/bomber.png'
+import imgTanks from '@/images/examples/tanks.png'
+import imgAstro from '@/images/examples/astro.png'
+import imgBomber from '@/images/examples/bomber.png'
+import imgCli from '@/images/examples/cli.png'
+import imgCol from '@/images/examples/col.png'
+import imgCore from '@/images/examples/core.png'
+import imgUnityTanks from '@/images/examples/unitytanks.png'
+import imgWeb from '@/images/examples/web.png'
+
+import imgStepsGodot from '@/images/case-studies/screenshots/steps.png'
 
 const featurePages = [
   {
@@ -299,59 +307,35 @@ let caseStudies = [
 let templates = [
   {
     href: 'https://apes.io',
-    screenshot: imgTanks,
-  },
-  {
-    href: 'https://apes.io',
     screenshot: imgAstro,
   },
   {
-    href: 'https://apes.io',
+    href: 'https://rivet.gg/learn/godot/tutorials/crash-course',
     screenshot: imgBomber,
   },
   {
-    name: 'Ev.io',
-    href: 'https://ev.io',
-    badge: () => (
-      <div className='absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
-        <FontAwesomeIcon icon={faAward} className='text-2xl' />
-        <div className=' flex flex-col'>
-          <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
-            2023 Best eSports & FPS Game
-          </span>
-          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>{`– Gam3rs' Choice Awards`}</span>
-        </div>
-      </div>
-    ),
-    screenshot: imgEvScreenshot,
-    logo: imgEvLogo,
-    gradient: 'from-[#7d56d6] to-[#2a4080]'
+    href: 'https://rivet.gg/learn/html5/tutorials/tanks-canvas-socketio',
+    screenshot: imgTanks,
   },
   {
-    name: 'Ev.io',
-    href: 'https://ev.io',
-    badge: () => (
-      <div className='absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
-        <FontAwesomeIcon icon={faAward} className='text-2xl' />
-        <div className=' flex flex-col'>
-          <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
-            2023 Best eSports & FPS Game
-          </span>
-          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>{`– Gam3rs' Choice Awards`}</span>
-        </div>
-      </div>
-    ),
-    screenshot: imgEvScreenshot,
-    logo: imgEvLogo,
-    gradient: 'from-[#7d56d6] to-[#2a4080]'
+    href: 'https://rivet.gg/learn/unity/tutorials/fishnet/crash-course',
+    screenshot: imgUnityTanks,
   },
-  
   {
-    name: 'Diep.io',
-    href: 'https://diep.io',
-    screenshot: imgDiepScreenshot,
-    logo: imgDiepLogo,
-    gradient: 'from-[#56a0d9] to-[#3d5db8]'
+    href: 'https://github.com/rivet-gg/examples/tree/main/html5/colyseus',
+    screenshot: imgCol,
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/html5/webrtc',
+    screenshot: imgWeb,
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/rust/cli-websocket',
+    screenshot: imgCli,
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/c/coredumpo',
+    screenshot: imgCore,
   }
 ];
 
@@ -376,14 +360,23 @@ export default function Index() {
 
       {/* Header */}
       <div className='relative isolate overflow-x-hidden'>
-        <div className='pb-12 sm:pb-16 lg:pb-20'>
+        <div className='pb-12 sm:pb-0 lg:pb-0'>
           <Title />
 
           <RainbowBar className='w-full h-1'/>
 
           <Features />
 
-          <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+          {/* Title */}
+          <div className='mx-auto w-full text-center pt-60 pb-[26rem] relative'>
+            <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+              <PlayHoursCounter/> play hours <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/><br/>
+              at scale around the globe <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' />
+            </h2>
+            <Image src={img551Regions} className='absolute bottom-0 left-1/2 w-auto h-full transform -translate-x-1/2 object-cover -z-10' />
+          </div>
+
+          <div className='mx-auto max-w-7xl px-6 lg:px-8 py-40'>
             <CaseStudies />
           </div>
          
@@ -579,7 +572,7 @@ function Title() {
 
           <Link 
             href='/learn' 
-            className='text-sm font-semibold leading-6 text-white hover-effect' // Add the 'hover-effect' class here
+            className='text-sm font-semibold leading-6 text-white hover-effect'
           >
             5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
@@ -677,131 +670,107 @@ function Demo() {
 }
 
 function CodeSection() {
-  const [currentEngine, setCurrentEngine] = useState('Godot'); // Set initial engine to 'Godot'
-  const [selectedSubButton, setSelectedSubButton] = useState('ENet'); // New state for sub-button
 
- const changeContent = (engine) => {
+  const [currentEngine, setCurrentEngine] = useState('Godot');
+
+  const changeContent = (engine) => {
     setCurrentEngine(engine);
-    // Reset sub-button when changing engines
-    if (engine === 'Godot') {
-      setSelectedSubButton('ENet'); // Reset to 'ENet' for Godot
-    } else {
-      setSelectedSubButton(null); // Reset for other engines
-    }
   };
 
-  const changeSubContent = (subButton) => {
-    setSelectedSubButton(subButton);
-  };
-
-  // Define sub-content for each engine
-  const engineSubContent = {
+  // Define content and images for each engine
+  const engineContent = {
     Godot: {
-      buttons: ['ENet', 'Websocket', 'WebRTC'],
-      content: 'Godot specific content here...'
+      image: imgStepsGodot,
     },
     Unity: {
-      buttons: ['FishNet'],
-      content: 'Unity specific content here...'
+      image: imgStepsGodot,
     },
     Unreal: {
-      buttons: ['Replication'],
-      content: 'Unreal specific content here...'
+      image: imgStepsGodot,
     },
     HTML5: {
-      buttons: ['Socket.IO', 'Colyseus', 'WebRTC'],
-      content: 'HTML5 specific content here...'
+      image: imgStepsGodot,
     },
     Custom: {
-      buttons: ['WebSocket'],
-      content: 'Custom engine specific content here...'
+      image: imgStepsGodot,
     },
-
   };
-  
 
   return (
-    <div id="app" className="flex flex-col items-center">
-      <h2 className='font-display mt-8 text-6xl text-center font-extrabold tracking-tight sm:text-7xl text-cream-100'>
-        Rivet works with your game engine and networking framework 
+    <div id="app" className="flex flex-col gap-12 py-16 items-center">
+      <h2 className='font-display text-5xl text-center font-extrabold tracking-tight sm:text-5xl text-cream-100'>
+        Rivet works with your <span className='underline'>game engine</span> and <span className='underline'>networking framework</span>
       </h2>
 
-      <div className="flex space-x-2 my-4 justify-center">
-        {Object.keys(engineSubContent).map((engine) => (
-          <button
-            key={engine}
-            className="px-4 py-2 border border-gray-300 font-bold text-cream-100 hover:text-black hover:bg-gray-100"
-            onMouseEnter={() => changeContent(engine)}
-          >
-            {engine}
-          </button>
-        ))}
-      </div>
-
-      {currentEngine && (
-        <div className="flex flex-col items-center w-full">
-          <div className="w-full max-w-2xl px-2 py-2 border">
-            {engineSubContent[currentEngine].buttons.map((subButton) => (
-              <button
-                key={subButton}
-                className="px-4 py-2 border border-gray-300 font-bold text-cream-100 hover:text-black hover:bg-gray-100"
-                onMouseEnter={() => {/* Add logic if needed */}}
-              >
-                {subButton}
-              </button>
-            ))}
-          </div>
-          <div className="p-4 border w-full max-w-2xl">
-            {engineSubContent[currentEngine].content}
-          </div>
+      <div className='flex flex-col gap-2 w-full items-stretch'>
+        <div className="flex space-x-2 justify-center">
+          {Object.keys(engineContent).map((engine) => (
+            <button
+              key={engine}
+              className="px-4 py-2 border border-gray-300 font-bold text-cream-100 hover:text-black hover:bg-gray-100"
+              onMouseEnter={() => changeContent(engine)}
+            >
+              {engine}
+            </button>
+          ))}
         </div>
-      )}
+
+        <div className="p-4 flex flex-col items-center">
+          <Image
+            src={engineContent[currentEngine].image}
+            alt={`${currentEngine} Image`}
+            className="w-full max-w-7xl mx-auto"
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
 
-
 function TemplateSection() {
   return (
-    <div className='md:mt-40 mt-20'>
-    {/* Title */}
-    <div className='mx-auto max-w-3xl text-center'>
-      <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
-        Get started with an example
-      </h2>  
+    <div className='md:py-40 py-20'>
+      {/* Title */}
+      <div className='mx-auto max-w-3xl text-center'>
+        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+          Get started with an example
+        </h2>  
+      </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
+
+      {/* Grid with Increased Margins */}
+      <div className={clsx(
+       'mt-2 grid gap-12 overflow-hidden mx-auto px-8 pb-20',
+       'max-w-5xl', 
+       'md:grid-cols-4 grid-cols-1' 
+      )}>
+        {templates.map((template, i) => (
+          <Link
+            key={i}
+            href={template.href}
+            className={clsx(
+              'group relative flex h-[275px] items-center justify-center p-2 sm:p-10',
+              'transition-transform duration-300 transform hover:scale-105 origin-center',
+            )}>
+            <Image
+              className='absolute inset-0 -z-20 h-full w-full object-contain'
+              src={template.screenshot}
+              alt=''
+              layout="fill"
+            />
+            <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', template.gradient)} />
+            {template.badge && template.badge()}
+          </Link>
+        ))}
+      </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
     </div>
-
-    {/* Separator */}
-    <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
-
-    {/* Grid */}
-    <div className={clsx(
-      'mt-6 grid  gap-6 overflow-hidden',
-      'sm:mx-0 md:grid-cols-3',
-      '-mx-6 grid-cols-1'
-
-    )}>
-      {templates.map((study, i) => (
-        <Link
-          key={i}
-          href={study.href}
-          className='group relative flex h-[575px] items-center justify-center p-8 sm:p-10'>
-          <Image
-            className='absolute inset-0 -z-20 h-full w-full w-full object-fill'
-            src={study.screenshot}
-            alt=''
-          />
-          <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', study.gradient)} />
-          {study.badge && study.badge()}
-        </Link>
-      ))}
-    </div>
-
-    {/* Separator */}
-    <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
-  </div>
-);
+  );
 }
 
 function EngineGrid() {
@@ -1045,23 +1014,51 @@ function PageContents({ page, scale }) {
   );
 }
 
+const PlayHoursCounter = () => {
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [hasMounted, setHasMounted] = useState(false);
+
+    useEffect(() => {
+      setHasMounted(true);
+      setCurrentTime(Date.now());
+      const interval = setInterval(() => {
+        setCurrentTime(Date.now());
+      }, 100);
+
+      return () => clearInterval(interval);
+    }, []);
+
+  if (!hasMounted) {
+    return null; // or render some placeholder
+  }
+
+  const formattedTime = currentTime.toLocaleString();
+  const timeElements = formattedTime.split('').map((char, index) => {
+      const spanClass = isDigit(char) ? 'inline-block w-[0.52em]' : 'inline-block';
+      return <span key={index} className={`${spanClass} inline-block text-right`}>{char}</span>;
+  });
+
+  return <span>{timeElements}</span>;
+};
+
+function isDigit(char) {
+  const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  return digits.indexOf(char) !== -1;
+};
+
 function CaseStudies({ props }) {
   return (
-    <div className='md:mt-40 mt-20'>
-      {/* Title */}
-      <div className='mx-auto max-w-3xl text-center'>
-        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-          Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/><br/>
-          at scale around the globe <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' />
-        </h2>  
+    <div className='flex flex-col gap-12'>
+      {/* sub-text */}
+      <div className='mx-auto max-w-1xl text-center'>
+        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
+          Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
+        </h3>  
       </div>
-
-      {/* Separator */}
-      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-12 overflow-hidden',
+        'grid  gap-12 overflow-hidden',
         'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
@@ -1089,13 +1086,6 @@ function CaseStudies({ props }) {
 
       {/* Separator */}
       <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
-
-      {/* sub-text */}
-      <div className='mx-auto max-w-1xl text-center'>
-        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
-          Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
-        </h3>  
-      </div>
     </div>
   );
 }
@@ -1182,10 +1172,13 @@ function LevelUpSection() {
           </h1>
 
           <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
-            <Button variant='juicy'>Sign Up for Beta</Button>
-            <button className="text-black">
-              5 minute crash course →
-            </button>
+            <Button variant='blackJuicy'>Sign Up for Beta</Button>
+            <Link 
+            href='/learn' 
+            className='text-sm font-semibold leading-6 text-black hover-effect'
+          >
+            5 minute crash course <span aria-hidden='true'>→</span>
+          </Link>
           </div>
         </div>
 
