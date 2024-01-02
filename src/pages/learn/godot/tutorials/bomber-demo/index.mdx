@@ -1,0 +1,194 @@
+import Image from 'next/image';
+import imgCreatePublicToken from './images/create-public-token.png';
+
+# 💣 Bomber Demo
+
+<RequiresBetaSignup />
+
+<WorkInProgress />
+
+This guide will walk you through creating and deploying a multiplayer game with
+Godot 4.
+
+<Warning>If you are using Godot 3, please be aware that some details may be different.</Warning>
+
+---
+
+## Overview
+
+Godot provides great multiplayer capabilities out of the box. We'll be using
+Godot's built-in networking to build a server-authoritative multiplayer game on
+top of Rivet.
+
+Godot supports ENet, WebSocket, and WebRTC transports. We'll be using ENet for
+this tutorial, but it's easy to swap out.
+
+---
+
+## Step 1: Initialize project
+
+<InstallCli />
+
+We'll be using a modified version of Godot's [multiplayer
+bomber demo].
+
+[multiplayer bomber demo]: https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_bomber
+
+<Accordion title="What is Rivet doing?">
+	Rivet's Godot plugin doesn't actually add a lot more to the existing bomber demo. It does a few
+	things:
+	
+	- Makes a call to Rivet's API to find a lobby to join
+	- Manages tokens for testing or deploying your game
+
+</Accordion>
+
+We'll start by cloning Rivet's example repo: https://github.com/rivet-gg/examples
+
+The bomber demo is in `godot/bomber`. The demo has been refactored to try and
+reduce the area that we will be modifying for Rivet.
+
+
+
+### Configure Rivet
+
+Copy the following to `rivet.toml`:
+
+```toml rivet.toml
+[matchmaker]
+	max_players = 12
+
+[matchmaker.regions]
+	lnd-sfo = {}
+	lnd-fra = {}
+
+[matchmaker.docker]
+	dockerfile = "Dockerfile"
+	ports.default = { port = 10567, protocol = "udp" }
+
+[matchmaker.game_modes]
+	default = {}
+```
+
+### Link project
+
+Run the following command to link your game to Rivet. If you haven't already,
+create a new game at this step.
+
+```bash
+rivet init --recommend
+```
+
+## Step 2: Install the Rivet plugin in Godot
+
+Follow the [installation
+instructions] on the Godot plugin's repo.
+
+[installation instructions]: https://github.com/rivet-gg/plugin-godot/tree/main#installation
+
+## Step 3: Update game code
+
+Add the following to the top of `_ready` in `gamestate.gd`:
+
+```text gamestate.gd
+func _ready():
+	RivetHelper.start_server.connect(start_server)
+	RivetHelper.setup_multiplayer()
+
+	# ...etc...
+```
+
+Move the code to start the server:
+
+```text gamestate.gd
+func start_server():
+	print("Starting server on %s" % DEFAULT_PORT)
+
+	peer = ENetMultiplayerPeer.new()
+	peer.create_server(DEFAULT_PORT, MAX_PEERS)
+	multiplayer.set_multiplayer_peer(peer)
+```
+
+Update `join_game` to ask Rivet which lobby to connect to:
+
+```text gamestate.gd
+func join_game(new_player_name):
+	player_name = new_player_name
+
+	RivetClient.find_lobby({
+		"game_modes": ["default"]
+	}, _lobby_found, _lobby_find_failed)
+
+
+func _lobby_found(response):
+	RivetHelper.set_player_token(response.player.token)
+
+	var port = response.ports.default
+	print("Connecting to ", port.host)
+
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(port.hostname, port.port)
+	multiplayer.set_multiplayer_peer(peer)
+
+func _lobby_find_failed(error):
+	game_error.emit(error)
+```
+
+### Test locally
+
+Open the Rivet panel in the bottom left and click _Start Server_. Then click the
+play button in the top right to start the client. You should be able to join the
+lobby.
+
+## Step 4: Deploy to Rivet
+
+### Write Dockerfile
+
+Write the following `Dockerfile`
+
+```docker Dockerfile
+# MARK: Builder
+FROM rivetgg/godot:4.0.2 AS builder
+WORKDIR /app
+COPY . .
+RUN mkdir -p build/linux \
+    && godot -v --export-release "Linux/X11" --headless ./build/linux/game.x86_64
+
+# MARK: Runner
+FROM ubuntu:22.04
+RUN apt update -y \
+    && apt install -y expect-dev \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/build/linux/ /app
+
+# Unbuffer output so the logs get flushed
+CMD ["sh", "-c", "unbuffer /app/game.x86_64 --verbose --headless -- --server | cat"]
+```
+
+### Deploy game
+
+Run the following command to deploy your game to Rivet:
+
+```bash
+rivet deploy -n prod
+```
+
+### Create public token
+
+We've been using development tokens up until this point. Now that our game is
+deployed, we can create a
+
+Create a public token in the Rivet Dashboard:
+
+<Image src={imgCreatePublicToken} alt='Create public token' />
+
+Now pass that token to your game by adding the following code to `gamestate.gd`:
+
+```text gamestate.gd
+func _ready():
+	# Paste token here
+	RivetClient.set_token("pub_prod.xxxx.xxxx")
+```
+
+Run the client again and it will connect to the production servers. Remove this
+line when developing locally.
