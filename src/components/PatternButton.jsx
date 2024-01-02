@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import cloud from 'src/images/effects/cloud.png';
+import cloudImg from 'src/images/effects/cloud.png';
 
 let COLOR_HUES = {
   'blue': 'hue-rotate-[0deg]',
@@ -17,13 +17,6 @@ let COLOR_HUES = {
   'gray': null,
 };
 
-const BACKGROUND_STYLES = {
-  backgroundImage: `url(${cloud.src})`,
-  backgroundRepeat: "repeat",
-  // backgroundSize: `${cloud.width / 2}px ${cloud.height / 2}px`
-  backgroundSize: `${cloud.width}px ${cloud.height}px`
-}
-
 function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps }) {
   let maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, white, transparent)`;
   let style = { maskImage, WebkitMaskImage: maskImage };
@@ -31,19 +24,28 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps
   let gridWidth = 50;
   let gridHeight = 30;
 
+  let hue = COLOR_HUES[color];
+  let saturate = 'saturate-100';
+  if (color == 'gray') {
+    saturate = 'saturate-0';
+  }
+
+  image = image ?? cloudImg;
+
   return (
     <div className={clsx('pointer-events-none transition duration-300 -z-20', gridProps.className)}>
       <div className={clsx(
         'absolute inset-0 transition duration-300 [mask-image:linear-gradient(white,transparent)] ',
         highlight ? 'opacity-50' : 'group-hover:opacity-50'
       )}>
-        <div
+        <Image
+          alt='Button background'
+          src={image}
           width={gridWidth}
           height={gridHeight}
           x='50%'
           {...gridProps}
-          style={BACKGROUND_STYLES}
-          className={clsx('absolute inset-x-0 inset-y-[-30%] h-[160%] w-full opacity-20 saturate-0')}
+          className={clsx('absolute inset-x-0 inset-y-[-30%] h-[160%] w-full opacity-20 saturate-0 fill-white/1 stroke-white/2.5', 'object-cover')}
         />
       </div>
       <motion.div
@@ -59,13 +61,14 @@ function ResourcePattern({ color, mouseX, mouseY, highlight, image, ...gridProps
           highlight ? 'opacity-90' : 'opacity-0 group-hover:opacity-90'
         )}
         style={style}>
-        <div
+        <Image
+          alt='Button background'
+          src={image}
           width={gridWidth}
           height={gridHeight}
           x='50%'
           {...gridProps}
-          style={BACKGROUND_STYLES}
-          className={clsx('absolute inset-x-0 inset-y-[-30%] h-[160%] w-full')}
+          className={clsx('absolute inset-x-0 inset-y-[-30%] h-[160%] w-full', 'fill-white/2.5 stroke-white/10', 'object-cover', hue, saturate)}
         />
       </motion.div>
     </div>
