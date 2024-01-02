@@ -1,5 +1,6 @@
 import nathanFlurry from '../authors/nathan-flurry/avatar.jpeg';
 import nicholasKissel from '../authors/nicholas-kissel/avatar.jpeg';
+import forestAnderson from '../authors/forest-anderson/avatar.jpeg';
 
 const authors = {
   'nathan-flurry': {
@@ -11,7 +12,12 @@ const authors = {
     name: 'Nicholas Kissel',
     role: 'Co-founder & CEO',
     avatar: nicholasKissel
-  }
+  },
+  'forest-anderson': {
+    name: 'Forest Anderson',
+    role: 'Founding Engineer',
+    avatar: forestAnderson
+  },
 };
 
 const categories = {
