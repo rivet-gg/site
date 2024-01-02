@@ -930,7 +930,6 @@ function Tabs({ index, onChangeTab }) {
               highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
               onMouseEnter={() => onChangeTab(i)}  // Changed from onClick to onMouseEnter
-              // onClick={() => onChangeTab(i)}
             >
               <div className={clsx('py-2', 'flex flex-col items-center')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>

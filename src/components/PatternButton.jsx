@@ -109,7 +109,7 @@ export function PatternButton({ children, ...props }) {
         className={clsx(
           props.pattern?.className
         )} />
-      <div className={clsx('w-full h-full flex', highlight ? 'opacity-100' : 'opacity-75 group-hover:opacity-100')}>
+      <div className={clsx('w-full h-full', highlight ? 'opacity-100' : 'opacity-75 group-hover:opacity-100')}>
         {children}
       </div>
     </Component>
