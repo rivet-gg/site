@@ -9,7 +9,7 @@ module.exports = ({ theme }) => ({
       '--tw-prose-bold': theme('colors.white'),
       '--tw-prose-counters': theme('colors.zinc.300'),
       '--tw-prose-bullets': theme('colors.zinc.600'),
-      '--tw-prose-hr': theme('colors.cream.100 / 0.3'),
+      '--tw-prose-hr': theme('colors.cream.100 / 0.1'),
       '--tw-prose-quotes': theme('colors.zinc.100'),
       '--tw-prose-quote-borders': theme('colors.zinc.700'),
       '--tw-prose-captions': theme('colors.zinc.300'),
@@ -112,7 +112,7 @@ module.exports = ({ theme }) => ({
       // Horizontal rules
       hr: {
         borderColor: 'var(--tw-prose-hr)',
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         marginTop: theme('spacing.16'),
         marginBottom: theme('spacing.16'),
         maxWidth: 'none',
