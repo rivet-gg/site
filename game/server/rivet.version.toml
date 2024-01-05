@@ -39,10 +39,10 @@
 	# How ports work: https://docs.rivet.gg/dynamic-servers/concepts/ports
 	ports.default = { port = 3000 }
 
-# What game modes are avaiable.
+# What game modes are available.
 #
 # Properties like `max_players`, `tier`, `dockerfile`, `regions`, and more can
-# be overriden for specific game modes.
+# be overridden for specific game modes.
 [matchmaker.game_modes]
 	default = {}
 
