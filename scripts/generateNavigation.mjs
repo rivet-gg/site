@@ -4,6 +4,8 @@ import glob from 'fast-glob';
 import errorPages from '../src/generated/errorPages.json' assert { type: 'json' };
 import apiPages from '../src/generated/apiPages.json' assert { type: 'json' };
 import engineStyles from '../src/lib/engineStyles.json' assert { type: 'json' };
+import { slugifyWithCounter } from '@sindresorhus/slugify';
+import { visit } from 'unist-util-visit';
 
 export async function generateNavigation() {
   // Process all pages
@@ -61,9 +63,25 @@ async function processPage({ path }) {
     }
   }
 
+  // Headings
+  let slugify = slugifyWithCounter();
+  let headings = [];
+  // find all headings, remove the first one (the title)
+  visit(ast, 'heading', node => {
+    if (node.depth >= 2 && node.depth <= 3) {
+      let parent = node.depth === 2 ? headings : headings[headings.length - 1].children;
+      parent.push({
+        title: node.children[0].value,
+        id: slugify(node.children[0].value),
+        children: []
+      });
+    }
+  });
+
   return {
     title,
-    description
+    description,
+    headings
   };
 }
 
@@ -73,7 +91,8 @@ async function buildRoute({ path, pages }) {
   let output = {
     title: input.title,
     prefix: `/${path}`,
-    feedback: input.feedback ?? false
+    feedback: input.feedback ?? false,
+    tableOfContents: {}
   };
 
   // Sidebar
@@ -103,10 +122,15 @@ async function buildRoute({ path, pages }) {
         // Markdown pages
         for (let page of inputGroup.pages) {
           if (page.startsWith('/')) throw new Error(`Link href should not start with a slash: ${page}`);
+          let href = `/${path}/${page}`;
 
           outputGroup.pages.push({
-            href: `/${path}/${page}`
+            href
           });
+
+          if (!href.startsWith('/docs') && !href.startsWith('/learn')) {
+            output.tableOfContents[href] = false;
+          }
         }
       }
 
@@ -196,33 +220,33 @@ function learnTabs(path) {
       // icon: 'godot',
       href: '/learn/godot',
       current: path[1] === 'godot',
-      styles: engineStyles.godot,
+      styles: engineStyles.godot
     },
     {
       title: 'Unity',
       href: '/learn/unity',
       current: path[1] === 'unity',
-      styles: engineStyles.unity,
+      styles: engineStyles.unity
     },
     {
       title: 'Unreal Engine',
       href: '/learn/unreal',
       current: path[1] === 'unreal',
-      styles: engineStyles.unreal,
+      styles: engineStyles.unreal
     },
     {
       title: 'HTML5',
       // icon: 'html5',
       href: '/learn/html5',
       current: path[1] === 'html5',
-      styles: engineStyles.html5,
+      styles: engineStyles.html5
     },
     {
       title: 'Custom',
       // icon: 'docker',
       href: '/learn/custom',
       current: path[1] === 'custom',
-      styles: engineStyles.custom.text,
+      styles: engineStyles.custom.text
     }
   ];
 }
