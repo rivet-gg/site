@@ -25,48 +25,69 @@
   }
 }
 
-/* animation for the rainbow bar under '5 minutes crash course' */
 
-@keyframes rainbowCycle {
-  0% { background-position: 0% 50%; }
-  100% { background-position: -100% 50%; }
+.red-glow {
+  box-shadow: 0 0 30px 5px rgba(248, 113, 113, 0.35); /* Increased glow for red */
+
+}
+
+.orange-glow {
+  box-shadow: 0 0 30px 5px rgba(251, 146, 60, 0.35); /* Increased glow for orange */
+}
+
+.yellow-glow {
+  box-shadow: 0 0 30px 5px rgba(250, 204, 21, 0.35); /* Increased glow for yellow */
+}
+
+.green-glow {
+  box-shadow: 0 0 30px 5px rgba(74, 222, 128, 0.35); /* Increased glow for green */
+}
+
+.blue-glow {
+  box-shadow: 0 0 30px 5px rgba(96, 165, 250, 0.35); /* Increased glow for blue */
+}
+
+.purple-glow {
+  box-shadow: 0 0 30px 5px rgba(192, 132, 252, 0.35); /* Increased glow for purple */
+}
+
+.hover-white-shadow:hover {
+  box-shadow: 5px 5px 0 0 #ffffff; /* Adjust the x and y offset to create a 35-degree angle */
+}
+
+/* CSS for the hover effect */
+.hover-effect {
+  position: relative;
+  display: inline-block; /* Ensures the link behaves as an inline element */
 }
 
 .hover-effect::after {
   content: '';
   display: block;
-  width: 0; /* Start with 0 width */
+  width: 0;
   height: 2px;
   background: linear-gradient(
-    to right, /* Adjust the direction to `to right` */
-    violet, indigo, blue, green, yellow, orange, red,
-    violet /* End with the same color to make the gradient seamless */
+    to right,
+    #3D000E, #900012, #FFCF00, #009D3A, #C4B2DA, #009DDA, #0C4CA3,
+    #28246D 
   );
-  background-size: 200% 100%; /* Set the size to 200% to have the gradient twice */
+  background-size: 100% 100%;
   position: absolute;
   bottom: 0;
   right: 0;
   left: auto;
-  transition: width 0.5s ease-in-out; /* Apply transition only to width */
+  transition: width 0.5s ease-in-out;
   z-index: 10;
 }
 
 .hover-effect:hover::after {
-  width: 100%; /* Full width on hover */
-  left: 0;
-  transition: width 0.5s ease-in-out; /* Apply transition only to width */
-  animation: rainbowCycle 3s linear infinite; /* Corrected the duration */
-}
-
-.hover-effect {
-  position: relative;
+  width: 100%; /* On hover, set width to 100% */
 }
 
 @keyframes moveVerticalLines {
   0% { background-position: 50% 0%; }
   100% { background-position: 50% 100%; }
 }
-
 
 
 
