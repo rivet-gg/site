@@ -115,17 +115,17 @@ module.exports = ({ theme }) => ({
         borderTopWidth: 1,
         marginTop: theme('spacing.16'),
         marginBottom: theme('spacing.16'),
-        maxWidth: 'none',
-        marginLeft: `calc(-1 * ${theme('spacing.4')})`,
-        marginRight: `calc(-1 * ${theme('spacing.4')})`,
-        '@screen sm': {
-          marginLeft: `calc(-1 * ${theme('spacing.6')})`,
-          marginRight: `calc(-1 * ${theme('spacing.6')})`
-        },
-        '@screen lg': {
-          marginLeft: `calc(-1 * ${theme('spacing.8')})`,
-          marginRight: `calc(-1 * ${theme('spacing.8')})`
-        }
+        maxWidth: 'none'
+        // marginLeft: `calc(-1 * ${theme('spacing.4')})`,
+        // marginRight: `calc(-1 * ${theme('spacing.4')})`,
+        // '@screen sm': {
+        //   marginLeft: `calc(-1 * ${theme('spacing.6')})`,
+        //   marginRight: `calc(-1 * ${theme('spacing.6')})`
+        // },
+        // '@screen lg': {
+        //   marginLeft: `calc(-1 * ${theme('spacing.8')})`,
+        //   marginRight: `calc(-1 * ${theme('spacing.8')})`
+        // }
       },
 
       // Quotes
@@ -314,5 +314,5 @@ module.exports = ({ theme }) => ({
         marginBottom: '0 !important'
       }
     }
-  },
+  }
 });

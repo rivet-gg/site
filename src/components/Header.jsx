@@ -54,8 +54,10 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
     <Link
       href={initHref ?? href}
       className={clsx(
-        current ? 'bg-white/5 text-white border-white/10' : 'text-cream-100 hover:bg-white/5 hover:text-white',
-        'flex items-center gap-2.5 px-3.5 py-1.5 transition border border-1 border-transparent'
+        current
+          ? 'border-white/10 bg-white/5 text-white'
+          : 'text-cream-100 hover:bg-white/5 hover:text-white',
+        'border-1 flex items-center gap-2.5 border border-transparent px-3.5 py-1.5 transition'
       )}>
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
       <span className='font-display text-lg'>{children}</span>
@@ -156,14 +158,14 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           )}
         /> */}
 
-        <div className='flex items-center gap-5 md:hidden'>
+        <div className='flex items-center gap-5 xl:hidden'>
           <MobileNavigation navigation={navigation} />
           <Link href='/' aria-label='Home'>
             <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
           </Link>
         </div>
 
-        <div className='hidden items-center gap-4 md:flex'>
+        <div className='hidden items-center gap-4 xl:flex'>
           <Link href='/' aria-label='Home'>
             <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
           </Link>
@@ -206,7 +208,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
           {/* <ModeToggle /> */}
           <div className='hidden min-[416px]:contents'>
             <Button href='https://hub.rivet.gg' variant='secondary'>
-                Open Rivet
+              Open Rivet
             </Button>
           </div>
         </div>
@@ -233,16 +235,12 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
                   tab.current
                     ? 'border-charcole-900 border-cream-50'
-                    : 'border-transparent hover:border-charcole-900 hover:border-white opacity-80 hover:opacity-100',
-                  tab.styles?.text ?? 'text-white',
+                    : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
+                  tab.styles?.text ?? 'text-white'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
                 {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
-                <span
-                  className={clsx(
-                  )}>
-                  {tab.title}
-                </span>
+                <span className={clsx()}>{tab.title}</span>
               </Link>
             ))}
           </nav>

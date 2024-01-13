@@ -29,6 +29,9 @@ module.exports = {
     typography: require('./typography'),
     extend: {
       colors: require('./colors'),
+      maxHeight: {
+        content: 'calc(100vh - 6.5rem)'
+      },
       boxShadow: {
         glow: '0 0 4px rgb(0 0 0 / 0.1)'
       },
@@ -45,10 +48,18 @@ module.exports = {
         15: '0.15'
       },
       spacing: {
-        26: '6.5rem'
+        navigation: '6.5rem'
       },
       backgroundImage: {
-        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
+        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)'
+      },
+      gridTemplateColumns: {
+        'table-of-contents': '1fr 20rem',
+        'two-sidebars': '20rem 1fr 20rem',
+        sidebar: '20rem 1fr'
+      },
+      scrollMargin: {
+        'header-offset': '9rem'
       }
     }
   },
@@ -57,7 +68,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     plugin(function ({ addBase, theme }) {
       addBase({
-        h1: { fontFamily: theme('fontFamily.display') },
+        h1: { fontFamily: theme('fontFamily.display') }
       });
     })
   ]

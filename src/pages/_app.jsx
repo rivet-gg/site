@@ -58,6 +58,10 @@ export default function App({ Component, pageProps }) {
   if (!navigation) navigation = { prefix: '/', feedback: false };
 
   let page = routes.pages[router.pathname];
+  let tableOfContents =
+    (navigation.tableOfContents?.[router.pathname] ?? true) && page?.headings?.length > 0
+      ? page?.headings
+      : null;
 
   let title = pageProps.title ?? Component.title ?? page?.title ?? null;
   title = title ? `${title} - Rivet` : 'Rivet';
@@ -96,7 +100,12 @@ export default function App({ Component, pageProps }) {
           )}
         </Head>
         <MDXProvider components={mdxComponents}>
-          <Layout navigation={navigation} prose={Component.prose ?? true} inset={Component.inset ?? false} {...pageProps}>
+          <Layout
+            navigation={navigation}
+            tableOfContents={tableOfContents}
+            prose={Component.prose ?? true}
+            inset={Component.inset ?? false}
+            {...pageProps}>
             <Component {...pageProps} />
           </Layout>
         </MDXProvider>

@@ -93,7 +93,7 @@ function CodePanelHeader({ tag, label }) {
   }
 
   return (
-    <div className='flex h-9 items-center gap-2 border-y border-b-white/7.5 border-t-transparent bg-white/2.5 bg-charcole-950 px-4 dark:border-b-white/5 dark:bg-white/1'>
+    <div className='flex h-9 items-center gap-2 border-y border-b-white/7.5 border-t-transparent bg-charcole-950 bg-white/2.5 px-4 dark:border-b-white/5 dark:bg-white/1'>
       {tag && (
         <div className='dark flex'>
           <Tag variant='small'>{tag}</Tag>
@@ -128,7 +128,7 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
 
   return (
     <div className='flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-charcole-700 bg-charcole-800 px-4 dark:border-charcole-800 dark:bg-transparent'>
-      {title && <h3 className='mr-auto pt-3 text-xs font-semibold text-white font-sans'>{title}</h3>}
+      {title && <h3 className='mr-auto pt-3 font-sans text-xs font-semibold text-white'>{title}</h3>}
       {hasTabs && (
         <Tab.List className='-mb-px flex gap-4 text-xs font-medium'>
           {Children.map(children, (child, childIndex) => (
@@ -257,7 +257,11 @@ export function Code({ children, ...props }) {
     return <code {...props} dangerouslySetInnerHTML={{ __html: children }} />;
   }
 
-  return <code {...props}>{children}</code>;
+  return (
+    <code className='whitespace-break-spaces break-words' {...props}>
+      {children}
+    </code>
+  );
 }
 
 export function Pre({ children, ...props }) {

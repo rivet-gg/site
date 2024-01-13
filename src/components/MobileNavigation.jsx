@@ -47,14 +47,13 @@ export function MobileNavigation({ navigation }) {
         type='button'
         className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-white/5'
         aria-label='Toggle navigation'
-        onClick={toggle}
-      >
+        onClick={toggle}>
         <ToggleIcon className='w-2.5 stroke-charcole-900 dark:stroke-white' />
       </button>
 
       {!isInsideMobileNavigation && (
         <Transition.Root show={isOpen} as={Fragment}>
-          <Dialog onClose={close} className='fixed inset-0 z-50 lg:hidden'>
+          <Dialog onClose={close} className='fixed inset-0 z-50 xl:hidden'>
             <Transition.Child
               as={Fragment}
               enter='duration-300 ease-out'
@@ -62,8 +61,7 @@ export function MobileNavigation({ navigation }) {
               enterTo='opacity-100'
               leave='duration-200 ease-in'
               leaveFrom='opacity-100'
-              leaveTo='opacity-0'
-            >
+              leaveTo='opacity-0'>
               <div className='fixed inset-0 top-14 bg-cream-400/20 backdrop-blur-sm dark:bg-black/40' />
             </Transition.Child>
 
@@ -75,8 +73,7 @@ export function MobileNavigation({ navigation }) {
                 enterTo='opacity-100'
                 leave='duration-200 ease-in'
                 leaveFrom='opacity-100'
-                leaveTo='opacity-0'
-              >
+                leaveTo='opacity-0'>
                 <Header navigation={navigation} />
               </Transition.Child>
 
@@ -87,15 +84,13 @@ export function MobileNavigation({ navigation }) {
                 enterTo='translate-x-0'
                 leave='duration-500 ease-in-out'
                 leaveFrom='translate-x-0'
-                leaveTo='-translate-x-full'
-              >
+                leaveTo='-translate-x-full'>
                 <motion.div
                   layoutScroll
                   className={clsx(
                     'fixed bottom-0 left-0 w-full overflow-y-auto bg-white px-4 pb-4 pt-6 shadow-lg shadow-charcole-900/10 ring-1 ring-charcole-900/7.5 dark:bg-charcole-950 dark:ring-charcole-800 min-[416px]:max-w-sm sm:px-6 sm:pb-10',
-                    navigation.tabs ? 'top-26' : 'top-14'
-                  )}
-                >
+                    navigation.tabs ? 'top-navigation' : 'top-14'
+                  )}>
                   <Navigation navigation={navigation} />
                 </motion.div>
               </Transition.Child>

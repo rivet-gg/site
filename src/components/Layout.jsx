@@ -6,47 +6,66 @@ import GitHubButton from 'react-github-btn';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
+import { TableOfContents } from '@/components/TableOfContents';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faXmark } from '@fortawesome/sharp-solid-svg-icons';
+import { faXmark } from '@fortawesome/sharp-solid-svg-icons';
 
-export function Layout({ navigation, prose, inset, children, sections = [] }) {
+export function Layout({ navigation, tableOfContents, prose, inset, children, sections = [] }) {
   return (
     <SectionProvider sections={sections}>
-      <div className={clsx(navigation.sidebar && 'lg:ml-72 xl:ml-80')}>
+      <div>
         {/* Navigation */}
         <motion.header
           layoutScroll
-          className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'
-        >
+          className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'>
           {/* Header */}
           <Header navigation={navigation} />
-
-          {/* Sidebar */}
-          {navigation.sidebar ? (
-            <div
-              className={clsx(
-                `contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80`,
-                navigation.tabs ? 'mt-26' : 'mt-14'
-              )}
-            >
-              <Navigation className='hidden lg:block' navigation={navigation} />
-            </div>
-          ) : null}
         </motion.header>
 
         {/* Body */}
         <div
-          className={clsx('relative', (prose || inset) && 'px-4 sm:px-6 lg:px-8', navigation.tabs ? 'pt-26' : 'pt-14')}
-        >
-          <main className={clsx((prose || inset) && 'py-8', 'min-h-[50vh]')}>
-            {prose ? <Prose as='article' className='mx-auto max-w-5xl'>{children}</Prose> : children}
-          </main>
-          <Footer navigation={navigation} />
+          className={clsx(
+            'relative',
+            (prose || inset) && 'px-4 sm:px-6 lg:px-8',
+            navigation.tabs ? 'pt-navigation' : 'pt-14'
+          )}>
+          <div
+            className={clsx('min-h-[50vh]', {
+              'xl:grid xl:grid-cols-table-of-contents': tableOfContents && !navigation.sidebar,
+              'flex flex-col-reverse lg:grid lg:grid-cols-table-of-contents xl:grid-cols-two-sidebars':
+                tableOfContents && navigation.sidebar,
+              'xl:grid xl:grid-cols-sidebar': !tableOfContents && navigation.sidebar
+            })}>
+            {/* Sidebar */}
+            {navigation.sidebar ? (
+              <aside
+                className={clsx(
+                  `hidden lg:pointer-events-auto lg:sticky lg:top-navigation lg:max-h-content lg:w-72 lg:self-start  lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:block xl:w-80`
+                )}>
+                <Navigation navigation={navigation} />
+              </aside>
+            ) : null}
+
+            <main className='min-w-0 px-2 md:px-10'>
+              {prose ? (
+                <Prose
+                  as='article'
+                  className={clsx('mx-auto mt-9 max-w-5xl', { 'lg:w-full': tableOfContents })}>
+                  {children}
+                </Prose>
+              ) : (
+                children
+              )}
+
+              <Footer navigation={navigation} />
+            </main>
+            {/* Table of contents */}
+            {tableOfContents ? <TableOfContents tableOfContents={tableOfContents} /> : null}
+          </div>
         </div>
       </div>
-
       {/* Star promp */}
       {/* <StarPrompt /> */}
     </SectionProvider>
@@ -76,8 +95,7 @@ function StarPrompt() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ ease: 'easeOut', duration: 0.4 }}
-          >
+            transition={{ ease: 'easeOut', duration: 0.4 }}>
             <div className='relative flex items-center justify-center rounded-full py-2 pl-4 pr-6 text-sm font-semibold text-cream-100 ring-1 ring-inset ring-white/10 sm:text-base'>
               <FontAwesomeIcon
                 icon={faXmark}
@@ -95,8 +113,7 @@ function StarPrompt() {
                   data-color-scheme='no-preference: light; light: light; dark: light;'
                   data-size='large'
                   data-show-count='true'
-                  aria-label='Star rivet-gg/rivet on GitHub'
-                >
+                  aria-label='Star rivet-gg/rivet on GitHub'>
                   Star
                 </GitHubButton>
               </div>
