@@ -655,7 +655,7 @@ function Demo() {
               <ul className='list-disc list-outside text-cream-100 font-bold space-y-6' style={{ paddingLeft: '1.25em' }}>
                 <li>Your whole multiplayer experience on one game development platform</li>
                 <li>Use any engine, networking framework, or language</li>
-                <li>We'll get you started on your first project or your major AAA global launch</li>
+                <li>{`We'll get you started on your first project or your major AAA global launch`}</li>
                 <li>Join our open source community on the Discord, building the future for game developers</li>
               </ul>
             </div>
