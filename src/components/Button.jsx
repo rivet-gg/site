@@ -34,6 +34,12 @@ const variantStyles = {
     'border-2 border-cream-100',
     'bg-transparent hover:bg-cream-100 hover:text-charcole-950',
     'px-3.5 py-2.5',
+  ),
+  blackJuicy: clsx(
+    'text-black font-sm text-semibold',
+    'border-2 border-black',
+    'bg-transparent hover:bg-black hover:text-cream-100',
+    'px-3.5 py-2.5',
   )
 };
 

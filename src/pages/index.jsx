@@ -74,8 +74,12 @@ import imgGameGuard from '@/images/screenshots/gameGuard.png';
 import imgSocial from '@/images/screenshots/social.png';
 import imgAnalytics from '@/images/screenshots/analytics.png';
 import imgCdn from '@/images/screenshots/cdn.png';
+import img551Regions from '@/images/effects/551 regions.png';
 
 import imgComputerFrame from '@/images/effects/computer-frame.png';
+import imgComputerOverlay from '@/images/effects/computer-overlay.png';
+import imgBlockLeft from '@/images/effects/leftBlock.png';
+import imgBlockRight from '@/images/effects/rightBlock.png';
 import imgComputeWhite from 'src/images/products/compute-white.svg';
 import imgComputeColor from 'src/images/products/compute-monotone.svg';
 import imgGameGuardWhite from 'src/images/products/game-guard-white.svg';
@@ -98,7 +102,23 @@ import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
 import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
 import { RainbowBar } from '../components/RainbowBar';
-import { VintageBar } from '../components/VintageBar';
+import { RainbowBarAnimated } from '../components/RainbowBarAnimated';
+import grain from 'src/images/effects/grain.png';
+
+import imgTanks from '@/images/examples/tanks.png'
+import imgAstro from '@/images/examples/astro.png'
+import imgBomber from '@/images/examples/bomber.png'
+import imgCli from '@/images/examples/cli.png'
+import imgCol from '@/images/examples/col.png'
+import imgCore from '@/images/examples/core.png'
+import imgUnityTanks from '@/images/examples/unitytanks.png'
+import imgWeb from '@/images/examples/web.png'
+
+import imgStepsGodot from '@/images/case-studies/screenshots/godot.png'
+import imgStepsUnity from '@/images/case-studies/screenshots/unity.png'
+import imgStepsUnreal from '@/images/case-studies/screenshots/unreal.png'
+import imgStepsHtml from '@/images/case-studies/screenshots/html.png'
+import imgStepsCustom from '@/images/case-studies/screenshots/custom.png'
 
 const featurePages = [
   {
@@ -278,12 +298,56 @@ let caseStudies = [
     logo: imgEvLogo,
     gradient: 'from-[#7d56d6] to-[#2a4080]'
   },
+  
   {
     name: 'Diep.io',
     href: 'https://diep.io',
     screenshot: imgDiepScreenshot,
     logo: imgDiepLogo,
     gradient: 'from-[#56a0d9] to-[#3d5db8]'
+  }
+];
+
+let templates = [
+  {
+    href: 'https://rivet.gg/learn/html5/tutorials/tanks-canvas-socketio',
+    screenshot: imgAstro,
+    subtext: 'Canvas & Socket.IO',
+  },
+  {
+    href: 'https://rivet.gg/learn/godot/tutorials/crash-course',
+    screenshot: imgBomber,
+    subtext: 'Godot',
+  },
+  {
+    href: 'https://rivet.gg/learn/html5/tutorials/tanks-canvas-socketio',
+    screenshot: imgTanks,
+    subtext: 'Canvas & Socket.IO',
+  },
+  {
+    href: 'https://rivet.gg/learn/unity/tutorials/fishnet/crash-course',
+    screenshot: imgUnityTanks,
+    subtext: 'Unity & Fish-Net',
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/html5/colyseus',
+    screenshot: imgCol,
+    subtext: 'Colyseus Template',
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/html5/webrtc',
+    screenshot: imgWeb,
+    subtext: 'WebRTC',
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/rust/cli-websocket',
+    screenshot: imgCli,
+    subtext: 'CLI WebSocket',
+  },
+  {
+    href: 'https://github.com/rivet-gg/examples/tree/main/c/coredump',
+    screenshot: imgCore,
+    subtext: 'Core Dump',
   }
 ];
 
@@ -308,24 +372,37 @@ export default function Index() {
 
       {/* Header */}
       <div className='relative isolate overflow-x-hidden'>
-        <div className='pb-12 sm:pb-16 lg:pb-20'>
+        <div className='pb-12 sm:pb-0 lg:pb-0'>
           <Title />
 
           <RainbowBar className='w-full h-1'/>
 
           <Features />
 
-          <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+          {/* Title */}
+          <div className='mx-auto w-full text-center pt-60 pb-[26rem] relative'>
+            <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+              <PlayHoursCounter/> play hours <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/><br/>
+              at scale around the globe <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' />
+            </h2>
+            <Image src={img551Regions} className='absolute bottom-0 left-1/2 w-auto h-full transform -translate-x-1/2 object-cover -z-10' />
+          </div>
+
+          <div className='mx-auto max-w-7xl px-6 lg:px-8 py-40'>
             <CaseStudies />
           </div>
          
-          <DemoSection />
+        <CodeSection />
+
+        <TemplateSection />
+
+          {/*<DemoSection /> */}
 
           {/* <EngineGrid /> */}
 
-          <UpAndRunning />
+          {/* <UpAndRunning />*/}
 
-          {/* <LevelUpSection />*/}
+          <LevelUpSection />
         </div>
       </div>
     </div>
@@ -453,7 +530,7 @@ function Title() {
       {/* Text */}
       <div className='flex flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='font-display mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-7xl text-cream-100'>
+        <h1 className='font-display mt-8 text-6xl font-extrabold tracking-tight sm:text-7xl text-cream-100'>
           Multiplayer Made Simple
         </h1>
 
@@ -505,7 +582,10 @@ function Title() {
             <Button variant='juicy'>Sign Up for Beta</Button>
             </a>
 
-          <Link href='/learn' className='text-sm font-semibold leading-6 text-white hover:after:content-[""] hover:after:block hover:after:w-full hover:after:h-1 hover:after:bg-rainbow-gradient' >
+          <Link 
+            href='/learn' 
+            className='text-sm font-semibold leading-6 text-white'
+          >
             5 minute crash course <span aria-hidden='true'>→</span>
           </Link>
         </div>
@@ -549,15 +629,12 @@ function Title() {
 function DemoSection() {
   return (
     <div className='mt-24 flex flex-col items-center justify-center bg-black'> {/* Added bg-black */}
-      <VintageBar className='w-full h-1' />
       <br></br>
       <Demo />
       <br></br>
-      <VintageBar className='w-full h-1'/>
     </div>
   );
 }
-
 function Demo() {
   return (
     <div className='relative w-full flex justify-center bg-black'>
@@ -569,6 +646,8 @@ function Demo() {
             <div>Riveting</div>
             <div>Experiences</div>
           </h2>
+
+          <RainbowBarAnimated className='relative w-[75%] h-1 mt-0'/>
 
           {/* Grid Container for Bullet Points */}
           <div className='grid grid-cols-1 gap-4 mt-8'>
@@ -602,6 +681,133 @@ function Demo() {
   );
 }
 
+function CodeSection() {
+
+  const [currentEngine, setCurrentEngine] = useState('Godot');
+
+  const changeContent = (engine) => {
+    setCurrentEngine(engine);
+  };
+
+  // Define content and images for each engine
+  const engineContent = {
+    Godot: {
+      image: imgStepsGodot,
+      learnUrl: '/learn/godot',
+    },
+    Unity: {
+      image: imgStepsUnity,
+      learnUrl: '/learn/unity',
+    },
+    Unreal: {
+      image: imgStepsUnreal,
+      learnUrl: '/learn/unreal',
+    },
+    HTML5: {
+      image: imgStepsHtml,
+      learnUrl: '/learn/html5',
+    },
+    Custom: {
+      image: imgStepsCustom,
+      learnUrl: '/learn/custom',
+    },
+  };
+
+  return (
+    <div id="app" className="flex flex-col gap-12 py-16 items-center">
+      <h2 className='font-display text-5xl text-center font-extrabold tracking-tight sm:text-5xl text-cream-100'>
+        Rivet works with your <span className='underline'>game engine</span> and <span className='underline'>networking framework</span>
+      </h2>
+
+      <div className='flex flex-col gap-2 w-full items-stretch'>
+        <div className="flex space-x-2 justify-center">
+          {Object.keys(engineContent).map((engine) => (
+            <button
+              key={engine}
+              className="px-4 py-2 border border-gray-300 font-bold text-cream-100 hover:text-black hover:bg-gray-100"
+              onMouseEnter={() => changeContent(engine)}
+            >
+              {engine}
+            </button>
+          ))}
+        </div>
+
+        <div className="p-4 flex flex-col items-center">
+          <Image
+            src={engineContent[currentEngine].image}
+            alt={`${currentEngine} Image`}
+            className="w-full max-w-7xl mx-auto"
+          />
+
+          <Button href={engineContent[currentEngine].learnUrl} variant='juicy'>Get started <span aria-hidden='true'>→</span></Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function TemplateSection() {
+  const [hoveredLink, setHoveredLink] = useState(null);
+
+  return (
+    <div className='md:py-40 py-20 flex flex-col items-center'>
+      {/* Title */}
+      <div className='mx-auto max-w-3xl text-center'>
+        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+          Get started with an example
+        </h2>
+      </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
+
+      {/* Grid with Increased Margins */}
+      <div className={clsx(
+       'mt-2 grid gap-12 mx-auto px-8',
+       'max-w-5xl', 
+       'md:grid-cols-4 grid-cols-1' 
+      )}>
+        {templates.map((template, i) => (
+          <Link
+            key={i}
+            href={template.href}
+            className={clsx(
+              'flex flex-col gap-2',
+              'group relative h-[275px] items-center justify-center ',
+              'transition duration-200 transform hover:scale-105 origin-center',
+              (hoveredLink !== null && hoveredLink !== i) && 'opacity-50',
+            )}
+            onMouseEnter={() => setHoveredLink(i)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            <Image
+              className='w-full'
+              src={template.screenshot}
+              alt={template.subtext}
+            />
+            <div className={clsx('text-cream-100 text-center font-semibold', 'transition duration-200 opacity-0', hoveredLink == i && 'opacity-100')}>{template.subtext}</div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
+
+      {/* All examples */}
+      <Link 
+            href='https://github.com/rivet-gg/examples'
+            target='_blank'
+            className='text-sm font-semibold leading-6 text-black text-white'
+          >
+            See all examples <span aria-hidden='true'>→</span>
+          </Link>
+
+      {/* Separator */}
+      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
+    </div>
+  );
+}
 
 function EngineGrid() {
   return (
@@ -729,9 +935,8 @@ function Tabs({ index, onChangeTab }) {
               highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
               onMouseEnter={() => onChangeTab(i)}  // Changed from onClick to onMouseEnter
-              // onClick={() => onChangeTab(i)}
             >
-              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white')}>
+              <div className={clsx('py-2', 'flex flex-col items-center')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>
                   <Image
                     src={tab.image[0]}
@@ -845,23 +1050,51 @@ function PageContents({ page, scale }) {
   );
 }
 
+const PlayHoursCounter = () => {
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [hasMounted, setHasMounted] = useState(false);
+
+    useEffect(() => {
+      setHasMounted(true);
+      setCurrentTime(Date.now());
+      const interval = setInterval(() => {
+        setCurrentTime(Date.now());
+      }, 100);
+
+      return () => clearInterval(interval);
+    }, []);
+
+  if (!hasMounted) {
+    return null; 
+  }
+
+  const formattedTime = currentTime.toLocaleString();
+  const timeElements = formattedTime.split('').map((char, index) => {
+      const spanClass = isDigit(char) ? 'inline-block w-[0.52em]' : 'inline-block';
+      return <span key={index} className={`${spanClass} inline-block text-right`}>{char}</span>;
+  });
+
+  return <span>{timeElements}</span>;
+};
+
+function isDigit(char) {
+  const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  return digits.indexOf(char) !== -1;
+};
+
 function CaseStudies({ props }) {
   return (
-    <div className='md:mt-40 mt-20'>
-      {/* Title */}
-      <div className='mx-auto max-w-3xl text-center'>
-        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-          Serving millions of players <FontAwesomeIcon icon={faAlien8bit} className='text-xl font-bold tracking-tight sm:text-5xl text-violet-400'/><br/>
-          at scale around the globe <FontAwesomeIcon icon={faGlobe} className='text-xl font-bold tracking-tight sm:text-5xl text-blue-400' />
-        </h2>  
+    <div className='flex flex-col gap-12'>
+      {/* sub-text */}
+      <div className='mx-auto max-w-1xl text-center'>
+        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
+          Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
+        </h3>  
       </div>
-
-      {/* Separator */}
-      <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-12 overflow-hidden',
+        'grid  gap-12 overflow-hidden',
         'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
@@ -870,7 +1103,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[475px] border-2 items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[475px] items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
@@ -889,13 +1122,6 @@ function CaseStudies({ props }) {
 
       {/* Separator */}
       <div className='sm:block hidden mx-8 h-8 w-[1px]'></div>
-
-      {/* sub-text */}
-      <div className='mx-auto max-w-1xl text-center'>
-        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
-          Some of the games that <FontAwesomeIcon icon={faHeart} className='tracking-tight sm:text-5xl text-red-500'/> Rivet
-        </h3>  
-      </div>
     </div>
   );
 }
@@ -903,23 +1129,19 @@ function CaseStudies({ props }) {
 function UpAndRunning() {
   return (
     <div className='relative isolate mt-28'>
-    <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-      <div className='mx-auto flex max-w-2xl flex-col gap-16 px-6 py-16 ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
-        {/* Image */}
-        <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-white'>
-          <iframe
-            className='h-full w-full'
-            src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
-            title='YouTube video player'
-            frameBorder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowFullScreen></iframe>
-        </div>
-          {/* <Image
-            className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm'
-            src='https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80'
-            alt=''
-          /> */}
+      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+        <div className='mx-auto flex max-w-2xl flex-col gap-16 px-6 py-16 ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20 relative'>
+          {/* Flex Container for Image and Text */}
+          <div className='flex flex-row justify-start items-center w-full gap-4 lg:gap-12'> {/* Added gap for spacing */}
+
+            {/* Overlay Image */}
+            <div className='pointer-events-none z-10 flex-shrink-0' style={{ width: '50%' }}> {/* Adjust width as necessary */}
+              <Image
+                src={imgComputerOverlay}
+                alt='Rivet'
+                className='pointer-events-none h-auto w-full' // Adjust size as necessary
+              />
+            </div>
 
           {/* Body */}
           <div className='w-full flex-auto'>
@@ -927,7 +1149,7 @@ function UpAndRunning() {
               Launch your game in <span className='text-orange-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              {`Just 5 lines of code for AAA game server scale.`}
+              Just 5 lines of code for AAA game server scale.
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
@@ -958,42 +1180,57 @@ function UpAndRunning() {
         /> */}
       </div>
     </div>
+  </div>
   );
 }
 
 function LevelUpSection() {
   return (
-    <div className="w-full bg-white text-black p-8">
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center text-center">
-       
-      //<ColoredBlocksComponent />
+    <div className="w-full bg-white text-black p-8 h-[600px]">
+      <div className="max-w-screen-xl mx-auto flex flex-row items-center justify-between h-full">
 
-        <h1 className="font-display text-6xl font-bold mt-4">
-          Level Up With Rivet
-        </h1>
-        <h2 className="text-2xl mt-2 italic">
-          And Get Back To Game Development
-        </h2>
-
-        <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
-          <Button variant='juicy'>Sign Up for Beta</Button>
-
-          <button className="text-black underline">
-            5 minute crash course →
-          </button>
+        {/* Left Image Container */}
+        <div className="flex-1 flex justify-end items-center h-full">
+          <Image
+            src={imgBlockLeft}
+            alt='Left Image'
+            className='h-auto w-full' // Adjust size as necessary
+          />
         </div>
+
+        {/* Text Container - Centered Vertically and Horizontally */}
+        <div className="flex flex-col items-center justify-center text-center mx-8 h-full">
+          <h1 className="font-display text-8xl font-bold">
+            Level Up With Rivet
+          </h1>
+          <h1 className="text-4xl mt-2 italic">
+            And Get Back To Game Development
+          </h1>
+
+          <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
+            <Button variant='blackJuicy'>Sign Up for Beta</Button>
+            <Link 
+            href='/learn' 
+            className='text-sm font-semibold leading-6 text-black'
+          >
+            5 minute crash course <span aria-hidden='true'>→</span>
+          </Link>
+          </div>
+        </div>
+
+        {/* Right Image Container */}
+        <div className="flex-1 flex justify-start items-center h-full">
+          <Image
+            src={imgBlockRight}
+            alt='Right Image'
+            className='h-auto w-full' // Adjust size as necessary
+          />
+        </div>
+
       </div>
     </div>
   );
-
-function ColoredBlocksComponent() {
-  // Replace with actual SVG or component that renders the colored blocks
-  return <div className="flex justify-center space-x-2">
-    <div className="w-12 h-12 bg-red-500"></div>
-    <div className="w-12 h-12 bg-blue-500"></div>
-    <div className="w-12 h-12 bg-green-500"></div>
-  </div>;
-}} 
+}
 
 Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;

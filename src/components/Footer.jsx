@@ -215,11 +215,12 @@ function SmallPrint() {
 
 export function Footer({ navigation }) {
   let router = useRouter();
+  let showFooter = router.pathname != '/';
 
   return (
     <div>
       {navigation.sidebar && <PageNextPrevious navigation={navigation} />}
-      <hr className='my-8' />
+      {showFooter && <hr className='my-8' />}
       {navigation.feedback && <Feedback />}
 
       <footer aria-labelledby='footer-heading'>
