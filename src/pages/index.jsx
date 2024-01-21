@@ -128,7 +128,7 @@ const featurePages = [
         icon: faMonitorWaveform
       },
       {
-        name: 'Customize hardware, regions, & providers',
+        name: 'Customize hardware, 5 regions, & multiple providers',
         icon: faWrench
       }
     ]
@@ -165,21 +165,21 @@ const featurePages = [
   },
   {
     name: 'Services',
-    description: 'Understand your players & game servers',
-    color: 'blue',
+    description: 'Select from multiple services to extend your game',
+    color: 'orange',
     image: [imgAnalyticsWhite, imgAnalyticsColor],
     screenshot: imgAnalytics,
     features: [
       {
-        name: 'Real-time analytics',
+        name: 'Matchmaking',
         icon: faFire
       },
       {
-        name: 'No code changes required',
+        name: 'CDN',
         icon: faGearCode
       },
       {
-        name: 'Universal insights for both social & services',
+        name: 'Real-time analytics',
         icon: faPlanetMoon
       }
     ]
@@ -712,7 +712,7 @@ function Tabs({ index, onChangeTab }) {
         'gap-x-2 px-2 pt-2',
        )} aria-label='Tabs'>
         {featurePages.map((tab, i) => {
-          let isCurrent = i == index;
+          let isCurrent = i === index;
           return (
             <PatternButton
               key={tab.name}
@@ -722,25 +722,20 @@ function Tabs({ index, onChangeTab }) {
               pattern={{ color: tab.color }}
               highlight={isCurrent ? 1 : 0}
               aria-current={isCurrent ? 'page' : undefined}
-              onClick={() => onChangeTab(i)}>
-              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white grow')}>
+              onMouseEnter={() => onChangeTab(i)}  // Changed from onClick to onMouseEnter
+              // onClick={() => onChangeTab(i)}
+            >
+              <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                <Image
-                  src={tab.image[0]}
-                  alt='Tab image'
-                  className={clsx(
-                    'absolute inset-0 m-auto h-10 w-10 opacity-100 transition',
-                    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]'
-                    // isCurrent && 'opacity-0'
-                  )}
-                />
-                  {/* <Image
-                      src={tab.image[1]}
-                      className={clsx(
-                        'absolute h-full w-full opacity-0 transition',
-                        isCurrent && 'opacity-100'
-                      )}
-                    /> */}
+                  <Image
+                    src={tab.image[0]}
+                    alt='Tab image'
+                    className={clsx(
+                      'absolute inset-0 m-auto h-10 w-10 opacity-100 transition',
+                      'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
+                      isCurrent && 'opacity-100'
+                    )}
+                  />
                 </div>
                 <div className='hidden text-white sm:block'>{tab.name}</div>
               </div>
@@ -860,7 +855,7 @@ function CaseStudies({ props }) {
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-4 overflow-hidden ring-1 ring-inset ring-white/10',
+        'mt-6 grid  gap-12 overflow-hidden ring-1 ring-inset ring-white/10',
         'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
@@ -869,7 +864,7 @@ function CaseStudies({ props }) {
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[575px] border-2 items-center justify-center p-8 sm:p-10'>
+            className='group relative flex h-[475px] border-2 items-center justify-center p-8 sm:p-10'>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
