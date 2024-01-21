@@ -64,7 +64,8 @@ import {
   faHome,
   faFileImport,
   faAlien8bit,
-  faHeart
+  faHeart,
+  faLineChart
 } from '@fortawesome/sharp-solid-svg-icons';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';
@@ -97,6 +98,7 @@ import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
 import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
 import { RainbowBar } from '../components/RainbowBar';
+import { VintageBar } from '../components/VintageBar';
 
 const featurePages = [
   {
@@ -171,16 +173,16 @@ const featurePages = [
     screenshot: imgAnalytics,
     features: [
       {
-        name: 'Matchmaking',
-        icon: faFire
+        name: 'Matchmaking: Integrated with infrastructure, region selction, and flexible to work with your game.',
+        icon: faChessKnight
       },
       {
-        name: 'CDN',
-        icon: faGearCode
+        name: 'CDN: Serve game assets & web pages and managed SSL for custom domains',
+        icon: faGlobe
       },
       {
-        name: 'Real-time analytics',
-        icon: faPlanetMoon
+        name: 'Real-Time Analytics: No code changes required',
+        icon: faLineChart
       }
     ]
   },
@@ -317,7 +319,7 @@ export default function Index() {
             <CaseStudies />
           </div>
          
-          {/* <DemoSection /> */}
+          <DemoSection />
 
           {/* <EngineGrid /> */}
 
@@ -546,56 +548,60 @@ function Title() {
 
 function DemoSection() {
   return (
-    <div className='mt-24 flex flex-col items-center justify-center'>
-      {/* <h2 className='text-xl font-bold tracking-tight text-white sm:text-3xl text-center'>Try it yourself</h2> */}
-      <RainbowBar className='w-full h-1'/>
+    <div className='mt-24 flex flex-col items-center justify-center bg-black'> {/* Added bg-black */}
+      <VintageBar className='w-full h-1' />
+      <br></br>
       <Demo />
+      <br></br>
+      <VintageBar className='w-full h-1'/>
     </div>
   );
 }
 
 function Demo() {
   return (
-    
-    <div className='relative w-full'>
-      <div className='relative w-auto h-auto'>
-        <Image
-          src={imgComputerFrame}
-          alt='Rivet'
-          className='w-full h-auto'
-        />
-        <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-10' style={{
-          backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
-          backgroundSize: '100% 20px',
-          animation: 'moveVerticalLines 5s linear infinite'
-        }}></div>
-      </div>
-      {/* Text and New Grid Layout */}
-      <div className='absolute bottom-0 left-0 p-4'>
-        <h2 className='text-xl font-display font-bold tracking-tight text-cream-100 sm:text-7xl'>Build Riveting Experiences</h2>
-        
-        {/* Grid Container for Bullet Points */}
-        <div className='grid grid-cols-2 gap-4 mt-4'>
-          {/* First Column */}
-          <div>
-            <ul className='list-disc list-inside text-cream-100'>
-              <li>Game servers launch & scale in minutes </li>
-              <li>Built in analytics & team management for your whole game studio</li>
-            </ul>
-          </div>
+    <div className='relative w-full flex justify-center bg-black'>
+      <div className='max-w-7xl p-4 flex flex-col sm:flex-row'>
+        {/* Text and Bullet Points */}
+        <div className='p-4' style={{ maxWidth: '50%' }}>
+          <h2 className='text-xl font-display font-bold tracking-tight text-cream-100 sm:text-7xl'>
+            <div>Build</div>
+            <div>Riveting</div>
+            <div>Experiences</div>
+          </h2>
 
-          {/* Second Column */}
-          <div>
-            <ul className='list-disc list-inside text-cream-100'>
-              <li>Quickstart game templates for most engines</li>
-              <li>Module marketplace to plugin game features & services</li>
-            </ul>
+          {/* Grid Container for Bullet Points */}
+          <div className='grid grid-cols-1 gap-4 mt-8'>
+            <div>
+              <ul className='list-disc list-outside text-cream-100 font-bold space-y-6' style={{ paddingLeft: '1.25em' }}>
+                <li>Your whole multiplayer experience on one game development platform</li>
+                <li>Use any engine, networking framework, or language</li>
+                <li>We'll get you started on your first project or your major AAA global launch</li>
+                <li>Join our open source community on the Discord, building the future for game developers</li>
+              </ul>
+            </div>
           </div>
+        </div>
+
+        {/* Image */}
+        <div className='w-full sm:flex-1 h-auto sm:h-full relative overflow-hidden'>
+          <Image
+            src={imgComputerFrame}
+            alt='Rivet'
+            className='w-full h-auto sm:h-full sm:w-full object-cover'
+          />
+          <div className='absolute top-0 left-0 w-full h-full' style={{
+            backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
+            backgroundSize: '100% 20px',
+            animation: 'moveVerticalLines 5s linear infinite',
+            zIndex: 10
+          }}></div>
         </div>
       </div>
     </div>
   );
 }
+
 
 function EngineGrid() {
   return (
@@ -828,7 +834,7 @@ function PageContents({ page, scale }) {
             {page.learnHref && (
               <div className='mt-5'>
                 <Button href={page.learnHref} arrow='right' variant='juicy'>
-                  {page.learnName ?? 'Documentation'}
+                  {page.learnName ?? 'Learn More'}
                 </Button>
               </div>
             )}
@@ -855,7 +861,7 @@ function CaseStudies({ props }) {
 
       {/* Grid */}
       <div className={clsx(
-        'mt-6 grid  gap-12 overflow-hidden ring-1 ring-inset ring-white/10',
+        'mt-6 grid  gap-12 overflow-hidden',
         'sm:mx-0 md:grid-cols-3',
         '-mx-6 grid-cols-1'
 
@@ -897,18 +903,18 @@ function CaseStudies({ props }) {
 function UpAndRunning() {
   return (
     <div className='relative isolate mt-28'>
-      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-        <div className='mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 border-2 b-white ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
-          {/* Image */}
-          <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-white'>
-            <iframe
-              className='h-full w-full'
-              src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
-              title='YouTube video player'
-              frameBorder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowFullScreen></iframe>
-          </div>
+    <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+      <div className='mx-auto flex max-w-2xl flex-col gap-16 px-6 py-16 ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
+        {/* Image */}
+        <div className='h-96 w-full flex-none overflow-hidden object-cover lg:aspect-video lg:h-auto lg:max-w-sm border-2 b-white'>
+          <iframe
+            className='h-full w-full'
+            src='https://www.youtube-nocookie.com/embed/qtzSrmmflHI'
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen></iframe>
+        </div>
           {/* <Image
             className='h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm'
             src='https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80'
@@ -917,7 +923,7 @@ function UpAndRunning() {
 
           {/* Body */}
           <div className='w-full flex-auto'>
-            <h2 className='font-display text-3xl font-bold tracking-tight text-white sm:text-4xl'>
+            <h2 className='font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
               Launch your game in <span className='text-orange-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
@@ -955,7 +961,7 @@ function UpAndRunning() {
   );
 }
 
-{/* function LevelUpSection() {
+function LevelUpSection() {
   return (
     <div className="w-full bg-white text-black p-8">
       <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center text-center">
@@ -979,16 +985,15 @@ function UpAndRunning() {
       </div>
     </div>
   );
-  */}
 
- {/*function ColoredBlocksComponent() {
+function ColoredBlocksComponent() {
   // Replace with actual SVG or component that renders the colored blocks
   return <div className="flex justify-center space-x-2">
     <div className="w-12 h-12 bg-red-500"></div>
     <div className="w-12 h-12 bg-blue-500"></div>
     <div className="w-12 h-12 bg-green-500"></div>
   </div>;
-}*/} 
+}} 
 
 Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;
