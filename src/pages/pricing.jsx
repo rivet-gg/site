@@ -31,12 +31,14 @@ const MARKUP = 1 / (1 - MARGIN);
 // What % of the unused compute we can auto-scale: 40%
 // 100% means we never have unused compute
 const AUTOSCALING_FACTOR = 0.4;
+
+// Hardcode price per core for now
 // const PRICE_PER_CORE = ON_DEMAND_PRICE * (1 - RESERVED_SAVINGS) * (1 - RESERVED_SAVINGS * AUTOSCALING_FACTOR) * MARKUP;
 const PRICE_PER_CORE = 2600;
 
 let UNIT_CORE = {
-  ram: 2000,
-  bandwidth: 1000
+  ram: 1838,
+  bandwidth: 750
 };
 
 let TIERS = [
@@ -312,7 +314,7 @@ export default function Pricing() {
                         <Button
                           href={tier.href}
                           variant={tier.mostPopular ? 'primary' : 'secondary'}
-                          className='w-full text-sm px-3 py-2'>
+                          className='w-full px-3 py-2 text-sm'>
                           {tier.button}
                         </Button>
                       </td>
@@ -449,6 +451,7 @@ function PricingCalc() {
 
   let ram = Math.floor(UNIT_CORE.ram * tier.unit);
   let bandwidth = Math.floor(UNIT_CORE.bandwidth * tier.unit);
+
   let stats = [
     ['CPU Cores', `${tier.name} core`],
     ['RAM', `${ram} MB`],
@@ -485,7 +488,7 @@ function PricingCalc() {
       <div className='mt-4 italic text-black/60'>
         Bandwidth pooled across all lobbies.
         <br />
-        For example: 5 × 1-core lobbies = 5 TB total free bandwidth.
+        For example: 5 × 1-core lobbies = 3.75 TB total free bandwidth.
         <br />
         $0.05/GB for bandwidth overages.
       </div>
