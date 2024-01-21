@@ -164,56 +164,7 @@ const featurePages = [
     ]
   },
   {
-    name: 'Matchmaker',
-    description: 'Intelligently matchmake players into game servers',
-    color: 'pink',
-    image: [imgMatchmakerWhite, imgMatchmakerColor],
-    screenshot: imgMatchmaker,
-    learnHref: '/docs/matchmaker',
-    features: [
-      {
-        name: 'Instant matchmaking',
-        icon: faStopwatch
-      },
-      {
-        name: 'Flexible to work with your game',
-        icon: faInfinity
-      },
-      {
-        name: 'Custom games, dedicated servers & UGC support',
-        icon: faPaintbrushPencil
-      },
-      {
-        name: 'Integrated with infrastructure',
-        icon: faLink
-      },
-      {
-        name: 'Intelligent region selection',
-        icon: faEarthAmericas
-      }
-      // {
-      //   name: 'Adjusts to make off hours feel full',
-      //   icon: faCloudMoon
-      // }
-    ]
-  },
-  {
-    name: 'CDN',
-    description: 'Serve game assets & web pages',
-    color: 'red',
-    image: [imgCdnWhite, imgCdnColor],
-    screenshot: imgCdn,
-    learnHref: '/docs/cdn',
-    features: [
-      { name: 'Free rivet.game subdomain', icon: faHome },
-      { name: 'Bring your own domain', icon: faFileImport },
-      { name: 'Managed SSL for custom domains', icon: faFileCertificate },
-      { name: 'Customize headers & routing rules', icon: faWrench }
-      // { name: 'Powered by Cloudflare', icon: faCloudflare }
-    ]
-  },
-  {
-    name: 'Analytics',
+    name: 'Services',
     description: 'Understand your players & game servers',
     color: 'blue',
     image: [imgAnalyticsWhite, imgAnalyticsColor],
@@ -774,15 +725,15 @@ function Tabs({ index, onChangeTab }) {
               onClick={() => onChangeTab(i)}>
               <div className={clsx('py-2', 'flex flex-col items-center', 'text-center text-xs md:text-sm font-bold text-white grow')}>
                 <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                  <Image
-                    src={tab.image[0]}
-                    alt='Tab image'
-                    className={clsx(
-                      'absolute h-full w-full opacity-100 transition',
-                      'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
-                      // isCurrent && 'opacity-0'
-                    )}
-                  />
+                <Image
+                  src={tab.image[0]}
+                  alt='Tab image'
+                  className={clsx(
+                    'absolute inset-0 m-auto h-10 w-10 opacity-100 transition',
+                    'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]'
+                    // isCurrent && 'opacity-0'
+                  )}
+                />
                   {/* <Image
                       src={tab.image[1]}
                       className={clsx(
@@ -830,31 +781,30 @@ function Pages({ page, onChangePage }) {
               onChangePage(paginate(page.index, -1));
             }
           }}>
-          <PageContents page={featurePages[page.index]} />
+         <PageContents page={featurePages[page.index]} scale={page.index === 3} />
         </motion.div>
       </AnimatePresence>
     </div>
   );
 }
 
-function PageContents({ page }) {
+function PageContents({ page, scale }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
-      {/* Image */}
-      <div className='relative hidden flex-1 md:block'>
-        <motion.div
-          className='absolute left-1/2 top-1/2 w-full rounded-lg'
-          key={page.index}
-          initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
-          whileInView={{
-            transform: 'translateX(-50%) translateY(-50%) rotate(-5deg) scale(75%)',
-            opacity: 1
-          }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
-          <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
-          <div className='absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-800/10 dark:ring-gray-200/10' />
-        </motion.div>
+    {/* Image */}
+    <div className='relative hidden flex-1 md:block'>
+      <motion.div
+        className='absolute left-1/2 top-1/2 w-full'
+        key={page.index}
+        initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
+        whileInView={{
+          transform: `translateX(-50%) translateY(-50%) rotate(-5deg) scale(${scale ? '50%' : '75%'})`,
+          opacity: 1
+        }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
+        <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
+      </motion.div>
       </div>
 
       {/* Details */}
@@ -973,10 +923,10 @@ function UpAndRunning() {
           {/* Body */}
           <div className='w-full flex-auto'>
             <h2 className='font-display text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-              Launch your game in <span className='text-violet-300'>minutes</span>
+              Launch your game in <span className='text-orange-300'>minutes</span>
             </h2>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              {`Just 5 lines of code and have AAA game scale.`}
+              {`Just 5 lines of code for AAA game server scale.`}
             </p>
 
             <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
