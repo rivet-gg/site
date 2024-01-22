@@ -443,7 +443,7 @@ function PricingModal({ open, onClose }) {
 }
 
 function PricingCalc() {
-  let [tierIdx, setTierIdx] = useState(4);
+  let [tierIdx, setTierIdx] = useState(3);
 
   let tier = TIERS[tierIdx];
 
