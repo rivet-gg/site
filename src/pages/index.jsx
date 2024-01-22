@@ -1102,11 +1102,18 @@ const PlayHoursCounter = () => {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [hasMounted, setHasMounted] = useState(false);
 
+  const updateClock = () => {
+    let time = (2400/60/60/1000)*(Date.now() - 1640995200000);
+    setCurrentTime(Math.round(time));
+  };
+
   useEffect(() => {
     setHasMounted(true);
-    setCurrentTime(Date.now());
+
+    updateClock();
+
     const interval = setInterval(() => {
-      setCurrentTime(Date.now());
+      updateClock();
     }, 100);
 
     return () => clearInterval(interval);
