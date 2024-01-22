@@ -103,7 +103,6 @@ import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
 import imgEvLogo from '@/images/case-studies/logos/ev.png';
 import { RainbowBar } from '../components/RainbowBar';
 import { RainbowBarAnimated } from '../components/RainbowBarAnimated';
-import grain from 'src/images/effects/grain.png';
 
 import imgTanks from '@/images/examples/tanks.png'
 import imgAstro from '@/images/examples/astro.png'
@@ -114,11 +113,11 @@ import imgCore from '@/images/examples/core.png'
 import imgUnityTanks from '@/images/examples/unitytanks.png'
 import imgWeb from '@/images/examples/web.png'
 
-import imgStepsGodot from '@/images/case-studies/screenshots/godot.png'
-import imgStepsUnity from '@/images/case-studies/screenshots/unity.png'
-import imgStepsUnreal from '@/images/case-studies/screenshots/unreal.png'
-import imgStepsHtml from '@/images/case-studies/screenshots/html.png'
-import imgStepsCustom from '@/images/case-studies/screenshots/custom.png'
+import imgStepsGodot from '@/images/engine-integration/godot.png';
+import imgStepsUnity from '@/images/engine-integration/unity.png';
+import imgStepsUnreal from '@/images/engine-integration/unreal.png';
+import imgStepsHtml5 from '@/images/engine-integration/html5.png';
+import imgStepsCustom from '@/images/engine-integration/custom.png';
 
 const featurePages = [
   {
@@ -388,7 +387,7 @@ export default function Index() {
             <Image src={img551Regions} className='absolute bottom-0 left-1/2 w-auto h-full transform -translate-x-1/2 object-cover -z-10' />
           </div>
 
-          <div className='mx-auto max-w-7xl px-6 lg:px-8 py-40'>
+          <div className='mx-auto max-w-7xl px-6 lg:px-8 py-60'>
             <CaseStudies />
           </div>
          
@@ -681,37 +680,40 @@ function Demo() {
   );
 }
 
+const enginePages = [
+  {
+    name: 'Godot',
+    image: imgStepsGodot,
+    learnUrl: '/learn/godot',
+  },
+  {
+    name: 'HTML5',
+    image: imgStepsHtml5,
+    learnUrl: '/learn/html5',
+  },
+  {
+    name: 'Unity',
+    image: imgStepsUnity,
+    learnUrl: '/learn/unity',
+    preview: true,
+  },
+  {
+    name: 'Unreal',
+    image: imgStepsUnreal,
+    learnUrl: '/learn/unreal',
+    preview: true,
+  },
+  {
+    name: 'Custom',
+    image: imgStepsCustom,
+    learnUrl: '/learn/custom',
+  }
+];
+
 function CodeSection() {
+  const [page, setPage] = useState({ index: 0, dir: 1 });
 
-  const [currentEngine, setCurrentEngine] = useState('Godot');
-
-  const changeContent = (engine) => {
-    setCurrentEngine(engine);
-  };
-
-  // Define content and images for each engine
-  const engineContent = {
-    Godot: {
-      image: imgStepsGodot,
-      learnUrl: '/learn/godot',
-    },
-    Unity: {
-      image: imgStepsUnity,
-      learnUrl: '/learn/unity',
-    },
-    Unreal: {
-      image: imgStepsUnreal,
-      learnUrl: '/learn/unreal',
-    },
-    HTML5: {
-      image: imgStepsHtml,
-      learnUrl: '/learn/html5',
-    },
-    Custom: {
-      image: imgStepsCustom,
-      learnUrl: '/learn/custom',
-    },
-  };
+  const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
     <div id="app" className="flex flex-col gap-12 py-16 items-center">
@@ -720,29 +722,73 @@ function CodeSection() {
       </h2>
 
       <div className='flex flex-col gap-2 w-full items-stretch'>
+        {/* Engine tabs */}
         <div className="flex space-x-2 justify-center">
-          {Object.keys(engineContent).map((engine) => (
-            <button
-              key={engine}
-              className="px-4 py-2 border border-gray-300 font-bold text-cream-100 hover:text-black hover:bg-gray-100"
-              onMouseEnter={() => changeContent(engine)}
+          {enginePages.map((engine, i) => (
+            <Button
+              key={i}
+              variant='juicy'
+              highlight={i == page.index}
+              onMouseEnter={() => changePage(i)}
             >
-              {engine}
-            </button>
+              {engine.name}
+            </Button>
           ))}
         </div>
 
-        <div className="p-4 flex flex-col items-center">
-          <Image
-            src={engineContent[currentEngine].image}
-            alt={`${currentEngine} Image`}
-            className="w-full max-w-7xl mx-auto"
-          />
-
-          <Button href={engineContent[currentEngine].learnUrl} variant='juicy'>Get started <span aria-hidden='true'>→</span></Button>
-        </div>
+        {/* Current engine */}
+        <EnginePages page={page} onChangePage={changePage} />
       </div>
     </div>
+  );
+}
+
+function EnginePages({ page, onChangePage }) {
+  // TODO: Is this SEO friendly?
+  return (
+    <div className="p-4 h-[580px]">
+      <AnimatePresence initial={false} custom={page.dir}>
+        <motion.div
+          key={page.index}
+          className='absolute w-full flex flex-col items-center'
+          custom={page.dir}
+          variants={variants}
+          initial='enter'
+          animate='center'
+          exit='exit'
+          transition={{
+            x: { type: 'spring', stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 }
+          }}
+          drag='x'
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={1}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
+
+            if (swipe < -swipeConfidenceThreshold) {
+              onChangePage(paginate(page.index, 1, enginePages));
+            } else if (swipe > swipeConfidenceThreshold) {
+              onChangePage(paginate(page.index, -1, enginePages));
+            }
+          }}>
+         <EnginePageContents page={enginePages[page.index]} scale={page.index === 3} />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function EnginePageContents({ page, scale }) {
+  return (
+    <>
+      <Image
+        src={page.image}
+        alt={`${page.name} Image`}
+        className="w-full max-w-7xl mx-auto"
+      />
+      <Button href={page.learnUrl} variant='juicy'>Get started <span aria-hidden='true'>→</span></Button>
+    </>
   );
 }
 
@@ -751,7 +797,7 @@ function TemplateSection() {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   return (
-    <div className='md:py-40 py-20 flex flex-col items-center'>
+    <div className='md:py-52 py-20 flex flex-col items-center'>
       {/* Title */}
       <div className='mx-auto max-w-3xl text-center'>
         <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
@@ -898,10 +944,10 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-function paginate(page, dir) {
+function paginate(page, dir, arr) {
   const newPage = page + dir;
-  if (newPage < 0) return { index: featurePages.length - (-newPage % featurePages.length), dir };
-  return { index: newPage % featurePages.length, dir };
+  if (newPage < 0) return { index: arr.length - (-newPage % arr.length), dir };
+  return { index: newPage % arr.length, dir };
 }
 
 function Features() {
@@ -909,13 +955,13 @@ function Features() {
   
   return (
     <div className='mx-auto w-full max-w-7xl'>
-      <Tabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
-      <Pages page={page} onChangePage={setPage} />
+      <FeatureTabs index={page.index} onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })} />
+      <FeaturePages page={page} onChangePage={setPage} />
     </div>
   );
 }
 
-function Tabs({ index, onChangeTab }) {
+function FeatureTabs({ index, onChangeTab }) {
   return (
     <div>
       <nav className={clsx(
@@ -958,7 +1004,7 @@ function Tabs({ index, onChangeTab }) {
   );
 }
 
-function Pages({ page, onChangePage }) {
+function FeaturePages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
     <div className='relative flex md:h-[600px] h-[550px] w-full overflow-hidden'>
@@ -982,19 +1028,19 @@ function Pages({ page, onChangePage }) {
             const swipe = swipePower(offset.x, velocity.x);
 
             if (swipe < -swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, 1));
+              onChangePage(paginate(page.index, 1, featurePages));
             } else if (swipe > swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, -1));
+              onChangePage(paginate(page.index, -1, featurePages));
             }
           }}>
-         <PageContents page={featurePages[page.index]} scale={page.index === 3} />
+         <FeaturePageContents page={featurePages[page.index]} scale={page.index === 3} />
         </motion.div>
       </AnimatePresence>
     </div>
   );
 }
 
-function PageContents({ page, scale }) {
+function FeaturePageContents({ page, scale }) {
   return (
     <div className='flex h-full w-full justify-stretch'>
     {/* Image */}
@@ -1083,6 +1129,8 @@ function isDigit(char) {
 };
 
 function CaseStudies({ props }) {
+  let [hoverIdx, setHoverIdx] = useState(null);
+
   return (
     <div className='flex flex-col gap-12'>
       {/* sub-text */}
@@ -1094,16 +1142,21 @@ function CaseStudies({ props }) {
 
       {/* Grid */}
       <div className={clsx(
-        'grid  gap-12 overflow-hidden',
+        'group',
+        'grid  gap-12',
         'sm:mx-0 md:grid-cols-3',
-        '-mx-6 grid-cols-1'
-
+        '-mx-6 grid-cols-1',
       )}>
         {caseStudies.map((study, i) => (
           <Link
             key={i}
             href={study.href}
-            className='group relative flex h-[475px] items-center justify-center p-8 sm:p-10'>
+            className={clsx(
+              'relative flex h-[475px] items-center justify-center p-8 sm:p-10 hover:translate-y-[-10px] transition',
+              (hoverIdx == null || hoverIdx == i) ? 'opacity-100' : 'opacity-50'
+            )}
+            onMouseEnter={() => setHoverIdx(i)}
+            onMouseLeave={() => setHoverIdx(null)}>
             <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
@@ -1111,7 +1164,7 @@ function CaseStudies({ props }) {
             />
             <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', study.gradient)} />
             <Image
-              className='h-14 w-32 object-contain transition group-hover:scale-110'
+              className='h-14 w-32 object-contain transition'
               src={study.logo}
               alt={study.name}
             />
@@ -1200,12 +1253,12 @@ function LevelUpSection() {
 
         {/* Text Container - Centered Vertically and Horizontally */}
         <div className="flex flex-col items-center justify-center text-center mx-8 h-full">
-          <h1 className="font-display text-8xl font-bold">
+          <div className="font-display text-8xl font-bold mb-5">
             Level Up With Rivet
-          </h1>
-          <h1 className="text-4xl mt-2 italic">
-            And Get Back To Game Development
-          </h1>
+          </div>
+          <div className="text-4xl mt-2 mb-5 italic font-bold font-display">
+            and get back to game development
+          </div>
 
           <div className='justify-center mt-10 flex flex-wrap items-center gap-x-6 gap-y-8'>
             <Button variant='blackJuicy'>Sign Up for Beta</Button>

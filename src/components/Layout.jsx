@@ -48,7 +48,7 @@ export function Layout({ navigation, tableOfContents, prose, inset, children, se
               </aside>
             ) : null}
 
-            <main className='min-w-0 px-2 md:px-10'>
+            <main className={clsx((prose || inset) && 'min-w-0 px-2 md:px-10' || '', 'min-h-[50vh]')}>
               {prose ? (
                 <Prose
                   as='article'
