@@ -100,18 +100,6 @@ export function WorkInProgress() {
   return <Info>🚧 This documentation page is a work in progress 🚧</Info>;
 }
 
-export function RequiresBetaSignup() {
-  return (
-    <Note>
-      This guide requires access to the Rivet private beta. Request access{' '}
-      <Link href='https://b8v8449klvp.typeform.com/rivet' target='_blank'>
-        here
-      </Link>
-      .
-    </Note>
-  );
-}
-
 export function EnvTokenClient() {
   return (
     <Info>

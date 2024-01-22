@@ -34,7 +34,7 @@ const AUTOSCALING_FACTOR = 0.4;
 
 // Hardcode price per core for now
 // const PRICE_PER_CORE = ON_DEMAND_PRICE * (1 - RESERVED_SAVINGS) * (1 - RESERVED_SAVINGS * AUTOSCALING_FACTOR) * MARKUP;
-const PRICE_PER_CORE = 2600;
+const PRICE_PER_CORE = 2276;
 
 let UNIT_CORE = {
   ram: 1838,
@@ -42,7 +42,7 @@ let UNIT_CORE = {
 };
 
 let TIERS = [
-  { name: '¹⁄₁₆', unit: 1 / 16 },
+  // { name: '¹⁄₁₆', unit: 1 / 16 },
   { name: '⅛', unit: 1 / 8 },
   { name: '¼', unit: 1 / 4 },
   { name: '½', unit: 1 / 2 },
@@ -67,7 +67,7 @@ export default function Pricing() {
       name: 'Cloud',
       promo: '1 free server',
       id: 'tier-cloud',
-      href: 'https://b8v8449klvp.typeform.com/rivet',
+      href: 'https://hub.rivet.gg',
       button: 'Sign Up',
       description: 'Get up and running quickly. Everything managed by us.',
       mostPopular: true

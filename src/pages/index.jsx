@@ -424,7 +424,8 @@ function Background({ props }) {
   const canvasRef = useRef(null);
 
   const bg = '9, 9, 9';
-  const fg = '255, 124, 0';
+  // const fg = '255, 124, 0';
+  const fg = '200, 200, 200';
 
   useEffect(() => {
     let lastUpdate = Date.now();
@@ -586,9 +587,7 @@ function Title() {
 
         {/* CTA */}
         <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-          <a href='https://hub.rivet.gg'>
-            <Button variant='juicy'>Sign Up</Button>
-          </a>
+          <Button variant='juicy' href='https://hub.rivet.gg'>Get Started</Button>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -1259,7 +1258,7 @@ function LevelUpSection() {
           </div>
 
           <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-            <Button variant='blackJuicy'>Sign Up for Beta</Button>
+            <Button variant='blackJuicy' href='https://hub.rivet.gg'>Get Started</Button>
             <Link href='/learn' className='text-sm font-semibold leading-6 text-black'>
               5 minute crash course <span aria-hidden='true'>→</span>
             </Link>
