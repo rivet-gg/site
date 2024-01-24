@@ -5,7 +5,8 @@ import imgCreatePublicToken from './images/create-public-token.png';
 
 <WorkInProgress />
 
-This guide will walk you through creating and deploying a multiplayer game with Godot 4.
+This guide will walk you through creating and deploying a multiplayer game with
+Godot 4.
 
 <Warning>If you are using Godot 3, please be aware that some details may be different.</Warning>
 
@@ -13,11 +14,12 @@ This guide will walk you through creating and deploying a multiplayer game with 
 
 ## Overview
 
-Godot provides great multiplayer capabilities out of the box. We'll be using Godot's built-in networking to
-build a server-authoritative multiplayer game on top of Rivet.
+Godot provides great multiplayer capabilities out of the box. We'll be using
+Godot's built-in networking to build a server-authoritative multiplayer game on
+top of Rivet.
 
-Godot supports ENet, WebSocket, and WebRTC transports. We'll be using ENet for this tutorial, but it's easy
-to swap out.
+Godot supports ENet, WebSocket, and WebRTC transports. We'll be using ENet for
+this tutorial, but it's easy to swap out.
 
 ---
 
@@ -49,7 +51,8 @@ Copy the following to `rivet.toml`:
 
 ### Link project
 
-Run the following command to link your game to Rivet. If you haven't already, create a new game at this step.
+Run the following command to link your game to Rivet. If you haven't already,
+create a new game at this step.
 
 ```bash
 rivet init --recommend
@@ -109,8 +112,9 @@ func _lobby_find_failed(error):
 
 ### Test locally
 
-Open the Rivet panel in the bottom left and click _Start Server_. Then click the play button in the top right
-to start the client. You should be able to join the lobby.
+Open the Rivet panel in the bottom left and click _Start Server_. Then click the
+play button in the top right to start the client. You should be able to join the
+lobby.
 
 ## Step 4: Deploy to Rivet
 
@@ -147,7 +151,8 @@ rivet deploy -n prod
 
 ### Create public token
 
-We've been using development tokens up until this point. Now that our game is deployed, we can create a
+We've been using development tokens up until this point. Now that our game is
+deployed, we can create a
 
 Create a public token in the Rivet Dashboard:
 
@@ -161,4 +166,5 @@ func _ready():
 	RivetClient.set_token("pub_prod.xxxx.xxxx")
 ```
 
-Run the client again and it will connect to the production servers. Remove this line when developing locally.
+Run the client again and it will connect to the production servers. Remove this
+line when developing locally.
