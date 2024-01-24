@@ -123,6 +123,7 @@ import imgStepsUnity from '@/images/engine-integration/unity.png';
 import imgStepsUnreal from '@/images/engine-integration/unreal.png';
 import imgStepsHtml5 from '@/images/engine-integration/html5.png';
 import imgStepsCustom from '@/images/engine-integration/custom.png';
+import { Earth } from '../components/Earth';
 
 const featurePages = [
   {
@@ -382,8 +383,8 @@ export default function Index() {
           <Features />
 
           {/* Title */}
-          <div className='relative mx-auto w-full pb-[26rem] pt-60 text-center'>
-            <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+          <div className='mask-section relative mx-auto my-5 w-full border-y border-y-white text-center'>
+            <h2 className='mb-44 pt-16 font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl md:mb-[30rem] md:pt-56'>
               <PlayHoursCounter /> play hours{' '}
               <FontAwesomeIcon
                 icon={faAlien8bit}
@@ -396,11 +397,8 @@ export default function Index() {
                 className='text-xl font-bold tracking-tight text-blue-400 sm:text-5xl'
               />
             </h2>
-            <Image
-              alt='Picture of earth'
-              src={img551Regions}
-              className='absolute bottom-0 left-1/2 -z-10 h-full w-auto -translate-x-1/2 transform object-cover'
-            />
+
+            <Earth className='absolute bottom-0 left-1/2 -z-10 h-full w-auto -translate-x-1/2 transform object-cover' />
           </div>
 
           <div className='main-content-container mx-auto px-6 md:py-60 lg:px-8'>

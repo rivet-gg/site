@@ -33,6 +33,9 @@ module.exports = {
         'tabs-content': 'calc(100vh - 6.5rem)',
         content: 'calc(100vh - 3.5rem)'
       },
+      height: {
+        'screen-3/4': '75vh'
+      },
       minHeight: {
         'tabs-content': 'calc(100vh - 6.5rem)'
       },
