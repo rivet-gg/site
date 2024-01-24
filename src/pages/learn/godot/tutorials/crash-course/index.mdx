@@ -10,44 +10,53 @@ Godot 4.
 
 <Warning>If you are using Godot 3, please be aware that some details may be different.</Warning>
 
----
-
 ## Overview
 
 Godot provides great multiplayer capabilities out of the box. We'll be using
-Godot's built-in networking to build a server-authoritative multiplayer game on
+Godot's built-in networking along with Rivet's Godot plugin to build a server-authoritative multiplayer game on
 top of Rivet.
 
 Godot supports ENet, WebSocket, and WebRTC transports. We'll be using ENet for
 this tutorial, but it's easy to swap out.
 
----
-
 ## Step 1: Initialize project
 
 <InstallCli />
 
-Clone https://github.com/rivet-gg/example-godot-bomber
+We'll be using a modified version of Godot's [multiplayer
+bomber demo](https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_bomber) 
+
+<WhatDoesRivetDo />
+
+Clone [Rivet's example repo](https://github.com/rivet-gg/examples). The bomber
+demo is in `godot/bomber`. Note, this project already has everything
+implemented, so you can switch to the `TODO` branch to follow along.
 
 ### Configure Rivet
 
-Copy the following to `rivet.toml`:
+Copy the following to `rivet.yaml`:
 
-```toml rivet.toml
-[matchmaker]
-	max_players = 12
+```yaml rivet.yaml
+engine:
+  godot:
 
-[matchmaker.regions]
-	lnd-sfo = {}
-	lnd-fra = {}
-
-[matchmaker.docker]
-	dockerfile = "Dockerfile"
-	ports.default = { port = 10567, protocol = "udp" }
-
-[matchmaker.game_modes]
-	default = {}
+matchmaker:
+  max_players: 12
+  regions:
+    lnd-atl: {}
+    lnd-fra: {}
+  docker:
+    dockerfile: "Dockerfile"
+    ports:
+      default:
+        port: 10567
+        protocol: "udp"
+  game_modes:
+    default: {}
 ```
+
+You can find more information about the Rivet config file [in our
+documentation](https://rivet.gg/docs/general/config).
 
 ### Link project
 
@@ -60,7 +69,12 @@ rivet init --recommend
 
 ## Step 2: Install the Rivet plugin in Godot
 
-[Installation instructions](https://github.com/rivet-gg/plugin-godot/tree/main#installation)
+[Installation
+instructions](https://github.com/rivet-gg/plugin-godot/tree/main#installation).
+Once you've set up the plugin, you should see a Rivet panel in the bottom left.
+
+From here, you'll need to link your game to Rivet by signing in. If you haven't already,
+you can create a new game on the Rivet Hub at this step.
 
 ## Step 3: Update game code
 
@@ -123,14 +137,12 @@ lobby.
 Write the following `Dockerfile`
 
 ```docker Dockerfile
-# MARK: Builder
-FROM rivetgg/godot:4.0.2 AS builder
+FROM ghcr.io/rivet-gg/images/godot:4.2 AS builder
 WORKDIR /app
 COPY . .
 RUN mkdir -p build/linux \
     && godot -v --export-release "Linux/X11" --headless ./build/linux/game.x86_64
 
-# MARK: Runner
 FROM ubuntu:22.04
 RUN apt update -y \
     && apt install -y expect-dev \
