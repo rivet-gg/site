@@ -2,6 +2,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
 import { Tip, Info, Note } from '@/components/callouts';
+import { Accordion } from '@/components/Accordion';
 
 export { ButtonGroup, Button } from '@/components/Button';
 export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
@@ -234,5 +235,30 @@ export function CrashCourseUnrealWidget() {
         <li>Common widget types</li>
       </ul>
     </Tip>
+  );
+}
+
+export function WhatDoesRivetDo() {
+  return (
+    <Accordion title="What did this do?">
+      <ul>
+        <li>Linked your project to Rivet</li>
+        <li>Created <code>rivet.toml</code> file that configures how to run your game.</li>
+        <li>Added a development token to your <code>.env</code> that lets you develop with Rivet on your local machine</li>
+      </ul>
+      <p>You can also run <code>rivet init</code> without any flags to go through the interactive setup process.</p>
+    </Accordion>
+  )
+}
+
+export function UnfamiliarWithDockerfiles() {
+  return (
+    <Accordion title="Unfamiliar with Dockerfiles?">
+      <ul>
+        <li><a href="https://github.com/gauthamp10/dockerfile-boilerplates">Boilerplate <code>Dockerfiles</code></a> has one already written for you</li>
+        <li><a href="https://docker-curriculum.com/#dockerfile">Dockerfile Crash Course</a> will teach you how to write your own <code>Dockerfile</code> quickly</li>
+        <li>Join our <a href="https://discord.gg/BG2vqsJczH">Discord</a> and we&apos;ll write your <code>Dockerfile</code> for you!</li>
+      </ul>
+    </Accordion>
   );
 }
