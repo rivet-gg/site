@@ -309,22 +309,22 @@ let caseStudies = [
 
 let templates = [
   {
-    href: 'https://rivet.gg/learn/html5/tutorials/tanks-canvas-socketio',
+    href: '/learn/html5/tutorials/tanks-canvas-socketio',
     screenshot: imgAstro,
     subtext: 'Canvas & Socket.IO'
   },
   {
-    href: 'https://rivet.gg/learn/godot/tutorials/crash-course',
+    href: '/learn/godot/tutorials/bomber-demo',
     screenshot: imgBomber,
     subtext: 'Godot'
   },
   {
-    href: 'https://rivet.gg/learn/html5/tutorials/tanks-canvas-socketio',
+    href: '/learn/html5/tutorials/tanks-canvas-socketio',
     screenshot: imgTanks,
     subtext: 'Canvas & Socket.IO'
   },
   {
-    href: 'https://rivet.gg/learn/unity/tutorials/fishnet/crash-course',
+    href: '/learn/unity/tutorials/fishnet/crash-course',
     screenshot: imgUnityTanks,
     subtext: 'Unity & Fish-Net'
   },
