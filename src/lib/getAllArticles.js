@@ -1,32 +1,30 @@
 import glob from 'fast-glob';
 import * as path from 'path';
-import { processArticleMeta } from './articleMetadata';
 
 async function importArticle(articleFilename) {
   // Parse filename
   let [slug, name] = articleFilename.split('/');
-  if (name !== 'index.mdx') {
+  if (name !== 'page.mdx') {
     throw new Error(`Unexpected filename: ${articleFilename}`);
   }
 
-  // Parse file
-  // console.log('Parsing', articleFilename);
-  let { meta, default: component } = await import(`../pages/blog/${articleFilename}`);
-
-  let enriched = processArticleMeta(meta, slug);
+  let { default: component, config, metadata, info } = await import(`../app/blog/(posts)/${articleFilename}`);
 
   return {
     component,
-    ...enriched
+    config,
+    metadata,
+    info,
+    slug
   };
 }
 
 export async function getAllArticles() {
-  let articleFilenames = await glob(['*/index.mdx'], {
-    cwd: path.join(process.cwd(), 'src/pages/blog')
+  let articleFilenames = await glob(['*/page.mdx'], {
+    cwd: path.join(process.cwd(), 'src/app/blog/(posts)')
   });
 
   let articles = await Promise.all(articleFilenames.map(importArticle));
 
-  return articles.sort((a, z) => new Date(z.date) - new Date(a.date));
+  return articles.sort((a, z) => z.info.date - a.info.date);
 }

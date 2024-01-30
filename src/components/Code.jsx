@@ -1,3 +1,4 @@
+'use client';
 import { Children, createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';

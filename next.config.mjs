@@ -1,4 +1,5 @@
 // Auto-generate navigation
+// TODO Move to server component
 import './scripts/generateNavigation.mjs';
 
 import nextMDX from '@next/mdx';
@@ -9,8 +10,7 @@ import { rehypePlugins } from './src/mdx/rehype.mjs';
 const withMDX = nextMDX({
   options: {
     remarkPlugins,
-    rehypePlugins,
-    providerImportSource: '@mdx-js/react'
+    rehypePlugins
   }
 });
 

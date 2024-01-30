@@ -1,4 +1,5 @@
 {
+    "typescript.preferences.importModuleSpecifier": "non-relative",
     "grammarly.selectors": [
         {
             "language": "mdx",

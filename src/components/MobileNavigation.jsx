@@ -89,7 +89,7 @@ export function MobileNavigation({ navigation }) {
                   layoutScroll
                   className={clsx(
                     'fixed bottom-0 left-0 w-full overflow-y-auto bg-white px-4 pb-4 pt-6 shadow-lg shadow-charcole-900/10 ring-1 ring-charcole-900/7.5 dark:bg-charcole-950 dark:ring-charcole-800 min-[416px]:max-w-sm sm:px-6 sm:pb-10',
-                    navigation.tabs ? 'top-navigation' : 'top-14'
+                    navigation?.tabs ? 'top-navigation' : 'top-14'
                   )}>
                   <Navigation navigation={navigation} />
                 </motion.div>

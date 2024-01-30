@@ -4,6 +4,8 @@ import Image from 'next/image';
 
 export function HeroPattern() {
   return (
-    <Image alt='Background pattern' src={bg} className='absolute right-0 top-0 -z-10 w-[1100px] h-auto max-w-none opacity-20'></Image>
+    <div className='absolute inset-0 -z-10 flex justify-end overflow-hidden opacity-20'>
+      <Image alt='Background pattern' className='h-[1100px] w-[1100px] max-w-none' src={bg}></Image>
+    </div>
   );
 }

@@ -75,7 +75,7 @@ export function createClient(canvas: HTMLCanvasElement): Client {
 async function connect(client: Client) {
   const res = await RIVET.matchmaker.lobbies.find({ gameModes: ['default'] });
   const port = res.ports['default'];
-  client.connection = new Connection(client, port.isTls, port.host, {
+  client.connection = new Connection(client, port?.isTls || true, port?.host || '127.0.0.1', {
     token: res.player.token
   });
 }

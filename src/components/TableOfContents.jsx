@@ -1,27 +1,30 @@
+'use client';
+
 import Link from 'next/link';
 import { useState, useCallback, useRef } from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { remToPx } from '@/lib/remToPx';
+import { useNavigation } from '@/hooks/useNavigation';
 
 const HEADER_HEIGHT = remToPx(6.5);
-const SCROLL_MARGIN = remToPx(9 /* scroll-mt-header-offset */ - HEADER_HEIGHT);
-const LINK_MARGIN = remToPx(0.5);
+// const SCROLL_MARGIN = remToPx(9 /* scroll-mt-header-offset */ - HEADER_HEIGHT);
+const LINK_MARGIN = remToPx(1);
 
 function useScrollToActiveLink(currentSection) {
   let ref = useRef(null);
 
   useEffect(() => {
-    let currentLink = ref.current.querySelector(`[aria-current="page"]`);
-    if (currentLink === null) return;
+    let currentLink = ref.current?.querySelector(`[aria-current="page"]`);
+    if (!currentLink) return;
 
-    let linkRect = currentLink.getBoundingClientRect();
-    let containerRect = ref.current.getBoundingClientRect();
+    let linkRect = currentLink?.getBoundingClientRect();
+    let containerRect = ref.current?.getBoundingClientRect();
 
     // calculate how much to scroll by
     // take into account the navigation header height
-    let linkRelativeTop = linkRect.y - HEADER_HEIGHT;
+    let linkRelativeTop = linkRect.y - containerRect.top;
 
     // if the link is below the container, scroll down by the difference in height + the height of the link itself (so it's not at the bottom)
     if (linkRelativeTop + LINK_MARGIN >= containerRect.height) {
@@ -38,8 +41,8 @@ function useScrollToActiveLink(currentSection) {
   return ref;
 }
 
-function useCurrentSection(tableOfContents) {
-  let [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id);
+function useCurrentSection(tableOfContents = []) {
+  let [currentSection, setCurrentSection] = useState(tableOfContents?.[0]?.id || null);
   let getHeadings = useCallback(tableOfContents => {
     return tableOfContents
       .flatMap(node => [node.id, ...node.children.map(child => child.id)])
@@ -57,14 +60,14 @@ function useCurrentSection(tableOfContents) {
   }, []);
 
   useEffect(() => {
-    if (tableOfContents.length === 0) return;
+    if (!tableOfContents || tableOfContents?.length === 0) return;
     let headings = getHeadings(tableOfContents);
     if (headings.length === 0) return;
     function onScroll() {
       let top = window.scrollY;
       let current = headings[0].id;
       for (let heading of headings) {
-        if (top >= heading.top - SCROLL_MARGIN) {
+        if (top >= heading.top - LINK_MARGIN) {
           current = heading.id;
         } else {
           break;
@@ -98,12 +101,12 @@ function NavLink({ id, isActive, isAnchorLink = false, children }) {
   );
 }
 
-function ActiveSectionMarker() {
+export function ActiveSectionMarker({ prefix }) {
   return (
     <>
       <motion.div
         layout
-        layoutId='current-background'
+        layoutId={`${prefix}current-background`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className='absolute inset-0 -left-2 bg-charcole-800/2.5 will-change-transform dark:bg-white/2.5'
@@ -111,7 +114,7 @@ function ActiveSectionMarker() {
       />
       <motion.div
         layout
-        layoutId='current-line'
+        layoutId={`${prefix}current-line`}
         className='absolute left-0 top-1 h-6 w-px bg-cream-500'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -149,7 +152,8 @@ function Tree({ sections, isActive, depth = 0 }) {
   );
 }
 
-export function TableOfContents({ tableOfContents }) {
+export function TableOfContents() {
+  let { navigation, tableOfContents } = useNavigation();
   let currentSection = useCurrentSection(tableOfContents);
   let ref = useScrollToActiveLink(currentSection);
 
@@ -169,8 +173,14 @@ export function TableOfContents({ tableOfContents }) {
   return (
     <div
       ref={ref}
-      className='md:px-10 lg:pointer-events-auto lg:sticky lg:top-navigation lg:block lg:max-h-content lg:w-80 lg:self-start lg:overflow-y-auto lg:px-6 lg:pb-8 lg:pt-4'>
-      <div className='relative mt-9 md:mt-7'>
+      className={clsx(
+        {
+          'p-4 lg:top-navigation lg:max-h-tabs-content': navigation.tabs,
+          'lg:top-10 lg:max-h-content': !navigation.tabs
+        },
+        'lg:pointer-events-auto lg:sticky lg:block lg:w-full lg:max-w-sm lg:self-start lg:overflow-y-auto lg:px-6 lg:pb-8'
+      )}>
+      <div className={clsx({ 'mt-9 md:mt-7': navigation.tabs, 'mt-8': !navigation.tabs }, 'relative')}>
         <motion.h2 layout='position' className='font-sans text-xs font-semibold text-white'>
           On this page
         </motion.h2>

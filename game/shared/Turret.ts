@@ -84,7 +84,7 @@ export function shoot(game: Game, state: TurretState) {
 
 function aimAtPlayer(game: Game, state: TurretState) {
   // Find nearest player to turret
-  let nearestPlayer: PlayerState = null;
+  let nearestPlayer: PlayerState | null = null;
   const nearestPlayerDist = Number.POSITIVE_INFINITY;
   for (const playerId in game.state.players) {
     const player = game.state.players[playerId];

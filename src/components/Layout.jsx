@@ -3,72 +3,67 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import GitHubButton from 'react-github-btn';
-import { Footer } from '@/components/Footer';
+import { Footer, PageNextPrevious } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
 import { TableOfContents } from '@/components/TableOfContents';
 import { Prose } from '@/components/Prose';
-import { SectionProvider } from '@/components/SectionProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/sharp-solid-svg-icons';
+import { HeroPattern } from '@/components/HeroPattern';
+import { Feedback } from '@/components/Feedback';
 
-export function Layout({ navigation, tableOfContents, prose, inset, children, sections = [] }) {
+export function Layout({ navigation, isTopPage, tableOfContents, prose, inset, children, sections = [] }) {
   return (
-    <SectionProvider sections={sections}>
-      <div>
-        {/* Navigation */}
-        <motion.header
-          layoutScroll
-          className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'>
-          {/* Header */}
-          <Header navigation={navigation} />
-        </motion.header>
+    <div>
+      {/* Navigation */}
+      <motion.header
+        layoutScroll
+        className='contents lg:pointer-events-none lg:fixed lg:inset-x-0 lg:z-40 lg:flex'>
+        {/* Header */}
+        <Header navigation={navigation} />
+      </motion.header>
 
-        {/* Body */}
-        <div
-          className={clsx(
-            'relative',
-            (prose || inset) && 'px-4 sm:px-6 lg:px-8',
-            navigation.tabs ? 'pt-navigation' : 'pt-14'
-          )}>
-          <div
-            className={clsx('min-h-[50vh]', {
-              'xl:grid xl:grid-cols-table-of-contents': tableOfContents && !navigation.sidebar,
-              'flex flex-col-reverse lg:grid lg:grid-cols-table-of-contents xl:grid-cols-two-sidebars':
-                tableOfContents && navigation.sidebar,
-              'xl:grid xl:grid-cols-sidebar': !tableOfContents && navigation.sidebar
-            })}>
-            {/* Sidebar */}
-            {navigation.sidebar ? (
-              <aside
-                className={clsx(
-                  `hidden lg:pointer-events-auto lg:sticky lg:top-navigation lg:max-h-content lg:w-72 lg:self-start  lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:block xl:w-80`
-                )}>
-                <Navigation navigation={navigation} />
-              </aside>
+      {/* Body */}
+      <div
+        className={clsx(
+          'relative',
+          (prose || inset) && ' xl:px-0',
+          navigation.tabs ? 'pt-navigation' : 'pt-14'
+        )}>
+        {(prose || inset) && isTopPage ? <HeroPattern /> : null}
+
+        <div className={clsx({ 'w-full': prose || inset }, 'flex flex-col-reverse lg:flex-row')}>
+          {navigation.sidebar ? (
+            <aside
+              className={clsx(
+                `hidden lg:pointer-events-auto lg:sticky lg:top-navigation lg:max-h-tabs-content lg:min-h-tabs-content lg:w-full lg:max-w-xs lg:self-start lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:block xl:max-w-sm`
+              )}>
+              <Navigation navigation={navigation} />
+            </aside>
+          ) : null}
+          <main
+            className={clsx(
+              { 'lg:px- max-w-5xl px-4 lg:px-8': navigation.sidebar || tableOfContents },
+              'mx-auto mt-9 w-full'
+            )}>
+            {prose ? <Prose as='article'>{children}</Prose> : children}
+
+            {navigation.feedback || navigation.sidebar ? (
+              <div className='mb-4 mt-20'>
+                {navigation.sidebar ? <PageNextPrevious navigation={navigation} /> : null}
+                {navigation.feedback ? <Feedback /> : null}
+              </div>
             ) : null}
+          </main>
 
-            <main className={clsx((prose || inset) && 'min-w-0 px-2 md:px-10' || '', 'min-h-[50vh]')}>
-              {prose ? (
-                <Prose
-                  as='article'
-                  className={clsx('mx-auto mt-9 max-w-5xl', { 'lg:w-full': tableOfContents })}>
-                  {children}
-                </Prose>
-              ) : (
-                children
-              )}
-
-              <Footer navigation={navigation} />
-            </main>
-            {/* Table of contents */}
-            {tableOfContents ? <TableOfContents tableOfContents={tableOfContents} /> : null}
-          </div>
+          {/* Table of contents */}
+          <TableOfContents />
         </div>
+
+        <Footer />
       </div>
-      {/* Star promp */}
-      {/* <StarPrompt /> */}
-    </SectionProvider>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import { forwardRef, Fragment, useEffect, useId, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
@@ -258,7 +258,7 @@ function SearchButton(props) {
 }
 
 function SearchDialog({ open, setOpen, className }) {
-  let router = useRouter();
+  let pathname = usePathname();
   let formRef = useRef();
   let panelRef = useRef();
   let inputRef = useRef();
@@ -272,15 +272,7 @@ function SearchDialog({ open, setOpen, className }) {
     function onRouteChange() {
       setOpen(false);
     }
-
-    router.events.on('routeChangeStart', onRouteChange);
-    router.events.on('hashChangeStart', onRouteChange);
-
-    return () => {
-      router.events.off('routeChangeStart', onRouteChange);
-      router.events.off('hashChangeStart', onRouteChange);
-    };
-  }, [open, setOpen, router]);
+  }, [open, setOpen, pathname]);
 
   useEffect(() => {
     if (open) {
@@ -401,7 +393,6 @@ export function Search() {
           'text-sm text-cream-100/75',
           'pl-2 pr-3',
           'border-b-2 border-cream-100'
-
         )}
         // className='hidden h-10 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-charcole-500 ring-1 ring-charcole-900/10 transition hover:ring-charcole-900/20 dark:bg-white/5 dark:text-cream-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
         {...buttonProps}>

@@ -1,17 +1,11 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { HeroPattern } from '@/components/HeroPattern';
-import {
-  faRocket,
-  faBooks,
-  faStopwatch
-} from '@fortawesome/sharp-solid-svg-icons';
+import { faRocket, faBooks, faStopwatch } from '@fortawesome/sharp-solid-svg-icons';
 
 export function LearnHome({ engineId, engineName, tutorials }) {
   return (
     <>
-      <HeroPattern />
-
       <ResourceGroup title={null} columns={2}>
         <Resource title='Crash Course' icon={faRocket} href={`/learn/${engineId}/tutorials/crash-course`}>
           {`Speedrun integrating Rivet in to your {engineName} game.`}
@@ -23,8 +17,14 @@ export function LearnHome({ engineId, engineName, tutorials }) {
 
       <ResourceGroup title='Tutorials' columns={3}>
         {tutorials.map(x => (
-          <Resource key={x.id} title={x.title} href={`/learn/${engineId}/tutorials/${x.id}`} pattern={{ image: x.image }} className='h-[400px]'>
-            {x.details}<br/>
+          <Resource
+            key={x.id}
+            title={x.title}
+            href={`/learn/${engineId}/tutorials/${x.id}`}
+            pattern={{ image: x.image }}
+            className='h-[400px]'>
+            {x.details}
+            <br />
             <FontAwesomeIcon icon={faStopwatch}></FontAwesomeIcon> {x.duration}
           </Resource>
         ))}

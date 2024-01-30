@@ -10,11 +10,20 @@ import { visit } from 'unist-util-visit';
 export async function generateNavigation() {
   // Process all pages
   let pages = {};
-  let mdxFileNames = await glob(['**/*.mdx'], {
-    cwd: 'src/pages'
+  let mdxFileNames = await glob(['pages/**/*.mdx', 'app/**/*.mdx'], {
+    cwd: 'src'
   });
   for (let filename of mdxFileNames) {
-    let href = '/' + filename.replace(/\/index\.mdx$/, '').replace(/\.mdx$/, '');
+    let href =
+      '/' +
+      filename
+        .replace(/\/index\.mdx$/, '')
+        .replace(/\.mdx$/, '')
+        .replace(/^pages\//, '')
+        .replace(/^app\//, '')
+        .replace(/\/page$/, '')
+        .replace('(posts)/', '');
+
     pages[href] = await processPage({ path: filename });
   }
 
@@ -35,7 +44,7 @@ export async function generateNavigation() {
 }
 
 async function processPage({ path }) {
-  let md = await readFile(`src/pages/${path}`);
+  let md = await readFile(`src/${path}`);
 
   let ast = remark().parse(md);
 
@@ -208,6 +217,7 @@ function docsTabs(path) {
     {
       title: 'Cloud',
       href: '/docs/cloud',
+      icon: 'cloud',
       current: path[1] === 'cloud'
     }
   ];
@@ -251,4 +261,4 @@ function learnTabs(path) {
   ];
 }
 
-generateNavigation();
+await generateNavigation();

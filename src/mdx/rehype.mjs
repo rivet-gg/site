@@ -64,49 +64,29 @@ function rehypeSlugify() {
   };
 }
 
-function rehypeAddMDXExports(getExports) {
+function rehypeAddCustomCode() {
   return tree => {
-    let exports = Object.entries(getExports(tree));
+    let exports = [
+      `import {convertConfigToMetadata,convertConfigToInfo} from "@/lib/articles/metadata";
+      let metadataConfig = typeof config === 'undefined' ? undefined : config;
+      export const metadata = convertConfigToMetadata(metadataConfig);
+      export const info = convertConfigToInfo(metadataConfig);
+      `
+    ];
 
-    for (let [name, value] of exports) {
-      for (let node of tree.children) {
-        if (node.type === 'mdxjsEsm' && new RegExp(`export\\s+const\\s+${name}\\s*=`).test(node.value)) {
-          return;
-        }
+    let code = exports.join('\n');
+
+    tree.children.push({
+      type: 'mdxjsEsm',
+      value: code,
+      data: {
+        estree: acorn.parse(code, {
+          sourceType: 'module',
+          ecmaVersion: 'latest'
+        })
       }
-
-      let exportStr = `export const ${name} = ${value}`;
-
-      tree.children.push({
-        type: 'mdxjsEsm',
-        value: exportStr,
-        data: {
-          estree: acorn.parse(exportStr, {
-            sourceType: 'module',
-            ecmaVersion: 'latest'
-          })
-        }
-      });
-    }
+    });
   };
-}
-
-function getSections(node) {
-  let sections = [];
-
-  for (let child of node.children ?? []) {
-    if (child.type === 'element' && (child.tagName === 'h2' || child.tagName == 'h3')) {
-      sections.push(`{
-        title: ${JSON.stringify(toString(child))},
-        id: ${JSON.stringify(child.properties.id)},
-        ...${child.properties.annotation}
-      }`);
-    } else if (child.children) {
-      sections.push(...getSections(child));
-    }
-  }
-
-  return sections;
 }
 
 export const rehypePlugins = [
@@ -115,10 +95,5 @@ export const rehypePlugins = [
   rehypeShiki,
   rehypeSlugify,
   rehypeMdxTitle,
-  [
-    rehypeAddMDXExports,
-    tree => ({
-      sections: `[${getSections(tree).join()}]`
-    })
-  ]
+  rehypeAddCustomCode
 ];

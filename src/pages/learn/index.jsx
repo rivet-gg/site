@@ -40,10 +40,8 @@ let supportedEngines = [
 export default function LearnIndex() {
   return (
     <>
-      <HeroPattern />
-
-      <div className='flex h-[calc(100vh-180px)] flex-col items-stretch justify-center'>
-        <div className='text-center font-display text-5xl text-white font-bold'>Pick Your Engine</div>
+      <div className='mx-auto flex h-[calc(100vh-180px)] max-w-5xl flex-col items-stretch justify-center'>
+        <div className='text-center font-display text-5xl font-bold text-white'>Pick Your Engine</div>
         <div className='mt-14 grid grid-cols-6 gap-4'>
           {supportedEngines.map((engine, i) => (
             <GameEngine key={engine.name} engine={engine} long={i >= 3} />
@@ -64,12 +62,17 @@ function GameEngine({ engine, long } = { long: false }) {
         'h-[175px]',
         long ? 'col-span-3' : 'col-span-2'
       )}>
-      <span className={clsx(clsx(
-          'absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-center',
-          'font-display text-3xl',
-          'text-white',
-          'drop-shadow-[0_0_10px_rgba(24,24,27,0.5)]'
-        ))}>{engine.name}</span>
+      <span
+        className={clsx(
+          clsx(
+            'absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center text-center',
+            'font-display text-3xl',
+            'text-white',
+            'drop-shadow-[0_0_10px_rgba(24,24,27,0.5)]'
+          )
+        )}>
+        {engine.name}
+      </span>
     </PatternButton>
   );
 }

@@ -1,55 +1,47 @@
-import { forwardRef } from 'react';
+'use client';
+import { forwardRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Fragment, useState } from 'react';
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
 
 import { Button } from '@/components/Button';
 import { MobileNavigation, useIsInsideMobileNavigation } from '@/components/MobileNavigation';
 import { useMobileNavigationStore } from '@/components/MobileNavigation';
-import { ModeToggle } from '@/components/ModeToggle';
 import { MobileSearch, Search } from '@/components/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBooks,
-  faCode,
   faCoin,
-  faGraduationCap,
   faHammer,
   faNewspaper,
-  faUserGroup
+  faCloud,
+  faChessKnight,
+  faServer
 } from '@fortawesome/sharp-solid-svg-icons';
-import { faGithub, faTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
-import { useRouter } from 'next/router';
-
-import imgCdnWhite from '@/images/products/cdn-white.svg';
-import imgChatWhite from '@/images/products/chat-white.svg';
-import imgComputeWhite from '@/images/products/compute-white.svg';
-import imgGroupWhite from '@/images/products/group-white.svg';
-import imgIdentityWhite from '@/images/products/identity-white.svg';
-import imgKvWhite from '@/images/products/kv-white.svg';
-import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
+import { faGlobe } from '@fortawesome/pro-regular-svg-icons';
+import { faDatabase } from '@fortawesome/pro-solid-svg-icons';
+import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { usePathname } from 'next/navigation';
 import imgLogoText from '@/images/rivet-logos/icon-text-cream.svg';
 import imgLogo from '@/images/rivet-logos/icon-cream.svg';
+import { useNavigation } from '@/hooks/useNavigation';
 
 const ICONS = {
   // Products
-  cdn: imgCdnWhite,
-  chat: imgChatWhite,
-  compute: imgComputeWhite,
-  group: imgGroupWhite,
-  identity: imgIdentityWhite,
-  kv: imgKvWhite,
-  matchmaker: imgMatchmakerWhite
+  cdn: faGlobe,
+  compute: faServer,
+  kv: faDatabase,
+  matchmaker: faChessKnight,
+  cloud: faCloud
 };
 
 function TopLevelNavItem({ href, initHref, icon, children }) {
-  let router = useRouter();
+  let pathname = usePathname();
 
-  let current = router.pathname.startsWith(href);
+  let current = pathname.startsWith(href);
   return (
     <Link
       href={initHref ?? href}
@@ -68,7 +60,7 @@ function TopLevelNavItem({ href, initHref, icon, children }) {
 function TopLevelNavPopover({ solutions, callsToAction, children }) {
   return (
     <Popover className='relative'>
-      <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-charcole-600 transition hover:text-charcole-900 dark:text-cream-400 dark:hover:text-white'>
+      <Popover.Button className='-mr-1 inline-flex items-center gap-x-1 text-sm leading-5 text-cream-400  transition hover:text-white'>
         <span>{children}</span>
         {/* <ChevronDownIcon className='h-5 w-5' aria-hidden='true' /> */}
       </Popover.Button>
@@ -125,7 +117,8 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
   );
 }
 
-export const Header = forwardRef(function Header({ navigation, className }, ref) {
+export const Header = forwardRef(function Header({ className }, ref) {
+  let { navigation } = useNavigation();
   let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
 
@@ -133,16 +126,18 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
 
+  useEffect(() => {
+    document.body.style.setProperty('--header-height', navigation.tabs ? '6.5rem' : '3.5rem');
+  }, [navigation.tabs]);
+
   return (
     <motion.div
       ref={ref}
       className={clsx(
         className,
         'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
-        !isInsideMobileNavigation && 'backdrop-blur-sm dark:backdrop-blur',
-        isInsideMobileNavigation
-          ? 'bg-white dark:bg-charcole-950'
-          : 'bg-white/[var(--bg-opacity-light)] dark:bg-charcole-950/[var(--bg-opacity-dark)]'
+        !isInsideMobileNavigation && 'backdrop-blur',
+        isInsideMobileNavigation ? 'bg-charcole-950' : 'bg-charcole-950/[var(--bg-opacity-dark)]'
       )}
       style={{
         '--bg-opacity-light': bgOpacityLight,
@@ -215,7 +210,7 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
       </div>
 
       {/* Tabs */}
-      {navigation.tabs && (
+      {navigation?.tabs && (
         <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
           {/* Border */}
           <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
@@ -239,8 +234,10 @@ export const Header = forwardRef(function Header({ navigation, className }, ref)
                   tab.styles?.text ?? 'text-white'
                 )}
                 aria-current={tab.current ? 'page' : undefined}>
-                {tab.icon ? <Image src={ICONS[tab.icon]} className='h-6 w-6' alt='Tab icon' /> : null}
-                <span className={clsx()}>{tab.title}</span>
+                {tab.icon ? (
+                  <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
+                ) : null}
+                <span>{tab.title}</span>
               </Link>
             ))}
           </nav>

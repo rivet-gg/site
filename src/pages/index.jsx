@@ -1,13 +1,10 @@
+'use client';
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { PatternButton } from '@/components/PatternButton';
-import { Game } from '@/components/Game';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
-import { generateRssFeed } from '@/lib/generateRssFeed';
-import { getAllArticles } from '@/lib/getAllArticles';
-import { HeroPattern } from '@/components/HeroPattern';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -350,18 +347,6 @@ let templates = [
   }
 ];
 
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed();
-  }
-
-  return {
-    props: {
-      articles: (await getAllArticles()).slice(0, 4).map(({ component, ...meta }) => meta)
-    }
-  };
-}
-
 export default function Index() {
   return (
     <div>
@@ -371,7 +356,7 @@ export default function Index() {
 
       {/* Header */}
       <div className='relative isolate overflow-x-hidden'>
-        <div className='pb-12 sm:pb-0 lg:pb-0'>
+        <div>
           <Title />
 
           <RainbowBar className='h-1 w-full' />
@@ -399,7 +384,7 @@ export default function Index() {
             />
           </div>
 
-          <div className='mx-auto max-w-7xl px-6 py-60 lg:px-8'>
+          <div className='mx-auto max-w-7xl px-6 md:py-60 lg:px-8'>
             <CaseStudies />
           </div>
 
@@ -587,7 +572,9 @@ function Title() {
 
         {/* CTA */}
         <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-          <Button variant='juicy' href='https://hub.rivet.gg'>Get Started</Button>
+          <Button variant='juicy' href='https://hub.rivet.gg'>
+            Get Started
+          </Button>
 
           <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
             5 minute crash course <span aria-hidden='true'>→</span>
@@ -729,7 +716,7 @@ function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div id='app' className='flex flex-col items-center gap-12 py-16'>
+    <div className='flex flex-col items-center gap-12 px-4 py-16'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
         Rivet works with your <span className='underline'>game engine</span> and{' '}
         <span className='underline'>networking framework</span>
@@ -737,7 +724,7 @@ function CodeSection() {
 
       <div className='flex w-full flex-col items-stretch gap-2'>
         {/* Engine tabs */}
-        <div className='flex justify-center space-x-2'>
+        <div className='flex flex-wrap justify-center gap-2'>
           {enginePages.map((engine, i) => (
             <Button key={i} variant='juicy' highlight={i == page.index} onMouseEnter={() => changePage(i)}>
               {engine.name}
@@ -746,7 +733,7 @@ function CodeSection() {
         </div>
 
         {/* Current engine */}
-        <EnginePages page={page} onChangePage={changePage} />
+        <EnginePages page={page} onChangePage={setPage} />
       </div>
     </div>
   );
@@ -755,7 +742,7 @@ function CodeSection() {
 function EnginePages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='h-[580px] p-4'>
+    <div className='relative h-[300px] md:h-[580px]'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -791,7 +778,12 @@ function EnginePages({ page, onChangePage }) {
 function EnginePageContents({ page, scale }) {
   return (
     <>
-      <Image src={page.image} alt={`${page.name} Image`} className='mx-auto w-full max-w-7xl' />
+      <Image
+        src={page.image}
+        alt={`${page.name} Image`}
+        className='mx-auto w-full max-w-7xl drag-none'
+        draggable={false}
+      />
       <Button href={page.learnUrl} variant='juicy'>
         Get started <span aria-hidden='true'>→</span>
       </Button>
@@ -815,7 +807,8 @@ function TemplateSection() {
       <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
 
       {/* Grid with Increased Margins */}
-      <div className={clsx('mx-auto mt-2 grid gap-12 px-8', 'max-w-5xl', 'grid-cols-1 md:grid-cols-4')}>
+      <div
+        className={clsx('mx-auto mt-2 grid gap-12 px-4 sm:px-8', 'max-w-5xl', 'grid-cols-1 md:grid-cols-4')}>
         {templates.map((template, i) => (
           <Link
             key={i}
@@ -1007,7 +1000,7 @@ function FeatureTabs({ index, onChangeTab }) {
 function FeaturePages({ page, onChangePage }) {
   // TODO: Is this SEO friendly?
   return (
-    <div className='relative flex h-[550px] w-full overflow-hidden md:h-[600px]'>
+    <div className='relative flex h-[550px] w-full md:h-[600px]'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
@@ -1055,7 +1048,7 @@ function FeaturePageContents({ page, scale }) {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
-          <Image src={page.screenshot} alt='Lobby list screenshot' className='' />
+          <Image src={page.screenshot} className='drag-none' draggable={false} alt='Lobby list screenshot' />
         </motion.div>
       </div>
 
@@ -1103,7 +1096,7 @@ const PlayHoursCounter = () => {
   const [hasMounted, setHasMounted] = useState(false);
 
   const updateClock = () => {
-    let time = (2400/60/60/1000)*(Date.now() - 1640995200000);
+    let time = (2400 / 60 / 60 / 1000) * (Date.now() - 1640995200000);
     setCurrentTime(Math.round(time));
   };
 
@@ -1246,7 +1239,7 @@ function UpAndRunning() {
 
 function LevelUpSection() {
   return (
-    <div className='h-[600px] w-full bg-white p-8 text-black'>
+    <div className='w-full bg-white p-8 text-black md:h-[600px]'>
       <div className='mx-auto flex h-full max-w-screen-xl flex-row items-center justify-between'>
         {/* Left Image Container */}
         <div className='flex h-full flex-1 items-center justify-end'>
@@ -1259,13 +1252,15 @@ function LevelUpSection() {
 
         {/* Text Container - Centered Vertically and Horizontally */}
         <div className='mx-8 flex h-full flex-col items-center justify-center text-center'>
-          <div className='mb-5 font-display text-8xl font-bold'>Level Up With Rivet</div>
-          <div className='mb-5 mt-2 font-display text-4xl font-bold italic'>
+          <div className='mb-5 font-display text-6xl font-bold md:text-8xl'>Level Up With Rivet</div>
+          <div className='mb-5 mt-2 font-display text-2xl font-bold italic md:text-4xl'>
             and get back to game development
           </div>
 
           <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-            <Button variant='blackJuicy' href='https://hub.rivet.gg'>Get Started</Button>
+            <Button variant='blackJuicy' href='https://hub.rivet.gg'>
+              Get Started
+            </Button>
             <Link href='/learn' className='text-sm font-semibold leading-6 text-black'>
               5 minute crash course <span aria-hidden='true'>→</span>
             </Link>

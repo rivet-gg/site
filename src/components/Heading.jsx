@@ -1,8 +1,8 @@
+'use client';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useInView } from 'framer-motion';
 
-import { useSectionStore } from '@/components/SectionProvider';
 import { Tag } from '@/components/Tag';
 import { remToPx } from '@/lib/remToPx';
 
@@ -46,17 +46,10 @@ function Anchor({ id, inView, children }) {
 export function Heading({ level = 2, children, id, tag, label, anchor = true, ...props }) {
   let Component = `h${level}`;
   let ref = useRef();
-  let registerHeading = useSectionStore(s => s.registerHeading);
 
   let inView = useInView(ref, {
     margin: `${remToPx(-3.5)}px 0px 0px 0px`,
     amount: 'all'
-  });
-
-  useEffect(() => {
-    if (level === 2 || level == 3) {
-      registerHeading({ id, ref, offsetRem: tag || label ? 8 : 6 });
-    }
   });
 
   return (

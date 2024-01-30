@@ -1,7 +1,7 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 import { getSiteUrl } from '../lib/siteUrl';
 
-const modeScript = `
+export const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
   updateMode()
@@ -39,7 +39,7 @@ const modeScript = `
   }
 `;
 
-const googleTagsScript = `
+export const googleTagsScript = `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

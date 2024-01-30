@@ -1,3 +1,4 @@
+'use client';
 import { faCaretDown, faCaretRight } from '@fortawesome/sharp-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { clsx } from 'clsx';
@@ -81,7 +82,10 @@ function AccordionCover({ title, description, open, setOpen, icon, coverClass })
       aria-controls={title + 'Children'}
       aria-expanded={open}>
       <div className='mr-0.5'>
-        <FontAwesomeIcon icon={open ? faCaretDown : faCaretRight} className='w-3 h-3 text-charcole-800 dark:text-cream-100 opacity-75' />
+        <FontAwesomeIcon
+          icon={open ? faCaretDown : faCaretRight}
+          className='h-3 w-3 text-charcole-800 opacity-75 dark:text-cream-100'
+        />
       </div>
       {icon ? (
         <div className='h-4 w-4 fill-charcole-800 text-charcole-800 dark:fill-cream-100 dark:text-cream-100'>

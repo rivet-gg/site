@@ -1,22 +1,12 @@
-import { forwardRef, Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/Button';
-import { Feedback } from '@/components/Feedback';
 import clsx from 'clsx';
 import routes from '@/generated/routes.json';
 
 import imgLogo from '@/images/rivet-logos/icon-cream.svg';
-import {
-  faDiscord,
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-  faYoutube
-} from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faGithub, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const footer = {
@@ -66,7 +56,6 @@ const footer = {
 };
 
 function PageLink({ label, page, previous = false }) {
-  console.log('page.href', page.href)
   let title = routes.pages[page.href]?.title ?? page.title ?? label;
   return (
     <>
@@ -81,10 +70,10 @@ function PageLink({ label, page, previous = false }) {
   );
 }
 
-function PageNextPrevious({ navigation }) {
-  let router = useRouter();
+export function PageNextPrevious({ navigation }) {
+  let pathname = usePathname();
   let allPages = navigation.sidebar.groups.flatMap(group => group.pages);
-  let currentPageIndex = allPages.findIndex(page => page.href === router.pathname);
+  let currentPageIndex = allPages.findIndex(page => page.href === pathname);
 
   if (currentPageIndex === -1) {
     return null;
@@ -98,7 +87,7 @@ function PageNextPrevious({ navigation }) {
   }
 
   return (
-    <div className={clsx('mt-4 flex', 'mx-auto max-w-5xl')}>
+    <div className={clsx('mb-4 flex', 'mx-auto max-w-5xl')}>
       {previousPage && (
         <div className='flex flex-col items-start gap-3'>
           <PageLink label='Previous' page={previousPage} previous />
@@ -115,7 +104,7 @@ function PageNextPrevious({ navigation }) {
 
 function SmallPrint() {
   return (
-    <div className='mx-auto max-w-5xl pb-8 pt-16 sm:pt-20'>
+    <div className='mx-auto max-w-screen-2xl pb-8 pt-16 sm:pt-20'>
       <div className='xl:grid xl:grid-cols-2 xl:gap-8'>
         {/* Brands & links */}
         <div className='space-y-8'>
@@ -155,9 +144,17 @@ function SmallPrint() {
             <ul role='list' className='mt-3 space-y-2'>
               {footer.company.map(item => (
                 <li key={item.name}>
-                  <Link href={item.href} target={item.newTab ? '_blank' : null} className={clsx('text-sm leading-4 text-gray-300 hover:text-white')}>
-                    <span className={clsx(item.highlight && 'text-violet-200 drop-shadow-[0_0_10px_rgba(221,214,254,0.5)]')}>{item.name}</span>
-                    {item.badge && <span className='rounded-full bg-violet-500 px-2 ml-2'>{item.badge}</span>}
+                  <Link
+                    href={item.href}
+                    target={item.newTab ? '_blank' : null}
+                    className={clsx('text-sm leading-4 text-gray-300 hover:text-white')}>
+                    <span
+                      className={clsx(
+                        item.highlight && 'text-violet-200 drop-shadow-[0_0_10px_rgba(221,214,254,0.5)]'
+                      )}>
+                      {item.name}
+                    </span>
+                    {item.badge && <span className='ml-2 rounded-full bg-violet-500 px-2'>{item.badge}</span>}
                   </Link>
                 </li>
               ))}
@@ -179,7 +176,7 @@ function SmallPrint() {
       </div>
 
       {/* Trademarks */}
-      <div className='mt-6 space-y-3 text-2xs italic leading-4 text-white/50 md:mt-12 md:mt-12'>
+      <div className='mt-6 space-y-3 text-2xs italic leading-4 text-gray-300/60 md:mt-12'>
         {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
         {`This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates in the U.S. and elsewhere.`}
         &nbsp;|&nbsp;
@@ -204,7 +201,7 @@ function SmallPrint() {
       </div>
 
       {/* Footer */}
-      <div className='mt-4 border-t border-white/10 md:mt-8'>
+      <div className='mt-4 border-t border-white/10 pt-4 text-center md:mt-8'>
         <p className='text-xs leading-5 text-gray-400'>
           &copy; {new Date().getFullYear()} Rivet Gaming, Inc. All rights reserved.
         </p>
@@ -213,17 +210,12 @@ function SmallPrint() {
   );
 }
 
-export function Footer({ navigation }) {
-  let router = useRouter();
-  let showFooter = router.pathname != '/';
-
+export function Footer() {
   return (
     <div>
-      {navigation.sidebar && <PageNextPrevious navigation={navigation} />}
-      {showFooter && <hr className='my-8' />}
-      {navigation.feedback && <Feedback />}
+      <hr className='mb-8 border-white/10' />
 
-      <footer aria-labelledby='footer-heading'>
+      <footer aria-labelledby='footer-heading' className='mx-auto max-w-screen-xl px-4 lg:px-8'>
         <h2 id='footer-heading' className='sr-only'>
           Footer
         </h2>

@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,mjs,jsx,mdx,json}'],
+  content: ['./src/**/*.{js,mjs,ts,tsx,jsx,mdx,json}'],
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -30,7 +30,11 @@ module.exports = {
     extend: {
       colors: require('./colors'),
       maxHeight: {
-        content: 'calc(100vh - 6.5rem)'
+        'tabs-content': 'calc(100vh - 6.5rem)',
+        content: 'calc(100vh - 3.5rem)'
+      },
+      minHeight: {
+        'tabs-content': 'calc(100vh - 6.5rem)'
       },
       boxShadow: {
         glow: '0 0 4px rgb(0 0 0 / 0.1)'
@@ -59,7 +63,7 @@ module.exports = {
         sidebar: '20rem 1fr'
       },
       scrollMargin: {
-        'header-offset': '9rem'
+        'header-offset': 'calc(var(--header-height) + 4rem)'
       }
     }
   },
@@ -69,6 +73,18 @@ module.exports = {
     plugin(function ({ addBase, theme }) {
       addBase({
         h1: { fontFamily: theme('fontFamily.display') }
+      });
+    }),
+    plugin(function ({ addUtilities, theme }) {
+      addUtilities({
+        '.drag-none': {
+          'user-drag': 'none',
+          '-webkit-user-drag': 'none',
+          'user-select': 'none',
+          '-moz-user-select': 'none',
+          '-webkit-user-select': 'none',
+          '-ms-user-select': 'none'
+        }
       });
     })
   ]
