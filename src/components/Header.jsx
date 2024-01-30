@@ -153,19 +153,20 @@ export const Header = forwardRef(function Header({ className }, ref) {
           )}
         /> */}
 
-        <div className='flex items-center gap-5 xl:hidden'>
-          <MobileNavigation navigation={navigation} />
-          <Link href='/' aria-label='Home'>
+        <div className='flex items-center gap-4'>
+          <div class='xl:hidden'>
+            <MobileNavigation navigation={navigation} />
+          </div>
+
+          <Link href='/' aria-label='Home' class='xl:hidden'>
             <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
           </Link>
-        </div>
 
-        <div className='hidden items-center gap-4 xl:flex'>
-          <Link href='/' aria-label='Home'>
+          <Link href='/' aria-label='Home' className='hidden xl:block'>
             <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
           </Link>
 
-          <div className='flex items-center gap-1'>
+          <div className='hidden items-center gap-1 lg:flex'>
             <TopLevelNavItem href='/learn' icon={faHammer}>
               Learn
             </TopLevelNavItem>

@@ -28,7 +28,7 @@ function useInitialValue(value, condition = true) {
 
 function TopLevelNavItem({ href, children }) {
   return (
-    <li className='md:hidden'>
+    <li className='lg:hidden'>
       <Link href={href} className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
         {children}
       </Link>
