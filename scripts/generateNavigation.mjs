@@ -115,11 +115,6 @@ async function buildRoute({ path, pages }) {
       if (inputGroup.template?.errors) {
         // Errors
         outputGroup.pages.push(...errorPages);
-        for (let page of errorPages) {
-          outputGroup.pages.push({
-            href: page.href
-          });
-        }
       } else if (inputGroup.template?.api && apiPages[inputGroup.template.api]) {
         // API
         for (let page of apiPages[inputGroup.template.api].pages) {

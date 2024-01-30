@@ -10,7 +10,9 @@
           "concepts/protocols",
           "concepts/ports",
           "concepts/logging",
-          "concepts/lobby-metrics"
+          "concepts/lobby-metrics",
+          "concepts/available-regions",
+          "concepts/available-tiers"
         ]
       }
     ]
