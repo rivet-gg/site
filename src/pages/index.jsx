@@ -778,14 +778,9 @@ function EnginePages({ page, onChangePage }) {
 function EnginePageContents({ page, scale }) {
   return (
     <>
-      <Image
-        src={page.image}
-        alt={`${page.name} Image`}
-        className='mx-auto w-full max-w-7xl drag-none'
-        draggable={false}
-      />
-      <Button href={page.learnUrl} variant='juicy'>
-        Get started <span aria-hidden='true'>→</span>
+      <Image src={page.image} alt={`${page.name} Image`} className='mx-auto w-full max-w-7xl' />
+      <Button href={page.learnUrl} variant='juicy' className='px-6'>
+        Get started using {page.name} <span aria-hidden='true'>→</span>
       </Button>
     </>
   );
