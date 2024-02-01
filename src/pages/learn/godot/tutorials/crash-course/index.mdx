@@ -31,22 +31,25 @@ Clone https://github.com/rivet-gg/example-godot-bomber
 
 ### Configure Rivet
 
-Copy the following to `rivet.toml`:
+Copy the following to `rivet.yaml`:
 
-```toml rivet.toml
-[matchmaker]
-	max_players = 12
+```yaml rivet.yaml
+matchmaker:
+	max_players: 12
 
-[matchmaker.regions]
-	lnd-sfo = {}
-	lnd-fra = {}
+matchmaker.regions:
+	sfo: {}
+	fra: {}
 
-[matchmaker.docker]
-	dockerfile = "Dockerfile"
-	ports.default = { port = 10567, protocol = "udp" }
+matchmaker.docker:
+	dockerfile: "Dockerfile"
+	ports:
+		default:
+			port: 10567
+			protocol: "udp"
 
-[matchmaker.game_modes]
-	default = {}
+matchmaker.game_modes:
+	default: {}
 ```
 
 ### Link project

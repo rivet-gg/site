@@ -8,17 +8,19 @@ the configurations available with custom lobbies.
 
 To create custom lobbies, you must first enable them in the version config:
 
-<CodeGroup title='rivet.toml'>
-```toml
-[matchmaker.game_modes.default]
-	[matchmaker.game_modes.default.create_config]
-		identity_verification = "guest"
-
-		# Public custom lobbies will be listed in the response to `lobbies.list`, private custom
-		# lobbies will not
-		enable_public = true
-		enable_private = true
-		max_lobbies_per_identity = 5 # Optional
+<CodeGroup title='rivet.yaml'>
+```yaml
+matchmaker:
+  game_modes:
+    default:
+      actions:
+        create:
+          enabled: true
+          # Public custom lobbies will be listed in the response to `lobbies.list`, private custom
+          # lobbies will not
+          enable_public: true
+          enable_private: true
+          max_lobbies_per_identity: 5 # Optional
 ```
 </CodeGroup>
 
@@ -30,7 +32,7 @@ Now users can create a new custom lobby on-demand like so:
 curl
 -X POST \
 -H "Content-Type: application/json" \
--d "{ \"game_mode\": \"default\", \"region\": \"lnd-atl\", \"publicity\": \"private\" }" \
+-d "{ \"game_mode\": \"default\", \"region\": \"atl\", \"publicity\": \"private\" }" \
 'https://matchmaker.api.rivet.gg/v1/lobbies/create'
 ```
 
@@ -43,7 +45,7 @@ const RIVET = new RivetClient({ token: addYourTokenHere });
 await RIVET.matchmaker.lobbies.create({
   gameMode: 'default',
   // Optional
-  region: 'lnd-atl',
+  region: 'atl',
   publicity: RIVET.matchmaker.CustomLobbyPublicity.Private
 });
 ```

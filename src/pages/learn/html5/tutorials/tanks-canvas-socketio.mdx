@@ -19,9 +19,9 @@ import { TutorialVideo } from '@/components/TutorialVideo';
 
 The following guide will walk you through integraing and deploying a game with Rivet.
 
-<TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
+{/* <TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
 
----
+--- */}
 
 ## Step 1: Setup project
 
@@ -82,16 +82,7 @@ Run the following command to setup your project:
   </code>
 </CodeGroup>
 
-<Accordion title="What did this do?">
-    - Linked your project to Rivet
-    - Created `rivet.toml` file that configures how to run your game.
-    - Added a development token to your `.env` that lets you develop with Rivet on your local machine
-
-    You can also run `rivet init` without any flags to go through the interactive setup process.
-
-</Accordion>
-
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/01-init)
+<WhatDoesRivetDo />
 
 ---
 
@@ -104,8 +95,6 @@ Run the following to install the library to interact with Rivet:
 ```
 npm install --save @rivet-gg/api@23.1.0-rc4
 ```
-
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/01-init)
 
 ### Update the client
 
@@ -137,8 +126,6 @@ Run `npm start` again and validate the game still connects.
 
 Open the network inspector and reload to see a `POST` request to `https://matchmaker.api.rivet.gg/v1/lobbies/find`.
 
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/02-integrate-client)
-
 ### Update the server
 
 Add the following to the top of `server/index.ts`:
@@ -169,8 +156,6 @@ async function setupConnection(socket: Socket) {
   new Connection(game, socket);
 }
 ```
-
-[🛟 Checkpoint 🛟](https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio/tree/checkpoint/03-integrate-server)
 
 ---
 

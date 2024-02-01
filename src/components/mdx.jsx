@@ -248,11 +248,12 @@ export function WhatDoesRivetDo() {
       <ul>
         <li>Linked your project to Rivet</li>
         <li>
-          Created <code>rivet.toml</code> file that configures how to run your game.
+          Created <code>rivet.yaml</code> file that configures how to run your game. Read more about the Rivet
+          version config <a href='/docs/general/concepts/version-config'>here</a>.
         </li>
         <li>
           Added a development token to your <code>.env</code> that lets you develop with Rivet on your local
-          machine
+          machine. Read more about dev tokens <a href='/docs/general/concepts/dev-tokens'>here</a>.
         </li>
       </ul>
       <p>

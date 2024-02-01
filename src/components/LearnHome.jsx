@@ -8,7 +8,7 @@ export function LearnHome({ engineId, engineName, tutorials }) {
     <>
       <ResourceGroup title={null} columns={2}>
         <Resource title='Crash Course' icon={faRocket} href={`/learn/${engineId}/tutorials/crash-course`}>
-          {`Speedrun integrating Rivet in to your {engineName} game.`}
+          {`Speedrun integrating Rivet in to your ${engineName} game.`}
         </Resource>
         <Resource title='API Documentation' icon={faBooks} href='/docs/matchmaker'>
           {`Already know what you're doing? Jump straight to the docs.`}
