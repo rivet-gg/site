@@ -5,13 +5,12 @@ const GRID_SIZE = 100;
 export default function grid(ctx: CanvasRenderingContext2D, game: ClientGameState, screenScale: number) {
   const gameW = game.clientGameState.size.w;
   const gameH = game.clientGameState.size.h;
-  const lineWidth = 2 / screenScale;
 
   ctx.save();
 
   // Map grid
   ctx.strokeStyle = '#111';
-  ctx.lineWidth = lineWidth;
+  ctx.lineWidth = 2 / screenScale;
   ctx.beginPath();
 
   // Vertical lines

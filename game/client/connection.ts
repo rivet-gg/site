@@ -19,11 +19,11 @@ export default interface Connection {
   lastPhysicsUpdate: number | null;
 }
 
-export function createConnection(connectionTarget: ConnectionTarget, now: number): Connection {
+export function createConnection(connectionTarget: ConnectionTarget): Connection {
   return {
     socket: getSocketForConnectionTarget(connectionTarget),
 
-    createdAt: now,
+    createdAt: performance.now(),
     finishedSetup: null,
     initializedAt: null,
     playerSpawned: null,
@@ -54,7 +54,7 @@ function getSocketForConnectionTarget(target: ConnectionTarget): ClientSideSocke
   }
 }
 
-export function setupListeners(connection: Connection, client: Client, performance: Performance) {
+export function setupListeners(connection: Connection, client: Client) {
   if (connection.finishedSetup) {
     const connectionErrorStr = 'This connection has already been setup';
     const connectionHelpStr = 'This function should only be called once per websocket/connection.';

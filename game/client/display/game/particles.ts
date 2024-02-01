@@ -5,7 +5,8 @@ import { clamp } from '../../../shared/utils';
 export default function drawParticles(
   ctx: CanvasRenderingContext2D,
   particleSet: ParticleSet,
-  isSelf: boolean
+  isSelf: boolean,
+  screenScale: number,
 ) {
   for (const particle of particleSet.parts) {
     ctx.save();
@@ -16,7 +17,7 @@ export default function drawParticles(
     const otherColor = `rgba(255 0 0 / ${opacity})`;
 
     ctx.strokeStyle = isSelf ? selfColor : otherColor;
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 1.5 / screenScale;
 
     ctx.translate(particle.x, particle.y);
     ctx.rotate(particle.angle);

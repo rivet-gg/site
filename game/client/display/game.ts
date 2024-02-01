@@ -32,7 +32,7 @@ export default function game(
 
     // Draw level-relative objects
     grid(ctx, game, screenScale);
-    drawGameObjects(ctx, game.clientGameState, selfPlayer?.id);
+    drawGameObjects(ctx, game.clientGameState, selfPlayer?.id, screenScale);
   }
   // Restore to initial state
   ctx.restore();

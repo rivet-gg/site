@@ -76,7 +76,7 @@ export function newRandomPlayer(id: string, name: string, game: GameState, tries
       angle,
       speedScalar: 0
     },
-    invincibilityTimeLeft: 5
+    invincibilityTimeLeft: 2
   };
 }
 

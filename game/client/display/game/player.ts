@@ -1,16 +1,12 @@
 import Player, { PLAYER_CONSTS } from '../../../shared/player';
 
-const INVINCIBILITY_BLINK_SPEED = 0.75;
-const INVINCIBILITY_BLINK_DUTY_CYCLE = 0.75;
+const INVINCIBILITY_BLINK_SPEED = 0.5;
 
 function isInvisibleBecauseInvincible(player: Player) {
-  const seconds = Date.now() / 1000;
-  const cycleAmount = (seconds % INVINCIBILITY_BLINK_SPEED) / INVINCIBILITY_BLINK_SPEED;
-
-  return player.invincibilityTimeLeft > 0 && cycleAmount > INVINCIBILITY_BLINK_DUTY_CYCLE;
+  return player.invincibilityTimeLeft % INVINCIBILITY_BLINK_SPEED > INVINCIBILITY_BLINK_SPEED / 2;
 }
 
-export default function drawPlayer(ctx: CanvasRenderingContext2D, player: Player, playerIsSelf: boolean) {
+export default function drawPlayer(ctx: CanvasRenderingContext2D, player: Player, playerIsSelf: boolean, screenScale: number) {
   const { posX, posY, angle } = player;
   const drawSize = PLAYER_CONSTS.SIZE * 1.25;
 
@@ -21,7 +17,7 @@ export default function drawPlayer(ctx: CanvasRenderingContext2D, player: Player
 
   ctx.strokeStyle = playerIsSelf ? 'cyan' : 'red';
   ctx.fillStyle = playerIsSelf ? 'cyan' : 'red';
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 1.5 / screenScale;
 
   if (player.invincibilityTimeLeft > 0) {
     ctx.strokeStyle = playerIsSelf ? '#00FFFFBB' : '#FF0000BB';

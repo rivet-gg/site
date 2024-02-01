@@ -29,13 +29,13 @@ export default interface Client {
   game: ClientGameState | null;
   id: string | null;
 
+  shutdown: boolean,
   screenSize: { w: number; h: number };
   screenScale: number;
   /// Position in the world where the pointer. This is used to determine where the player should move.
   worldPointer: { x: number; y: number };
   lastSendInputTs: number,
   canvas: HTMLCanvasElement;
-  performance: Performance;
 }
 
 export function initClient(canvas: HTMLCanvasElement): Client {
@@ -51,61 +51,68 @@ export function initClient(canvas: HTMLCanvasElement): Client {
     worldPointer: { x: Math.round(Math.random() * MAP_WIDTH), y: Math.round(Math.random() * MAP_HEIGHT) },
     lastSendInputTs: 0,
 
-    performance: window.performance,
+    shutdown: false,
 
     canvas,
 
     id: null
   };
 
-  resizeClient(client);
 
-  // TODO: Fix this
-  setInterval(() => resizeClient(client), 1000);
-
-  startClientDrawloop(client);
+  // Draw loops
+  drawLoop(client);
   createInputEventListener(client);
-  window.addEventListener('resize', () => resizeClient(client));
 
   setup(client);
 
   return client;
 }
 
-export function startClientDrawloop(client: Client): () => void {
-  const stopDrawLoopController = new AbortController();
-  const stopSignal = stopDrawLoopController.signal;
+export function shutdownClient(client: Client) {
+  console.log('Shutting down client');
 
-  const loop = () => {
-    if (!stopSignal.aborted) {
-      // If not on screen, slow down render loop and wait for it to come back
-      if (!isElementOnScreen(client.canvas)) {
-        setTimeout(loop, 100);
-        return;
+  client.shutdown = true;
+  if (client.connection) client.connection.socket.disconnect();
+}
+
+export function drawLoop(client: Client) {
+  if (client.shutdown) { 
+    console.log('Client shut down');
+    return;
+  }
+
+  // Shutdown client
+  if (!document.body.contains(client.canvas)) {
+    shutdownClient(client);
+    return;
+  }
+
+  // Resize client
+  resizeClient(client);
+
+  // If not on screen, slow down render loop and wait for it to come back
+  if (!isElementOnScreen(client.canvas)) {
+    setTimeout(drawLoop.bind(null, client), 100);
+    return;
+  }
+
+  // Render if connected
+  if (client.connection) {
+    const prevTime = client.connection.lastPhysicsUpdate ?? 0;
+    const newTime = performance.now();
+    client.connection.lastPhysicsUpdate = newTime;
+
+    if (client.game?.running && client.id) {
+      if (client.game.clientGameState.players[client.id]) {
+        setPlayerInput(client, getPlayerInputForMouseLocation(client, client.worldPointer.x, client.worldPointer.y));
       }
 
-      // Render if connected
-      if (client.connection) {
-        const prevTime = client.connection.lastPhysicsUpdate ?? 0;
-        const newTime = client.performance.now();
-        client.connection.lastPhysicsUpdate = newTime;
-
-        if (client.game?.running && client.id) {
-          if (client.game.clientGameState.players[client.id]) {
-            setPlayerInput(client, getPlayerInputForMouseLocation(client, client.worldPointer.x, client.worldPointer.y));
-          }
-
-          update(client.game, client.id, newTime - prevTime, newTime);
-        }
-      }
-
-      drawScreen(client);
-      requestAnimationFrame(loop);
+      update(client.game, client.id, newTime - prevTime, newTime);
     }
-  };
-  requestAnimationFrame(loop);
+  }
 
-  return () => stopDrawLoopController.abort();
+  drawScreen(client);
+  requestAnimationFrame(drawLoop.bind(null, client));
 }
 
 export async function setup(client: Client) {
@@ -116,30 +123,22 @@ export async function setup(client: Client) {
   const target = await getConnectionTarget(gamemode);
   client.connectionTarget = target;
 
-  client.connection = createConnection(target, client.performance.now());
-  setupListeners(client.connection, client, client.performance);
+  client.connection = createConnection(target);
+  setupListeners(client.connection, client);
   client.connection.socket.connect();
 }
 
 function createInputEventListener(client: Client) {
   client.canvas.addEventListener('mousedown', async () => {
+    if (client.shutdown) return;
     switch (getClientState(client)) {
-      // case ClientState.INITIAL:
-      //   await setup(client);
-      //   console.log('Connection established');
-      //   break;
-
-      // case ClientState.WAITING_RESPAWN:
-      //   await respawn(client);
-      //   console.log('Connection established');
-      //   break;
-
       case ClientState.PLAYING:
         await tryShoot(client);
         break;
     }
   });
   window.addEventListener('mousemove', async ev => {
+    if (client.shutdown) return;
     [client.worldPointer.x, client.worldPointer.y] = convertScreenToWorld(client, ev.clientX, ev.clientY);
   });
 }
@@ -181,7 +180,7 @@ export async function setPlayerInput(client: Client, input: PlayerInput) {
     delete game.serverGameState.players[playerId];
   }
 
-  await sendInput(connection, playerId, { ...input }, client.performance.now());
+  await sendInput(connection, playerId, { ...input }, performance.now());
   clientPlayer.playerInput = { ...input };
   serverPlayer.playerInput = { ...input };
 }
@@ -413,7 +412,7 @@ export function getPlayerInputForMouseLocation(client: Client, worldX: number, w
 }
 
 function isElementOnScreen(element: HTMLElement): boolean {
-  if (element.offsetParent == null || element.offsetWidth == 0 || element.offsetHeight == 0) return false;
+  if (!document.body.contains(element) || element.offsetWidth == 0 || element.offsetHeight == 0) return false;
   const rect = element.getBoundingClientRect();
   return rect.top <= window.innerHeight && rect.bottom >= 0;
 }

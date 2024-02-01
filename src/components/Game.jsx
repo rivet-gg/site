@@ -22,10 +22,8 @@ export function Game({ className, ...props }) {
     }
 
     if (canvasElement.current && gameClient == null) {
-      // TODO: Mvoe to on connection
-
       // Prevent duplicate creation of client
-      if (!globalClient) {
+      if (!globalClient || globalClient.shutdown) {
         globalClient = initClient(canvasElement.current);
       }
 

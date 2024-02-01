@@ -12,6 +12,8 @@ export function getPixelScalar(): number {
 }
 
 export function resizeClient(client: Client) {
+  if (client.shutdown) return;
+
   let canvasParent = client.canvas.parentElement
   if (!canvasParent) {
     console.warn("No canvas parent");
@@ -23,6 +25,9 @@ export function resizeClient(client: Client) {
   const scale = Math.min(parentRect.width * getPixelScalar() / MAP_WIDTH, parentRect.height * getPixelScalar() / MAP_HEIGHT);
   const canvasWidth = Math.floor(MAP_WIDTH * scale);
   const canvasHeight = Math.floor(MAP_HEIGHT * scale);
+
+  // Skip if already the same size
+  if (canvasWidth === client.canvas.width && canvasHeight === client.canvas.height) return;
 
   client.canvas.width = canvasWidth;
   client.canvas.height = canvasHeight;

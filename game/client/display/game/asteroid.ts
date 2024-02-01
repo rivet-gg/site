@@ -3,7 +3,7 @@ import Asteroid from '../../../shared/asteroid';
 import generateRandomNumbers from '../../../shared/prng';
 import { lerp, polarObj } from '../../../shared/utils';
 
-export default function drawAsteroid(ctx: CanvasRenderingContext2D, asteroid: Asteroid) {
+export default function drawAsteroid(ctx: CanvasRenderingContext2D, asteroid: Asteroid, screenScale: number) {
   const { posX: x, posY: y, angle } = asteroid;
 
   // Save the state of `ctx` so that it can later be restored
@@ -18,7 +18,7 @@ export default function drawAsteroid(ctx: CanvasRenderingContext2D, asteroid: As
   const shape = asteroidShape(asteroid);
 
   ctx.strokeStyle = 'white';
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 1.5 / screenScale;
 
   ctx.beginPath();
 
