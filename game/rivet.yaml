@@ -1,0 +1,20 @@
+engine:
+  html5: {}
+matchmaker:
+  max_players: 32
+  tier: 'basic-1d2'
+  regions:
+    atl: {}
+    fra: {}
+    sin: {}
+  game_modes:
+    default: {}
+    bullet-hell: {}
+  docker:
+    dockerfile: 'Dockerfile'
+    ports:
+      default:
+        port: 8080
+        protocol: 'https'
+scripts:
+  server: 'npx nodemon --delay 1 --watch server --watch shared --ext ts --exec ts-node server/index.ts'

@@ -9,6 +9,9 @@
     "format": "prettier --write ."
   },
   "browserslist": "defaults, not ie <= 11",
+  "workspaces": [
+    "game/"
+  ],
   "dependencies": {
     "@algolia/autocomplete-core": "^1.7.3",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

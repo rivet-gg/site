@@ -10,10 +10,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Resource } from '@/components/Resources';
 import YCLogo from '@/components/YCLogo';
+import A16ZLogo from '@/components/A16ZLogo';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import engineStyles from '../lib/engineStyles.json';
 import GitHubButton from 'react-github-btn';
+import { Game } from '@/components/Game';
 import {
+  faArrowRight,
+  faArrowLeft,
+  faCaretLeft,
+  faCaretRight,
   faBolt,
   faBook,
   faGraduationCap,
@@ -61,6 +67,7 @@ import {
   faHome,
   faFileImport,
   faAlien8bit,
+  faSkullCrossbones,
   faHeart,
   faLineChart
 } from '@fortawesome/sharp-solid-svg-icons';
@@ -361,6 +368,8 @@ export default function Index() {
 
           <RainbowBar className='h-1 w-full' />
 
+          <Subtitle />
+
           <Features />
 
           {/* Title */}
@@ -379,6 +388,7 @@ export default function Index() {
               />
             </h2>
             <Image
+              alt='Picture of earth'
               src={img551Regions}
               className='absolute bottom-0 left-1/2 -z-10 h-full w-auto -translate-x-1/2 transform object-cover'
             />
@@ -520,165 +530,162 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex w-full flex-wrap items-center justify-center gap-8 px-2 pb-16 pt-12'>
+    <div className='relative flex flex-wrap items-center justify-center h-[30vw] max-h-[600px]'>
       {/* Background */}
-      <Background />
+      {/* <Background /> */}
 
-      {/* Text */}
-      <div className='flex flex-col items-center justify-center text-center'>
+      {/* Game Background */}
+      <Game className='absolute inset-0 z-10 h-full w-full' />
+
+      {/* Content */}
+      <div className='flex flex-col items-center justify-center text-center z-10 select-none pointer-events-none'>
         {/* Title */}
-        <h1 className='mt-8 font-display text-6xl font-extrabold tracking-tight text-cream-100 sm:text-7xl'>
+        <h1 className='mt-8 font-display font-extrabold tracking-tight text-cream-100 text-4xl sm:text-7xl'>
           Multiplayer Made Simple
         </h1>
+      </div>
+    </div>
+  );
+}
 
-        {/* Subtitle */}
-        <div className='mt-6 text-lg leading-8 text-cream-100'>
-          <p>Open-source solution to deploy, scale, and operate your multiplayer game</p>
-          <p className='mt-4 md:mt-0'>
-            Supports&nbsp;
-            {supportedEngines.map(({ name, image, href, styles, join }, i) => (
-              <span key={name}>
-                <Link
-                  href={href}
-                  className={clsx('inline font-semibold transition hover:scale-110', styles.text)}>
-                  {name}
-                </Link>
-                {join}
-              </span>
-            ))}
-          </p>
-        </div>
-
-        {/* Engines */}
-        {/* <div className='mt-6 w-fit rounded-xl bg-white/[0.02] px-6 pb-1 pt-4 ring-1 ring-inset ring-white/10'>
-          <div className='font-bold text-white'>Supports</div>
-          <div className='mt-0 flex gap-5'>
-            {supportedEngines.map(({ name, image, href, gradient }) => (
+function Subtitle() {
+  return (
+    <div className='flex flex-col items-center justify-center px-2 py-20 w-full text-center'>
+      {/* Description */}
+      <div className='leading-8 text-cream-100'>
+        {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
+        {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
+        <p className='text-xl font-semibold'>Hassle-free solution to deploy & scale multiplayer game servers</p>
+        <p className='text-lg opacity-90 mt-2'>
+          Supports&nbsp;
+          {supportedEngines.map(({ name, image, href, styles, join }, i) => (
+            <span key={name}>
               <Link
-                key={name}
                 href={href}
-                className={clsx(
-                  'flex shrink-0 items-center justify-center gap-1 rounded-xl',
-                  'py-4 font-semibold transition transition hover:scale-110',
-                  'bg-gradient-to-r bg-clip-text text-transparent',
-                  gradient[0],
-                  gradient[1]
-                )}>
-                <div>{name}</div>
+                className={clsx('inline font-semibold transition hover:scale-110 pointer-events-auto', styles.text)}>
+                {name}
               </Link>
-            ))}
-          </div>
-        </div> */}
+              {join}
+            </span>
+          ))}
+        </p>
+      </div>
 
-        {/* CTA */}
-        <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-          <Button variant='juicy' href='https://hub.rivet.gg'>
-            Get Started
-          </Button>
+      {/* Investors */}
+      {/* <div className='mt-6 block w-max flex items-center justify-center gap-2 text-2xs font-semibold text-white'> */}
+      {/*   <div className='opacity-75'>Backed by</div> */}
+      {/*   <Link */}
+      {/*     href='https://www.ycombinator.com/' */}
+      {/*     target='_blank' */}
+      {/*     className=' opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'> */}
+      {/*     <YCLogo className='h-[1.7em]' white={true} /> */}
+      {/*   </Link> */}
+      {/*   <div className='opacity-75'>&</div> */}
+      {/*   <Link */}
+      {/*     href='https://a16z.com/games/' */}
+      {/*     target='_blank' */}
+      {/*     className='argin-auto block w-max opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'> */}
+      {/*     <A16ZLogo className='h-[1.7em]' white={true} /> */}
+      {/*   </Link> */}
+      {/* </div> */}
 
-          <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
-            5 minute crash course <span aria-hidden='true'>→</span>
-          </Link>
-        </div>
+      {/* CTA */}
+      <div className='flex flex-wrap items-center justify-center gap-x-6 gap-y-8 pointer-events-auto mt-9'>
+        <Button variant='juicy' href='https://hub.rivet.gg'>Get Started</Button>
 
-        <div className='mt-9 flex flex-col items-center justify-center sm:flex-row'>
-          {/* YC */}
-          <Link
-            href='https://www.ycombinator.com/'
-            target='_blank'
-            className='margin-auto block w-max opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0'>
-            <div className='flex items-center justify-center gap-2 text-2xs font-semibold text-white'>
-              <div>Backed by</div>
-              <YCLogo className='h-[1.7em]' white={true} />
-            </div>
-          </Link>
+        <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
+          5 minute crash course <span aria-hidden='true'>→</span>
+        </Link>
+      </div>
 
-          {/* Separator */}
-          <div className='mx-4 hidden h-4 w-[1px] bg-white/50 sm:block'></div>
-          <div className='my-4 block h-[1px] w-4 bg-white/50 sm:hidden'></div>
 
-          {/* GitHub */}
-          <div className='h-[28px]'>
-            <GitHubButton
-              href='https://github.com/rivet-gg/rivet'
-              data-color-scheme='no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;'
-              data-size='large'
-              data-show-count='true'
-              aria-label='Star rivet-gg/rivet on GitHub'>
-              Star
-            </GitHubButton>
-          </div>
+      {/* Separator */}
+      {/* <div className='mx-4 hidden h-4 w-[1px] bg-white/50 sm:block'></div> */}
+      {/* <div className='my-4 block h-[1px] w-4 bg-white/50 sm:hidden'></div> */}
+
+      {/* GitHub */}
+      <div className='flex items-center gap-3 mt-9'>
+        {/* <div className='text-white opacity-75'>Pirate our source code <FontAwesomeIcon icon={faCaretRight} /></div> */}
+        <div className='text-white opacity-75'><FontAwesomeIcon icon={faSkullCrossbones} className='text-white opacity-75 mr-1' /> Pirate our source code</div>
+        <FontAwesomeIcon icon={faArrowRight} className='text-white opacity-75 w-4 h-4' />
+        <div className='h-[28px]'>
+          <GitHubButton
+            href='https://github.com/rivet-gg/rivet'
+            data-color-scheme='no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;'
+            data-size='large'
+            data-show-count='true'
+            aria-label='Star rivet-gg/rivet on GitHub'>
+            Star
+          </GitHubButton>
         </div>
       </div>
 
-      {/* Demo */}
-      {/* <Demo /> */}
     </div>
-  );
+  )
 }
 
-function DemoSection() {
-  return (
-    <div className='mt-24 flex flex-col items-center justify-center bg-black'>
-      {' '}
-      {/* Added bg-black */}
-      <br></br>
-      <Demo />
-      <br></br>
-    </div>
-  );
-}
-function Demo() {
-  return (
-    <div className='relative flex w-full justify-center bg-black'>
-      <div className='flex max-w-7xl flex-col p-4 sm:flex-row'>
-        {/* Text and Bullet Points */}
-        <div className='p-4' style={{ maxWidth: '50%' }}>
-          <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-            <div>Build</div>
-            <div>Riveting</div>
-            <div>Experiences</div>
-          </h2>
+// function DemoSection() {
+//   return (
+//     <div className='mt-24 flex flex-col items-center justify-center bg-black'>
+//       {' '}
+//       {/* Added bg-black */}
+//       <br></br>
+//       <Demo />
+//       <br></br>
+//     </div>
+//   );
+// }
+// function Demo() {
+//   return (
+//     <div className='relative flex w-full justify-center bg-black'>
+//       <div className='flex max-w-7xl flex-col p-4 sm:flex-row'>
+//         {/* Text and Bullet Points */}
+//         <div className='p-4' style={{ maxWidth: '50%' }}>
+//           <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
+//             <div>Build</div>
+//             <div>Riveting</div>
+//             <div>Experiences</div>
+//           </h2>
 
-          <RainbowBarAnimated className='relative mt-0 h-1 w-[75%]' />
+//           <RainbowBarAnimated className='relative mt-0 h-1 w-[75%]' />
 
-          {/* Grid Container for Bullet Points */}
-          <div className='mt-8 grid grid-cols-1 gap-4'>
-            <div>
-              <ul
-                className='list-outside list-disc space-y-6 font-bold text-cream-100'
-                style={{ paddingLeft: '1.25em' }}>
-                <li>Your whole multiplayer experience on one game development platform</li>
-                <li>Use any engine, networking framework, or language</li>
-                <li>{`We'll get you started on your first project or your major AAA global launch`}</li>
-                <li>
-                  Join our open source community on the Discord, building the future for game developers
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+//           {/* Grid Container for Bullet Points */}
+//           <div className='mt-8 grid grid-cols-1 gap-4'>
+//             <div>
+//               <ul
+//                 className='list-outside list-disc space-y-6 font-bold text-cream-100'
+//                 style={{ paddingLeft: '1.25em' }}>
+//                 <li>Your whole multiplayer experience on one game development platform</li>
+//                 <li>Use any engine, networking framework, or language</li>
+//                 <li>{`We'll get you started on your first project or your major AAA global launch`}</li>
+//                 <li>
+//                   Join our open source community on the Discord, building the future for game developers
+//                 </li>
+//               </ul>
+//             </div>
+//           </div>
+//         </div>
 
-        {/* Image */}
-        <div className='relative h-auto w-full overflow-hidden sm:h-full sm:flex-1'>
-          <Image
-            src={imgComputerFrame}
-            alt='Rivet'
-            className='h-auto w-full object-cover sm:h-full sm:w-full'
-          />
-          <div
-            className='absolute left-0 top-0 h-full w-full'
-            style={{
-              backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
-              backgroundSize: '100% 20px',
-              animation: 'moveVerticalLines 5s linear infinite',
-              zIndex: 10
-            }}></div>
-        </div>
-      </div>
-    </div>
-  );
-}
+//         {/* Image */}
+//         <div className='relative h-auto w-full overflow-hidden sm:h-full sm:flex-1'>
+//           <Image
+//             src={imgComputerFrame}
+//             alt='Rivet'
+//             className='h-auto w-full object-cover sm:h-full sm:w-full'
+//           />
+//           <div
+//             className='absolute left-0 top-0 h-full w-full'
+//             style={{
+//               backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
+//               backgroundSize: '100% 20px',
+//               animation: 'moveVerticalLines 5s linear infinite',
+//               zIndex: 10
+//             }}></div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 const enginePages = [
   {
@@ -943,7 +950,14 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='mx-auto w-full max-w-7xl'>
+    <div className='mx-auto w-full max-w-7xl mt-24'>
+      {/* sub-text */}
+      <div className='max-w-1xl mx-auto text-center mb-8'>
+        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
+          Packed to the brim with features
+        </h3>
+      </div>
+
       <FeatureTabs
         index={page.index}
         onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })}
