@@ -9,6 +9,10 @@
     --shiki-token-function: theme('colors.violet.300');
     --shiki-token-string-expression: theme('colors.violet.300');
     --shiki-token-punctuation: theme('colors.zinc.200');
+
+    --bg-dark-grain: url("../images/effects/grain-dark.png");
+    --bg-light-grain: url("../images/effects/grain-light.png");
+
   }
 
   [inert] ::-webkit-scrollbar {
@@ -88,7 +92,6 @@
   0% { background-position: 50% 0%; }
   100% { background-position: 50% 100%; }
 }
-
 
 
 

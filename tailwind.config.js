@@ -55,7 +55,9 @@ module.exports = {
         navigation: '6.5rem'
       },
       backgroundImage: {
-        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)'
+        'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
+        'light-grain': 'var(--bg-light-grain)',
+        'dark-grain': 'var(--bg-dark-grain)'
       },
       gridTemplateColumns: {
         'table-of-contents': '1fr 20rem',
