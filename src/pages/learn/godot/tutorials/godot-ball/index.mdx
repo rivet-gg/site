@@ -1,0 +1,164 @@
+import Image from 'next/image';
+import multiplayerSpawnerNode from './images/multiplayer-spawner-node.jpg';
+import multiplayerSyncronizerNode from './images/multiplayer-synchronizer-node.jpg';
+import synchronizerReplicationPanel from './images/synchronizer-replication-panel.jpg';
+
+# 💣 Bomber Demo
+
+<WorkInProgress />
+
+This guide will walk you through creating and deploying a multiplayer game with
+Godot 4.2.
+
+<Warning>
+	If you are using Godot 4.1/4.0/3.x, please be aware that some details may be
+	different.
+</Warning>
+
+---
+
+## Overview
+
+Godot provides a sample project to learn about networking and multiplayer games,
+but there isn't really a great guide to take you through the concepts involved
+with it. Hopefully this tutorial will help you understand some of the basics!
+
+We'll try to cover some networking foundations, and link out to external
+resources when we can.
+
+Overview:
+
+- Overview of the project
+- Setting up the project
+- 
+
+## Overview of the project
+
+We're going to try and design something that is as simple as possible. We'll
+create a 2D scene with each client being a player that can be moved around.
+
+{/* TODO: Add gif of final game */}
+
+For this, we'll create 3 scenes:
+
+- Loading scene
+- Game scene
+- Player scene
+
+From the networking perspective, here is what we want to have happen:
+
+1. When a player opens the game, they're automatically put into a lobby
+2. When a player loads into a lobby, other players show up on their screen, and
+   the new player shows up on the other players' screens
+3. When a player moves, the everyone else can see that movement
+
+Godot gives us some tools to help with this, known as the "high-level multiplayer
+API". This gives us three primary tools:
+
+- A way to connect to other clients
+- A way to spawn nodes on every connected client
+- A way to synchronize these nodes
+
+<Accordion title="What is mid-level and low-level networking?">
+	[Understanding the differences between UDP and TCP](https://gafferongames.com/post/udp_vs_tcp/)
+
+	However, it can be good to know some of these concepts when you start
+	needing to debug errors in your game.
+</Accordion>
+
+## Setting up the project
+
+This tutorial will mostly focus on the concepts behind multiplayer, and not so
+much how to set up the Godot project. Because of this, we'll start with a base
+project that contains the scenes we need. For this, we can check out the [Rivet
+examples repository](https://github.com/rivet-gg/examples). Once we've cloned
+it, we'll want to check out the `pre-rivet` branch, since it doesn't contain the
+final code.
+
+{/* TODO: Add this example as a zip download in the tutorial */}
+
+So far, this project will include:
+
+- The required scenes
+- Basic controls
+
+## Adding multiplayer nodes
+
+First, we'll want to set up what Godot will handle for us once we connect to a
+server. This will focus on creating nodes, and synchronizing them. Godot gives
+us two separate nodes for this:
+
+### Multiplayer Spawner
+
+We'll first start by looking at the `MultiplayerSpawner` node. This node is used
+to watch another node, and if children are added to it, it will replicate those
+children across all connected clients. We can see it in action in the image below:
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Image src={multiplayerSpawnerNode} alt="Multiplayer Spawner Node" width={400} />
+</div>
+
+As we can see here, the `MultiplayerSpawner` node is watching the `Players`
+node. It can spawn any number of new players, since the limit is set to 0,
+though we could add a cap to that if we like. Also, we specify what scene we
+want to watch for. This means that if other scene types other `godot_ball` are
+added, they won't be replicated.
+
+However, just because a node is added to the `Players` node, it doesn't mean
+that it will properly be synchronized as the game progresses. We need to add two
+more things for that to happen:
+
+- A `MultiplayerSynchronizer` node that will update certain properties
+  of the node on every client if they change. This node is discussed more in the next section.
+- If this node should be controlled by a player, then it will need to have it's
+  "multiplayer authority" set to that player. That means only that player can
+  make changes to it that will be sent to other players.
+
+### Multiplayer synchronizer
+
+This node allows us to track specific properties of a node, and synchronize them
+across all connected clients. Choosing which properties we want means that we
+don't need to pass more over the network about a node than we need to. For
+example, you might want to share the position of a character in a game, or a
+player's score.
+
+As we can see in the image below, the `MultiplayerSynchronizer` node takes a
+`Root Path` node that it will use as the main reference for any synchronized
+properties. Then, we
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Image src={multiplayerSyncronizerNode} alt="Multiplayer Synchronizer Node" width={400} />
+</div>
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Image src={synchronizerReplicationPanel} alt="Synchronizer Replication Panel" />
+</div>
+
+### How it's set up
+
+Now that we know more about the `MultiplayerSpawner` and
+`MultiplayerSynchronizer` nodes, let's learn about how they might be set up in
+the game.
+
+For our project, we'll add a `MultiplayerSpawner` node to the `Game` scene. This
+allows our main game scene share a replicated state across all clients. This
+node can add and remove players as they connect or disconnect from the
+game.
+
+Multiplayer synchronize
+
+C
+
+## Things to try
+
+Now that you've gone through the tutorial, here are a few things to try adding
+that simulate patterns you might want to use with your own game:
+
+### Moving our camera to just watch our player
+
+Games often have a camera that follows the player around. In the multiplayer
+context, we want to only watch the player that we're controlling. Try
+
+<Accordion title="Solution">
+
+</Accordion>
