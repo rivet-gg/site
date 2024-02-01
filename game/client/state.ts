@@ -34,6 +34,7 @@ export default interface Client {
   screenScale: number;
   /// Position in the world where the pointer. This is used to determine where the player should move.
   worldPointer: { x: number; y: number };
+  inputShoot: boolean,
   lastSendInputTs: number,
   canvas: HTMLCanvasElement;
 }
@@ -49,6 +50,7 @@ export function initClient(canvas: HTMLCanvasElement): Client {
     screenScale: 0,
     // Random initial move position in case the player joins before the mouse moves
     worldPointer: { x: Math.round(Math.random() * MAP_WIDTH), y: Math.round(Math.random() * MAP_HEIGHT) },
+    inputShoot: false,
     lastSendInputTs: 0,
 
     shutdown: false,
@@ -107,6 +109,8 @@ export function drawLoop(client: Client) {
         setPlayerInput(client, getPlayerInputForMouseLocation(client, client.worldPointer.x, client.worldPointer.y));
       }
 
+      if (client.inputShoot) tryShoot(client);
+
       update(client.game, client.id, newTime - prevTime, newTime);
     }
   }
@@ -131,11 +135,11 @@ export async function setup(client: Client) {
 function createInputEventListener(client: Client) {
   client.canvas.addEventListener('mousedown', async () => {
     if (client.shutdown) return;
-    switch (getClientState(client)) {
-      case ClientState.PLAYING:
-        await tryShoot(client);
-        break;
-    }
+    client.inputShoot = true;
+  });
+  client.canvas.addEventListener('mouseup', async () => {
+    if (client.shutdown) return;
+    client.inputShoot = false;
   });
   window.addEventListener('mousemove', async ev => {
     if (client.shutdown) return;

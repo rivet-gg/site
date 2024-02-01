@@ -6,7 +6,7 @@ import { clamp, delerp, lerp, lerpAngle, polarX, polarY } from './utils';
 
 export const PLAYER_CONSTS = {
   SIZE: 25,
-  SECONDS_BETWEEN_SHOTS: 0.15,
+  SECONDS_BETWEEN_SHOTS: 0.3,
 
   SPEED: 500.0,
   TURNING_SPEED: Math.PI * 1.5,
@@ -187,7 +187,7 @@ export function updatePlayer(player: Player, game: GameState, dt: number) {
 }
 
 export function canShootBullet(player: Player, game: GameState): boolean {
-  return player.lastShot + PLAYER_CONSTS.SECONDS_BETWEEN_SHOTS < game.physicsTime;
+  return player && player.lastShot + PLAYER_CONSTS.SECONDS_BETWEEN_SHOTS < game.physicsTime;
 }
 export function shootBullet(player: Player, game: GameState): Bullet | null {
   const bullet: Bullet = {
