@@ -78,6 +78,13 @@ export function startClientDrawloop(client: Client): () => void {
 
   const loop = () => {
     if (!stopSignal.aborted) {
+      // If not on screen, slow down render loop and wait for it to come back
+      if (!isElementOnScreen(client.canvas)) {
+        setTimeout(loop, 100);
+        return;
+      }
+
+      // Render if connected
       if (client.connection) {
         const prevTime = client.connection.lastPhysicsUpdate ?? 0;
         const newTime = client.performance.now();
@@ -405,3 +412,8 @@ export function getPlayerInputForMouseLocation(client: Client, worldX: number, w
   return { angle, speedScalar };
 }
 
+function isElementOnScreen(element: HTMLElement): boolean {
+  if (element.offsetParent == null || element.offsetWidth == 0 || element.offsetHeight == 0) return false;
+  const rect = element.getBoundingClientRect();
+  return rect.top <= window.innerHeight && rect.bottom >= 0;
+}
