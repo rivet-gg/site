@@ -154,11 +154,11 @@ export const Header = forwardRef(function Header({ className }, ref) {
         /> */}
 
         <div className='flex items-center gap-4'>
-          <div class='xl:hidden'>
+          <div className='xl:hidden'>
             <MobileNavigation navigation={navigation} />
           </div>
 
-          <Link href='/' aria-label='Home' class='xl:hidden'>
+          <Link href='/' aria-label='Home' className='xl:hidden'>
             <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
           </Link>
 
