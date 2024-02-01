@@ -71,6 +71,7 @@ import {
   faHeart,
   faLineChart
 } from '@fortawesome/sharp-solid-svg-icons';
+import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.png';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';
 import imgMatchmaker from '@/images/screenshots/matchmaker.png';
@@ -367,6 +368,10 @@ export default function Index() {
           <Title />
 
           <RainbowBar className='h-1 w-full' />
+
+          <div className='relative w-full'>
+            <Image alt='This game is multiplayer!' src={imgMultiplayerCallout} className='hidden sm:block absolute right-6 top-4' />
+          </div>
 
           <Subtitle />
 
