@@ -71,7 +71,7 @@ import {
   faHeart,
   faLineChart
 } from '@fortawesome/sharp-solid-svg-icons';
-import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.png';
+import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.svg';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';
 import imgMatchmaker from '@/images/screenshots/matchmaker.png';
