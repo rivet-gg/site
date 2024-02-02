@@ -3,6 +3,9 @@ engine:
 matchmaker:
   max_players: 32
   tier: 'basic-1d2'
+  idle_lobbies:
+    min: 1
+    max: 1
   regions:
     atl: {}
     fra: {}

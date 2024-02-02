@@ -43,7 +43,7 @@ function getSocketForConnectionTarget(target: ConnectionTarget): ClientSideSocke
     const socket = io(`${secure ? 'wss' : 'ws'}://${host}`, {
       secure,
       transports: ['websocket'],
-      reconnection: true,
+      reconnection: false,
       query: { token },
       autoConnect: false
     });

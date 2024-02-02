@@ -225,10 +225,7 @@ function handleDisconnect(connection: Connection) {
   console.log(`Removing ${playerName} (${playerId}) from the game`);
   delete game.players[playerId];
 
-  if (!initialized || !alive) {
-    playerDisconnected(playerToken);
-    console.log(`Player leave logged in Rivet`);
-  }
+  playerDisconnected(playerToken);
 
   if (!socket.disconnected) socket.disconnect();
 }

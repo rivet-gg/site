@@ -16,11 +16,11 @@ export async function ready() {
 }
 
 export async function playerConnected(playerToken: string) {
-  // Tell Rivet that the player has connected.
+  console.log('Player connected', playerToken);
   return await RIVET.matchmaker.players.connected({ playerToken });
 }
 
 export async function playerDisconnected(playerToken: string) {
-  // Tell Rivet that the player has connected.
+  console.log('Player disconnected', playerToken);
   return await RIVET.matchmaker.players.disconnected({ playerToken });
 }
