@@ -118,10 +118,10 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
 }
 
 const StatusBadge = ({ status }) => {
-  if (status === 'experimental') {
+  if (status === 'alpha' || status === 'beta' || status === 'experimental') {
     return (
-      <span className='text-2xs text-amber-500'>
-        <FontAwesomeIcon icon={faFlask} />
+      <span className='text-gray-90 ms-2 border border-solid bg-cream-100 px-1 py-0.5 text-2xs leading-none text-charcole-900 '>
+        {status === 'experimental' ? <FontAwesomeIcon icon={faFlask} /> : status}
       </span>
     );
   }

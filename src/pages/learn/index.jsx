@@ -8,32 +8,29 @@ let supportedEngines = [
   {
     id: 'godot',
     name: 'Godot',
-    href: '/learn/godot',
-    join: <span>,&nbsp;</span>
+    href: '/learn/godot'
   },
   {
     id: 'unity',
     name: 'Unity',
     href: '/learn/unity',
-    join: <span>,&nbsp;</span>
+    status: 'alpha'
   },
   {
     id: 'unreal',
     name: 'Unreal Engine',
     href: '/learn/unreal',
-    join: <span>,&nbsp;</span>
+    status: 'beta'
   },
   {
     id: 'html5',
     name: 'HTML5',
-    href: '/learn/html5',
-    join: <span>,&nbsp;and&nbsp;</span>
+    href: '/learn/html5'
   },
   {
     id: 'custom',
     name: 'Custom',
-    href: '/learn/custom',
-    join: null
+    href: '/learn/custom'
   }
 ];
 
@@ -44,7 +41,7 @@ export default function LearnIndex() {
         <div className='text-center font-display text-5xl font-bold text-white'>Pick Your Engine</div>
         <div className='mt-14 grid grid-cols-6 gap-4'>
           {supportedEngines.map((engine, i) => (
-            <GameEngine key={engine.name} engine={engine} long={i >= 3} />
+            <GameEngine key={engine.name} engine={engine} status={engine.status} long={i >= 3} />
           ))}
         </div>
       </div>
@@ -52,7 +49,22 @@ export default function LearnIndex() {
   );
 }
 
-function GameEngine({ engine, long } = { long: false }) {
+const StatusBadge = ({ status }) => {
+  if (!status) {
+    return;
+  }
+
+  return (
+    <div
+      className={clsx(
+        'absolute right-2 top-2 border border-solid bg-cream-100 px-1.5 py-1 text-xs font-bold lowercase leading-none text-charcole-900'
+      )}>
+      {status}
+    </div>
+  );
+};
+
+function GameEngine({ engine, long, status } = { long: false }) {
   return (
     <PatternButton
       href={engine.href}
@@ -73,6 +85,7 @@ function GameEngine({ engine, long } = { long: false }) {
         )}>
         {engine.name}
       </span>
+      <StatusBadge status={status} />
     </PatternButton>
   );
 }
