@@ -177,19 +177,22 @@ function docsTabs(path) {
       title: 'Matchmaker',
       icon: 'matchmaker',
       href: '/docs/matchmaker',
-      current: path[1] === 'matchmaker'
+      current: path[1] === 'matchmaker',
+      status: 'stable'
     },
     {
       title: 'CDN',
       icon: 'cdn',
       href: '/docs/cdn',
-      current: path[1] === 'cdn'
+      current: path[1] === 'cdn',
+      status: 'stable'
     },
     {
       title: 'KV',
       icon: 'kv',
       href: '/docs/kv',
-      current: path[1] === 'kv'
+      current: path[1] === 'kv',
+      status: 'experimental'
     },
     // {
     //   title: 'Identity',

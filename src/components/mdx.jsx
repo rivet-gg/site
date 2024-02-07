@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
-import { Tip, Info, Note } from '@/components/callouts';
+import { Tip, Info, Note, Warning } from '@/components/callouts';
 import { Accordion } from '@/components/Accordion';
 import NextImage from 'next/image';
 
@@ -286,3 +286,7 @@ export function UnfamiliarWithDockerfiles() {
     </Accordion>
   );
 }
+
+export const ExperimentalFeature = () => {
+  return <Warning>This feature is experimental and may change in the future.</Warning>;
+};
