@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import nathanFlurry from '../../authors/nathan-flurry/avatar.jpeg';
 import nicholasKissel from '../../authors/nicholas-kissel/avatar.jpeg';
+import forestAnderson from '../../authors/forest-anderson/avatar.jpeg';
 import { StaticImageData } from 'next/image';
 
 const authors = {
@@ -15,7 +16,13 @@ const authors = {
     role: 'Co-founder & CEO',
     avatar: nicholasKissel,
     url: 'https://twitter.com/nicholaskissel'
-  }
+  },
+  'forest-anderson': {
+    name: 'Forest Anderson',
+    role: 'Founding Engineer',
+    avatar: forestAnderson,
+    url: 'https://twitter.com/angelonfira'
+  },
 };
 
 const categories = {
