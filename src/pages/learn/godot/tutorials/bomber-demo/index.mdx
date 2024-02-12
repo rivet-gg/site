@@ -105,7 +105,7 @@ handle part of the multiplayer setup before our code does. We also need to call
 </Accordion>
 
 {/* prettier-ignore */}
-```py gamestate.gd
+```gdscript gamestate.gd
 func _ready():
 	RivetHelper.start_server.connect(start_server)
 	RivetHelper.setup_multiplayer()
@@ -121,7 +121,7 @@ see logs that are about Rivet, and not about your game when you're looking in
 the hub.
 
 {/* prettier-ignore */}
-```py gamestate.gd
+```gdscript gamestate.gd
 func start_server():
 	print("Starting server on %s" % DEFAULT_PORT)
 
@@ -171,7 +171,7 @@ trying to continue. However, this might not be the best choice for your game.
 </Accordion>
 
 {/* prettier-ignore */}
-```py gamestate.gd
+```gdscript gamestate.gd
 func join_game(new_player_name):
 	print("Joining game as %s" % new_player_name)
 	player_name = new_player_name
@@ -200,7 +200,7 @@ after the game is started. This makes sense for this game, since we don't want
 players to be able to join a game that has already started. However, other games
 might want to leave the lobby open so that players can join mid-game.
 
-```py gamestate.gd
+```gdscript gamestate.gd
 @rpc("any_peer")
 func begin_game():
 	if !multiplayer.is_server():

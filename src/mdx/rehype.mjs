@@ -1,7 +1,7 @@
 import { mdxAnnotations } from 'mdx-annotations';
 import { visit } from 'unist-util-visit';
 import rehypeMdxTitle from 'rehype-mdx-title';
-import shiki from 'shiki';
+import * as shiki from 'shiki';
 import { toString } from 'mdast-util-to-string';
 import * as acorn from 'acorn';
 import { slugifyWithCounter } from '@sindresorhus/slugify';
@@ -24,11 +24,39 @@ function rehypeParseCodeBlocks() {
   };
 }
 
+const cssVariableTheme = shiki.createCssVariablesTheme({
+  name: 'css-variables',
+  variablePrefix: '--shiki-',
+  variableDefaults: {},
+  fontStyle: true
+});
+
+/** @type {import("shiki").Highlighter} */
 let highlighter;
 
 function rehypeShiki() {
   return async tree => {
-    highlighter = highlighter ?? (await shiki.getHighlighter({ theme: 'css-variables' }));
+    highlighter =
+      highlighter ??
+      (await shiki.getHighlighter({
+        theme: cssVariableTheme,
+        langs: [
+          'js',
+          'json',
+          'gdscript',
+          'bash',
+          'ts',
+          'yaml',
+          'json',
+          'docker',
+          'powershell',
+          'typescript',
+          'ini',
+          'csharp',
+          'cpp',
+          'batch'
+        ]
+      }));
 
     visit(tree, 'element', node => {
       if (node.tagName === 'pre' && node.children[0]?.tagName === 'code') {
@@ -38,9 +66,9 @@ function rehypeShiki() {
         node.properties.code = textNode.value;
 
         if (node.properties.language) {
-          let tokens = highlighter.codeToThemedTokens(textNode.value, node.properties.language);
-
-          textNode.value = shiki.renderToHtml(tokens, {
+          textNode.value = highlighter.codeToHtml(textNode.value, {
+            lang: node.properties.language,
+            theme: cssVariableTheme,
             elements: {
               pre: ({ children }) => children,
               code: ({ children }) => children,

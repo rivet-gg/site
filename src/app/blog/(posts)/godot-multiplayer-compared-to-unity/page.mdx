@@ -117,7 +117,7 @@ To manually synchronize your own complex types, it's possible to use a getter/se
 
 <CodeGroup title='custom_sync_type.gd'>
 
-```
+```gdscript
 # Node state
 var weapon: int = 0
 var ammo: int = 100
@@ -125,20 +125,20 @@ var ammo: int = 100
 # Custom encoding & decoding
 
 var sync_state:
-get:
-var buf = PackedByteArray()
-buf.resize(6)
-buf.encode_half(0, position.x)
-buf.encode_half(2, position.y)
-buf.encode_u8(4, weapon)
-buf.encode_u8(5, ammo)
-return buf
+  get:
+    var buf = PackedByteArray()
+    buf.resize(6)
+    buf.encode_half(0, position.x)
+    buf.encode_half(2, position.y)
+    buf.encode_u8(4, weapon)
+    buf.encode_u8(5, ammo)
+    return buf
 
-    set(value):
-    	assert(typeof(value) == TYPE_RAW_ARRAY and value.size() == 6)
-    	position = Vector2(value.decode_half(0), value.decode_half(2))
-    	weapon = value.decode_u8(4)
-    	ammo = value.decode_u8(5)
+  set(value):
+    assert(typeof(value) == TYPE_RAW_ARRAY and value.size() == 6)
+    position = Vector2(value.decode_half(0), value.decode_half(2))
+    weapon = value.decode_u8(4)
+    ammo = value.decode_u8(5)
 ```
 
 </CodeGroup>
@@ -350,9 +350,7 @@ _This section includes self-promotion._
 One of the most challenging parts of building a multiplayer game is deploying & scaling dedicated game servers.
 
 [Rivet](https://github.com/rivet-gg/rivet) provides the features required to build a production-ready multiplayer game, including managed game servers, matchmaking, DDoS protection, and analytics.
-
-[Join the closed beta](https://b8v8449klvp.typeform.com/rivet) to get your game up and running in less than 10 minutes. Supports Godot, Unreal Engine, and Unity.
-
+  
 <Note>
   Spot an issue with this article? Please reach out on our [Discord](https://discord.gg/aXYfyNxYVn)!
 </Note>
@@ -370,5 +368,6 @@ For hobbyists, Godot's multiplayer is a solid choice to get your feet wet. If yo
 - **Updated September 18th**: Clarify that arrays & dictionaries can be synced by default, list affected issue
 - **Updated September 18th**: Add mention of `synchronized` and `delta_synchronized` signals
 - **Updated September 18th**: Include missing send rate on a per-client basis functionality
+- **Updated February 7th 2024**: Removed information about closed beta. Rivet is now open to the public!
 
 <ArticleSocials {...info}/>
