@@ -1,9 +1,18 @@
 {
+    "editor.rulers": [80],
+	"[markdown]": {
+		"rewrap.wrappingColumn": 80,
+		"rewrap.autoWrap.enabled": true
+	},
+    "[mdx]": {
+		"rewrap.wrappingColumn": 80,
+		"rewrap.autoWrap.enabled": true
+    },
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "grammarly.selectors": [
         {
             "language": "mdx",
             "scheme": "file"
         }
-    ]
+    ],
 }
