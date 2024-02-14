@@ -7,7 +7,8 @@
         "title": "Tutorials",
         "pages": [
           "tutorials/crash-course",
-          "tutorials/bomber-demo"
+          "tutorials/bomber-demo",
+          "tutorials/godot-ball"
         ]
       }
     ]
