@@ -12,7 +12,8 @@
           "concepts/logging",
           "concepts/lobby-metrics",
           "concepts/available-regions",
-          "concepts/available-tiers"
+          "concepts/available-tiers",
+          "concepts/docker-root-user"
         ]
       }
     ]

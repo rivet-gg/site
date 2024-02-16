@@ -15,9 +15,18 @@ function rehypeParseCodeBlocks() {
           parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
         }
 
-        // Parse title
-        if (node.data?.meta) {
-          parentNode.properties.title = node.data.meta;
+        // Parse annotations
+        if (parentNode.properties?.annotation) {
+          try {
+            // Annotations can only be strings
+            let annotations = JSON.parse(parentNode.properties.annotation);
+
+            for (let key in annotations) {
+              parentNode.properties[key] = annotations[key];
+            }
+          } catch (e) {
+            console.error('invalid annotations in code block', e);
+          }
         }
       }
     });
@@ -36,9 +45,8 @@ let highlighter;
 
 function rehypeShiki() {
   return async tree => {
-    highlighter =
-      highlighter ??
-      (await shiki.getHighlighter({
+    if (highlighter == undefined) {
+      highlighter = await shiki.getHighlighter({
         theme: cssVariableTheme,
         langs: [
           'js',
@@ -56,7 +64,8 @@ function rehypeShiki() {
           'cpp',
           'batch'
         ]
-      }));
+      });
+    }
 
     visit(tree, 'element', node => {
       if (node.tagName === 'pre' && node.children[0]?.tagName === 'code') {

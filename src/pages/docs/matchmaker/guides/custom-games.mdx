@@ -9,26 +9,16 @@ the configurations available with custom lobbies.
 To create custom lobbies, you must first enable them in the version config:
 
 <CodeGroup title='rivet.yaml'>
-```yaml
-matchmaker:
-  game_modes:
-    default:
-      actions:
-        create:
-          enabled: true
-          # Public custom lobbies will be listed in the response to `lobbies.list`, private custom
-          # lobbies will not
-          enable_public: true
-          enable_private: true
-          max_lobbies_per_identity: 5 # Optional
-```
+  ```yaml matchmaker: game_modes: default: actions: create: enabled: true # Public custom lobbies will be
+  listed in the response to `lobbies.list`, private custom # lobbies will not enable_public: true
+  enable_private: true max_lobbies_per_identity: 5 # Optional ```
 </CodeGroup>
 
 Now users can create a new custom lobby on-demand like so:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
 
-```bash {{ title: 'cURL' }}
+```bash {{ "title": "cURL" }}
 curl
 -X POST \
 -H "Content-Type: application/json" \
@@ -59,7 +49,7 @@ Additionally, users can input any arbitrary JSON to the
 custom lobby that will be created. This allows users to customize game properties to their liking.
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/create'>
-  ```bash {{ title: 'cURL' }}
+  ```bash {{ "title": "cURL" }}
   curl
     -X POST \
     -H "Content-Type: application/json" \
@@ -100,19 +90,20 @@ Here's an example of how you might use the user's lobby config:
     const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
     await RIVET.matchmaker.lobbies.ready({});
 
-	// Parse config
-	let config: any;
-	try {
-		config = JSON.parse(process.env.RIVET_LOBBY_CONFIG);
-	} catch(e) {
-		console.error("Invalid lobby config: ", e);
-		process.exit(1);
-	}
+    // Parse config
+    let config: any;
+    try {
+    	config = JSON.parse(process.env.RIVET_LOBBY_CONFIG);
+    } catch(e) {
+    	console.error("Invalid lobby config: ", e);
+    	process.exit(1);
+    }
 
     let roundDuration = config.roundDuration ?? 240;
     let gravity = config.gravity ?? 9.8;
     let coinsPerKill = config.coinsPerKill ?? 50;
-	
-	// ...
+
+    // ...
     ```
+
 </CodeGroup>

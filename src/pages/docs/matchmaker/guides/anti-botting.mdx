@@ -100,7 +100,7 @@ captcha. After a successful captcha completion, retry the [`lobbies.find`](/docs
 request with the captcha response:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
-  ```bash {{ title: 'cURL' }}
+  ```bash {{ "title": "cURL" }}
   curl
     -X POST \
     -H "Content-Type: application/json" \
@@ -227,7 +227,7 @@ Your server should reply to Rivet's request according to these rules:
 This code shows how to provide user data to your external verification server through Rivet:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
-  ```bash {{ title: 'cURL' }}
+  ```bash {{ "title": "cURL" }}
   curl
     -X POST \
     -H "Content-Type: application/json" \
@@ -262,7 +262,7 @@ For example, passing a user's account token into this request will allow you to 
 that the user is who they say they are:
 
 <CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
-  ```bash {{ title: 'cURL' }}
+  ```bash {{ "title": "cURL" }}
   curl
     -X POST \
     -H "Content-Type: application/json" \

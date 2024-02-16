@@ -61,11 +61,11 @@ export async function generateApiPages(spec) {
       let fullUrl = apiBaseUrl + pathName;
 
       // pathName = /product/.../...
-      let [__, product, ...relativePath]  = pathName.split("/");
+      let [__, product, ...relativePath] = pathName.split('/');
       let productConfig = PRODUCTS[product];
       if (!productConfig) continue;
 
-      let indexableName = `${method.toUpperCase()} /${relativePath.join("/")}`;
+      let indexableName = `${method.toUpperCase()} /${relativePath.join('/')}`;
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
@@ -77,7 +77,7 @@ export async function generateApiPages(spec) {
       if (isImportant) title = '⭐️ ' + title;
 
       // Get description with a default fallback
-      let description = "*Coming Soon!*";
+      let description = '*Coming Soon!*';
       if (specPath.description) description = specPath.description;
 
       let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
@@ -105,7 +105,7 @@ ${description}
 
 <CodeGroup title='Request' tag='${method.toUpperCase()}' label='${fullUrl}'>
 
-\`\`\`bash {{ title: 'cURL' }}
+\`\`\`bash {{ "title": "cURL" }}
 ${curlCommand}
 \`\`\`
 

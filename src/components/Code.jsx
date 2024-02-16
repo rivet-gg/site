@@ -17,7 +17,8 @@ const languageNames = {
   ruby: 'Ruby',
   ts: 'TypeScript',
   yaml: 'YAML',
-  gdscript: 'GDScript'
+  gdscript: 'GDScript',
+  docker: 'Docker'
 };
 
 function getPanelTitle({ title, language }) {
