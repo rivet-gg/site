@@ -4,7 +4,33 @@ Lobby tags are an optional property that can be passed to the [`lobbies.find`](/
 
 To enable tags, set [`taggable`](http://localhost:3000/docs/general/config#matchmaker-game-modes-game-mode-taggable) to true.
 
+<CodeGroup title='rivet.yaml'>
+```yaml
+matchmaker:
+  game_modes:
+    default:
+      taggable: true
+```
+</CodeGroup>
+
 When passed to [`lobbies.create`](/docs/matchmaker/api/lobbies/create), the newly created lobby will have the given tags. When passed to [`lobbies.find`](/docs/matchmaker/api/lobbies/find), the matchmaker will attempt to return a lobby with a **superset** of the given tags. If no lobby is found, a new lobby is created with the given tags.
+
+<CodeGroup title='Request' tag='POST' label='https://matchmaker.api.rivet.gg/v1/lobbies/find'>
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: addYourTokenHere });
+
+// Make request
+await RIVET.matchmaker.lobbies.find({
+  gameMode: 'default',
+  tags: {
+    map: "sandstorm",
+    difficulty: "hard"
+  }
+});
+```
+</CodeGroup>
 
 <Warning>Tags are immutable. After a lobby is created, its tags cannot be changed.</Warning>
 
