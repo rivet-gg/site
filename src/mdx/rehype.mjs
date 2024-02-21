@@ -49,20 +49,21 @@ function rehypeShiki() {
       highlighter = await shiki.getHighlighter({
         theme: cssVariableTheme,
         langs: [
+          'bash',
+          'batch',
+          'cpp',
+          'csharp',
+          'docker',
+          'gdscript',
+          'html',
+          'ini',
           'js',
           'json',
-          'gdscript',
-          'bash',
-          'ts',
-          'yaml',
           'json',
-          'docker',
           'powershell',
+          'ts',
           'typescript',
-          'ini',
-          'csharp',
-          'cpp',
-          'batch'
+          'yaml'
         ]
       });
     }

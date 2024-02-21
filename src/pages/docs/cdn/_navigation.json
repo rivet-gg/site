@@ -5,7 +5,7 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": ["concepts/custom-root-domain"]
+        "pages": ["concepts/custom-root-domain", "concepts/caching-files"]
       }
     ]
   }
