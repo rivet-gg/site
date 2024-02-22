@@ -216,6 +216,20 @@ export function InstallCli() {
   );
 }
 
+export function AutomateWithApi() {
+  return (
+    <Accordion title="Can I automate this with APIs?">
+      <p>
+        Rivet's Cloud API can be managed with your <Link href="/docs/general/concepts/token-types#cloud">cloud token</Link>. This is the same API we use internally and <Link href="https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368">in the CLI</Link>.
+      </p>
+
+      <p>
+        The Cloud REST API is documented <Link href="/docs/cloud">here</Link>. You can also use the <Link href="https://www.npmjs.com/package/@rivet-gg/api-full" target='_blank'><code>@rivet-gg/api-full</code> NPM library</Link> to interact with the Cloud API.
+      </p>
+    </Accordion>
+  );
+}
+
 export function CrashCourseUnrealBlueprint() {
   return null;
   return (

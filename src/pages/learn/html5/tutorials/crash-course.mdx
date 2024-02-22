@@ -14,20 +14,6 @@ Visit the [Rivet Dashboard](https://hub.rivet.gg/developer/dashboard) to create 
 
 Follow instructions [here](https://github.com/rivet-gg/cli#installing).
 
-<AccordionGroup>
-	<Accordion title="Can I do this with just a GUI?">
-		Yes. Everything in Rivet is built to be able to be access three ways: GUI, CLI, and API.
-
-    	We're working on publishing a tutorial for this soon.
-    </Accordion>
-    <Accordion title="Can I automate this with APIs?">
-    	Rivet's Cloud API can be managed with your [cloud token](/docs/general/concepts/token-types#cloud). This is the same API we use internally and [in the CLI](https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368).
-
-    	A dedicated library and specification will be published soon in order to build your own tooling.
-    </Accordion>
-
-</AccordionGroup>
-
 ### Initialize the project
 
 Open your project's directory in a terminal and run:
@@ -112,7 +98,9 @@ myGameServer.on("connect", await (socket) => {
 ## Step 3: Publish your game
 
 ```bash
-rivet deploy --namespace prod
+rivet deploy prod
 ```
+
+<AutomateWithApi />
 
 This will print a URL ending in `rivet.game`. If you are hosting your game on Rivet CDN, visit that URL to play your game.
