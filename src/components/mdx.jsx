@@ -163,7 +163,7 @@ export function ProtocolSupportMatrix() {
           <Link href='/docs/dynamic-servers/concepts/game-guard'>Rivet Game Guard</Link>
         </th>
         <th>
-          <Link href='/docs/dynamic-servers/concepts/host-bridge-networking'>Host Network</Link>
+          <Link href='/docs/dynamic-servers/concepts/host-bridge-networking'>Host Network (Open Source & Enterprise)</Link>
         </th>
       </tr>
       <tr>

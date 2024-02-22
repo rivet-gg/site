@@ -4,16 +4,22 @@
   "sidebar": {
     "groups": [
       {
-        "title": "Concepts",
+        "title": "Features",
         "pages": [
           "concepts/game-guard",
-          "concepts/protocols",
-          "concepts/ports",
           "concepts/logging",
           "concepts/lobby-metrics",
           "concepts/available-regions",
           "concepts/available-tiers",
           "concepts/docker-root-user"
+        ]
+      },
+      {
+        "title": "Advanced",
+        "pages": [
+          "concepts/protocols",
+          "concepts/ports",
+          "concepts/host-bridge-networking"
         ]
       }
     ]
