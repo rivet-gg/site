@@ -1,20 +1,19 @@
 
 import { CodeGroup, Code } from '@/components/Code';
 
-# putBatch
+# list
 
 ## Description
 
-Puts (sets or overwrites) multiple key-value entries by key(s).
+Lists all keys in a directory.
 
 
 ## Code Examples
 
-<CodeGroup title='Request' tag='PUT' label='https://api.rivet.gg/kv/entries/batch'>
+<CodeGroup title='Request' tag='GET' label='https://api.rivet.gg/kv/entries/list'>
 
 ```bash {{ "title": "cURL" }}
-# Write the request body to body.json before running
-curl -X PUT -d '@body.json' 'https://api.rivet.gg/kv/entries/batch'
+curl -X GET 'https://api.rivet.gg/kv/entries/list'
 ```
 
 ```ts
@@ -23,7 +22,7 @@ import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: addYourTokenHere });
 
 // Make request
-await RIVET.kv.putBatch({
+await RIVET.kv.list({
   // Add your request body here
 });
 ```
@@ -34,11 +33,31 @@ await RIVET.kv.putBatch({
 ## Request Parameters
 
 
-## Request Body
+### `directory`
+
+_Query parameter, required_
+
+
+
+
+
+### `namespace_id`
+
+_Query parameter, required_
+
+
+
+
+
+## Response Body
 
 ### `entries`
 
 `array<object>` (required)
+
+### `entries[*].deleted`
+
+`boolean`
 
 ### `entries[*].key`
 
@@ -58,13 +77,5 @@ A JSON object stored in the KV database.
 A `null` value indicates the entry is deleted.
 Maximum length of 262,144 bytes when encoded.
 
-### `namespace_id`
-
-`string`
 
 
-
-
-## Response Body
-
-_Empty response body._

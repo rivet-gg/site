@@ -6,9 +6,8 @@ import { CodeGroup, Code } from '@/components/Code';
 ## Description
 
 Finds a lobby based on the given criteria.
-If a lobby is not found and `prevent_auto_create_lobby` is `true`, 
+If a lobby is not found and `prevent_auto_create_lobby` is `false`,
 a new lobby will be created.
-
 
 
 ## Code Examples
@@ -140,7 +139,6 @@ A matchmaker lobby player.
 
 Pass this token through the socket to the lobby server. The lobby server will validate this token with `PlayerConnected.player_token`
 
-
 ### `ports`
 
 `map<string, object>` (required)
@@ -151,7 +149,6 @@ Pass this token through the socket to the lobby server. The lobby server will va
 
 The host for the given port. Will be null if using a port range.
 
-
 ### `ports.<port>.hostname`
 
 `string` (required)
@@ -160,19 +157,19 @@ The host for the given port. Will be null if using a port range.
 
 `boolean` (required)
 
+Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.
+
 ### `ports.<port>.port`
 
 `integer`
 
 The port number for this lobby. Will be null if using a port range.
 
-
 ### `ports.<port>.port_range`
 
 `object`
 
-Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.
-
+Inclusive range of ports that can be connected to.
 
 ### `ports.<port>.port_range.max`
 

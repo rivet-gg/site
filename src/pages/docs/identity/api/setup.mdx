@@ -63,7 +63,6 @@ Documentation at https://jwt.io/
 
 Information about the identity that was just authenticated.
 
-
 ### `identity.account_number`
 
 `integer` (required)
@@ -80,7 +79,6 @@ The URL of this identity's avatar image.
 
 Whether or not this identity is awaiting account deletion. Only visible to when the requestee is
 this identity.
-
 
 ### `identity.bio`
 
@@ -410,22 +408,20 @@ The current status of an identity. This helps players understand if another play
 
 `string` (required)
 
-Token used to authenticate the identity. 
-Should be stored somewhere permanent. 
-Pass this to `rivet.api.identity#Setup$existing_identity_token` next time `rivet.api.identity#Setup` is called. 
-Token has a 90 day TTL. 
-This means that if `rivet.api.identity#Setup` is not called again within 90 days, the token will no longer be valid. 
-If this happens, the user can recover their account through the linking process (see `rivet.api.identity#PrepareGameLink`). 
-This token should be stored locally and never sent to a server or another device. 
+Token used to authenticate the identity.
+Should be stored somewhere permanent.
+Pass this to `rivet.api.identity#Setup$existing_identity_token` next time `rivet.api.identity#Setup` is called.
+Token has a 90 day TTL.
+This means that if `rivet.api.identity#Setup` is not called again within 90 days, the token will no longer be valid.
+If this happens, the user can recover their account through the linking process (see `rivet.api.identity#PrepareGameLink`).
+This token should be stored locally and never sent to a server or another device.
 If this token is compromised, anyone with access to this token has control of the identity.
-
 
 ### `identity_token_expire_ts`
 
 `string` (required)
 
 If this token is compromised, anyone with access to this token has control of the identity.
-
 
 
 

@@ -35,6 +35,10 @@ await RIVET.cloud.bootstrap({
 
 ## Response Body
 
+### `access`
+
+`string` (required)
+
 ### `captcha`
 
 `object` (required)
@@ -70,6 +74,18 @@ Domains that host parts of Rivet
 ### `domains.main`
 
 `string` (required)
+
+### `login_methods`
+
+`object` (required)
+
+### `login_methods.access_token`
+
+`boolean` (required)
+
+### `login_methods.email`
+
+`boolean` (required)
 
 ### `origins`
 

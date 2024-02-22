@@ -71,6 +71,10 @@ The hostname used for the token.
 `object`
 
 Range of ports that can be connected to.
+If configured, `network_mode` must equal `host`.
+Port ranges may overlap between containers, it is the responsibility of the developer to ensure ports are available before using.
+Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking).
+Only available on Rivet Open Source & Enterprise.
 
 ### `ports.<port>.port_range.max`
 
@@ -88,7 +92,9 @@ Unsigned 32 bit integer.
 
 `string` (required)
 
-A port protocol.
+Type of network traffic to allow access to this port.
+Configuring `https` or `tcp_tls` will provide TLS termination for you via Game Guard.
+`https` and `tcp_tls` must have `proxy_kind` set to `game_guard`.
 
 
 

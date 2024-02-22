@@ -30,6 +30,10 @@
         "sortingKey": "999 -1 /cloud/devices/links post"
       },
       {
+        "href": "/docs/cloud/api/devices/links/complete",
+        "sortingKey": "999 -1 /cloud/devices/links/complete post"
+      },
+      {
         "href": "/docs/cloud/api/games/games/get-games",
         "sortingKey": "999 -1 /cloud/games get"
       },
@@ -194,10 +198,6 @@
         "sortingKey": "999 -1 /cloud/groups/validate post"
       },
       {
-        "href": "/docs/cloud/api/groups/convert-group",
-        "sortingKey": "999 -1 /cloud/groups/{group_id}/convert post"
-      },
-      {
         "href": "/docs/cloud/api/logs/get-ray-perf-logs",
         "sortingKey": "999 -1 /cloud/rays/{ray_id}/perf get"
       },
@@ -318,8 +318,20 @@
         "sortingKey": "0 /identity/identities post"
       },
       {
+        "href": "/docs/identity/api/activities/list",
+        "sortingKey": "999 -1 /identity/activities get"
+      },
+      {
         "href": "/docs/identity/api/links/get",
         "sortingKey": "999 -1 /identity/game-links get"
+      },
+      {
+        "href": "/docs/identity/api/links/cancel",
+        "sortingKey": "999 -1 /identity/game-links/cancel post"
+      },
+      {
+        "href": "/docs/identity/api/links/complete",
+        "sortingKey": "999 -1 /identity/game-links/complete post"
       },
       {
         "href": "/docs/identity/api/prepare-avatar-upload",
@@ -444,6 +456,10 @@
       {
         "href": "/docs/kv/api/put-batch",
         "sortingKey": "999 -1 /kv/entries/batch put"
+      },
+      {
+        "href": "/docs/kv/api/list",
+        "sortingKey": "999 -1 /kv/entries/list get"
       }
     ]
   },

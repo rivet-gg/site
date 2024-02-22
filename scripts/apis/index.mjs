@@ -9,7 +9,7 @@ let BACKEND_PATH = '../rivet';
 
 export async function main() {
   // Read spec
-  let specPath = `${BACKEND_PATH}/gen/openapi/external/spec/openapi.yml`
+  let specPath = `${BACKEND_PATH}/sdks/full/openapi/openapi.yml`
   const fileContents = fs.readFileSync(specPath, 'utf8');
   const fullSpec = YAML.parse(fileContents, { maxAliasCount: -1 });
 

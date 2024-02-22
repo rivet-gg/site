@@ -78,7 +78,6 @@ The URL of this identity's avatar image.
 Whether or not this identity is awaiting account deletion. Only visible to when the requestee is
 this identity.
 
-
 ### `events[*].kind.identity_update.identity.bio`
 
 `string` (required)
@@ -445,7 +444,6 @@ A matchmaker lobby player.
 
 Pass this token through the socket to the lobby server. The lobby server will validate this token with `PlayerConnected.player_token`
 
-
 ### `events[*].kind.matchmaker_lobby_join.ports`
 
 `map<string, object>` (required)
@@ -456,7 +454,6 @@ Pass this token through the socket to the lobby server. The lobby server will va
 
 The host for the given port. Will be null if using a port range.
 
-
 ### `events[*].kind.matchmaker_lobby_join.ports.<port>.hostname`
 
 `string` (required)
@@ -465,19 +462,19 @@ The host for the given port. Will be null if using a port range.
 
 `boolean` (required)
 
+Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.
+
 ### `events[*].kind.matchmaker_lobby_join.ports.<port>.port`
 
 `integer`
 
 The port number for this lobby. Will be null if using a port range.
 
-
 ### `events[*].kind.matchmaker_lobby_join.ports.<port>.port_range`
 
 `object`
 
-Whether or not this lobby port uses TLS. You cannot mix a non-TLS and TLS ports.
-
+Inclusive range of ports that can be connected to.
 
 ### `events[*].kind.matchmaker_lobby_join.ports.<port>.port_range.max`
 
@@ -498,21 +495,24 @@ Minimum port that can be connected to. Inclusive range.
 Notifications represent information that should be presented to the user
 immediately.
 At the moment, only chat message events have associated notifications.
+
 # Display
+
 Notifications should be displayed in an unobtrusive manner throughout the
 entire game. Notifications should disappear after a few seconds if not
 interacted with.
+
 # Interactions
+
 If your platform supports it, notifications should be able to be clicked or
 tapped in order to open the relevant context for the event.
 For a simple implementation of notification interactions, open `url` in a
 web browser to present the relevant context. For example, a chat message
 notification will open the thread the chat message was sent in.
 For advanced implementations that implement a custom chat UI, use
-`GlobalEvent.kind` to determine what action to take when the notification is interacted with. 
+`GlobalEvent.kind` to determine what action to take when the notification is interacted with.
 For example, if the global event kind is `GlobalEventChatMessage`, then open
 the chat UI for the given thread.
-
 
 ### `events[*].notification.description`
 
@@ -550,7 +550,6 @@ Provided by watchable endpoints used in blocking loops.
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.
-
 
 
 

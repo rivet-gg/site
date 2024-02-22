@@ -58,6 +58,13 @@
           "type": "string",
           "description": "_Configures Rivet CLI behavior. Has no effect on server behavior._"
         },
+        "build_env": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "_Configures Rivet CLI behavior. Has no effect on server behavior._"
+        },
         "site_id": {
           "type": "string",
           "format": "uuid"
@@ -477,7 +484,8 @@
       "enum": [
         "bridge",
         "host"
-      ]
+      ],
+      "description": "Configures how the container's network is isolated from the host.\n`bridge` (default) networking isolates the container's network from the host & other containers.\n`host` networking removes isolation between the container and the host. Only available in Rivet Open Source & Enterprise.\nRead more about bridge vs host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking)."
     },
     "CloudVersionMatchmakerGameModeRuntimeDockerPort": {
       "type": "object",
@@ -630,7 +638,7 @@
     },
     "CloudVersionMatchmakerPortRange": {
       "type": "object",
-      "description": "Range of ports that can be connected to.",
+      "description": "Range of ports that can be connected to.\nIf configured, `network_mode` must equal `host`.\nPort ranges may overlap between containers, it is the responsibility of the developer to ensure ports are available before using.\nRead more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking).\nOnly available on Rivet Open Source & Enterprise.",
       "properties": {
         "min": {
           "type": "integer",
@@ -655,14 +663,15 @@
         "tcp_tls",
         "udp"
       ],
-      "description": "A port protocol."
+      "description": "Type of network traffic to allow access to this port.\nConfiguring `https` or `tcp_tls` will provide TLS termination for you via Game Guard.\n`https` and `tcp_tls` must have `proxy_kind` set to `game_guard`."
     },
     "CloudVersionMatchmakerProxyKind": {
       "type": "string",
       "enum": [
         "none",
         "game_guard"
-      ]
+      ],
+      "description": "Range of ports that can be connected to.\n`game_guard` (default) proxies all traffic through [Game Guard](https://rivet.gg/docs/dynamic-servers/concepts/game-guard) to mitigate DDoS attacks and provide TLS termination.\n`none` sends traffic directly to the game server. If configured, `network_mode` must equal `host`. Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking). Only available on Rivet Open Source & Enterprise."
     },
     "CloudVersionMatchmakerLobbyGroupIdleLobbiesConfig": {
       "type": "object",
