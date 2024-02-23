@@ -10,6 +10,7 @@
       {
         "title": "Concepts",
         "pages": [
+          "concepts/cli-tips",
           "concepts/handling-game-tokens",
           "concepts/dev-tokens",
           "concepts/tokenless-authentication-web",
