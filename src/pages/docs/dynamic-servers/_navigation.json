@@ -8,15 +8,16 @@
         "pages": [
           "concepts/game-guard",
           "concepts/logging",
-          "concepts/lobby-metrics",
+          "concepts/monitoring",
+          "concepts/crash-reporting",
           "concepts/available-regions",
-          "concepts/available-tiers",
-          "concepts/docker-root-user"
+          "concepts/available-tiers"
         ]
       },
       {
         "title": "Advanced",
         "pages": [
+          "concepts/docker-root-user",
           "concepts/protocols",
           "concepts/ports",
           "concepts/host-bridge-networking"
