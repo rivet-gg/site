@@ -220,7 +220,7 @@ export function AutomateWithApi() {
   return (
     <Accordion title="Can I automate this with APIs?">
       <p>
-        Rivet's Cloud API can be managed with your <Link href="/docs/general/concepts/token-types#cloud">cloud token</Link>. This is the same API we use internally and <Link href="https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368">in the CLI</Link>.
+        Rivet&apos;s Cloud API can be managed with your <Link href="/docs/general/concepts/token-types#cloud">cloud token</Link>. This is the same API we use internally and <Link href="https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368">in the CLI</Link>.
       </p>
 
       <p>
