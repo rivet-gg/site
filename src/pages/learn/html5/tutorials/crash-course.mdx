@@ -19,7 +19,7 @@ Follow instructions [here](https://github.com/rivet-gg/cli#installing).
 Open your project's directory in a terminal and run:
 
 ```bash
-rivet init --recommend
+rivet init
 ```
 
 This will guide you through setting up your project with Rivet.
@@ -38,7 +38,7 @@ You'll need a `Dockerfile` to build and run your game server.
 
 <CodeGroup>
 
-<code title='NPM'>```bash npm install --save @rivet-gg/api@rivet-gg/api@23.1.0-rc4 ```</code>
+<code title='NPM'>```bash npm install --save @rivet-gg/api ```</code>
 
 <code title='Yarn'>```bash yarn add @rivet-gg/api ```</code>
 
@@ -94,6 +94,7 @@ myGameServer.on("connect", await (socket) => {
 ## Step 3: Publish your game
 
 ```bash
+# Deploy to the production namespace
 rivet deploy prod
 ```
 

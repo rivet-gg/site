@@ -5,10 +5,7 @@
     "groups": [
       {
         "title": "Tutorials",
-        "pages": [
-          "tutorials/crash-course",
-          "tutorials/bomber-demo"
-        ]
+        "pages": ["tutorials/crash-course", "tutorials/bomber-demo"]
       }
     ]
   }

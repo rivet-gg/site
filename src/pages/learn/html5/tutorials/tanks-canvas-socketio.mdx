@@ -1,5 +1,7 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TutorialVideo } from '@/components/TutorialVideo';
+import postRequest from "./previews/post-request.png";
+import deployment from "./previews/deployment.png";
 
 # 💥 Tanks (Canvas, Socket.io)
 
@@ -17,7 +19,7 @@ import { TutorialVideo } from '@/components/TutorialVideo';
 | --------------------------------------------- | --------------------------------------------------------------------- | ------------------------------- |
 | [TypeScript](https://www.typescriptlang.org/) | [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) | [Socket.io](https://socket.io/) |
 
-The following guide will walk you through integraing and deploying a game with Rivet.
+The following guide will walk you through integrating and deploying a game with Rivet.
 
 {/* <TutorialVideo src='https://www.youtube-nocookie.com/embed/pBE7s-PK0j0' />
 
@@ -25,15 +27,15 @@ The following guide will walk you through integraing and deploying a game with R
 
 ## Step 1: Setup project
 
-### Clone & run repo
-
 Run the following to clone the repository and start the server:
 
 ```bash
-git clone https://github.com/rivet-gg/example-tanks-typescript-canvas-socketio.git
-cd example-tanks-typescript-canvas-socketio
-npm start
+git clone -b pre-rivet https://github.com/rivet-gg/examples
+cd javascript/tanks-socketio-canvas
+npm run start
 ```
+
+<PreRivetBranch></PreRivetBranch>
 
 This will open your browser to http://localhost:8080. Verify the game works.
 
@@ -43,46 +45,85 @@ This will open your browser to http://localhost:8080. Verify the game works.
 
 Run the following command to setup your project:
 
-<CodeGroup>
-  <code title="Bash">
-  ```bash
-  rivet init \
-      --recommend \
-      --matchmaker \
-      --matchmaker-port 3000 \
-      --matchmaker-dockerfile Dockerfile \
-      --cdn \
-      --cdn-build-command "npm install && npm run build:client:prod" \
-      --cdn-build-output ./dist/
-  ```
-  </code>
-  <code title="PowerShell">
-  ```powershell
-  rivet init `
-      --recommend `
-      --matchmaker `
-      --matchmaker-port 3000 `
-      --matchmaker-dockerfile Dockerfile `
-      --cdn `
-      --cdn-build-command "npm install && npm run build:client:prod" `
-      --cdn-build-output ./dist/
-  ```
-  </code>
-  <code title="CMD">
-    ```batch
-    rivet init ^
-        --recommend ^
-        --matchmaker ^
-        --matchmaker-port 3000 ^
-        --matchmaker-dockerfile Dockerfile ^
-        --cdn ^
-        --cdn-build-command "npm install && npm run build:client:prod" ^
-        --cdn-build-output ./dist/
-    ```
-  </code>
-</CodeGroup>
+```bash
+rivet init --html5
+```
 
 <WhatDoesRivetDo />
+
+### Update the config
+
+You can configure your game's Rivet config in the created `rivet.yaml` file. For the purposes of this demo,
+you can copy and paste this config into your file:
+
+<CodeGroup title="rivet.yaml">
+  ```yaml
+  scripts:
+    start: npm run start
+
+  # How the game lobbies run and how players connect to the game.
+  #
+  # https://docs.rivet.gg/matchmaker/introduction
+  matchmaker:
+    # How many players can join a specific lobby.
+    #
+    # Read more about matchmaking: https://docs.rivet.gg/matchmaker/concepts/finding-lobby
+    max_players: 32
+
+    # The hardware to provide for lobbies.
+    #
+    # Available tiers: https://docs.rivet.gg/serverless-lobbies/concepts/available-tiers
+    tier: basic-1d1
+
+  # Which regions the game should be available in.
+  #
+  # Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
+  matchmaker:
+    regions:
+      atl: {}
+      fra: {}
+
+    # Runtime configuration for the lobby's Docker container.
+    docker:
+      # If you're unfamiliar with Docker, here's how to write your own
+      # Dockerfile:
+      # https://docker-curriculum.com/#dockerfile
+      dockerfile: Dockerfile
+
+      # Which ports to allow players to connect to. Multiple ports can be defined
+      # with different protocols.
+      #
+      # How ports work: https://docs.rivet.gg/serverless-lobbies/concepts/ports
+      ports:
+        default:
+          port: 3000
+
+    # What game modes are available.
+    #
+    # Properties like `max_players`, `tier`, `dockerfile`, `regions`, and more can
+    # be overridden for specific game modes.
+    game_modes:
+      default: {}
+
+  # How Rivet CDN should host your static assets on our CDN.
+  #
+  # https://docs.rivet.gg/cdn/introduction
+  cdn:
+    # Command to run before uploading the site to Rivet. This can be used to
+    # build any JavaScript bundles or generate assets.
+    build_command: npm install && npm run build:client:prod
+
+    # The folder to upload to Rivet.
+    #
+    # If you're hosting a website, ensure that `index.html` is in the root of
+    # this folder.
+    build_output: ./dist/
+
+  kv: {}
+
+  identity: {}
+  ```
+</CodeGroup>
 
 ## Step 2: Integrate Rivet Matchmaker
 
@@ -90,8 +131,8 @@ Run the following command to setup your project:
 
 Run the following to install the library to interact with Rivet:
 
-```
-npm install --save @rivet-gg/api@23.1.0-rc4
+```bash
+npm i @rivet-gg/api --save
 ```
 
 ### Update the client
@@ -100,7 +141,7 @@ Add the following to the top of `client/Client.ts`:
 
 ```typescript client/Client.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
+const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 ```
 
 <EnvTokenClient />
@@ -120,17 +161,13 @@ async function connect(client: Client) {
 }
 ```
 
-Run `npm start` again and validate the game still connects.
-
-Open the network inspector and reload to see a `POST` request to `https://matchmaker.api.rivet.gg/v1/lobbies/find`.
-
 ### Update the server
 
 Add the following to the top of `server/index.ts`:
 
 ```typescript server/index.ts
 import { RivetClient } from '@rivet-gg/api';
-export const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
+const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 // Notify Rivet that this lobby is ready to accept players
 RIVET.matchmaker.lobbies.ready();
@@ -155,18 +192,40 @@ async function setupConnection(socket: Socket) {
 }
 ```
 
+### Run with Rivet
+
+Finally, after stopping the previous `npm run start`, run `rivet run start` and validate the game still connects.
+
+<Accordion title='What is "rivet run"?'>
+  The `rivet run` command automatically adds important environment variables required for running a game to
+  whatever script you choose to run with it. In this case, it is reading the `start` script defined in
+  `rivet.yaml`.
+</Accordion>
+
+<Accordion title='Optional: Check for connectivity to Rivet'>
+  1. Press `Ctrl + Shift + I` (or `Cmd + Option + I` on macOS) to open the dev tools.
+  2. Navigate to the "Network" tab.
+  3. Refresh your page.
+  4. Find a `POST` request to `https://api.rivet.gg/matchmaker/lobbies/find`. This means you are
+    successfully connected through Rivet.
+
+  <Image className="block ml-auto mr-auto" src={postRequest} width={500} alt='Successful POST request' />
+</Accordion>
+
 ## Step 3: Deploy to Rivet
 
-Deploy your game to Rivet with:
+Now that you managed to get the game running locally, you can deploy your game to Rivet with:
 
 ```bash
-rivet deploy --namespace prod
+rivet deploy prod
 ```
 
-<Accordion title='What did this do?'>
-  - Build & upload your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index) - Build &
-  upload your site for [Rivet CDN](/docs/cdn) - Create a version on Rivet - Deploy the version to the
-  *Production* namespace
+<Accordion title='What does this do?'>
+  - Builds & uploads your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index)
+  - Builds & uploads your site for [Rivet CDN](/docs/cdn)
+  - Creates a version on Rivet and deploys the version to the *Production* namespace
 </Accordion>
 
 The CLI will print a link ending in `rivet.game`. Share the link with a friend to play your game on Rivet! 🎉
+
+<Image className="block ml-auto mr-auto" src={deployment} width={500} alt='Rivet Successful deployment' />

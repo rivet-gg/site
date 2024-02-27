@@ -30,14 +30,16 @@ We'll be using a modified version of Godot's [multiplayer
 bomber
 demo](https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_bomber).
 First, start by cloning Rivet's example repo:
-https://github.com/rivet-gg/examples
 
-The bomber demo is in `godot/bomber`. The demo has been refactored to try and
+```bash
+git clone -b pre-rivet https://github.com/rivet-gg/examples
+cd godot/bomber
+```
+
+<PreRivetBranch></PreRivetBranch>
+
+The demo has been refactored to try and
 reduce the amount of code that will be modified for the Rivet integration.
-
-The main branch of the repo contains the final code. If you want to follow along
-and add all of the required code yourself, you can check out the `pre-rivet`
-branch.
 
 ## Step 2: Set up the Rivet plugin
 
@@ -74,11 +76,11 @@ engine:
 matchmaker:
   max_players: 12
   docker:
-    dockerfile: 'Dockerfile'
+    dockerfile: Dockerfile
     ports:
       default:
         port: 10567
-        protocol: 'udp'
+        protocol: udp
   game_modes:
     default: {}
 ```
@@ -220,7 +222,7 @@ First, we can test that the game works locally.
 
 Open the Rivet panel in the bottom left and click _Start Server_. Then click the
 play button in the top right to start the client. You should be able to join the
-lobby. */}
+lobby. \*/}
 
 ## Step 4: Deploy to Rivet
 

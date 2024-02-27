@@ -38,11 +38,11 @@ matchmaker.regions:
 	fra: {}
 
 matchmaker.docker:
-	dockerfile: "Dockerfile"
+	dockerfile: Dockerfile
 	ports:
 		default:
 			port: 10567
-			protocol: "udp"
+			protocol: udp
 
 matchmaker.game_modes:
 	default: {}
@@ -54,7 +54,7 @@ Run the following command to link your game to Rivet. If you haven't already,
 create a new game at this step.
 
 ```bash
-rivet init --recommend
+rivet init
 ```
 
 ## Step 2: Install the Rivet plugin in Godot
