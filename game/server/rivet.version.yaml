@@ -59,7 +59,3 @@ cdn:
   # If you're hosting a website, ensure that `index.html` is in the root of
   # this folder.
   build_output: ./dist/
-
-kv: {}
-
-identity: {}
