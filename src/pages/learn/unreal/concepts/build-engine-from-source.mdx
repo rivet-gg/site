@@ -1,3 +1,5 @@
+import srcLinuxServerPlatform from "../tutorials/crash-course/images/linux-server-platform-config.png";
+
 # Build Unreal Engine from source
 
 <Warning>
@@ -69,7 +71,7 @@ Once you have Unreal Engine built from source, open your project and package it 
 	- If deploying to production, select _Release_ instead. We use _Debug_ here so we can catch any crashes while testing.
 2. Select _Platform > Linux > MyProjectServer_
 3. Validate the config looks like this:
-![Linux server platform config](/images/unreal-linux-server-platform-config.png)
+   <Image src={srcLinuxServerPlatform} alt='Linux server paltform config' />
 4. Click _Platforms > Linux > Package Project_
 5. Package the project to _MyProject/Binaries/Linux/Server_. **This path is important since the Dockerfile we provide relies on it.**
 
