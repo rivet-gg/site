@@ -185,12 +185,12 @@ function docsTabs(path) {
       href: '/docs/cdn',
       current: path[1] === 'cdn'
     },
-    {
-      title: 'KV',
-      icon: 'kv',
-      href: '/docs/kv',
-      current: path[1] === 'kv'
-    },
+    // {
+    //   title: 'KV',
+    //   icon: 'kv',
+    //   href: '/docs/kv',
+    //   current: path[1] === 'kv'
+    // },
     // {
     //   title: 'Identity',
     //   icon: 'identity',

@@ -33,7 +33,6 @@ const ICONS = {
   // Products
   cdn: faGlobe,
   compute: faServer,
-  kv: faDatabase,
   matchmaker: faChessKnight,
   cloud: faCloud
 };

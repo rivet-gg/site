@@ -150,11 +150,11 @@ export default function Pricing() {
           icon: imgMatchmaker,
           tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
         },
-        {
-          name: 'Key-Value Database',
-          icon: imgKv,
-          tiers: { 'tier-oss': true, 'tier-cloud': 'Free while in beta', 'tier-enterprise': 'Contact us' }
-        },
+        // {
+        //   name: 'Key-Value Database',
+        //   icon: imgKv,
+        //   tiers: { 'tier-oss': true, 'tier-cloud': 'Free while in beta', 'tier-enterprise': 'Contact us' }
+        // },
         {
           name: 'Game Guard (DDoS + SSL)',
           icon: imgGameGuard,
