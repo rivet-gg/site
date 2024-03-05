@@ -17,8 +17,9 @@
       {
         "title": "Advanced",
         "pages": [
-          "concepts/docker-root-user",
           "concepts/protocols",
+          "concepts/docker-root-user",
+          "concepts/graceful-exit",
           "concepts/ports",
           "concepts/host-bridge-networking"
         ]
