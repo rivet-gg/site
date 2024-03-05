@@ -1,6 +1,3 @@
-import { Prose } from '@/components/Prose';
-import { TableOfContents } from '@/components/TableOfContents';
-
 export const metadata = {
   title: {
     template: '%s - Rivet Blog'
@@ -9,11 +6,8 @@ export const metadata = {
 
 export default function BlogLayout({ children }) {
   return (
-    <>
-      <article>
-        <Prose className='max-w-4xl pb-8'>{children}</Prose>
-      </article>
-      <TableOfContents />
-    </>
+    <div className='flex flex-1 flex-col gap-x-4 md:grid md:grid-cols-table-of-contents  xl:flex xl:flex-row xl:gap-8'>
+      {children}
+    </div>
   );
 }

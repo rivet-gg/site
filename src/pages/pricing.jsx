@@ -211,7 +211,7 @@ export default function Pricing() {
         <PricingModal open={open} onClose={() => setOpen(false)} />
 
         {/* Pricing */}
-        <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+        <div className='main-content-container px-6'>
           <div className='mx-auto max-w-4xl text-center'>
             <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
               Pricing
@@ -253,7 +253,7 @@ export default function Pricing() {
                         {section.features.map(feature =>
                           feature.tiers[tier.id] ? (
                             <li key={feature.name} className='flex gap-x-3'>
-                              <CheckIcon className='h-6 w-5 flex-none text-violet-400' aria-hidden='true' />
+                              <CheckIcon className='h-6 w-5 flex-none text-orange-400' aria-hidden='true' />
                               <span>
                                 {feature.name}{' '}
                                 {typeof feature.tiers[tier.id] === 'string' ||
@@ -356,7 +356,7 @@ export default function Pricing() {
                                 <>
                                   {feature.tiers[tier.id] === true ? (
                                     <CheckIcon
-                                      className='mx-auto h-5 w-5 text-violet-400'
+                                      className='mx-auto h-5 w-5 text-orange-400'
                                       aria-hidden='true'
                                     />
                                   ) : (
@@ -523,3 +523,4 @@ function PricingTabs({ tierIdx, setTierIdx }) {
 }
 
 Pricing.prose = false;
+Pricing.fullWidth = true;

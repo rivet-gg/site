@@ -76,3 +76,5 @@ function GameEngine({ engine, long } = { long: false }) {
     </PatternButton>
   );
 }
+
+LearnIndex.fullWidth = true;

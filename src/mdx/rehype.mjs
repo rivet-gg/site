@@ -108,7 +108,7 @@ function rehypeAddCustomCode() {
       `import {convertConfigToMetadata,convertConfigToInfo} from "@/lib/articles/metadata";
       let metadataConfig = typeof config === 'undefined' ? undefined : config;
       export const metadata = convertConfigToMetadata(metadataConfig);
-      export const info = convertConfigToInfo(metadataConfig);
+      export const info = convertConfigToInfo(metadataConfig, import.meta.url);
       `
     ];
 

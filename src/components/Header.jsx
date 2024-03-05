@@ -143,15 +143,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
         '--bg-opacity-dark': bgOpacityDark
       }}>
       {/* Main header */}
-      <div className='flex h-14 items-center justify-between gap-12 px-6 lg:z-30'>
-        {/* TODO: Auto-show on scroll */}
-        {/* <div
-          className={clsx(
-            'absolute inset-x-0 top-full h-px transition',
-            (isInsideMobileNavigation || !mobileNavIsOpen) && 'bg-charcole-950/7.5 dark:bg-white/7.5'
-          )}
-        /> */}
-
+      <div className='main-content-container flex h-14 w-full items-center justify-between gap-12 px-6 lg:z-30'>
         <div className='flex items-center gap-4'>
           <div className='xl:hidden'>
             <MobileNavigation navigation={navigation} />
@@ -211,7 +203,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
 
       {/* Tabs */}
       {navigation?.tabs && (
-        <div className='hide-scrollbar h-12 overflow-x-scroll px-6'>
+        <div className={'hide-scrollbar main-content-container h-12 w-full overflow-x-scroll px-6'}>
           {/* Border */}
           <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
 

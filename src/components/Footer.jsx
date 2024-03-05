@@ -215,7 +215,7 @@ export function Footer() {
     <div>
       <hr className='mb-8 border-white/10' />
 
-      <footer aria-labelledby='footer-heading' className='mx-auto max-w-screen-xl px-4 lg:px-8'>
+      <footer aria-labelledby='footer-heading' className='mx-auto max-w-screen-xl px-6 lg:px-8'>
         <h2 id='footer-heading' className='sr-only'>
           Footer
         </h2>

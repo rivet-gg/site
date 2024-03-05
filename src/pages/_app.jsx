@@ -28,6 +28,8 @@ export default function App({ Component, pageProps }) {
   title = title ? `${title} - Rivet` : 'Rivet';
   let isTopPage = navigation.prefix === pathname;
   let description = pageProps.description ?? Component.description ?? page?.description ?? null;
+  let tableOfContents =
+    (navigation?.tableOfContents?.[pathname] ?? true) && page?.headings?.length > 0 ? page?.headings : null;
 
   return (
     <>
@@ -63,8 +65,10 @@ export default function App({ Component, pageProps }) {
         <MDXProvider components={mdxComponents}>
           <Layout
             navigation={navigation}
+            tableOfContents={tableOfContents}
             prose={Component.prose ?? true}
             inset={Component.inset ?? false}
+            fullWidth={Component.fullWidth ?? false}
             isTopPage={isTopPage || Component.isTopPage}
             {...pageProps}>
             <Component {...pageProps} />

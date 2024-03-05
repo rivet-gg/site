@@ -10,9 +10,8 @@
     --shiki-token-string-expression: theme('colors.violet.300');
     --shiki-token-punctuation: theme('colors.zinc.200');
 
-    --bg-dark-grain: url("../images/effects/grain-dark.png");
-    --bg-light-grain: url("../images/effects/grain-light.png");
-
+    --bg-dark-grain: url('../images/effects/grain-dark.png');
+    --bg-light-grain: url('../images/effects/grain-light.png');
   }
 
   [inert] ::-webkit-scrollbar {
@@ -29,10 +28,8 @@
   }
 }
 
-
 .red-glow {
   box-shadow: 0 0 30px 5px rgba(248, 113, 113, 0.35); /* Increased glow for red */
-
 }
 
 .orange-glow {
@@ -72,8 +69,14 @@
   height: 2px;
   background: linear-gradient(
     to right,
-    #3D000E, #900012, #FFCF00, #009D3A, #C4B2DA, #009DDA, #0C4CA3,
-    #28246D 
+    #3d000e,
+    #900012,
+    #ffcf00,
+    #009d3a,
+    #c4b2da,
+    #009dda,
+    #0c4ca3,
+    #28246d
   );
   background-size: 100% 100%;
   position: absolute;
@@ -89,12 +92,24 @@
 }
 
 @keyframes moveVerticalLines {
-  0% { background-position: 50% 0%; }
-  100% { background-position: 50% 100%; }
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 100%;
+  }
 }
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .mask-section {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+  }
+
+  .main-content-container {
+    @apply mx-auto max-w-screen-2xl;
+  }
+}

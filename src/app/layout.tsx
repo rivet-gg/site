@@ -4,9 +4,29 @@ import { Providers } from '@/components/Providers';
 import '@/styles/tailwind.css';
 import '@/styles/fonts.css';
 import 'focus-visible';
+import { Metadata } from 'next';
 
-export const metadata = {
-  metadataBase: new URL('https://rivet.gg')
+export const metadata: Metadata = {
+  metadataBase: new URL('https://rivet.gg'),
+  twitter: {
+    site: '@rivetgg',
+    card: 'summary_large_image'
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://rivet.gg',
+    siteName: 'Rivet',
+    description: 'Simplified Multiplayer Game Servers',
+    images: [
+      {
+        url: 'https://rivet.gg/promo/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Rivet'
+      }
+    ]
+  }
 };
 
 export default function Layout({ children }) {
@@ -27,6 +47,8 @@ export default function Layout({ children }) {
         <meta name='msapplication-TileColor' content='#ffffff' />
         <meta name='msapplication-config' content='/icons/browserconfig.xml?v=3' />
         <meta name='theme-color' content='#ffffff' />
+
+        <meta name='viewport' content='width=device-width' />
       </head>
       <body className='dark bg-charcole-950 antialiased'>
         <Providers>{children}</Providers>

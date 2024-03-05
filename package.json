@@ -34,6 +34,8 @@
     "autoprefixer": "^10.4.7",
     "clsx": "^1.2.0",
     "csv-parser": "^3.0.0",
+    "esast-util-from-js": "^2.0.1",
+    "estree-util-to-js": "^2.0.0",
     "fast-glob": "^3.2.12",
     "feed": "^4.2.2",
     "flexsearch": "^0.7.31",

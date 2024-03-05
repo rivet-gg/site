@@ -20,20 +20,6 @@ export function ArticleHeader({ title, date, author, images }: ArticleInfo) {
         <span className='h-4 w-0.5 rounded-full bg-cream-500' />
         <span className='ml-3'>{formatTimestamp(date)}</span>
       </time>
-
-      {/* Author */}
-      <div className='relative flex items-center gap-x-4'>
-        <Image
-          src={author.avatar}
-          width={40}
-          height={40}
-          alt={author.name}
-          className='h-10 w-10 rounded-full bg-cream-100'
-        />
-        <div className='text-sm leading-6'>
-          <div className='font-semibold text-cream-100'>{author.name}</div>
-        </div>
-      </div>
     </header>
   );
 }

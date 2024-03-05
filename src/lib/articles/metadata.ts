@@ -22,7 +22,7 @@ const authors = {
     role: 'Founding Engineer',
     avatar: forestAnderson,
     url: 'https://twitter.com/angelonfira'
-  },
+  }
 };
 
 const categories = {
@@ -49,6 +49,7 @@ export interface ArticleInfo {
   description: string;
   keywords: string[];
   date: Date;
+  slug: string;
   author: {
     id: string;
     name: string;
@@ -68,7 +69,10 @@ export interface ArticleInfo {
   };
 }
 
-export const convertConfigToInfo = (config: Record<string, any>): ArticleInfo | undefined => {
+export const convertConfigToInfo = (
+  config: Record<string, any>,
+  importPath?: string
+): ArticleInfo | undefined => {
   if (!config) {
     return undefined;
   }
@@ -84,11 +88,14 @@ export const convertConfigToInfo = (config: Record<string, any>): ArticleInfo | 
   if (!config.images.hero || !config.images.hero.image || !config.images.hero.alt)
     throw new Error(`Missing hero image or alt text`);
 
+  const [slug] = importPath?.split('/').slice(-2, -1) ?? [];
+
   return {
     title: config.title,
     description: config.description,
     keywords: config.keywords,
     date: new Date(config.date),
+    slug,
     author: {
       id: config.author,
       ...authors[config.author]

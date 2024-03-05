@@ -15,7 +15,7 @@ export function LearnHome({ engineId, engineName, tutorials }) {
         </Resource>
       </ResourceGroup>
 
-      <ResourceGroup title='Tutorials' columns={3}>
+      <ResourceGroup title='Tutorials' columns={2}>
         {tutorials.map(x => (
           <Resource
             key={x.id}

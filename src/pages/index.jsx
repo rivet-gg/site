@@ -370,7 +370,11 @@ export default function Index() {
           <RainbowBar className='h-1 w-full' />
 
           <div className='relative w-full'>
-            <Image alt='This game is multiplayer!' src={imgMultiplayerCallout} className='hidden sm:block absolute right-6 top-4' />
+            <Image
+              alt='This game is multiplayer!'
+              src={imgMultiplayerCallout}
+              className='absolute right-6 top-4 hidden sm:block'
+            />
           </div>
 
           <Subtitle />
@@ -399,7 +403,7 @@ export default function Index() {
             />
           </div>
 
-          <div className='mx-auto max-w-7xl px-6 md:py-60 lg:px-8'>
+          <div className='main-content-container mx-auto px-6 md:py-60 lg:px-8'>
             <CaseStudies />
           </div>
 
@@ -535,7 +539,7 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex flex-wrap items-center justify-center h-[30vw] max-h-[600px]'>
+    <div className='relative flex h-[30vw] max-h-[600px] flex-wrap items-center justify-center'>
       {/* Background */}
       {/* <Background /> */}
 
@@ -543,9 +547,9 @@ function Title() {
       <Game className='absolute inset-0 z-10 h-full w-full' />
 
       {/* Content */}
-      <div className='flex flex-col items-center justify-center text-center z-10 select-none pointer-events-none'>
+      <div className='pointer-events-none z-10 flex select-none flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='mt-8 font-display font-extrabold tracking-tight text-cream-100 text-4xl sm:text-7xl'>
+        <h1 className='mt-8 font-display text-4xl font-extrabold tracking-tight text-cream-100 sm:text-7xl'>
           Multiplayer Made Simple
         </h1>
       </div>
@@ -555,19 +559,24 @@ function Title() {
 
 function Subtitle() {
   return (
-    <div className='flex flex-col items-center justify-center px-2 py-20 w-full text-center'>
+    <div className='flex w-full flex-col items-center justify-center px-2 py-20 text-center'>
       {/* Description */}
       <div className='leading-8 text-cream-100'>
         {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
         {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
-        <p className='text-xl font-semibold'>Hassle-free solution to deploy & scale multiplayer game servers</p>
-        <p className='text-lg opacity-90 mt-2'>
+        <p className='text-xl font-semibold'>
+          Hassle-free solution to deploy & scale multiplayer game servers
+        </p>
+        <p className='mt-2 text-lg opacity-90'>
           Supports&nbsp;
           {supportedEngines.map(({ name, image, href, styles, join }, i) => (
             <span key={name}>
               <Link
                 href={href}
-                className={clsx('inline font-semibold transition hover:scale-110 pointer-events-auto', styles.text)}>
+                className={clsx(
+                  'pointer-events-auto inline font-semibold transition hover:scale-110',
+                  styles.text
+                )}>
                 {name}
               </Link>
               {join}
@@ -595,24 +604,28 @@ function Subtitle() {
       {/* </div> */}
 
       {/* CTA */}
-      <div className='flex flex-wrap items-center justify-center gap-x-6 gap-y-8 pointer-events-auto mt-9'>
-        <Button variant='juicy' href='https://hub.rivet.gg'>Get Started</Button>
+      <div className='pointer-events-auto mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
+        <Button variant='juicy' href='https://hub.rivet.gg'>
+          Get Started
+        </Button>
 
         <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
           5 minute crash course <span aria-hidden='true'>→</span>
         </Link>
       </div>
 
-
       {/* Separator */}
       {/* <div className='mx-4 hidden h-4 w-[1px] bg-white/50 sm:block'></div> */}
       {/* <div className='my-4 block h-[1px] w-4 bg-white/50 sm:hidden'></div> */}
 
       {/* GitHub */}
-      <div className='flex items-center gap-3 mt-9'>
+      <div className='mt-9 flex items-center gap-3'>
         {/* <div className='text-white opacity-75'>Pirate our source code <FontAwesomeIcon icon={faCaretRight} /></div> */}
-        <div className='text-white opacity-75'><FontAwesomeIcon icon={faSkullCrossbones} className='text-white opacity-75 mr-1' /> Pirate our source code</div>
-        <FontAwesomeIcon icon={faArrowRight} className='text-white opacity-75 w-4 h-4' />
+        <div className='text-white opacity-75'>
+          <FontAwesomeIcon icon={faSkullCrossbones} className='mr-1 text-white opacity-75' /> Pirate our
+          source code
+        </div>
+        <FontAwesomeIcon icon={faArrowRight} className='h-4 w-4 text-white opacity-75' />
         <div className='h-[28px]'>
           <GitHubButton
             href='https://github.com/rivet-gg/rivet'
@@ -624,9 +637,8 @@ function Subtitle() {
           </GitHubButton>
         </div>
       </div>
-
     </div>
-  )
+  );
 }
 
 // function DemoSection() {
@@ -955,9 +967,9 @@ function Features() {
   const [page, setPage] = React.useState({ index: 0, dir: 1 });
 
   return (
-    <div className='mx-auto w-full max-w-7xl mt-24'>
+    <div className='mx-auto w-full max-w-7xl'>
       {/* sub-text */}
-      <div className='max-w-1xl mx-auto text-center mb-8'>
+      <div className='mx-auto mb-8 max-w-7xl text-center'>
         <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
           Packed to the brim with features
         </h3>
@@ -1194,7 +1206,7 @@ function CaseStudies({ props }) {
 function UpAndRunning() {
   return (
     <div className='relative isolate mt-28'>
-      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+      <div className='main-content-container sm:px-6 lg:px-8'>
         <div className='relative mx-auto flex max-w-2xl flex-col gap-16 px-6 py-16 ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
           {/* Flex Container for Image and Text */}
           <div className='flex w-full flex-row items-center justify-start gap-4 lg:gap-12'>
@@ -1296,3 +1308,4 @@ function LevelUpSection() {
 
 Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
 Index.prose = false;
+Index.fullWidth = true;
