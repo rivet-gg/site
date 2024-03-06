@@ -31,6 +31,7 @@ let PRODUCTS = {
     importantEndpoints: []
   },
   kv: {
+    isExperimental: true,
     importantEndpoints: ['GET /entries', 'PUT /entries', 'DELETE /entries']
   },
   cloud: {
@@ -69,6 +70,9 @@ export async function generateApiPages(spec) {
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
+      let experimentalIndex = productConfig.experimentalEndpoints?.indexOf(indexableName);
+      let isExperimental = experimentalIndex != -1 || productConfig.isExperimental;
+
       // Remove product prefix from operation ID
       let operationIdStripped = specPath.operationId.replace(`${product}_`, '');
 
@@ -86,6 +90,8 @@ export async function generateApiPages(spec) {
 import { CodeGroup, Code } from '@/components/Code';
 
 # ${title}
+
+${isExperimental ? '<ExperimentalFeature />' : ''}
 
 ## Description
 
@@ -112,7 +118,7 @@ ${curlCommand}
 \`\`\`ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.${specPath.operationId.replace(/_/g, '.')}({

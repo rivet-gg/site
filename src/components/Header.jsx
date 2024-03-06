@@ -21,7 +21,7 @@ import {
   faChessKnight,
   faServer
 } from '@fortawesome/sharp-solid-svg-icons';
-import { faGlobe } from '@fortawesome/pro-regular-svg-icons';
+import { faGlobe, faFlask } from '@fortawesome/pro-regular-svg-icons';
 import { faDatabase } from '@fortawesome/pro-solid-svg-icons';
 import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { usePathname } from 'next/navigation';
@@ -115,6 +115,16 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
     </Link>
   );
 }
+
+const StatusBadge = ({ status }) => {
+  if (status === 'experimental') {
+    return (
+      <span className='text-2xs text-amber-500'>
+        <FontAwesomeIcon icon={faFlask} />
+      </span>
+    );
+  }
+};
 
 export const Header = forwardRef(function Header({ className }, ref) {
   let { navigation } = useNavigation();
@@ -230,6 +240,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
                   <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
                 ) : null}
                 <span>{tab.title}</span>
+                <StatusBadge status={tab.status} />
               </Link>
             ))}
           </nav>
