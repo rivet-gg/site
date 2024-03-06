@@ -4,6 +4,12 @@
   "sidebar": {
     "groups": [
       {
+        "title": "Concepts",
+        "pages": [
+          "concepts/resources"
+        ]
+      },
+      {
         "title": "Tutorials",
         "pages": ["tutorials/crash-course", "tutorials/bomber-demo"]
       }
