@@ -19,7 +19,7 @@ errors or malicious actions.
 
 ## How do I run my Docker container as a non-root user?
 
-Here are some examples of how you might add a non-root user to your Dockerfile for various Linux distros:
+Here are some examples of how you might add a non-root user to your Dockerfile for various Linux distros. You can replace `server` with any username you like.
 
 <CodeGroup title='Dockerfile'>
     ```docker {{ "title": "Ubuntu" }}
@@ -28,8 +28,8 @@ Here are some examples of how you might add a non-root user to your Dockerfile f
     WORKDIR /app
     COPY . .
 
-    RUN useradd myuser
-    USER myuser
+    RUN useradd server
+    USER server
 
     CMD run.sh
     ```
@@ -40,8 +40,8 @@ Here are some examples of how you might add a non-root user to your Dockerfile f
     WORKDIR /app
     COPY . .
 
-    RUN adduser myuser
-    USER myuser
+    RUN adduser server
+    USER server
 
     CMD run.sh
     ```
@@ -52,8 +52,8 @@ Here are some examples of how you might add a non-root user to your Dockerfile f
     WORKDIR /app
     COPY . .
 
-    RUN adduser myuser
-    USER myuser
+    RUN adduser -D server
+    USER server
 
     CMD run.sh
     ```
@@ -64,8 +64,8 @@ Here are some examples of how you might add a non-root user to your Dockerfile f
     WORKDIR /app
     COPY . .
 
-    RUN useradd myuser
-    USER myuser
+    RUN useradd server
+    USER server
 
     CMD run.sh
     ```
