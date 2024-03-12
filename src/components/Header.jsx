@@ -22,12 +22,12 @@ import {
   faServer
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faGlobe, faFlask } from '@fortawesome/pro-regular-svg-icons';
-import { faDatabase } from '@fortawesome/pro-solid-svg-icons';
 import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { usePathname } from 'next/navigation';
 import imgLogoText from '@/images/rivet-logos/icon-text-cream.svg';
 import imgLogo from '@/images/rivet-logos/icon-cream.svg';
 import { useNavigation } from '@/hooks/useNavigation';
+import { CreditsBanner } from '@/components/CreditsBanner';
 
 const ICONS = {
   // Products
@@ -140,112 +140,115 @@ export const Header = forwardRef(function Header({ className }, ref) {
   }, [navigation.tabs]);
 
   return (
-    <motion.div
-      ref={ref}
-      className={clsx(
-        className,
-        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
-        !isInsideMobileNavigation && 'backdrop-blur',
-        isInsideMobileNavigation ? 'bg-charcole-950' : 'bg-charcole-950/[var(--bg-opacity-dark)]'
-      )}
-      style={{
-        '--bg-opacity-light': bgOpacityLight,
-        '--bg-opacity-dark': bgOpacityDark
-      }}>
-      {/* Main header */}
-      <div className='main-content-container flex h-14 w-full items-center justify-between gap-12 px-6 lg:z-30'>
-        <div className='flex items-center gap-4'>
-          <div className='xl:hidden'>
-            <MobileNavigation navigation={navigation} />
-          </div>
-
-          <Link href='/' aria-label='Home' className='xl:hidden'>
-            <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
-          </Link>
-
-          <Link href='/' aria-label='Home' className='hidden xl:block'>
-            <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
-          </Link>
-
-          <div className='hidden items-center gap-1 lg:flex'>
-            <TopLevelNavItem href='/learn' icon={faHammer}>
-              Learn
-            </TopLevelNavItem>
-            <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
-              Docs
-            </TopLevelNavItem>
-            <TopLevelNavItem href='/blog' icon={faNewspaper}>
-              Blog
-            </TopLevelNavItem>
-            <TopLevelNavItem href='/pricing' icon={faCoin}>
-              Pricing
-            </TopLevelNavItem>
-          </div>
-        </div>
-
-        <div className='flex items-center gap-4'>
-          {/* Social icons */}
-          {/* <div className='flex gap-1.5'> */}
-          {[
-            [faDiscord, '/discord'],
-            [faGithub, 'https://github.com/rivet-gg/rivet']
-          ].map(([icon, href]) => (
-            <Link
-              className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
-              key={href}
-              href={href}
-              target='_blank'>
-              <FontAwesomeIcon icon={icon} className='text-lg text-white' />
-            </Link>
-          ))}
-          {/* </div> */}
-
-          <Search />
-          <MobileSearch />
-          {/* <ModeToggle /> */}
-          <div className='hidden min-[416px]:contents'>
-            <Button href='https://hub.rivet.gg' variant='secondary'>
-              Open Rivet
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      {navigation?.tabs && (
-        <div className={'hide-scrollbar main-content-container h-12 w-full overflow-x-scroll px-6'}>
-          {/* Border */}
-          <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
-
-          <nav className='flex h-full space-x-8'>
-            {/* Title */}
-            <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
-              {navigation.tabsTitle}
+    <>
+      <motion.div
+        ref={ref}
+        className={clsx(
+          className,
+          'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
+          !isInsideMobileNavigation && 'backdrop-blur',
+          isInsideMobileNavigation ? 'bg-charcole-950' : 'bg-charcole-950/[var(--bg-opacity-dark)]'
+        )}
+        style={{
+          '--bg-opacity-light': bgOpacityLight,
+          '--bg-opacity-dark': bgOpacityDark
+        }}>
+        {/* Main header */}
+        <div className='main-content-container flex h-14 w-full items-center justify-between gap-12 px-6 lg:z-30'>
+          <div className='flex items-center gap-4'>
+            <div className='xl:hidden'>
+              <MobileNavigation navigation={navigation} />
             </div>
 
-            {/* Tabs */}
-            {navigation.tabs.map(tab => (
+            <Link href='/' aria-label='Home' className='xl:hidden'>
+              <Image src={imgLogo} alt='Rivet' className='h-6 w-auto' />
+            </Link>
+
+            <Link href='/' aria-label='Home' className='hidden xl:block'>
+              <Image src={imgLogoText} alt='Rivet' className='h-6 w-auto' />
+            </Link>
+
+            <div className='hidden items-center gap-1 lg:flex'>
+              <TopLevelNavItem href='/learn' icon={faHammer}>
+                Learn
+              </TopLevelNavItem>
+              <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
+                Docs
+              </TopLevelNavItem>
+              <TopLevelNavItem href='/blog' icon={faNewspaper}>
+                Blog
+              </TopLevelNavItem>
+              <TopLevelNavItem href='/pricing' icon={faCoin}>
+                Pricing
+              </TopLevelNavItem>
+            </div>
+          </div>
+
+          <div className='flex items-center gap-4'>
+            {/* Social icons */}
+            {/* <div className='flex gap-1.5'> */}
+            {[
+              [faDiscord, '/discord'],
+              [faGithub, 'https://github.com/rivet-gg/rivet']
+            ].map(([icon, href]) => (
               <Link
-                key={tab.title}
-                href={tab.href}
-                className={clsx(
-                  'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
-                  tab.current
-                    ? 'border-charcole-900 border-cream-50'
-                    : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
-                  tab.styles?.text ?? 'text-white'
-                )}
-                aria-current={tab.current ? 'page' : undefined}>
-                {tab.icon ? (
-                  <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
-                ) : null}
-                <span>{tab.title}</span>
-                <StatusBadge status={tab.status} />
+                className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
+                key={href}
+                href={href}
+                target='_blank'>
+                <FontAwesomeIcon icon={icon} className='text-lg text-white' />
               </Link>
             ))}
-          </nav>
+            {/* </div> */}
+
+            <Search />
+            <MobileSearch />
+            {/* <ModeToggle /> */}
+            <div className='hidden min-[416px]:contents'>
+              <Button href='https://hub.rivet.gg' variant='secondary'>
+                Open Rivet
+              </Button>
+            </div>
+          </div>
         </div>
-      )}
-    </motion.div>
+
+        {/* Tabs */}
+        {navigation?.tabs && (
+          <div className={'hide-scrollbar main-content-container h-12 w-full overflow-x-scroll px-6'}>
+            {/* Border */}
+            <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
+
+            <nav className='flex h-full space-x-8'>
+              {/* Title */}
+              <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
+                {navigation.tabsTitle}
+              </div>
+
+              {/* Tabs */}
+              {navigation.tabs.map(tab => (
+                <Link
+                  key={tab.title}
+                  href={tab.href}
+                  className={clsx(
+                    'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
+                    tab.current
+                      ? 'border-charcole-900 border-cream-50'
+                      : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
+                    tab.styles?.text ?? 'text-white'
+                  )}
+                  aria-current={tab.current ? 'page' : undefined}>
+                  {tab.icon ? (
+                    <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
+                  ) : null}
+                  <span>{tab.title}</span>
+                  <StatusBadge status={tab.status} />
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </motion.div>
+      <CreditsBanner />
+    </>
   );
 });
