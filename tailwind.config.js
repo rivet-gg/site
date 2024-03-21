@@ -54,7 +54,7 @@ module.exports = {
         15: '0.15'
       },
       spacing: {
-        navigation: '6.5rem'
+        navigation: 'calc(6.5rem + var(--banner-height, 0rem))'
       },
       backgroundImage: {
         'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
@@ -67,7 +67,7 @@ module.exports = {
         sidebar: '20rem 1fr'
       },
       scrollMargin: {
-        'header-offset': 'calc(var(--header-height) + 4rem)'
+        'header-offset': 'calc(var(--header-height) + var(--banner-height, 0rem)  + 4rem)'
       }
     }
   },

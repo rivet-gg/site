@@ -9,10 +9,13 @@ export const CreditsBanner = () => {
     e.preventDefault();
     localStorage.setItem('creditsBannerClosed', 'true');
     setVisible(false);
+    document.body.style.setProperty('--banner-height', '0');
   };
 
   useEffect(() => {
-    localStorage.getItem('creditsBannerClosed') === 'true' ? setVisible(false) : setVisible(true);
+    let isVisible = localStorage.getItem('creditsBannerClosed') === null;
+    setVisible(isVisible);
+    document.body.style.setProperty('--banner-height', isVisible ? '2.5rem' : '0rem');
   }, []);
 
   if (!visible) {
