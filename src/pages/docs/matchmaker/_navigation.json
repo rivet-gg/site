@@ -10,7 +10,8 @@
           "concepts/lobby-env",
           "concepts/auto-region-selection",
           "concepts/competitive-matchmaking",
-          "concepts/lobby-tags"
+          "concepts/lobby-tags",
+          "concepts/discord-activities"
         ]
       },
       {
