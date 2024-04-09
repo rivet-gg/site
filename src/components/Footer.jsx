@@ -112,7 +112,7 @@ function SmallPrint() {
           {/* Logo */}
           <Image className='h-7 w-7' src={imgLogo} alt='Rivet' />
           <p className='text-sm leading-6 text-gray-300'>
-            Open-source solution to deploy, scale, and operate your multiplayer game
+            Open-source multiplayer infrastructure. Easy, flexible, and affordable.
           </p>
 
           {/* Social */}

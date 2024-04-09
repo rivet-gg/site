@@ -1459,6 +1459,6 @@ function OnlineIndicator() {
   );
 }
 
-Index.description = 'Open-source solution to deploy, scale, and operate your multiplayer game';
+Index.description = 'Open-source multiplayer infrastructure. Easy, flexible, and affordable.';
 Index.prose = false;
 Index.fullWidth = true;
