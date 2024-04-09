@@ -447,9 +447,9 @@ function Title() {
           'mt-8 font-display font-extrabold tracking-tight text-cream-100',
           'text-3xl sm:text-5xl md:text-6xl'
         )}>
-          {/* Multiplayer Made Simple */}
+          Multiplayer Made Simple
           {/* Multiplayer Tooling<br/>Made Simple */}
-          Multiplayer Infrastructure<br/>Made Simple
+          {/* Multiplayer Infrastructure<br/>Made Simple */}
         </h1>
       </div>
 
