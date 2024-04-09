@@ -19,6 +19,7 @@ fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/silkscreen'))
 // fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/prompt')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/cartridge')));
 fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/perfectly-nineties')));
+fonts.push(...fs.readdirSync(path.join(__dirname, '../public/fonts/gloria-hallelujah')));
 
 // Filter out non-TTF files (optional)
 fonts = fonts
@@ -75,6 +76,9 @@ fonts.forEach(font => {
   } else if (font.includes('PerfectlyNineties')) {
     slug = 'perfectly-nineties';
     family = 'Perfectly Nineties';
+  } else if (font.includes('GloriaHallelujah')) {
+    slug = 'gloria-hallelujah';
+    family = 'Gloria Hallelujah';
   } else {
     throw new Error('Unknown font family');
   }

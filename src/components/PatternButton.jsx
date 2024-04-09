@@ -21,7 +21,7 @@ export function PatternButton({ children, highlight, ...props }) {
         'text-sm font-semibold text-cream-100',
         'border-2',
         'bg-charcole-950',
-        'border-cream-100/50 hover:border-cream-100',
+        highlight ? 'border-cream-100' : 'border-cream-100/50 hover:border-cream-100',
         props.className
       )}>
       {/* Background */}

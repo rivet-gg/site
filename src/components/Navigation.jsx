@@ -20,16 +20,17 @@ import { Tag } from '@/components/Tag';
 import { remToPx } from '@/lib/remToPx';
 import { usePathname } from 'next/navigation';
 import { ActiveSectionMarker } from '@/components/TableOfContents';
+import { faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
 
 function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current;
   return condition ? initialValue : value;
 }
 
-function TopLevelNavItem({ href, children }) {
+function TopLevelNavItem({ href, target, children }) {
   return (
     <li className='lg:hidden'>
-      <Link href={href} className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
+      <Link href={href} target={target} className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
         {children}
       </Link>
     </li>
@@ -101,6 +102,9 @@ export function Navigation({ navigation, ...props }) {
         <TopLevelNavItem href='/docs/general' icon={faBooks}>
           Docs
         </TopLevelNavItem>
+        <TopLevelNavItem href='https://opengb.dev/modules' target='_blank' icon={faPuzzle}>
+          Modules
+        </TopLevelNavItem>
         <TopLevelNavItem href='/blog' icon={faNewspaper}>
           Blog
         </TopLevelNavItem>
@@ -116,7 +120,7 @@ export function Navigation({ navigation, ...props }) {
           : null}
         <li className='sticky bottom-0 z-10 mt-6 min-[416px]:hidden'>
           <Button href='https://hub.rivet.gg' variant='secondary' className='w-full'>
-            Open Rivet
+            Sign In
           </Button>
         </li>
       </ul>

@@ -31,7 +31,7 @@ const variantClasses = {
     ),
     highlight: ''
   },
-  text: { base: 'text-sm text-orange-500 hover:text-orange-600', highlight: '' },
+  text: { base: 'text-sm text-orange-300 hover:text-orange-500', highlight: '' },
   'text-subtle': { base: 'text-sm text-charcole-400 hover:text-charcole-300', highlight: '' },
   juicy: {
     base: clsx([
@@ -40,6 +40,32 @@ const variantClasses = {
       'relative border-2 border-cream-100 text-cream-100 transition-all',
       "before:absolute before:inset-0 before:-z-10 before:bg-light-grain before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
       "after:absolute after:inset-0 after:-z-10 after:bg-dark-grain after:opacity-100 after:transition-all after:content-['']",
+      // hover
+      'hover:bg-cream-100 hover:text-charcole-950 hover:before:bg-cream-100',
+      'hover:before:opacity-100 hover:after:opacity-0',
+      // selected
+      'aria-selected:bg-cream-100 aria-selected:text-charcole-950 aria-selected:before:bg-cream-100',
+      'aria-selected:before:opacity-100 aria-selected:after:opacity-0',
+      // active
+      'active:bg-cream-50 aria-selected:bg-cream-50',
+      // disabled
+      'disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
+      // loading
+      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white'
+    ]),
+    normal: 'text-cream-100',
+    highlight: 'text-charcole-950'
+  },
+  primaryJuicy: {
+    base: clsx([
+      'px-4 py-2 text-sm',
+      'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
+      'relative border-2 border-cream-100 transition-all',
+      'bg-cream-100 before:bg-cream-100 after:bg-cream-100',
+      // make it white
+      'bg-cream-100 text-charcole-950 before:bg-cream-100',
+      'before:opacity-100 after:opacity-0',
       // hover
       'hover:bg-cream-100 hover:text-charcole-950 hover:before:bg-cream-100',
       'hover:before:opacity-100 hover:after:opacity-0',

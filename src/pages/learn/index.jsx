@@ -11,11 +11,6 @@ let supportedEngines = [
     href: '/learn/godot/tutorials/crash-course'
   },
   {
-    id: 'html5',
-    name: 'HTML5',
-    href: '/learn/html5/tutorials/crash-course'
-  },
-  {
     id: 'unity',
     name: 'Unity',
     href: '/learn/unity/tutorials/fishnet/crash-course'
@@ -24,6 +19,11 @@ let supportedEngines = [
     id: 'unreal',
     name: 'Unreal Engine',
     href: '/learn/unreal/tutorials/crash-course'
+  },
+  {
+    id: 'html5',
+    name: 'HTML5',
+    href: '/learn/html5/tutorials/crash-course'
   },
   {
     id: 'custom',
@@ -35,11 +35,11 @@ let supportedEngines = [
 export default function LearnIndex() {
   return (
     <>
-      <div className='mx-auto flex h-[calc(100vh-180px)] max-w-5xl flex-col items-stretch justify-center'>
-        <div className='text-center font-display text-5xl font-bold text-white'>Pick Your Engine</div>
-        <div className='mt-14 grid grid-cols-6 gap-4'>
+      <div className='mx-auto flex h-[calc(100vh-180px)] max-w-6xl flex-col items-stretch justify-center'>
+        <div className='text-center font-display text-5xl font-bold text-cream-100'>Pick Your Engine</div>
+        <div className='mt-14 flex flex-row flex-wrap justify-center gap-4'>
           {supportedEngines.map((engine, i) => (
-            <GameEngine key={engine.name} engine={engine} long={i < 2} />
+            <GameEngine key={engine.name} engine={engine} long={i < 3} />
           ))}
         </div>
       </div>
@@ -54,8 +54,8 @@ function GameEngine({ engine, long } = { long: false }) {
       pattern={{ color: engineStyles[engine.id].patternColor }}
       className={clsx(
         'group relative flex items-center justify-center',
-        'h-[175px]',
-        long ? 'col-span-3' : 'col-span-2'
+        'w-[200px] h-[100px] md:w-[350px] md:h-[175px]',
+        long ? 'col-span-2' : 'col-span-1'
       )}>
       <span
         className={clsx(

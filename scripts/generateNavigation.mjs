@@ -227,33 +227,33 @@ function learnTabs(path) {
       // icon: 'godot',
       href: '/learn/godot',
       current: path[1] === 'godot',
-      styles: engineStyles.godot
+      // styles: engineStyles.godot
     },
     {
       title: 'Unity',
       href: '/learn/unity',
       current: path[1] === 'unity',
-      styles: engineStyles.unity
+      // styles: engineStyles.unity
     },
     {
       title: 'Unreal Engine',
       href: '/learn/unreal',
       current: path[1] === 'unreal',
-      styles: engineStyles.unreal
+      // styles: engineStyles.unreal
     },
     {
       title: 'HTML5',
       // icon: 'html5',
       href: '/learn/html5',
       current: path[1] === 'html5',
-      styles: engineStyles.html5
+      // styles: engineStyles.html5
     },
     {
       title: 'Custom',
       // icon: 'docker',
       href: '/learn/custom',
       current: path[1] === 'custom',
-      styles: engineStyles.custom.text
+      // styles: engineStyles.custom.text
     }
   ];
 }

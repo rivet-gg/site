@@ -30,7 +30,8 @@ export function Layout({
       </motion.header>
 
       {/* Body */}
-      <div className={clsx('relative', navigation.tabs ? 'pt-navigation' : 'pt-14')}>
+      {/* <div className={clsx('relative', navigation.tabs ? 'pt-navigation' : 'pt-14')}> */}
+      <div className={clsx('relative pt-[var(--header-height)]')}>
         {(prose || inset) && isTopPage ? <HeroPattern /> : null}
 
         <div

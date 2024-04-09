@@ -1,5 +1,5 @@
 'use client';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -21,7 +21,7 @@ import {
   faChessKnight,
   faServer
 } from '@fortawesome/sharp-solid-svg-icons';
-import { faGlobe, faFlask } from '@fortawesome/pro-regular-svg-icons';
+import { faGlobe, faFlask, faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
 import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { usePathname } from 'next/navigation';
 import imgLogoText from '@/images/rivet-logos/icon-text-cream.svg';
@@ -37,13 +37,14 @@ const ICONS = {
   cloud: faCloud
 };
 
-function TopLevelNavItem({ href, initHref, icon, children }) {
+function TopLevelNavItem({ href, target, initHref, icon, children }) {
   let pathname = usePathname();
 
   let current = pathname.startsWith(href);
   return (
     <Link
       href={initHref ?? href}
+      target={target}
       className={clsx(
         current
           ? 'border-white/10 bg-white/5 text-white'
@@ -128,6 +129,7 @@ const StatusBadge = ({ status }) => {
 
 export const Header = forwardRef(function Header({ className }, ref) {
   let { navigation } = useNavigation();
+  let pathname = usePathname();
   let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
 
@@ -135,9 +137,26 @@ export const Header = forwardRef(function Header({ className }, ref) {
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
 
+  let [bannerVisible, setBannerVisible] = useState(false);
   useEffect(() => {
-    document.body.style.setProperty('--header-height', navigation.tabs ? '6.5rem' : '3.5rem');
+    const handleBannerChange = () => {
+      setBannerVisible(localStorage.getItem('creditsBannerClosed') !== 'true');
+    };
+
+    handleBannerChange();
+
+    window.addEventListener('creditsBannerChange', handleBannerChange);
+    return () => window.removeEventListener('creditsBannerChange', handleBannerChange);
   }, [navigation.tabs]);
+
+  useEffect(() => {
+    document.body.style.setProperty(
+      '--header-height',
+      navigation.tabs
+        ? (bannerVisible ? '9rem' : '6.5rem')
+        : (bannerVisible ? '6rem' : '3.5rem')
+    );
+  }, [navigation.tabs, bannerVisible]);
 
   return (
     <>
@@ -175,6 +194,9 @@ export const Header = forwardRef(function Header({ className }, ref) {
               <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
                 Docs
               </TopLevelNavItem>
+              <TopLevelNavItem href='https://opengb.dev/modules' target='_blank' icon={faPuzzle}>
+                Modules
+              </TopLevelNavItem>
               <TopLevelNavItem href='/blog' icon={faNewspaper}>
                 Blog
               </TopLevelNavItem>
@@ -196,17 +218,17 @@ export const Header = forwardRef(function Header({ className }, ref) {
                 key={href}
                 href={href}
                 target='_blank'>
-                <FontAwesomeIcon icon={icon} className='text-lg text-white' />
+                <FontAwesomeIcon icon={icon} className='text-lg text-cream-100' />
               </Link>
             ))}
             {/* </div> */}
 
-            <Search />
+            {pathname != '/' && <Search />}
             <MobileSearch />
             {/* <ModeToggle /> */}
             <div className='hidden min-[416px]:contents'>
               <Button href='https://hub.rivet.gg' variant='secondary'>
-                Open Rivet
+                Sign In
               </Button>
             </div>
           </div>
@@ -248,7 +270,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
           </div>
         )}
       </motion.div>
-      <CreditsBanner />
+      {pathname != '/' ? <CreditsBanner /> : null}
     </>
   );
 });

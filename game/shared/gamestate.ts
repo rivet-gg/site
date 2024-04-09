@@ -20,8 +20,9 @@ import { preUpdateBullet, updateBullet } from './bullet';
 import { preUpdatePlayer, updatePlayer } from './player';
 import { updateParticles } from './particles';
 
-export const MAP_WIDTH = 3500;
-export const MAP_HEIGHT = Math.round(MAP_WIDTH * 0.3);
+// export const MAP_WIDTH = 3500;
+export const MAP_WIDTH = 2500;
+export const MAP_HEIGHT = Math.round(MAP_WIDTH / 896 * 400);
 
 export function updateGame(game: GameState, dt: number, thisPlayerId: string) {
   dt = Math.min(dt, 0.1);

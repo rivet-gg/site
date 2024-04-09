@@ -133,17 +133,20 @@ export async function setup(client: Client) {
 }
 
 function createInputEventListener(client: Client) {
-  client.canvas.addEventListener('mousedown', async () => {
+  client.canvas.addEventListener('mousedown', async ev => {
     if (client.shutdown) return;
     client.inputShoot = true;
+    ev.preventDefault();
   });
-  client.canvas.addEventListener('mouseup', async () => {
+  client.canvas.addEventListener('mouseup', async ev => {
     if (client.shutdown) return;
     client.inputShoot = false;
+    ev.preventDefault();
   });
   window.addEventListener('mousemove', async ev => {
     if (client.shutdown) return;
     [client.worldPointer.x, client.worldPointer.y] = convertScreenToWorld(client, ev.clientX, ev.clientY);
+    ev.preventDefault();
   });
 }
 

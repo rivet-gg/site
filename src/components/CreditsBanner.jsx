@@ -1,6 +1,7 @@
 'use client';
 import { faArrowRight, faX } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 export const CreditsBanner = () => {
@@ -8,6 +9,7 @@ export const CreditsBanner = () => {
   const handleClose = e => {
     e.preventDefault();
     localStorage.setItem('creditsBannerClosed', 'true');
+    window.dispatchEvent(new Event('creditsBannerChange'));
     setVisible(false);
   };
 
@@ -24,9 +26,13 @@ export const CreditsBanner = () => {
       href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
       target='_blank'
       rel='noreferrer'
-      className='lg:text-md pointer-events-auto fixed inset-x-0 top-[var(--header-height)] z-10 flex items-center justify-center gap-2 bg-gray-200 px-2 py-2 text-center text-sm font-extrabold'>
+      className={clsx(
+        'fixed inset-x-0 top-[calc(var(--header-height)-2.5rem)]',
+        'lg:text-md pointer-events-auto z-10 flex items-center justify-center gap-2 bg-charcole-900 text-cream-100 px-2 text-center text-sm font-bold',
+        'h-10'
+      )}>
       <span>
-        Apply for up to $120,000.00 in cloud credits to run your game on Rivet with Akamai RISE
+        Announcing up to $120k credits with Akamai RISE
         <FontAwesomeIcon icon={faArrowRight} className='ms-1 h-6 w-6' />
       </span>
       <FontAwesomeIcon

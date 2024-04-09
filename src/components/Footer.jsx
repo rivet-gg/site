@@ -12,7 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const footer = {
   learn: [
     { name: 'Learn', href: '/learn' },
-    { name: 'Documentation', href: '/docs/general' }
+    { name: 'Documentation', href: '/docs/general' },
+    { name: 'Modules', href: 'https://opengb.dev/modules', target: '_blank' }
   ],
   company: [
     // { name: 'We\'re hiring!', href: 'https://rivet-gg.notion.site/Job-Board-eed66f2eab2b4d7ea3e21ccd63b22efe?pvs=4', newTab: true, highlight: true, badge: '1' },
@@ -132,7 +133,7 @@ function SmallPrint() {
             <ul role='list' className='mt-3 space-y-2'>
               {footer.learn.map(item => (
                 <li key={item.name}>
-                  <Link href={item.href} className='text-sm leading-4 text-gray-300 hover:text-white'>
+                  <Link href={item.href} target={item.target} className='text-sm leading-4 text-gray-300 hover:text-white'>
                     {item.name}
                   </Link>
                 </li>

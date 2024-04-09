@@ -415,10 +415,10 @@ export function MobileSearch() {
     <div className='contents lg:hidden'>
       <button
         type='button'
-        className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
+        className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-cream-100/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
         aria-label='Search...'
         {...buttonProps}>
-        <SearchIcon className='h-5 w-5 stroke-charcole-900 dark:stroke-white' />
+        <SearchIcon className='h-5 w-5 stroke-charcole-900 dark:stroke-cream-100' />
       </button>
       <SearchDialog className='lg:hidden' {...dialogProps} />
     </div>

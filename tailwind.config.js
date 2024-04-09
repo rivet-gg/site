@@ -8,7 +8,8 @@ module.exports = {
     fontFamily: {
       sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
       display: ['Perfectly Nineties', 'ui-sans-serif', 'system-ui'],
-      pixel: ['Silkscreen', 'ui-sans-serif', 'system-ui']
+      pixel: ['Silkscreen', 'ui-sans-serif', 'system-ui'],
+      psychotic: ['Gloria Hallelujah', 'Open Sans', 'ui-sans-serif', 'system-ui']
     },
     fontSize: {
       '3xs': ['0.5rem', { lineHeight: '1.25rem' }],

@@ -15,9 +15,11 @@ import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import engineStyles from '../lib/engineStyles.json';
 import GitHubButton from 'react-github-btn';
 import { Game } from '@/components/Game';
+import grainDark from '@/images/effects/grain-dark.png';
 import {
   faArrowRight,
   faArrowLeft,
+  faCheck,
   faCaretLeft,
   faCaretRight,
   faBolt,
@@ -41,6 +43,7 @@ import {
   faPlanetMoon,
   faPlug,
   faServer,
+  faShieldAlt,
   faStopwatch,
   faUserGroup,
   faWreath,
@@ -69,8 +72,21 @@ import {
   faAlien8bit,
   faSkullCrossbones,
   faHeart,
-  faLineChart
+  faLineChart,
+  faSkull,
+  faCogs,
+  faCircleCheck,
+  faDumbbell,
+  faWallet,
+  faGamepad,
+  faEngine,
+  faEthernet,
+  faLightbulb,
+  faUser,
+  faCircleDot,
+  faMedal
 } from '@fortawesome/sharp-solid-svg-icons';
+import { Tooltip } from "@/components/mdx";
 import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.svg';
 import imgLobbies from '@/images/screenshots/lobbies.png';
 import imgOss from '@/images/screenshots/oss.png';
@@ -123,155 +139,38 @@ import imgStepsUnity from '@/images/engine-integration/unity.png';
 import imgStepsUnreal from '@/images/engine-integration/unreal.png';
 import imgStepsHtml5 from '@/images/engine-integration/html5.png';
 import imgStepsCustom from '@/images/engine-integration/custom.png';
-
-const featurePages = [
-  {
-    name: 'Game Servers',
-    description: 'Deploy your game on on Rivet, scale globally in seconds',
-    color: 'blue',
-    image: [imgComputeWhite, imgComputeColor],
-    screenshot: imgLobbies,
-    learnHref: '/docs/dynamic-servers',
-    features: [
-      {
-        name: 'Cost effective auto-scaling',
-        icon: faPiggyBank
-      },
-      {
-        name: 'Scales to meet player spikes',
-        icon: faChartWaterfall
-      },
-      {
-        name: 'Fast & no downtime deploys (< 5 second boot times)',
-        icon: faBolt
-      },
-      {
-        name: 'Streamlined team collaboration',
-        icon: faCodeBranch
-      },
-      {
-        name: 'Unified logging & monitoring',
-        icon: faMonitorWaveform
-      },
-      {
-        name: 'Customize hardware, 5 regions, & multiple providers',
-        icon: faWrench
-      }
-    ]
-  },
-  {
-    name: 'DDoS Mitigation',
-    description: 'Protect your game servers from DDoS attacks with Game Guard',
-    color: 'purple',
-    image: [imgGameGuardWhite, imgGameGuardColor],
-    screenshot: imgGameGuard,
-    learnHref: '/docs/dynamic-servers/concepts/game-guard',
-    features: [
-      {
-        name: 'Mitigates DDoS & botting attacks',
-        icon: faSwords
-      },
-      {
-        name: 'No added latency',
-        icon: faGaugeCircleBolt
-      },
-      {
-        name: 'Supports TCP, UDP, WebSockets & WebRTC',
-        icon: faPlug
-      },
-      {
-        name: 'Managed SSL certificates',
-        icon: faFileCertificate
-      },
-      {
-        name: 'Skiddies be gone',
-        icon: faChildReaching
-      }
-    ]
-  },
-  {
-    name: 'Services',
-    description: 'Select from multiple services to extend your game',
-    color: 'orange',
-    image: [imgAnalyticsWhite, imgAnalyticsColor],
-    screenshot: imgAnalytics,
-    features: [
-      {
-        name: 'Matchmaking: Integrated with infrastructure, region selction, and flexible to work with your game.',
-        icon: faChessKnight
-      },
-      {
-        name: 'CDN: Serve game assets & web pages and managed SSL for custom domains',
-        icon: faGlobe
-      },
-      {
-        name: 'Real-Time Analytics: No code changes required',
-        icon: faLineChart
-      }
-    ]
-  },
-  {
-    name: 'Open Source',
-    description: 'Source code available to read, modify, and self-host',
-    color: 'green',
-    image: [imgOssWhite, imgOssColor],
-    screenshot: imgOss,
-    learnHref: 'https://github.com/rivet-gg/rivet',
-    learnName: 'GitHub',
-    features: [
-      {
-        name: 'Permissive license (Apache 2.0)',
-        icon: faFileCertificate
-      },
-      {
-        name: 'Full transparency',
-        icon: faDoorOpen
-      },
-      {
-        name: 'Audit security',
-        icon: faLock
-      },
-      {
-        name: 'Self-host on-premise',
-        icon: faServer
-      },
-      {
-        name: 'Make it your own',
-        icon: faWrench
-      }
-    ]
-  }
-];
+import { faPuzzle, faPlus, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
+import { Ferris } from '../components/icons/Ferris';
 
 let supportedEngines = [
   {
     name: 'Godot',
     href: '/learn/godot',
-    styles: engineStyles.godot,
+    // styles: engineStyles.godot,
     join: <span>,&nbsp;</span>
   },
   {
     name: 'Unity',
     href: '/learn/unity',
-    styles: engineStyles.unity,
+    // styles: engineStyles.unity,
     join: <span>,&nbsp;</span>
   },
   {
     name: 'Unreal Engine',
     href: '/learn/unreal',
-    styles: engineStyles.unreal,
+    // styles: engineStyles.unreal,
     join: <span>,&nbsp;</span>
   },
   {
     name: 'HTML5',
     href: '/learn/html5',
-    styles: engineStyles.html5,
+    // styles: engineStyles.html5,
     join: <span>,&nbsp;and&nbsp;</span>
   },
   {
     name: 'Custom',
     href: '/learn/custom',
-    styles: engineStyles.custom,
+    // styles: engineStyles.custom,
     join: null
   }
 ];
@@ -312,7 +211,7 @@ let caseStudies = [
   }
 ];
 
-let templates = [
+let TEMPLATES = [
   {
     href: '/learn/html5/tutorials/tanks-canvas-socketio',
     screenshot: imgAstro,
@@ -367,49 +266,38 @@ export default function Index() {
         <div>
           <Title />
 
-          <RainbowBar className='h-1 w-full' />
-
-          <div className='relative w-full'>
+          {/* <div className='relative max-w-7xl mx-auto h-0 overflow-visible opacity-75'>
             <Image
               alt='This game is multiplayer!'
               src={imgMultiplayerCallout}
               className='absolute right-6 top-4 hidden sm:block'
             />
-          </div>
+          </div> */}
 
           <Subtitle />
+          {/* <div className='h-16'></div> */}
 
-          <Features />
+          {/* <RainbowBar className='max-w-5xl mx-auto h-1' /> */}
+          {/* <RainbowBar className='w-full h-1' /> */}
 
-          {/* Title */}
-          <div className='relative mx-auto w-full pb-[26rem] pt-60 text-center'>
-            <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
-              <PlayHoursCounter /> play hours{' '}
-              <FontAwesomeIcon
-                icon={faAlien8bit}
-                className='text-xl font-bold tracking-tight text-violet-400 sm:text-5xl'
-              />
-              <br />
-              at scale around the globe{' '}
-              <FontAwesomeIcon
-                icon={faGlobe}
-                className='text-xl font-bold tracking-tight text-blue-400 sm:text-5xl'
-              />
-            </h2>
-            <Image
-              alt='Picture of earth'
-              src={img551Regions}
-              className='absolute bottom-0 left-1/2 -z-10 h-full w-auto -translate-x-1/2 transform object-cover'
-            />
+          <div className='px-6 pt-16 pb-40 lg:px-8'>
+            <Infrastructure />
           </div>
 
-          <div className='main-content-container mx-auto px-6 md:py-60 lg:px-8'>
+          <div className='max-w-6xl mx-auto px-6 md:py-48 lg:px-8'>
+            <Modules />
+          </div>
+
+          <div className='main-content-container mx-auto px-6 py-32 md:py-48 lg:px-8'>
             <CaseStudies />
           </div>
 
           <CodeSection />
 
           <TemplateSection />
+
+          <Philosophy />
+          <div className='h-32'></div>
 
           {/*<DemoSection /> */}
 
@@ -539,7 +427,13 @@ function Background({ props }) {
 
 function Title() {
   return (
-    <div className='relative flex h-[30vw] max-h-[600px] flex-wrap items-center justify-center'>
+    <div className={clsx(
+      ' mx-auto relative flex flex-wrap items-center justify-center border-2 border-cream-100 box-border',
+      'lg:max-w-4xl lg:h-[400px]',
+      'md:max-w-3xl md:h-[357px]',
+      // 'sm:max-w-2xl sm:h-[285px]',
+      'w-full h-[45vw]',
+    )}>
       {/* Background */}
       {/* <Background /> */}
 
@@ -549,40 +443,69 @@ function Title() {
       {/* Content */}
       <div className='pointer-events-none z-10 flex select-none flex-col items-center justify-center text-center'>
         {/* Title */}
-        <h1 className='mt-8 font-display text-4xl font-extrabold tracking-tight text-cream-100 sm:text-7xl'>
-          Multiplayer Made Simple
+        <h1 className={clsx(
+          'mt-8 font-display font-extrabold tracking-tight text-cream-100',
+          'text-3xl sm:text-5xl md:text-6xl'
+        )}>
+          {/* Multiplayer Made Simple */}
+          {/* Multiplayer Tooling<br/>Made Simple */}
+          Multiplayer Infrastructure<br/>Made Simple
         </h1>
       </div>
+
+      {/* Multiplayer note */}
+      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-cream-100 font-semibold bg-charcole-950'> */}
+      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-xs text-charcole-950 font-bold bg-cream-100 uppercase'> */}
+      <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-xs text-cream-100 font-bold uppercase opacity-60 pointer-events-none select-none'>
+        <FontAwesomeIcon icon={faGamepad} className='text-lg mr-2' />
+        <span>This game is multiplayer</span>
+        {/* <span className='hidden md:block'>This game is multiplayer</span>
+        <span className='block md:hidden'>Play game in a larger window</span> */}
+      </div>
+
+      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-md font-semibold text-green-400'>
+        <OnlineIndicator />
+        <span>8 Players Online</span>
+      </div> */}
     </div>
   );
 }
 
 function Subtitle() {
   return (
-    <div className='flex w-full flex-col items-center justify-center px-2 py-20 text-center'>
-      {/* Description */}
-      <div className='leading-8 text-cream-100'>
-        {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
-        {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
-        <p className='text-xl font-semibold'>
-          Hassle-free solution to deploy & scale multiplayer game servers
-        </p>
-        <p className='mt-2 text-lg opacity-90'>
-          Supports&nbsp;
-          {supportedEngines.map(({ name, image, href, styles, join }, i) => (
-            <span key={name}>
-              <Link
-                href={href}
-                className={clsx(
-                  'pointer-events-auto inline font-semibold transition hover:scale-110',
-                  styles.text
-                )}>
-                {name}
-              </Link>
-              {join}
-            </span>
-          ))}
-        </p>
+    <div className='flex w-full flex-col items-center justify-center px-2 mt-20 text-center'>
+      {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
+      {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
+
+      <p className="font-display tracking-tight text-cream-100 text-center flex flex-row gap-3 text-4xl italic">
+        <span className='underline decoration-green-500'>Easy.</span>
+        <span className='underline decoration-orange-500'>Flexible.</span>
+        <span className='underline decoration-blue-500'>Affordable.</span>
+      </p>
+
+      <p className='mt-6 text-lg opacity-90 text-cream-100'>
+        Supports&nbsp;
+        {supportedEngines.map(({ name, image, href, styles, join }, i) => (
+          <span key={name}>
+            <Link
+              href={href}
+              className={clsx(
+                'pointer-events-auto inline font-semibold transition hover:scale-110',
+                'hover:underline',
+                // styles.text
+              )}>
+              {name}
+            </Link>
+            {join}
+          </span>
+        ))}.
+        <br/>
+        Open-source and self-hostable.
+      </p>
+
+      {/* GitHub */}
+      <div className='mt-4'>
+        <GitHubStars />
       </div>
 
       {/* Investors */}
@@ -605,41 +528,68 @@ function Subtitle() {
 
       {/* CTA */}
       <div className='pointer-events-auto mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-        <Button variant='juicy' href='https://hub.rivet.gg'>
+        <Button variant='primaryJuicy' href='https://hub.rivet.gg'>
           Get Started
         </Button>
+        <Button variant='juicy' href='https://rivet.gg/learn'>
+          <FontAwesomeIcon icon={faBook} className='mr-2' />
+          Documentation
+        </Button>
 
-        <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
-          5 minute crash course <span aria-hidden='true'>→</span>
-        </Link>
+        {/* <Link href='/learn' className='text-sm font-semibold leading-6 text-white'>
+          Documentation <span aria-hidden='true'>→</span>
+        </Link> */}
       </div>
 
-      {/* Separator */}
-      {/* <div className='mx-4 hidden h-4 w-[1px] bg-white/50 sm:block'></div> */}
-      {/* <div className='my-4 block h-[1px] w-4 bg-white/50 sm:hidden'></div> */}
-
-      {/* GitHub */}
-      <div className='mt-9 flex items-center gap-3'>
-        {/* <div className='text-white opacity-75'>Pirate our source code <FontAwesomeIcon icon={faCaretRight} /></div> */}
-        <div className='text-white opacity-75'>
-          <FontAwesomeIcon icon={faSkullCrossbones} className='mr-1 text-white opacity-75' /> Pirate our
-          source code
-        </div>
-        <FontAwesomeIcon icon={faArrowRight} className='h-4 w-4 text-white opacity-75' />
-        <div className='h-[28px]'>
-          <GitHubButton
-            href='https://github.com/rivet-gg/rivet'
-            data-color-scheme='no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;'
-            data-size='large'
-            data-show-count='true'
-            aria-label='Star rivet-gg/rivet on GitHub'>
-            Star
-          </GitHubButton>
-        </div>
-      </div>
+      <a
+        href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
+        target='_blank'
+        rel='noreferrer'
+        className='mt-6 pointer-events-auto flex items-center justify-center gap-1 text-center text-xs sm:text-sm font-bold text-cream-100/80 hover:text-cream-100'>
+        Announcing up to $120k credits with Akamai RISE
+        <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+      </a>
     </div>
   );
 }
+
+function GitHubStars({ repo = 'rivet-gg/rivet'}) {
+  const [stars, setStars] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/repos/${repo}`);
+        const data = await response.json();
+        setStars(data.stargazers_count);
+      } catch (err) {
+        console.error("Failed to fetch stars", err);
+      }
+    };
+
+    fetchData();
+  }, [repo]);
+
+  return (
+    <a className='text-white/50 hover:text-white' href={`https://github.com/${repo}`} target="_blank" rel="noreferrer" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+      {isHovered
+        ? <><FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code</>
+        : <><FontAwesomeIcon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>}</>
+      }
+    </a>
+  );
+};
+
+function formatNumber(num) {
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'k';
+  } else {
+    return num.toString();
+  }
+};
+
+
 
 // function DemoSection() {
 //   return (
@@ -704,16 +654,11 @@ function Subtitle() {
 //   );
 // }
 
-const enginePages = [
+const ENGINE_PAGES = [
   {
     name: 'Godot',
     image: imgStepsGodot,
     learnUrl: '/learn/godot'
-  },
-  {
-    name: 'HTML5',
-    image: imgStepsHtml5,
-    learnUrl: '/learn/html5'
   },
   {
     name: 'Unity',
@@ -728,6 +673,11 @@ const enginePages = [
     preview: true
   },
   {
+    name: 'HTML5',
+    image: imgStepsHtml5,
+    learnUrl: '/learn/html5'
+  },
+  {
     name: 'Custom',
     image: imgStepsCustom,
     learnUrl: '/learn/custom'
@@ -740,16 +690,30 @@ function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='flex flex-col items-center gap-12 px-4 py-16'>
+    <div className='flex flex-col items-center gap-12 px-4 py-30 md:py-48'>
+      {/* <BigAssIcon icon={faEngine} color='text-cream-100' /> */}
+
+      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
+        Rivet works with your <span className='underline'>game engine</span> and <span className='underline'>networking framework</span>
+      </h2> */}
+
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your <span className='underline'>game engine</span> and{' '}
-        <span className='underline'>networking framework</span>
+        Rivet works with your <span className='underline decoration-orange-500'>game engine</span> and <span className='underline decoration-blue-500'>networking framework</span>
       </h2>
+
+      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
+        Rivet works with your <span className='underline'>game engine</span> <FontAwesomeIcon icon={faEngine} /> and{' '}
+        <span className='underline'>networking framework</span> <FontAwesomeIcon icon={faEthernet} />
+      </h2> */}
+
+      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
+        Works with your game engine <FontAwesomeIcon icon={faEngine} className='text-red-500 mx-2' /> and networking framework <FontAwesomeIcon icon={faEthernet} className='text-blue-500 mx-2' />
+      </h2> */}
 
       <div className='flex w-full flex-col items-stretch gap-2'>
         {/* Engine tabs */}
         <div className='flex flex-wrap justify-center gap-2'>
-          {enginePages.map((engine, i) => (
+          {ENGINE_PAGES.map((engine, i) => (
             <Button key={i} variant='juicy' highlight={i == page.index} onMouseEnter={() => changePage(i)}>
               {engine.name}
             </Button>
@@ -787,12 +751,12 @@ function EnginePages({ page, onChangePage }) {
             const swipe = swipePower(offset.x, velocity.x);
 
             if (swipe < -swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, 1, enginePages));
+              onChangePage(paginate(page.index, 1, ENGINE_PAGES));
             } else if (swipe > swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, -1, enginePages));
+              onChangePage(paginate(page.index, -1, ENGINE_PAGES));
             }
           }}>
-          <EnginePageContents page={enginePages[page.index]} scale={page.index === 3} />
+          <EnginePageContents page={ENGINE_PAGES[page.index]} scale={page.index === 3} />
         </motion.div>
       </AnimatePresence>
     </div>
@@ -814,27 +778,26 @@ function TemplateSection() {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   return (
-    <div className='flex flex-col items-center py-20 md:py-52'>
+    <div className='flex flex-col items-center px-2 py-20 md:py-52'>
       {/* Title */}
+      {/* <BigAssIcon icon={faCode} color="text-orange-500" /> */}
       <div className='mx-auto max-w-3xl text-center'>
-        <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
-          Get started with an example
+        <h2 className='font-display font-bold tracking-tight text-cream-100 text-5xl mt-8'>
+          Get started with an example <FontAwesomeIcon icon={faCode} className='ml-3 text-orange-500' />
         </h2>
       </div>
 
-      {/* Separator */}
-      <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
-
       {/* Grid with Increased Margins */}
       <div
-        className={clsx('mx-auto mt-2 grid gap-12 px-4 sm:px-8', 'max-w-5xl', 'grid-cols-1 md:grid-cols-4')}>
-        {templates.map((template, i) => (
+        className={clsx('mx-auto mt-16 grid gap-12 px-4 sm:px-8', 'max-w-5xl', 'grid-cols-2 sm:grid-cols-2 md:grid-cols-4')}>
+        {TEMPLATES.map((template, i) => (
           <Link
             key={i}
             href={template.href}
             className={clsx(
               'flex flex-col gap-2',
-              'group relative h-[275px] items-center justify-center ',
+              // 'group relative h-[275px] items-center justify-center ',
+              'group relative items-center justify-center ',
               'origin-center transform transition duration-200 hover:scale-105',
               hoveredLink !== null && hoveredLink !== i && 'opacity-50'
             )}
@@ -843,7 +806,7 @@ function TemplateSection() {
             <Image className='w-full' src={template.screenshot} alt={template.subtext} />
             <div
               className={clsx(
-                'text-center font-semibold text-cream-100',
+                'text-center font-semibold text-cream-100 whitespace-nowrap',
                 'opacity-0 transition duration-200',
                 hoveredLink == i && 'opacity-100'
               )}>
@@ -866,6 +829,67 @@ function TemplateSection() {
 
       {/* Separator */}
       <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
+    </div>
+  );
+}
+
+const PHILOSOPHY_ITEMS = [
+  { icon: faFileCertificate, title: "Permissive License (Apache 2.0)" },
+  { icon: faLock, title: "Audit security" },
+  { icon: faServer, title: "Optionally self-host on-premise" },
+  { iconEl: <Ferris className="w-6 h-6" />, title: "100% crustacean-certified Rust" },
+  { icon: faSkull, title: "Trust no-one, own your backend", classes: 'font-psychotic' },
+];
+
+function Philosophy() {
+  return (
+    <div className='main-content-container flex flex-col items-center py-20 md:py-52'>
+      <div className={clsx(
+        'border-2 border-cream-100/25',
+        'mx-4',
+        'sm:px-16 sm:pt-16 sm:pb-14',
+        'px-6 pt-6 pb-6',
+      )}>
+        {/* Title */}
+        {/* <BigAssIcon icon={faCodeBranch} color='text-cream-100' /> */}
+
+        <div className='mx-auto max-w-4xl'>
+          <h2 className='font-display font-bold tracking-tight text-cream-100 text-5xl'>
+            Our commitment to open-source <FontAwesomeIcon icon={faCodeBranch} className='ml-3 text-4xl' />
+          </h2>
+        </div>
+
+        {/* Details */}
+        <div className='flex flex-col gap-4 text-cream-100/80 text-center max-w-2xl mt-8 text-justify'>
+          <p>
+            {/* <div className='float-left text-5xl mr-2'>E</div> */}
+            Everyone who works at Rivet has shipped a multiplayer game. We{"'"}ve all experienced how much time & money is required to ship a game, and how much harder it is to maintain it.
+          </p>
+          <p>
+            We refused to use closed-source solutions that locked us in and failed to grow alongside our use cases, so we always opted to build solutions ourselves. To build the tool we needed, we knew it had to make it radically open-source.
+          </p>
+          <p>
+            The future of game development is open-source and we{"'"}re here to lead the way.
+          </p>
+        </div>
+
+
+        <div className='max-w-2xl flex flex-col gap-4 items-stretch mt-8'>
+          {PHILOSOPHY_ITEMS.map((item, i) => (
+            <div key={i} className='flex flex-row items-center gap-3 font-semibold text-cream-100'>
+              <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
+                {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
+                {item.iconEl && item.iconEl}
+              </div>
+              <span className={item.classes ?? ''}>{item.title}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className='mt-8 sm:mt-12 flex justify-center'>
+          <GitHubStars />
+        </div>
+      </div>
     </div>
   );
 }
@@ -963,160 +987,6 @@ function paginate(page, dir, arr) {
   return { index: newPage % arr.length, dir };
 }
 
-function Features() {
-  const [page, setPage] = React.useState({ index: 0, dir: 1 });
-
-  return (
-    <div className='mx-auto w-full max-w-7xl'>
-      {/* sub-text */}
-      <div className='mx-auto mb-8 max-w-7xl text-center'>
-        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
-          Packed to the brim with features
-        </h3>
-      </div>
-
-      <FeatureTabs
-        index={page.index}
-        onChangeTab={i => setPage({ index: i, dir: i > page.index ? 1 : -1 })}
-      />
-      <FeaturePages page={page} onChangePage={setPage} />
-    </div>
-  );
-}
-
-function FeatureTabs({ index, onChangeTab }) {
-  return (
-    <div>
-      <nav
-        className={clsx('-mb-px flex', 'sm:gap-x-4 sm:px-4 sm:pt-4', 'gap-x-2 px-2 pt-2')}
-        aria-label='Tabs'>
-        {featurePages.map((tab, i) => {
-          let isCurrent = i === index;
-          return (
-            <PatternButton
-              key={tab.name}
-              className={clsx('group/tab flex w-1/4 transition')}
-              pattern={{ color: tab.color }}
-              highlight={isCurrent ? 1 : 0}
-              aria-current={isCurrent ? 'page' : undefined}
-              onMouseEnter={() => onChangeTab(i)} // Changed from onClick to onMouseEnter
-            >
-              <div className={clsx('py-2', 'flex flex-col items-center')}>
-                <div className='relative h-10 w-10 md:h-16 md:w-16'>
-                  <Image
-                    src={tab.image[0]}
-                    alt='Tab image'
-                    className={clsx(
-                      'absolute inset-0 m-auto h-10 w-10 opacity-100 transition',
-                      'drop-shadow-[0_0_10px_rgba(24,24,27,0.8)]',
-                      isCurrent && 'opacity-100'
-                    )}
-                  />
-                </div>
-                <div className='hidden text-white sm:block'>{tab.name}</div>
-              </div>
-            </PatternButton>
-          );
-        })}
-      </nav>
-    </div>
-  );
-}
-
-function FeaturePages({ page, onChangePage }) {
-  // TODO: Is this SEO friendly?
-  return (
-    <div className='relative flex h-[550px] w-full md:h-[600px]'>
-      <AnimatePresence initial={false} custom={page.dir}>
-        <motion.div
-          key={page.index}
-          className='absolute h-full w-full'
-          custom={page.dir}
-          variants={variants}
-          initial='enter'
-          animate='center'
-          exit='exit'
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag='x'
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-
-            if (swipe < -swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, 1, featurePages));
-            } else if (swipe > swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, -1, featurePages));
-            }
-          }}>
-          <FeaturePageContents page={featurePages[page.index]} scale={page.index === 3} />
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
-
-function FeaturePageContents({ page, scale }) {
-  return (
-    <div className='flex h-full w-full justify-stretch'>
-      {/* Image */}
-      <div className='relative hidden flex-1 md:block'>
-        <motion.div
-          className='absolute left-1/2 top-1/2 w-full'
-          key={page.index}
-          initial={{ transform: 'translateX(-75%) translateY(-25%) rotate(1deg) scale(75%)', opacity: 0 }}
-          whileInView={{
-            transform: `translateX(-50%) translateY(-50%) rotate(-5deg) scale(${scale ? '50%' : '75%'})`,
-            opacity: 1
-          }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}>
-          <Image src={page.screenshot} className='drag-none' draggable={false} alt='Lobby list screenshot' />
-        </motion.div>
-      </div>
-
-      {/* Details */}
-      <div className='flex flex-1 items-center justify-center'>
-        <div className='px-2 lg:px-4'>
-          <div className='lg:max-w-lg'>
-            {/* Title */}
-            <h2 className='mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-              {page.name}
-            </h2>
-            <p className='text-m mt-4 text-gray-300'>{page.description}</p>
-
-            {/* Features */}
-            <div className='mt-6 flex w-full flex-col items-stretch gap-4'>
-              {page.features.map((feature, i) => (
-                <div
-                  key={i}
-                  className='flex flex-row items-center gap-3 rounded-md font-semibold text-white transition'>
-                  <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
-                    <FontAwesomeIcon icon={feature.icon} className='w-4' />
-                  </div>
-                  {feature.name}
-                </div>
-              ))}
-            </div>
-
-            {/* Learn more */}
-            {page.learnHref && (
-              <div className='mt-5'>
-                <Button href={page.learnHref} arrow='right' variant='juicy'>
-                  {page.learnName ?? 'Learn More'}
-                </Button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const PlayHoursCounter = () => {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [hasMounted, setHasMounted] = useState(false);
@@ -1160,27 +1030,301 @@ function isDigit(char) {
   return digits.indexOf(char) !== -1;
 }
 
+function Infrastructure() {
+  return (
+    <div className="flex flex-col items-center">
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">Infrastructure</h3>
+      <p className="text-white/80 text-center max-w-2xl mt-8">
+        Flexible, open-source, & cost-effective infrastructure for multiplayer games.
+      </p> */}
+
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">Easy. Flexible. Affordable.</h3> */}
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">
+        Easy.<br/>
+        Flexible.<br/>
+        Affordable.
+      </h3> */}
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl"> */}
+
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl text-center flex flex-row gap-3">
+        <span className='underline decoration-green-500'>Easy.</span>
+        <span className='underline decoration-orange-500'>Flexible.</span>
+        <span className='underline decoration-blue-500'>Affordable.</span>
+      </h3> */}
+
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-6xl text-center">
+        Multiplayer Infrastructure
+      </h3>
+      <p className="font-display tracking-tight text-cream-100 text-center flex flex-row gap-3 text-3xl italic mt-4">
+        <span className='underline decoration-green-500'>Easy.</span>
+        <span className='underline decoration-orange-500'>Flexible.</span>
+        <span className='underline decoration-blue-500'>Affordable.</span>
+      </p> */}
+
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">
+        Easy. <FontAwesomeIcon icon={faCircleCheck} className='text-green-500' /><br/>
+        Flexible. <FontAwesomeIcon icon={faDumbbell} className='text-orange-500' /><br/>
+        Affordable. <FontAwesomeIcon icon={faWallet} className='text-blue-500' />
+      </h3> */}
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">
+        Easy. <FontAwesomeIcon icon={faCircleCheck} className='text-green-500' /> Flexible. <FontAwesomeIcon icon={faDumbbell} className='text-orange-500' /> Affordable. <FontAwesomeIcon icon={faWallet} className='text-blue-500' />
+      </h3> */}
+
+      {/* <h3 className="font-display tracking-tight text-cream-100 sm:text-5xl">
+        <span>
+          Easy. <FontAwesomeIcon icon={faCircleCheck} className='text-4xl text-green-500 ml-2' />
+        </span><br/>
+        <span className='pl-8'>
+          Flexible. <FontAwesomeIcon icon={faDumbbell} className='text-4xl text-orange-500 ml-2' />
+        </span><br/>
+        <span className='pl-16'>
+        Affordable. <FontAwesomeIcon icon={faWallet} className='text-4xl text-blue-500 ml-2' />
+        </span><br/>
+      </h3> */}
+
+      {/* <p className="text-white/80 text-center max-w-2xl mt-8">
+        Flexible, open-source, & cost-effective infrastructure for multiplayer games.
+      </p> */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-5 mt-16">
+        <InfrastructureCard
+          className="md:col-span-7"
+          href="/docs/dynamic-servers"
+          icon={faServer}
+          title="Dedicated Game Servers"
+          // description="Run your game servers on a global multi-cloud network"
+          // description="Run game servers across multiple regions & clouds providers"
+          // description="game servers across multiple regions & clouds providers"
+          description="Deploy game servers in minutes across multiple regions & clouds providers"
+          features={[
+            // <>Dedicated, cost-effective servers <Tooltip tip="Shared CPU core similar to VPS providers, see pricing page for details">starting at $2.85/mo</Tooltip></>,
+            <>Optimize for performance or cost, servers <Tooltip tip="Shared CPU core similar to VPS providers, see pricing page for details">starting at $2.85/mo</Tooltip></>,
+            <>Auto-scales <Tooltip tip="Benchmark coming soon to our blog">90% faster</Tooltip> than AWS GameLift</>,
+            "No-downtime deploys & instant rollbacks",
+            "Monitoring & crash reporting",
+          ]}
+          bgColor="bg-blue-500/[0.01]"
+        />
+        <InfrastructureCard
+          className="md:col-span-5"
+          href="/docs/dynamic-servers/concepts/game-guard"
+          icon={faShieldAlt}
+          title="DDoS Mitigation"
+          // description="Protect your game servers from DDoS attacks"
+          features={[
+            "Included for free",
+            "No added latency",
+            "Supports UDP & TCP & WebSockets & WebRTC",
+            "Automatic SSL for game servers (WebSockets & TCP+TLS)",
+          ]}
+          bgColor="bg-orange-500/[0.01]"
+        />
+        <InfrastructureCard
+          className="md:col-span-5"
+          href="/docs/cdn"
+          icon={faGlobe}
+          title="CDN"
+          description="Asset delivery, game downloads, & website hosting"
+          features={[
+            "Custom domains",
+            "Instant rollbacks",
+            "Automatic SSL",
+          ]}
+          bgColor="bg-green-500/[0.01]"
+        />
+        <InfrastructureCard
+          className="md:col-span-7"
+          href="https://opengb.dev"
+          target="_blank"
+          // icon={faCogs}
+          icon={faPuzzle}
+          title="Backend Modules"
+          // description="Extend with pre-built modules or write your own"
+          // description="Extend Rivet with fully modular scripting to grow with your game"
+          // description="Extend Rivet using TypeScript (or use your own API servers)"
+          description="Write server-side logic using TypeScript (or use your own API server)"
+          features={[
+            // "Auto-scales to meet demand",
+            // "Write server-side logic using TypeScript",
+            "Modules include matchmaking, parties, authentication, & more",
+            "Postgres database included for persistence",
+            <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-300 hover:text-orange-500 hover:underline'>Open Game Backend</a></>,
+            // "Fully modular, grows with your use cases",
+            // "Global edge deployments",
+          ]}
+          bgColor="bg-purple-500/[0.01]"
+        />
+      </div>
+    </div>
+  );
+};
+
+function InfrastructureCard({ href, target, icon, title, description, features, className, bgColor }) {
+  return (
+    <div
+      className={clsx(
+        'relative',
+        `md:h-[400px] text-left p-10`,
+        'flex flex-col items-start justify-start',
+        // 'border-2',
+
+
+        // 'border-2 border-cream-100/80 hover:border-cream-100',
+        'border-4 border-cream-100/10',
+        // 'bg-white/10',
+
+        'col-span-1',
+        className
+      )}>
+      {/* Background */}
+      <div
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.8 }}
+        className='pointer-events-none absolute inset-0 bg-repeat transition'></div>
+      {/* <div className={clsx('z-10 pointer-events-none absolute inset-0', bgColor)}></div> */}
+
+      {/* Title */}
+      <div className='z-50'>
+        {/* Icon */}
+        <div className='flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[4%] outline outline-1 outline-white/[8%]'>
+          <FontAwesomeIcon icon={icon} className='text-2xl text-cream-100' />
+        </div>
+
+        <h3 className="mt-4 font-display text-3xl font-semibold text-cream-100">{title}</h3>
+
+        {description && <p className="mt-2 text-md text-cream-100/80"> {description}</p>}
+
+        {features &&
+          <ul className="mt-2 text-md text-cream-100/80">
+            {features.map((feature, i) => (
+              <li key={i} className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faCheck} />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        }
+      </div>
+
+      {/* Separator */}
+      <div className='flex-grow'></div>
+
+      {/* Documentation */}
+      <div className={clsx(
+        'flex flex-row justify-end z-10',
+        'mt-6 md:mt-0',
+      )}>
+        <Button variant='juicy' href={href} target={target}>Documentation</Button>
+        {/* <Button variant='juicy' href='https://rivet.gg/learn'>
+          <FontAwesomeIcon icon={faBook} className='mr-2' />
+          Documentation
+        </Button> */}
+      </div>
+    </div>
+  );
+}
+
+const MODULE_FEATURES = [
+  <>Write server-side logic using TypeScript (or use your own API server)</>,
+  <>Launch quickly by using existing modules</>,
+  // <>Launch quickly by using existing modules to build your game backend</>,
+  // <>Easily modify & create new modules with game-like scripting</>,
+  <>Postgres database included for persistence</>,
+  <>Open-source & self-hostable</>,
+  // <>Secure, load-tested, & resilient </>,
+  // <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-300 hover:text-orange-500 hover:underline'>Open Game Backend Engine</a></>,
+];
+
+function BigAssIcon({ icon, color }) {
+  return (
+    <div className='flex items-center justify-center rounded-[2rem] bg-white/[4%] outline outline-1 outline-white/[8%] w-[136px] h-[136px] mb-14'>
+      <FontAwesomeIcon icon={icon} className={clsx('text-7xl', color)} />
+    </div>
+  );
+}
+
+function Modules() {
+  return (
+    <div className="flex flex-col items-center">
+      <BigAssIcon icon={faPuzzle} color="text-purple-500" />
+      <h3 className="font-display tracking-tight text-cream-100 text-5xl text-center">Extend with backend modules</h3>
+      {/* Simple to write & adapt modules for your backend that work alongside Rivet. */}
+      <ul className="text-cream-100/80 mt-8">
+        {MODULE_FEATURES.map((feature, i) => (
+          <li key={i} className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faCheck} />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      {/* <p className="text-cream-100/80 mt-8 max-w-2xl text-center">
+        {MODULE_FEATURES.map((feature, i) => <span key={i}>{feature}<br/></span>)}
+      </p> */}
+      {/* <p className="text-cream-100/80 mt-8 max-w-xl text-center">
+        Import, modify, & create modules to fit your unique requirements.<br/>
+        Scriptable like a game engine using TypeScript.<br/>
+        Persist data using Postgres.<br/>
+        Secure, load-tested, & resilient. <br/>
+        Powered by <a href="https://opengb.dev" target="_blank" className='text-orange-300 hover:text-orange-500 hover:underline'>Open Game Backend Engine</a>.
+      </p> */}
+
+      <div className='text-lg text-bold'>Available Modules</div>
+      <div className={clsx(
+        "w-full grid gap-4 mt-8",
+        "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
+      )}>
+        <ModuleCard title="Build your own" icon={faPlus} href="https://opengb.dev/build/overview" />
+        <ModuleCard title="Matchmaker" icon={faChessKnight} href="/docs/matchmaker" />
+        <ModuleCard title="Parties" icon={faPartyHorn} href="https://github.com/rivet-gg/opengb-registry/issues/5" comingSoon={true} />
+        <ModuleCard title="Presence" icon={faCircleDot} href="https://github.com/rivet-gg/opengb-registry/issues/2" comingSoon={true} />
+        <ModuleCard title="Auth" icon={faKey} href="https://opengb.dev/modules/auth/overview" />
+        <ModuleCard title="Users" icon={faUser} href="https://opengb.dev/modules/users/overview" />
+        <ModuleCard title="Friends" icon={faUserGroup} href="https://opengb.dev/modules/friends/overview" />
+        <ModuleCard title="Leaderboards" icon={faMedal} href="https://github.com/rivet-gg/opengb-registry/issues/3" comingSoon={true} />
+      </div>
+      <Button variant="text-subtle" href="https://opengb.dev/modules" target="_blank" className="mt-8">See all modules →</Button>
+    </div>
+  );
+}
+
+function ModuleCard({ title, icon, href, comingSoon }) {
+  return (
+    <PatternButton href={href} target={href.startsWith("/") ? null : "_blank"}>
+      <div className='flex flex-row items-center justify-start justify-between h-full px-5 py-4'>
+        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%]'>
+          <FontAwesomeIcon icon={icon} />
+        </div>
+        <div class="inline-flex flex-col ml-4 flex-grow">
+          <span className="text-lg font-semibold text-left leading-tight">{title}</span>
+          {comingSoon && <span className="text-xs font-semibold text-cream-100/50 text-sm leading-tight">Coming mid-2024</span>}
+        </div>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </div>
+    </PatternButton>
+  );
+}
+
 function CaseStudies({ props }) {
   let [hoverIdx, setHoverIdx] = useState(null);
 
   return (
-    <div className='flex flex-col gap-12'>
-      {/* sub-text */}
+    <div className='flex flex-col'>
+      {/* Title */}
       <div className='max-w-1xl mx-auto text-center'>
-        <h3 className='font-display tracking-tight text-cream-100 sm:text-5xl'>
+        <h3 className='font-display tracking-tight text-cream-100 text-5xl'>
           Some of the games that{' '}
           <FontAwesomeIcon icon={faHeart} className='tracking-tight text-red-500 sm:text-5xl' /> Rivet
         </h3>
       </div>
 
+
       {/* Grid */}
-      <div className={clsx('group', 'grid  gap-12', 'sm:mx-0 md:grid-cols-3', '-mx-6 grid-cols-1')}>
+      <div className={clsx('mt-14', 'group', 'grid  gap-12', 'sm:mx-0 md:grid-cols-3', '-mx-6 grid-cols-1')}>
         {caseStudies.map((study, i) => (
           <Link
             key={i}
             href={study.href}
             className={clsx(
-              'relative flex h-[475px] items-center justify-center p-8 transition hover:translate-y-[-10px] sm:p-10',
+              'relative flex items-center justify-center p-8 transition hover:translate-y-[-10px] sm:p-10',
+              'h-[200px] md:h-[475px]',
               hoverIdx == null || hoverIdx == i ? 'opacity-100' : 'opacity-50'
             )}
             onMouseEnter={() => setHoverIdx(i)}
@@ -1197,8 +1341,11 @@ function CaseStudies({ props }) {
         ))}
       </div>
 
-      {/* Separator */}
-      <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
+      {/* Play hours */}
+      <div className='w-full flex flex-row items-center justify-center text-white text-sm font-bold mt-10 uppercase'>
+        <OnlineIndicator />
+        <span><PlayHoursCounter /> play hours{' '}</span>
+      </div>
     </div>
   );
 }
@@ -1303,6 +1450,12 @@ function LevelUpSection() {
         </div>
       </div>
     </div>
+  );
+}
+
+function OnlineIndicator() {
+  return (
+    <div className="inline-block w-3.5 h-3.5 mr-2.5 bg-green-400 rounded-full relative before:content-[''] before:absolute before:inset-0 before:w-3.5 before:h-3.5 before:bg-green-400 before:opacity-70 before:rounded-full before:animate-ping"></div>
   );
 }
 
