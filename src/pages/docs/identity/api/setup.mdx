@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ setup
 
+
+
 ## Description
 
 Gets or creates an identity.
@@ -26,7 +28,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/identity/identities'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.setup({

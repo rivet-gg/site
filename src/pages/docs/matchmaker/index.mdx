@@ -1,10 +1,14 @@
-import { faMagnifyingGlass, faList, faCode } from '@fortawesome/sharp-solid-svg-icons';
+import { faMagnifyingGlass, faList, faCode, faFilePen } from '@fortawesome/sharp-solid-svg-icons';
 
 # Matchmaker
 
 <Summary>Flexible matchmaker for placing players in lobbies with no wait times.</Summary>
 
 The Rivet Matchmaker is a casual matchmaker optimized to get your player connected to your game server in under a second in the optimal region & lobby.
+
+## Configuration
+
+See the [rivet.yaml reference](/docs/general/config#matchmaker) for the full list of matchmaker configuration options.
 
 ## Integration
 
@@ -36,6 +40,11 @@ Additionally, you can make use of these endpoints to get more information about 
 The Rivet Matchmaker is tightly integrated with Dynamic Servers to automatically boot lobbies on-demand when players need them. Read more about how Rivet Dynamic Servers operates your game servers [here](/docs/dynamic-servers/index).
 
 <ResourceGroup>
+  <Resource
+    title='rivet.yaml Reference'
+    icon={faFilePen}
+    href='/docs/general/config#matchmaker'
+  />
   <Resource
     title='How the matchmaker chooses lobbies'
     icon={faMagnifyingGlass}

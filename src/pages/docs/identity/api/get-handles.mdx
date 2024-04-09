@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # getHandles
 
+
+
 ## Description
 
 Fetches a list of identity handles.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/identity/identities/batch/handle'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.getHandles({

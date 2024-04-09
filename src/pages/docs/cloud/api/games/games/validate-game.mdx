@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.games.validateGame
 
+
+
 ## Description
 
 Validates information used to create a new game.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/cloud/games/validate'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.games.validateGame({
@@ -41,12 +43,6 @@ await RIVET.cloud.games.games.validateGame({
 `string` (required)
 
 Represent a resource's readable display name.
-
-### `name_id`
-
-`string` (required)
-
-A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
 
 
 

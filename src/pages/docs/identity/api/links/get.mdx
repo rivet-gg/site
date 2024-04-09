@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # links.get
 
+
+
 ## Description
 
 Returns the current status of a linking process. Once `status` is `complete`, the identity's profile should be fetched again since they may have switched accounts.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/identity/game-links'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.links.get({

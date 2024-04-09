@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # invites.getInvite
 
+
+
 ## Description
 
 Inspects a group invite returning information about the team that created it.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/group/invites/{group_invite_code}'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.invites.getInvite({

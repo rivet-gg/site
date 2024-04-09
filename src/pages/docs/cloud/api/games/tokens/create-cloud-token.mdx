@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.tokens.createCloudToken
 
+
+
 ## Description
 
 Creates a new game cloud token.
@@ -19,7 +21,7 @@ curl -X POST 'https://api.rivet.gg/cloud/games/{game_id}/tokens/cloud'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.tokens.createCloudToken({

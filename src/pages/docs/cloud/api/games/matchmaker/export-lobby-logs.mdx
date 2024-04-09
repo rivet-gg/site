@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.matchmaker.exportLobbyLogs
 
+
+
 ## Description
 
 Generates a download URL for logs.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/cloud/games/{game_id}/matchma
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.matchmaker.exportLobbyLogs({

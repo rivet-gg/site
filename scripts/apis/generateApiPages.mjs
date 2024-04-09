@@ -70,7 +70,7 @@ export async function generateApiPages(spec) {
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
-      let experimentalIndex = productConfig.experimentalEndpoints?.indexOf(indexableName);
+      let experimentalIndex = productConfig.experimentalEndpoints?.indexOf(indexableName) ?? -1;
       let isExperimental = experimentalIndex != -1 || productConfig.isExperimental;
 
       // Remove product prefix from operation ID

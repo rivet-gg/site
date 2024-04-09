@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.namespaces.toggleNamespaceDomainPublicAuth
 
+
+
 ## Description
 
 Toggles whether or not to allow authentication based on domain for the given game namespace.
@@ -20,7 +22,7 @@ curl -X PUT -d '@body.json' 'https://api.rivet.gg/cloud/games/{game_id}/namespac
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.namespaces.toggleNamespaceDomainPublicAuth({

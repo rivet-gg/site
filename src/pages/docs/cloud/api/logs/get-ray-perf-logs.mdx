@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # logs.getRayPerfLogs
 
+
+
 ## Description
 
 Returns performance information about a Rivet Ray.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/cloud/rays/{ray_id}/perf'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.logs.getRayPerfLogs({

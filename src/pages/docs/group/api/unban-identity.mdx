@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # unbanIdentity
 
+
+
 ## Description
 
 Unbans an identity from a group. Must be the owner of the group to perform this action.
@@ -19,7 +21,7 @@ curl -X DELETE 'https://api.rivet.gg/group/groups/{group_id}/bans/{identity_id}'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.unbanIdentity({

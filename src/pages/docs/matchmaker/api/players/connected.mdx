@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ players.connected
 
+
+
 ## Description
 
 Validates the player token is valid and has not already been consumed then
@@ -54,7 +56,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/players/connected'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.matchmaker.players.connected({

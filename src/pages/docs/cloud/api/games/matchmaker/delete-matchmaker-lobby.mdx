@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.matchmaker.deleteMatchmakerLobby
 
+
+
 ## Description
 
 Deletes a matchmaker lobby, stopping it immediately.
@@ -19,7 +21,7 @@ curl -X DELETE 'https://api.rivet.gg/cloud/games/{game_id}/matchmaker/lobbies/{l
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.matchmaker.deleteMatchmakerLobby({

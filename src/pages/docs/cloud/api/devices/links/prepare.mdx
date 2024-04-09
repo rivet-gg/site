@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # devices.links.prepare
 
+
+
 ## Description
 
 *Coming Soon!*
@@ -19,7 +21,7 @@ curl -X POST 'https://api.rivet.gg/cloud/devices/links'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.devices.links.prepare({

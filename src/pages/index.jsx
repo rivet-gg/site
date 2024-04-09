@@ -1292,7 +1292,7 @@ function ModuleCard({ title, icon, href, comingSoon }) {
         <div className='flex h-8 w-8 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%]'>
           <FontAwesomeIcon icon={icon} />
         </div>
-        <div class="inline-flex flex-col ml-4 flex-grow">
+        <div className="inline-flex flex-col ml-4 flex-grow">
           <span className="text-lg font-semibold text-left leading-tight">{title}</span>
           {comingSoon && <span className="text-xs font-semibold text-cream-100/50 text-sm leading-tight">Coming mid-2024</span>}
         </div>

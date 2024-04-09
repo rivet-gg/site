@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # prepareAvatarUpload
 
+
+
 ## Description
 
 Prepares an avatar image upload. Complete upload with `CompleteIdentityAvatarUpload`.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/identity/identities/avatar-up
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.prepareAvatarUpload({

@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # invites.consumeInvite
 
+
+
 ## Description
 
 Consumes a group invite to join a group.
@@ -19,7 +21,7 @@ curl -X POST 'https://api.rivet.gg/group/invites/{group_invite_code}/consume'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.invites.consumeInvite({

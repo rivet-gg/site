@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # follow
 
+
+
 ## Description
 
 Follows the given identity. In order for identities to be "friends", the other identity has to also follow this identity.
@@ -19,7 +21,7 @@ curl -X POST 'https://api.rivet.gg/identity/identities/{identity_id}/follow'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.follow({

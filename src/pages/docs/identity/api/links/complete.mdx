@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # links.complete
 
+
+
 ## Description
 
 Completes a game link process and returns whether or not the link is valid.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/identity/game-links/complete'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.links.complete({

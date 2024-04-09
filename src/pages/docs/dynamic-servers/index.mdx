@@ -1,4 +1,4 @@
-import { faShieldHalved, faPlug, faGlobe, faServer } from '@fortawesome/sharp-solid-svg-icons';
+import { faShieldHalved, faPlug, faGlobe, faServer, faFilePen } from '@fortawesome/sharp-solid-svg-icons';
 
 # Dynamic Servers
 
@@ -6,9 +6,14 @@ import { faShieldHalved, faPlug, faGlobe, faServer } from '@fortawesome/sharp-so
 
 Dynamic Servers is the system that automatically operates and scales your game servers.
 
-There is no API for Dynamic Servers. Lobbies are created on demand when [matchmaker.lobbies.find](/docs/matchmaker/api/lobbies/find) is called. Read more about the matchmaker [here](/docs/matchmaker/index).
+There is no API for Dynamic Servers. Lobbies are created on demand when [matchmaker.lobbies.find](/docs/matchmaker/api/lobbies/find) or [matchmaker.lobbies.create](/docs/matchmaker/api/lobbies/create) is called. Read more about the matchmaker [here](/docs/matchmaker).
 
 <ResourceGroup>
+  {/* <Resource
+    title='rivet.yaml Reference'
+    icon={faFilePen}
+    href='/docs/general/config#matchmaker'
+  /> */}
   <Resource
     title='Rivet Game Guard'
     icon={faShieldHalved}

@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # getMembers
 
+
+
 ## Description
 
 Returns a group's members.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/group/groups/{group_id}/members'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.getMembers({

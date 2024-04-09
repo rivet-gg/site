@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # regions.list
 
+
+
 ## Description
 
 Returns a list of regions available to this namespace.
@@ -21,7 +23,7 @@ curl -X GET 'https://api.rivet.gg/matchmaker/regions'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.matchmaker.regions.list({

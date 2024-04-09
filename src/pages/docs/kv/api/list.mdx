@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # list
 
+<ExperimentalFeature />
+
 ## Description
 
 Lists all keys in a directory.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/kv/entries/list'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.kv.list({

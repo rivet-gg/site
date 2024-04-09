@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ events.watch
 
+
+
 ## Description
 
 Returns all events relative to the current identity.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/identity/events/live'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.events.watch({

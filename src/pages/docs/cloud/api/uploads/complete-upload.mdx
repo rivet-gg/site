@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # uploads.completeUpload
 
+
+
 ## Description
 
 Marks an upload as complete.
@@ -19,7 +21,7 @@ curl -X POST 'https://api.rivet.gg/cloud/uploads/{upload_id}/complete'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.uploads.completeUpload({

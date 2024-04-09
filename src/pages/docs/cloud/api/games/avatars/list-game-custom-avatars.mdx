@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.avatars.listGameCustomAvatars
 
+
+
 ## Description
 
 Lists custom avatars for the given game.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/cloud/games/{game_id}/avatars'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.avatars.listGameCustomAvatars({

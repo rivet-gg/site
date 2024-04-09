@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # unfollow
 
+
+
 ## Description
 
 Unfollows the given identity.
@@ -19,7 +21,7 @@ curl -X DELETE 'https://api.rivet.gg/identity/identities/{identity_id}/follow'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.unfollow({

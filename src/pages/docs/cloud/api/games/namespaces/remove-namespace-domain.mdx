@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.namespaces.removeNamespaceDomain
 
+
+
 ## Description
 
 Removes a domain from the given game namespace.
@@ -19,7 +21,7 @@ curl -X DELETE 'https://api.rivet.gg/cloud/games/{game_id}/namespaces/{namespace
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.namespaces.removeNamespaceDomain({

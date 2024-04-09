@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # auth.inspect
 
+
+
 ## Description
 
 Returns information about the current authenticated agent.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/cloud/auth/inspect'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.auth.inspect({

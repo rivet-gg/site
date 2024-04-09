@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # games.versions.getGameVersionById
 
+
+
 ## Description
 
 Returns a game version by its version ID.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/cloud/games/{game_id}/versions/{version_id}'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.cloud.games.versions.getGameVersionById({
@@ -189,11 +191,17 @@ Matchmaker captcha configuration.
 
 hCpatcha configuration.
 
-### `version.config.matchmaker.captcha.hcaptcha.level`
+### `version.config.matchmaker.captcha.hcaptcha.secret_key`
 
-`string` (required)
+`string`
 
-How hard a captcha should be.
+Secret key for your hCaptcha application. Must be set.
+
+### `version.config.matchmaker.captcha.hcaptcha.site_key`
+
+`string`
+
+Site key for your hCaptcha application. Must be set.
 
 ### `version.config.matchmaker.captcha.requests_before_reverify`
 
@@ -312,15 +320,18 @@ _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 The port number to connect to.
 
+### Related - cloud.version.matchmaker.PortProtocol - cloud.version.matchmaker.ProxyKind
+
 ### `version.config.matchmaker.docker.ports.<port>.port_range`
 
 `object`
 
-Range of ports that can be connected to.
-If configured, `network_mode` must equal `host`.
-Port ranges may overlap between containers, it is the responsibility of the developer to ensure ports are available before using.
-Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking).
-Only available on Rivet Open Source & Enterprise.
+Range of ports that can be connected to. Note that the port range values returned by /find
+
+### Related
+
+- cloud.version.matchmaker.PortProtocol
+- cloud.version.matchmaker.ProxyKind
 
 ### `version.config.matchmaker.docker.ports.<port>.port_range.max`
 
@@ -338,9 +349,17 @@ Unsigned 32 bit integer.
 
 `string`
 
-Type of network traffic to allow access to this port.
-Configuring `https` or `tcp_tls` will provide TLS termination for you via Game Guard.
-`https` and `tcp_tls` must have `proxy_kind` set to `game_guard`.
+Signifies the protocol of the port.
+Note that when proxying through GameGuard (via `ProxyKind`), the port number returned by `/find`, `/join`, and `/create` will not be the same as the port number configured in the config:
+
+- With HTTP, the port will always be 80. The hostname of the port correctly routes the incoming
+  connection to the correct port being used by the game server.
+- With HTTPS, the port will always be 443. The hostname of the port correctly routes the incoming
+  connection to the correct port being used by the game server.
+- Using TCP/UDP, the port will be a random number between 26000 and 31999. This gets automatically
+  routed to the correct port being used by the game server.
+
+### Related - cloud.version.matchmaker.GameModeRuntimeDockerPort - cloud.version.matchmaker.ProxyKind - /docs/dynamic-servers/concepts/game-guard - matchmaker.lobbies.find
 
 ### `version.config.matchmaker.docker.ports.<port>.proxy`
 
@@ -539,15 +558,18 @@ _Configures Rivet CLI behavior. Has no effect on server behavior._
 
 The port number to connect to.
 
+### Related - cloud.version.matchmaker.PortProtocol - cloud.version.matchmaker.ProxyKind
+
 ### `version.config.matchmaker.game_modes.<game_mode>.docker.ports.<port>.port_range`
 
 `object`
 
-Range of ports that can be connected to.
-If configured, `network_mode` must equal `host`.
-Port ranges may overlap between containers, it is the responsibility of the developer to ensure ports are available before using.
-Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking).
-Only available on Rivet Open Source & Enterprise.
+Range of ports that can be connected to. Note that the port range values returned by /find
+
+### Related
+
+- cloud.version.matchmaker.PortProtocol
+- cloud.version.matchmaker.ProxyKind
 
 ### `version.config.matchmaker.game_modes.<game_mode>.docker.ports.<port>.port_range.max`
 
@@ -565,9 +587,17 @@ Unsigned 32 bit integer.
 
 `string`
 
-Type of network traffic to allow access to this port.
-Configuring `https` or `tcp_tls` will provide TLS termination for you via Game Guard.
-`https` and `tcp_tls` must have `proxy_kind` set to `game_guard`.
+Signifies the protocol of the port.
+Note that when proxying through GameGuard (via `ProxyKind`), the port number returned by `/find`, `/join`, and `/create` will not be the same as the port number configured in the config:
+
+- With HTTP, the port will always be 80. The hostname of the port correctly routes the incoming
+  connection to the correct port being used by the game server.
+- With HTTPS, the port will always be 443. The hostname of the port correctly routes the incoming
+  connection to the correct port being used by the game server.
+- Using TCP/UDP, the port will be a random number between 26000 and 31999. This gets automatically
+  routed to the correct port being used by the game server.
+
+### Related - cloud.version.matchmaker.GameModeRuntimeDockerPort - cloud.version.matchmaker.ProxyKind - /docs/dynamic-servers/concepts/game-guard - matchmaker.lobbies.find
 
 ### `version.config.matchmaker.game_modes.<game_mode>.docker.ports.<port>.proxy`
 

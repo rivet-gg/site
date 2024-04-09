@@ -3,9 +3,16 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # lobbies.getState
 
+
+
 ## Description
 
-*Coming Soon!*
+Get the state of any lobby.
+
+This endpoint requires a [lobby token](/docs/general/concepts/token-types#matchmaker-lobby) for
+authentication, or a [development namespace token](/docs/general/concepts/token-types#namespace-development)
+for mock responses. When running on Rivet servers, you can access the given lobby token from the
+[`RIVET_TOKEN`](/docs/matchmaker/concepts/lobby-env) environment variable.
 
 
 ## Code Examples
@@ -19,7 +26,7 @@ curl -X GET 'https://api.rivet.gg/matchmaker/lobbies/{lobby_id}/state'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.matchmaker.lobbies.getState({

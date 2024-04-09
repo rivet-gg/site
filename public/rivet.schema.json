@@ -456,12 +456,18 @@
       "description": "hCpatcha configuration.",
       "properties": {
         "level": {
-          "$ref": "#/definitions/CloudVersionMatchmakerCaptchaHcaptchaLevel"
+          "$ref": "#/definitions/CloudVersionMatchmakerCaptchaHcaptchaLevel",
+          "description": "**Deprecated**"
+        },
+        "site_key": {
+          "type": "string",
+          "description": "Site key for your hCaptcha application. Must be set."
+        },
+        "secret_key": {
+          "type": "string",
+          "description": "Secret key for your hCaptcha application. Must be set."
         }
-      },
-      "required": [
-        "level"
-      ]
+      }
     },
     "CloudVersionMatchmakerCaptchaTurnstile": {
       "type": "object",
@@ -489,11 +495,11 @@
     },
     "CloudVersionMatchmakerGameModeRuntimeDockerPort": {
       "type": "object",
-      "description": "A docker port.",
+      "description": "Port config for a docker build.",
       "properties": {
         "port": {
           "type": "integer",
-          "description": "The port number to connect to."
+          "description": "The port number to connect to.\n\n### Related - cloud.version.matchmaker.PortProtocol - cloud.version.matchmaker.ProxyKind"
         },
         "port_range": {
           "$ref": "#/definitions/CloudVersionMatchmakerPortRange"
@@ -634,11 +640,11 @@
         "difficult",
         "always_on"
       ],
-      "description": "How hard a captcha should be."
+      "description": "**Deprecated**\nHow hard a captcha should be."
     },
     "CloudVersionMatchmakerPortRange": {
       "type": "object",
-      "description": "Range of ports that can be connected to.\nIf configured, `network_mode` must equal `host`.\nPort ranges may overlap between containers, it is the responsibility of the developer to ensure ports are available before using.\nRead more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking).\nOnly available on Rivet Open Source & Enterprise.",
+      "description": "Range of ports that can be connected to. Note that the port range values returned by /find\n\n### Related\n\n- cloud.version.matchmaker.PortProtocol\n- cloud.version.matchmaker.ProxyKind",
       "properties": {
         "min": {
           "type": "integer",
@@ -663,7 +669,7 @@
         "tcp_tls",
         "udp"
       ],
-      "description": "Type of network traffic to allow access to this port.\nConfiguring `https` or `tcp_tls` will provide TLS termination for you via Game Guard.\n`https` and `tcp_tls` must have `proxy_kind` set to `game_guard`."
+      "description": "Signifies the protocol of the port.\nNote that when proxying through GameGuard (via `ProxyKind`), the port number returned by `/find`, `/join`, and `/create` will not be the same as the port number configured in the config:\n\n- With HTTP, the port will always be 80. The hostname of the port correctly routes the incoming\n  connection to the correct port being used by the game server.\n- With HTTPS, the port will always be 443. The hostname of the port correctly routes the incoming\n  connection to the correct port being used by the game server.\n- Using TCP/UDP, the port will be a random number between 26000 and 31999. This gets automatically\n  routed to the correct port being used by the game server.\n\n### Related - cloud.version.matchmaker.GameModeRuntimeDockerPort - cloud.version.matchmaker.ProxyKind - /docs/dynamic-servers/concepts/game-guard - matchmaker.lobbies.find"
     },
     "CloudVersionMatchmakerProxyKind": {
       "type": "string",
@@ -671,7 +677,7 @@
         "none",
         "game_guard"
       ],
-      "description": "Range of ports that can be connected to.\n`game_guard` (default) proxies all traffic through [Game Guard](https://rivet.gg/docs/dynamic-servers/concepts/game-guard) to mitigate DDoS attacks and provide TLS termination.\n`none` sends traffic directly to the game server. If configured, `network_mode` must equal `host`. Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking). Only available on Rivet Open Source & Enterprise."
+      "description": "Denotes what type of proxying to use for ports. Rivet GameGuard adds DoS and DDoS mitigation to incoming connections.\n\n### Related - /docs/dynamic-servers/concepts/game-guard - cloud.version.matchmaker.PortProtocol"
     },
     "CloudVersionMatchmakerLobbyGroupIdleLobbiesConfig": {
       "type": "object",

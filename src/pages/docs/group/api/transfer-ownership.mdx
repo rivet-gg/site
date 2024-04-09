@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # transferOwnership
 
+
+
 ## Description
 
 Transfers ownership of a group to another identity.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/group/groups/{group_id}/trans
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.transferOwnership({

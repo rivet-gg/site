@@ -3,11 +3,19 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ lobbies.find
 
+
+
 ## Description
 
 Finds a lobby based on the given criteria.
 If a lobby is not found and `prevent_auto_create_lobby` is `false`,
 a new lobby will be created.
+
+When [tokenless authentication](/docs/general/concepts/tokenless-authentication/web) is enabled in
+your game namespace, this endpoint does not require a token to authenticate. Otherwise, a
+[development namespace token](/docs/general/concepts/token-types#namespace-development) can be used
+for mock responses and a [public namespace token](/docs/general/concepts/token-types#namespace-public)
+can be used for general authentication.
 
 
 ## Code Examples
@@ -22,7 +30,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/lobbies/find'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.matchmaker.lobbies.find({

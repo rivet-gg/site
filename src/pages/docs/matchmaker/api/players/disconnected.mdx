@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ players.disconnected
 
+
+
 ## Description
 
 Marks a player as disconnected. # Ghost Players If players are not marked as disconnected, lobbies will result with "ghost players" that the matchmaker thinks exist but are no longer connected to the lobby.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/matchmaker/players/disconnect
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.matchmaker.players.disconnected({

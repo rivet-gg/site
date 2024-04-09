@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # getJoinRequests
 
+
+
 ## Description
 
 Returns a group's join requests. Must have valid permissions to view.
@@ -19,7 +21,7 @@ curl -X GET 'https://api.rivet.gg/group/groups/{group_id}/join-requests'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.group.getJoinRequests({

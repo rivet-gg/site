@@ -3,6 +3,8 @@ import { CodeGroup, Code } from '@/components/Code';
 
 # links.cancel
 
+
+
 ## Description
 
 Cancels a game link. It can no longer be used to link after cancellation.
@@ -20,7 +22,7 @@ curl -X POST -d '@body.json' 'https://api.rivet.gg/identity/game-links/cancel'
 ```ts
 // Create Rivet client
 import { RivetClient } from '@rivet-gg/api';
-const RIVET = new RivetClient({ token: addYourTokenHere });
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
 await RIVET.identity.links.cancel({
