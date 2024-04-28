@@ -261,6 +261,8 @@ export default function Index() {
       {/* <GridPattern className='absolute right-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%]'></GridPattern>
       <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern> */}
 
+      <GodBackground />
+
       {/* Header */}
       <div className='relative isolate overflow-x-hidden'>
         <div>
@@ -309,6 +311,145 @@ export default function Index() {
         </div>
       </div>
     </div>
+  );
+}
+
+// function GodBackground() {
+//   const videoRefs = useRef([]);
+//
+//   useEffect(() => {
+//     videoRefs.current.forEach(video => {
+//       if (video) {
+//         // video.playbackRate = 0.25;
+//       }
+//     });
+//   }, []);
+//
+//   const videoCount = 3; // Adjust as needed for your design
+//   const videos = Array.from({ length: videoCount }, (_, index) => (
+//     <video
+//       key={index}
+//       autoPlay
+//       loop
+//       muted
+//       playsInline
+//       ref={el => videoRefs.current[index] = el} // Each video gets a ref
+//       style={{
+//         // width: `${100 / videoCount}%`, // Divides the width equally among videos
+//         height: '100%',
+//         // objectFit: 'cover'
+//       }}
+//     >
+//       <source src="https://assets.rivet.gg/effects/god.webm" type="video/webm" />
+//     </video>
+//   ));
+//
+//   return (
+//     <div style={{
+//       display: 'flex',
+//       width: '100%',
+//       height: '500px', // Fixed height as per your original style
+//       position: 'absolute',
+//       top: '100px'
+//     }}>
+//       {videos}
+//     </div>
+//   );
+// }
+
+// function GodBackground() {
+//   const videoRefs = useRef([]);
+//
+//   useEffect(() => {
+//     videoRefs.current.forEach(video => {
+//       if (video) {
+//         video.playbackRate = 0.25;
+//       }
+//     });
+//   }, []);
+//
+//   // <source src="https://assets.rivet.gg/effects/god.webm" type="video/webm" />
+//   const videoCount = 4; // Adjust as needed for your design
+//   const videos = Array.from({ length: videoCount }, (_, index) => (
+//     <video
+//       key={index}
+//       autoPlay
+//       loop
+//       muted
+//       playsInline
+//       ref={el => videoRefs.current[index] = el} // Each video gets a ref
+//       style={{
+//         transform: index > 1 ? 'scaleX(1)' : 'scaleX(-1)',
+//         // width: `${100 / videoCount}%`, // Divides the width equally among videos
+//         height: '100%',
+//         // objectFit: 'cover'
+//       }}
+//     >
+//       <source src="https://assets.rivet.gg/effects/banner%20pixel-mo-moshed-04-15-20-46-45.webm" type="video/webm" />
+//     </video>
+//   ));
+//
+//   return (
+//     <div style={{
+//       display: 'flex',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       width: '100%',
+//       position: 'absolute',
+//
+//       height: '500px', // Fixed height as per your original style
+//       top: '100px',
+//       
+//       // top: '150px',
+//       // height: '350px', // Fixed height as per your original style
+//
+//       // top: '50px',
+//       // height: '950px', // Fixed height as per your original style
+//       filter: 'blur(1px)',
+//       // opacity: 0.8,
+//     }}>
+//       {videos}
+//     </div>
+//   );
+// }
+
+function GodBackground() {
+  return (
+    <div style={{
+      position: 'absolute',
+      width: '100%',
+      height: '500px', // Fixed height as per your original style
+      top: '50px',
+      height: '950px',
+    }}>
+      <GodBackgroundVideo style={{
+        right: 'calc(50% + 500px)'
+      }} />
+      <GodBackgroundVideo style={{
+        left: 'calc(50% + 500px)',
+        // transform: 'scaleX(-1)'
+      }} />
+    </div>
+  );
+}
+
+function GodBackgroundVideo({ style, ...props }) {
+  const videoRef = useRef(null);
+  return (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      ref={videoRef}
+      style={Object.assign({
+        position: 'absolute',
+        height: '100%',
+      }, style)}
+      {...props}
+    >
+      <source src="https://assets.rivet.gg/effects/banner%20pixel-mo-moshed-04-15-20-46-45.webm" type="video/webm" />
+    </video>
   );
 }
 
