@@ -441,24 +441,6 @@ function PricingCalculator({ autoscalingData }) {
         <div className='mt-4 text-sm text-center text-cream-100/50'>
           Based on real world data. May vary for your game.
         </div>
-
-        {/*<p>Rivet price: TODO</p>
-        <p>Vultr: TODO</p>
-        <p>DigitalOcean: TODO</p>
-        <p>Google Cloud + Agones + Quilkin: TODO</p>
-        <p>AWS GameLift: TODO</p>
-        <p>TODO: Unity Cloud</p>
-        <p>TODO: PlayFab X</p>
-        <p>Estimated competitor price not including features included for free in Rivet.</p>
-        <p>Based on real data. Assumes:</p>
-        <ul>
-          <li>X% extra capacity required to ensure doesn't run out of space</li>
-          <li>Adding more regions on Rivet is cheaper than with other providers</li>
-          <li>TODO</li>
-          <li>TODO</li>
-          <li>TODO</li>
-        </ul>
-        <p>Calculation source code</p>*/}
       </div>
     </div>
   );
@@ -520,7 +502,7 @@ function ServerTypeTabs({ serverType: selectedServerType, setServerType, setTier
             className={clsx(
               'relative',
               'group',
-              'flex-1 flex items-center justify-center',
+              'flex-1 flex flex-col items-center justify-center',
               'cursor-pointer',
               current
                 ? 'z-10 bg-cream-100 px-4 py-2 text-sm font-semibold text-charcole-950 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream-100'
@@ -530,7 +512,8 @@ function ServerTypeTabs({ serverType: selectedServerType, setServerType, setTier
               setServerType(serverType)
               setTierIndex(serverTypeConfig.defaultTier)
             }}>
-            {serverTypeConfig.name}
+            <div>{serverTypeConfig.name}</div>
+            {serverType == "standard" && <div className='text-2xs bg-charcole-900/20 px-2 opacity-80'>Coming Soon</div>}
             
             {/* Tooltip */}
             <ul className={clsx(
