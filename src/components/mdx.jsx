@@ -37,11 +37,11 @@ export const table = function Table(props) {
 
 export function Tooltip({ tip, children }) {
   return (
-    <span className='group relative z-10 inline'>
+    <span className='group/tooltip relative z-10 inline'>
       <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
         {children}
       </span>
-      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-lg border border-gray-50 bg-black/50 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover:flex dark:border-gray-500'>
+      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-gray-50 bg-black/80 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover/tooltip:flex dark:border-gray-500 leading-tight'>
         {tip}
       </span>
     </span>

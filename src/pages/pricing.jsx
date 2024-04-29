@@ -1,525 +1,608 @@
+import fs from 'fs';
+import path from 'path';
+
+import { Tooltip } from "@/components/mdx";
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Button } from '@/components/Button';
+import LevelUpSection from '@/components/LevelUpSection';
 import { CheckIcon, MinusIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PatternButton } from '@/components/PatternButton';
+import TimeSeriesChart from '@/components/TimeSeriesChart';
 
-import imgIdentity from '@/images/products/identity-duotone.svg';
-import imgCompute from '@/images/products/compute-duotone.svg';
-import imgCdn from '@/images/products/cdn-duotone.svg';
-import imgParties from '@/images/products/party-duotone.svg';
-import imgFriend from '@/images/products/friend-duotone.svg';
-import imgKv from '@/images/products/kv-duotone.svg';
-import imgMatchmaker from '@/images/products/matchmaker-duotone.svg';
-import imgGameGuard from '@/images/products/game-guard-duotone.svg';
-import imgAnalytics from '@/images/products/analytics-duotone.svg';
-import { faInfinity } from '@fortawesome/sharp-solid-svg-icons';
-import { HeroPattern } from '../components/HeroPattern';
+import {
+  faArrowRight,
+  faChessKnight,
+  faKey,
+  faUserGroup,
+  faPartyHorn,
+  faUser,
+  faCircleDot,
+  faMedal,
+  faShield,
+  faClockRotateLeft,
+  faLock,
+  faWarehouse,
+  faBars,
+  faMessageExclamation,
+  faChartLineUp,
+  faRoute
+} from '@fortawesome/sharp-solid-svg-icons';
+import { faPuzzle, faPlus, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
 
-// Target on-demand price: ~$22/mo
-// Hathora runs c6a.2xlarge, ~$27.54
-const ON_DEMAND_PRICE = 2200;
-// For reference, AWS saving over on-demand: ~37%
-// Our savings over on demand: 30%
-// This factors in the amount of compute we assume clients will not use
-const RESERVED_SAVINGS = 0.3;
-// Our margin: 66%
-const MARGIN = 0.45;
-const MARKUP = 1 / (1 - MARGIN);
-// What % of the unused compute we can auto-scale: 40%
-// 100% means we never have unused compute
-const AUTOSCALING_FACTOR = 0.4;
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), 'public', 'pricing', 'autoscaling-data.csv');
+  const csvData = fs.readFileSync(filePath, 'utf8');
 
-// Hardcode price per core for now
-// const PRICE_PER_CORE = ON_DEMAND_PRICE * (1 - RESERVED_SAVINGS) * (1 - RESERVED_SAVINGS * AUTOSCALING_FACTOR) * MARKUP;
-const PRICE_PER_CORE = 2276;
+  // Parse data
+  let lines = csvData.split('\n').map(line => line.split(','));
+  const headersRaw = lines.shift();
+  const headers = headersRaw.slice(1); // Get labels from the first row, excluding 'Time'
+  let labels = lines.map(row => parseInt(row[0]));
 
-let UNIT_CORE = {
-  ram: 1838,
-  bandwidth: 750
-};
+  // Select slice
+  const minDate = 1712610900 * 1000;
+  const maxDate = minDate + (24 * 60 * 60 * 1000) * 3;
+  const minIndex = labels.findIndex(x => x > minDate);
+  const maxIndex = labels.findIndex(x => x > maxDate);
+  labels = labels.slice(minIndex, maxIndex);
+  lines = lines.slice(minIndex, maxIndex);
 
-let TIERS = [
-  // { name: '¹⁄₁₆', unit: 1 / 16 },
-  { name: '⅛', unit: 1 / 8 },
-  { name: '¼', unit: 1 / 4 },
-  { name: '½', unit: 1 / 2 },
-  { name: '1', unit: 1 },
-  { name: '2', unit: 2 },
-  { name: '4', unit: 4 }
-];
+  // Sum & normalize values
+  let values = lines
+    // Sum the row of values
+    .map(row => {
+      return row.slice(1).map(x => (parseInt(x) || 0)).reduce((a, c) => a + c, 0);
+    });
+  let maxValue = values.reduce((acc, curr) => Math.max(acc, curr), 0);
+  values = values.map(x => x / maxValue);
 
-export default function Pricing() {
-  const [open, setOpen] = useState(false);
-
-  const tiers = [
-    {
-      name: 'Open Source',
-      id: 'tier-oss',
-      href: 'https://github.com/rivet-gg/rivet',
-      button: 'View on GitHub',
-      description: 'Self-host on your own hardware.',
-      mostPopular: false
+  return {
+    props: {
+      autoscalingData: {
+        labels,
+        values,
+      }
     },
-    {
-      name: 'Cloud',
-      promo: '1 free server',
-      id: 'tier-cloud',
-      href: 'https://hub.rivet.gg',
-      button: 'Sign Up',
-      description: 'Get up and running quickly. Everything managed by us.',
-      mostPopular: true
-    },
-    {
-      name: 'Enterprise',
-      id: 'tier-enterprise',
-      href: 'mailto:sales@rivet.gg',
-      button: 'Contact Us',
-      description: 'Custom solutions for your game.',
-      mostPopular: false
-    }
-  ];
-  const sections = [
-    {
-      name: 'Pricing',
-      features: [
-        {
-          name: 'CCU & MAU',
-          icon: imgIdentity,
-          tiers: {
-            'tier-oss': <FontAwesomeIcon icon={faInfinity} />,
-            'tier-cloud': <FontAwesomeIcon icon={faInfinity} />,
-            'tier-enterprise': <FontAwesomeIcon icon={faInfinity} />
-          }
-        },
-        {
-          name: 'Dynamic Servers',
-          icon: imgCompute,
-          tiers: {
-            'tier-oss': 'Self-hosted',
-            'tier-cloud': (
-              <Button variant='text' arrow='right' onClick={() => setOpen(true)}>
-                Calculator
-              </Button>
-            ),
-            'tier-enterprise': 'Contact Us'
-          }
-        },
-        {
-          name: 'Custom Domain with SSL',
-          icon: imgCdn,
-          tiers: {
-            'tier-oss': 'Self-hosted',
-            'tier-cloud': '$5/domain/month',
-            'tier-enterprise': 'Contact Us'
-          }
-        },
-        {
-          name: 'CDN',
-          icon: imgCdn,
-          tiers: {
-            'tier-oss': 'Self-hosted',
-            'tier-cloud': '$0.05/GB/month (1 TB free)',
-            'tier-enterprise': 'Contact Us'
-          }
-        }
-      ]
-    },
-    {
-      name: 'Features',
-      features: [
-        // {
-        //   name: 'Identities, Chat, & Groups',
-        //   icon: imgFriend,
-        //   tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
-        // },
-        // {
-        //   name: 'Parties',
-        //   icon: imgParties,
-        //   tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
-        // },
-        {
-          name: 'Dynamic Server Autoscaling',
-          icon: imgCompute,
-          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
-        },
-        {
-          name: 'Matchmaker',
-          icon: imgMatchmaker,
-          tiers: { 'tier-oss': true, 'tier-cloud': true, 'tier-enterprise': true }
-        },
-        // {
-        //   name: 'Key-Value Database',
-        //   icon: imgKv,
-        //   tiers: { 'tier-oss': true, 'tier-cloud': 'Free while in beta', 'tier-enterprise': 'Contact us' }
-        // },
-        {
-          name: 'Game Guard (DDoS + SSL)',
-          icon: imgGameGuard,
-          tiers: { 'tier-oss': 'Limited', 'tier-cloud': true, 'tier-enterprise': true }
-        },
-        {
-          name: 'Analytics',
+  };
+}
 
-          icon: imgAnalytics,
-          tiers: { 'tier-cloud': true, 'tier-enterprise': true }
-        },
-        { name: 'Audit Log', tiers: { 'tier-enterprise': true } },
-        { name: 'Single Sign-On (SAML 2.0)', tiers: { 'tier-enterprise': true } }
-      ]
-    },
-    {
-      name: 'Game servers',
-      features: [
-        { name: 'Dedicated Hardware Autoscaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-        {
-          name: 'Cloud Providers (more coming soon)',
-          tiers: {
-            'tier-oss': 'Linode',
-            'tier-cloud': 'Linode',
-            'tier-enterprise': 'On-premise, AWS, Linode'
-          }
-        },
-        { name: 'Bring Your Own Hardware', tiers: { 'tier-enterprise': true } }
-      ]
-    },
-    {
-      name: 'Cluster',
-      features: [
-        { name: 'On-Premise Deployment', tiers: { 'tier-oss': true, 'tier-enterprise': true } },
-        { name: 'High Availability', tiers: { 'tier-cloud': true, 'tier-enterprise': true } },
-        { name: 'Horizontal Scaling', tiers: { 'tier-cloud': true, 'tier-enterprise': true } }
-      ]
-    },
-    {
-      name: 'Support',
-      features: [
-        {
-          name: 'Support',
-          tiers: { 'tier-oss': 'Community', 'tier-cloud': 'Standard', 'tier-enterprise': 'Contact Us' }
-        }
-      ]
-    }
-  ];
+export default function Pricing({ autoscalingData }) {
   return (
     <>
-      <HeroPattern />
-      <div className='py-16 sm:py-24'>
-        {/* Modals */}
-        <PricingModal open={open} onClose={() => setOpen(false)} />
+      {/* Header */}
+      <h1 className='text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>Pricing</h1>
+      <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
+        {'Affordable for small studios & scalable for large studios.'}<br/>
+        {'Always predictable pricing.'}
+      </p>
 
-        {/* Pricing */}
-        <div className='main-content-container px-6'>
-          <div className='mx-auto max-w-4xl text-center'>
-            <p className='mt-2 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
-              Pricing
-            </p>
-          </div>
-          <p className='mx-auto mt-6 text-center text-lg leading-8 text-gray-300'>
-            Affordable for small studios & scalable for large studios.
-            <br />
-            Always predictable pricing.
-          </p>
+      {/* Cards */}
+      <div className="grid grid-cols-3 gap-4 max-w-7xl mx-auto px-4 mt-8">
+        <PricingCard
+          title="Indie"
+          price="$9/mo + usage"
+          features={[
+            // <><Tooltip tip={`Provided as ${formatUSD(INDIE_CREDITS)} in credits`}>3 Flex or {Math.floor(INDIE_CREDITS / STANDARD_SHARED_UNIT)} Standard servers</Tooltip> included</>,
+            <><Tooltip tip={`Hardware type is "Shared 1". Provided as ${formatUSD(INDIE_CREDITS)} in credits.`}>3x servers</Tooltip> included</>,
+            "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
+          ]}
+          options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
 
-          {/* xs to lg */}
-          <div className='mx-auto mt-12 max-w-md space-y-8 sm:mt-16 lg:hidden'>
-            {tiers.map(tier => (
-              <section
-                key={tier.id}
-                className={clsx(
-                  tier.mostPopular ? 'rounded-xl bg-white/5 ring-1 ring-inset ring-white/10' : '',
-                  'p-8'
-                )}>
-                <h2 className='mt-2 flex items-baseline gap-x-1 text-4xl font-bold text-white'>
-                  {tier.name}
-                </h2>
-                <a
-                  href={tier.href}
-                  aria-describedby={tier.id}
-                  className={clsx(
-                    tier.mostPopular
-                      ? 'bg-violet-500 text-white hover:bg-violet-400 focus-visible:outline-violet-500'
-                      : 'bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white',
-                    'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                  )}>
-                  {tier.button}
-                </a>
-                <ul role='list' className='mt-10 space-y-4 text-sm leading-6 text-white'>
-                  {sections.map(section => (
-                    <li key={section.name}>
-                      <ul role='list' className='space-y-4'>
-                        {section.features.map(feature =>
-                          feature.tiers[tier.id] ? (
-                            <li key={feature.name} className='flex gap-x-3'>
-                              <CheckIcon className='h-6 w-5 flex-none text-orange-400' aria-hidden='true' />
-                              <span>
-                                {feature.name}{' '}
-                                {typeof feature.tiers[tier.id] === 'string' ||
-                                typeof feature.tiers[tier.id] === 'object' ? (
-                                  <span className='text-sm leading-6 text-gray-400'>
-                                    ({feature.tiers[tier.id]})
-                                  </span>
-                                ) : null}
-                              </span>
-                            </li>
-                          ) : null
-                        )}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
+        <PricingCard
+          title="Studio"
+          price="$29/mo + usage"
+          features={[
+            "$29/mo credits included",
+            "Ready to scale",
+            "Supports 8 regions"
+          ]}
+          options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
 
-          {/* lg+ */}
-          <div className='isolate mt-20 hidden lg:block'>
-            <div className='relative -mx-8'>
-              {tiers.some(tier => tier.mostPopular) ? (
-                <div className='absolute inset-x-4 inset-y-0 -z-10 flex'>
-                  <div
-                    className='flex w-1/4 px-4'
-                    aria-hidden='true'
-                    style={{ marginLeft: `${(tiers.findIndex(tier => tier.mostPopular) + 1) * 25}%` }}>
-                    <div className='w-full rounded-t-xl border-x border-t border-white/10 bg-white/5' />
-                  </div>
-                </div>
-              ) : null}
-              <table className='w-full table-fixed border-separate border-spacing-x-8 text-left'>
-                <caption className='sr-only'>Pricing plan comparison</caption>
-                <colgroup>
-                  <col className='w-1/4' />
-                  <col className='w-1/4' />
-                  <col className='w-1/4' />
-                  <col className='w-1/4' />
-                </colgroup>
-                <thead>
-                  <tr>
-                    <td />
-                    {tiers.map(tier => (
-                      <th key={tier.id} scope='col' className='px-6 pt-6 align-top xl:px-8 xl:pt-8'>
-                        <h2 className='font-bolt text-4xl text-white'>{tier.name}</h2>
-                        <p className='mt-3 font-normal text-gray-300'>{tier.description}</p>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope='row'></th>
-                    {tiers.map(tier => (
-                      <td key={tier.id} className='px-6 pt-6 xl:px-8'>
-                        <Button
-                          href={tier.href}
-                          variant={tier.mostPopular ? 'primary' : 'secondary'}
-                          className='w-full px-3 py-2 text-sm'>
-                          {tier.button}
-                        </Button>
-                      </td>
-                    ))}
-                  </tr>
-                  {sections.map((section, sectionIdx) => (
-                    <Fragment key={section.name}>
-                      <tr>
-                        <th
-                          scope='colgroup'
-                          colSpan={4}
-                          className={clsx(
-                            sectionIdx === 0 ? 'pt-8' : 'pt-16',
-                            'pb-4 text-sm font-semibold leading-6 text-white'
-                          )}>
-                          {section.name}
-                          <div className='absolute inset-x-8 mt-4 h-px bg-white/10' />
-                        </th>
-                      </tr>
-                      {section.features.map(feature => (
-                        <tr key={feature.name}>
-                          <th scope='row' className='py-4 text-sm font-normal leading-6 text-white'>
-                            <div className='flex items-center gap-3'>
-                              {feature.icon && (
-                                <Image className='h-5 w-5' src={feature.icon} alt={section.name} />
-                              )}
-                              <div>{feature.name}</div>
-                            </div>
-                            {/* <div className='absolute inset-x-8 mt-4 h-px bg-white/5' /> */}
-                          </th>
-                          {tiers.map(tier => (
-                            <td key={tier.id} className='px-6 py-4 xl:px-8'>
-                              {typeof feature.tiers[tier.id] === 'string' ||
-                              typeof feature.tiers[tier.id] === 'object' ? (
-                                <div className='text-center text-sm leading-6 text-gray-300'>
-                                  {feature.tiers[tier.id]}
-                                </div>
-                              ) : (
-                                <>
-                                  {feature.tiers[tier.id] === true ? (
-                                    <CheckIcon
-                                      className='mx-auto h-5 w-5 text-orange-400'
-                                      aria-hidden='true'
-                                    />
-                                  ) : (
-                                    <MinusIcon className='mx-auto h-5 w-5 text-gray-500' aria-hidden='true' />
-                                  )}
+        <PricingCard
+          title="Open-source"
+          features={[
+            "Self host in your own cloud",
+            "Enterprise support available",
+            // "Supports Linode",
+          ]}
+          options={(
+            <>
+              <Button href='https://github.com/rivet-gg/rivet' target='_blank'>View on GitHub</Button>
+              <Button href='/support'>Contact for Enterprise</Button>
+            </>
+          )} />
+      </div>
 
-                                  <span className='sr-only'>
-                                    {feature.tiers[tier.id] === true ? 'Included' : 'Not included'} in{' '}
-                                    {tier.name}
-                                  </span>
-                                </>
-                              )}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </Fragment>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <a
+        className={clsx(
+          'w-max mx-auto mt-4',
+          'border-4 border-cream-100/10 px-6 py-4',
+          'flex flex-row items-center gap-4',
+          'font-semibold text-cream-100/80 hover:text-cream-100',
+        )}
+        href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
+        target='_blank'
+        rel='noreferrer'>
+        Get up to $120k credits with Akamai RISE
+        <FontAwesomeIcon icon={faArrowRight} />
+      </a>
+
+      {/* Included */}
+      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
+        <div className={clsx(
+          "w-full grid gap-4 mt-8",
+          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
+        )}>
+        </div>
+        <div className={clsx(
+          "w-full grid gap-4 mt-8",
+          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
+        )}>
+          <IncludedFeature icon={faShield} title="DDoS Mitigation" usually="$10/server/mo" on="Vultr DDoS mitigation" /> {/* Vultr */}
+          <IncludedFeature icon={faClockRotateLeft} title="No downtime deploys & instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" /> {/* $60 on Linode, $40 on DO */}
+          <IncludedFeature icon={faWarehouse} title="Version history for rollbacks" usually="$9/user/mo" on="Docker Hub" />
+          <IncludedFeature icon={faBars} title="Log & metrics aggregation" usually="$0.50/server/mo" on="Grafana Cloud Loki with 1 log/server/second" /> {/* 1 log per second * avg 500 bytes per line = ~1 GB/mo * 0.50/GB/mo on Loki = $0.50/mo */}
+          <IncludedFeature icon={faLock} title="Automatic SSL for WebSockets & TLS" />
+          <IncludedFeature icon={faMessageExclamation} title="Crash reporting" usually="$26/mo" on="Sentry Team" />
+          <IncludedFeature icon={faChartLineUp} title="Analytics" />
+          <IncludedFeature icon={faRoute} title="Automatic geographic routing" /> {/*usually="$83/mo" on="ipinfo.io"*/}
+
+          {/*<IncludedFeature title="Instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" />*/}
+        </div>
+
+        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-3xl text-center mt-12'>{'Plus backend modules'}</h2>
+        <div className={clsx(
+          "w-full grid gap-4 mt-8",
+          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
+        )}>
+          <ModuleCard title="Build your own" icon={faPlus} href="https://opengb.dev/build/overview" />
+          <ModuleCard title="Matchmaker" icon={faChessKnight} href="/docs/matchmaker" />
+          <ModuleCard title="Parties" icon={faPartyHorn} href="https://github.com/rivet-gg/opengb-registry/issues/5" comingSoon={true} />
+          <ModuleCard title="Presence" icon={faCircleDot} href="https://github.com/rivet-gg/opengb-registry/issues/2" comingSoon={true} />
+          <ModuleCard title="Auth" icon={faKey} href="https://opengb.dev/modules/auth/overview" />
+          <ModuleCard title="Users" icon={faUser} href="https://opengb.dev/modules/users/overview" />
+          <ModuleCard title="Friends" icon={faUserGroup} href="https://opengb.dev/modules/friends/overview" />
+          <ModuleCard title="Leaderboards" icon={faMedal} href="https://github.com/rivet-gg/opengb-registry/issues/3" comingSoon={true} />
+        </div>
+        <Button variant="text-subtle" href="https://opengb.dev/modules" target="_blank" className="mt-8">See all modules →</Button>
+      </div>
+
+      {/* Usage */}
+      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Usage Estimator'}</h2>
+        <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
+          {'Rivet autoscales your game servers on-demand.'}<br/>
+        </p>
+        <PricingCalculator autoscalingData={autoscalingData} />
+      </div>
+
+      {/* Predictable */}
+      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Predictable & Affordable'}</h2>
+        <div className={clsx(
+          "w-full grid gap-4 mt-8",
+          "grid-cols-1 sm:grid-cols-2",
+        )}>
+          <PredictablePricingFeature title="Pay for what you use" description="Servers are created & destroyed on-demand to meet user demand. Great for playtesting through games at scale."></PredictablePricingFeature>
+          <PredictablePricingFeature title="Bot & DDoS mitigation" description="Bots & DDoS attacks commonly drive up costs. Mitigate these out of the box."></PredictablePricingFeature>
+          <PredictablePricingFeature title="Usage Limits" description="Enforce maximum number of servers & maximum spend to avoid surprises."></PredictablePricingFeature>
+          <PredictablePricingFeature title="Alerting" description={<>Immediately be notified of surprise usage. <span className='italic'>Coming soon.</span></>}></PredictablePricingFeature>
         </div>
       </div>
+
+      {/* Launch */}
+      <LevelUpSection />
     </>
   );
 }
 
-function PricingModal({ open, onClose }) {
+function PricingCard({ title, price, features, options, ...props }) {
   return (
-    <Transition.Root show={open} onClose={onClose} as={Fragment}>
-      <Dialog as='div' className='relative z-10'>
-        <Transition.Child
-          as={Fragment}
-          enter='ease-out duration-300'
-          enterFrom='opacity-0'
-          enterTo='opacity-100'
-          leave='ease-in duration-200'
-          leaveFrom='opacity-100'
-          leaveTo='opacity-0'>
-          <div className='fixed inset-0 bg-black bg-opacity-75 transition-opacity' />
-        </Transition.Child>
-
-        <div className='fixed inset-0 z-10 overflow-y-auto'>
-          <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-            <Transition.Child
-              as={Fragment}
-              enter='ease-out duration-300'
-              enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
-              enterTo='opacity-100 translate-y-0 sm:scale-100'
-              leave='ease-in duration-200'
-              leaveFrom='opacity-100 translate-y-0 sm:scale-100'
-              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-              <Dialog.Panel className='relative transform overflow-hidden rounded-xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
-                {/* Content */}
-                <div className='mt-1 text-center'>
-                  <Dialog.Title as='h3' className='text-4xl font-bold text-gray-900'>
-                    Dynamic Servers Pricing
-                  </Dialog.Title>
-
-                  <div className='m-auto mt-6 h-[2px] w-full bg-black/10'></div>
-
-                  <div className='mt-6'>
-                    <PricingCalc />
-                  </div>
-                </div>
-
-                {/* Buttons */}
-                <div className='mt-5 sm:mt-6'>
-                  <button
-                    type='button'
-                    className='inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600'
-                    onClick={onClose}>
-                    Close
-                  </button>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </div>
-      </Dialog>
-    </Transition.Root>
+    <div className={clsx('border-4 border-cream-100/10 text-cream-100 px-6 py-4', 'flex flex-col gap-4')} {...props}>
+      <div className='text-3xl font-display font-bold tracking-tight text-cream-100'>{title}</div>
+      {price && <div className='text-cream-100'>{price}</div>}
+      <ul className='list-disc pl-5'>
+        {features.map((x, i) => (<li key={i}>{x}</li>))}
+      </ul>
+      <div className='flex-grow' />
+      <div className='w-full flex flex-col gap-2'>
+        {options}
+      </div>
+    </div>
   );
 }
 
-function PricingCalc() {
-  let [tierIdx, setTierIdx] = useState(3);
+function IncludedFeature({ icon, title, usually, on }) {
+  return (
+    <div className={clsx(
+      'relative transition text-sm font-semibold text-cream-100 border-2 bg-charcole-950 border-cream-100/50',
+      'flex flex-col px-5 py-8',
+      'text-center items-center'
+    )}>
+      <div className='flex h-16 w-16 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%] text-xl'>
+        <FontAwesomeIcon icon={icon} />
+      </div>
+      <div className="text-lg font-semibold leading-tight mt-6">{title}</div>
+      {usually && <div className="font-semibold text-cream-100/50 text-sm leading-tight mt-2">Usually <Tooltip tip={on}>{usually}</Tooltip></div>}
+    </div>
+  );
+}
 
-  let tier = TIERS[tierIdx];
+function ModuleCard({ title, icon, href, comingSoon }) {
+  return (
+    <PatternButton href={href} target={href.startsWith("/") ? null : "_blank"}>
+      <div className='flex flex-row items-center justify-start justify-between h-full px-5 py-4'>
+        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%]'>
+          <FontAwesomeIcon icon={icon} />
+        </div>
+        <div className="inline-flex flex-col ml-4 flex-grow">
+          <span className="text-lg font-semibold text-left leading-tight">{title}</span>
+          {comingSoon && <span className="text-xs font-semibold text-cream-100/50 text-sm leading-tight">Coming mid-2024</span>}
+        </div>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </div>
+    </PatternButton>
+  );
+}
 
-  let price = Math.ceil(PRICE_PER_CORE * tier.unit) / 100;
+// Min number of servers for the calculator
+const MIN_SERVER_COUNT = 1;
+const MAX_SERVER_COUNT = 10000;
+const MIN_REGION_COUNT = 1;
+const MAX_REGION_COUNT = 50;
 
-  let ram = Math.floor(UNIT_CORE.ram * tier.unit);
-  let bandwidth = Math.floor(UNIT_CORE.bandwidth * tier.unit);
+
+// Unity for the core type on a dedicated server.
+const UNIT_CORE = {
+  ram: 1838,
+  bandwidth: 750
+};
+
+
+// Prices for each unity type
+const FLEX_PRICE_UNIT = 32.14;
+const STANDARD_SHARED_UNIT = 15.43;
+const STANDARD_DEDI_UNIT = 23.15;
+
+const SERVER_TYPES = {
+  // TODO: Can't support higher cores yet because not supported on Flex
+  standard: {
+    name: "Standard",
+    features: [
+      "Recommended for games with long-lived servers",
+      "Great for MMO, survival, metaverse",
+      "Startup in < 60s",
+      "Runs indefinitely",
+    ],
+    defaultTier: 0,
+    tiers: [
+      // Shared
+      { name: 'Shared 1', price: 6.43, cpu: 1, ram: 1 / 2, shared: true },
+      { name: 'Shared 2', price: STANDARD_SHARED_UNIT, cpu: 1, ram: 1, shared: true },
+      { name: 'Shared 4', price: STANDARD_SHARED_UNIT * 2, cpu: 2, ram: 2, shared: true },
+      { name: 'Shared 8', price: STANDARD_SHARED_UNIT * 4, cpu: 4, ram: 4, shared: true },
+
+      // Dedicated
+      { name: 'Dedicated 2', price: STANDARD_DEDI_UNIT * 2, cpu: 2 },
+      { name: 'Dedicated 4', price: STANDARD_DEDI_UNIT * 4, cpu: 4 },
+    ]
+  },
+  flex: {
+    name: "Flex",
+    features: [
+      "Recommended for games that create & destroy servers frequently",
+      "Great for shooters, puzzles, tournaments, battle royale, tournaments",
+      "Startup in < 5s",
+      "Runs for finite amount of time",
+    ],
+    defaultTier: 2,
+    tiers: [
+      { name: 'Shared ¼', price: FLEX_PRICE_UNIT / 8, cpu: 1, ram:1/8, shared: true },
+      { name: 'Shared ½', price: FLEX_PRICE_UNIT / 4, cpu: 1, ram:1/4, shared: true },
+      { name: 'Shared 1', price: FLEX_PRICE_UNIT / 2, cpu: 1, ram: 1/2, shared: true },
+      { name: 'Dedicated 1',  price: FLEX_PRICE_UNIT, cpu: 1 },
+      { name: 'Dedicated 2', price: FLEX_PRICE_UNIT * 2, cpu: 2 },
+      { name: 'Dedicated 4', price: FLEX_PRICE_UNIT * 4, cpu: 4 }
+    ]
+  },
+};
+
+// Plan price
+const INDIE_PLAN = 9;
+const STUDIO_PLAN = 29;
+
+const INDIE_CREDITS = FLEX_PRICE_UNIT / 2 * 3;  // 3 "Flex Shared 1" servers for free
+const STUDIO_CREDITS = 29;
+
+function PricingCalculator({ autoscalingData }) {
+  const [serverType, setServerType] = useState('standard');
+  const [tierIndex, setTierIndex] = useState(SERVER_TYPES.standard.defaultTier);
+  const [serverCount, setServerCount] = useState(8);
+  const [regionCount, setRegionCount] = useState(4);
+  const [autoscalingChart, setAutoscalingChart] = useState(null);
+
+  // Update chart
+  useEffect(() => {
+    let staticServerCount = calculateStaticServerCount(({ serverCount, regionCount }))
+
+    // Update chart
+    let dataPoints = autoscalingData.values
+        .map(x => {
+          return Math.ceil(x * (serverCount || MIN_SERVER_COUNT))
+        });
+    setAutoscalingChart({
+      labels: autoscalingData.labels,
+      datasets: [
+        {
+          label: "Rivet's autoscaling",
+          data: dataPoints,
+          borderColor: 'rgb(255, 118, 10)',
+          backgroundColor: 'rgba(255, 118, 10, 0.5)',
+          // color: 'rgba(75, 192, 192, 0.5)',
+          // fillColor: 'rgba(75, 192, 192, 0.5)',
+          // fill: 'rgba(75, 192, 192, 0.2)',
+          // borderColor: '#38a938',
+          // backgroundColor: '#38a938',
+          // fill: 'origin',
+          stepped: true,
+          pointRadius: 0
+        },
+        {
+          label: "Others (no autoscaling)",
+          data: Array(dataPoints.length).fill(staticServerCount),
+          borderColor: 'gray',
+          borderDash: [5, 5],
+          fill: false,
+          stepped: true,
+          pointRadius: 0
+        },
+      ],
+    });
+  }, [serverCount, regionCount]);
+
+  // Calculate server stats
+  let serverTypeConfig = SERVER_TYPES[serverType];
+  let tier = serverTypeConfig.tiers[tierIndex];
+
+  let ram = Math.floor(UNIT_CORE.ram * (tier.ram ?? tier.cpu));
+  let bandwidth = tier.bandwidth ?? Math.floor(UNIT_CORE.bandwidth * tier.cpu);
 
   let stats = [
-    ['CPU Cores', `${tier.name} core`],
-    ['RAM', `${ram} MB`],
-    ['Bandwidth', `${bandwidth} GB`],
-    ['Hardware', 'AMD EPYC 7713 64-Core Processor'],
-    ['Clock Speed', '2.0 GHz base, 3.675 GHz boost']
+    ['Price per server', <>{formatUSD(tier.price)}<span className='opacity-50'>/server/mo</span></>],
+    ['CPU Cores', `${tier.cpu} ${tier.shared ? 'shared' : 'dedicated'} core${tier.cpu <= 1 ? '' : 's'}`],
+    ['RAM', ram > 1000 ? `${(ram / 1000).toFixed(1)} GB` : `${ram} MB`],
+    ['Bandwidth', bandwidth > 1000 ? `${(bandwidth / 1000).toFixed(1)} TB` : `${bandwidth} GB`],
+    ['Processor', 'AMD EPYC 7713'],
+    ['Clock Speed', (tier.shared ? 'Up to ' : '') + '2.0 GHz base, 3.675 GHz boost'],
   ];
 
+  // Calculate cumulative stats
+  let { price: rivetPrice, plan } = calculateRivetPrice({
+    autoscalingData,
+    hardwareCostPerMonth: tier.price,
+    serverCount,
+    regionCount,
+  });
+  let staticCount = calculateStaticServerCount(({ serverCount, regionCount }))
+
   return (
-    <div>
-      <PricingTabs tierIdx={tierIdx} setTierIdx={setTierIdx} />
+    <div className='grid grid-cols-2 mt-8'>
+      <div className="p-4 text-cream-100">
+        {/* Config */}
+        <UsageConfig { ...{ serverType, setServerType, tierIndex, setTierIndex, serverCount, setServerCount, regionCount, setRegionCount } } />
 
-      {/* Price */}
-      <div className='mt-6 flex items-end justify-center'>
-        <div className='text-5xl font-bold'>${price.toFixed(2)}</div>
-        <div className='text-xl text-black/50'>/server/mo</div>
+        {/* Separator */}
+        <div className='h-[1px] bg-cream-100/50 my-6'/>
+
+        {/* Server info */}
+        <div>
+          {/* Specs */}
+          <div className={clsx(
+            'grid grid-cols-[1fr_2fr]',
+            'mx-auto mt-5 w-full max-w-md border-separate border-spacing-1',
+          )}>
+            {stats.map(([name, value], i) => (
+              <>
+                <div className='text-left font-semibold'>{name}</div>
+                <div className='text-right'>{value}</div>
+              </>
+            ))}
+          </div>
+
+          {/* Fine text */}
+          <div className='mt-4 text-sm text-center text-cream-100/50'>
+            More hardware configurations coming soon.<br/>
+            Bandwidth limit pooled across all servers.<br />
+            $0.05/GB for bandwidth overages.
+          </div>
+        </div>
       </div>
 
-      {/* Specs */}
-      <table className='mx-auto mt-5 w-full max-w-sm border-separate border-spacing-1'>
-        {stats.map(([name, value]) => (
-          <tr key={name}>
-            <td className='text-left font-semibold'>{name}</td>
-            <td className='text-right'>{value}</td>
-          </tr>
-        ))}
-      </table>
+      {/* Graphs */}
+      <div className='text-cream-100'>
+        {autoscalingChart && <TimeSeriesChart data={autoscalingChart} />}
 
-      <div className='relative mx-auto mt-4 flex w-max items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-900 ring-1 ring-black/50'>
-        More hardware configurations coming soon
-      </div>
+        {/* Price */}
+        <div className='mt-6'>
+          <div className='text-center text-cream-100/50 text-lg italic'>Estimate with autoscaling</div>
+          <div className='flex items-end justify-center'>
+            <div className='text-5xl font-bold'>{formatUSD(rivetPrice)}</div>
+            <div className='text-xl text-cream-100/50'>/mo</div>
+          </div>
+          <div className='text-center text-cream-100/50 text-lg italic'>{plan} plan</div>
+        </div>
 
-      {/* Disclaimers */}
-      <div className='mt-4 italic text-black/60'>
-        Bandwidth pooled across all lobbies.
-        <br />
-        For example: 5 × 1-core lobbies = 3.75 TB total free bandwidth.
-        <br />
-        $0.05/GB for bandwidth overages.
+        {/* Fine text */}
+        <div className='mt-4 text-sm text-center text-cream-100/50'>
+          Based on real world data. May vary for your game.
+        </div>
+
+        {/*<p>Rivet price: TODO</p>
+        <p>Vultr: TODO</p>
+        <p>DigitalOcean: TODO</p>
+        <p>Google Cloud + Agones + Quilkin: TODO</p>
+        <p>AWS GameLift: TODO</p>
+        <p>TODO: Unity Cloud</p>
+        <p>TODO: PlayFab X</p>
+        <p>Estimated competitor price not including features included for free in Rivet.</p>
+        <p>Based on real data. Assumes:</p>
+        <ul>
+          <li>X% extra capacity required to ensure doesn't run out of space</li>
+          <li>Adding more regions on Rivet is cheaper than with other providers</li>
+          <li>TODO</li>
+          <li>TODO</li>
+          <li>TODO</li>
+        </ul>
+        <p>Calculation source code</p>*/}
       </div>
     </div>
   );
 }
 
-function PricingTabs({ tierIdx, setTierIdx }) {
+function UsageConfig({ serverType, setServerType, tierIndex, setTierIndex, serverCount, setServerCount, regionCount, setRegionCount }) {
+  let serverTypeConfig = SERVER_TYPES[serverType];
+
   return (
-    <div>
-      <div className='font-lg font-bold'>Number of CPU cores per server</div>
-      <div className='isolate mt-2 flex flex w-full rounded-md shadow-sm'>
-        {TIERS.map((tier, i) => {
-          let current = i == tierIdx;
-          return (
-            <div
-              key={i}
-              className={clsx(
-                'inline-flex flex-grow cursor-pointer items-center justify-center',
-                current
-                  ? 'z-10 bg-violet-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600'
-                  : 'px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
-              )}
-              onClick={() => setTierIdx(i)}>
-              {tier.name}
-            </div>
-          );
-        })}
-      </div>
+    <div className='grid grid-cols-[1fr_2fr] gap-4 items-center'>
+      <div className="font-semibold">Server Type</div>
+      <ServerTypeTabs serverType={serverType} setServerType={setServerType} setTierIndex={setTierIndex} />
+
+      <div className="font-semibold">Server Hardware</div>
+      <select 
+        className="w-full p-2 text-black"
+        value={tierIndex} 
+        onChange={(e) => setTierIndex(parseInt(e.target.value))}
+      >
+        {serverTypeConfig.tiers.map((tier, i) => (
+          <option value={i}>{tier.name}</option>
+        ))}
+      </select>
+
+      <div className="font-semibold">Max Active Servers</div>
+      <input 
+        type="number"
+        className="w-full p-2 text-black"
+        value={serverCount}
+        min={MIN_SERVER_COUNT}
+        max={MAX_SERVER_COUNT}
+        onChange={(e) => setServerCount(parseInt(e.target.value))}
+      />
+
+      <div className="font-semibold">Regions</div>
+      <input 
+        type="number" 
+        className="w-full p-2 text-black"
+        value={regionCount} 
+        min={MIN_REGION_COUNT}
+        max={MAX_REGION_COUNT}
+        onChange={(e) => setRegionCount(parseInt(e.target.value))}
+      />
     </div>
   );
+}
+
+function ServerTypeTabs({ serverType: selectedServerType, setServerType, setTierIndex }) {
+  let serverTypes = ["standard", "flex"];
+
+  return (
+    <div className='isolate mt-2 flex justify-stretch w-full rounded-md shadow-sm'>
+      {serverTypes.map(serverType => {
+        let current = serverType == selectedServerType;
+        let serverTypeConfig = SERVER_TYPES[serverType];
+        return (
+          <div
+            key={serverType}
+            className={clsx(
+              'relative',
+              'group',
+              'flex-1 flex items-center justify-center',
+              'cursor-pointer',
+              current
+                ? 'z-10 bg-cream-100 px-4 py-2 text-sm font-semibold text-charcole-950 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream-100'
+                : 'px-4 py-2 text-sm font-semibold text-cream-100 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0'
+            )}
+            onClick={() => {
+              setServerType(serverType)
+              setTierIndex(serverTypeConfig.defaultTier)
+            }}>
+            {serverTypeConfig.name}
+            
+            {/* Tooltip */}
+            <ul className={clsx(
+              'hidden group-hover:block',
+              'absolute z-30 top-[calc(100%+8px)] left-[50%] -translate-x-[50%] w-96',
+              'pl-10 pr-6 py-4',
+              'bg-charcole-900 text-cream-100',
+              'list-disc',
+            )}>
+              {serverTypeConfig.features.map((feature, i) => (<li key={i}>{feature}</li>))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
+function calculateRivetPrice({ autoscalingData: { labels, values }, hardwareCostPerMonth, serverCount, regionCount }) {
+  // Sum expenses
+  let total = 0;
+  for (let i = 0; i < labels.length - 1; i++) {
+    const label = labels[i];
+    const labelNext = labels[i + 1];
+    const value = values[i];
+
+    total += (labelNext - label) * value;
+  }
+
+  // Get avg
+  let interval = labels[labels.length - 1] - labels[0];
+  let avg = total / interval;
+
+  // Calculate total per month
+  let totalPerMonth = avg * hardwareCostPerMonth * serverCount;
+
+  let plan = "Studio";
+  if (totalPerMonth <= INDIE_CREDITS && regionCount <= 3) {
+    totalPerMonth = INDIE_PLAN;
+    plan = "Indie";
+  } else if (totalPerMonth <= STUDIO_CREDITS) {
+    totalPerMonth = STUDIO_PLAN;
+  }
+
+  return { price: totalPerMonth, plan };
+}
+
+function calculateStaticServerCount({ serverCount, regionCount }) {
+  serverCount = serverCount || MIN_SERVER_COUNT;
+  regionCount = regionCount || 1;
+
+  let extraCapacityPerRegion = Math.ceil(Math.ceil(serverCount / regionCount) * 0.2);
+
+  return serverCount + extraCapacityPerRegion * regionCount;
+}
+
+function PredictablePricingFeature({ title, description, ...props }) {
+  return (
+    <div className={clsx('border-4 border-cream-100/10 text-cream-100 px-6 py-4', 'flex flex-col gap-4')} {...props}>
+      <div className='text-3xl font-display font-bold tracking-tight text-cream-100'>{title}</div>
+      <p>{description}</p>
+      <div className='flex-grow' />
+    </div>
+  );
+}
+
+function formatUSD(price) {
+  return "$" + price.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 }
 
 Pricing.prose = false;
