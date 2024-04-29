@@ -88,7 +88,7 @@ export default function Pricing({ autoscalingData }) {
           features={[
             "Fixed price suitable for indies & hobbyists",
             // <><Tooltip tip={`Provided as ${formatUSD(INDIE_CREDITS)} in credits`}>3 Flex or {Math.floor(INDIE_CREDITS / STANDARD_SHARED_UNIT)} Standard servers</Tooltip> included</>,
-            <><Tooltip tip={`Hardware type is "Shared 1". Provided as ${formatUSD(INDIE_CREDITS)} in credits. Can be used on any hardware configuration.`}>3 servers</Tooltip> included</>,
+            <><Tooltip tip={`Specifically Flex Shared ½ servers. Provided as ${formatUSD(INDIE_CREDITS)} in credits. Credits can be used for any type of Flex or Standard server.`}>6 Flex servers</Tooltip> included</>,
             "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
           ]}
           options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
@@ -320,7 +320,7 @@ const SERVER_TYPES = {
 const INDIE_PLAN = 9;
 const STUDIO_PLAN = 29;
 
-const INDIE_CREDITS = FLEX_PRICE_UNIT / 2 * 3;  // 3 "Flex Shared 1" servers for free
+const INDIE_CREDITS = FLEX_PRICE_UNIT / 4 * 6;  // 3 "Flex Shared 1" servers for free
 const STUDIO_CREDITS = 29;
 
 function PricingCalculator({ autoscalingData }) {
