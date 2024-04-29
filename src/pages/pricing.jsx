@@ -84,10 +84,11 @@ export default function Pricing({ autoscalingData }) {
       <div className="grid grid-cols-3 gap-4 max-w-7xl mx-auto px-4 mt-8">
         <PricingCard
           title="Indie"
-          price="$9/mo + usage"
+          price="$9/mo"
           features={[
+            "Fixed price suitable for indies & hobbyists",
             // <><Tooltip tip={`Provided as ${formatUSD(INDIE_CREDITS)} in credits`}>3 Flex or {Math.floor(INDIE_CREDITS / STANDARD_SHARED_UNIT)} Standard servers</Tooltip> included</>,
-            <><Tooltip tip={`Hardware type is "Shared 1". Provided as ${formatUSD(INDIE_CREDITS)} in credits.`}>3x servers</Tooltip> included</>,
+            <><Tooltip tip={`Hardware type is "Shared 1". Provided as ${formatUSD(INDIE_CREDITS)} in credits. Can be used on any hardware configuration.`}>3 servers</Tooltip> included</>,
             "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
           ]}
           options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
@@ -97,15 +98,16 @@ export default function Pricing({ autoscalingData }) {
           price="$29/mo + usage"
           features={[
             "$29/mo credits included",
-            "Ready to scale",
-            "Supports 8 regions"
+            "Supports 8 regions",
+            <>No <Tooltip tip="Concurrent users">CCU</Tooltip> or <Tooltip tip="Monthly active users">MAU</Tooltip> limits</>,
           ]}
           options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
 
         <PricingCard
           title="Open-source"
           features={[
-            "Self host in your own cloud",
+            "Self host on your own servers",
+            "Bring your own hardware",
             "Enterprise support available",
             // "Supports Linode",
           ]}
@@ -192,6 +194,8 @@ export default function Pricing({ autoscalingData }) {
           <PredictablePricingFeature title="Bot & DDoS mitigation" description="Bots & DDoS attacks commonly drive up costs. Mitigate these out of the box."></PredictablePricingFeature>
           <PredictablePricingFeature title="Usage Limits" description="Enforce maximum number of servers & maximum spend to avoid surprises."></PredictablePricingFeature>
           <PredictablePricingFeature title="Alerting" description={<>Immediately be notified of surprise usage. <span className='italic'>Coming soon.</span></>}></PredictablePricingFeature>
+          <PredictablePricingFeature title="No CCU or MAU Limits" description="Rivet only charges for the resources you use, not convoluted metrics like CCUs & MAUs."></PredictablePricingFeature>
+          <PredictablePricingFeature title="Open-Source Self Hosting" description="Rivet Cloud is the best place to host your game, but you can always host it yourself if needed."></PredictablePricingFeature>
         </div>
       </div>
 
@@ -461,7 +465,7 @@ function UsageConfig({ serverType, setServerType, tierIndex, setTierIndex, serve
         onChange={(e) => setTierIndex(parseInt(e.target.value))}
       >
         {serverTypeConfig.tiers.map((tier, i) => (
-          <option value={i}>{tier.name}</option>
+          <option key={i} value={i}>{tier.name}</option>
         ))}
       </select>
 
