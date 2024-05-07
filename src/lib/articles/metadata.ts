@@ -41,6 +41,9 @@ const categories = {
   technical: {
     name: 'Technical'
     // href: '/blog/developer-changelog',
+  },
+  frogs: {
+    name: 'Frogs'
   }
 };
 
