@@ -1,0 +1,121 @@
+import { Tip, Note } from '@/components/callouts';
+import { CodeGroup } from '@/components/Code';
+import image from './opengraph-image.png';
+
+export const config = {
+  author: 'forest-anderson',
+  date: '2024-05-07',
+  title: `Rivet Engine Plugins`,
+  description: `Looking at some of the features of the Rivet engine plugins for
+  Unity and Godot`,
+  category: 'technical',
+  keywords: ['unity', 'godot', 'multiplayer'],
+  images: {
+    hero: {
+      image,
+      alt: 'hero'
+    }
+  }
+};
+
+
+## Rivet engine plugins
+
+Over the last several months, we've worked on rebuilding our Godot and Unity engine
+plugins from the ground up. In January, we released our Godot plugin, and we
+recently released our Unity plugin in April. This blog will cover their
+functionality, and look a bit at what they're doing under the hood.
+
+## What does it do?
+
+The Rivet plugin for each engine function quite similar. It aims to let you do a few things:
+
+- Easily deploy your game server
+- Make playtesting with others simple
+
+While you're working on your game, we want to make it as easy as possible to
+start playing with others. Currently, the plugins do just what is required to
+build your server and send it off to Rivet, no extra frills. From when you press
+"deploy" in Godot, you can get a globally-accessible lobby with your game server
+in under 30 seconds.
+
+## What needs to be set up?
+
+To integrate a Godot or Unity game with Rivet, you'll start by using a
+networking framework that works with the engine. For Godot, this will likely be the [built-in
+"high-level
+multiplayer"](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html).
+For Unity, there are several options. We have tutorials on using
+Unity and Fish-Net, as well as Godot and its built-in networking.
+
+- Godot tutorial: https://rivet.gg/learn/godot/tutorials/bomber-demo
+- Unity tutorial: https://rivet.gg/learn/unity/tutorials/fishnet/crash-course
+
+If you don't want to dive into tutorials right away, here is a quick integration overview. The steps when setting up the Rivet engine plugins are:
+
+1. Set up your game with the engine's networking framework
+1. Install the plugin for the engine
+1. Call the plugin's library to connect to a Rivet lobby when the
+   game starts
+1. Sign in and deploy the game from the plugin UI
+
+We recorded a full walkthrough of this process that you can check out here:
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/akJ6FP_DYNo" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+## How does it work?
+
+The Rivet engine plugin does (only?) several things:
+
+- Manages your Rivet API tokens
+- Handles changing the Rivet namespace
+- Exposes engine-native function calls for making calls to the Rivet API
+- Builds Docker images of your server
+- Uploads server images to Rivet
+
+Under the hood, the Rivet engine plugin uses the Rivet command line interface
+(CLI) to do most of their work. This means the plugin will handle your tokens,
+run everything needed to build your game into a Docker image, and make all the
+calls to send this Docker image to Rivet servers around the world.
+
+However, after you sign in, you won't actually see any of this happening. You
+won't need to write code to use API tokens or interface with the CLI. So for
+you, the game dev, this might be a better description of what the plugin does:
+
+- Handles Rivet sign in
+- Deploys your game to Rivet
+
+There are a few details that are good to know about this process, so that you
+don't need to wonder if they're actually happening.
+
+First, when the Rivet plugin builds the game in either Unity or Godot, it will
+include a file that stores your Rivet token. When using the plugin to deploy a
+server, it will include a Cloud token, and when you build a client build of the
+game, it will include a Public token.
+
+Next, the Rivet plugin ties into your existing engine build configuration to
+build the server and client versions of the game. This means that when you do
+client build, Rivet will hook into that and run what it needs to include Rivet's
+files. You don't need to configure this manually after you install the plugin!
+This effectively create a file that contains the Rivet token, include it in the
+build, then delete the file after.
+
+## Future work
+
+In the coming months, we'll also be working on an overhaul to our existing
+Unreal plugin. We'll also create tutorials for networking frameworks other than
+just Fish-Net with Unity.
+
+## Introduction
+
+<ArticleSocials {...info}/>
