@@ -445,7 +445,7 @@ function Title() {
       // 'sm:max-w-2xl sm:h-[285px]',
       'w-full h-[45vw]',
     )}>
-      {/* <Image src={glow} className="absolute inset-0 h-full w-full object-cover z-50 mix-blend-screen pointer-events-none" /> */}
+      <GlowVideo className="absolute inset-0 h-full w-full object-cover z-50 mix-blend-screen pointer-events-none bg-red-500" />
 
       <div className={clsx(
         'absolute inset-y-[24px] inset-x-[52px]',
@@ -538,6 +538,24 @@ function Subtitle() {
     </div>
   );
 }
+
+function GlowVideo({ style, ...props }) {
+  const videoRef = useRef(null);
+  return (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      ref={videoRef}
+      {...props}
+    >
+      <source src="https://assets.rivet.gg/effects/glow.webm" type="video/webm" />
+    </video>
+  );
+}
+
+
 
 function GitHubStars({ repo = 'rivet-gg/rivet' }) {
   const [stars, setStars] = useState(0);
@@ -1243,7 +1261,8 @@ function Modules() {
       <ul className="text-cream-100/80 mt-8">
         {MODULE_FEATURES.map((feature, i) => (
           <li key={i} className="flex items-center gap-2">
-            <span>{feature}</span>
+          <FontAwesomeIcon icon={faCheck} />
+          <span>{feature}</span>
           </li>
         ))}
       </ul>
