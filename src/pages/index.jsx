@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Resource } from '@/components/Resources';
+import IncludedSection from '@/components/Included';
 import YCLogo from '@/components/YCLogo';
 import A16ZLogo from '@/components/A16ZLogo';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -85,7 +86,11 @@ import {
   faLightbulb,
   faUser,
   faCircleDot,
-  faMedal
+  faMedal,
+  faChartLine,
+  faSyncAlt,
+  faBug
+
 } from '@fortawesome/sharp-solid-svg-icons';
 import { Tooltip } from "@/components/mdx";
 import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.svg';
@@ -178,9 +183,9 @@ let caseStudies = [
   {
     name: 'Apes.io',
     href: 'https://apes.io',
-    screenshot: imgApesScreenshot,
     logo: imgApesLogo,
-    gradient: 'from-[#a8271d] to-[#ad7b3d]'
+    // screenshot: grid
+
   },
   {
     name: 'Ev.io',
@@ -196,17 +201,15 @@ let caseStudies = [
         </div>
       </div>
     ),
-    screenshot: imgEvScreenshot,
     logo: imgEvLogo,
-    gradient: 'from-[#7d56d6] to-[#2a4080]'
+    // screenshot: grid
   },
 
   {
     name: 'Diep.io',
     href: 'https://diep.io',
-    screenshot: imgDiepScreenshot,
     logo: imgDiepLogo,
-    gradient: 'from-[#56a0d9] to-[#3d5db8]'
+    // screenshot: grid
   }
 ];
 
@@ -281,6 +284,10 @@ export default function Index() {
 
           <div className='px-6 pt-16 pb-40 lg:px-8'>
             <Infrastructure />
+          </div>
+
+          <div className='px-6 pt-16 pb-40 lg:px-8'>
+            <IncludedSection />
           </div>
 
           <div className='max-w-6xl mx-auto px-6 md:py-48 lg:px-8'>
@@ -421,51 +428,49 @@ function Background({ props }) {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />;
+  return (
+    <div className="relative">
+      <canvas ref={canvasRef} className='absolute inset-0 -z-10 h-full w-full' {...props} />
+    </div>
+  );
 }
 
 function Title() {
   return (
     <div className={clsx(
-      ' mx-auto relative flex flex-wrap items-center justify-center border-2 border-cream-100 box-border',
+      // ' mx-auto relative flex flex-wrap items-center justify-center border-2 border-cream-100 box-border',
+      'mx-auto relative flex flex-wrap items-center justify-center box-border',
       'lg:max-w-4xl lg:h-[400px]',
       'md:max-w-3xl md:h-[357px]',
       // 'sm:max-w-2xl sm:h-[285px]',
       'w-full h-[45vw]',
     )}>
-      {/* Background */}
-      {/* <Background /> */}
+      {/* <Image src={glow} className="absolute inset-0 h-full w-full object-cover z-50 mix-blend-screen pointer-events-none" /> */}
 
-      {/* Game Background */}
-      <Game className='absolute inset-0 z-10 h-full w-full' />
+      <div className={clsx(
+        'absolute inset-y-[24px] inset-x-[52px]',
+      )}>
+        {/* Game Background */}
+        <Game className='absolute inset-0 z-10 h-full w-full' />
 
-      {/* Content */}
-      <div className='pointer-events-none z-10 flex select-none flex-col items-center justify-center text-center'>
-        {/* Title */}
-        <h1 className={clsx(
-          'mt-8 font-display font-extrabold tracking-tight text-cream-100',
-          'text-3xl sm:text-5xl md:text-6xl'
-        )}>
-          Multiplayer Made Simple
-          {/* Multiplayer Tooling<br/>Made Simple */}
-          {/* Multiplayer Infrastructure<br/>Made Simple */}
-        </h1>
+        {/* Content */}
+        <div className='pointer-events-none z-10 flex select-none flex-col items-center justify-center text-center'> </div>
+
+        {/* Multiplayer note */}
+        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-cream-100 font-semibold bg-charcole-950'> */}
+        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-xs text-charcole-950 font-bold bg-cream-100 uppercase'> */}
+        <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-xs text-cream-100/50 font-bold uppercase opacity-60 pointer-events-none select-none'>
+        
+          <span>This game is multiplayer</span>
+          {/* <span className='hidden md:block'>This game is multiplayer</span>
+          <span className='block md:hidden'>Play game in a larger window</span> */}
+        </div>
+
+        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-md font-semibold text-green-400'>
+          <OnlineIndicator />
+          <span>8 Players Online</span>
+        </div> */}
       </div>
-
-      {/* Multiplayer note */}
-      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-cream-100 font-semibold bg-charcole-950'> */}
-      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-xs text-charcole-950 font-bold bg-cream-100 uppercase'> */}
-      <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-xs text-cream-100 font-bold uppercase opacity-60 pointer-events-none select-none'>
-        <FontAwesomeIcon icon={faGamepad} className='text-lg mr-2' />
-        <span>This game is multiplayer</span>
-        {/* <span className='hidden md:block'>This game is multiplayer</span>
-        <span className='block md:hidden'>Play game in a larger window</span> */}
-      </div>
-
-      {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-md font-semibold text-green-400'>
-        <OnlineIndicator />
-        <span>8 Players Online</span>
-      </div> */}
     </div>
   );
 }
@@ -475,37 +480,19 @@ function Subtitle() {
     <div className='flex w-full flex-col items-center justify-center px-2 mt-20 text-center'>
       {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
       {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
-
-      <p className="font-display tracking-tight text-cream-100 text-center flex flex-row gap-3 text-4xl italic">
-        <span className='underline decoration-green-500'>Easy.</span>
-        <span className='underline decoration-orange-500'>Flexible.</span>
-        <span className='underline decoration-blue-500'>Affordable.</span>
+      {/* Title */}
+      <h1 className={clsx(
+          'mt-8 mb-2 font-display font-extrabold tracking-tight text-cream-100',
+          'text-3xl sm:text-5xl md:text-6xl gap-3'
+        )}>
+          Open-Source Game Infrastructure
+          {/* Multiplayer Tooling<br/>Made Simple */}
+          {/* Multiplayer Infrastructure<br/>Made Simple */}
+        </h1>
+      <p className="font-display tracking-tight text-cream-100 text-center flex flex-row gap-3 text-3xl">
+        <span className>Multiplayer game servers and modular backend.
+          <br /> Supports Godot, Unity, Unreal Engine, HTML5, and Custom. </span>
       </p>
-
-      <p className='mt-6 text-lg opacity-90 text-cream-100'>
-        Supports&nbsp;
-        {supportedEngines.map(({ name, image, href, styles, join }, i) => (
-          <span key={name}>
-            <Link
-              href={href}
-              className={clsx(
-                'pointer-events-auto inline font-semibold transition hover:scale-110',
-                'hover:underline',
-                // styles.text
-              )}>
-              {name}
-            </Link>
-            {join}
-          </span>
-        ))}.
-        <br/>
-        Open-source and self-hostable.
-      </p>
-
-      {/* GitHub */}
-      <div className='mt-4'>
-        <GitHubStars />
-      </div>
 
       {/* Investors */}
       {/* <div className='mt-6 block w-max flex items-center justify-center gap-2 text-2xs font-semibold text-white'> */}
@@ -544,15 +531,15 @@ function Subtitle() {
         href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
         target='_blank'
         rel='noreferrer'
-        className='mt-6 pointer-events-auto flex items-center justify-center gap-1 text-center text-xs sm:text-sm font-bold text-cream-100/80 hover:text-cream-100'>
-        Announcing up to $120k credits with Akamai RISE
+        className='mt-6 pointer-events-auto flex items-center justify-center gap-1 text-center text-xs sm:text-sm font-bold text-wistful-400 hover:text-wistful-300'>
+        Get up to $120,000.00 in server credits
         <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
       </a>
     </div>
   );
 }
 
-function GitHubStars({ repo = 'rivet-gg/rivet'}) {
+function GitHubStars({ repo = 'rivet-gg/rivet' }) {
   const [stars, setStars] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -697,7 +684,7 @@ function CodeSection() {
       </h2> */}
 
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your <span className='underline decoration-orange-500'>game engine</span> and <span className='underline decoration-blue-500'>networking framework</span>
+        Rivet works with your game engine and networking framework.
       </h2>
 
       {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
@@ -782,7 +769,7 @@ function TemplateSection() {
       {/* <BigAssIcon icon={faCode} color="text-orange-500" /> */}
       <div className='mx-auto max-w-3xl text-center'>
         <h2 className='font-display font-bold tracking-tight text-cream-100 text-5xl mt-8'>
-          Get started with an example <FontAwesomeIcon icon={faCode} className='ml-3 text-orange-500' />
+          Get started with an example <FontAwesomeIcon icon={faCode} className='ml-2' />
         </h2>
       </div>
 
@@ -1084,36 +1071,46 @@ function Infrastructure() {
       {/* <p className="text-white/80 text-center max-w-2xl mt-8">
         Flexible, open-source, & cost-effective infrastructure for multiplayer games.
       </p> */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-5 mt-16">
+      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-2 mt-16">
         <InfrastructureCard
           className="md:col-span-7"
           href="/docs/dynamic-servers"
-          icon={faServer}
-          title="Dedicated Game Servers"
-          // description="Run your game servers on a global multi-cloud network"
-          // description="Run game servers across multiple regions & clouds providers"
-          // description="game servers across multiple regions & clouds providers"
-          description="Deploy game servers in minutes across multiple regions & clouds providers"
+          title="Game Servers"
+          description="Deploy game servers in minutes across multiple regions & clouds providers starting at $9/mo which includes 9 servers."
           features={[
-            // <>Dedicated, cost-effective servers <Tooltip tip="Shared CPU core similar to VPS providers, see pricing page for details">starting at $2.85/mo</Tooltip></>,
-            <>Optimize for performance or cost, servers <Tooltip tip="Shared CPU core similar to VPS providers, see pricing page for details">starting at $2.85/mo</Tooltip></>,
-            <>Auto-scales <Tooltip tip="Benchmark coming soon to our blog">90% faster</Tooltip> than AWS GameLift</>,
-            "No-downtime deploys & instant rollbacks",
-            "Monitoring & crash reporting",
+            {
+              icon: faChartLine, 
+              text: "Auto-scales 90% faster than AWS GameLift."
+            },
+            {
+              icon: faSyncAlt, 
+              text: "No-downtime deploys & instant rollbacks."
+            },
+            {
+              icon: faBug, 
+              text: "Monitoring & crash reporting."
+            }
           ]}
           bgColor="bg-blue-500/[0.01]"
         />
         <InfrastructureCard
           className="md:col-span-5"
           href="/docs/dynamic-servers/concepts/game-guard"
-          icon={faShieldAlt}
-          title="DDoS Mitigation"
-          // description="Protect your game servers from DDoS attacks"
+          title="Free DDoS Mitigation"
+          description="Protect your game servers from DDoS attacks"
           features={[
-            "Included for free",
-            "No added latency",
-            "Supports UDP & TCP & WebSockets & WebRTC",
-            "Automatic SSL for game servers (WebSockets & TCP+TLS)",
+            {
+              icon: faShieldAlt, 
+              text: "No added latency"
+            },
+            {
+              icon: faPlug, 
+              text: "Supports UDP & TCP & WebSockets & WebRTC"
+            },
+            {
+              icon: faServer, 
+              text: "Automatic SSL for game servers (WebSockets & TCP+TLS)"
+            }
           ]}
           bgColor="bg-orange-500/[0.01]"
         />
@@ -1124,9 +1121,18 @@ function Infrastructure() {
           title="CDN"
           description="Asset delivery, game downloads, & website hosting"
           features={[
-            "Custom domains",
-            "Instant rollbacks",
-            "Automatic SSL",
+            {
+              icon: faGlobe, 
+              text: "Custom domains"
+            },
+            {
+              icon: faArrowLeft, 
+              text: "Instant rollbacks"
+            },
+            {
+              icon: faServer, 
+              text: "Automatic SSL"
+            }
           ]}
           bgColor="bg-green-500/[0.01]"
         />
@@ -1142,13 +1148,19 @@ function Infrastructure() {
           // description="Extend Rivet using TypeScript (or use your own API servers)"
           description="Write server-side logic using TypeScript (or use your own API server)"
           features={[
-            // "Auto-scales to meet demand",
-            // "Write server-side logic using TypeScript",
-            "Modules include matchmaking, parties, authentication, & more",
-            "Postgres database included for persistence",
-            <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-300 hover:text-orange-500 hover:underline'>Open Game Backend</a></>,
-            // "Fully modular, grows with your use cases",
-            // "Global edge deployments",
+
+            {
+              icon: faPuzzle, 
+              text: "Modules include matchmaking, parties, authentication, & more"
+            },
+            {
+              icon: faCircleCheck, 
+              text: "Postgres database included for persistence"
+            },
+            {
+              icon: faBolt, 
+              text: "Powered by Open Game Backend"
+            }
           ]}
           bgColor="bg-purple-500/[0.01]"
         />
@@ -1157,49 +1169,36 @@ function Infrastructure() {
   );
 };
 
-function InfrastructureCard({ href, target, icon, title, description, features, className, bgColor }) {
+function InfrastructureCard({ href, target, title, description, features, className, bgColor }) {
   return (
     <div
       className={clsx(
         'relative',
         `md:h-[400px] text-left p-10`,
         'flex flex-col items-start justify-start',
-        // 'border-2',
-
-
-        // 'border-2 border-cream-100/80 hover:border-cream-100',
-        'border-4 border-cream-100/10',
-        // 'bg-white/10',
-
+        'border-2 border-cream-100/20',
         'col-span-1',
         className
-      )}>
+      )}
+    >
       {/* Background */}
-      <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.8 }}
+      <div style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
         className='pointer-events-none absolute inset-0 bg-repeat transition'></div>
-      {/* <div className={clsx('z-10 pointer-events-none absolute inset-0', bgColor)}></div> */}
 
       {/* Title */}
       <div className='z-50'>
-        {/* Icon */}
-        <div className='flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[4%] outline outline-1 outline-white/[8%]'>
-          <FontAwesomeIcon icon={icon} className='text-2xl text-cream-100' />
-        </div>
-
         <h3 className="mt-4 font-display text-3xl font-semibold text-cream-100">{title}</h3>
-
-        {description && <p className="mt-2 text-md text-cream-100/80"> {description}</p>}
+        {description && <p className="mt-2 text-md text-cream-100/90"> {description}</p>}
 
         {features &&
-          <ul className="mt-2 text-md text-cream-100/80">
+          <div className="grid grid-cols-4 items-start text-sm justify-center gap-4 text-cream-100/70 leading-tight py-8 text-center">
             {features.map((feature, i) => (
-              <li key={i} className="flex items-center gap-2">
-                <FontAwesomeIcon icon={faCheck} />
-                <span>{feature}</span>
-              </li>
+              <div key={i} className="flex flex-col items-center">
+                <FontAwesomeIcon icon={feature.icon} className='text-xl pb-3' />
+                <span>{feature.text}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         }
       </div>
 
@@ -1212,10 +1211,6 @@ function InfrastructureCard({ href, target, icon, title, description, features, 
         'mt-6 md:mt-0',
       )}>
         <Button variant='juicy' href={href} target={target}>Documentation</Button>
-        {/* <Button variant='juicy' href='https://rivet.gg/learn'>
-          <FontAwesomeIcon icon={faBook} className='mr-2' />
-          Documentation
-        </Button> */}
       </div>
     </div>
   );
@@ -1242,14 +1237,12 @@ function BigAssIcon({ icon, color }) {
 
 function Modules() {
   return (
-    <div className="flex flex-col items-center">
-      <BigAssIcon icon={faPuzzle} color="text-purple-500" />
-      <h3 className="font-display tracking-tight text-cream-100 text-5xl text-center">Extend with backend modules</h3>
+    <div className="flex flex-col">
+      <h3 className="font-display tracking-tight text-cream-100 text-6xl">Extend with backend modules</h3>
       {/* Simple to write & adapt modules for your backend that work alongside Rivet. */}
       <ul className="text-cream-100/80 mt-8">
         {MODULE_FEATURES.map((feature, i) => (
           <li key={i} className="flex items-center gap-2">
-            <FontAwesomeIcon icon={faCheck} />
             <span>{feature}</span>
           </li>
         ))}
@@ -1267,7 +1260,7 @@ function Modules() {
 
       <div className='text-lg text-bold'>Available Modules</div>
       <div className={clsx(
-        "w-full grid gap-4 mt-8",
+        "w-full grid gap-2 mt-8",
         "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
       )}>
         <ModuleCard title="Build your own" icon={faPlus} href="https://opengb.dev/build/overview" />
@@ -1308,9 +1301,9 @@ function CaseStudies({ props }) {
     <div className='flex flex-col'>
       {/* Title */}
       <div className='max-w-1xl mx-auto text-center'>
-        <h3 className='font-display tracking-tight text-cream-100 text-5xl'>
+        <h3 className='font-display tracking-tight text-cream-100 text-6xl'>
           Some of the games that{' '}
-          <FontAwesomeIcon icon={faHeart} className='tracking-tight text-red-500 sm:text-5xl' /> Rivet
+          <FontAwesomeIcon icon={faHeart} className='tracking-tight text-red-500 sm:text-4xl' /> Rivet
         </h3>
       </div>
 
@@ -1328,12 +1321,11 @@ function CaseStudies({ props }) {
             )}
             onMouseEnter={() => setHoverIdx(i)}
             onMouseLeave={() => setHoverIdx(null)}>
-            <Image
+            {/* <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
               alt=''
-            />
-            <div className={clsx('absolute inset-0 -z-10 bg-gradient-to-br opacity-70', study.gradient)} />
+            /> */}
             <Image className='h-14 w-32 object-contain transition' src={study.logo} alt={study.name} />
             {study.badge && study.badge()}
           </Link>
@@ -1411,7 +1403,7 @@ function UpAndRunning() {
 
 function OnlineIndicator() {
   return (
-    <div className="inline-block w-3.5 h-3.5 mr-2.5 bg-green-400 rounded-full relative before:content-[''] before:absolute before:inset-0 before:w-3.5 before:h-3.5 before:bg-green-400 before:opacity-70 before:rounded-full before:animate-ping"></div>
+    <div className="inline-block w-2.5 h-2.5 mr-2.5 bg-white rounded-full relative before:content-[''] before:absolute before:inset-0 before:w-2.5 before:h-2.5 before:bg-white before:opacity-70 before:rounded-full before:animate-ping"></div>
   );
 }
 
