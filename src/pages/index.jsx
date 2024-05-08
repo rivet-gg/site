@@ -134,9 +134,10 @@ import imgAstro from '@/images/examples/astro.png';
 import imgBomber from '@/images/examples/bomber.png';
 import imgCli from '@/images/examples/cli.png';
 import imgCol from '@/images/examples/col.png';
-import imgCore from '@/images/examples/core.png';
+import imgProp from '@/images/examples/prop.png';
 import imgUnityTanks from '@/images/examples/unitytanks.png';
 import imgWeb from '@/images/examples/web.png';
+import imgJS from '@/images/examples/JS.png';
 
 import imgStepsGodot from '@/images/engine-integration/godot.png';
 import imgStepsUnity from '@/images/engine-integration/unity.png';
@@ -235,24 +236,25 @@ let TEMPLATES = [
     subtext: 'Unity & Fish-Net'
   },
   {
-    href: 'https://github.com/rivet-gg/examples/tree/main/html5/colyseus',
-    screenshot: imgCol,
-    subtext: 'Colyseus Template'
+    href: 'https://github.com/rivet-gg/examples/tree/main/rust/pixelprop',
+    screenshot: imgProp,
+    subtext: 'Rust Prop Hunt'
+
   },
   {
-    href: 'https://github.com/rivet-gg/examples/tree/main/html5/webrtc',
+    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/webrtc',
     screenshot: imgWeb,
     subtext: 'WebRTC'
   },
   {
-    href: 'https://github.com/rivet-gg/examples/tree/main/rust/cli-websocket',
-    screenshot: imgCli,
-    subtext: 'CLI WebSocket'
+    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/sandbox',
+    screenshot: imgJS,
+    subtext: 'JS Sandbox'
   },
   {
-    href: 'https://github.com/rivet-gg/examples/tree/main/c/coredump',
-    screenshot: imgCore,
-    subtext: 'Core Dump'
+    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/colyseus',
+    screenshot: imgCol,
+    subtext: 'Colyseus Template'
   }
 ];
 
