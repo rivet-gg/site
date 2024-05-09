@@ -28,12 +28,12 @@ export const CreditsBanner = () => {
       rel='noreferrer'
       className={clsx(
         'fixed inset-x-0 top-[calc(var(--header-height)-2.5rem)]',
-        'lg:text-md pointer-events-auto z-10 flex items-center justify-center gap-2 bg-charcole-900 text-cream-100 px-2 text-center text-sm font-bold',
+        'lg:text-md pointer-events-auto z-10 flex items-center justify-center gap-2 bg-charcole-900 px-2 text-center text-sm font-bold text-cream-100',
         'h-10'
       )}>
-      <span>
+      <span className='flex items-center'>
         Announcing up to $120k credits with Akamai RISE
-        <FontAwesomeIcon icon={faArrowRight} className='ms-1 h-6 w-6' />
+        <FontAwesomeIcon icon={faArrowRight} className='ms-1 h-4 w-4' />
       </span>
       <FontAwesomeIcon
         icon={faX}

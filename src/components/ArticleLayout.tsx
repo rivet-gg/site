@@ -36,7 +36,7 @@ export const ArticleLayout = ({ children, info }: ArticleLayoutProps) => {
         <p className='mt-6 hidden font-sans text-xs font-semibold text-white xl:block'>Other articles</p>
         <OtherArticlesList currentSlug={info.slug} />
       </aside>
-      <Prose as='article' className='order-2 mx-auto max-w-3xl flex-1 pb-8'>
+      <Prose as='article' className='order-2 mx-auto w-full max-w-3xl flex-1 pb-8'>
         <ArticleHeader {...info} />
         {children}
       </Prose>

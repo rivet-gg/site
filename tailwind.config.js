@@ -68,7 +68,7 @@ module.exports = {
         sidebar: '20rem 1fr'
       },
       scrollMargin: {
-        'header-offset': 'calc(var(--header-height) + 4rem)'
+        'header-offset': 'calc(var(--header-height) + 2rem)'
       }
     }
   },

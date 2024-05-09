@@ -113,8 +113,8 @@ module.exports = ({ theme }) => ({
       hr: {
         borderColor: 'var(--tw-prose-hr)',
         borderTopWidth: 1,
-        marginTop: theme('spacing.16'),
-        marginBottom: theme('spacing.16'),
+        marginTop: theme('spacing.6'),
+        marginBottom: theme('spacing.6'),
         maxWidth: 'none'
         // marginLeft: `calc(-1 * ${theme('spacing.4')})`,
         // marginRight: `calc(-1 * ${theme('spacing.4')})`,
@@ -160,7 +160,7 @@ module.exports = ({ theme }) => ({
         fontWeight: '600',
         fontSize: theme('fontSize.2xl')[0],
         ...theme('fontSize.2xl')[1],
-        marginTop: theme('spacing.16'),
+        marginTop: theme('spacing.8'),
         marginBottom: theme('spacing.3')
       },
       h3: {

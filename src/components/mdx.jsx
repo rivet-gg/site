@@ -41,7 +41,7 @@ export function Tooltip({ tip, children }) {
       <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
         {children}
       </span>
-      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-gray-50 bg-black/80 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover/tooltip:flex dark:border-gray-500 leading-tight'>
+      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-gray-50 bg-black/80 px-1.5 py-1 pb-1 text-center text-xs leading-tight text-gray-50 opacity-100 group-hover/tooltip:flex dark:border-gray-500'>
         {tip}
       </span>
     </span>
@@ -175,7 +175,9 @@ export function ProtocolSupportMatrix() {
           <Link href='/docs/dynamic-servers/concepts/game-guard'>Rivet Game Guard</Link>
         </th>
         <th>
-          <Link href='/docs/dynamic-servers/concepts/host-bridge-networking'>Host Network (Open Source & Enterprise)</Link>
+          <Link href='/docs/dynamic-servers/concepts/host-bridge-networking'>
+            Host Network (Open Source & Enterprise)
+          </Link>
         </th>
       </tr>
       <tr>
@@ -230,13 +232,23 @@ export function InstallCli() {
 
 export function AutomateWithApi() {
   return (
-    <Accordion title="Can I automate this with APIs?">
+    <Accordion title='Can I automate this with APIs?'>
       <p>
-        Rivet&apos;s Cloud API can be managed with your <Link href="/docs/general/concepts/token-types#cloud">cloud token</Link>. This is the same API we use internally and <Link href="https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368">in the CLI</Link>.
+        Rivet&apos;s Cloud API can be managed with your{' '}
+        <Link href='/docs/general/concepts/token-types#cloud'>cloud token</Link>. This is the same API we use
+        internally and{' '}
+        <Link href='https://github.com/rivet-gg/cli/blob/7f91d180f64b755956d89a3a83bfb2e77a42d72d/cli/src/commands/version.rs#L368'>
+          in the CLI
+        </Link>
+        .
       </p>
 
       <p>
-        The Cloud REST API is documented <Link href="/docs/cloud">here</Link>. You can also use the <Link href="https://www.npmjs.com/package/@rivet-gg/api-full" target='_blank'><code>@rivet-gg/api-full</code> NPM library</Link> to interact with the Cloud API.
+        The Cloud REST API is documented <Link href='/docs/cloud'>here</Link>. You can also use the{' '}
+        <Link href='https://www.npmjs.com/package/@rivet-gg/api-full' target='_blank'>
+          <code>@rivet-gg/api-full</code> NPM library
+        </Link>{' '}
+        to interact with the Cloud API.
       </p>
     </Accordion>
   );
@@ -316,4 +328,19 @@ export function UnfamiliarWithDockerfiles() {
 
 export const ExperimentalFeature = () => {
   return <Warning>This feature is experimental and may change in the future.</Warning>;
+};
+
+export const YouTubeVideo = ({ id }) => {
+  return (
+    <div className='aspect-video'>
+      <iframe
+        src={`https://www.youtube.com/embed/${id}`}
+        title='YouTube video player'
+        frameBorder='0'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+        allowFullScreen
+        className='h-full w-full'
+      />
+    </div>
+  );
 };
