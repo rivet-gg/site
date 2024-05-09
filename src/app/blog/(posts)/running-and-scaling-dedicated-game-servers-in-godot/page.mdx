@@ -1,0 +1,203 @@
+import image from './opengraph-image.png';
+import imgProtocolTree from '../godot-choosing-network-protocol/protocol-tree.svg';
+
+export const config = {
+  author: 'nathan-flurry',
+  date: '2024-05-12',
+  title: `Everything You Need to Know About Running & Scaling Dedicated Game Servers in Godot`,
+  description: `Learn the key aspects of running and scaling dedicated game servers for your Godot-based multiplayer game`,
+  category: 'guide',
+  keywords: [
+    'godot',
+    'multiplayer',
+    'dedicated-game-servers',
+    'server-scaling',
+    'networking-protocols',
+    'multiplayer-synchronization',
+    'testing'
+  ],
+  images: {
+    hero: {
+      image,
+      alt: 'hero'
+    }
+  }
+};
+
+## TODO:
+
+- State vs input
+
+## Introduction
+
+When it comes to creating a shared, multiplayer game world in Godot, setting up and managing dedicated game servers is a crucial aspect of the development process. In this blog post, we'll explore the key considerations and best practices for running and scaling dedicated game servers for your Godot-based multiplayer project.
+
+## Understanding Godot's Multiplayer Features
+
+Godot provides built-in multiplayer capabilities, offering a solid foundation for creating networked games.
+
+Here's a high level of all the features available to you in Godot multiplayer. Understanding these features before diving in to multiplayer will build a full picture of how to handle networking in Godot:
+
+- **`MultiplayerPeer` & transports** Godot supports a variety of transports out of the box, including UDP ([ENetMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html)), WebSocket ([WebSocketPeer](https://docs.godotengine.org/en/stable/classes/class_websocketpeer.html)), and WebRTC ([WebRTCMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html)).
+- **`MultiplayerSpawner`** The [`MultiplayerSpawner`](https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html) node allows you to automatically spawn and synchronize nodes across networked peers. It simplifies the process of creating and managing networked objects in a multiplayer game.
+- **Synchronizers** Godot's default [`MultiplayerSynchronizer`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html) provides basic state synchronization functionality, enabling the synchronization of node properties across networked peers.
+    - **Sync types** Godot supports synchronizing primitives (float, string, etc.) and most built-in types (Vector2, Color, Array, Dictionary, etc.) out of the box, with the ability to enable more complex type synchronization using [`allow_object_decoding`](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-allow-object-decoding).
+    - **Send rate/replication intervals** Godot allows configuring the send rate for synced properties and watched properties at the node level using [`MultiplayerSynchronizer.replication_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-replication-interval) and [`MultiplayerSynchronizer.delta_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-delta-interval), respectively.
+    - **Configuring reliability** Godot uses a different approach for configuring reliability, with variables being either "synced" (sent each update, unreliably) or "watched" (sent only when changed, reliably).
+    - **Listening for changes** Godot supports responding to synchronized properties using the [`MultiplayerSynchronizer.synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-synchronized) and [`MultiplayerSynchronizer.delta_synchronized`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-signal-delta-synchronized) signals, allowing you to react to changes in synchronized properties. This can be used to update non-synchronized objects in scenes (e.g. effects, animations) in response to networked changes.
+- **Ownership/authority** In multiplayer games, node authority determines which peer has control over an object and can modify its state. Godot's [authority model](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-multiplayer-authority) provides a robust system for managing object ownership and authority, allowing you to specify which peer (server or client) can control and update specific nodes in the game.
+- **RPCs** Godot's [RPC system](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls) offers various RPC types and configurations for remote procedure calls, allowing sending arbitrary messages between peers. This can be used for one-off events (e.g. explosions, damaging a player, updating scores).
+- **Visibility/observers** Godot provides methods to set visibility for specific peers ([`MultiplayerSynchronizer.set_visibility_for`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-method-set-visibility-for)) or add custom visibility filters ([`MultiplayerSynchronizer.add_visibility_filter`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-method-add-visibility-filter)). This allows you to only send networked data to players & nodes that are nearby, or implementing more complex logic where some nodes are only visible to some players (e.g. prop hunt).
+- **Authentication** Godot's [authentication callback](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html#class-scenemultiplayer-property-auth-callback) allows for implementing custom authentication logic to validate players before they can connect. This is helpful for signing in players to accounts or validating a player with a matchmaking service.
+- **MultiplayerAPI** The [`MultiplayerAPI`](https://docs.godotengine.org/en/stable/classes/class_multiplayerapi.html) singleton provides a high-level interface for managing multiplayer sessions. It allows you to create and manage network peers, handle connections, and send and receive data between peers.
+    - **SceneMultiplayer** The [`SceneMultiplayer`](https://docs.godotengine.org/en/stable/classes/class_scenemultiplayer.html) class (subclass of `MultiplayerAPI`) represents a multiplayer network session and handles the communication between peers. It provides methods for sending and receiving data, managing connections, and controlling the replication of nodes.
+    - **Multiplayer Signals** Godot emits various multiplayer-related signals, such as [`MultiplayerAPI.peer_connected`](https://docs.godotengine.org/en/stable/classes/class_multiplayerapi.html#class-multiplayerapi-signal-peer-connected), [`MultiplayerAPI.peer_disconnected`](https://docs.godotengine.org/en/stable/classes/class_multiplayerapi.html#class-multiplayerapi-signal-peer-disconnected), and [`MultiplayerAPI.server_disconnected`](https://docs.godotengine.org/en/stable/classes/class_multiplayerapi.html#class-multiplayerapi-signal-server-disconnected), which allow you to respond to multiplayer events and implement custom logic.
+- **Network Profiling** Godot offers built-in network profiling tools, such as the [Network Profiler](https://docs.godotengine.org/en/stable/tutorials/scripting/debug/debugger_panel.html#network-profiler), which helps analyze and optimize network performance by providing insights into network traffic, packet sizes, and latencies.
+
+However, it's important to understand Godot's multiplayer limitations and plan accordingly. Here are some key points to consider:
+
+- **Client-side interpolation** Godot currently lacks client-side interpolation, which may result in jerky gameplay without additional code implementation.
+- **Reliability** When handling a large number of clients, Godot frequently runs in to problems like disconnecting clients, lagging, or crashing altogether. Be sure to load test your game servers.
+- **Network priority** Certain objects (i.e. players) should take higher priority in sending updates than others on spotty network connections.
+
+For a comprehensive look at the state of Godot's multiplayer features, refer to our in-depth [article evaluating the completeness of Godot's multiplayer compared to Unity](/blog/godot-multiplayer-compared-to-unity).
+
+## Choosing the Right Networking Protocol
+
+When setting up a Godot server, you need to choose a networking protocol by using a subclass of [`MultiplayerPeer`](https://docs.godotengine.org/en/stable/classes/class_multiplayerpeer.html). Each protocol has its own tradeoffs:
+
+### [`ENetMultiplayerPeer`](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html#class-enetmultiplayerpeer) (ENet)
+
+- Best for fast-paced, real-time multiplayer games like first-person shooters, fighting games, and racing games
+- Pros: Low latency, reliable communication, efficient bandwidth usage, supports multiple channels for data prioritization
+- Cons: Does not work with web, may be blocked by firewalls, requires extra steps for secure transport
+
+### [`WebSocketMultiplayerPeer`](https://docs.godotengine.org/en/stable/classes/class_websocketmultiplayerpeer.html#class-websocketmultiplayerpeer) (WebSocket)
+
+- Best for games that need web browser support and don't require peer-to-peer, such as turn-based strategy games, board games, and social deduction games
+- Pros: Wide browser support, supports secure communication with TLS/SSL, simple protocol
+- Cons: Higher latency compared to UDP-based protocols, does not support peer-to-peer
+
+### [`WebRTCMultiplayerPeer`](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html#class-webrtcmultiplayerpeer) (WebRTC)
+
+- Best for games that require peer-to-peer communication and web browser support, like multiplayer shooters with voice chat, cooperative puzzle games, and peer-to-peer trading card games
+- Pros: Enables direct peer-to-peer communication, supports NAT traversal
+- Cons: More complex to set up and manage, may have compatibility issues with certain platforms or network configurations
+
+### Balancing Tradeoffs
+
+The diagram below helps guide the decision.
+
+<Image src={imgProtocolTree} />
+
+<Info>
+  If you're just getting started with multiplayer, stick with `ENetMultiplayerPeer`. It's a safe bet and you
+  can easily change it later.
+</Info>
+
+### Read More
+
+Read more about Godot network protocols [here](/blog/godot-choosing-network-protocol).
+
+## End-to-End Encryption (E2EE)
+
+It's important to consider the security of your multiplayer connections. This is crucial to protect sensitive player data from interception, prevent some cheating by altering game data in transit, and maintain player trust by ensuring privacy and security.
+
+Each of Godot's network protocols support E2EE differently:
+
+- **`ENetMultiplayerPeer`** has 2 methods named [dtls_client_setup](https://docs.godotengine.org/en/stable/classes/class_enetconnection.html#class-enetconnection-method-dtls-client-setup) and [dtls_server_setup](https://docs.godotengine.org/en/stable/classes/class_enetconnection.html#class-enetconnection-method-dtls-server-setup).
+    - See a tutorial on how to implement this [here](https://www.somethinglikegames.de/en/blog/2023/network-tutorial-6-dtls/).
+- **`WebRTCMultiplayerPeer`** is based on the WebRTC protocol, which has [DTLS enabled by default](https://webrtcforthecurious.com/docs/04-securing/).
+    - No extra work needed for E2EE.
+- **`WebSocketMultiplayerPeer`** is based on the HTTP protocol, so it needs to be secured with SSL (the same way an HTTP server is). If targeting a web platform, you need to support E2EE WebSockets (sometimes called Secure WebSockets, or WSS) in order to avoid having [your webpage displayed as insecure](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/). The [`WebSocketMultiplayerPeer.create_server`](https://docs.godotengine.org/en/stable/classes/class_websocketmultiplayerpeer.html#class-websocketmultiplayerpeer-method-create-server) method accepts [`TlsOptions`](https://docs.godotengine.org/en/stable/classes/class_tlsoptions.html#class-tlsoptions) for enabling SSL.
+    - See [this](https://help.zerossl.com/hc/en-us/articles/360060119373-Creating-an-SSL-Certificate) on issuing a free SSL cert with ZeroSSL.
+    - Or see [this](https://letsencrypt.org/getting-started/) guide for issuing a free SSL cert with LetsEncrypt using a command line (more complicated if not comfortable with the command line).
+    - You'll need to renew your SSL cert every 90 days.
+    - If running your game on Rivet, SSL for WebSockets is automatically created & renewed for you. Read more [here](https://rivet.gg/docs/dynamic-servers/concepts/game-guard#ssl-tls-termination).
+
+## Smooth Network Synchronization With Client-Side Linear Interpolation
+
+The default network synchronizer for Godot does no client-side interpolation. This makes the movement of network-synchronized nodes look jittery because (a) the network sync interval is usually much lower than the framerate and (b) network latency & jitter makes movement appear inconsistent.
+
+To ensure the appearance of smooth movement on the client, it's common to use client-side interpolation to smooth the movement of objects. Gaffer on Games has a [great article looking in to types of interpolation](https://gafferongames.com/post/snapshot_interpolation/) that is well worth the read if you plan to look in to this.
+
+To ensure smooth synchronization between clients, a common approach is to sync the node's position on a secondary variable called `server_pos`. In the update loop, lerp the node's position towards the server-sent position. This technique allows for smooth movement even if updates are received a few times per second. Here's an example of how to implement this in Godot:
+
+
+```gdscript
+extends KinematicBody2D
+
+var server_pos = Vector2.ZERO
+export var sync_interval = 2.0 # Update every 2 seconds
+
+onready var tween = $Tween
+
+func _ready():
+    if is_network_master():
+        # Only the network master should synchronize position
+        $MultiplayerSynchronizer.set_visibility_for(get_network_master(), true)
+
+func _process(delta):
+    if not is_network_master():
+        # Lerp towards the server position
+        global_position = lerp(global_position, server_pos, delta * sync_interval)
+    else:
+        # Update the server position
+        server_pos = global_position
+
+func interpolate_position(new_pos):
+    # Use Tween to smoothly interpolate between current and new position
+    tween.interpolate_property(self, "global_position", global_position, new_pos, sync_interval, Tween.TRANS_LINEAR)
+    tween.start()
+
+func _on_MultiplayerSynchronizer_synchronized():
+    # When the MultiplayerSynchronizer updates the server position
+    interpolate_position(server_pos)
+```
+
+<Tip>
+    Unless building a latency-sensitive game (e.g. FPS), Wait until your game mechanics are finished before worrying about client-side interpolation.
+
+    You can get away without client-side interpolation while testing by:
+
+    - Increasing the sync interval with [`MultiplayerSynchronizer.replication_interval`](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html#class-multiplayersynchronizer-property-replication-interval) to something faster than 20 ticks/s (50 ms)
+    - Ensuring testers have a high quality network connection.
+</Tip>
+
+---
+
+## Authentication and Security
+
+Godot provides authentication callbacks that you can leverage. It's recommended to:
+
+- Set up an account system with a captcha
+- Verify accounts via auth callbacks to mitigate botting
+
+However, it's best to focus on shipping your game first and address these concerns once they become a problem. If you start encountering bot issues, it's a good sign that you've already accomplished the challenging task of creating a game that people are interested in playing.
+
+## Testing and Debugging
+
+- **Network Profiling** Godot offers built-in network profiling tools, such as the [Network Profiler](https://docs.godotengine.org/en/stable/tutorials/scripting/debug/debugger_panel.html#network-profiler), which helps analyze and optimize network performance by providing insights into network traffic, packet sizes, and latencies.
+
+Godot makes it easy to run multiple instances for manual testing of multiplayer functionality. However, setting up bots to test game logic is often more efficient. Consider adding slash commands that can be executed from the clients, such as "give resources" or "spawn bot," to facilitate testing. Implementing a toggle for a fly camera can also be helpful for observing the game world.
+
+When it comes to logging, focus on capturing unexpected states, as attempting to log everything in a multiplayer game can be overwhelming.
+
+## Server Environment and Setup
+
+For the server environment, Linux is the recommended choice due to Godot's excellent Linux support. Windows requires a license and can be challenging to run on many cloud providers. If you're using peer-to-peer (P2P) networking, explore options like Steam Sockets or EOS Online Subsystem. P2P is cost-effective but is best suited for small lobbies, scenarios where sporadic disconnects are acceptable when the host leaves, and games without an economy that can be exploited via P2P.
+
+While some resources may recommend using AWS GameLift for game servers, it's advisable to avoid it due to its complexity, high costs, and limited benefits. Unity Cloud is slightly better but still feels archaic. Instead, consider running your own servers for greater control and flexibility.
+
+At Rivet, we're developing a solution to simplify the process of running game servers and mitigate DDoS attacks. We have a crash course available on getting a Godot game up and running with Rivet [link to the crash course]. If you have any specific questions related to Rivet, feel free to join our Discord community and chat with us.
+
+## Learning Resources
+
+- **Multiplayer Tutorials and Demos** Godot's documentation provides several [multiplayer tutorials](https://docs.godotengine.org/en/stable/tutorials/networking/index.html) and [demo projects](https://github.com/godotengine/godot-demo-projects/tree/master/networking) that showcase different aspects of multiplayer game development, including setting up multiplayer games, synchronizing game state, and handling network events.
+    - **Demos with Dedicated Servers** Rivet also provides [mutliplayer examples](https://github.com/rivet-gg/examples?tab=readme-ov-file#godot) and [tutorials](https://rivet.gg/learn/godot/tutorials/bomber-demo) of Godot multiplayer games with dedicated servers & matchmaking enabled.
+
+When it comes to learning about Godot multiplayer, YouTube offers the best resources currently available. Given the recent release of Godot 4 and its new multiplayer framework, there are limited books that cover the topic comprehensively. However, we highly recommend exploring the wealth of knowledge available on Gaffer On Games [link to Gaffer On Games] for insights into game networking and multiplayer development.
+
+## Conclusion
+
+Running and scaling dedicated game servers for your Godot-based multiplayer game requires careful consideration of various factors, including networking protocols, synchronization techniques, authentication, testing, and server setup. By leveraging Godot's built-in multiplayer features, choosing the right tools and approaches, and continuously learning from the game development community, you can create a robust and scalable multiplayer experience for your players. Remember, the key is to focus on shipping your game first and addressing challenges as they arise. Happy multiplayer game development!
