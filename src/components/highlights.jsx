@@ -9,7 +9,7 @@ export function IncludedHighlights({title, image}) {
       'text-center'
     )}>
       {image ? (
-        <img className='h-full w-full object-contain' src={image} alt={title} />
+        <Image className='h-full w-full object-contain' src={image} alt={title} />
       ) : (
         <div className="text-lg font-semibold leading-tight mt-2">{title}</div>
       )}
