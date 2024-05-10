@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     url: 'https://rivet.gg',
     title: 'Rivet - Multiplayer Made Simple',
     siteName: 'Rivet',
-    description: 'Open-source multiplayer infrastructure. Easy, flexible, and affordable.',
+    description: 'Open-Source game infrastructure. Multiplayer game servers and modular backend.',
     images: [
       {
         url: 'https://rivet.gg/promo/og.png',

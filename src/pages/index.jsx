@@ -18,6 +18,7 @@ import GitHubButton from 'react-github-btn';
 import { Game } from '@/components/Game';
 import LevelUpSection from '@/components/LevelUpSection';
 import grainDark from '@/images/effects/grain-dark.png';
+import grid from '@/images/effects/grid.png';
 import {
   faArrowRight,
   faArrowLeft,
@@ -185,7 +186,7 @@ let caseStudies = [
     name: 'Apes.io',
     href: 'https://apes.io',
     logo: imgApesLogo,
-    // screenshot: grid
+    screenshot: grid
 
   },
   {
@@ -203,14 +204,14 @@ let caseStudies = [
       </div>
     ),
     logo: imgEvLogo,
-    // screenshot: grid
+    screenshot: grid
   },
 
   {
     name: 'Diep.io',
     href: 'https://diep.io',
     logo: imgDiepLogo,
-    // screenshot: grid
+    screenshot: grid
   }
 ];
 
@@ -447,7 +448,7 @@ function Title() {
       // 'sm:max-w-2xl sm:h-[285px]',
       'w-full h-[45vw]',
     )}>
-      <GlowVideo className="absolute inset-0 h-full w-full object-cover z-50 mix-blend-screen pointer-events-none bg-red-500" />
+      <GlowVideo className="absolute inset-0 h-full w-full object-cover z-50 mix-blend-screen pointer-events-none" />
 
       <div className={clsx(
         'absolute inset-y-[24px] inset-x-[52px]',
@@ -793,7 +794,7 @@ function TemplateSection() {
         </h2>
       </div>
 
-      {/* Grid with Increased Margins */}
+      {/* Grid  with Increased Margins */}
       <div
         className={clsx('mx-auto mt-16 grid gap-12 px-4 sm:px-8', 'max-w-5xl', 'grid-cols-2 sm:grid-cols-2 md:grid-cols-4')}>
         {TEMPLATES.map((template, i) => (
@@ -1342,11 +1343,11 @@ function CaseStudies({ props }) {
             )}
             onMouseEnter={() => setHoverIdx(i)}
             onMouseLeave={() => setHoverIdx(null)}>
-            {/* <Image
+            <Image
               className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
               src={study.screenshot}
               alt=''
-            /> */}
+            />
             <Image className='h-14 w-32 object-contain transition' src={study.logo} alt={study.name} />
             {study.badge && study.badge()}
           </Link>
@@ -1428,6 +1429,6 @@ function OnlineIndicator() {
   );
 }
 
-Index.description = 'Open-source multiplayer infrastructure. Easy, flexible, and affordable.';
+Index.description = 'Open-Source game infrastructure. Multiplayer game servers and modular backend.';
 Index.prose = false;
 Index.fullWidth = true;
