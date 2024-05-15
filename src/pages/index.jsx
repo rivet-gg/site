@@ -1310,7 +1310,7 @@ function ModuleCard({ title, icon, href, comingSoon }) {
           <span className="text-lg font-semibold text-left leading-tight">{title}</span>
           {comingSoon && <span className="text-xs font-semibold text-cream-100/50 text-sm leading-tight">Coming mid-2024</span>}
         </div>
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={faArrowRight}/>
       </div>
     </PatternButton>
   );
