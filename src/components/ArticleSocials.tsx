@@ -12,7 +12,7 @@ export function ArticleSocials({ title, ...props }: ArticleInfo) {
   let articleUrl = siteUrl + pathname;
   return (
     <div className='mt-14 flex items-center space-x-4'>
-      <div className='h-[2px] flex-grow bg-cream-200'></div>
+      <div className='h-[1px] flex-grow bg-cream-100 opacity-50'></div>
       <SocialIcon url='/rss/feed.xml' icon={faRssSquare} />
       <SocialIcon
         url={`https://x.com/share?text=${encodeURIComponent(`${title} ${articleUrl} via @rivet_gg`)}`}
@@ -28,14 +28,14 @@ export function ArticleSocials({ title, ...props }: ArticleInfo) {
         url={`https://www.reddit.com/submit?url=${articleUrl}&title=${encodeURIComponent(title)}`}
         icon={faReddit}
       />
-      <div className='h-[2px] flex-grow bg-cream-200'></div>
+      <div className='h-[1px] flex-grow bg-cream-100 opacity-50'></div>
     </div>
   );
 }
 
 function SocialIcon({ url, icon }) {
   return (
-    <a href={url} target='_blank' rel='noreferrer' className='text-cream-400 hover:text-cream-200'>
+    <a href={url} target='_blank' rel='noreferrer' className='text-orange-400 hover:text-cream-100'>
       <FontAwesomeIcon icon={icon} size='xl' />
     </a>
   );
