@@ -71,22 +71,29 @@ Rivet by signing in. You can find the Rivet plugin in the same area as the
 ### Configure Rivet
 
 We need to create a new file to configure how our game will be run on the Rivet
-Cloud. Copy the following to `rivet.yaml`:
+Cloud. Copy the following to `rivet.json`:
 
-```yaml rivet.yaml
-engine:
-  godot:
-
-matchmaker:
-  max_players: 12
-  docker:
-    dockerfile: Dockerfile
-    ports:
-      default:
-        port: 10567
-        protocol: udp
-  game_modes:
-    default: {}
+```json rivet.json
+{
+  "engine": {
+    "godot": null
+  },
+  "matchmaker": {
+    "max_players": 12,
+    "docker": {
+      "dockerfile": "Dockerfile",
+      "ports": {
+        "default": {
+          "port": 10567,
+          "protocol": "udp"
+        }
+      }
+    },
+    "game_modes": {
+      "default": {}
+    }
+  }
+}
 ```
 
 ### Update gamestate.gd

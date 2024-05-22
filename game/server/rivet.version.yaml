@@ -22,7 +22,7 @@ matchmaker:
 #
 # Available regions: https://docs.rivet.gg/dynamic-servers/concepts/available-regions
 matchmaker.regions:
-  sfo: {}
+  lax: {}
   fra: {}
 
 # Runtime configuration for the lobby's Docker container.

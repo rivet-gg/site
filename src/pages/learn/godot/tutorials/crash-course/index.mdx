@@ -41,7 +41,8 @@ func _ready():
 	RivetHelper.setup_multiplayer()
 ```
 
-Add this code wherever the server is started. This function name needs to match
+The `setup_multiplayer()` call will do a check to properly start a Godot. Add this code wherever the server is started. This function name needs to
+match
 the one used in the `RivetHelper.start_server.connect` call above.
 
 ```gdscript
@@ -78,28 +79,29 @@ func join_game(new_player_name):
 
 ### Configure Rivet
 
-Copy the following to `rivet.yaml`:
+Copy the following to `rivet.json`:
 
-```yaml rivet.yaml
-engine:
-  godot:
-
-matchmaker:
-  max_players: 12
-
-  regions:
-    sfo: {}
-    fra: {}
-
-  docker:
-    dockerfile: "Dockerfile"
-    ports:
-      default:
-        port: 10567
-        protocol: "udp"
-
-  game_modes:
-    default: {}
+```json rivet.json
+{
+  "engine": {
+    "godot": null
+  },
+  "matchmaker": {
+    "max_players": 12,
+    "docker": {
+      "dockerfile": "Dockerfile",
+      "ports": {
+        "default": {
+          "port": 10567,
+          "protocol": "udp"
+        }
+      }
+    },
+    "game_modes": {
+      "default": {}
+    }
+  }
+}
 ```
 
 You can find more information about the Rivet config file [in our
