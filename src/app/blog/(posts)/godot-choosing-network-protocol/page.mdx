@@ -1,0 +1,92 @@
+import image from './opengraph-image.png';
+import imgProtocolTree from './protocol-tree.svg';
+
+export const config = {
+  author: 'nathan-flurry',
+  date: '2024-05-09',
+  title: `Choosing the Right Network Protocol for Godot Multiplayer`,
+  description: `Learn how to select the right networking protocol in Godot for optimal multiplayer gameplay, focusing on ENet, WebSocket, and WebRTC`,
+  category: 'guide',
+  keywords: [
+    'godot',
+    'multiplayer',
+    'enet',
+    'webrtc',
+    'websocket',
+    'networking-protocols',
+    'game-development',
+    'peer-to-peer'
+  ],
+  images: {
+    hero: {
+      image,
+      alt: 'hero'
+    }
+  }
+};
+
+## TL;DR
+
+Each protocol has its own tradeoff. The diagram below helps guide the decision.
+
+<Image src={imgProtocolTree} />
+
+<Info>
+  If you're just getting started with multiplayer, stick with `ENetMultiplayerPeer`. It's a safe bet and you
+  can easily change it later.
+</Info>
+
+## Choosing the Right Networking Protocol
+
+When setting up multiplayer in Godot, you need to choose the appropriate networking protocol by choosing a [MultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_multiplayerpeer.html#class-multiplayerpeer) implementation based on your game's requirements. Godot provides several options, each with its own characteristics and use cases:
+
+### `ENetMultiplayerPeer` (ENet)
+
+- Ideal for games that require fast-paced, real-time multiplayer gameplay.
+- Uses the [ENet library](http://enet.bespin.org/), which is designed for reliable, low-latency communication over UDP.
+- Supports both client-server and peer-to-peer (mesh) architectures.
+- Provides multiple channels for prioritizing different types of data.
+- Suitable for desktop and mobile platforms.
+- Pros:
+  - Low latency and reliable communication.
+  - Efficient bandwidth usage.
+  - Supports multiple channels for data prioritization.
+- Cons:
+  - Does not work with web.
+  - May be blocked on many firewalls because of UDP.
+  - Requires extra steps to [configure DTLS encryption](https://godotengine.org/article/enet-dtls-encryption/) for secure transport.
+
+For more information, see the [ENetMultiplayerPeer documentation](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html).
+
+### `WebSocketMultiplayerPeer` (WebSocket)
+
+- Ideal for games that need to support web browsers and doesn't require peer-to-peer.
+- Uses the [WebSocket protocol](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which is well standardized and works with most proxies & firewalls.
+- Supports secure communication using TLS/SSL.
+- Pros:
+  - Wide browser support and compatibility.
+  - Supports secure communication with TLS/SSL.
+  - Simple protocol.
+- Cons:
+  - Higher latency compared to UDP-based protocols like ENet and WebRTC.
+  - Does not support peer-to-peer.
+
+For more information, see the [WebSocketMultiplayerPeer documentation](https://docs.godotengine.org/en/stable/classes/class_websocketmultiplayerpeer.html).
+
+### `WebRTCMultiplayerPeer` (WebRTC)
+
+- Ideal for games that require peer-to-peer communication and support for web browsers.
+- Uses the [WebRTC protocol](https://webrtc.org/), which enables direct peer-to-peer connections.
+- Supports NAT traversal in order to allow peer-to-peer connections from behind a firewall.
+- Suitable for web-based games or games that require advanced peer-to-peer functionality.
+- Pros:
+  - Enables direct peer-to-peer communication.
+- Cons:
+  - More complex to set up and manage compared to other protocols.
+  - May have compatibility issues with certain platforms or network configurations.
+
+For more information, see the [WebRTCMultiplayerPeer documentation](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html).
+
+## Conclusion
+
+Whether you choose `ENetMultiplayerPeer` for fast-paced gameplay, `WebSocketMultiplayerPeer` for web browser compatibility, or `WebRTCMultiplayerPeer` for peer-to-peer functionality, make sure to evaluate the trade-offs and align your choice with the goals of your multiplayer project.

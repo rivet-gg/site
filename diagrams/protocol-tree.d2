@@ -1,0 +1,33 @@
+vars: {
+    d2-config: {
+      layout-engine: dagre
+    }
+  }
+  
+  b: "Target platform?" {shape: diamond}
+  c: "Peer-to-peer required?" {shape: diamond}
+  d: "Needs to be compatible with\nHTTP proxies + support SSL?" {shape: diamond}
+  e: "WebRTCMultiplayerPeer" {shape: rectangle}
+  f: "WebSocketMultiplayerPeer" {shape: rectangle}
+  g: "WebSocketMultiplayerPeer" {shape: rectangle}
+  k: "Peer to peer required?" {shape: diamond}
+  l: "Firewalls will be an issue?" {shape: diamond}
+  m: "WebRTCMultiplayerPeer" {shape: rectangle}
+  n: "ENetMultiplayerPeer" {shape: rectangle}
+  o: "Fast-paced gameplay?" {shape: diamond}
+  p: "ENetMultiplayerPeer" {shape: rectangle}
+  q: "WebSocketMultiplayerPeer" {shape: rectangle}
+  
+  b -> c: "Web"
+  b -> d: "Desktop/mobile/console"
+  c -> e: "Yes"
+  c -> f: "No"
+  d -> g: "Yes\n(no peer-to-peer support)"
+  d -> k: "No"
+  k -> l: "Yes"
+  L -> M: "Yes\n(for NAT traversal)"
+  L -> N: "No\n(ENet is simpler)"
+  K -> O: "No"
+  O -> P: "Yes"
+  O -> Q: "No\n(WebSocket is simpler)"
+  
