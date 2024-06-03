@@ -6,7 +6,8 @@
       {
         "title": "Concepts",
         "pages": [
-          "concepts/resources"
+          "concepts/resources",
+          "concepts/server-builds"
         ]
       },
       {

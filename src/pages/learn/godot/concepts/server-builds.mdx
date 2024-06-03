@@ -1,0 +1,27 @@
+# Godot Server Builds
+
+## Dockerfile for server container
+
+When you hit "Build and Deploy" in the Godot Rivet plugin, this is how your
+project gets built:
+
+```docker
+FROM ghcr.io/rivet-gg/godot-docker/godot:4.2.1 AS builder
+WORKDIR /app
+COPY . .
+RUN mkdir -p build/linux \
+    && godot -v --export-release "Linux/X11" ./build/linux/game.x86_64 --headless \
+    && if [ ! -f "./build/linux/game.x86_64" ]; then echo "Executable not created properly" && exit 1; fi
+```
+
+First, it starts with a Docker image that Rivet provides. This image is built
+and maintained by Rivet, but not that it doesn't nessessarily have builds of
+Godot that aren't released as stable yet.
+
+## Building the game server
+
+Next, it will do the build with `godot -v --export-release "Linux/X11"`. This
+requires that you have an export preset in your Godot project that is set up to
+export to Linux. If you don't, Godot will fail to produce an executable, but it
+will still consider itself "completed", so it can be hard to find that this is
+the issue during the build.
