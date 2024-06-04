@@ -1,18 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function IncludedHighlights({title, image}) {
+export function FeatureHighlight({ title, description }) {
   return (
     <div className={clsx(
-      'relative transition text-sm font-semibold text-cream-100 border-2 bg-charcole-950 border-cream-100/20',
+      'relative transition text-sm font-semibold text-cream-100 border-2 border-cream-100/20 bg-charcole-950',
       'flex flex-col justify-center items-center px-5 py-8',
-      'text-center'
+      'text-center rounded-lg'
     )}>
-      {image ? (
-        <img className='h-full w-full object-contain' src={image} alt={title} />
-      ) : (
-        <div className="text-lg font-semibold leading-tight mt-2">{title}</div>
-      )}
+      <div className="text-lg font-semibold leading-tight mb-2">{title}</div>
+      <div>{description}</div>
     </div>
   );
 }
@@ -20,18 +17,27 @@ export function IncludedHighlights({title, image}) {
 export default function SectionHighlight() {
   return (
     <div className='max-w-6xl mx-auto px-6 lg:px-8 flex flex-col'>
-      <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl'>{'Cutting edge tools for game development'}</h2>
+      <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl'>{'The Only Backend Your Game Needs'}</h2>
       <div className={clsx(
-        "w-full grid gap-2 mt-8",
-        "grid-cols-1 sm:grid-cols-2 md:grid-cols-2",
+        "w-full grid gap-4 mt-8",
+        "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
       )}>
-        <IncludedHighlights title="Container runtime written specifically for games" />
-        {/* <IncludedHighlights image={globe} /> */}
-        <IncludedHighlights title="Edge routing & CDN architecture optimized for game traffic" />
-        <IncludedHighlights title="Rugged, multi-region architecture built to withstand datacenter failures" />
-        <IncludedHighlights title="JIT hardware provisioning to absorb DDoS attacks and player spikes" />
-        <IncludedHighlights title="Load tested" />
-        <IncludedHighlights title="Well documented architecture & SBOM" />
+        <FeatureHighlight 
+          title="Launch quickly, scale painlessly" 
+          description="Building backends should not take time away from launching your game."
+        />
+        <FeatureHighlight 
+          title="Customizable" 
+          description="There is no one size fits all for backends. Modify & create modules effortlessly."
+        />
+        <FeatureHighlight 
+          title="All-in-one" 
+          description="Single developer platform for your whole team to build single & multiplayer games."
+        />
+        <FeatureHighlight 
+          title="No vendor locking" 
+          description="You shouldn’t have to build your backend around someone else’s closed-source framework."
+        />
       </div>
     </div>
   );

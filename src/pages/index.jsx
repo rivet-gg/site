@@ -17,6 +17,7 @@ import engineStyles from '../lib/engineStyles.json';
 import GitHubButton from 'react-github-btn';
 import { Game } from '@/components/Game';
 import LevelUpSection from '@/components/LevelUpSection';
+import IncludedHighlights from '@/components/highlights';
 import grainDark from '@/images/effects/grain-dark.png';
 import grid from '@/images/effects/grid.png';
 import {
@@ -295,6 +296,10 @@ export default function Index() {
 
           <div className='max-w-6xl mx-auto px-6 md:py-48 lg:px-8'>
             <Modules />
+          </div>
+
+          <div className='px-6 pt-16 pb-40 lg:px-8'>
+            <IncludedHighlights />
           </div>
 
           <div className='main-content-container mx-auto px-6 py-32 md:py-48 lg:px-8'>
