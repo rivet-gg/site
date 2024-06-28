@@ -41,7 +41,7 @@ export function Tooltip({ tip, children }) {
       <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
         {children}
       </span>
-      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-gray-50 bg-black/80 px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100 group-hover/tooltip:flex dark:border-gray-500 leading-tight'>
+      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-cream-100 bg-charcole-950 px-1.5 py-1 pb-1 text-center text-xs text-cream-100 opacity-100 group-hover/tooltip:flex leading-tight'>
         {tip}
       </span>
     </span>

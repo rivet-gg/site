@@ -51,6 +51,26 @@ const variantClasses = {
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
   },
+  juicySubtle: {
+    base: clsx([
+      'px-4 py-2 text-sm',
+      'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
+      'relative border-2 border-cream-100/20 text-cream-100 transition-all',
+      "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
+      "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
+      // hover
+      'hover:border-orange-400',
+      // selected
+      'aria-selected:border-orange-400 aria-selected:text-cream-100 aria-selected:before:border-orange-400',
+      // disabled
+      'disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
+      // loading
+      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white'
+    ]),
+    normal: 'text-cream-100',
+    highlight: 'text-charcole-950'
+  },
   primaryJuicy: {
     base: clsx([
       'px-4 py-2 text-sm',

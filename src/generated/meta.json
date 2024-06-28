@@ -1,0 +1,1606 @@
+{
+    "config": {
+        "registries": {
+            "local": {
+                "local": {
+                    "directory": "../../modules"
+                }
+            }
+        },
+        "modules": {
+            "currency": {
+                "registry": "local"
+            },
+            "friends": {
+                "registry": "local"
+            },
+            "rate_limit": {
+                "registry": "local"
+            },
+            "tokens": {
+                "registry": "local"
+            },
+            "users": {
+                "registry": "local"
+            },
+            "uploads": {
+                "registry": "local",
+                "config": {
+                    "maxFilesPerUpload": 16,
+                    "maxUploadSize": "100mib",
+                    "maxMultipartUploadSize": "10gib"
+                }
+            },
+            "auth": {
+                "registry": "local",
+                "config": {
+                    "email": {
+                        "fromEmail": "hello@rivet.gg"
+                    }
+                }
+            },
+            "email": {
+                "registry": "local",
+                "config": {
+                    "provider": {
+                        "test": {}
+                    }
+                }
+            },
+            "lobbies": {
+                "registry": "local"
+            }
+        }
+    },
+    "registries": {
+        "local": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules",
+            "name": "local",
+            "config": {
+                "local": {
+                    "directory": "../../modules"
+                }
+            },
+            "isExternal": false
+        },
+        "default": {
+            "path": "/Users/nathan/rivet/opengb-modules/tests/basic/.opengb/git_registries/default/modules",
+            "name": "default",
+            "config": {
+                "git": {
+                    "url": {
+                        "https": "https://github.com/rivet-gg/opengb-modules.git",
+                        "ssh": "git@github.com:rivet-gg/opengb-modules.git"
+                    },
+                    "rev": "826beb5d859856d9f76ba26dc8ae6fe5249e5e75",
+                    "directory": "./modules"
+                }
+            },
+            "isExternal": true
+        }
+    },
+    "modules": {
+        "currency": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/currency",
+            "name": "currency",
+            "nameCamel": "currency",
+            "namePascal": "Currency",
+            "config": {
+                "name": "Currency",
+                "description": "Track user balances and allow them to deposit and withdraw.",
+                "icon": "coin",
+                "tags": [
+                    "economy"
+                ],
+                "authors": [
+                    "ABCxFF"
+                ],
+                "status": "preview",
+                "dependencies": {
+                    "rate_limit": {},
+                    "users": {}
+                },
+                "scripts": {
+                    "deposit": {
+                        "name": "Deposit"
+                    },
+                    "withdraw": {
+                        "name": "Withdraw"
+                    },
+                    "get_balance": {
+                        "name": "Get Balance"
+                    },
+                    "set_balance": {
+                        "name": "Set Balance"
+                    },
+                    "get_balance_by_token": {
+                        "name": "Get Balance by Token",
+                        "public": true
+                    }
+                },
+                "errors": {
+                    "invalid_user": {
+                        "name": "Invalid User"
+                    },
+                    "invalid_amount": {
+                        "name": "Invalid Amount"
+                    },
+                    "not_enough_funds": {
+                        "name": "Not Enough Funds"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {
+                "deposit": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/currency/scripts/deposit.ts",
+                    "name": "deposit",
+                    "nameCamel": "deposit",
+                    "namePascal": "Deposit",
+                    "config": {
+                        "name": "Deposit"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "withdraw": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/currency/scripts/withdraw.ts",
+                    "name": "withdraw",
+                    "nameCamel": "withdraw",
+                    "namePascal": "Withdraw",
+                    "config": {
+                        "name": "Withdraw"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "get_balance": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/currency/scripts/get_balance.ts",
+                    "name": "get_balance",
+                    "nameCamel": "getBalance",
+                    "namePascal": "GetBalance",
+                    "config": {
+                        "name": "Get Balance"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "set_balance": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/currency/scripts/set_balance.ts",
+                    "name": "set_balance",
+                    "nameCamel": "setBalance",
+                    "namePascal": "SetBalance",
+                    "config": {
+                        "name": "Set Balance"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "get_balance_by_token": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/currency/scripts/get_balance_by_token.ts",
+                    "name": "get_balance_by_token",
+                    "nameCamel": "getBalanceByToken",
+                    "namePascal": "GetBalanceByToken",
+                    "config": {
+                        "name": "Get Balance by Token",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_currency"
+            },
+            "hasUserConfigSchema": false
+        },
+        "friends": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/friends",
+            "name": "friends",
+            "nameCamel": "friends",
+            "namePascal": "Friends",
+            "config": {
+                "name": "Friends",
+                "description": "Allow users to send and accept friend requests.",
+                "icon": "user-group",
+                "tags": [
+                    "social"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "beta",
+                "dependencies": {
+                    "rate_limit": {},
+                    "users": {}
+                },
+                "scripts": {
+                    "send_request": {
+                        "name": "Send Request",
+                        "description": "Send a friend request to another user.",
+                        "public": true
+                    },
+                    "accept_request": {
+                        "name": "Accept Request",
+                        "description": "Accept a friend request from another user.",
+                        "public": true
+                    },
+                    "decline_request": {
+                        "name": "Decline Request",
+                        "description": "Decline a friend request from another user.",
+                        "public": true
+                    },
+                    "remove_friend": {
+                        "name": "Remove Friend",
+                        "description": "Remove a friend from your friends list.",
+                        "public": true
+                    },
+                    "list_friends": {
+                        "name": "List Friends",
+                        "description": "List all friends of a user.",
+                        "public": true
+                    },
+                    "list_outgoing_friend_requests": {
+                        "name": "List Outgoing Friend Requests",
+                        "description": "List all friend requests sent by a user.",
+                        "public": true
+                    },
+                    "list_incoming_friend_requests": {
+                        "name": "List Incoming Friend Requests",
+                        "description": "List all friend requests received by a user.",
+                        "public": true
+                    }
+                },
+                "errors": {
+                    "already_friends": {
+                        "name": "Already Friends"
+                    },
+                    "friend_request_not_found": {
+                        "name": "Friend Request Not Found"
+                    },
+                    "friend_request_already_exists": {
+                        "name": "Friend Request Already Exists"
+                    },
+                    "not_friend_request_recipient": {
+                        "name": "Not Friend Request Recipient"
+                    },
+                    "friend_request_already_accepted": {
+                        "name": "Friend Request Already Accepted"
+                    },
+                    "friend_request_already_declined": {
+                        "name": "Friend Request Already Declined"
+                    },
+                    "cannot_send_to_self": {
+                        "name": "Cannot Send to Self"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {
+                "send_request": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/send_request.ts",
+                    "name": "send_request",
+                    "nameCamel": "sendRequest",
+                    "namePascal": "SendRequest",
+                    "config": {
+                        "name": "Send Request",
+                        "description": "Send a friend request to another user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "accept_request": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/accept_request.ts",
+                    "name": "accept_request",
+                    "nameCamel": "acceptRequest",
+                    "namePascal": "AcceptRequest",
+                    "config": {
+                        "name": "Accept Request",
+                        "description": "Accept a friend request from another user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "decline_request": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/decline_request.ts",
+                    "name": "decline_request",
+                    "nameCamel": "declineRequest",
+                    "namePascal": "DeclineRequest",
+                    "config": {
+                        "name": "Decline Request",
+                        "description": "Decline a friend request from another user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "remove_friend": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/remove_friend.ts",
+                    "name": "remove_friend",
+                    "nameCamel": "removeFriend",
+                    "namePascal": "RemoveFriend",
+                    "config": {
+                        "name": "Remove Friend",
+                        "description": "Remove a friend from your friends list.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "list_friends": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/list_friends.ts",
+                    "name": "list_friends",
+                    "nameCamel": "listFriends",
+                    "namePascal": "ListFriends",
+                    "config": {
+                        "name": "List Friends",
+                        "description": "List all friends of a user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "list_outgoing_friend_requests": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/list_outgoing_friend_requests.ts",
+                    "name": "list_outgoing_friend_requests",
+                    "nameCamel": "listOutgoingFriendRequests",
+                    "namePascal": "ListOutgoingFriendRequests",
+                    "config": {
+                        "name": "List Outgoing Friend Requests",
+                        "description": "List all friend requests sent by a user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "list_incoming_friend_requests": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/friends/scripts/list_incoming_friend_requests.ts",
+                    "name": "list_incoming_friend_requests",
+                    "nameCamel": "listIncomingFriendRequests",
+                    "namePascal": "ListIncomingFriendRequests",
+                    "config": {
+                        "name": "List Incoming Friend Requests",
+                        "description": "List all friend requests received by a user.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_friends"
+            },
+            "hasUserConfigSchema": false
+        },
+        "rate_limit": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/rate_limit",
+            "name": "rate_limit",
+            "nameCamel": "rateLimit",
+            "namePascal": "RateLimit",
+            "config": {
+                "name": "Rate Limit",
+                "description": "Prevent abuse by limiting request rate.",
+                "icon": "gauge-circle-minus",
+                "tags": [
+                    "core",
+                    "utility"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "scripts": {
+                    "throttle": {
+                        "name": "Throttle",
+                        "description": "Limit the amount of times an request can be made by a given key."
+                    },
+                    "throttle_public": {
+                        "name": "Throttle Public",
+                        "description": "Limit the amount of times a public request can be made by a given key. This will rate limit based off the user's IP address."
+                    }
+                },
+                "errors": {
+                    "rate_limit_exceeded": {
+                        "name": "Rate Limit Exceeded"
+                    }
+                },
+                "actors": {
+                    "limiter": {}
+                }
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {
+                "throttle": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/rate_limit/scripts/throttle.ts",
+                    "name": "throttle",
+                    "nameCamel": "throttle",
+                    "namePascal": "Throttle",
+                    "config": {
+                        "name": "Throttle",
+                        "description": "Limit the amount of times an request can be made by a given key."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "throttle_public": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/rate_limit/scripts/throttle_public.ts",
+                    "name": "throttle_public",
+                    "nameCamel": "throttlePublic",
+                    "namePascal": "ThrottlePublic",
+                    "config": {
+                        "name": "Throttle Public",
+                        "description": "Limit the amount of times a public request can be made by a given key. This will rate limit based off the user's IP address."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_rate_limit"
+            },
+            "hasUserConfigSchema": false
+        },
+        "tokens": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/tokens",
+            "name": "tokens",
+            "nameCamel": "tokens",
+            "namePascal": "Tokens",
+            "config": {
+                "name": "Tokens",
+                "description": "Create & verify tokens for authorization purposes.",
+                "icon": "lock",
+                "tags": [
+                    "core",
+                    "utility"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "scripts": {
+                    "create": {
+                        "name": "Create Token"
+                    },
+                    "fetch": {
+                        "name": "Fetch Token",
+                        "description": "Get a token by its ID."
+                    },
+                    "fetch_by_token": {
+                        "name": "Fetch by Token",
+                        "description": "Get a token by its secret token."
+                    },
+                    "revoke": {
+                        "name": "Revoke Token",
+                        "description": "Revoke a token, preventing it from being used again."
+                    },
+                    "validate": {
+                        "name": "Validate Token",
+                        "description": "Validate a token. Throws an error if the token is invalid."
+                    },
+                    "extend": {
+                        "name": "Extend Token",
+                        "description": "Extend or remove the expiration date of a token. (Only works on valid tokens.)"
+                    }
+                },
+                "errors": {
+                    "token_not_found": {
+                        "name": "Token Not Found"
+                    },
+                    "token_revoked": {
+                        "name": "Token Revoked"
+                    },
+                    "token_expired": {
+                        "name": "Token Expired"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {
+                "create": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/create.ts",
+                    "name": "create",
+                    "nameCamel": "create",
+                    "namePascal": "Create",
+                    "config": {
+                        "name": "Create Token"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "fetch": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/fetch.ts",
+                    "name": "fetch",
+                    "nameCamel": "fetch",
+                    "namePascal": "Fetch",
+                    "config": {
+                        "name": "Fetch Token",
+                        "description": "Get a token by its ID."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "fetch_by_token": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/fetch_by_token.ts",
+                    "name": "fetch_by_token",
+                    "nameCamel": "fetchByToken",
+                    "namePascal": "FetchByToken",
+                    "config": {
+                        "name": "Fetch by Token",
+                        "description": "Get a token by its secret token."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "revoke": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/revoke.ts",
+                    "name": "revoke",
+                    "nameCamel": "revoke",
+                    "namePascal": "Revoke",
+                    "config": {
+                        "name": "Revoke Token",
+                        "description": "Revoke a token, preventing it from being used again."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "validate": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/validate.ts",
+                    "name": "validate",
+                    "nameCamel": "validate",
+                    "namePascal": "Validate",
+                    "config": {
+                        "name": "Validate Token",
+                        "description": "Validate a token. Throws an error if the token is invalid."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "extend": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/tokens/scripts/extend.ts",
+                    "name": "extend",
+                    "nameCamel": "extend",
+                    "namePascal": "Extend",
+                    "config": {
+                        "name": "Extend Token",
+                        "description": "Extend or remove the expiration date of a token. (Only works on valid tokens.)"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_tokens"
+            },
+            "hasUserConfigSchema": false
+        },
+        "users": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/users",
+            "name": "users",
+            "nameCamel": "users",
+            "namePascal": "Users",
+            "config": {
+                "name": "Users",
+                "description": "Identify and manage users.",
+                "icon": "user",
+                "tags": [
+                    "core",
+                    "social"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "dependencies": {
+                    "rate_limit": {},
+                    "tokens": {}
+                },
+                "scripts": {
+                    "fetch": {
+                        "name": "Fetch User",
+                        "public": true
+                    },
+                    "create": {
+                        "name": "Create User"
+                    },
+                    "authenticate_token": {
+                        "name": "Authenticate User Token",
+                        "description": "Validate a user token. Throws an error if the token is invalid.",
+                        "public": true
+                    },
+                    "create_token": {
+                        "name": "Create User Token",
+                        "description": "Create a token for a user to authenticate future requests."
+                    }
+                },
+                "errors": {
+                    "token_not_user_token": {
+                        "name": "Token Not User Token"
+                    },
+                    "unknown_identity_type": {
+                        "name": "Unknown Identity Type"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {
+                "fetch": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/users/scripts/fetch.ts",
+                    "name": "fetch",
+                    "nameCamel": "fetch",
+                    "namePascal": "Fetch",
+                    "config": {
+                        "name": "Fetch User",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "create": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/users/scripts/create.ts",
+                    "name": "create",
+                    "nameCamel": "create",
+                    "namePascal": "Create",
+                    "config": {
+                        "name": "Create User"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "authenticate_token": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/users/scripts/authenticate_token.ts",
+                    "name": "authenticate_token",
+                    "nameCamel": "authenticateToken",
+                    "namePascal": "AuthenticateToken",
+                    "config": {
+                        "name": "Authenticate User Token",
+                        "description": "Validate a user token. Throws an error if the token is invalid.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "create_token": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/users/scripts/create_token.ts",
+                    "name": "create_token",
+                    "nameCamel": "createToken",
+                    "namePascal": "CreateToken",
+                    "config": {
+                        "name": "Create User Token",
+                        "description": "Create a token for a user to authenticate future requests."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_users"
+            },
+            "hasUserConfigSchema": false
+        },
+        "uploads": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/uploads",
+            "name": "uploads",
+            "nameCamel": "uploads",
+            "namePascal": "Uploads",
+            "config": {
+                "name": "Uploads",
+                "description": "Upload & store blobs of data.",
+                "icon": "file-arrow-up",
+                "tags": [
+                    "core",
+                    "utility"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "Blckbrry-Pi",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "scripts": {
+                    "prepare": {
+                        "name": "Prepare Upload",
+                        "description": "Prepare an upload batch for data transfer"
+                    },
+                    "complete": {
+                        "name": "Complete Upload",
+                        "description": "Alert the module that the upload has been completed"
+                    },
+                    "get": {
+                        "name": "Get Upload Metadata",
+                        "description": "Get the metadata (including contained files) for specified upload IDs"
+                    },
+                    "get_public_file_urls": {
+                        "name": "Get File Link",
+                        "description": "Get presigned download links for each of the specified files"
+                    },
+                    "delete": {
+                        "name": "Delete Upload",
+                        "description": "Removes the upload and deletes the files from the bucket"
+                    }
+                },
+                "errors": {
+                    "no_files": {
+                        "name": "No Files Provided",
+                        "description": "An upload must have at least 1 file"
+                    },
+                    "too_many_files": {
+                        "name": "Too Many Files Provided",
+                        "description": "There is a limit to how many files can be put into a single upload (see config)"
+                    },
+                    "duplicate_paths": {
+                        "name": "Duplicate Paths Provided",
+                        "description": "An upload cannot contain 2 files with the same paths (see `cause` for offending paths)"
+                    },
+                    "size_limit_exceeded": {
+                        "name": "Combined Size Limit Exceeded",
+                        "description": "There is a maximum total size per upload (see config)"
+                    },
+                    "upload_not_found": {
+                        "name": "Upload Not Found",
+                        "description": "The provided upload ID didn't match any known existing uploads"
+                    },
+                    "upload_already_completed": {
+                        "name": "Upload Already completed",
+                        "description": "\\`complete\\` was already called on this upload"
+                    },
+                    "s3_not_configured": {
+                        "name": "S3 Not Configured",
+                        "description": "The S3 bucket is not configured (missing env variables)"
+                    },
+                    "too_many_chunks": {
+                        "name": "Possibility Of Too Many Chunks",
+                        "description": "AWS S3 has a limit on the number of parts that can be uploaded in a\nmultipart upload. This limit is 10,000 parts. If the number of chunks\nrequired to upload the maximum multipart upload size exceeds this limit,\nany operation will preemptively throw this error.\n"
+                    },
+                    "multipart_upload_completion_fail": {
+                        "name": "Multipart Upload Completion Failure",
+                        "description": "The multipart upload failed to complete (see `cause` for more information)"
+                    }
+                },
+                "dependencies": {}
+            },
+            "registryName": "local",
+            "userConfig": {
+                "maxFilesPerUpload": 16,
+                "maxUploadSize": "100mib",
+                "maxMultipartUploadSize": "10gib"
+            },
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": true
+            },
+            "scripts": {
+                "prepare": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/uploads/scripts/prepare.ts",
+                    "name": "prepare",
+                    "nameCamel": "prepare",
+                    "namePascal": "Prepare",
+                    "config": {
+                        "name": "Prepare Upload",
+                        "description": "Prepare an upload batch for data transfer"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "complete": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/uploads/scripts/complete.ts",
+                    "name": "complete",
+                    "nameCamel": "complete",
+                    "namePascal": "Complete",
+                    "config": {
+                        "name": "Complete Upload",
+                        "description": "Alert the module that the upload has been completed"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "get": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/uploads/scripts/get.ts",
+                    "name": "get",
+                    "nameCamel": "get",
+                    "namePascal": "Get",
+                    "config": {
+                        "name": "Get Upload Metadata",
+                        "description": "Get the metadata (including contained files) for specified upload IDs"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "get_public_file_urls": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/uploads/scripts/get_public_file_urls.ts",
+                    "name": "get_public_file_urls",
+                    "nameCamel": "getPublicFileUrls",
+                    "namePascal": "GetPublicFileUrls",
+                    "config": {
+                        "name": "Get File Link",
+                        "description": "Get presigned download links for each of the specified files"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "delete": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/uploads/scripts/delete.ts",
+                    "name": "delete",
+                    "nameCamel": "delete",
+                    "namePascal": "Delete",
+                    "config": {
+                        "name": "Delete Upload",
+                        "description": "Removes the upload and deletes the files from the bucket"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_uploads"
+            },
+            "hasUserConfigSchema": true
+        },
+        "auth": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/auth",
+            "name": "auth",
+            "nameCamel": "auth",
+            "namePascal": "Auth",
+            "config": {
+                "name": "Authentication",
+                "description": "Authenticate users with multiple authentication methods.",
+                "icon": "key",
+                "tags": [
+                    "core",
+                    "auth",
+                    "user"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "dependencies": {
+                    "email": {},
+                    "users": {},
+                    "rate_limit": {}
+                },
+                "scripts": {
+                    "send_email_verification": {
+                        "name": "Send Email Verification",
+                        "description": "Send a one-time verification code to a user's email address to authenticate them.",
+                        "public": true
+                    },
+                    "complete_email_verification": {
+                        "name": "Complete Email Verification",
+                        "description": "Verify a user's email address with a one-time verification code.",
+                        "public": true
+                    }
+                },
+                "errors": {
+                    "provider_disabled": {
+                        "name": "Provider Disabled"
+                    },
+                    "verification_code_invalid": {
+                        "name": "Verification Code Invalid"
+                    },
+                    "verification_code_attempt_limit": {
+                        "name": "Verification Code Attempt Limit"
+                    },
+                    "verification_code_expired": {
+                        "name": "Verification Code Expired"
+                    },
+                    "verification_code_already_used": {
+                        "name": "Verification Code Already Used"
+                    },
+                    "email_already_used": {
+                        "name": "Email Already Used"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {
+                "email": {
+                    "fromEmail": "hello@rivet.gg"
+                }
+            },
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": true
+            },
+            "scripts": {
+                "send_email_verification": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/auth/scripts/send_email_verification.ts",
+                    "name": "send_email_verification",
+                    "nameCamel": "sendEmailVerification",
+                    "namePascal": "SendEmailVerification",
+                    "config": {
+                        "name": "Send Email Verification",
+                        "description": "Send a one-time verification code to a user's email address to authenticate them.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "complete_email_verification": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/auth/scripts/complete_email_verification.ts",
+                    "name": "complete_email_verification",
+                    "nameCamel": "completeEmailVerification",
+                    "namePascal": "CompleteEmailVerification",
+                    "config": {
+                        "name": "Complete Email Verification",
+                        "description": "Verify a user's email address with a one-time verification code.",
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "db": {
+                "schema": "module_auth"
+            },
+            "hasUserConfigSchema": true
+        },
+        "email": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/email",
+            "name": "email",
+            "nameCamel": "email",
+            "namePascal": "Email",
+            "config": {
+                "name": "Email",
+                "description": "Send emails using multiple providers.",
+                "icon": "envelope",
+                "tags": [
+                    "email"
+                ],
+                "authors": [
+                    "rivet-gg",
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "scripts": {
+                    "send_email": {
+                        "name": "Send Email"
+                    }
+                },
+                "errors": {
+                    "email_missing_content": {
+                        "name": "Email Missing Content",
+                        "description": "Email must have `html` and/or `text`"
+                    },
+                    "sendgrid_error": {
+                        "name": "SendGrid Error"
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {
+                "provider": {
+                    "test": {}
+                }
+            },
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": true
+            },
+            "scripts": {
+                "send_email": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/email/scripts/send_email.ts",
+                    "name": "send_email",
+                    "nameCamel": "sendEmail",
+                    "namePascal": "SendEmail",
+                    "config": {
+                        "name": "Send Email"
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "hasUserConfigSchema": true
+        },
+        "lobbies": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies",
+            "name": "lobbies",
+            "nameCamel": "lobbies",
+            "namePascal": "Lobbies",
+            "config": {
+                "name": "Lobbies",
+                "description": "Lobby & player management.",
+                "icon": "game-board",
+                "tags": [
+                    "core",
+                    "multiplayer"
+                ],
+                "authors": [
+                    "NathanFlurry"
+                ],
+                "status": "stable",
+                "scripts": {
+                    "create": {
+                        "public": true
+                    },
+                    "destroy": {
+                        "public": true
+                    },
+                    "find_or_create": {
+                        "public": true
+                    },
+                    "join": {
+                        "public": true
+                    },
+                    "list": {
+                        "public": true
+                    },
+                    "set_lobby_ready": {
+                        "public": true
+                    },
+                    "set_player_connected": {
+                        "public": true
+                    },
+                    "set_player_disconnected": {
+                        "public": true
+                    },
+                    "find": {
+                        "public": true,
+                        "description": "TODO: Doc connect to server asap afterwards."
+                    },
+                    "force_gc": {}
+                },
+                "actors": {
+                    "lobby_manager": {}
+                },
+                "errors": {
+                    "lobby_not_found": {},
+                    "lobby_create_missing_players": {
+                        "description": "When creating a lobby with `config.lobbies.autoDestroyWhenEmpty`, a lobby must be created with players in order to avoid creating an empty lobby."
+                    },
+                    "lobby_full": {},
+                    "more_players_than_max": {
+                        "description": "More players were passed to the create lobby than the number of max players in a lobby."
+                    },
+                    "lobby_already_ready": {},
+                    "player_already_connected": {
+                        "description": "The player has already connected to this server. This error helps mitigate botting attacks by only allowing one scoket to connect to a game server for every player."
+                    },
+                    "player_disconnected": {
+                        "description": "The player has already disconnected from the server. Create a new player for the specified lobby using the `join` script."
+                    },
+                    "no_matching_lobbies": {},
+                    "too_many_players_for_ip": {}
+                },
+                "dependencies": {
+                    "tokens": {}
+                },
+                "defaultConfig": {
+                    "lobbies": {
+                        "destroyOnEmptyAfter": 60000,
+                        "unreadyExpireAfter": 300000,
+                        "maxPlayers": 16,
+                        "maxPlayersDirect": 16,
+                        "enableCreate": false,
+                        "enableDestroy": false,
+                        "enableFind": true,
+                        "enableFindOrCreate": true,
+                        "enableJoin": true,
+                        "enableList": true
+                    },
+                    "lobbyRules": [],
+                    "players": {
+                        "maxPerIp": 8,
+                        "maxUnconnected": 128,
+                        "unconnectedExpireAfter": 60000,
+                        "autoDestroyAfter": 4147200000
+                    }
+                }
+            },
+            "registryName": "local",
+            "userConfig": {
+                "lobbies": {
+                    "destroyOnEmptyAfter": 60000,
+                    "unreadyExpireAfter": 300000,
+                    "maxPlayers": 16,
+                    "maxPlayersDirect": 16,
+                    "enableCreate": false,
+                    "enableDestroy": false,
+                    "enableFind": true,
+                    "enableFindOrCreate": true,
+                    "enableJoin": true,
+                    "enableList": true
+                },
+                "lobbyRules": [],
+                "players": {
+                    "maxPerIp": 8,
+                    "maxUnconnected": 128,
+                    "unconnectedExpireAfter": 60000,
+                    "autoDestroyAfter": 4147200000
+                }
+            },
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": true
+            },
+            "scripts": {
+                "create": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/create.ts",
+                    "name": "create",
+                    "nameCamel": "create",
+                    "namePascal": "Create",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "destroy": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/destroy.ts",
+                    "name": "destroy",
+                    "nameCamel": "destroy",
+                    "namePascal": "Destroy",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "find_or_create": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/find_or_create.ts",
+                    "name": "find_or_create",
+                    "nameCamel": "findOrCreate",
+                    "namePascal": "FindOrCreate",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "join": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/join.ts",
+                    "name": "join",
+                    "nameCamel": "join",
+                    "namePascal": "Join",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "list": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/list.ts",
+                    "name": "list",
+                    "nameCamel": "list",
+                    "namePascal": "List",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "set_lobby_ready": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/set_lobby_ready.ts",
+                    "name": "set_lobby_ready",
+                    "nameCamel": "setLobbyReady",
+                    "namePascal": "SetLobbyReady",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "set_player_connected": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/set_player_connected.ts",
+                    "name": "set_player_connected",
+                    "nameCamel": "setPlayerConnected",
+                    "namePascal": "SetPlayerConnected",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "set_player_disconnected": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/set_player_disconnected.ts",
+                    "name": "set_player_disconnected",
+                    "nameCamel": "setPlayerDisconnected",
+                    "namePascal": "SetPlayerDisconnected",
+                    "config": {
+                        "public": true
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "find": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/find.ts",
+                    "name": "find",
+                    "nameCamel": "find",
+                    "namePascal": "Find",
+                    "config": {
+                        "public": true,
+                        "description": "TODO: Doc connect to server asap afterwards."
+                    },
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "force_gc": {
+                    "path": "/Users/nathan/rivet/opengb-modules/modules/lobbies/scripts/force_gc.ts",
+                    "name": "force_gc",
+                    "nameCamel": "forceGc",
+                    "namePascal": "ForceGc",
+                    "config": {},
+                    "requestSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    },
+                    "responseSchema": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            },
+            "hasUserConfigSchema": true
+        }
+    }
+}

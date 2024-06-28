@@ -6,7 +6,7 @@ export function FeatureHighlight({ title, description }) {
     <div className={clsx(
       'relative transition text-sm font-semibold text-cream-100 border-2 border-cream-100/20 bg-charcole-950',
       'flex flex-col justify-center items-center px-5 py-8',
-      'text-center rounded-lg'
+      'text-center'
     )}>
       <div className="text-lg font-semibold leading-tight mb-2">{title}</div>
       <div>{description}</div>
@@ -17,9 +17,9 @@ export function FeatureHighlight({ title, description }) {
 export default function SectionHighlight() {
   return (
     <div className='max-w-6xl mx-auto px-6 lg:px-8 flex flex-col'>
-      <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl'>{'The Only Backend Your Game Needs'}</h2>
+      <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>Backend & Multiplayer Made Easy</h2>
       <div className={clsx(
-        "w-full grid gap-4 mt-8",
+        "w-full grid gap-4 mt-16",
         "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
       )}>
         <FeatureHighlight 
