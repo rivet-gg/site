@@ -159,7 +159,7 @@ import imgStepsCustom from '@/images/engine-integration/custom.png';
 import { faPuzzle, faPlus, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
 
-import opengbMeta from '@/generated/meta.json' with { type: "json" };
+import opengbMeta from '@/generated/meta.json' assert { type: "json" };
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';
