@@ -49,6 +49,30 @@
             },
             "lobbies": {
                 "registry": "local"
+            },
+            "achievements": {
+                "registry": "local"
+            },
+            "leaderboards": {
+                "registry": "local"
+            },
+            "analytics": {
+                "registry": "local"
+            },
+            "chat": {
+                "registry": "local"
+            },
+            "game_saves": {
+                "registry": "local"
+            },
+            "parties": {
+                "registry": "local"
+            },
+            "groups": {
+                "registry": "local"
+            },
+            "matchmaker": {
+                "registry": "local"
             }
         }
     },
@@ -147,14 +171,34 @@
                         "name": "Deposit"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "amount",
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "updatedBalance": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "updatedBalance"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "withdraw": {
@@ -166,14 +210,34 @@
                         "name": "Withdraw"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "amount",
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "updatedBalance": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "updatedBalance"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "get_balance": {
@@ -185,14 +249,30 @@
                         "name": "Get Balance"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "balance": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "balance"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "set_balance": {
@@ -204,14 +284,26 @@
                         "name": "Set Balance"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            },
+                            "balance": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "balance",
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "get_balance_by_token": {
@@ -224,14 +316,34 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            },
+                            "balance": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "balance",
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -341,14 +453,74 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            },
+                            "targetUserId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "targetUserId",
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "friendRequest": {
+                                "$ref": "#/definitions/FriendRequest"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friendRequest"
+                        ],
+                        "definitions": {
+                            "FriendRequest": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "senderUserId": {
+                                        "type": "string"
+                                    },
+                                    "targetUserId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "declinedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "acceptedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "acceptedAt",
+                                    "createdAt",
+                                    "declinedAt",
+                                    "id",
+                                    "senderUserId",
+                                    "targetUserId"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "accept_request": {
@@ -362,14 +534,26 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            },
+                            "friendRequestId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friendRequestId",
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "decline_request": {
@@ -383,14 +567,26 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            },
+                            "friendRequestId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friendRequestId",
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "remove_friend": {
@@ -404,14 +600,26 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            },
+                            "targetUserId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "targetUserId",
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "list_friends": {
@@ -425,14 +633,55 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "friends": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Friend"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friends"
+                        ],
+                        "definitions": {
+                            "Friend": {
+                                "type": "object",
+                                "properties": {
+                                    "userIdA": {
+                                        "type": "string"
+                                    },
+                                    "userIdB": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "userIdA",
+                                    "userIdB"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "list_outgoing_friend_requests": {
@@ -446,14 +695,73 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "friendRequests": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/FriendRequest"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friendRequests"
+                        ],
+                        "definitions": {
+                            "FriendRequest": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "senderUserId": {
+                                        "type": "string"
+                                    },
+                                    "targetUserId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "declinedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "acceptedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "acceptedAt",
+                                    "createdAt",
+                                    "declinedAt",
+                                    "id",
+                                    "senderUserId",
+                                    "targetUserId"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "list_incoming_friend_requests": {
@@ -467,14 +775,73 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "friendRequests": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/FriendRequest"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "friendRequests"
+                        ],
+                        "definitions": {
+                            "FriendRequest": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "senderUserId": {
+                                        "type": "string"
+                                    },
+                                    "targetUserId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "declinedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "acceptedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "acceptedAt",
+                                    "createdAt",
+                                    "declinedAt",
+                                    "id",
+                                    "senderUserId",
+                                    "targetUserId"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -538,14 +905,38 @@
                         "description": "Limit the amount of times an request can be made by a given key."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "type": {
+                                "description": "The type of entity to rate limit by. For example, \"ip\" or \"user\".",
+                                "type": "string"
+                            },
+                            "key": {
+                                "description": "The key to rate limit by. For example, the IP address or user ID.",
+                                "type": "string"
+                            },
+                            "requests": {
+                                "description": "Number of requests in `period` before rate limiting.",
+                                "type": "number"
+                            },
+                            "period": {
+                                "description": "How frequently to reset the request counter, in seconds.",
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "key",
+                            "period",
+                            "requests",
+                            "type"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "throttle_public": {
@@ -558,14 +949,26 @@
                         "description": "Limit the amount of times a public request can be made by a given key. This will rate limit based off the user's IP address."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "requests": {
+                                "description": "Number of requests in `period` before rate limiting.",
+                                "default": 20,
+                                "type": "number"
+                            },
+                            "period": {
+                                "description": "How frequently to reset the request counter.",
+                                "default": 300,
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -646,14 +1049,80 @@
                         "name": "Create Token"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "meta": {
+                                "type": "object",
+                                "additionalProperties": {}
+                            },
+                            "expireAt": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "meta",
+                            "type"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "$ref": "#/definitions/TokenWithSecret"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "definitions": {
+                            "TokenWithSecret": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "token",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "fetch": {
@@ -666,14 +1135,74 @@
                         "description": "Get a token by its ID."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "tokenIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "tokenIds"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "tokens": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Token"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "tokens"
+                        ],
+                        "definitions": {
+                            "Token": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "fetch_by_token": {
@@ -686,14 +1215,74 @@
                         "description": "Get a token by its secret token."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "tokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "tokens"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "tokens": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Token"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "tokens"
+                        ],
+                        "definitions": {
+                            "Token": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "revoke": {
@@ -706,14 +1295,46 @@
                         "description": "Revoke a token, preventing it from being used again."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "tokenIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "tokenIds"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "updates": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/definitions/TokenUpdate"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "updates"
+                        ],
+                        "definitions": {
+                            "TokenUpdate": {
+                                "type": "string",
+                                "enum": [
+                                    "REVOKED",
+                                    "ALREADY_REVOKED",
+                                    "NOT_FOUND"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "validate": {
@@ -726,14 +1347,68 @@
                         "description": "Validate a token. Throws an error if the token is invalid."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "$ref": "#/definitions/Token"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "definitions": {
+                            "Token": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "extend": {
@@ -746,14 +1421,79 @@
                         "description": "Extend or remove the expiration date of a token. (Only works on valid tokens.)"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "type": "string"
+                            },
+                            "newExpiration": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "newExpiration",
+                            "token"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "$ref": "#/definitions/TokenWithSecret"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "definitions": {
+                            "TokenWithSecret": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "token",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -829,14 +1569,64 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userIds"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "users": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "users"
+                        ],
+                        "definitions": {
+                            "User": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "updatedAt",
+                                    "username"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "create": {
@@ -848,14 +1638,55 @@
                         "name": "Create User"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "user": {
+                                "$ref": "#/definitions/User"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "user"
+                        ],
+                        "definitions": {
+                            "User": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "updatedAt",
+                                    "username"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "authenticate_token": {
@@ -869,14 +1700,64 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userToken": {
+                                "type": "string"
+                            },
+                            "fetchUser": {
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            },
+                            "user": {
+                                "$ref": "#/definitions/User"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userId"
+                        ],
+                        "definitions": {
+                            "User": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "updatedAt",
+                                    "username"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "create_token": {
@@ -889,14 +1770,72 @@
                         "description": "Create a token for a user to authenticate future requests."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "userId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "userId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "$ref": "#/definitions/TokenWithSecret"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "definitions": {
+                            "TokenWithSecret": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "token",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -993,9 +1932,23 @@
                 "maxMultipartUploadSize": "10gib"
             },
             "userConfigSchema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
-                "additionalProperties": true
+                "properties": {
+                    "maxUploadSize": {
+                        "type": "string"
+                    },
+                    "maxMultipartUploadSize": {
+                        "type": "string"
+                    },
+                    "maxFilesPerUpload": {
+                        "type": "number"
+                    },
+                    "defaultMultipartChunkSize": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "$schema": "http://json-schema.org/draft-07/schema#"
             },
             "scripts": {
                 "prepare": {
@@ -1008,14 +1961,167 @@
                         "description": "Prepare an upload batch for data transfer"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "metadata": {},
+                            "files": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/MultipartUploadFile"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "files"
+                        ],
+                        "definitions": {
+                            "MultipartUploadFile": {
+                                "type": "object",
+                                "properties": {
+                                    "multipart": {
+                                        "type": "boolean"
+                                    },
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "mime": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of the file in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "mime",
+                                    "multipart",
+                                    "path"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "upload": {
+                                "$ref": "#/definitions/PresignedUpload"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "upload"
+                        ],
+                        "definitions": {
+                            "PresignedUpload": {
+                                "type": "object",
+                                "properties": {
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/PresignedUploadFile"
+                                        }
+                                    },
+                                    "metadata": {},
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "bucket": {
+                                        "type": "string"
+                                    },
+                                    "contentLength": {
+                                        "description": "The total size of all files in the upload in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string"
+                                    },
+                                    "completedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "bucket",
+                                    "completedAt",
+                                    "contentLength",
+                                    "createdAt",
+                                    "files",
+                                    "id",
+                                    "updatedAt"
+                                ]
+                            },
+                            "PresignedUploadFile": {
+                                "type": "object",
+                                "properties": {
+                                    "presignedChunks": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/PresignedChunk"
+                                        }
+                                    },
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "mime": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of the file in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "mime",
+                                    "path",
+                                    "presignedChunks"
+                                ]
+                            },
+                            "PresignedChunk": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "partNumber": {
+                                        "type": "number"
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of this SPECIFIC chunk in bytes.\nThis is ***not*** the total size of the file.\nThis is also ***not*** guaranteed to be the same as the `contentLength`\nof all other chunks.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    },
+                                    "offset": {
+                                        "description": "The offset of this chunk in the file.\n\nEssentially, this chunk expects to represent the data from byte `offset`\nto byte `offset + contentLength - 1` inclusive.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "offset",
+                                    "partNumber",
+                                    "url"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "complete": {
@@ -1028,14 +2134,100 @@
                         "description": "Alert the module that the upload has been completed"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "uploadId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uploadId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "upload": {
+                                "$ref": "#/definitions/Upload"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "upload"
+                        ],
+                        "definitions": {
+                            "Upload": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "metadata": {},
+                                    "bucket": {
+                                        "type": "string"
+                                    },
+                                    "contentLength": {
+                                        "description": "The total size of all files in the upload in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    },
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/UploadFile"
+                                        }
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string"
+                                    },
+                                    "completedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "bucket",
+                                    "completedAt",
+                                    "contentLength",
+                                    "createdAt",
+                                    "files",
+                                    "id",
+                                    "updatedAt"
+                                ]
+                            },
+                            "UploadFile": {
+                                "type": "object",
+                                "properties": {
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "mime": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of the file in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "mime",
+                                    "path"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "get": {
@@ -1048,14 +2240,108 @@
                         "description": "Get the metadata (including contained files) for specified upload IDs"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "uploadIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "includeFiles": {
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uploadIds"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "uploads": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/UploadWithOptionalFiles"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uploads"
+                        ],
+                        "definitions": {
+                            "UploadWithOptionalFiles": {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "properties": {
+                                    "metadata": {},
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "bucket": {
+                                        "type": "string"
+                                    },
+                                    "contentLength": {
+                                        "description": "The total size of all files in the upload in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string"
+                                    },
+                                    "completedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "files": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/UploadFile"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "bucket",
+                                    "completedAt",
+                                    "contentLength",
+                                    "createdAt",
+                                    "id",
+                                    "updatedAt"
+                                ]
+                            },
+                            "UploadFile": {
+                                "type": "object",
+                                "properties": {
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "mime": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of the file in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "mime",
+                                    "path"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "get_public_file_urls": {
@@ -1068,14 +2354,91 @@
                         "description": "Get presigned download links for each of the specified files"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "files": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/FileIdentifier"
+                                }
+                            },
+                            "expirySeconds": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "files"
+                        ],
+                        "definitions": {
+                            "FileIdentifier": {
+                                "type": "object",
+                                "properties": {
+                                    "uploadId": {
+                                        "type": "string"
+                                    },
+                                    "path": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "path",
+                                    "uploadId"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "files": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/DownloadableFile"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "files"
+                        ],
+                        "definitions": {
+                            "DownloadableFile": {
+                                "type": "object",
+                                "properties": {
+                                    "uploadId": {
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "mime": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "contentLength": {
+                                        "description": "The size of the file in bytes.\n\n*(This is a string instead of a bigint because JSON doesn't support\nserializing/deserializing bigints, and we want to be able to represent\nvery large file sizes.)*",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "contentLength",
+                                    "mime",
+                                    "path",
+                                    "uploadId",
+                                    "url"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "delete": {
@@ -1088,14 +2451,30 @@
                         "description": "Removes the upload and deletes the files from the bucket"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "uploadId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "uploadId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "bytesDeleted": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "bytesDeleted"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -1168,9 +2547,31 @@
                 }
             },
             "userConfigSchema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
-                "additionalProperties": true
+                "properties": {
+                    "email": {
+                        "$ref": "#/definitions/EmailConfig"
+                    }
+                },
+                "additionalProperties": false,
+                "definitions": {
+                    "EmailConfig": {
+                        "type": "object",
+                        "properties": {
+                            "fromEmail": {
+                                "type": "string"
+                            },
+                            "fromName": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "fromEmail"
+                        ]
+                    }
+                },
+                "$schema": "http://json-schema.org/draft-07/schema#"
             },
             "scripts": {
                 "send_email_verification": {
@@ -1184,14 +2585,47 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "userToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "email"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "verification": {
+                                "$ref": "#/definitions/Verification"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "verification"
+                        ],
+                        "definitions": {
+                            "Verification": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "complete_email_verification": {
@@ -1205,14 +2639,76 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "verificationId": {
+                                "type": "string"
+                            },
+                            "code": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "code",
+                            "verificationId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "token": {
+                                "$ref": "#/definitions/TokenWithSecret"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "token"
+                        ],
+                        "definitions": {
+                            "TokenWithSecret": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "meta": {},
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "expireAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    },
+                                    "revokedAt": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "expireAt",
+                                    "id",
+                                    "meta",
+                                    "revokedAt",
+                                    "token",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -1260,9 +2756,60 @@
                 }
             },
             "userConfigSchema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
-                "additionalProperties": true
+                "properties": {
+                    "provider": {
+                        "$ref": "#/definitions/Provider"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "provider"
+                ],
+                "definitions": {
+                    "Provider": {
+                        "anyOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "test": {
+                                        "$ref": "#/definitions/ProviderTest"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "test"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "sendGrid": {
+                                        "$ref": "#/definitions/ProviderSendGrid"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "sendGrid"
+                                ]
+                            }
+                        ]
+                    },
+                    "ProviderTest": {
+                        "type": "object",
+                        "additionalProperties": false
+                    },
+                    "ProviderSendGrid": {
+                        "type": "object",
+                        "properties": {
+                            "apiKeyVariable": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "$schema": "http://json-schema.org/draft-07/schema#"
             },
             "scripts": {
                 "send_email": {
@@ -1274,14 +2821,77 @@
                         "name": "Send Email"
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "from": {
+                                "$ref": "#/definitions/Email"
+                            },
+                            "to": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Email"
+                                }
+                            },
+                            "cc": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Email"
+                                }
+                            },
+                            "bcc": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Email"
+                                }
+                            },
+                            "replyTo": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Email"
+                                }
+                            },
+                            "subject": {
+                                "type": "string"
+                            },
+                            "html": {
+                                "type": "string"
+                            },
+                            "text": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "from",
+                            "subject",
+                            "to"
+                        ],
+                        "definitions": {
+                            "Email": {
+                                "description": "Identifies an email address and optionally a name.",
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "description": "Target email.",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Optional display name for the email.",
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "email"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
@@ -1294,7 +2904,7 @@
             "namePascal": "Lobbies",
             "config": {
                 "name": "Lobbies",
-                "description": "Lobby & player management.",
+                "description": "Lobby & player management. Create & join lobbies instantly.",
                 "icon": "game-board",
                 "tags": [
                     "core",
@@ -1405,9 +3015,140 @@
                 }
             },
             "userConfigSchema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
-                "additionalProperties": true
+                "properties": {
+                    "lobbies": {
+                        "$ref": "#/definitions/LobbyConfig"
+                    },
+                    "lobbyRules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/LobbyRule"
+                        }
+                    },
+                    "players": {
+                        "type": "object",
+                        "properties": {
+                            "maxPerIp": {
+                                "type": "number"
+                            },
+                            "maxUnconnected": {
+                                "type": "number"
+                            },
+                            "unconnectedExpireAfter": {
+                                "type": "number"
+                            },
+                            "autoDestroyAfter": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "unconnectedExpireAfter"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "lobbies",
+                    "lobbyRules",
+                    "players"
+                ],
+                "definitions": {
+                    "LobbyConfig": {
+                        "type": "object",
+                        "properties": {
+                            "destroyOnEmptyAfter": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            },
+                            "unreadyExpireAfter": {
+                                "type": "number"
+                            },
+                            "maxPlayers": {
+                                "type": "number"
+                            },
+                            "maxPlayersDirect": {
+                                "type": "number"
+                            },
+                            "enableDynamicMaxPlayers": {
+                                "$ref": "#/definitions/PlayerRange"
+                            },
+                            "enableDynamicMaxPlayersDirect": {
+                                "$ref": "#/definitions/PlayerRange"
+                            },
+                            "enableCreate": {
+                                "type": "boolean"
+                            },
+                            "enableDestroy": {
+                                "type": "boolean"
+                            },
+                            "enableFind": {
+                                "type": "boolean"
+                            },
+                            "enableFindOrCreate": {
+                                "type": "boolean"
+                            },
+                            "enableJoin": {
+                                "type": "boolean"
+                            },
+                            "enableList": {
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "enableCreate",
+                            "enableDestroy",
+                            "enableFind",
+                            "enableFindOrCreate",
+                            "enableJoin",
+                            "enableList",
+                            "maxPlayers",
+                            "maxPlayersDirect",
+                            "unreadyExpireAfter"
+                        ]
+                    },
+                    "PlayerRange": {
+                        "type": "object",
+                        "properties": {
+                            "min": {
+                                "type": "number"
+                            },
+                            "max": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "max",
+                            "min"
+                        ]
+                    },
+                    "LobbyRule": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            "config": {
+                                "$ref": "#/definitions/LobbyConfig"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "config",
+                            "tags"
+                        ]
+                    },
+                    "Record<string,string>": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "$schema": "http://json-schema.org/draft-07/schema#"
             },
             "scripts": {
                 "create": {
@@ -1419,14 +3160,165 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "version": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            "maxPlayers": {
+                                "type": "number"
+                            },
+                            "destroyOnEmptyAfter": {
+                                "type": "number"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerRequest"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "destroyOnEmptyAfter",
+                            "maxPlayers",
+                            "players",
+                            "tags",
+                            "version"
+                        ],
+                        "definitions": {
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "PlayerRequest": {
+                                "type": "object",
+                                "additionalProperties": false
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobby": {
+                                "$ref": "#/definitions/Lobby"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerWithToken"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobby",
+                            "players"
+                        ],
+                        "definitions": {
+                            "Lobby": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "readyAt": {
+                                        "type": "number"
+                                    },
+                                    "emptyAt": {
+                                        "description": "Timestamp at which the last player left the lobby.",
+                                        "type": "number"
+                                    },
+                                    "players": {
+                                        "$ref": "#/definitions/Map<string,Player>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "maxPlayersDirect": {
+                                        "type": "number"
+                                    },
+                                    "serverId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "maxPlayers",
+                                    "maxPlayersDirect",
+                                    "players",
+                                    "serverId",
+                                    "tags",
+                                    "version"
+                                ]
+                            },
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "Map<string,Player>": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "number"
+                                    },
+                                    "__@toStringTag@15527": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "__@toStringTag@15527",
+                                    "size"
+                                ]
+                            },
+                            "PlayerWithToken": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "lobbyId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "connectedAt": {
+                                        "type": "number"
+                                    },
+                                    "publicIp": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "lobbyId",
+                                    "token"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "destroy": {
@@ -1438,14 +3330,22 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbyId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbyId"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "find_or_create": {
@@ -1457,14 +3357,178 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "version": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerRequest"
+                                }
+                            },
+                            "createConfig": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "destroyOnEmptyAfter": {
+                                        "type": "number"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "destroyOnEmptyAfter",
+                                    "maxPlayers",
+                                    "tags"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "createConfig",
+                            "players",
+                            "tags",
+                            "version"
+                        ],
+                        "definitions": {
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "PlayerRequest": {
+                                "type": "object",
+                                "additionalProperties": false
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobby": {
+                                "$ref": "#/definitions/Lobby"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerWithToken"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobby",
+                            "players"
+                        ],
+                        "definitions": {
+                            "Lobby": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "readyAt": {
+                                        "type": "number"
+                                    },
+                                    "emptyAt": {
+                                        "description": "Timestamp at which the last player left the lobby.",
+                                        "type": "number"
+                                    },
+                                    "players": {
+                                        "$ref": "#/definitions/Map<string,Player>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "maxPlayersDirect": {
+                                        "type": "number"
+                                    },
+                                    "serverId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "maxPlayers",
+                                    "maxPlayersDirect",
+                                    "players",
+                                    "serverId",
+                                    "tags",
+                                    "version"
+                                ]
+                            },
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "Map<string,Player>": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "number"
+                                    },
+                                    "__@toStringTag@11177": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "__@toStringTag@11177",
+                                    "size"
+                                ]
+                            },
+                            "PlayerWithToken": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "lobbyId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "connectedAt": {
+                                        "type": "number"
+                                    },
+                                    "publicIp": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "lobbyId",
+                                    "token"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "join": {
@@ -1476,14 +3540,149 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbyId": {
+                                "type": "string"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerRequest"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbyId",
+                            "players"
+                        ],
+                        "definitions": {
+                            "PlayerRequest": {
+                                "type": "object",
+                                "additionalProperties": false
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobby": {
+                                "$ref": "#/definitions/Lobby"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerWithToken"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobby",
+                            "players"
+                        ],
+                        "definitions": {
+                            "Lobby": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "readyAt": {
+                                        "type": "number"
+                                    },
+                                    "emptyAt": {
+                                        "description": "Timestamp at which the last player left the lobby.",
+                                        "type": "number"
+                                    },
+                                    "players": {
+                                        "$ref": "#/definitions/Map<string,Player>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "maxPlayersDirect": {
+                                        "type": "number"
+                                    },
+                                    "serverId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "maxPlayers",
+                                    "maxPlayersDirect",
+                                    "players",
+                                    "serverId",
+                                    "tags",
+                                    "version"
+                                ]
+                            },
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "Map<string,Player>": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "number"
+                                    },
+                                    "__@toStringTag@15529": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "__@toStringTag@15529",
+                                    "size"
+                                ]
+                            },
+                            "PlayerWithToken": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "lobbyId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "connectedAt": {
+                                        "type": "number"
+                                    },
+                                    "publicIp": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "lobbyId",
+                                    "token"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "list": {
@@ -1495,14 +3694,94 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbies": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Lobby"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbies"
+                        ],
+                        "definitions": {
+                            "Lobby": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "readyAt": {
+                                        "type": "number"
+                                    },
+                                    "emptyAt": {
+                                        "description": "Timestamp at which the last player left the lobby.",
+                                        "type": "number"
+                                    },
+                                    "players": {
+                                        "$ref": "#/definitions/Map<string,Player>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "maxPlayersDirect": {
+                                        "type": "number"
+                                    },
+                                    "serverId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "maxPlayers",
+                                    "maxPlayersDirect",
+                                    "players",
+                                    "serverId",
+                                    "tags",
+                                    "version"
+                                ]
+                            },
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "Map<string,Player>": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "number"
+                                    },
+                                    "__@toStringTag@15526": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "__@toStringTag@15526",
+                                    "size"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "set_lobby_ready": {
@@ -1514,14 +3793,22 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbyToken": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbyToken"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "set_player_connected": {
@@ -1533,14 +3820,29 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbyToken": {
+                                "type": "string"
+                            },
+                            "playerTokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbyToken",
+                            "playerTokens"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "set_player_disconnected": {
@@ -1552,14 +3854,29 @@
                         "public": true
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobbyToken": {
+                                "type": "string"
+                            },
+                            "playerTokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobbyToken",
+                            "playerTokens"
+                        ],
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "find": {
@@ -1572,14 +3889,157 @@
                         "description": "TODO: Doc connect to server asap afterwards."
                     },
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "version": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerRequest"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "players",
+                            "tags",
+                            "version"
+                        ],
+                        "definitions": {
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "PlayerRequest": {
+                                "type": "object",
+                                "additionalProperties": false
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "properties": {
+                            "lobby": {
+                                "$ref": "#/definitions/Lobby"
+                            },
+                            "players": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/PlayerWithToken"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "lobby",
+                            "players"
+                        ],
+                        "definitions": {
+                            "Lobby": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "#/definitions/Record<string,string>"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "readyAt": {
+                                        "type": "number"
+                                    },
+                                    "emptyAt": {
+                                        "description": "Timestamp at which the last player left the lobby.",
+                                        "type": "number"
+                                    },
+                                    "players": {
+                                        "$ref": "#/definitions/Map<string,Player>"
+                                    },
+                                    "maxPlayers": {
+                                        "type": "number"
+                                    },
+                                    "maxPlayersDirect": {
+                                        "type": "number"
+                                    },
+                                    "serverId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "maxPlayers",
+                                    "maxPlayersDirect",
+                                    "players",
+                                    "serverId",
+                                    "tags",
+                                    "version"
+                                ]
+                            },
+                            "Record<string,string>": {
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            "Map<string,Player>": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "number"
+                                    },
+                                    "__@toStringTag@15529": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "__@toStringTag@15529",
+                                    "size"
+                                ]
+                            },
+                            "PlayerWithToken": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "lobbyId": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "number"
+                                    },
+                                    "connectedAt": {
+                                        "type": "number"
+                                    },
+                                    "publicIp": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "id",
+                                    "lobbyId",
+                                    "token"
+                                ]
+                            }
+                        },
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 },
                 "force_gc": {
@@ -1589,18 +4049,234 @@
                     "namePascal": "ForceGc",
                     "config": {},
                     "requestSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     },
                     "responseSchema": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
                         "type": "object",
-                        "additionalProperties": true
+                        "additionalProperties": false,
+                        "$schema": "http://json-schema.org/draft-07/schema#"
                     }
                 }
             },
             "hasUserConfigSchema": true
+        },
+        "achievements": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/achievements",
+            "name": "achievements",
+            "nameCamel": "achievements",
+            "namePascal": "Achievements",
+            "config": {
+                "name": "Achievements",
+                "description": "Unlock and track user achievements. (Coming late-2024)",
+                "icon": "medal",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "leaderboards": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/leaderboards",
+            "name": "leaderboards",
+            "nameCamel": "leaderboards",
+            "namePascal": "Leaderboards",
+            "config": {
+                "name": "Leaderboards",
+                "description": "Track and display top player rankings. (Coming mid-2024)",
+                "icon": "ranking-star",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "analytics": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/analytics",
+            "name": "analytics",
+            "nameCamel": "analytics",
+            "namePascal": "Analytics",
+            "config": {
+                "name": "Analytics",
+                "description": "Track and visualize user behavior data. (Coming mid-2024)",
+                "icon": "chart-line",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "chat": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/chat",
+            "name": "chat",
+            "nameCamel": "chat",
+            "namePascal": "Chat",
+            "config": {
+                "name": "Chat",
+                "description": "In-game player-to-player messaging. (Coming late-2024)",
+                "icon": "messages",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "game_saves": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/game_saves",
+            "name": "game_saves",
+            "nameCamel": "gameSaves",
+            "namePascal": "GameSaves",
+            "config": {
+                "name": "Game Saves",
+                "description": "Store and manage player progress data or world state. (Coming mid-2024)",
+                "icon": "floppy-disk",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "parties": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/parties",
+            "name": "parties",
+            "nameCamel": "parties",
+            "namePascal": "Parties",
+            "config": {
+                "name": "Parties",
+                "description": "Real-time player groups. Integrates with matchmaking. (Coming mid-2024)",
+                "icon": "party-horn",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "groups": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/groups",
+            "name": "groups",
+            "nameCamel": "groups",
+            "namePascal": "Groups",
+            "config": {
+                "name": "Gropus",
+                "description": "Group users in groups/clans/guilds. (Coming late-2024)",
+                "icon": "user-group",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
+        },
+        "matchmaker": {
+            "path": "/Users/nathan/rivet/opengb-modules/modules/matchmaker",
+            "name": "matchmaker",
+            "nameCamel": "matchmaker",
+            "namePascal": "Matchmaker",
+            "config": {
+                "name": "Matchmaker",
+                "description": "Ticket-based matchmaking that balances skill, latency, and more. (Coming mid-2024)",
+                "icon": "chess-knight",
+                "tags": [
+                    "game"
+                ],
+                "authors": [],
+                "status": "coming_soon",
+                "scripts": {},
+                "errors": {}
+            },
+            "registryName": "local",
+            "userConfig": {},
+            "userConfigSchema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "additionalProperties": false
+            },
+            "scripts": {},
+            "hasUserConfigSchema": false
         }
     }
 }

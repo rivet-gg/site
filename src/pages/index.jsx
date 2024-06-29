@@ -39,6 +39,7 @@ import {
   faGraduationCap,
   faBooks,
   faChessKnight,
+  faGameConsoleHandheld,
   faGlobe,
   faChartWaterfall,
   faClockRotateLeft,
@@ -156,7 +157,7 @@ import imgStepsUnity from '@/images/engine-integration/unity.png';
 import imgStepsUnreal from '@/images/engine-integration/unreal.png';
 import imgStepsHtml5 from '@/images/engine-integration/html5.png';
 import imgStepsCustom from '@/images/engine-integration/custom.png';
-import { faPuzzle, faPlus, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
+import { faPuzzle, faPlus, faGears, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
 
 import opengbMeta from '@/generated/meta.json' assert { type: "json" };
@@ -290,60 +291,59 @@ const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) => (a[1].conf
 export default function Index() {
   return (
     <div>
-      {/* Hero */}
-      {/* <GridPattern className='absolute right-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%]'></GridPattern>
-      <GridPattern className='absolute left-12 top-[600px] -z-10 m-0 w-[300px] max-w-[50%] -scale-x-100'></GridPattern> */}
-
-      {/* Header */}
       <div className='relative isolate overflow-x-hidden'>
-        <div>
-          <Title />
+        <Title />
 
-          {/* <div className='relative max-w-7xl mx-auto h-0 overflow-visible opacity-75'>
-            <Image
-              alt='This game is multiplayer!'
-              src={imgMultiplayerCallout}
-              className='absolute right-6 top-4 hidden sm:block'
-            />
-          </div> */}
+        {/* <div className='relative max-w-7xl mx-auto h-0 overflow-visible opacity-75'>
+          <Image
+            alt='This game is multiplayer!'
+            src={imgMultiplayerCallout}
+            className='absolute right-6 top-4 hidden sm:block'
+          />
+        </div> */}
 
-          <Subtitle />
-          {/* <div className='h-16'></div> */}
+        <Subtitle />
+        {/* <div className='h-16'></div> */}
 
-          {/* <RainbowBar className='max-w-5xl mx-auto h-1' /> */}
-          {/* <RainbowBar className='w-full h-1' /> */}
+        {/* <RainbowBar className='max-w-5xl mx-auto h-1' /> */}
+        {/* <RainbowBar className='w-full h-1' /> */}
 
-          <MainFeatures />
+        <div className='h-32'/>
 
-          <AllModules />
+        <MainFeatures />
 
-          <div className='px-6 py-40 lg:px-8'>
-            <IncludedSection />
-          </div>
+        <div className='h-16'/>
 
-          {/* <div className='px-6 py-40 lg:px-8'>
-            <IncludedHighlights />
-          </div> */}
+        <AllModules />
 
-          <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'>
-            <CaseStudies />
-          </div>
+        <div className='h-40'/>
 
-          <CodeSection />
-
-          <TemplateSection />
-
-          <Philosophy />
-          <div className='h-32'></div>
-
-          {/*<DemoSection /> */}
-
-          {/* <EngineGrid /> */}
-
-          {/* <UpAndRunning />*/}
-
-          <LevelUpSection />
+        <div className='px-6 py-40 lg:px-8'>
+          <IncludedSection />
         </div>
+
+        {/* <div className='px-6 py-40 lg:px-8'>
+          <IncludedHighlights />
+        </div> */}
+
+        <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'>
+          <CaseStudies />
+        </div>
+
+        <CodeSection />
+
+        <TemplateSection />
+
+        <Philosophy />
+        <div className='h-32'></div>
+
+        {/*<DemoSection /> */}
+
+        {/* <EngineGrid /> */}
+
+        {/* <UpAndRunning />*/}
+
+        <LevelUpSection />
       </div>
     </div>
   );
@@ -437,9 +437,8 @@ function Subtitle() {
 function MainFeatures() {
   return (
     <div className={clsx(
-      'mx-auto my-20 w-full max-w-[1800px] px-4 gap-4 sm:px-8 sm:gap-8',
+      'mx-auto w-full max-w-[1800px] px-4 gap-4 sm:px-8 sm:gap-8',
       'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
-      'py-10'
     )}>
       <MainFeatureColumn
         icon={faServer}
@@ -466,8 +465,10 @@ function MainFeatures() {
         icon={faChessKnight}
         title='Matchmaking, Lobbies, & Parties'
         features={[
-          { icon: faSquare1, name: <>Get started with <Tooltip tip="1 line of code specifically in Godot & Unity">1 line of code</Tooltip></> },
+          // TODO: Add back once implemented
+          // { icon: faSquare1, name: <>Get started with <Tooltip tip="1 line of code specifically in Godot & Unity">1 line of code</Tooltip></> },
           { icon: faChessKnight, name: "Supports casual, competitive, MMO, and turn-based" },
+          { icon: faGameConsoleHandheld, name: "Supports server-authoritative, P2P, and async multiplayer" },
           { icon: faSwap, name: "Works with existing multiplayer" },
         ]}
         buttons={[{ name: "Documentation", href: "/docs/matchmaker" }]}
@@ -487,11 +488,11 @@ function MainFeatures() {
         title='100% Modular & Scriptable'
         features={[
           // { icon: faCode, name: "Write server-side logic in TypeScript (or use your own API server)" },
-          { icon: faBallotCheck, name: "Pick and choose modules to use" },
+          { icon: faPuzzle, name: "Pick and choose modules to use" },
           { icon: faCode, name: "Easily write server-side logic" },
           { icon: faDatabase, name: <><Tooltip tip="Powered by Postgres">Database</Tooltip> included for free</> },
           // TODO: Add WebSockets when ready
-          { icon: faBolt, name: "Realtime functionality with actors" },
+          { icon: faBolt, name: <>Realtime functionality with actors</> },
           { icon: faEngine, name: <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-400 hover:text-orange-300'>Open Game Backend</a></> },
         ]}
         buttons={[{ name: "Documentation", href: "https://opengb.dev", target: "_blank" }]}
@@ -550,7 +551,7 @@ function MainFeatureColumn({ icon, title, features, buttons }) {
                 href={button.href}
                 target={button.target}
                 rel='noreferrer'
-                className='flex items-center justify-left gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm'>
+                className={clsx('flex items-center justify-left gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm', button.classes)}>
                 {button.name}
                 <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
               </a>
@@ -564,7 +565,7 @@ function MainFeatureColumn({ icon, title, features, buttons }) {
 
 function AllModules() {
   return (
-    <div className="mx-auto pt-10 pb-40">
+    <div className="mx-auto">
       <h2 className='font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>...and so much more</h2>
       <div className='flex flex-row flex-wrap justify-center gap-4 mt-12 max-w-4xl mx-auto'>
         {
@@ -587,6 +588,16 @@ function AllModules() {
               </div>
             ))
         }
+      </div>
+      <div className='flex flex-row flex-wrap justify-center gap-4 mt-12 max-w-4xl mx-auto'>
+        <Button variant="juicy" href="https://opengb.dev/build/overview" target="_blank">
+          <FontAwesomeIcon icon={faPlus} />
+          Build Your Own Modules
+        </Button>
+        <Button variant="juicy" href="https://github.com/rivet-gg/opengb-modules" target="_blank">
+          <FontAwesomeIcon icon={faGears} />
+          Modify Existing Modules
+        </Button>
       </div>
     </div>
   );
