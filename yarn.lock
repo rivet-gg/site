@@ -5837,13 +5837,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:^1.77.0":
-  version: 1.131.3
-  resolution: "posthog-js@npm:1.131.3"
+"posthog-js@npm:^1.142.1":
+  version: 1.142.1
+  resolution: "posthog-js@npm:1.142.1"
   dependencies:
     fflate: ^0.4.8
     preact: ^10.19.3
-  checksum: 4e1a78d3cb6f688c03d504904561b61a6c08cd8cac3ef134c8d60f9eb3ac575301e74bb424973e5f48352cd6fd62f09dd597f23a0cfcd4c84d8f0e8c8b21b978
+    web-vitals: ^4.0.1
+  checksum: cb7e3f508572282563ac72b1d9ed9e3002465c4fe20b520f09faec78db2ceb268a88260e347343f43b48dfdfafc2e0150780a57102a4f8d540d71fbadfca6693
   languageName: node
   linkType: hard
 
@@ -6449,7 +6450,7 @@ __metadata:
     next-router-mock: ^0.9.7
     postcss: ^8.4.24
     postcss-focus-visible: ^6.0.4
-    posthog-js: ^1.77.0
+    posthog-js: ^1.142.1
     prettier: ^2.8.8
     prettier-plugin-tailwindcss: ^0.3.0
     react: 18.2.0
@@ -7761,6 +7762,13 @@ __metadata:
   version: 2.0.1
   resolution: "web-namespaces@npm:2.0.1"
   checksum: b6d9f02f1a43d0ef0848a812d89c83801d5bbad57d8bb61f02eb6d7eb794c3736f6cc2e1191664bb26136594c8218ac609f4069722c6f56d9fc2d808fa9271c6
+  languageName: node
+  linkType: hard
+
+"web-vitals@npm:^4.0.1":
+  version: 4.2.0
+  resolution: "web-vitals@npm:4.2.0"
+  checksum: 7afac4f4206fb33609bd60c58dbbd57cf001cc806179c9814bab839ced7f0b681f1f8712c2aa2623f9b32748ab122b63c52e292aef67c8eacfd77e83edbdc9c1
   languageName: node
   linkType: hard
 

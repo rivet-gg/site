@@ -51,7 +51,7 @@
     "next-router-mock": "^0.9.7",
     "postcss": "^8.4.24",
     "postcss-focus-visible": "^6.0.4",
-    "posthog-js": "^1.77.0",
+    "posthog-js": "^1.142.1",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
