@@ -2916,56 +2916,95 @@
                 "status": "stable",
                 "scripts": {
                     "create": {
+                        "name": "Create Lobby",
+                        "description": "Creates a new lobby on-demand.",
                         "public": true
                     },
                     "destroy": {
+                        "name": "Destroy Lobby",
+                        "description": "Destroys an existing lobby.",
                         "public": true
                     },
                     "find_or_create": {
+                        "name": "Find Or Create Lobby",
+                        "description": "Finds a lobby or creates one if there are no available spots for players.",
                         "public": true
                     },
                     "join": {
+                        "name": "Join Lobby",
+                        "description": "Add a player to an existing lobby.",
                         "public": true
                     },
                     "list": {
+                        "name": "List Lobbies",
+                        "description": "List & query all lobbies.",
                         "public": true
                     },
                     "set_lobby_ready": {
+                        "name": "Set Lobby Ready",
+                        "description": "Called on lobby startup after initiation to notify it can start accepting player. This should be called after operations like loading maps are complete.",
                         "public": true
                     },
                     "set_player_connected": {
+                        "name": "Set Player Connected",
+                        "description": "Called when a player connects to the lobby.",
                         "public": true
                     },
                     "set_player_disconnected": {
+                        "name": "Set Player Disconnected",
+                        "description": "Called when a player disconnects from the lobby.",
                         "public": true
                     },
                     "find": {
-                        "public": true,
-                        "description": "TODO: Doc connect to server asap afterwards."
+                        "name": "Find Lobby",
+                        "description": "Finds an existing lobby with a given query. This will not create a new lobby, see `find_or_create` instead.",
+                        "public": true
                     },
-                    "force_gc": {}
+                    "force_gc": {
+                        "name": "Force Garbage Collection",
+                        "description": "Rarely used. Forces the matchmaker to purge lobbies & players."
+                    }
                 },
                 "actors": {
                     "lobby_manager": {}
                 },
                 "errors": {
-                    "lobby_not_found": {},
+                    "lobby_not_found": {
+                        "name": "Lobby Not Found",
+                        "description": "Lobby not found."
+                    },
                     "lobby_create_missing_players": {
+                        "name": "Lobby Create Missing Players",
                         "description": "When creating a lobby with `config.lobbies.autoDestroyWhenEmpty`, a lobby must be created with players in order to avoid creating an empty lobby."
                     },
-                    "lobby_full": {},
+                    "lobby_full": {
+                        "name": "Lobby Full",
+                        "description": "No more players can join this lobby."
+                    },
                     "more_players_than_max": {
+                        "name": "More Players Than Max",
                         "description": "More players were passed to the create lobby than the number of max players in a lobby."
                     },
-                    "lobby_already_ready": {},
+                    "lobby_already_ready": {
+                        "name": "Lobby Already Ready",
+                        "description": "Lobby already set as ready."
+                    },
                     "player_already_connected": {
+                        "name": "Player Already Connected",
                         "description": "The player has already connected to this server. This error helps mitigate botting attacks by only allowing one scoket to connect to a game server for every player."
                     },
                     "player_disconnected": {
+                        "name": "Player Disconnected",
                         "description": "The player has already disconnected from the server. Create a new player for the specified lobby using the `join` script."
                     },
-                    "no_matching_lobbies": {},
-                    "too_many_players_for_ip": {}
+                    "no_matching_lobbies": {
+                        "name": "No Matching Lobbies",
+                        "description": "No lobbies matched the given query."
+                    },
+                    "too_many_players_for_ip": {
+                        "name": "Too Many Players For IP",
+                        "description": "The player has too many existing players for the given IP."
+                    }
                 },
                 "dependencies": {
                     "tokens": {}
@@ -3157,6 +3196,8 @@
                     "nameCamel": "create",
                     "namePascal": "Create",
                     "config": {
+                        "name": "Create Lobby",
+                        "description": "Creates a new lobby on-demand.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3327,6 +3368,8 @@
                     "nameCamel": "destroy",
                     "namePascal": "Destroy",
                     "config": {
+                        "name": "Destroy Lobby",
+                        "description": "Destroys an existing lobby.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3354,6 +3397,8 @@
                     "nameCamel": "findOrCreate",
                     "namePascal": "FindOrCreate",
                     "config": {
+                        "name": "Find Or Create Lobby",
+                        "description": "Finds a lobby or creates one if there are no available spots for players.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3537,6 +3582,8 @@
                     "nameCamel": "join",
                     "namePascal": "Join",
                     "config": {
+                        "name": "Join Lobby",
+                        "description": "Add a player to an existing lobby.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3691,6 +3738,8 @@
                     "nameCamel": "list",
                     "namePascal": "List",
                     "config": {
+                        "name": "List Lobbies",
+                        "description": "List & query all lobbies.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3790,6 +3839,8 @@
                     "nameCamel": "setLobbyReady",
                     "namePascal": "SetLobbyReady",
                     "config": {
+                        "name": "Set Lobby Ready",
+                        "description": "Called on lobby startup after initiation to notify it can start accepting player. This should be called after operations like loading maps are complete.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3817,6 +3868,8 @@
                     "nameCamel": "setPlayerConnected",
                     "namePascal": "SetPlayerConnected",
                     "config": {
+                        "name": "Set Player Connected",
+                        "description": "Called when a player connects to the lobby.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3851,6 +3904,8 @@
                     "nameCamel": "setPlayerDisconnected",
                     "namePascal": "SetPlayerDisconnected",
                     "config": {
+                        "name": "Set Player Disconnected",
+                        "description": "Called when a player disconnects from the lobby.",
                         "public": true
                     },
                     "requestSchema": {
@@ -3885,8 +3940,9 @@
                     "nameCamel": "find",
                     "namePascal": "Find",
                     "config": {
-                        "public": true,
-                        "description": "TODO: Doc connect to server asap afterwards."
+                        "name": "Find Lobby",
+                        "description": "Finds an existing lobby with a given query. This will not create a new lobby, see `find_or_create` instead.",
+                        "public": true
                     },
                     "requestSchema": {
                         "type": "object",
@@ -4047,7 +4103,10 @@
                     "name": "force_gc",
                     "nameCamel": "forceGc",
                     "namePascal": "ForceGc",
-                    "config": {},
+                    "config": {
+                        "name": "Force Garbage Collection",
+                        "description": "Rarely used. Forces the matchmaker to purge lobbies & players."
+                    },
                     "requestSchema": {
                         "type": "object",
                         "additionalProperties": false,
