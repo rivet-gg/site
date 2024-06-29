@@ -16,6 +16,14 @@ module.exports = {
         tabWidth: 2,
         useTabs: false
       }
+    },
+    {
+      files: ['*.md', '*.mdx'],
+      options: {
+        tabWidth: 2,
+        proseWrap: 'always',
+        printWidth: 80
+      }
     }
   ],
   tailwindFunctions: ['clsx'],
