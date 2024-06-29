@@ -99,12 +99,15 @@ export default function Pricing({ autoscalingData }) {
           features={[
             "$29/mo credits included",
             "Supports 8 regions",
-            <>No <Tooltip tip="Concurrent users">CCU</Tooltip> or <Tooltip tip="Monthly active users">MAU</Tooltip> limits</>,
+            "Use credits for running game backend",
+            "No resource scaling limits",
+            //<>No <Tooltip tip="Concurrent users">CCU</Tooltip> or <Tooltip tip="Monthly active users">MAU</Tooltip> limits</>
           ]}
           options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
 
         <PricingCard
-          title="Open-source"
+          title="Enterprise"
+          price="Custom Pricing"
           features={[
             "Self host on your own servers",
             "Bring your own hardware",
@@ -113,8 +116,7 @@ export default function Pricing({ autoscalingData }) {
           ]}
           options={(
             <>
-              <Button href='https://github.com/rivet-gg/rivet' target='_blank'>View on GitHub</Button>
-              <Button href='/support'>Contact for Enterprise</Button>
+              <Button href='https://b8v8449klvp.typeform.com/to/OotpJXWd'>Contact for Enterprise</Button>
             </>
           )} />
       </div>
@@ -129,10 +131,64 @@ export default function Pricing({ autoscalingData }) {
         href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
         target='_blank'
         rel='noreferrer'>
-        Get up to $120k credits with Akamai RISE
+        Get up to $120,000.00 in cloud credits for Rivet
         <FontAwesomeIcon icon={faArrowRight} />
       </a>
 
+      {/* Game Backend */}
+<div className='max-w-6xl mx-auto px-6 py-12 lg:px-8'>
+  <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>Managed Game Backend</h2>
+  <div className="mt-8">
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-300">
+        <thead>
+          <tr className="bg-gray">
+            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-cream-100">Size</th>
+            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-cream-100">Price</th>
+            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-cream-100">Storage</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-700">
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Shared 0.25 vCPU, 1 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">Free</td>
+            <td className="px-3 py-4 text-sm text-cream-100">0.5 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 0.25 vCPU, 1 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$20.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">0.5 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 0.5 vCPU, 2 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$40.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">1 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 1 vCPU, 4 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$80.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">2 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 2 vCPU, 8 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$160.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">5 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 4 vCPU, 16 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$32.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">10 GiB</td>
+          </tr>
+          <tr>
+            <td className="px-3 py-4 text-sm text-cream-100">Dedicated 8 vCPU, 32 GB RAM</td>
+            <td className="px-3 py-4 text-sm text-cream-100">$640.00</td>
+            <td className="px-3 py-4 text-sm text-cream-100">50 GiB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
       {/* Included */}
       <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
         <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
