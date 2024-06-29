@@ -33,6 +33,7 @@ import {
   faRoute
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faPuzzle, faPlus, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
+import IncludedSection from '../components/Included';
 
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), 'public', 'pricing', 'autoscaling-data.csv');
@@ -155,43 +156,7 @@ export default function Pricing({ autoscalingData }) {
 
       {/* Included */}
       <div className='max-w-6xl mx-auto px-6 py-44 lg:px-8 flex flex-col'>
-        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
-        <div className={clsx(
-          "w-full grid gap-4 mt-8",
-          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
-        )}>
-        </div>
-        <div className={clsx(
-          "w-full grid gap-4 mt-8",
-          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
-        )}>
-          <IncludedFeature icon={faShield} title="DDoS Mitigation" usually="$10/server/mo" on="Vultr DDoS mitigation" /> {/* Vultr */}
-          <IncludedFeature icon={faClockRotateLeft} title="No downtime deploys & instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" /> {/* $60 on Linode, $40 on DO */}
-          <IncludedFeature icon={faWarehouse} title="Version history for rollbacks" usually="$9/user/mo" on="Docker Hub" />
-          <IncludedFeature icon={faBars} title="Log & metrics aggregation" usually="$0.50/server/mo" on="Grafana Cloud Loki with 1 log/server/second" /> {/* 1 log per second * avg 500 bytes per line = ~1 GB/mo * 0.50/GB/mo on Loki = $0.50/mo */}
-          <IncludedFeature icon={faLock} title="Automatic SSL for WebSockets & TLS" />
-          <IncludedFeature icon={faMessageExclamation} title="Crash reporting" usually="$26/mo" on="Sentry Team" />
-          <IncludedFeature icon={faChartLineUp} title="Analytics" />
-          <IncludedFeature icon={faRoute} title="Automatic geographic routing" /> {/*usually="$83/mo" on="ipinfo.io"*/}
-
-          {/*<IncludedFeature title="Instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" />*/}
-        </div>
-
-        {/*<h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-3xl text-center mt-12'>{'Plus backend modules'}</h2>
-        <div className={clsx(
-          "w-full grid gap-4 mt-8",
-          "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
-        )}>
-          <ModuleCard title="Build your own" icon={faPlus} href="https://opengb.dev/build/overview" />
-          <ModuleCard title="Matchmaker" icon={faChessKnight} href="/docs/matchmaker" />
-          <ModuleCard title="Parties" icon={faPartyHorn} href="https://github.com/rivet-gg/opengb-registry/issues/5" comingSoon={true} />
-          <ModuleCard title="Presence" icon={faCircleDot} href="https://github.com/rivet-gg/opengb-registry/issues/2" comingSoon={true} />
-          <ModuleCard title="Auth" icon={faKey} href="https://opengb.dev/modules/auth/overview" />
-          <ModuleCard title="Users" icon={faUser} href="https://opengb.dev/modules/users/overview" />
-          <ModuleCard title="Friends" icon={faUserGroup} href="https://opengb.dev/modules/friends/overview" />
-          <ModuleCard title="Leaderboards" icon={faMedal} href="https://github.com/rivet-gg/opengb-registry/issues/3" comingSoon={true} />
-        </div>
-        <Button variant="text-subtle" href="https://opengb.dev/modules" target="_blank" className="mt-8">See all modules →</Button>*/}
+        <IncludedSection />
       </div>
 
       {/* Predictable */}

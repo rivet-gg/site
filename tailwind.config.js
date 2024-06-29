@@ -9,7 +9,8 @@ module.exports = {
       sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
       display: ['Perfectly Nineties', 'ui-sans-serif', 'system-ui'],
       pixel: ['Silkscreen', 'ui-sans-serif', 'system-ui'],
-      psychotic: ['Gloria Hallelujah', 'Open Sans', 'ui-sans-serif', 'system-ui']
+      psychotic: ['Gloria Hallelujah', 'Open Sans', 'ui-sans-serif', 'system-ui'],
+      mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
     fontSize: {
       '3xs': ['0.5rem', { lineHeight: '1.25rem' }],

@@ -23,7 +23,14 @@ export function IncludedFeature({ icon, title, usually, on }) {
   );
 }
 
+const OTHER_SERVICES_SERVER_COUNT = 15;
+const OTHER_SERVICES_USER_COUNT = 4;
+const OTHER_SERVICES_PRICE = (10 + 0.50) * OTHER_SERVICES_SERVER_COUNT + 9 * OTHER_SERVICES_USER_COUNT + 26 + 40;
+
 export default function IncludedSection() {
+  const receiptWidth = 29;
+  const otherServicesText = "Other services";
+  const otherServicesPrice = `~\$${OTHER_SERVICES_PRICE.toFixed(2)}/mo`;
   return (
     <div className='max-w-6xl mx-auto px-6 lg:px-8 flex flex-col'>
       <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
@@ -40,11 +47,12 @@ export default function IncludedSection() {
         <IncludedFeature icon={faChartLineUp} title="Analytics" />
         <IncludedFeature icon={faRoute} title="Automatic geographic routing" />
       </div>
-      <div className='text-cream-100 grid grid-cols-2'>
-        <div>Other services:</div>
-        <div>~$420/mo</div>
-        <div>Rivet:</div>
-        <div>Free</div>
+      <div className='h-8'/>
+      <div className='text-cream-100 text-xl mx-auto font-mono whitespace-pre'>
+        {/*<div>Your Receipt:</div>
+        <div>{"* ".repeat(Math.floor((receiptWidth - 1) / 2))}*</div>*/}
+        <div><span className='font-bold'>{otherServicesText}</span>{" ".repeat(receiptWidth - otherServicesText.length - otherServicesPrice.length)}<Tooltip tip="Assuming 15 servers & 4 users">{otherServicesPrice}</Tooltip></div>
+        <div><span className='font-bold'>Rivet</span>                   $0.00</div>
       </div>
     </div>
   );
