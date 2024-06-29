@@ -94,7 +94,7 @@ export default function Pricing({ autoscalingData }) {
           price="Free"
           features={[
             "Great for early development & game jams",
-            "$5/mo in credits",
+            "$5/mo in server credits",
             "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
             "Max 1 server",
           ]}
