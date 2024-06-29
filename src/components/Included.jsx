@@ -40,6 +40,12 @@ export default function IncludedSection() {
         <IncludedFeature icon={faChartLineUp} title="Analytics" />
         <IncludedFeature icon={faRoute} title="Automatic geographic routing" />
       </div>
+      <div className='text-cream-100 grid grid-cols-2'>
+        <div>Other services:</div>
+        <div>~$420/mo</div>
+        <div>Rivet:</div>
+        <div>Free</div>
+      </div>
     </div>
   );
 }

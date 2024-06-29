@@ -32,7 +32,7 @@ export const CreditsBanner = () => {
         'h-10'
       )}>
       <span>
-        Announcing up to $120k credits with Akamai RISE
+        Announcing up to $120,000 server credits
         <FontAwesomeIcon icon={faArrowRight} className='ms-1 h-6 w-6' />
       </span>
       <FontAwesomeIcon

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Button } from '@/components/Button';
 import imgBlockLeft from '@/images/effects/leftBlock.png';
 import imgBlockRight from '@/images/effects/rightBlock.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faRocketLaunch } from '@fortawesome/sharp-solid-svg-icons';
 
 export default function LevelUpSection() {
   return (
@@ -26,11 +28,13 @@ export default function LevelUpSection() {
 
           <div className='mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
             <Button variant='blackJuicy' href='https://hub.rivet.gg'>
+              <FontAwesomeIcon icon={faRocketLaunch} className='mr-2' />
               Get Started
             </Button>
-            <Link href='/learn' className='text-sm font-semibold leading-6 text-black'>
-              5 minute crash course <span aria-hidden='true'>→</span>
-            </Link>
+            <Button variant='blackJuicy' href='https://calendly.com/nicholas_kissel/rivet-demo' target='_blank'>
+              <FontAwesomeIcon icon={faPhone} className='mr-2' />
+              Request a Demo
+            </Button>
           </div>
         </div>
 

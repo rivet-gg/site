@@ -458,7 +458,7 @@ function MainFeatures() {
         ]}
         buttons={[
           { name: "Documentation", href: "/docs/dynamic-servers" },
-          { name: "Get up to $120k in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
+          { name: "Get up to $120,000 in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
         ]}
       />
       <MainFeatureColumn

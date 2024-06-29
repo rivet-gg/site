@@ -14,6 +14,7 @@ import { PatternButton } from '@/components/PatternButton';
 import TimeSeriesChart from '@/components/TimeSeriesChart';
 
 import {
+  faCoin,
   faArrowRight,
   faChessKnight,
   faKey,
@@ -74,24 +75,41 @@ export default function Pricing({ autoscalingData }) {
   return (
     <>
       {/* Header */}
-      <h1 className='text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>Pricing</h1>
-      <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
+      <h1 className='text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl text-center mt-8'><FontAwesomeIcon icon={faCoin} className='h-10 w-10 mr-2' /> Pricing</h1>
+      <p className="text-center font-display text-3xl tracking-tight text-cream-100/80 mt-5">
         {'Affordable for small studios & scalable for large studios.'}<br/>
         {'Always predictable pricing.'}
       </p>
 
       {/* Cards */}
-      <div className="grid grid-cols-3 gap-4 max-w-7xl mx-auto px-4 mt-8">
+      <div className={clsx(
+        "grid max-w-[1800px] mx-auto mt-24",
+        "grid-cols-1 gap-4 px-4",
+        "sm:grid-cols-2",
+        "md:px-6",
+        "lg:gap-4 lg:grid-cols-4",
+      )}>
+        <PricingCard
+          title="Free"
+          price="Free"
+          features={[
+            "Great for early development & game jams",
+            "$5/mo in credits",
+            "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
+            "Max 1 server",
+          ]}
+          options={<Button variant="primaryJuicy" href='https://hub.rivet.gg'>Get Started <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' /></Button>} />
+
         <PricingCard
           title="Indie"
           price="$9/mo"
           features={[
             "Fixed price suitable for indies & hobbyists",
             // <><Tooltip tip={`Provided as ${formatUSD(INDIE_CREDITS)} in credits`}>3 Flex or {Math.floor(INDIE_CREDITS / STANDARD_SHARED_UNIT)} Standard servers</Tooltip> included</>,
-            <><Tooltip tip={`Specifically Flex Shared ½ servers. Provided as ${formatUSD(INDIE_CREDITS)} in credits. Credits can be used for any type of Flex or Standard server.`}>6 Flex servers</Tooltip> included</>,
+            <><Tooltip tip={`Specifically Flex Shared ½ servers. Provided as ${formatUSD(INDIE_CREDITS)} in server credits. Credits can be used for any type of Flex or Standard server.`}>6 Flex servers</Tooltip> included</>,
             "Supports US (Los Angeles), EU (Frankfurt), and Asia (Tokyo)",
           ]}
-          options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
+          options={<Button variant="primaryJuicy" href='https://hub.rivet.gg'>Get Started <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' /></Button>} />
 
         <PricingCard
           title="Studio"
@@ -101,27 +119,29 @@ export default function Pricing({ autoscalingData }) {
             "Supports 8 regions",
             <>No <Tooltip tip="Concurrent users">CCU</Tooltip> or <Tooltip tip="Monthly active users">MAU</Tooltip> limits</>,
           ]}
-          options={<Button href='https://hub.rivet.gg'>Get Started</Button>} />
+          options={<Button variant="primaryJuicy" href='https://hub.rivet.gg'>Get Started <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' /></Button>} />
 
         <PricingCard
-          title="Open-source"
+          title="Enterprise"
           features={[
             "Self host on your own servers",
-            "Bring your own hardware",
+            "Bring your own hardware & cloud providers",
             "Enterprise support available",
+            "Launch day preparation (load testing & live monitoring)",
             // "Supports Linode",
           ]}
           options={(
             <>
-              <Button href='https://github.com/rivet-gg/rivet' target='_blank'>View on GitHub</Button>
-              <Button href='/support'>Contact for Enterprise</Button>
+              <Button variant="primaryJuicy" href='https://calendly.com/nicholas_kissel/rivet-demo' target='_blank'>
+                Request a Demo <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+              </Button>
             </>
           )} />
       </div>
 
       <a
         className={clsx(
-          'w-max mx-auto mt-4',
+          'w-max mx-auto mt-8',
           'border-4 border-cream-100/10 px-6 py-4',
           'flex flex-row items-center gap-4',
           'font-semibold text-cream-100/80 hover:text-cream-100',
@@ -129,12 +149,12 @@ export default function Pricing({ autoscalingData }) {
         href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
         target='_blank'
         rel='noreferrer'>
-        Get up to $120k credits with Akamai RISE
+        Get up to $120,000 server credits
         <FontAwesomeIcon icon={faArrowRight} />
       </a>
 
       {/* Included */}
-      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+      <div className='max-w-6xl mx-auto px-6 py-44 lg:px-8 flex flex-col'>
         <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
         <div className={clsx(
           "w-full grid gap-4 mt-8",
@@ -157,7 +177,7 @@ export default function Pricing({ autoscalingData }) {
           {/*<IncludedFeature title="Instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" />*/}
         </div>
 
-        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-3xl text-center mt-12'>{'Plus backend modules'}</h2>
+        {/*<h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-3xl text-center mt-12'>{'Plus backend modules'}</h2>
         <div className={clsx(
           "w-full grid gap-4 mt-8",
           "grid-cols-1 sm:grid-cols-2 md:grid-cols-4",
@@ -171,16 +191,7 @@ export default function Pricing({ autoscalingData }) {
           <ModuleCard title="Friends" icon={faUserGroup} href="https://opengb.dev/modules/friends/overview" />
           <ModuleCard title="Leaderboards" icon={faMedal} href="https://github.com/rivet-gg/opengb-registry/issues/3" comingSoon={true} />
         </div>
-        <Button variant="text-subtle" href="https://opengb.dev/modules" target="_blank" className="mt-8">See all modules →</Button>
-      </div>
-
-      {/* Usage */}
-      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
-        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Usage Estimator'}</h2>
-        <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
-          {'Rivet autoscales your game servers on-demand.'}<br/>
-        </p>
-        <PricingCalculator autoscalingData={autoscalingData} />
+        <Button variant="text-subtle" href="https://opengb.dev/modules" target="_blank" className="mt-8">See all modules →</Button>*/}
       </div>
 
       {/* Predictable */}
@@ -195,8 +206,17 @@ export default function Pricing({ autoscalingData }) {
           <PredictablePricingFeature title="Usage Limits" description="Enforce maximum number of servers & maximum spend to avoid surprises."></PredictablePricingFeature>
           <PredictablePricingFeature title="Alerting" description={<>Immediately be notified of surprise usage. <span className='italic'>Coming soon.</span></>}></PredictablePricingFeature>
           <PredictablePricingFeature title="No CCU or MAU Limits" description="Rivet only charges for the resources you use, not convoluted metrics like CCUs & MAUs."></PredictablePricingFeature>
-          <PredictablePricingFeature title="Open-Source Self Hosting" description="Rivet Cloud is the best place to host your game, but you can always host it yourself if needed."></PredictablePricingFeature>
+          <PredictablePricingFeature title="Open-Source Self-Hosting" description="Rivet Cloud is the best place to host your game, but you can always host it yourself if needed."></PredictablePricingFeature>
         </div>
+      </div>
+
+      {/* Usage */}
+      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+        <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Usage Estimator'}</h2>
+        <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
+          {'Rivet autoscales your game servers on-demand.'}<br/>
+        </p>
+        <PricingCalculator autoscalingData={autoscalingData} />
       </div>
 
       {/* Launch */}
@@ -207,13 +227,18 @@ export default function Pricing({ autoscalingData }) {
 
 function PricingCard({ title, price, features, options, ...props }) {
   return (
-    <div className={clsx('border-4 border-cream-100/10 text-cream-100 px-6 py-4', 'flex flex-col gap-4')} {...props}>
+    <div className={clsx(
+      'border-4 border-cream-100/10 text-cream-100',
+      'flex flex-col gap-2',
+      'p-4',
+      'xl:gap-4 xl:p-8'
+    )} {...props}>
       <div className='text-3xl font-display font-bold tracking-tight text-cream-100'>{title}</div>
       {price && <div className='text-cream-100'>{price}</div>}
       <ul className='list-disc pl-5'>
         {features.map((x, i) => (<li key={i}>{x}</li>))}
       </ul>
-      <div className='flex-grow' />
+      <div className='flex-grow min-h-12' />
       <div className='w-full flex flex-col gap-2'>
         {options}
       </div>
