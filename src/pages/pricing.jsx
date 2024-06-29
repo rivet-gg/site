@@ -115,7 +115,7 @@ export default function Pricing({ autoscalingData }) {
           title="Studio"
           price="$29/mo + usage"
           features={[
-            "$29/mo credits included",
+            "$29/mo server credits included",
             "Supports 8 regions",
             <>No <Tooltip tip="Concurrent users">CCU</Tooltip> or <Tooltip tip="Monthly active users">MAU</Tooltip> limits</>,
           ]}
