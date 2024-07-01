@@ -88,7 +88,7 @@ export default function Pricing({ autoscalingData }) {
         "grid-cols-1 gap-4 px-4",
         "sm:grid-cols-2",
         "md:px-6",
-        "lg:gap-4 lg:grid-cols-4",
+        "lg:grid-cols-4",
       )}>
         <PricingCard
           title="Free"
@@ -154,10 +154,12 @@ export default function Pricing({ autoscalingData }) {
         <FontAwesomeIcon icon={faArrowRight} />
       </a>
 
+      <div className='h-40'/>
+
       {/* Included */}
-      <div className='max-w-6xl mx-auto px-6 py-44 lg:px-8 flex flex-col'>
-        <IncludedSection />
-      </div>
+      <IncludedSection />
+
+      <div className='h-40'/>
 
       {/* Predictable */}
       <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
@@ -176,7 +178,10 @@ export default function Pricing({ autoscalingData }) {
       </div>
 
       {/* Usage */}
-      <div className='max-w-6xl mx-auto px-6 py-36 lg:px-8 flex flex-col'>
+      <div className={clsx(
+        'max-w-6xl mx-auto px-6 py-36 lg:px-8 flex-col',
+        'hidden sm:flex'
+      )}>
         <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Usage Estimator'}</h2>
         <p className='mt-6 text-lg opacity-90 text-cream-100 text-center'>
           {'Rivet autoscales your game servers on-demand.'}<br/>

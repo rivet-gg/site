@@ -316,11 +316,11 @@ export default function Index() {
 
         <AllModules />
 
-        <div className='h-40'/>
+        <div className='h-60'/>
 
-        <div className='px-6 py-40 lg:px-8'>
-          <IncludedSection />
-        </div>
+        <IncludedSection />
+
+        <div className='h-40'/>
 
         {/* <div className='px-6 py-40 lg:px-8'>
           <IncludedHighlights />
