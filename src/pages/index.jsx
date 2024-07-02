@@ -450,7 +450,7 @@ function MainFeatures() {
           // { icon: faChessKnight, name: "DDoS mitigation (no added latency)" },
           // { icon: faShieldAlt, name: <span><Tooltip tip={<>Read more about Game Guard <a href="/docs/dynamic-servers/concepts/game-guard">here</a>.</>}>DDoS mitigation</Tooltip></span> },
           { icon: faShieldAlt, name: "Low-latency, free DDoS mitigation" },
-          { icon: faChartLine, name: <>Autoscaling & <Tooltip tip="Boot servers on-demand in less than 3 seconds">on-demand servers</Tooltip></> },
+          { icon: faChartLine, name: <>Autoscaling & <Tooltip tip="Boot servers on-demand in less than 5 seconds">instant servers</Tooltip></> },
           // { icon: faSyncAlt, name: "No-downtime deploys & instant rollbacks" },
           { icon: faBug, name: "Monitoring & crash reporting" },
           { icon: faPlug, name: <>Supports TCP, UDP, WebSockets, & <Tooltip tip="WebRTC, ENet, KPC">more</Tooltip></> },
