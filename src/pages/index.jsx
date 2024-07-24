@@ -168,10 +168,6 @@ import opengbMeta from '@/generated/meta.json' assert { type: "json" };
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';
-import { Cube } from '../components/graphics/geocorp/cube';
-import { Portal } from '../components/graphics/geocorp/portal';
-import { SwitchLines } from '../components/graphics/geocorp/switch-lines';
-import { OverlapCircles } from '../components/graphics/geocorp/overlap-circles';
 
 function camelToKebab(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -463,7 +459,6 @@ function MainFeatures() {
       <MainFeatureColumn
         icon={faServer}
         graphic={cube}
-        Graphic={Cube}
         // title='Game Servers & Peer-to-Peer'
         title='Dedicated Game Server Hosting'
         features={[
@@ -488,7 +483,6 @@ function MainFeatures() {
       <MainFeatureColumn
         icon={faChessKnight}
         graphic={overlapCircles}
-        Graphic={OverlapCircles}
         title='Matchmaking, Lobbies, & Parties'
         features={[
           // TODO: Add back once implemented
@@ -502,7 +496,6 @@ function MainFeatures() {
       <MainFeatureColumn
         icon={faUser}
         graphic={switchLines}
-        Graphic={SwitchLines}
         title='Accounts, Friends, & Presence'
         features={[
           { icon: faEnvelope, name: "Email, username, and OAuth support" },
@@ -514,7 +507,6 @@ function MainFeatures() {
       <MainFeatureColumn
         icon={faPuzzle}
         graphic={portal}
-        Graphic={Portal}
         title='100% Modular & Scriptable'
         features={[
           // { icon: faCode, name: "Write server-side logic in TypeScript (or use your own API server)" },
@@ -531,7 +523,7 @@ function MainFeatures() {
   );
 }
 
-function MainFeatureColumn({ icon, graphic, Graphic, title, features, buttons }) {
+function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
   return (
     <div
       className={clsx(
@@ -542,9 +534,7 @@ function MainFeatureColumn({ icon, graphic, Graphic, title, features, buttons })
       )}>
       {/* Logo */}
       <div className='flex items-center justify-center h-48'>
-        {/*<Image src={graphic} className='max-w-40 max-h-40 opacity-95' />*/}
-        <Image src={graphic} className='max-w-full h-48 opacity-95' />
-        {/*<Graphic className="fill-cream-100 opacity-85 max-w-40 max-h-40 mx-auto" />*/}
+        <Image src={graphic} className='max-w-full h-40 opacity-95' />
       </div>
       <div className='h-14' />
 

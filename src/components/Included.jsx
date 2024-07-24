@@ -20,7 +20,7 @@ export function IncludedFeature({ icon, title, usually, on }) {
     )}>
       {/* BG */}
       <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
         className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
       ></div>
 

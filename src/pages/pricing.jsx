@@ -209,7 +209,7 @@ function PricingCard({ title, price, features, options, ...props }) {
     )} {...props}>
       {/* BG */}
       <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
         className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
       ></div>
 
@@ -553,7 +553,7 @@ function PredictablePricingFeature({ title, description, ...props }) {
     <div className={clsx('relative border-4 border-cream-100/5 text-cream-100 px-6 py-4', 'flex flex-col gap-4', 'rounded-md')} {...props}>
       {/* BG */}
       <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
         className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
       ></div>
 
