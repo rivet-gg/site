@@ -9,6 +9,7 @@ import LevelUpSection from '@/components/LevelUpSection';
 import { CheckIcon, MinusIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
+import grainDark from '@/images/effects/grain-dark.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PatternButton } from '@/components/PatternButton';
 import TimeSeriesChart from '@/components/TimeSeriesChart';
@@ -146,6 +147,7 @@ export default function Pricing({ autoscalingData }) {
           'border-4 border-cream-100/10 px-6 py-4',
           'flex flex-row items-center gap-4',
           'font-semibold text-cream-100/80 hover:text-cream-100',
+          'rounded-sm'
         )}
         href='https://b8v8449klvp.typeform.com/to/ZtMjRE7f'
         target='_blank'
@@ -198,11 +200,20 @@ export default function Pricing({ autoscalingData }) {
 function PricingCard({ title, price, features, options, ...props }) {
   return (
     <div className={clsx(
-      'border-4 border-cream-100/10 text-cream-100',
+      'relative',
+      'border-4 border-cream-100/5 text-cream-100',
       'flex flex-col gap-2',
       'p-4',
-      'xl:gap-4 xl:p-8'
+      'xl:gap-4 xl:p-8',
+      'rounded-md',
     )} {...props}>
+      {/* BG */}
+      <div
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
+      ></div>
+
+      {/* Content */}
       <div className='text-3xl font-display font-bold tracking-tight text-cream-100'>{title}</div>
       {price && <div className='text-cream-100'>{price}</div>}
       <ul className='list-disc pl-5'>
@@ -213,39 +224,6 @@ function PricingCard({ title, price, features, options, ...props }) {
         {options}
       </div>
     </div>
-  );
-}
-
-function IncludedFeature({ icon, title, usually, on }) {
-  return (
-    <div className={clsx(
-      'relative transition text-sm font-semibold text-cream-100 border-2 bg-charcole-950 border-cream-100/50',
-      'flex flex-col px-5 py-8',
-      'text-center items-center'
-    )}>
-      <div className='flex h-16 w-16 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%] text-xl'>
-        <FontAwesomeIcon icon={icon} />
-      </div>
-      <div className="text-lg font-semibold leading-tight mt-6">{title}</div>
-      {usually && <div className="font-semibold text-cream-100/50 text-sm leading-tight mt-2">Usually <Tooltip tip={on}>{usually}</Tooltip></div>}
-    </div>
-  );
-}
-
-function ModuleCard({ title, icon, href, comingSoon }) {
-  return (
-    <PatternButton href={href} target={href.startsWith("/") ? null : "_blank"}>
-      <div className='flex flex-row items-center justify-start justify-between h-full px-5 py-4'>
-        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-white/[8%] outline outline-1 outline-white/[16%]'>
-          <FontAwesomeIcon icon={icon} />
-        </div>
-        <div className="inline-flex flex-col ml-4 flex-grow">
-          <span className="text-lg font-semibold text-left leading-tight">{title}</span>
-          {comingSoon && <span className="text-xs font-semibold text-cream-100/50 text-sm leading-tight">Coming mid-2024</span>}
-        </div>
-        <FontAwesomeIcon icon={faArrowRight} />
-      </div>
-    </PatternButton>
   );
 }
 
@@ -572,7 +550,14 @@ function calculateStaticServerCount({ serverCount, regionCount }) {
 
 function PredictablePricingFeature({ title, description, ...props }) {
   return (
-    <div className={clsx('border-4 border-cream-100/10 text-cream-100 px-6 py-4', 'flex flex-col gap-4')} {...props}>
+    <div className={clsx('relative border-4 border-cream-100/5 text-cream-100 px-6 py-4', 'flex flex-col gap-4', 'rounded-md')} {...props}>
+      {/* BG */}
+      <div
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
+      ></div>
+
+      {/* Content */}
       <div className='text-3xl font-display font-bold tracking-tight text-cream-100'>{title}</div>
       <p>{description}</p>
       <div className='flex-grow' />

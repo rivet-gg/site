@@ -23,6 +23,7 @@ const variantClasses = {
       'px-3 py-1',
       // hover
       'hover:bg-orange-400 hover:text-charcole-950',
+      'rounded-sm',
     ),
     highlight: ''
   },
@@ -31,7 +32,8 @@ const variantClasses = {
       'text-sm font-semibold text-cream-100',
       'border-2 border-cream-100',
       'bg-transparent hover:bg-cream-100 hover:text-charcole-950',
-      'px-3 py-1'
+      'px-3 py-1',
+      'rounded-sm',
     ),
     highlight: ''
   },
@@ -44,6 +46,7 @@ const variantClasses = {
       'relative border-2 border-cream-100 text-cream-100 transition-all',
       "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
       "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
+      'rounded-sm',
       // hover
       'hover:border-orange-400',
       // selected
@@ -64,6 +67,7 @@ const variantClasses = {
       'relative border-2 border-cream-100/20 text-cream-100 transition-all',
       "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
       "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
+      'rounded-sm',
       // hover
       'hover:border-orange-400',
       // selected
@@ -83,6 +87,7 @@ const variantClasses = {
       'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
       'relative transition-all',
       'bg-cream-100 before:bg-cream-100 after:bg-cream-100',
+      'rounded-sm',
       // make it white
       'bg-cream-100 text-charcole-950 before:bg-cream-100',
       'before:opacity-100 after:opacity-0',
@@ -108,7 +113,8 @@ const variantClasses = {
       'font-sm text-semibold text-black',
       'border-2 border-black',
       'bg-transparent hover:bg-black hover:text-cream-100',
-      'px-3.5 py-2.5'
+      'px-3.5 py-2.5',
+      'rounded-sm',
     ),
     highlight: ''
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import grainDark from '@/images/effects/grain-dark.png';
 import { Tooltip } from "@/components/mdx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,12 +11,20 @@ import clsx from 'clsx';
 export function IncludedFeature({ icon, title, usually, on }) {
   return (
     <div className={clsx(
-      'relative transition text-sm font-semibold text-cream-100 border-4 bg-charcole-950 border-cream-100/10',
+      'relative transition text-sm font-semibold text-cream-100 border-4 border-cream-100/5',
       'flex flex-col',
       'text-center items-center',
       'p-4',
-      'xl:gap-4 xl:p-8'
+      'xl:gap-4 xl:p-8',
+      'rounded-md'
     )}>
+      {/* BG */}
+      <div
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
+        className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
+      ></div>
+
+      {/* Content */}
       <div className='flex h-16 w-16 items-center justify-center text-xl'>
         <FontAwesomeIcon icon={icon} />
       </div>

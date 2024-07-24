@@ -21,6 +21,10 @@ import IncludedHighlights from '@/components/highlights';
 import grainDark from '@/images/effects/grain-dark.png';
 import grid from '@/images/effects/grid.png';
 import egg from '@/images/graphics/egg.png';
+import cube from '@/images/graphics/geocorp/cube.svg';
+import overlapCircles from '@/images/graphics/geocorp/overlap-circles.svg';
+import portal from '@/images/graphics/geocorp/portal.svg';
+import switchLines from '@/images/graphics/geocorp/switch-lines.svg';
 import {
   faBallotCheck,
   faDatabase,
@@ -164,6 +168,10 @@ import opengbMeta from '@/generated/meta.json' assert { type: "json" };
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';
+import { Cube } from '../components/graphics/geocorp/cube';
+import { Portal } from '../components/graphics/geocorp/portal';
+import { SwitchLines } from '../components/graphics/geocorp/switch-lines';
+import { OverlapCircles } from '../components/graphics/geocorp/overlap-circles';
 
 function camelToKebab(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -310,11 +318,23 @@ export default function Index() {
 
         <div className='h-32'/>
 
-        <MainFeatures />
+        <div className='relative py-16 border-t-2 border-cream-100/10'>
+          {/* Background */}
+          <div
+            style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.4 }}
+            className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
+          ></div>
+          <div 
+            className='pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-[#090909] opacity-100 -z-10'
+          ></div>
 
-        <div className='h-16'/>
+      
+          <MainFeatures />
 
-        <AllModules />
+          <div className='h-32'/>
+
+          <AllModules />
+        </div>
 
         <div className='h-60'/>
 
@@ -437,12 +457,15 @@ function Subtitle() {
 function MainFeatures() {
   return (
     <div className={clsx(
-      'mx-auto w-full max-w-[1800px] px-4 gap-4 sm:px-8 sm:gap-8',
+      'mx-auto w-full max-w-[1800px] px-4 gap-4 sm:px-12 sm:gap-12',
       'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
     )}>
       <MainFeatureColumn
         icon={faServer}
-        title='Game Servers & Peer-to-Peer'
+        graphic={cube}
+        Graphic={Cube}
+        // title='Game Servers & Peer-to-Peer'
+        title='Dedicated Game Server Hosting'
         features={[
           // { icon: faChessKnight, name: "Easy to set up" },
           // { icon: faChessKnight, name: "Global low-latency network" },
@@ -458,11 +481,14 @@ function MainFeatures() {
         ]}
         buttons={[
           { name: "Documentation", href: "/docs/dynamic-servers" },
-          { name: "Get up to $120,000 in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
+          // { name: "Powerful Low-Level API", href: "/docs/core" },
+          // { name: "Get up to $120,000 in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
         ]}
       />
       <MainFeatureColumn
         icon={faChessKnight}
+        graphic={overlapCircles}
+        Graphic={OverlapCircles}
         title='Matchmaking, Lobbies, & Parties'
         features={[
           // TODO: Add back once implemented
@@ -475,6 +501,8 @@ function MainFeatures() {
       />
       <MainFeatureColumn
         icon={faUser}
+        graphic={switchLines}
+        Graphic={SwitchLines}
         title='Accounts, Friends, & Presence'
         features={[
           { icon: faEnvelope, name: "Email, username, and OAuth support" },
@@ -485,14 +513,16 @@ function MainFeatures() {
       />
       <MainFeatureColumn
         icon={faPuzzle}
+        graphic={portal}
+        Graphic={Portal}
         title='100% Modular & Scriptable'
         features={[
           // { icon: faCode, name: "Write server-side logic in TypeScript (or use your own API server)" },
           { icon: faPuzzle, name: "Pick and choose modules to use" },
-          { icon: faCode, name: "Easily write server-side logic" },
+          { icon: faCode, name: "Easily write server-side scripts & real-time actors" },
           { icon: faDatabase, name: <><Tooltip tip="Powered by Postgres">Database</Tooltip> included for free</> },
           // TODO: Add WebSockets when ready
-          { icon: faBolt, name: <>Realtime functionality with actors</> },
+          // { icon: faBolt, name: <>Realtime functionality with actors</> },
           { icon: faEngine, name: <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-400 hover:text-orange-300'>Open Game Backend</a></> },
         ]}
         buttons={[{ name: "Documentation", href: "https://opengb.dev", target: "_blank" }]}
@@ -501,63 +531,58 @@ function MainFeatures() {
   );
 }
 
-function MainFeatureColumn({ icon, title, features, buttons }) {
+function MainFeatureColumn({ icon, graphic, Graphic, title, features, buttons }) {
   return (
     <div
       className={clsx(
         'relative',
-        `p-10 text-left`,
-        'flex flex-col items-start justify-start',
-        'border-2 border-cream-100/20',
-        'col-span-1'
+        `h-full text-left`,
+        'flex flex-col',
+        'col-span-1',
       )}>
-      {/* Background */}
-      <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.3 }}
-        className='pointer-events-none absolute inset-0 bg-repeat transition'></div>
+      {/* Logo */}
+      <div className='flex items-center justify-center h-48'>
+        {/*<Image src={graphic} className='max-w-40 max-h-40 opacity-95' />*/}
+        <Image src={graphic} className='max-w-full h-48 opacity-95' />
+        {/*<Graphic className="fill-cream-100 opacity-85 max-w-40 max-h-40 mx-auto" />*/}
+      </div>
+      <div className='h-14' />
 
-      <div className='flex flex-col h-full z-50'>
-        {/* Icon */}
-        {/* <FontAwesomeIcon icon={icon} className='pb-3 text-4xl text-cream-100' /> */}
-        {/* <div className='flex justify-center items-center'>
-          <Image src={egg} style='mx-auto' height={120} />
-        </div> */}
-
-        {/* Title */}
-        <h2 className='font-display text-3xl font-semibold text-cream-100'>{title}</h2>
-        <div className='mt-8 flex max-w-2xl flex-col items-stretch gap-4'>
-          {features.map((item, i) => (
-            <div key={i} className='flex flex-row items-center gap-3 font-semibold text-cream-100/90'>
-              {/* <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
-                {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
-              </div> */}
-              <div className='flex flex-shrink-0 h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
-                {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
-              </div>
-              <span>{item.name}</span>
+      {/* Title */}
+      <h2 className='font-display text-3xl font-semibold text-cream-100'>{title}</h2>
+      <div className='mt-8 flex max-w-2xl flex-col items-stretch gap-4'>
+        {features.map((item, i) => (
+          <div key={i} className='flex flex-row items-center gap-3 font-semibold text-cream-100/90'>
+            {/* <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
+              {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
+            </div> */}
+            {/*<div className='flex flex-shrink-0 h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>*/}
+            <div className='flex flex-shrink-0 h-9 w-9 items-center justify-center'>
+              {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
             </div>
-          ))}
-        </div>
+            <span>{item.name}</span>
+          </div>
+        ))}
+      </div>
 
-        {/* Spacer */}
-        <div className='grow min-h-4'></div>
+      {/* Spacer */}
+      <div className='grow min-h-4'></div>
 
-        {/* Buttons */}
-        <div className='flex flex-col gap-2 mt-6'>
-          {
-            buttons.map((button, i) => (
-              <a
-                key={i}
-                href={button.href}
-                target={button.target}
-                rel='noreferrer'
-                className={clsx('flex items-center justify-left gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm', button.classes)}>
-                {button.name}
-                <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
-              </a>
-            ))
-          }
-        </div>
+      {/* Buttons */}
+      <div className='flex flex-col gap-2 mt-6'>
+        {
+          buttons.map((button, i) => (
+            <a
+              key={i}
+              href={button.href}
+              target={button.target}
+              rel='noreferrer'
+              className={clsx('flex items-center justify-left gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm', button.classes)}>
+              {button.name}
+              <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+            </a>
+          ))
+        }
       </div>
     </div>
   );
