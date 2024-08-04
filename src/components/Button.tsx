@@ -116,6 +116,7 @@ const variantClasses = {
       'rounded px-4 py-2',
       'text-sm font-bold',
       'bg-cream-100 text-charcole-950',
+      'border-2 border-charcole-950/15',
       ...commonAnimationClasses,
       'relative',
       'before:bg-cream-100 after:bg-cream-100',
