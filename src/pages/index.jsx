@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { PatternButton } from '@/components/PatternButton';
+import CodeSection from '@/components/CodeSection';
 import MainFeatures from '@/components/MainFeatures';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -622,130 +623,6 @@ function formatNumber(num) {
 //   );
 // }
 
-const ENGINE_PAGES = [
-  {
-    name: 'Godot',
-    image: imgStepsGodot,
-    learnUrl: '/learn/godot'
-  },
-  {
-    name: 'Unity',
-    image: imgStepsUnity,
-    learnUrl: '/learn/unity',
-    preview: true
-  },
-  {
-    name: 'Unreal',
-    image: imgStepsUnreal,
-    learnUrl: '/learn/unreal',
-    preview: true
-  },
-  {
-    name: 'HTML5',
-    image: imgStepsHtml5,
-    learnUrl: '/learn/html5'
-  },
-  {
-    name: 'Custom',
-    image: imgStepsCustom,
-    learnUrl: '/learn/custom'
-  }
-];
-
-function CodeSection() {
-  const [page, setPage] = useState({ index: 0, dir: 1 });
-
-  const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
-
-  return (
-    <div className='py-30 flex flex-col items-center gap-12 px-4 md:py-48'>
-      {/* <BigAssIcon icon={faEngine} color='text-cream-100' /> */}
-
-      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your <span className='underline'>game engine</span> and <span className='underline'>networking framework</span>
-      </h2> */}
-
-      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your game engine and networking framework.
-      </h2> */}
-
-      <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your game engine
-      </h2>
-
-      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet works with your <span className='underline'>game engine</span> <FontAwesomeIcon icon={faEngine} /> and{' '}
-        <span className='underline'>networking framework</span> <FontAwesomeIcon icon={faEthernet} />
-      </h2> */}
-
-      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Works with your game engine <FontAwesomeIcon icon={faEngine} className='text-red-500 mx-2' /> and networking framework <FontAwesomeIcon icon={faEthernet} className='text-blue-500 mx-2' />
-      </h2> */}
-
-      <div className='flex w-full flex-col items-stretch gap-2'>
-        {/* Engine tabs */}
-        <div className='flex flex-wrap justify-center gap-2'>
-          {ENGINE_PAGES.map((engine, i) => (
-            <Button key={i} variant='juicy' highlight={i == page.index} onMouseEnter={() => changePage(i)}>
-              {engine.name}
-            </Button>
-          ))}
-        </div>
-
-        {/* Current engine */}
-        <EnginePages page={page} onChangePage={setPage} />
-      </div>
-    </div>
-  );
-}
-
-function EnginePages({ page, onChangePage }) {
-  // TODO: Is this SEO friendly?
-  return (
-    <div className='relative h-[300px] md:h-[580px]'>
-      <AnimatePresence initial={false} custom={page.dir}>
-        <motion.div
-          key={page.index}
-          className='absolute flex w-full flex-col items-center'
-          custom={page.dir}
-          variants={variants}
-          initial='enter'
-          animate='center'
-          exit='exit'
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag='x'
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-
-            if (swipe < -swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, 1, ENGINE_PAGES));
-            } else if (swipe > swipeConfidenceThreshold) {
-              onChangePage(paginate(page.index, -1, ENGINE_PAGES));
-            }
-          }}>
-          <EnginePageContents page={ENGINE_PAGES[page.index]} scale={page.index === 3} />
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
-
-function EnginePageContents({ page, scale }) {
-  return (
-    <>
-      <Image src={page.image} alt={`${page.name} Image`} className='mx-auto w-full max-w-7xl' />
-      <Button href={page.learnUrl} variant='juicy' className='px-6'>
-        Get started using {page.name} <span aria-hidden='true'>→</span>
-      </Button>
-    </>
-  );
-}
-
 const PHILOSOPHY_ITEMS = [
   { icon: faFileCertificate, title: 'Permissive License (Apache 2.0)' },
   { icon: faLock, title: 'Audit security' },
@@ -757,13 +634,22 @@ const PHILOSOPHY_ITEMS = [
 function Philosophy() {
   return (
     <div className='main-content-container flex flex-col items-center py-20 md:py-40'>
+
       <div
         className={clsx(
-          'border-2 border-cream-100/25',
+          'relative',
+          'border-4 border-cream-100/5',
           'mx-4',
           'sm:px-16 sm:pb-14 sm:pt-16',
-          'px-6 pb-6 pt-6'
+          'px-6 pb-6 pt-6',
+          'rounded-md'
         )}>
+        {/* BG */}
+        <div
+          style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
+          className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
+        ></div>
+
         {/* Title */}
         {/* <BigAssIcon icon={faCodeBranch} color='text-cream-100' /> */}
 
