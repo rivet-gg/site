@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import CodeSection from '@/components/CodeSection';
 import ProductSection from '@/components/ProductSection';
 import MainFeatures from '@/components/MainFeatures';
+import Earth from '@/components/Earth';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
@@ -95,26 +96,19 @@ export default function Index() {
             <AllModules />
           </div>
 
-          <div className='h-64' />
-
-          <IncludedSection />
+          <PoweringPlay />
 
           <div className='h-40' />
-
-          {/* <div className='px-6 py-40 lg:px-8'>
-            <IncludedHighlights />
-          </div> */}
-
-          {/* <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'> */}
-          <div className='main-content-container mx-auto px-6'>
-            <PoweringPlay />
-          </div>
 
           <ProductSection />
 
           <CodeSection />
 
           <div className='h-48' />
+
+          <IncludedSection />
+
+          <div className='h-64' />
 
           <div className='main-content-container mx-auto px-6'>
             <AdaptableSection />
@@ -686,11 +680,18 @@ const GAME_GENRES = [
 
 function PoweringPlay() {
   return (
-    <div className='flex h-[70vh] items-center justify-center'>
+    <div className={clsx('relative flex h-[80vh] items-center justify-center', 'border-b-2 border-cream-100/10')}>
+      {/* Background earth */}
+      <div className='absolute w-full h-full -z-10 transform'>
+        <Earth className='h-full w-auto object-cover brightness-[0.4] contrast-[1.4] opacity-50 grayscale filter' />
+      </div>
+
+      {/* Content */}
       <h3
         className={clsx(
           'text-center font-display tracking-tight text-cream-100',
-          'xs:text-2xl text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+          'xs:text-2xl text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
+          'drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]'
         )}>
         {/* Online indicator */}
         <div
