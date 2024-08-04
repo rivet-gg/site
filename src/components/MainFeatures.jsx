@@ -36,7 +36,7 @@ export default function MainFeatures() {
       <MainFeatureColumn
         icon={faServer}
         title='Dedicated Game Server Hosting'
-        description={<>Includes low-latency DDoS mitigation. Autoscaling & <Tooltip tip='Boot servers on-demand in less than 5 seconds'>instant servers</Tooltip>. Monitoring & crash reporting. Supports TCP, UDP, WebSockets, & <Tooltip tip='WebRTC, ENet, KPC'>more</Tooltip>.</>}
+        description={<>Autoscaling & <Tooltip tip='Boot servers on-demand in less than 5 seconds'>instant servers</Tooltip>. Includes DDoS mitigation, monitoring, & crash reporting. Supports TCP, UDP, WebSockets, & <Tooltip tip='WebRTC, ENet, KPC'>more</Tooltip>.</>}
         buttons={[
           { name: 'Documentation', href: '/docs/dynamic-servers' }
         ]}
@@ -44,13 +44,13 @@ export default function MainFeatures() {
       <MainFeatureColumn
         icon={faChess}
         title='Matchmaking, Lobbies, & Parties'
-        description='Supports casual, competitive, MMO, and turn-based. Supports server-authoritative, P2P, and async multiplayer. Works with existing multiplayer.'
+        description='Supports casual, competitive, MMO, and turn-based. Works with server-authoritative, P2P, & async multiplayer.'
         buttons={[{ name: 'Documentation', href: '/docs/matchmaker' }]}
       />
       <MainFeatureColumn
         icon={faAddressCard}
         title='Accounts, Friends, & Presence'
-        description='Email, username, and OAuth support. Support social logins including Google, Twitch, Discord, and more. Display friends online & join lobbies.'
+        description={<>Display friends online & facilitate playing together. Authenticate with email, username, or <Tooltip tip='Google, Twitch, Discord, and more'>social</Tooltip>.</>}
         buttons={[
           { name: 'Documentation', href: 'https://opengb.dev/modules/auth/overview', target: '_blank' }
         ]}
@@ -59,7 +59,7 @@ export default function MainFeatures() {
         icon={faPuzzle}
         title='100% Modular & Scriptable'
         description={<>Pick and choose modules to use. Easily write server-side scripts & real-time actors. <Tooltip tip='Powered by Postgres'>Database</Tooltip> included for free. Powered by <a href='https://opengb.dev' target='_blank' rel='noreferrer' className='text-orange-400 hover:text-orange-300'>Open Game Backend</a>.</>}
-        buttons={[{ name: 'Documentation', href: 'https://opengb.dev', target: '_blank' }]}
+        buttons={[{ name: 'Documentation', href: 'https://opengb.dev/docs/quickstart', target: '_blank' }]}
       />
     </div>
   );

@@ -718,13 +718,12 @@ function AdaptableSection() {
   return (
     <div className='mx-auto flex max-w-6xl flex-col px-6 lg:px-8'>
       <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
-        {/* {'Built from the Ground Up to Grow with Your Needs'} */}
         {'Need even more customization?'}
       </h2>
       <div className={clsx('mt-16 grid w-full gap-4', 'grid-cols-1 sm:grid-cols-2')}>
         <AdaptableFeature
-          title='Custom backend modules, no server hassels'
-          description='Write backend modules with TypeScript, Postgres, and actors. Auto-generate SDKs for your module to use in engine. Reuse modules across multiple games with registries.'
+          title='Custom modules without server hassels'
+          description='Write backend modules with TypeScript, Postgres, and real-time actors. Auto-generate SDKs for your module to use in engine. Reuse modules across multiple games with registries.'
           docsHref='https://opengb.dev/docs/build/overview'
         />
         <AdaptableFeature

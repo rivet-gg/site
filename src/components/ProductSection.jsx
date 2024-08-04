@@ -98,7 +98,7 @@ function ProductPages({ page, onChangePage }) {
 function ProductPageContents({ page, scale }) {
   return (
     <>
-      <div className='text-cream-100 text-center max-w-xl'>{page.description}</div>
+      <p className='text-cream-100 text-center max-w-xl'>{page.description}</p>
       <div className='flex flex-grow items-center justify-center overflow-hidden'>
         <div className='flex h-full items-center justify-center'>
           <Image

@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { Button } from '@/components/Button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEngine, faEthernet } from '@fortawesome/sharp-solid-svg-icons';
+import { faCheck } from '@fortawesome/sharp-solid-svg-icons';
+import { Tooltip } from '@/components/mdx';
 
 import imgStepsGodot from '@/images/engine-integration/godot.png';
 import imgStepsUnity from '@/images/engine-integration/unity.png';
@@ -47,10 +48,25 @@ export default function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='py-30 flex flex-col items-center gap-16 px-4 md:py-48'>
+    <div className='py-30 flex flex-col items-center px-4 gap-8 md:py-48'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Built Right into Your Favorite Engine
+        Seamlessly Built into Your Favorite Engine
       </h2>
+
+      <ul className='text-cream-100 max-w-xl list-none mx-auto'>
+        {[
+          'Create & deploy a multiplayer game from scratch in under 1 minute',
+          <>Deploy existing multiplayer games using integrations with existing <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
+          'Powerful local development tooling',
+          'One-click deploy to playtest',
+          'High quality SDKs & documentation',
+        ].map((item, index) => (
+          <li key={index} className='flex items-start mb-2'>
+            <FontAwesomeIcon icon={faCheck} className='text-orange-400 mr-2 mt-1 flex-shrink-0' />
+            <span className='flex-1'>{item}</span>
+          </li>
+        ))}
+      </ul>
 
       <div className='flex w-full flex-col items-stretch gap-2'>
         {/* Engine tabs */}
