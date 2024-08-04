@@ -5,10 +5,10 @@ import 'chartjs-adapter-date-fns';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale);
 
-export default function TimeSeriesChart({ data }) {
+export default function TimeSeriesChart({ data, options }) {
   const max = data.datasets.map(x => x.data.reduce((acc, curr) => Math.max(acc, curr), 0)).reduce((acc, curr) => Math.max(acc, curr), 0);
 
-  const options = {
+  options = options ?? {
     responsive: true,
     plugins: {
       legend: {

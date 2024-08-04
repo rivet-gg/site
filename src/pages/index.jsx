@@ -25,6 +25,7 @@ import cube from '@/images/graphics/geocorp/cube.svg';
 import overlapCircles from '@/images/graphics/geocorp/overlap-circles.svg';
 import portal from '@/images/graphics/geocorp/portal.svg';
 import switchLines from '@/images/graphics/geocorp/switch-lines.svg';
+import TimeSeriesChart from '@/components/TimeSeriesChart';
 import {
   faBallotCheck,
   faDatabase,
@@ -107,7 +108,7 @@ import {
   faCoin,
   faGaugeCircleMinus,
   faFileArrowUp,
-  faEnvelope,
+  faEnvelope
 } from '@fortawesome/sharp-solid-svg-icons';
 import { Tooltip } from '@/components/mdx';
 import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.svg';
@@ -164,7 +165,7 @@ import imgStepsCustom from '@/images/engine-integration/custom.png';
 import { faPuzzle, faPlus, faGears, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
 
-import opengbMeta from '@/generated/meta.json' assert { type: "json" };
+import opengbMeta from '@/generated/meta.json' assert { type: 'json' };
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';
@@ -179,7 +180,6 @@ function kebabToUpperCamel(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join('');
 }
-
 
 let supportedEngines = [
   {
@@ -290,7 +290,9 @@ let TEMPLATES = [
   }
 ];
 
-const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) => (a[1].config.name ?? "").localeCompare(b[1].config.name));
+const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) =>
+  (a[1].config.name ?? '').localeCompare(b[1].config.name)
+);
 
 export default function Index() {
   return (
@@ -312,38 +314,35 @@ export default function Index() {
         {/* <RainbowBar className='max-w-5xl mx-auto h-1' /> */}
         {/* <RainbowBar className='w-full h-1' /> */}
 
-        <div className='h-32'/>
+        <div className='h-32' />
 
-        <div className='relative py-16 border-t-2 border-cream-100/10'>
+        <div className='relative border-t-2 border-cream-100/10 py-16'>
           {/* Background */}
           <div
             style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.4 }}
-            className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
-          ></div>
-          <div 
-            className='pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-[#090909] opacity-100 -z-10'
-          ></div>
+            className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+          <div className='pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#090909] opacity-100'></div>
 
-      
           <MainFeatures />
 
-          <div className='h-32'/>
+          <div className='h-32' />
 
           <AllModules />
         </div>
 
-        <div className='h-60'/>
+        <div className='h-60' />
 
         <IncludedSection />
 
-        <div className='h-40'/>
+        <div className='h-40' />
 
         {/* <div className='px-6 py-40 lg:px-8'>
           <IncludedHighlights />
         </div> */}
 
-        <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'>
-          <CaseStudies />
+        {/* <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'> */}
+        <div className='main-content-container mx-auto px-6'>
+          <GameDevsLove />
         </div>
 
         <CodeSection />
@@ -418,13 +417,18 @@ function Subtitle() {
         )}>
         The Only Backend Your Game Needs
       </h1>
-      <div className='text-center font-display text-3xl tracking-tight text-cream-100/80 mt-4'>Supports Godot, Unity, Unreal Engine, HTML5, and Custom Engines.</div>
-      <div className={clsx(
-        'text-2xl',
-        'text-orange-500 italic',
-        'text-center font-display tracking-tight text-cream-100/80',
-        'mt-3'
-      )}>Open-Source & Self-Hostable.</div>
+      <div className='mt-4 text-center font-display text-3xl tracking-tight text-cream-100/80'>
+        Supports Godot, Unity, Unreal Engine, HTML5, and Custom Engines.
+      </div>
+      <div
+        className={clsx(
+          'text-2xl',
+          'italic text-orange-500',
+          'text-center font-display tracking-tight text-cream-100/80',
+          'mt-3'
+        )}>
+        Open-Source & Self-Hostable.
+      </div>
 
       {/* CTA */}
       <div className='pointer-events-auto mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
@@ -452,10 +456,11 @@ function Subtitle() {
 
 function MainFeatures() {
   return (
-    <div className={clsx(
-      'mx-auto w-full max-w-[1800px] px-4 gap-4 sm:px-12 sm:gap-12',
-      'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
-    )}>
+    <div
+      className={clsx(
+        'mx-auto w-full max-w-[1800px] gap-4 px-4 sm:gap-12 sm:px-12',
+        'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4'
+      )}>
       <MainFeatureColumn
         icon={faServer}
         graphic={cube}
@@ -467,15 +472,30 @@ function MainFeatures() {
           // { icon: faChessKnight, name: "DDoS mitigation & SSL (no added latency)" },
           // { icon: faChessKnight, name: "DDoS mitigation (no added latency)" },
           // { icon: faShieldAlt, name: <span><Tooltip tip={<>Read more about Game Guard <a href="/docs/dynamic-servers/concepts/game-guard">here</a>.</>}>DDoS mitigation</Tooltip></span> },
-          { icon: faShieldAlt, name: "Low-latency, free DDoS mitigation" },
-          { icon: faChartLine, name: <>Autoscaling & <Tooltip tip="Boot servers on-demand in less than 5 seconds">instant servers</Tooltip></> },
+          { icon: faShieldAlt, name: 'Low-latency, free DDoS mitigation' },
+          {
+            icon: faChartLine,
+            name: (
+              <>
+                Autoscaling &{' '}
+                <Tooltip tip='Boot servers on-demand in less than 5 seconds'>instant servers</Tooltip>
+              </>
+            )
+          },
           // { icon: faSyncAlt, name: "No-downtime deploys & instant rollbacks" },
-          { icon: faBug, name: "Monitoring & crash reporting" },
-          { icon: faPlug, name: <>Supports TCP, UDP, WebSockets, & <Tooltip tip="WebRTC, ENet, KPC">more</Tooltip></> },
+          { icon: faBug, name: 'Monitoring & crash reporting' },
+          {
+            icon: faPlug,
+            name: (
+              <>
+                Supports TCP, UDP, WebSockets, & <Tooltip tip='WebRTC, ENet, KPC'>more</Tooltip>
+              </>
+            )
+          }
           // { icon: faChessKnight, name: "Automatic SSL for WebSockets & TCP+TLS" },
         ]}
         buttons={[
-          { name: "Documentation", href: "/docs/dynamic-servers" },
+          { name: 'Documentation', href: '/docs/dynamic-servers' }
           // { name: "Powerful Low-Level API", href: "/docs/core" },
           // { name: "Get up to $120,000 in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
         ]}
@@ -487,22 +507,24 @@ function MainFeatures() {
         features={[
           // TODO: Add back once implemented
           // { icon: faSquare1, name: <>Get started with <Tooltip tip="1 line of code specifically in Godot & Unity">1 line of code</Tooltip></> },
-          { icon: faChessKnight, name: "Supports casual, competitive, MMO, and turn-based" },
-          { icon: faGameConsoleHandheld, name: "Supports server-authoritative, P2P, and async multiplayer" },
-          { icon: faSwap, name: "Works with existing multiplayer" },
+          { icon: faChessKnight, name: 'Supports casual, competitive, MMO, and turn-based' },
+          { icon: faGameConsoleHandheld, name: 'Supports server-authoritative, P2P, and async multiplayer' },
+          { icon: faSwap, name: 'Works with existing multiplayer' }
         ]}
-        buttons={[{ name: "Documentation", href: "/docs/matchmaker" }]}
+        buttons={[{ name: 'Documentation', href: '/docs/matchmaker' }]}
       />
       <MainFeatureColumn
         icon={faUser}
         graphic={switchLines}
         title='Accounts, Friends, & Presence'
         features={[
-          { icon: faEnvelope, name: "Email, username, and OAuth support" },
-          { icon: faSignInAlt, name: "Support social logins including Google, Twitch, Discord, and more" },
-          { icon: faUserFriends, name: "Display friends online & join lobbies" },
+          { icon: faEnvelope, name: 'Email, username, and OAuth support' },
+          { icon: faSignInAlt, name: 'Support social logins including Google, Twitch, Discord, and more' },
+          { icon: faUserFriends, name: 'Display friends online & join lobbies' }
         ]}
-        buttons={[{ name: "Documentation", href: "https://opengb.dev/modules/auth/overview", target: "_blank" }]}
+        buttons={[
+          { name: 'Documentation', href: 'https://opengb.dev/modules/auth/overview', target: '_blank' }
+        ]}
       />
       <MainFeatureColumn
         icon={faPuzzle}
@@ -510,14 +532,35 @@ function MainFeatures() {
         title='100% Modular & Scriptable'
         features={[
           // { icon: faCode, name: "Write server-side logic in TypeScript (or use your own API server)" },
-          { icon: faPuzzle, name: "Pick and choose modules to use" },
-          { icon: faCode, name: "Easily write server-side scripts & real-time actors" },
-          { icon: faDatabase, name: <><Tooltip tip="Powered by Postgres">Database</Tooltip> included for free</> },
+          { icon: faPuzzle, name: 'Pick and choose modules to use' },
+          { icon: faCode, name: 'Easily write server-side scripts & real-time actors' },
+          {
+            icon: faDatabase,
+            name: (
+              <>
+                <Tooltip tip='Powered by Postgres'>Database</Tooltip> included for free
+              </>
+            )
+          },
           // TODO: Add WebSockets when ready
           // { icon: faBolt, name: <>Realtime functionality with actors</> },
-          { icon: faEngine, name: <>Powered by <a href="https://opengb.dev" target="_blank" rel="noreferrer" className='text-orange-400 hover:text-orange-300'>Open Game Backend</a></> },
+          {
+            icon: faEngine,
+            name: (
+              <>
+                Powered by{' '}
+                <a
+                  href='https://opengb.dev'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='text-orange-400 hover:text-orange-300'>
+                  Open Game Backend
+                </a>
+              </>
+            )
+          }
         ]}
-        buttons={[{ name: "Documentation", href: "https://opengb.dev", target: "_blank" }]}
+        buttons={[{ name: 'Documentation', href: 'https://opengb.dev', target: '_blank' }]}
       />
     </div>
   );
@@ -525,18 +568,12 @@ function MainFeatures() {
 
 function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
   return (
-    <div
-      className={clsx(
-        'relative',
-        `h-full text-left`,
-        'flex flex-col',
-        'col-span-1',
-      )}>
+    <div className={clsx('relative', `h-full text-left`, 'flex flex-col', 'col-span-1')}>
       {/* Logo */}
-      <div className='flex items-center justify-center h-48'>
+      {/* <div className='flex items-center justify-center h-48'>
         <Image src={graphic} className='max-w-full h-40 opacity-95' />
       </div>
-      <div className='h-14' />
+      <div className='h-14' /> */}
 
       {/* Title */}
       <h2 className='font-display text-3xl font-semibold text-cream-100'>{title}</h2>
@@ -547,7 +584,7 @@ function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
               {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
             </div> */}
             {/*<div className='flex flex-shrink-0 h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>*/}
-            <div className='flex flex-shrink-0 h-9 w-9 items-center justify-center'>
+            <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center'>
               {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
             </div>
             <span>{item.name}</span>
@@ -556,23 +593,24 @@ function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
       </div>
 
       {/* Spacer */}
-      <div className='grow min-h-4'></div>
+      <div className='min-h-4 grow'></div>
 
       {/* Buttons */}
-      <div className='flex flex-col gap-2 mt-6'>
-        {
-          buttons.map((button, i) => (
-            <a
-              key={i}
-              href={button.href}
-              target={button.target}
-              rel='noreferrer'
-              className={clsx('flex items-center justify-left gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm', button.classes)}>
-              {button.name}
-              <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
-            </a>
-          ))
-        }
+      <div className='mt-6 flex flex-col gap-2'>
+        {buttons.map((button, i) => (
+          <a
+            key={i}
+            href={button.href}
+            target={button.target}
+            rel='noreferrer'
+            className={clsx(
+              'justify-left flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm',
+              button.classes
+            )}>
+            {button.name}
+            <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -580,36 +618,36 @@ function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
 
 function AllModules() {
   return (
-    <div className="mx-auto">
-      <h2 className='font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>...and so much more</h2>
-      <div className='flex flex-row flex-wrap justify-center gap-4 mt-12 max-w-4xl mx-auto'>
-        {
-          ALL_MODULES
-            .map(([key, x]) => (
-              <div key={key} className='group/tooltip relative inline'>
-                <Button variant="juicySubtle" href={`https://opengb.dev/modules/${key}/overview`} target="_blank">
-                  {x.config.icon && <FontAwesomeIcon icon={allFas[`fa${kebabToUpperCamel(x.config.icon)}`]} />}
-                  {x.config.name}
-                </Button>
-                <div className={clsx(
-                  'absolute top-[calc(100%+10px)] left-1/2 z-40',
-                  'hidden w-max max-w-[16rem] -translate-x-1/2',
-                  'border border-cream-100 bg-charcole-950',
-                  'px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100',
-                  'group-hover/tooltip:flex leading-tight'
-                )}>
-                  {x.config.description}
-                </div>
-              </div>
-            ))
-        }
+    <div className='mx-auto'>
+      <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+        ...and so much more
+      </h2>
+      <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
+        {ALL_MODULES.map(([key, x]) => (
+          <div key={key} className='group/tooltip relative inline'>
+            <Button variant='juicySubtle' href={`https://opengb.dev/modules/${key}/overview`} target='_blank'>
+              {x.config.icon && <FontAwesomeIcon icon={allFas[`fa${kebabToUpperCamel(x.config.icon)}`]} />}
+              {x.config.name}
+            </Button>
+            <div
+              className={clsx(
+                'absolute left-1/2 top-[calc(100%+10px)] z-40',
+                'hidden w-max max-w-[16rem] -translate-x-1/2',
+                'border border-cream-100 bg-charcole-950',
+                'px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100',
+                'leading-tight group-hover/tooltip:flex'
+              )}>
+              {x.config.description}
+            </div>
+          </div>
+        ))}
       </div>
-      <div className='flex flex-row flex-wrap justify-center gap-4 mt-12 max-w-4xl mx-auto'>
-        <Button variant="juicy" href="https://opengb.dev/build/overview" target="_blank">
+      <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
+        <Button variant='juicy' href='https://opengb.dev/build/overview' target='_blank'>
           <FontAwesomeIcon icon={faPlus} />
           Build Your Own Modules
         </Button>
-        <Button variant="juicy" href="https://github.com/rivet-gg/opengb-modules" target="_blank">
+        <Button variant='juicy' href='https://github.com/rivet-gg/opengb-modules' target='_blank'>
           <FontAwesomeIcon icon={faGears} />
           Modify Existing Modules
         </Button>
@@ -655,11 +693,13 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
       {...props}>
       {isHovered ? (
         <>
-          <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code{' '}
+          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
         </>
       ) : (
         <>
-          <FontAwesomeIcon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>} <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          <FontAwesomeIcon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>}{' '}
+          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
         </>
       )}
     </a>
@@ -1000,7 +1040,7 @@ function Philosophy() {
         </div>
 
         <div className='mt-8 flex justify-center sm:mt-12'>
-          <GitHubStars className='text-white/50 hover:text-white font-semibold' />
+          <GitHubStars className='font-semibold text-white/50 hover:text-white' />
         </div>
       </div>
     </div>
@@ -1100,12 +1140,50 @@ function paginate(page, dir, arr) {
   return { index: newPage % arr.length, dir };
 }
 
-const PlayHoursCounter = () => {
+// const PlayHoursCounter = () => {
+//   const [currentTime, setCurrentTime] = useState(Date.now());
+//   const [hasMounted, setHasMounted] = useState(false);
+
+//   const updateClock = () => {
+//     let time = (2400 / 60 / 60 / 1000) * (Date.now() - 1640995200000);
+//     setCurrentTime(Math.round(time));
+//   };
+
+//   useEffect(() => {
+//     setHasMounted(true);
+
+//     updateClock();
+
+//     const interval = setInterval(() => {
+//       updateClock();
+//     }, 100);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   if (!hasMounted) {
+//     return null;
+//   }
+
+//   const formattedTime = currentTime.toLocaleString();
+//   const timeElements = formattedTime.split('').map((char, index) => {
+//     const spanClass = isDigit(char) ? 'inline-block w-[0.52em]' : 'inline-block';
+//     return (
+//       <span key={index} className={`${spanClass} inline-block text-right`}>
+//         {char}
+//       </span>
+//     );
+//   });
+
+//   return <span>{timeElements}</span>;
+// };
+
+const PlaySessionsCounter = () => {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [hasMounted, setHasMounted] = useState(false);
 
   const updateClock = () => {
-    let time = (2400 / 60 / 60 / 1000) * (Date.now() - 1640995200000);
+    let time = (21126202 / 30 / 24 / 60 / 60 / 1000) * (Date.now() - 1640995200000);
     setCurrentTime(Math.round(time));
   };
 
@@ -1116,7 +1194,7 @@ const PlayHoursCounter = () => {
 
     const interval = setInterval(() => {
       updateClock();
-    }, 100);
+    }, 50);
 
     return () => clearInterval(interval);
   }, []);
@@ -1142,6 +1220,118 @@ function isDigit(char) {
   const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   return digits.indexOf(char) !== -1;
 }
+
+function GameDevsLove() {
+  return (
+    <div className='h-[70vh] max-w-1xl mx-auto text-center flex flex-row items-center justify-center'>
+      <OnlineIndicator />
+      <h3 className='font-display text-6xl tracking-tight text-cream-100'>
+        {/* Powering <PlayHoursCounter /> play hours and counting */}
+        <span className='opacity-75'>Powering</span> <PlaySessionsCounter /> <span className='opacity-75'>play sessions and counting</span>
+      </h3>
+    </div>
+  );
+}
+
+// function GameDevsLove({ autoscalingData }) {
+//   const [currentTime, setCurrentTime] = useState(null);
+//   const [graphData, setGraphData] = useState(null);
+
+//   useEffect(() => {
+//     // Set initial time and graph data
+//     const now = new Date();
+//     setCurrentTime(now);
+//     updateGraphData(now);
+
+//     // Update current time every second
+//     const timer = setInterval(() => {
+//       const now = new Date();
+//       setCurrentTime(now);
+//       updateGraphData(now);
+//     }, 1000);
+
+//     return () => clearInterval(timer);
+//   }, []);
+
+//   const updateGraphData = now => {
+//     if (!autoscalingData || !autoscalingData.labels || !autoscalingData.values) {
+//       console.error('Autoscaling data is missing or incomplete');
+//       return;
+//     }
+
+//     // Calculate the current index based on UTC time of day
+//     const minutesSinceMidnightUTC = now.getUTCHours() * 60 + now.getUTCMinutes();
+//     const currentIndex = Math.floor(minutesSinceMidnightUTC / 15);
+
+//     // Create new arrays for labels and values
+//     const newLabels = [];
+//     const newValues = [];
+
+//     // Get today's date at midnight UTC
+//     const todayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+
+//     // Populate the new arrays
+//     for (let i = 0; i < 97; i++) {
+//       const index = (currentIndex + i) % 96;
+//       const time = new Date(todayUTC.getTime() + (currentIndex + i) * 15 * 60 * 1000);
+//       newLabels.push(time.getTime());
+//       newValues.push(autoscalingData.values[index]);
+//     }
+
+//     setGraphData({
+//       labels: newLabels,
+//       datasets: [
+//         {
+//           data: newValues,
+//           borderColor: 'rgb(255, 118, 10)',
+//           fill: false,
+//           tension: 0.0,
+//           pointRadius: 0
+//         }
+//       ]
+//     });
+//   };
+
+//   return (
+//     <div className='flex flex-col'>
+//       {/* Title */}
+//       <div className='max-w-1xl mx-auto text-center'>
+//         <h3 className='font-display text-6xl tracking-tight text-cream-100'>Powering Billions Of Play Sessions</h3>
+//       </div>
+
+//       {/* Graph */}
+//       <div className='mt-10 w-full'>
+//         {graphData ? (
+//           <TimeSeriesChart data={graphData} />
+//         ) : (
+//           <div className='text-center text-cream-100'>Loading graph data...</div>
+//         )}
+//       </div>
+
+//       {/* Current time */}
+//       <div className='mt-4 text-center text-cream-100'>
+//         Current time (UTC):{' '}
+//         {currentTime
+//           ? currentTime.toLocaleTimeString('en-US', {
+//               hour: '2-digit',
+//               minute: '2-digit',
+//               second: '2-digit',
+//               hour12: false,
+//               timeZone: 'UTC'
+//             })
+//           : 'Loading...'}
+//       </div>
+
+//       {/* Play hours */}
+//       <div className='mt-10 flex w-full flex-row items-center justify-center text-sm font-bold uppercase text-white'>
+//         <OnlineIndicator />
+//         <span>
+//           <PlayHoursCounter /> play hours{' '}
+//         </span>
+//       </div>
+//     </div>
+//   );
+// }
 
 function CaseStudies({ props }) {
   let [hoverIdx, setHoverIdx] = useState(null);
@@ -1253,9 +1443,79 @@ function UpAndRunning() {
 
 function OnlineIndicator() {
   return (
-    <div className="relative mr-2.5 inline-block h-2.5 w-2.5 rounded-full bg-white before:absolute before:inset-0 before:h-2.5 before:w-2.5 before:animate-ping before:rounded-full before:bg-white before:opacity-70 before:content-['']"></div>
+    <div className="relative mr-8 inline-block h-7 w-7 rounded-full bg-orange-500 before:absolute before:inset-0 before:h-7 before:w-7 before:animate-ping before:rounded-full before:bg-orange-500 before:opacity-70 before:content-['']"></div>
   );
 }
+
+// export async function getStaticProps() {
+//   const fs = require('fs');
+//   const path = require('path');
+
+//   const filePath = path.join(process.cwd(), 'public', 'pricing', 'autoscaling-data.csv');
+//   const csvData = fs.readFileSync(filePath, 'utf8');
+
+//   // Parse data
+//   let lines = csvData.split('\n').map(line => line.split(','));
+//   const headersRaw = lines.shift();
+//   const headers = headersRaw.slice(1); // Get labels from the first row, excluding 'Time'
+//   let timestamps = lines.map(row => parseInt(row[0]));
+
+//   // Select a 24-hour slice starting at a relative offset
+//   const relativeOffset = 3 * 24 * 60 * 60 * 1000; // Example: 3 days offset in milliseconds
+//   const startTimestamp = timestamps[0] + relativeOffset;
+//   const startIndex = timestamps.findIndex(timestamp => timestamp >= startTimestamp);
+//   const endIndex = startIndex + 24 * 4; // 24 hours * 4 (15-minute intervals per hour)
+
+//   // Ensure we have a full 24 hours of data
+//   if (endIndex > timestamps.length) {
+//     console.warn('Not enough data for a full 24-hour slice. Adjusting start time.');
+//     const adjustedStartIndex = timestamps.length - 24 * 4;
+//     timestamps = timestamps.slice(adjustedStartIndex, timestamps.length);
+//     lines = lines.slice(adjustedStartIndex, timestamps.length);
+//   } else {
+//     timestamps = timestamps.slice(startIndex, endIndex);
+//     lines = lines.slice(startIndex, endIndex);
+//   }
+
+//   // Align to midnight
+//   const firstTimestamp = new Date(timestamps[0]);
+//   const midnightTimestamp = new Date(
+//     firstTimestamp.getFullYear(),
+//     firstTimestamp.getMonth(),
+//     firstTimestamp.getDate()
+//   ).getTime();
+//   const midnightIndex = timestamps.findIndex(timestamp => timestamp >= midnightTimestamp);
+
+//   timestamps = timestamps.slice(midnightIndex).concat(timestamps.slice(0, midnightIndex));
+//   lines = lines.slice(midnightIndex).concat(lines.slice(0, midnightIndex));
+
+//   // Generate labels and calculate values
+//   let labels = [];
+//   let values = [];
+
+//   for (let i = 0; i < 96; i++) {
+//     // 24 hours * 4 (15-minute intervals)
+//     const hours = Math.floor(i / 4);
+//     const minutes = (i % 4) * 15;
+//     labels.push(Date.UTC(2000, 0, 1, hours, minutes));
+
+//     const rowSum = lines[i].slice(1).reduce((sum, val) => sum + (parseInt(val) || 0), 0);
+//     values.push(rowSum);
+//   }
+
+//   // Normalize values
+//   const maxValue = Math.max(...values);
+//   values = values.map(value => value / maxValue);
+
+//   return {
+//     props: {
+//       autoscalingData: {
+//         labels,
+//         values
+//       }
+//     }
+//   };
+// }
 
 Index.description = 'Open-Source game infrastructure. Multiplayer game servers and modular backend.';
 Index.prose = false;
