@@ -341,7 +341,7 @@ function Title() {
         'md:h-[357px] md:max-w-3xl',
         'h-[45vw] w-full'
       )}>
-      <GlowVideo className='pointer-events-none absolute inset-0 z-50 h-full w-full object-cover mix-blend-screen' />
+      <GlowVideo className='pointer-events-none absolute inset-0 z-50 h-full w-full object-cover mix-blend-screen hue-rotate-[145deg]' />
 
       <div className={clsx('absolute inset-x-[52px] inset-y-[24px]')}>
         {/* Game Background */}
