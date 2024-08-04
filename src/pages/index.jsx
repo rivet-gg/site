@@ -22,6 +22,7 @@ import IncludedHighlights from '@/components/highlights';
 import grainDark from '@/images/effects/grain-dark.png';
 import grid from '@/images/effects/grid.png';
 import TimeSeriesChart from '@/components/TimeSeriesChart';
+import RotatingText from '@/components/RotatingText';
 import {
   faBallotCheck,
   faDatabase,
@@ -279,11 +280,7 @@ export default function Index() {
 
         <div className='h-32' />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={restOfPageControls}
-          transition={{ duration: 0.325 }}
-        >
+        <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
           <div className='relative border-t-2 border-cream-100/10 py-16'>
             {/* Background */}
             <div
@@ -457,7 +454,7 @@ function AllModules() {
                 'shadow-[0_4px_16px_0_rgba(0,0,0,0.7)]',
                 'transition-all duration-300 ease-in-out',
                 'opacity-0 group-hover/tooltip:opacity-100',
-                'transform scale-95 group-hover/tooltip:scale-100',
+                'scale-95 transform group-hover/tooltip:scale-100',
                 'pointer-events-none'
               )}>
               {x.config.description}
@@ -668,8 +665,12 @@ function CodeSection() {
         Rivet works with your <span className='underline'>game engine</span> and <span className='underline'>networking framework</span>
       </h2> */}
 
-      <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
+      {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
         Rivet works with your game engine and networking framework.
+      </h2> */}
+
+      <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
+        Rivet works with your game engine
       </h2>
 
       {/* <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
@@ -981,13 +982,45 @@ function isDigit(char) {
   return digits.indexOf(char) !== -1;
 }
 
+const GAME_GENRES = [
+  'FPS',
+  'MOBA',
+  'battle royale',
+  'MMO',
+  'racing',
+  'RTS',
+  'turn-based',
+  'party',
+  'mobile',
+  'console',
+  'web',
+  'casual'
+];
+
 function GameDevsLove() {
   return (
-    <div className='h-[70vh] max-w-1xl mx-auto text-center flex flex-row items-center justify-center'>
-      <OnlineIndicator />
-      <h3 className='font-display text-6xl tracking-tight text-cream-100'>
-        {/* Powering <PlayHoursCounter /> play hours and counting */}
-        <span className='opacity-75'>Powering</span> <PlaySessionsCounter /> <span className='opacity-75'>play sessions and counting</span>
+    <div className='flex h-[70vh] items-center justify-center'>
+      <h3
+        className={clsx(
+          'text-center font-display tracking-tight text-cream-100',
+          'xs:text-3xl text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
+        )}>
+        {/* Online indicator */}
+        <div
+          className={clsx(
+            'relative inline-block flex-none rounded-full bg-orange-500',
+            "before:absolute before:inset-0 before:animate-ping before:rounded-full before:bg-orange-500 before:opacity-70 before:content-['']",
+            'mb-0.5 mr-2 h-4 w-4',
+            'xs:mb-0.5 xs:mr-3 xs:h-5 xs:w-5',
+            'sm:mb-0.75 sm:mr-4 sm:h-6 sm:w-6',
+            'md:mb-1.5 md:mr-5 md:h-7 md:w-7',
+            'lg:mb-2 lg:mr-6 lg:h-8 lg:w-8',
+            'xl:mb-2.5'
+          )}></div>
+        <span className='opacity-75'>Powering</span> <PlaySessionsCounter />{' '}
+        <span className='opacity-75'>play sessions</span>
+        <br className='sm:hidden' /> <span className='opacity-75'>for</span>{' '}
+        <RotatingText texts={GAME_GENRES} /> <span className='opacity-75'>games</span>
       </h3>
     </div>
   );
@@ -1198,12 +1231,6 @@ function UpAndRunning() {
         </div>
       </div>
     </div>
-  );
-}
-
-function OnlineIndicator() {
-  return (
-    <div className="relative mr-8 inline-block h-7 w-7 rounded-full bg-orange-500 before:absolute before:inset-0 before:h-7 before:w-7 before:animate-ping before:rounded-full before:bg-orange-500 before:opacity-70 before:content-['']"></div>
   );
 }
 

@@ -72,8 +72,8 @@ function MainFeatureColumn({ icon, title, description, buttons }) {
     <div className={clsx('relative', 'h-full text-left', 'flex flex-col', 'col-span-1')}>
       <div className="flex items-start space-x-4 h-full">
         <div className="flex-shrink-0">
-          <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-orange-400/10">
-            <FontAwesomeIcon icon={icon} className="h-8 w-8 text-orange-400" />
+          <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-charcole-600/10 border-2 border-charcole-500/5">
+            <FontAwesomeIcon icon={icon} className="text-xl text-cream-100" />
           </div>
         </div>
         <div className="flex-grow flex flex-col h-full">
