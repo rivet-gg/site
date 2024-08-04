@@ -889,19 +889,19 @@ function GameDevsLove() {
       <h3
         className={clsx(
           'text-center font-display tracking-tight text-cream-100',
-          'xs:text-3xl text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
+          'text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
         )}>
         {/* Online indicator */}
         <div
           className={clsx(
             'relative inline-block flex-none rounded-full bg-orange-500',
             "before:absolute before:inset-0 before:animate-ping before:rounded-full before:bg-orange-500 before:opacity-70 before:content-['']",
-            'mb-0.5 mr-2 h-4 w-4',
-            'xs:mb-0.5 xs:mr-3 xs:h-5 xs:w-5',
-            'sm:mb-0.75 sm:mr-4 sm:h-6 sm:w-6',
-            'md:mb-1.5 md:mr-5 md:h-7 md:w-7',
-            'lg:mb-2 lg:mr-6 lg:h-8 lg:w-8',
-            'xl:mb-2.5'
+            'mb-0.5 mr-2.5 h-3 w-3',
+            'xs:mb-0.5 xs:mr-3 xs:h-4 xs:w-4',
+            'sm:mb-0.5 sm:mr-4 sm:h-5 sm:w-5',
+            'md:mb-0.75 md:mr-5 md:h-6 md:w-6',
+            'lg:mb-1.5 lg:mr-6 lg:h-7 lg:w-7',
+            'xl:mb-2 xl:mr-7 xl:h-8 xl:w-8'
           )}></div>
         <span className='opacity-75'>Powering</span> <PlaySessionsCounter />{' '}
         <span className='opacity-75'>play sessions</span>
