@@ -1,166 +1,31 @@
 'use client';
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import { PatternButton } from '@/components/PatternButton';
 import CodeSection from '@/components/CodeSection';
+import ProductSection from '@/components/ProductSection';
 import MainFeatures from '@/components/MainFeatures';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Resource } from '@/components/Resources';
 import IncludedSection from '@/components/Included';
-import YCLogo from '@/components/YCLogo';
-import A16ZLogo from '@/components/A16ZLogo';
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import engineStyles from '../lib/engineStyles.json';
-import GitHubButton from 'react-github-btn';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Game } from '@/components/Game';
 import LevelUpSection from '@/components/LevelUpSection';
-import IncludedHighlights from '@/components/highlights';
 import grainDark from '@/images/effects/grain-dark.png';
-import grid from '@/images/effects/grid.png';
-import TimeSeriesChart from '@/components/TimeSeriesChart';
 import RotatingText from '@/components/RotatingText';
 import {
-  faBallotCheck,
-  faDatabase,
-  faEngine,
-  faSignInAlt,
-  faSquare1,
-  faUserFriends,
-  faSwap,
   faArrowRight,
-  faArrowLeft,
-  faCheck,
-  faCaretLeft,
-  faCaretRight,
-  faBolt,
   faBook,
-  faGraduationCap,
-  faBooks,
-  faChessKnight,
-  faGameConsoleHandheld,
-  faGlobe,
-  faChartWaterfall,
-  faClockRotateLeft,
-  faComment,
-  faDoorOpen,
-  faFire,
-  faGearCode,
-  faGhost,
-  faInfinity,
-  faKey,
-  faLink,
   faLock,
-  faPiggyBank,
-  faPlanetMoon,
-  faPlug,
   faServer,
-  faShieldAlt,
-  faStopwatch,
-  faUserGroup,
-  faWreath,
-  faSwords,
-  faGaugeCircleBolt,
-  faPartyHorn,
-  faEarthAmericas,
   faFileCertificate,
-  faChildReaching,
-  faWrench,
-  faMonitorWaveform,
-  faClouds,
-  faMap,
-  faMagnifyingGlass,
   faCodeBranch,
-  faMoneyBill,
-  faHundredPoints,
-  faCloudMoon,
-  faPaintbrushPencil,
-  faHammer,
-  faCode,
-  faLifeRing,
-  faAward,
-  faHome,
-  faFileImport,
   faAlien8bit,
   faSkullCrossbones,
-  faHeart,
-  faLineChart,
   faSkull,
-  faCogs,
-  faCircleCheck,
-  faDumbbell,
-  faWallet,
-  faGamepad,
-  faEthernet,
-  faLightbulb,
-  faUser,
-  faCircleDot,
-  faMedal,
-  faChartLine,
-  faSyncAlt,
-  faBug,
-  faCoin,
-  faGaugeCircleMinus,
-  faFileArrowUp,
-  faEnvelope
 } from '@fortawesome/sharp-solid-svg-icons';
-import { Tooltip } from '@/components/mdx';
-import imgMultiplayerCallout from '@/images/effects/multiplayer-callout.svg';
-import imgLobbies from '@/images/screenshots/lobbies.png';
-import imgOss from '@/images/screenshots/oss.png';
-import imgMatchmaker from '@/images/screenshots/matchmaker.png';
-import imgGameGuard from '@/images/screenshots/gameGuard.png';
-import imgSocial from '@/images/screenshots/social.png';
-import imgAnalytics from '@/images/screenshots/analytics.png';
-import imgCdn from '@/images/screenshots/cdn.png';
-import img551Regions from '@/images/effects/551 regions.png';
-
-import imgComputerFrame from '@/images/effects/computer-frame.png';
-import imgComputerOverlay from '@/images/effects/computer-overlay.png';
-import imgComputeWhite from 'src/images/products/compute-white.svg';
-import imgComputeColor from 'src/images/products/compute-monotone.svg';
-import imgGameGuardWhite from 'src/images/products/game-guard-white.svg';
-import imgGameGuardColor from 'src/images/products/game-guard-monotone.svg';
-import imgMatchmakerWhite from '@/images/products/matchmaker-white.svg';
-import imgMatchmakerColor from '@/images/products/matchmaker-monotone.svg';
-import imgAnalyticsWhite from '@/images/products/analytics-white.svg';
-import imgAnalyticsColor from '@/images/products/analytics-monotone.svg';
-import imgCdnWhite from '@/images/products/cdn-white.svg';
-import imgCdnColor from '@/images/products/cdn-monotone.svg';
-import imgSocialWhite from '@/images/products/friend-white.svg';
-import imgSocialColor from '@/images/products/friend-monotone.svg';
-import imgOssWhite from '@/images/products/rocket-white.svg';
-import imgOssColor from '@/images/products/rocket-monotone.svg';
-
-import imgApesScreenshot from '@/images/case-studies/screenshots/apes.png';
-import imgApesLogo from '@/images/case-studies/logos/apes.png';
-import imgDiepScreenshot from '@/images/case-studies/screenshots/diep.jpg';
-import imgDiepLogo from '@/images/case-studies/logos/diep.webp';
-import imgEvScreenshot from '@/images/case-studies/screenshots/ev.png';
-import imgEvLogo from '@/images/case-studies/logos/ev.png';
-import { RainbowBar } from '../components/RainbowBar';
-import { RainbowBarAnimated } from '../components/RainbowBarAnimated';
-
-import imgTanks from '@/images/examples/tanks.png';
-import imgAstro from '@/images/examples/astro.png';
-import imgBomber from '@/images/examples/bomber.png';
-import imgCli from '@/images/examples/cli.png';
-import imgCol from '@/images/examples/col.png';
-import imgProp from '@/images/examples/prop.png';
-import imgUnityTanks from '@/images/examples/unitytanks.png';
-import imgWeb from '@/images/examples/web.png';
-import imgJS from '@/images/examples/JS.png';
-
-import imgStepsGodot from '@/images/engine-integration/godot.png';
-import imgStepsUnity from '@/images/engine-integration/unity.png';
-import imgStepsUnreal from '@/images/engine-integration/unreal.png';
-import imgStepsHtml5 from '@/images/engine-integration/html5.png';
-import imgStepsCustom from '@/images/engine-integration/custom.png';
-import { faPuzzle, faPlus, faGears, faQuestion } from '@fortawesome/sharp-solid-svg-icons';
+import {  faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
 
 import opengbMeta from '@/generated/meta.json' assert { type: 'json' };
@@ -178,72 +43,6 @@ function kebabToUpperCamel(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join('');
 }
-
-let supportedEngines = [
-  {
-    name: 'Godot',
-    href: '/learn/godot',
-    // styles: engineStyles.godot,
-    join: <span>,&nbsp;</span>
-  },
-  {
-    name: 'Unity',
-    href: '/learn/unity',
-    // styles: engineStyles.unity,
-    join: <span>,&nbsp;</span>
-  },
-  {
-    name: 'Unreal Engine',
-    href: '/learn/unreal',
-    // styles: engineStyles.unreal,
-    join: <span>,&nbsp;</span>
-  },
-  {
-    name: 'HTML5',
-    href: '/learn/html5',
-    // styles: engineStyles.html5,
-    join: <span>,&nbsp;and&nbsp;</span>
-  },
-  {
-    name: 'Custom',
-    href: '/learn/custom',
-    // styles: engineStyles.custom,
-    join: null
-  }
-];
-
-let caseStudies = [
-  {
-    name: 'Apes.io',
-    href: 'https://apes.io',
-    logo: imgApesLogo,
-    screenshot: grid
-  },
-  {
-    name: 'Ev.io',
-    href: 'https://ev.io',
-    badge: () => (
-      <div className='absolute bottom-2 flex w-full items-center justify-center gap-4 text-white'>
-        <FontAwesomeIcon icon={faAward} className='text-2xl' />
-        <div className=' flex flex-col'>
-          <span className='text-2xs font-semibold uppercase leading-4 tracking-wide'>
-            2023 Best eSports & FPS Game
-          </span>
-          <span className='text-2xs font-semibold leading-4 tracking-wide opacity-50'>{`– Gam3rs' Choice Awards`}</span>
-        </div>
-      </div>
-    ),
-    logo: imgEvLogo,
-    screenshot: grid
-  },
-
-  {
-    name: 'Diep.io',
-    href: 'https://diep.io',
-    logo: imgDiepLogo,
-    screenshot: grid
-  }
-];
 
 const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) =>
   (a[1].config.name ?? '').localeCompare(b[1].config.name)
@@ -308,10 +107,12 @@ export default function Index() {
 
           {/* <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'> */}
           <div className='main-content-container mx-auto px-6'>
-            <GameDevsLove />
+            <PoweringPlay />
           </div>
 
           <CodeSection />
+
+          <ProductSection />
 
           <Philosophy />
           <div className='h-32'></div>
@@ -883,7 +684,7 @@ const GAME_GENRES = [
   'casual'
 ];
 
-function GameDevsLove() {
+function PoweringPlay() {
   return (
     <div className='flex h-[70vh] items-center justify-center'>
       <h3
@@ -911,284 +712,6 @@ function GameDevsLove() {
     </div>
   );
 }
-
-// function GameDevsLove({ autoscalingData }) {
-//   const [currentTime, setCurrentTime] = useState(null);
-//   const [graphData, setGraphData] = useState(null);
-
-//   useEffect(() => {
-//     // Set initial time and graph data
-//     const now = new Date();
-//     setCurrentTime(now);
-//     updateGraphData(now);
-
-//     // Update current time every second
-//     const timer = setInterval(() => {
-//       const now = new Date();
-//       setCurrentTime(now);
-//       updateGraphData(now);
-//     }, 1000);
-
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   const updateGraphData = now => {
-//     if (!autoscalingData || !autoscalingData.labels || !autoscalingData.values) {
-//       console.error('Autoscaling data is missing or incomplete');
-//       return;
-//     }
-
-//     // Calculate the current index based on UTC time of day
-//     const minutesSinceMidnightUTC = now.getUTCHours() * 60 + now.getUTCMinutes();
-//     const currentIndex = Math.floor(minutesSinceMidnightUTC / 15);
-
-//     // Create new arrays for labels and values
-//     const newLabels = [];
-//     const newValues = [];
-
-//     // Get today's date at midnight UTC
-//     const todayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-
-//     // Populate the new arrays
-//     for (let i = 0; i < 97; i++) {
-//       const index = (currentIndex + i) % 96;
-//       const time = new Date(todayUTC.getTime() + (currentIndex + i) * 15 * 60 * 1000);
-//       newLabels.push(time.getTime());
-//       newValues.push(autoscalingData.values[index]);
-//     }
-
-//     setGraphData({
-//       labels: newLabels,
-//       datasets: [
-//         {
-//           data: newValues,
-//           borderColor: 'rgb(255, 118, 10)',
-//           fill: false,
-//           tension: 0.0,
-//           pointRadius: 0
-//         }
-//       ]
-//     });
-//   };
-
-//   return (
-//     <div className='flex flex-col'>
-//       {/* Title */}
-//       <div className='max-w-1xl mx-auto text-center'>
-//         <h3 className='font-display text-6xl tracking-tight text-cream-100'>Powering Billions Of Play Sessions</h3>
-//       </div>
-
-//       {/* Graph */}
-//       <div className='mt-10 w-full'>
-//         {graphData ? (
-//           <TimeSeriesChart data={graphData} />
-//         ) : (
-//           <div className='text-center text-cream-100'>Loading graph data...</div>
-//         )}
-//       </div>
-
-//       {/* Current time */}
-//       <div className='mt-4 text-center text-cream-100'>
-//         Current time (UTC):{' '}
-//         {currentTime
-//           ? currentTime.toLocaleTimeString('en-US', {
-//               hour: '2-digit',
-//               minute: '2-digit',
-//               second: '2-digit',
-//               hour12: false,
-//               timeZone: 'UTC'
-//             })
-//           : 'Loading...'}
-//       </div>
-
-//       {/* Play hours */}
-//       <div className='mt-10 flex w-full flex-row items-center justify-center text-sm font-bold uppercase text-white'>
-//         <OnlineIndicator />
-//         <span>
-//           <PlayHoursCounter /> play hours{' '}
-//         </span>
-//       </div>
-//     </div>
-//   );
-// }
-
-function CaseStudies({ props }) {
-  let [hoverIdx, setHoverIdx] = useState(null);
-
-  return (
-    <div className='flex flex-col'>
-      {/* Title */}
-      <div className='max-w-1xl mx-auto text-center'>
-        <h3 className='font-display text-6xl tracking-tight text-cream-100'>
-          Some of the games that{' '}
-          <FontAwesomeIcon icon={faHeart} className='tracking-tight text-red-500 sm:text-4xl' /> Rivet
-        </h3>
-      </div>
-
-      {/* Grid */}
-      <div className={clsx('mt-14', 'group', 'grid  gap-12', 'sm:mx-0 md:grid-cols-3', '-mx-6 grid-cols-1')}>
-        {caseStudies.map((study, i) => (
-          <Link
-            key={i}
-            href={study.href}
-            className={clsx(
-              'relative flex items-center justify-center p-8 transition hover:translate-y-[-10px] sm:p-10',
-              'h-[200px] md:h-[475px]',
-              hoverIdx == null || hoverIdx == i ? 'opacity-100' : 'opacity-50'
-            )}
-            onMouseEnter={() => setHoverIdx(i)}
-            onMouseLeave={() => setHoverIdx(null)}>
-            <Image
-              className='absolute inset-0 -z-20 h-full w-full w-full object-cover'
-              src={study.screenshot}
-              alt=''
-            />
-            <Image className='h-14 w-32 object-contain transition' src={study.logo} alt={study.name} />
-            {study.badge && study.badge()}
-          </Link>
-        ))}
-      </div>
-
-      {/* Play hours */}
-      <div className='mt-10 flex w-full flex-row items-center justify-center text-sm font-bold uppercase text-white'>
-        <OnlineIndicator />
-        <span>
-          <PlayHoursCounter /> play hours{' '}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function UpAndRunning() {
-  return (
-    <div className='relative isolate mt-28'>
-      <div className='main-content-container sm:px-6 lg:px-8'>
-        <div className='relative mx-auto flex max-w-2xl flex-col gap-16 px-6 py-16 ring-inset sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20'>
-          {/* Flex Container for Image and Text */}
-          <div className='flex w-full flex-row items-center justify-start gap-4 lg:gap-12'>
-            {' '}
-            {/* Added gap for spacing */}
-            {/* Overlay Image */}
-            <div className='pointer-events-none z-10 flex-shrink-0' style={{ width: '50%' }}>
-              {' '}
-              {/* Adjust width as necessary */}
-              <Image
-                src={imgComputerOverlay}
-                alt='Rivet'
-                className='pointer-events-none h-auto w-full' // Adjust size as necessary
-              />
-            </div>
-            {/* Body */}
-            <div className='w-full flex-auto'>
-              <h2 className='font-display text-4xl font-bold tracking-tight text-white sm:text-5xl'>
-                Launch your game in <span className='text-orange-300'>minutes</span>
-              </h2>
-              <p className='mt-6 text-lg leading-8 text-gray-300'>
-                Just 5 lines of code for AAA game server scale.
-              </p>
-
-              <div className='not-prose mt-4 grid grid-cols-1 gap-8 border-t border-charcole-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3'>
-                <Resource title='Learn' icon={faHammer} href='/learn' />
-                <Resource title='Docs' icon={faBooks} href='/docs/general' />
-                <Resource title='Blog' icon={faCode} href='/blog' />
-                <Resource title='GitHub' icon={faGithub} href='https://github.com/rivet-gg' target='_blank' />
-                <Resource
-                  title='Discord'
-                  icon={faDiscord}
-                  href='https://discord.gg/aXYfyNxYVn'
-                  target='_blank'
-                />
-                <Resource title='Support' icon={faLifeRing} href='/support' />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className='absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl'
-          aria-hidden='true'>
-          {/* <div
-          className='aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25'
-          style={{
-            clipPath:
-              'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)'
-          }}
-        /> */}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// export async function getStaticProps() {
-//   const fs = require('fs');
-//   const path = require('path');
-
-//   const filePath = path.join(process.cwd(), 'public', 'pricing', 'autoscaling-data.csv');
-//   const csvData = fs.readFileSync(filePath, 'utf8');
-
-//   // Parse data
-//   let lines = csvData.split('\n').map(line => line.split(','));
-//   const headersRaw = lines.shift();
-//   const headers = headersRaw.slice(1); // Get labels from the first row, excluding 'Time'
-//   let timestamps = lines.map(row => parseInt(row[0]));
-
-//   // Select a 24-hour slice starting at a relative offset
-//   const relativeOffset = 3 * 24 * 60 * 60 * 1000; // Example: 3 days offset in milliseconds
-//   const startTimestamp = timestamps[0] + relativeOffset;
-//   const startIndex = timestamps.findIndex(timestamp => timestamp >= startTimestamp);
-//   const endIndex = startIndex + 24 * 4; // 24 hours * 4 (15-minute intervals per hour)
-
-//   // Ensure we have a full 24 hours of data
-//   if (endIndex > timestamps.length) {
-//     console.warn('Not enough data for a full 24-hour slice. Adjusting start time.');
-//     const adjustedStartIndex = timestamps.length - 24 * 4;
-//     timestamps = timestamps.slice(adjustedStartIndex, timestamps.length);
-//     lines = lines.slice(adjustedStartIndex, timestamps.length);
-//   } else {
-//     timestamps = timestamps.slice(startIndex, endIndex);
-//     lines = lines.slice(startIndex, endIndex);
-//   }
-
-//   // Align to midnight
-//   const firstTimestamp = new Date(timestamps[0]);
-//   const midnightTimestamp = new Date(
-//     firstTimestamp.getFullYear(),
-//     firstTimestamp.getMonth(),
-//     firstTimestamp.getDate()
-//   ).getTime();
-//   const midnightIndex = timestamps.findIndex(timestamp => timestamp >= midnightTimestamp);
-
-//   timestamps = timestamps.slice(midnightIndex).concat(timestamps.slice(0, midnightIndex));
-//   lines = lines.slice(midnightIndex).concat(lines.slice(0, midnightIndex));
-
-//   // Generate labels and calculate values
-//   let labels = [];
-//   let values = [];
-
-//   for (let i = 0; i < 96; i++) {
-//     // 24 hours * 4 (15-minute intervals)
-//     const hours = Math.floor(i / 4);
-//     const minutes = (i % 4) * 15;
-//     labels.push(Date.UTC(2000, 0, 1, hours, minutes));
-
-//     const rowSum = lines[i].slice(1).reduce((sum, val) => sum + (parseInt(val) || 0), 0);
-//     values.push(rowSum);
-//   }
-
-//   // Normalize values
-//   const maxValue = Math.max(...values);
-//   values = values.map(value => value / maxValue);
-
-//   return {
-//     props: {
-//       autoscalingData: {
-//         labels,
-//         values
-//       }
-//     }
-//   };
-// }
 
 Index.description = 'Open-Source game infrastructure. Multiplayer game servers and modular backend.';
 Index.prose = false;
