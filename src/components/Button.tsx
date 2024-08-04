@@ -15,106 +15,138 @@ function ArrowIcon(props) {
   );
 }
 
+const commonAnimationClasses = [
+  'transition-[background,transform,border-color,color,box-shadow] duration-200 ease-out',
+  'hover:-translate-y-[2px] hover:shadow-[0_4px_10px_0_rgba(0,0,0,0.6)]',
+  'active:opacity-75',
+];
+
 const variantClasses = {
   primary: {
     base: clsx(
-      'text-sm font-semibold text-charcole-950',
-      'bg-cream-100',
-      'px-3 py-1',
-      // hover
-      'hover:bg-orange-400 hover:text-charcole-950',
-      'rounded-sm',
+      // Base styles
+      'inline-flex items-center justify-center gap-0.5',
+      'rounded-sm px-3 py-1',
+      'text-sm font-semibold',
+      'bg-cream-100 text-charcole-950',
+      // Hover
+      'hover:bg-cream-50 hover:text-charcole-950',
     ),
     highlight: ''
   },
   secondary: {
     base: clsx(
-      'text-sm font-semibold text-cream-100',
+      // Base styles
+      'inline-flex items-center justify-center gap-0.5',
+      'rounded-sm px-3 py-1',
+      'text-sm font-semibold',
+      'bg-transparent text-cream-100',
       'border-2 border-cream-100',
-      'bg-transparent hover:bg-cream-100 hover:text-charcole-950',
-      'px-3 py-1',
-      'rounded-sm',
+      // Hover
+      'hover:bg-cream-100 hover:text-charcole-950',
     ),
     highlight: ''
   },
-  text: { base: 'text-sm text-orange-300 hover:text-orange-500', highlight: '' },
-  'text-subtle': { base: 'text-sm text-charcole-400 hover:text-charcole-300', highlight: '' },
+  text: {
+    base: clsx(
+      'text-sm text-orange-300',
+      // Hover
+      'hover:text-orange-500',
+    ),
+    highlight: ''
+  },
+  'text-subtle': {
+    base: clsx(
+      'text-sm text-charcole-400',
+      // Hover
+      'hover:text-charcole-300',
+    ),
+    highlight: ''
+  },
   juicy: {
     base: clsx([
-      'px-4 py-2 text-sm',
-      'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
-      'relative border-2 border-cream-100 text-cream-100 transition-all',
-      "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
-      "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
-      'rounded-sm',
-      // hover
-      'hover:border-orange-400',
-      // selected
-      'aria-selected:border-orange-400 aria-selected:text-cream-100 aria-selected:before:border-orange-400',
-      // disabled
-      'disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
-      'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
-      // loading
-      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white'
+      // Base styles
+      'inline-flex items-center justify-center gap-2',
+      'rounded px-4 py-2',
+      'text-sm font-bold',
+      'bg-charcole-900/30 text-cream-100',
+      'border-2 border-cream-100/5',
+      ...commonAnimationClasses,
+      // Hover
+      'hover:bg-charcole-800/50 hover:border-cream-100/20 hover:text-cream-50',
+      // Selected
+      'aria-selected:border-cream-100/30 aria-selected:text-cream-50',
+      // Disabled
+      'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      // Loading
+      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
   },
   juicySubtle: {
     base: clsx([
-      'px-4 py-2 text-sm',
-      'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
-      'relative border-2 border-cream-100/20 text-cream-100 transition-all',
-      "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:bg-blend-multiply before:transition-all before:content-['']",
+      // Base styles
+      'inline-flex items-center justify-center gap-2',
+      'rounded px-4 py-2',
+      'text-sm font-bold',
+      'bg-transparent text-cream-100',
+      'border-2 border-cream-100/10',
+      ...commonAnimationClasses,
+      'relative',
+      "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:transition-all before:content-['']",
       "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
-      'rounded-sm',
-      // hover
-      'hover:border-orange-400',
-      // selected
-      'aria-selected:border-orange-400 aria-selected:text-cream-100 aria-selected:before:border-orange-400',
-      // disabled
-      'disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      // Hover
+      'hover:bg-cream-100/10 hover:border-cream-100/20',
+      // Selected
+      'aria-selected:border-cream-100/30 aria-selected:text-cream-100 aria-selected:before:border-cream-100/30',
+      // Disabled
+      'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
       'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
-      // loading
-      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white'
+      // Loading
+      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
   },
   primaryJuicy: {
     base: clsx([
-      'px-4 py-2 text-sm',
-      'm min-w-30 aria-busy:cursor-default group inline-flex items-center gap-2 align-middle font-bold transition-all duration-100 will-change-transform disabled:opacity-60',
-      'relative transition-all',
-      'bg-cream-100 before:bg-cream-100 after:bg-cream-100',
-      'rounded-sm',
-      // make it white
-      'bg-cream-100 text-charcole-950 before:bg-cream-100',
+      // Base styles
+      'inline-flex items-center justify-center gap-2',
+      'rounded px-4 py-2',
+      'text-sm font-bold',
+      'bg-cream-100 text-charcole-950',
+      ...commonAnimationClasses,
+      'relative',
+      'before:bg-cream-100 after:bg-cream-100',
       'before:opacity-100 after:opacity-0',
-      // hover
-      'hover:bg-orange-400 hover:text-charcole-950 hover:before:bg-cream-100',
-      'hover:before:opacity-100 hover:after:opacity-0',
-      // selected
+      // Hover
+      'hover:bg-orange-400 hover:text-charcole-950',
+      'hover:before:bg-cream-100 hover:before:opacity-100 hover:after:opacity-0',
+      // Selected
       'aria-selected:bg-cream-100 aria-selected:text-charcole-950 aria-selected:before:bg-cream-100',
       'aria-selected:before:opacity-100 aria-selected:after:opacity-0',
-      // active
-      'active:bg-cream-50 aria-selected:bg-cream-50',
-      // disabled
-      'disabled:disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      // Active
+      'aria-selected:bg-cream-50',
+      // Disabled
+      'disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-cream-100',
       'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
-      // loading
-      'aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white'
+      // Loading
+      'aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
   },
   blackJuicy: {
     base: clsx(
-      'font-sm text-semibold text-black',
+      // Base styles
+      'inline-flex items-center justify-center gap-0.5',
+      'rounded-sm px-3.5 py-2.5',
+      'text-sm font-semibold',
+      'bg-transparent text-black',
       'border-2 border-black',
-      'bg-transparent hover:bg-black hover:text-cream-100',
-      'px-3.5 py-2.5',
-      'rounded-sm',
+      // Hover
+      'hover:bg-black hover:text-cream-100',
     ),
     highlight: ''
   }

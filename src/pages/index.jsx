@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Resource } from '@/components/Resources';
 import IncludedSection from '@/components/Included';
@@ -248,6 +248,16 @@ const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) =>
 );
 
 export default function Index() {
+  const restOfPageControls = useAnimation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      restOfPageControls.start({ opacity: 1 });
+    }, 300); // Start fading in the rest of the page 0.65 seconds after component mount
+
+    return () => clearTimeout(timer);
+  }, [restOfPageControls]);
+
   return (
     <div>
       <div className='relative isolate overflow-x-hidden'>
@@ -269,47 +279,53 @@ export default function Index() {
 
         <div className='h-32' />
 
-        <div className='relative border-t-2 border-cream-100/10 py-16'>
-          {/* Background */}
-          <div
-            style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.4 }}
-            className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
-          <div className='pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#090909] opacity-100'></div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={restOfPageControls}
+          transition={{ duration: 0.325 }}
+        >
+          <div className='relative border-t-2 border-cream-100/10 py-16'>
+            {/* Background */}
+            <div
+              style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.4 }}
+              className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+            <div className='pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#090909] opacity-100'></div>
 
-          <MainFeatures />
+            <MainFeatures />
 
-          <div className='h-44' />
+            <div className='h-44' />
 
-          <AllModules />
-        </div>
+            <AllModules />
+          </div>
 
-        <div className='h-60' />
+          <div className='h-60' />
 
-        <IncludedSection />
+          <IncludedSection />
 
-        <div className='h-40' />
+          <div className='h-40' />
 
-        {/* <div className='px-6 py-40 lg:px-8'>
-          <IncludedHighlights />
-        </div> */}
+          {/* <div className='px-6 py-40 lg:px-8'>
+            <IncludedHighlights />
+          </div> */}
 
-        {/* <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'> */}
-        <div className='main-content-container mx-auto px-6'>
-          <GameDevsLove />
-        </div>
+          {/* <div className='main-content-container mx-auto px-6 py-40 md:py-48 lg:px-8'> */}
+          <div className='main-content-container mx-auto px-6'>
+            <GameDevsLove />
+          </div>
 
-        <CodeSection />
+          <CodeSection />
 
-        <Philosophy />
-        <div className='h-32'></div>
+          <Philosophy />
+          <div className='h-32'></div>
 
-        {/*<DemoSection /> */}
+          {/*<DemoSection /> */}
 
-        {/* <EngineGrid /> */}
+          {/* <EngineGrid /> */}
 
-        {/* <UpAndRunning />*/}
+          {/* <UpAndRunning />*/}
 
-        <LevelUpSection />
+          <LevelUpSection />
+        </motion.div>
       </div>
     </div>
   );
@@ -317,13 +333,14 @@ export default function Index() {
 
 function Title() {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.45, delay: 0.09 }}
       className={clsx(
-        // ' mx-auto relative flex flex-wrap items-center justify-center border-2 border-cream-100 box-border',
         'relative mx-auto box-border flex flex-wrap items-center justify-center',
         'lg:h-[400px] lg:max-w-4xl',
         'md:h-[357px] md:max-w-3xl',
-        // 'sm:max-w-2xl sm:h-[285px]',
         'h-[45vw] w-full'
       )}>
       <GlowVideo className='pointer-events-none absolute inset-0 z-50 h-full w-full object-cover mix-blend-screen' />
@@ -351,27 +368,34 @@ function Title() {
           <span>8 Players Online</span>
         </div> */}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function Subtitle() {
   return (
     <div className='mt-20 flex w-full flex-col items-center justify-center px-2 text-center'>
-      {/* <p>Open-source solution to deploy, scale, and operate your multiplayer game</p> */}
-      {/* <p className='text-xl font-semibold'>Open-source solution to deploy & scale multiplayer game servers</p> */}
-      {/* Title */}
-      <h1
+      <motion.h1
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.135 }}
         className={clsx(
           'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100',
           'gap-3 text-3xl sm:text-5xl md:text-6xl'
         )}>
         The Only Backend Your Game Needs
-      </h1>
-      <div className='mt-4 text-center font-display text-3xl tracking-tight text-cream-100/80'>
+      </motion.h1>
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.27 }}
+        className='mt-4 text-center font-display text-3xl tracking-tight text-cream-100/80'>
         Supports Godot, Unity, Unreal Engine, HTML5, and Custom Engines.
-      </div>
-      <div
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.405 }}
         className={clsx(
           'text-2xl',
           'italic text-orange-500',
@@ -379,10 +403,13 @@ function Subtitle() {
           'mt-3'
         )}>
         Open-Source & Self-Hostable.
-      </div>
+      </motion.div>
 
-      {/* CTA */}
-      <div className='pointer-events-auto mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.54 }}
+        className='pointer-events-auto mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
         <Button variant='primaryJuicy' href='https://hub.rivet.gg'>
           Get Started
         </Button>
@@ -390,17 +417,15 @@ function Subtitle() {
           <FontAwesomeIcon icon={faBook} className='mr-2' />
           Documentation
         </Button>
-      </div>
+      </motion.div>
 
-      <GitHubStars className='mt-6 flex items-center justify-center gap-1 text-center text-xs font-bold text-wistful-400 hover:text-wistful-300 sm:text-sm' />
-      {/* <a
-        href='https://github.com/rivet-gg/rivet'
-        target='_blank'
-        rel='noreferrer'
-        className='pointer-events-auto mt-6 flex items-center justify-center gap-1 text-center text-xs font-bold text-wistful-400 hover:text-wistful-300 sm:text-sm'>
-        <GitHubStarsRaw />
-        <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
-      </a> */}
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.675 }}
+        className='mt-6'>
+        <GitHubStars className='flex items-center justify-center gap-1 text-center text-xs font-bold text-cream-100/80 hover:text-orange-500 sm:text-sm' />
+      </motion.div>
     </div>
   );
 }
@@ -421,10 +446,19 @@ function AllModules() {
             <div
               className={clsx(
                 'absolute left-1/2 top-[calc(100%+10px)] z-40',
-                'hidden w-max max-w-[16rem] -translate-x-1/2',
-                'border border-cream-100 bg-charcole-950',
-                'px-1.5 py-1 pb-1 text-center text-xs text-gray-50 opacity-100',
-                'leading-tight group-hover/tooltip:flex'
+                '-translate-x-1/2',
+                'w-max max-w-[16rem]',
+                'border border-charcole-950/20 bg-cream-100',
+                'text-center text-xs text-charcole-950',
+                'px-1.5 py-1.5',
+                'leading-tight',
+                'rounded',
+                'invisible group-hover/tooltip:visible',
+                'shadow-[0_4px_16px_0_rgba(0,0,0,0.7)]',
+                'transition-all duration-300 ease-in-out',
+                'opacity-0 group-hover/tooltip:opacity-100',
+                'transform scale-95 group-hover/tooltip:scale-100',
+                'pointer-events-none'
               )}>
               {x.config.description}
             </div>
