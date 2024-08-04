@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { PatternButton } from '@/components/PatternButton';
+import MainFeatures from '@/components/MainFeatures';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
@@ -20,11 +21,6 @@ import LevelUpSection from '@/components/LevelUpSection';
 import IncludedHighlights from '@/components/highlights';
 import grainDark from '@/images/effects/grain-dark.png';
 import grid from '@/images/effects/grid.png';
-import egg from '@/images/graphics/egg.png';
-import cube from '@/images/graphics/geocorp/cube.svg';
-import overlapCircles from '@/images/graphics/geocorp/overlap-circles.svg';
-import portal from '@/images/graphics/geocorp/portal.svg';
-import switchLines from '@/images/graphics/geocorp/switch-lines.svg';
 import TimeSeriesChart from '@/components/TimeSeriesChart';
 import {
   faBallotCheck,
@@ -247,49 +243,6 @@ let caseStudies = [
   }
 ];
 
-let TEMPLATES = [
-  {
-    href: '/learn/html5/tutorials/tanks-canvas-socketio',
-    screenshot: imgAstro,
-    subtext: 'Canvas & Socket.IO'
-  },
-  {
-    href: '/learn/godot/tutorials/bomber-demo',
-    screenshot: imgBomber,
-    subtext: 'Godot'
-  },
-  {
-    href: '/learn/html5/tutorials/tanks-canvas-socketio',
-    screenshot: imgTanks,
-    subtext: 'Canvas & Socket.IO'
-  },
-  {
-    href: '/learn/unity/tutorials/fishnet/crash-course',
-    screenshot: imgUnityTanks,
-    subtext: 'Unity & Fish-Net'
-  },
-  {
-    href: 'https://github.com/rivet-gg/examples/tree/main/rust/pixelprop',
-    screenshot: imgProp,
-    subtext: 'Rust Prop Hunt'
-  },
-  {
-    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/webrtc',
-    screenshot: imgWeb,
-    subtext: 'WebRTC'
-  },
-  {
-    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/sandbox',
-    screenshot: imgJS,
-    subtext: 'JS Sandbox'
-  },
-  {
-    href: 'https://github.com/rivet-gg/examples/tree/main/javascript/colyseus',
-    screenshot: imgCol,
-    subtext: 'Colyseus Template'
-  }
-];
-
 const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) =>
   (a[1].config.name ?? '').localeCompare(b[1].config.name)
 );
@@ -325,7 +278,7 @@ export default function Index() {
 
           <MainFeatures />
 
-          <div className='h-32' />
+          <div className='h-44' />
 
           <AllModules />
         </div>
@@ -346,8 +299,6 @@ export default function Index() {
         </div>
 
         <CodeSection />
-
-        <TemplateSection />
 
         <Philosophy />
         <div className='h-32'></div>
@@ -450,168 +401,6 @@ function Subtitle() {
         <GitHubStarsRaw />
         <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
       </a> */}
-    </div>
-  );
-}
-
-function MainFeatures() {
-  return (
-    <div
-      className={clsx(
-        'mx-auto w-full max-w-[1800px] gap-4 px-4 sm:gap-12 sm:px-12',
-        'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4'
-      )}>
-      <MainFeatureColumn
-        icon={faServer}
-        graphic={cube}
-        // title='Game Servers & Peer-to-Peer'
-        title='Dedicated Game Server Hosting'
-        features={[
-          // { icon: faChessKnight, name: "Easy to set up" },
-          // { icon: faChessKnight, name: "Global low-latency network" },
-          // { icon: faChessKnight, name: "DDoS mitigation & SSL (no added latency)" },
-          // { icon: faChessKnight, name: "DDoS mitigation (no added latency)" },
-          // { icon: faShieldAlt, name: <span><Tooltip tip={<>Read more about Game Guard <a href="/docs/dynamic-servers/concepts/game-guard">here</a>.</>}>DDoS mitigation</Tooltip></span> },
-          { icon: faShieldAlt, name: 'Low-latency, free DDoS mitigation' },
-          {
-            icon: faChartLine,
-            name: (
-              <>
-                Autoscaling &{' '}
-                <Tooltip tip='Boot servers on-demand in less than 5 seconds'>instant servers</Tooltip>
-              </>
-            )
-          },
-          // { icon: faSyncAlt, name: "No-downtime deploys & instant rollbacks" },
-          { icon: faBug, name: 'Monitoring & crash reporting' },
-          {
-            icon: faPlug,
-            name: (
-              <>
-                Supports TCP, UDP, WebSockets, & <Tooltip tip='WebRTC, ENet, KPC'>more</Tooltip>
-              </>
-            )
-          }
-          // { icon: faChessKnight, name: "Automatic SSL for WebSockets & TCP+TLS" },
-        ]}
-        buttons={[
-          { name: 'Documentation', href: '/docs/dynamic-servers' }
-          // { name: "Powerful Low-Level API", href: "/docs/core" },
-          // { name: "Get up to $120,000 in server credits", href: "https://b8v8449klvp.typeform.com/to/ZtMjRE7f", target: "_blank" },
-        ]}
-      />
-      <MainFeatureColumn
-        icon={faChessKnight}
-        graphic={overlapCircles}
-        title='Matchmaking, Lobbies, & Parties'
-        features={[
-          // TODO: Add back once implemented
-          // { icon: faSquare1, name: <>Get started with <Tooltip tip="1 line of code specifically in Godot & Unity">1 line of code</Tooltip></> },
-          { icon: faChessKnight, name: 'Supports casual, competitive, MMO, and turn-based' },
-          { icon: faGameConsoleHandheld, name: 'Supports server-authoritative, P2P, and async multiplayer' },
-          { icon: faSwap, name: 'Works with existing multiplayer' }
-        ]}
-        buttons={[{ name: 'Documentation', href: '/docs/matchmaker' }]}
-      />
-      <MainFeatureColumn
-        icon={faUser}
-        graphic={switchLines}
-        title='Accounts, Friends, & Presence'
-        features={[
-          { icon: faEnvelope, name: 'Email, username, and OAuth support' },
-          { icon: faSignInAlt, name: 'Support social logins including Google, Twitch, Discord, and more' },
-          { icon: faUserFriends, name: 'Display friends online & join lobbies' }
-        ]}
-        buttons={[
-          { name: 'Documentation', href: 'https://opengb.dev/modules/auth/overview', target: '_blank' }
-        ]}
-      />
-      <MainFeatureColumn
-        icon={faPuzzle}
-        graphic={portal}
-        title='100% Modular & Scriptable'
-        features={[
-          // { icon: faCode, name: "Write server-side logic in TypeScript (or use your own API server)" },
-          { icon: faPuzzle, name: 'Pick and choose modules to use' },
-          { icon: faCode, name: 'Easily write server-side scripts & real-time actors' },
-          {
-            icon: faDatabase,
-            name: (
-              <>
-                <Tooltip tip='Powered by Postgres'>Database</Tooltip> included for free
-              </>
-            )
-          },
-          // TODO: Add WebSockets when ready
-          // { icon: faBolt, name: <>Realtime functionality with actors</> },
-          {
-            icon: faEngine,
-            name: (
-              <>
-                Powered by{' '}
-                <a
-                  href='https://opengb.dev'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='text-orange-400 hover:text-orange-300'>
-                  Open Game Backend
-                </a>
-              </>
-            )
-          }
-        ]}
-        buttons={[{ name: 'Documentation', href: 'https://opengb.dev', target: '_blank' }]}
-      />
-    </div>
-  );
-}
-
-function MainFeatureColumn({ icon, graphic, title, features, buttons }) {
-  return (
-    <div className={clsx('relative', `h-full text-left`, 'flex flex-col', 'col-span-1')}>
-      {/* Logo */}
-      {/* <div className='flex items-center justify-center h-48'>
-        <Image src={graphic} className='max-w-full h-40 opacity-95' />
-      </div>
-      <div className='h-14' /> */}
-
-      {/* Title */}
-      <h2 className='font-display text-3xl font-semibold text-cream-100'>{title}</h2>
-      <div className='mt-8 flex max-w-2xl flex-col items-stretch gap-4'>
-        {features.map((item, i) => (
-          <div key={i} className='flex flex-row items-center gap-3 font-semibold text-cream-100/90'>
-            {/* <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
-              {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
-            </div> */}
-            {/*<div className='flex flex-shrink-0 h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>*/}
-            <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center'>
-              {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
-            </div>
-            <span>{item.name}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Spacer */}
-      <div className='min-h-4 grow'></div>
-
-      {/* Buttons */}
-      <div className='mt-6 flex flex-col gap-2'>
-        {buttons.map((button, i) => (
-          <a
-            key={i}
-            href={button.href}
-            target={button.target}
-            rel='noreferrer'
-            className={clsx(
-              'justify-left flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm',
-              button.classes
-            )}>
-            {button.name}
-            <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
-          </a>
-        ))}
-      </div>
     </div>
   );
 }
@@ -919,69 +708,6 @@ function EnginePageContents({ page, scale }) {
         Get started using {page.name} <span aria-hidden='true'>→</span>
       </Button>
     </>
-  );
-}
-
-function TemplateSection() {
-  const [hoveredLink, setHoveredLink] = useState(null);
-
-  return (
-    <div className='flex flex-col items-center px-2 py-20 md:py-40'>
-      {/* Title */}
-      {/* <BigAssIcon icon={faCode} color="text-orange-500" /> */}
-      <div className='mx-auto max-w-3xl text-center'>
-        <h2 className='mt-8 font-display text-5xl font-bold tracking-tight text-cream-100'>
-          Get started with an example <FontAwesomeIcon icon={faCode} className='ml-2' />
-        </h2>
-      </div>
-
-      {/* Grid  with Increased Margins */}
-      <div
-        className={clsx(
-          'mx-auto mt-16 grid gap-12 px-4 sm:px-8',
-          'max-w-5xl',
-          'grid-cols-2 sm:grid-cols-2 md:grid-cols-4'
-        )}>
-        {TEMPLATES.map((template, i) => (
-          <Link
-            key={i}
-            href={template.href}
-            className={clsx(
-              'flex flex-col gap-2',
-              // 'group relative h-[275px] items-center justify-center ',
-              'group relative items-center justify-center ',
-              'origin-center transform transition duration-200 hover:scale-105',
-              hoveredLink !== null && hoveredLink !== i && 'opacity-50'
-            )}
-            onMouseEnter={() => setHoveredLink(i)}
-            onMouseLeave={() => setHoveredLink(null)}>
-            <Image className='w-full' src={template.screenshot} alt={template.subtext} />
-            <div
-              className={clsx(
-                'whitespace-nowrap text-center font-semibold text-cream-100',
-                'opacity-0 transition duration-200',
-                hoveredLink == i && 'opacity-100'
-              )}>
-              {template.subtext}
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* Separator */}
-      <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
-
-      {/* All examples */}
-      <Link
-        href='https://github.com/rivet-gg/examples'
-        target='_blank'
-        className='text-sm font-semibold leading-6 text-black text-white'>
-        See all examples <span aria-hidden='true'>→</span>
-      </Link>
-
-      {/* Separator */}
-      <div className='mx-8 hidden h-8 w-[1px] sm:block'></div>
-    </div>
   );
 }
 
