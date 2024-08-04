@@ -298,7 +298,7 @@ export default function Index() {
             <AllModules />
           </div>
 
-          <div className='h-60' />
+          <div className='h-64' />
 
           <IncludedSection />
 

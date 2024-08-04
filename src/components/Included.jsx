@@ -10,26 +10,15 @@ import clsx from 'clsx';
 
 export function IncludedFeature({ icon, title, usually, on }) {
   return (
-    <div className={clsx(
-      'relative transition text-sm font-semibold text-cream-100 border-4 border-cream-100/5',
-      'flex flex-col',
-      'text-center items-center',
-      'p-4',
-      'xl:gap-4 xl:p-8',
-      'rounded-md'
-    )}>
-      {/* BG */}
-      <div
-        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
-        className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
-      ></div>
+    <div className="flex flex-col items-start text-left px-10 py-12 border border-cream-100/5">
+      {/* Icon */}
+      <FontAwesomeIcon icon={icon} className="text-cream-100/80 text-2xl mb-4" />
 
       {/* Content */}
-      <div className='flex h-16 w-16 items-center justify-center text-xl'>
-        <FontAwesomeIcon icon={icon} />
+      <div>
+        <div className="text-lg font-semibold leading-tight text-cream-100">{title}</div>
+        {usually && <div className="font-semibold text-cream-100/50 text-sm leading-tight mt-2">Usually <Tooltip tip={on}>{usually}</Tooltip></div>}
       </div>
-      <div className="text-lg font-semibold leading-tight mt-2">{title}</div>
-      {usually && <div className="font-semibold text-cream-100/50 text-sm leading-tight mt-6">Usually <Tooltip tip={on}>{usually}</Tooltip></div>}
     </div>
   );
 }
@@ -45,12 +34,13 @@ export default function IncludedSection() {
   return (
     <div className='max-w-6xl mx-auto flex flex-col'>
       <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
+      <div className='h-20'/>
       <div className={clsx(
-        "w-full grid gap-4 mt-8 px-4",
+        "w-full grid",
         "grid-cols-1",
         "sm:grid-cols-2",
-        "md:px-6 md:grid-cols-4",
-        "lg:grid-cols-4",
+        "lg:grid-cols-3",
+        "border border-cream-100/5"
       )}>
         <IncludedFeature icon={faShield} title="DDoS Mitigation" usually="$10/server/mo" on="Vultr DDoS mitigation" />
         <IncludedFeature icon={faClockRotateLeft} title="No downtime deploys & instant rollbacks" usually="$40/mo" on="DigitalOcean Kubernetes HA Control Plane" />
@@ -58,15 +48,10 @@ export default function IncludedSection() {
         <IncludedFeature icon={faBars} title="Log & metrics aggregation" usually="$0.50/server/mo" on="Grafana Cloud Loki with 1 log/server/second" />
         <IncludedFeature icon={faLock} title="Automatic SSL for WebSockets & TLS" />
         <IncludedFeature icon={faMessageExclamation} title="Crash reporting" usually="$26/mo" on="Sentry Team" />
-        <IncludedFeature icon={faChartLineUp} title="Analytics" />
-        <IncludedFeature icon={faRoute} title="Automatic geographic routing" />
-      </div>
-      <div className='h-8'/>
-      <div className='text-cream-100 text-md md:text-xl mx-auto font-mono whitespace-pre'>
-        {/*<div>Your Receipt:</div>
-        <div>{"* ".repeat(Math.floor((receiptWidth - 1) / 2))}*</div>*/}
-        <div><span className='font-bold'>{otherServicesText}</span>{" ".repeat(receiptWidth - otherServicesText.length - otherServicesPrice.length)}<Tooltip tip="Assuming 15 servers & 4 users">{otherServicesPrice}</Tooltip></div>
-        <div><span className='font-bold'>Rivet</span>                   $0.00</div>
+        <div className='col-span-full text-cream-100 text-md md:text-xl font-mono whitespace-pre px-10 py-12 border border-cream-100/5 flex flex-col items-center'>
+          <div><span className='font-bold'>{otherServicesText}</span>{" ".repeat(receiptWidth - otherServicesText.length - otherServicesPrice.length)}<Tooltip tip="Assuming 15 servers & 4 users">{otherServicesPrice}</Tooltip></div>
+          <div><span className='font-bold'>Rivet</span>                   $0.00</div>
+        </div>
       </div>
     </div>
   );
