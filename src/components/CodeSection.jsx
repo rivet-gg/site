@@ -49,7 +49,7 @@ export default function CodeSection() {
   return (
     <div className='py-30 flex flex-col items-center gap-16 px-4 md:py-48'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Build Right into Your Favorite Engine
+        Built Right into Your Favorite Engine
       </h2>
 
       <div className='flex w-full flex-col items-stretch gap-2'>

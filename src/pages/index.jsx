@@ -23,9 +23,9 @@ import {
   faCodeBranch,
   faAlien8bit,
   faSkullCrossbones,
-  faSkull,
+  faSkull
 } from '@fortawesome/sharp-solid-svg-icons';
-import {  faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
+import { faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
 
 import opengbMeta from '@/generated/meta.json' assert { type: 'json' };
@@ -114,14 +114,16 @@ export default function Index() {
 
           <CodeSection />
 
+          <div className='h-48' />
+
+          <div className='main-content-container mx-auto px-6'>
+            <AdaptableSection />
+          </div>
+
+          <div className='h-48' />
+
           <Philosophy />
           <div className='h-32'></div>
-
-          {/*<DemoSection /> */}
-
-          {/* <EngineGrid /> */}
-
-          {/* <UpAndRunning />*/}
 
           <LevelUpSection />
         </motion.div>
@@ -435,7 +437,6 @@ const PHILOSOPHY_ITEMS = [
 function Philosophy() {
   return (
     <div className='main-content-container flex flex-col items-center py-20 md:py-40'>
-
       <div
         className={clsx(
           'relative',
@@ -448,8 +449,7 @@ function Philosophy() {
         {/* BG */}
         <div
           style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
-          className='pointer-events-none absolute inset-0 bg-repeat transition -z-20'
-        ></div>
+          className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
 
         {/* Title */}
         {/* <BigAssIcon icon={faCodeBranch} color='text-cream-100' /> */}
@@ -690,7 +690,7 @@ function PoweringPlay() {
       <h3
         className={clsx(
           'text-center font-display tracking-tight text-cream-100',
-          'text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+          'xs:text-2xl text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
         )}>
         {/* Online indicator */}
         <div
@@ -709,6 +709,72 @@ function PoweringPlay() {
         <br className='sm:hidden' /> <span className='opacity-75'>for</span>{' '}
         <RotatingText texts={GAME_GENRES} /> <span className='opacity-75'>games</span>
       </h3>
+    </div>
+  );
+}
+
+function AdaptableSection() {
+  return (
+    <div className='mx-auto flex max-w-6xl flex-col px-6 lg:px-8'>
+      <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
+        {/* {'Built from the Ground Up to Grow with Your Needs'} */}
+        {'Need even more customization?'}
+      </h2>
+      <div className={clsx('mt-16 grid w-full gap-4', 'grid-cols-1 sm:grid-cols-2')}>
+        <AdaptableFeature
+          title='Custom backend modules, no server hassels'
+          description='Write backend modules with TypeScript, Postgres, and actors. Auto-generate SDKs for your module to use in engine. Reuse modules across multiple games with registries.'
+          docsHref='https://opengb.dev/docs/build/overview'
+        />
+        <AdaptableFeature
+          title='Access low-level APIs'
+          description='Build with low-level APIs for highly custom use cases. Includes APIs for provisioning servers, customizing networking, managing builds, and tuning DDoS protection rules.'
+        />
+        <AdaptableFeature
+          title='Automatable cloud'
+          description="Build custom deploy pipelines using Rivet's cloud APIs. Anything you can do via a GUI is available as an API & CLI."
+          docsHref='/docs/cloud'
+        />
+        <AdaptableFeature
+          title='Integrate with existing tools'
+          description='Works with your favorite tools & existing backends. Integrate Rivet incrementally without having to rewrite anything.'
+          docsHref='https://opengb.dev/integrations/overview'
+        />
+      </div>
+    </div>
+  );
+}
+
+function AdaptableFeature({ title, description, docsHref, ...props }) {
+  return (
+    <div
+      className={clsx(
+        'relative border-4 border-cream-100/5 px-6 py-4 text-cream-100',
+        'flex flex-col gap-4',
+        'rounded-md'
+      )}
+      {...props}>
+      {/* BG */}
+      <div
+        style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
+        className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+
+      {/* Content */}
+      <div className='font-display text-3xl font-bold tracking-tight text-cream-100'>{title}</div>
+      <p>{description}</p>
+      <div className='flex-grow' />
+
+      {/* Documentation */}
+      {docsHref && (
+        <a
+          href={docsHref}
+          target={docsHref.startsWith('http') ? '_blank' : undefined}
+          rel={docsHref.startsWith('http') ? 'noreferrer' : undefined}
+          className='flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm'>
+          Documentation
+          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+        </a>
+      )}
     </div>
   );
 }

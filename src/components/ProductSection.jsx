@@ -66,7 +66,7 @@ function ProductPages({ page, onChangePage }) {
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
-          className='absolute flex h-full w-full flex-col items-center gap-6'
+          className='absolute flex h-full w-full flex-col items-center gap-8'
           custom={page.dir}
           variants={variants}
           initial='enter'
