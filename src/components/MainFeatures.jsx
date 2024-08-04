@@ -10,11 +10,9 @@ import {
     faShield,
   faServer,
   faChessKnight,
-  faShieldAlt,
-  faChartLine,
-  faBug,
-  faPlug,
+  faChess,
   faUser,
+  faAddressCard,
   faEnvelope,
   faSignInAlt,
   faUserFriends,
@@ -44,13 +42,13 @@ export default function MainFeatures() {
         ]}
       />
       <MainFeatureColumn
-        icon={faChessKnight}
+        icon={faChess}
         title='Matchmaking, Lobbies, & Parties'
         description='Supports casual, competitive, MMO, and turn-based. Supports server-authoritative, P2P, and async multiplayer. Works with existing multiplayer.'
         buttons={[{ name: 'Documentation', href: '/docs/matchmaker' }]}
       />
       <MainFeatureColumn
-        icon={faUser}
+        icon={faAddressCard}
         title='Accounts, Friends, & Presence'
         description='Email, username, and OAuth support. Support social logins including Google, Twitch, Discord, and more. Display friends online & join lobbies.'
         buttons={[

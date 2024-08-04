@@ -21,7 +21,7 @@ export default function LevelUpSection() {
 
         {/* Text Container - Centered Vertically and Horizontally */}
         <div className='mx-8 flex h-full flex-col items-center justify-center text-center'>
-          <div className='mb-5 font-display text-6xl font-bold md:text-8xl'>Level Up With Rivet</div>
+          <div className='mb-5 font-display text-6xl font-bold md:text-8xl'>Level Up with Rivet</div>
           <div className='mb-5 mt-2 font-display text-2xl font-bold italic md:text-4xl'>
             and get back to game development
           </div>

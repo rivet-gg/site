@@ -12,23 +12,23 @@ import imgVersionsRollback from '@/images/product/version-management.png';
 const PRODUCT_PAGES = [
   {
     name: 'Game Server Management',
+    description: 'Manage running servers, see players online, view logs, inspect crashes, and monitor performance.',
     image: imgGameServerManagement,
-    learnUrl: '/learn/game-server-management'
   },
   {
     name: 'Versions & Rollback',
+    description: 'View version history & roll back instantly without re-deploying.',
     image: imgVersionsRollback,
-    learnUrl: '/learn/versions-rollback'
   },
   {
     name: 'Backend Editor',
+    description: 'Add, configure, & develop modules visually. No more confusing config files & reading extensive documentation.',
     image: imgBackendEditor,
-    learnUrl: '/learn/backend-editor'
   },
   {
     name: 'Backend Logs',
+    description: 'Remove the guesswork from running your game with full visibility to everything happening on the backend.',
     image: imgBackendLogs,
-    learnUrl: '/learn/versions-rollback'
   }
 ];
 
@@ -38,12 +38,12 @@ export default function ProductSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='py-30 flex flex-col items-center gap-12 px-4 md:py-48'>
+    <div className='py-30 flex flex-col items-center gap-16 px-4 md:py-48'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Single Platform to Manage Your Backend & Game Servers
+        Single Tool to Manage Your Game Servers & Backend
       </h2>
 
-      <div className='flex w-full flex-col items-stretch gap-2'>
+      <div className='flex w-full flex-col items-stretch gap-6'>
         {/* Product tabs */}
         <div className='flex flex-wrap justify-center gap-2'>
           {PRODUCT_PAGES.map((product, i) => (
@@ -62,11 +62,11 @@ export default function ProductSection() {
 
 function ProductPages({ page, onChangePage }) {
   return (
-    <div className='relative h-[300px] md:h-[580px]'>
+    <div className='relative h-[500px] md:h-[800px]'>
       <AnimatePresence initial={false} custom={page.dir}>
         <motion.div
           key={page.index}
-          className='absolute flex w-full flex-col items-center'
+          className='absolute flex h-full w-full flex-col items-center gap-6'
           custom={page.dir}
           variants={variants}
           initial='enter'
@@ -98,10 +98,18 @@ function ProductPages({ page, onChangePage }) {
 function ProductPageContents({ page, scale }) {
   return (
     <>
-      <Image src={page.image} alt={`${page.name} Image`} className='mx-auto w-full max-w-7xl' />
-      <Button href={page.learnUrl} variant='juicy' className='px-6'>
-        Get started using {page.name} <span aria-hidden='true'>→</span>
-      </Button>
+      <div className='text-cream-100 text-center max-w-xl'>{page.description}</div>
+      <div className='flex flex-grow items-center justify-center overflow-hidden'>
+        <div className='flex h-full items-center justify-center'>
+          <Image
+            src={page.image}
+            alt={`${page.name} Image`}
+            className='max-h-full w-auto rounded border-2 border-cream-100/10 object-contain'
+            width={500}
+            height={300}
+          />
+        </div>
+      </div>
     </>
   );
 }

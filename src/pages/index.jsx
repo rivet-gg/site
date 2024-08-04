@@ -110,9 +110,9 @@ export default function Index() {
             <PoweringPlay />
           </div>
 
-          <CodeSection />
-
           <ProductSection />
+
+          <CodeSection />
 
           <Philosophy />
           <div className='h-32'></div>

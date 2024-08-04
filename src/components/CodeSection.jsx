@@ -35,10 +35,10 @@ const ENGINE_PAGES = [
     learnUrl: '/learn/html5'
   },
   {
-    name: 'Custom',
+    name: 'Custom Engine',
     image: imgStepsCustom,
     learnUrl: '/learn/custom'
-  }
+  },
 ];
 
 export default function CodeSection() {
@@ -47,9 +47,9 @@ export default function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='py-30 flex flex-col items-center gap-12 px-4 md:py-48'>
+    <div className='py-30 flex flex-col items-center gap-16 px-4 md:py-48'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Rivet Works with Your Game Engine
+        Build Right into Your Favorite Engine
       </h2>
 
       <div className='flex w-full flex-col items-stretch gap-2'>
