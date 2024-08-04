@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import CodeSection from '@/components/CodeSection';
 import ProductSection from '@/components/ProductSection';
 import MainFeatures from '@/components/MainFeatures';
-import Earth from '@/components/Earth';
+// import Earth from '@/components/Earth';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
@@ -683,7 +683,7 @@ function PoweringPlay() {
     <div className={clsx('relative flex h-[80vh] items-center justify-center', 'border-b-2 border-cream-100/10')}>
       {/* Background earth */}
       <div className='absolute w-full h-full -z-10 transform'>
-        <Earth className='h-full w-auto object-cover brightness-[0.4] contrast-[1.4] opacity-50 grayscale filter' />
+        {/* <Earth className='h-full w-auto object-cover brightness-[0.4] contrast-[1.4] opacity-50 grayscale filter' /> */}
       </div>
 
       {/* Content */}
