@@ -32,7 +32,7 @@ export default function IncludedSection() {
   const otherServicesText = "Other services";
   const otherServicesPrice = `~\$${OTHER_SERVICES_PRICE.toFixed(2)}/mo`;
   return (
-    <div className='max-w-6xl mx-auto flex flex-col'>
+    <div className='max-w-6xl mx-auto flex flex-col px-4'>
       <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Included for Free'}</h2>
       <div className='h-20'/>
       <div className={clsx(

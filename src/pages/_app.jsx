@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Providers>
         <Head>
-          <meta name='viewport' content='width=device-width' />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
           {/* Add common metadata */}
           <meta property='og:image:type' content='image/png' />

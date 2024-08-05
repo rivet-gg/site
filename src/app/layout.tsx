@@ -47,7 +47,7 @@ export default function Layout({ children }) {
         <meta name="msapplication-config" content="/icons/browserconfig.xml?v=24-08-04" />
         <meta name="theme-color" content="#ffffff" />
 
-        <meta name='viewport' content='width=device-width' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className='dark bg-charcole-950 antialiased'>
         <Providers>{children}</Providers>

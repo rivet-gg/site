@@ -168,7 +168,7 @@ export default function Pricing({ autoscalingData }) {
         <h2 className='text-4xl font-display font-bold tracking-tight text-cream-100 sm:text-5xl text-center'>{'Predictable & Affordable'}</h2>
         <div className={clsx(
           "w-full grid gap-4 mt-8",
-          "grid-cols-1 sm:grid-cols-2",
+          "grid-cols-1 md:grid-cols-2",
         )}>
           <PredictablePricingFeature title="Pay for what you use" description="Servers are created & destroyed on-demand to meet user demand. Great for playtesting through games at scale."></PredictablePricingFeature>
           <PredictablePricingFeature title="Bot & DDoS mitigation" description="Bots & DDoS attacks commonly drive up costs. Mitigate these out of the box."></PredictablePricingFeature>

@@ -38,7 +38,7 @@ export default function ProductSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='py-30 flex flex-col items-center gap-16 px-4 md:py-48'>
+    <div className='flex flex-col items-center gap-16 px-4'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
         Single Tool to Manage Your Game Servers & Backend
       </h2>

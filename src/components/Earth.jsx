@@ -1,33 +1,24 @@
-import Spline from '@splinetool/react-spline';
-import { useCallback, useEffect, useRef } from 'react';
-import { useTime, useTransform } from 'framer-motion';
-
-const f = 1000 * 60 * 60 * 10;
+import { useRef } from 'react';
+import clsx from 'clsx';
 
 export default function Earth(props) {
-  const ref = useRef();
-  const earth = useRef();
-
-  const time = useTime();
-
-  const rotate = useTransform(time, [0, f], [0, 360], { clamp: false });
-
-  useEffect(
-    () =>
-      rotate.onChange(value => {
-        if (earth.current) {
-          earth.current.rotation.y = value;
-        }
-      }),
-    [rotate]
+  const videoRef = useRef(null);
+  // <Earth className='h-full w-auto object-cover brightness-[0.4] contrast-[1.4] opacity-50 grayscale filter' />
+  // A: https://www.pexels.com/video/planet-earth-spinning-8295518/
+  // B: https://www.pexels.com/video/planet-earth-spinning-10343918/
+  return (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      ref={videoRef}
+      {...props}
+      className={clsx(props.className,
+      // 'opacity-50 brightness-[0.4] contrast-[1.4] grayscale filter'
+      'opacity-10 grayscale filter'
+      )}>
+      <source src='https://assets.rivet.gg/effects/earth-drafts/earth.webm' type='video/mp4' />
+    </video>
   );
-
-  const onLoad = useCallback(splineApp => {
-    let splineEarth = splineApp.findObjectByName('Earth');
-    if (splineEarth) {
-      earth.current = splineEarth;
-    }
-  }, []);
-
-  return <Spline ref={ref} onLoad={onLoad} {...props} scene='/photoreal_earth.splinecode' />;
 }
