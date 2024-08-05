@@ -1,6 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
 import routes from '@/generated/routes.json';
@@ -133,7 +134,10 @@ function SmallPrint() {
             <ul role='list' className='mt-3 space-y-2'>
               {footer.learn.map(item => (
                 <li key={item.name}>
-                  <Link href={item.href} target={item.target} className='text-sm leading-4 text-gray-300 hover:text-white'>
+                  <Link
+                    href={item.href}
+                    target={item.target}
+                    className='text-sm leading-4 text-gray-300 hover:text-white'>
                     {item.name}
                   </Link>
                 </li>
