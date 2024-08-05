@@ -16,8 +16,8 @@ export default function Earth(props) {
       {...props}
       className={clsx(
         props.className,
-        'opacity-10 grayscale filter',
-        isLoaded ? 'opacity-100' : 'opacity-0',
+        'grayscale filter',
+        isLoaded ? 'opacity-10' : 'opacity-0',
         'transition-opacity duration-500'
       )}
     >
