@@ -727,16 +727,16 @@ function AdaptableSection() {
           docsHref='https://opengb.dev/docs/build/overview'
         />
         <AdaptableFeature
-          title='Access low-level APIs'
+          title='Access to low-level APIs'
           description='Build with low-level APIs for highly custom use cases. Includes APIs for provisioning servers, customizing networking, managing builds, and tuning DDoS protection rules.'
         />
         <AdaptableFeature
-          title='Automatable cloud'
+          title='Fully automatable cloud'
           description="Build custom deploy pipelines using Rivet's cloud APIs. Anything you can do via a GUI is available as an API & CLI."
           docsHref='/docs/cloud'
         />
         <AdaptableFeature
-          title='Integrate with existing tools'
+          title='Integrated with existing tools'
           description='Works with your favorite tools & existing backends. Integrate Rivet incrementally without having to rewrite anything.'
           docsHref='https://opengb.dev/integrations/overview'
         />

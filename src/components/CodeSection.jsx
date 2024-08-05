@@ -53,12 +53,12 @@ export default function CodeSection() {
         Seamlessly Built into Your Favorite Engine
       </h2>
 
-      <ul className='text-cream-100 max-w-xl list-none mx-auto'>
+      <ul className='text-cream-100 list-none mx-auto'>
         {[
           'Create & deploy a multiplayer game from scratch in under 1 minute',
-          <>Deploy existing multiplayer games using integrations with existing <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
-          'Powerful local development tooling',
-          'One-click deploy to playtest',
+          <>Deploy existing multiplayer games using integrations with <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
+          'One-click deploys for playtesting',
+          'Includes tools for multiplayer local development',
           'High quality SDKs & documentation',
         ].map((item, index) => (
           <li key={index} className='flex items-start mb-2'>
