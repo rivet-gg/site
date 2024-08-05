@@ -281,7 +281,7 @@ function GlowVideo({ style, ...props }) {
   const videoRef = useRef(null);
   return (
     <video autoPlay loop muted playsInline ref={videoRef} {...props}>
-      <source src='https://assets.rivet.gg/effects/glow.webm' type='video/webm' />
+      <source src='https://assets2.rivet.gg/effects/glow.webm' type='video/webm' />
     </video>
   );
 }
