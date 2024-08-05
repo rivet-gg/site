@@ -98,25 +98,28 @@ export default function Index() {
 
           <PoweringPlay />
 
-          <div className='h-40' />
+          <div className='h-48 md:h-64' />
 
           <ProductSection />
 
+          <div className='h-56 md:h-96' />
+
           <CodeSection />
 
-          <div className='h-48' />
+          <div className='h-48 md:h-96' />
 
           <IncludedSection />
 
-          <div className='h-64' />
+          <div className='h-96' />
 
           <div className='main-content-container mx-auto px-6'>
             <AdaptableSection />
           </div>
 
-          <div className='h-48' />
+          <div className='h-60' />
 
           <Philosophy />
+
           <div className='h-32'></div>
 
           <LevelUpSection />
@@ -227,7 +230,7 @@ function Subtitle() {
 
 function AllModules() {
   return (
-    <div className='mx-auto'>
+    <div className='mx-auto px-4'>
       <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
         ...and so much more
       </h2>
@@ -680,17 +683,19 @@ const GAME_GENRES = [
 
 function PoweringPlay() {
   return (
-    <div className={clsx('relative flex h-[80vh] items-center justify-center', 'border-b-2 border-cream-100/10')}>
+    <div className={clsx('relative flex h-[60vh] md:h-[70vh] items-center justify-center', 'border-b-2 border-cream-100/10')}>
       {/* Background earth */}
-      <div className='absolute w-full h-full -z-10 transform'>
-        <Earth className='h-full w-auto object-cover brightness-[0.4] contrast-[1.4] opacity-50 grayscale filter' />
+      <div className='absolute inset-0 -z-10 overflow-hidden bg-black'>
+        <Earth className='absolute top-0 left-0 h-full w-full object-cover object-top' />
+        {/* <div className='absolute inset-0 bg-gradient-to-b from-transparent from-80% to-black'></div> */}
+        <div className='absolute inset-0 bg-gradient-to-t from-transparent from-80% to-charcole-950'></div>
       </div>
 
       {/* Content */}
       <h3
         className={clsx(
           'text-center font-display tracking-tight text-cream-100',
-          'xs:text-2xl text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
+          'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
           'drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]'
         )}>
         {/* Online indicator */}
@@ -720,7 +725,7 @@ function AdaptableSection() {
       <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
         {'Need even more customization?'}
       </h2>
-      <div className={clsx('mt-16 grid w-full gap-4', 'grid-cols-1 sm:grid-cols-2')}>
+      <div className={clsx('mt-16 grid w-full gap-4', 'grid-cols-1 md:grid-cols-2')}>
         <AdaptableFeature
           title='Custom modules without server hassels'
           description='Write backend modules with TypeScript, Postgres, and real-time actors. Auto-generate SDKs for your module to use in engine. Reuse modules across multiple games with registries.'

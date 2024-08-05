@@ -48,7 +48,7 @@ export default function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='py-30 flex flex-col items-center px-4 gap-8 md:py-48'>
+    <div className='flex flex-col items-center px-4 gap-8'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
         Seamlessly Built into Your Favorite Engine
       </h2>
@@ -58,7 +58,7 @@ export default function CodeSection() {
           'Create & deploy a multiplayer game from scratch in under 1 minute',
           <>Deploy existing multiplayer games using integrations with <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
           'One-click deploys for playtesting',
-          'Includes tools for multiplayer local development',
+          'Includes tools for developing multiplayer games locally',
           'High quality SDKs & documentation',
         ].map((item, index) => (
           <li key={index} className='flex items-start mb-2'>
