@@ -106,7 +106,7 @@ function rehypeAddCustomCode() {
   return tree => {
     let exports = [
       `import {convertConfigToMetadata,convertConfigToInfo} from "@/lib/articles/metadata";
-      let metadataConfig = typeof config === 'undefined' ? undefined : config;
+      let metadataConfig = typeof config === 'undefined' || Object.getPrototypeOf(config) !== Object.prototype ? undefined : config;
       export const metadata = convertConfigToMetadata(metadataConfig);
       export const info = convertConfigToInfo(metadataConfig, import.meta.url);
       `
