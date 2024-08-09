@@ -1,10 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { initClient, startClientDrawloop, createInputEventListener, createResizeEventListener } from '../../game/client/state';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { initClient } from '../../game/client/state';
 
 // Global client  used to prevent duplicate creation if component is re-mounted
 let globalClient = null;
@@ -33,7 +29,7 @@ export function Game({ className, ...props }) {
   }, [isRunning, gameClient]);
 
   return (
-    <div className={clsx(className, 'flex justify-center', 'pointer-events-auto bg-charcole-950')} {...props}>
+    <div className={clsx(className, 'flex justify-center items-center', 'pointer-events-auto')} {...props}>
       <canvas ref={canvasElement}></canvas>
     </div>
   );

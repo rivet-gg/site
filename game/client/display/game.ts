@@ -21,7 +21,7 @@ export default function game(
   ctx.save();
 
   // Black out the screen
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'rgba(9, 9, 9)';
   ctx.fillRect(0, 0, screenSize.w, screenSize.h);
 
   {
@@ -31,7 +31,7 @@ export default function game(
     ctx.scale(screenScale, screenScale);
 
     // Draw level-relative objects
-    grid(ctx, game, screenScale);
+    // grid(ctx, game, screenScale);
     drawGameObjects(ctx, game.clientGameState, selfPlayer?.id, screenScale);
   }
   // Restore to initial state

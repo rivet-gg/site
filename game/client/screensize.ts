@@ -14,7 +14,7 @@ export function getPixelScalar(): number {
 export function resizeClient(client: Client) {
   if (client.shutdown) return;
 
-  let canvasParent = client.canvas.parentElement
+  let canvasParent = client.canvas.parentElement;
   if (!canvasParent) {
     console.warn("No canvas parent");
     return;

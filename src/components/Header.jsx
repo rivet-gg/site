@@ -138,16 +138,16 @@ export const Header = forwardRef(function Header({ className }, ref) {
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
 
   let [bannerVisible, setBannerVisible] = useState(false);
-  useEffect(() => {
-    const handleBannerChange = () => {
-      setBannerVisible(localStorage.getItem('creditsBannerClosed') !== 'true');
-    };
+  // useEffect(() => {
+  //   const handleBannerChange = () => {
+  //     setBannerVisible(localStorage.getItem('creditsBannerClosed') !== 'true');
+  //   };
 
-    handleBannerChange();
+  //   handleBannerChange();
 
-    window.addEventListener('creditsBannerChange', handleBannerChange);
-    return () => window.removeEventListener('creditsBannerChange', handleBannerChange);
-  }, [navigation.tabs]);
+  //   window.addEventListener('creditsBannerChange', handleBannerChange);
+  //   return () => window.removeEventListener('creditsBannerChange', handleBannerChange);
+  // }, [navigation.tabs]);
 
   useEffect(() => {
     document.body.style.setProperty(

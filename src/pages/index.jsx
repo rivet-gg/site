@@ -65,10 +65,12 @@ export default function Index() {
   return (
     <div>
       <div className='relative isolate overflow-x-hidden'>
-        <div className='relative'>
+        <div className='pointer-events-none relative'>
+          <GameBackground />
+
+          <div className='h-16' />
           <Title />
-          <Subtitle />
-          <div className='h-32' />
+          <div className='h-52' />
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
@@ -119,93 +121,88 @@ export default function Index() {
   );
 }
 
-function Title() {
+function GameBackground() {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.45, delay: 0.09 }}
-      className={clsx(
-        'relative mx-auto box-border flex flex-wrap items-center justify-center',
-        'lg:h-[400px] lg:max-w-4xl',
-        'md:h-[357px] md:max-w-3xl',
-        'h-[45vw] w-full'
-      )}>
-      <GlowVideo className='pointer-events-none absolute inset-0 z-50 h-full w-full object-cover mix-blend-screen hue-rotate-[145deg]' />
+    <div className={clsx('absolute inset-0 -z-50')}>
+      <Game className='absolute inset-0' />
 
-      <div className={clsx('absolute inset-x-[52px] inset-y-[24px]')}>
-        {/* Game Background */}
-        <Game className='absolute inset-0 z-10 h-full w-full' />
-
-        {/* Content */}
-        <div className='pointer-events-none z-10 flex select-none flex-col items-center justify-center text-center'>
-          {' '}
-        </div>
-
-        {/* Multiplayer note */}
-        <div className='pointer-events-none absolute bottom-2 right-2 z-20 flex select-none items-center justify-center px-2.5 py-1 text-xs font-bold uppercase text-cream-100/50 opacity-60'>
-          <span>This game is multiplayer</span>
-        </div>
+      {/* Multiplayer note */}
+      <div className='pointer-events-none absolute bottom-2 right-2 z-20 flex select-none items-center justify-center px-2.5 py-1 text-xs font-bold uppercase text-cream-100/50 opacity-60'>
+        <span>This game is multiplayer</span>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
-function Subtitle() {
+function Title() {
   return (
-    <div className='mt-20 flex w-full flex-col items-center justify-center px-2 text-center'>
-      <motion.h1
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.325, delay: 0.135 }}
-        className={clsx(
-          'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100',
-          'gap-3 text-3xl sm:text-5xl md:text-6xl'
-        )}>
-        The Only Backend Your Game Needs
-      </motion.h1>
+    <div className='flex w-full flex-col items-center justify-center px-2 text-center'>
+      <div className='relative flex flex-col items-center justify-center'>
+        {/* BG gradient to cover the game */}
+        <div
+          className='pointer-events-none absolute inset-x-[-100px] inset-y-[-50px] -z-10'
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(9, 9, 9, 0.8) 0%, rgba(9, 9, 9, 0) 70%)',
+            backgroundSize: '100% 100%'
+          }}
+        />
 
-      <div className='h-3' />
+        <motion.h1
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.325, delay: 0.135 }}
+          className={clsx(
+            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100',
+            'gap-3 text-3xl sm:text-5xl md:text-6xl'
+          )}>
+          The Only Backend Your Game Needs
+        </motion.h1>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.325, delay: 0.27 }}
-        className='text-center font-display text-3xl text-cream-100/80'>
-        Game servers, networking, matchmaking, authentication,<br/>custom backend logic, and more.
-      </motion.div>
+        <div className='h-3' />
 
-      <div className='h-3' />
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.325, delay: 0.27 }}
+          className='text-center font-display text-3xl text-cream-100/80'>
+          Game servers, networking, matchmaking, authentication,
+          <br />
+          custom backend logic, and more.
+        </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.325, delay: 0.405 }}
-        className={clsx(
-          'text-2xl',
-          'italic text-orange-500',
-          'text-center font-display tracking-tight text-cream-100/80',
-        )}>
-        Open-Source & Self-Hostable.
-      </motion.div>
-      
-      <div className='h-5' />
+        <div className='h-3' />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.325, delay: 0.54 }}
-        className={clsx(
-          'flex items-center justify-center',
-          'gap-1 px-3 py-1',
-          'text-center text-xs sm:text-sm font-bold',
-          'text-cream-100',
-          'rounded-full border border-cream-100/20',
-          'opacity-70 hover:opacity-100',
-          'hover:bg-orange-500/10 hover:border-orange-500'
-        )}>
-        <GitHubStars />
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.325, delay: 0.405 }}
+          className={clsx(
+            'text-2xl',
+            'italic text-orange-500',
+            'text-center font-display tracking-tight text-cream-100/80'
+          )}>
+          Open-Source & Self-Hostable.
+        </motion.div>
+
+        <div className='h-5' />
+
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.325, delay: 0.54 }}
+          className={clsx(
+            'flex items-center justify-center',
+            'gap-1 px-3 py-1',
+            'text-center text-xs font-bold sm:text-sm',
+            'text-cream-100',
+            'rounded-full border border-cream-100/20',
+            'opacity-70 hover:opacity-100',
+            'hover:border-orange-500 hover:bg-orange-500/10',
+            'pointer-events-auto'
+          )}>
+          <GitHubStars />
+        </motion.div>
+      </div>
 
       <div className='h-16' />
 
@@ -213,12 +210,21 @@ function Subtitle() {
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.675 }}
-        className='pointer-events-auto flex flex-col items-center justify-center'>
+        className='relative flex flex-col items-center justify-center'>
+        {/* BG gradient to cover the game */}
+        <div
+          className='pointer-events-none absolute inset-x-[-100px] inset-y-[-50px] -z-10'
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(9, 9, 9, 0.8) 0%, rgba(9, 9, 9, 0) 70%)',
+            backgroundSize: '100% 100%'
+          }}
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.325, delay: 0.48 }}
-          className='text-cream-100/90 text-md font-semibold'>
+          className='text-md font-semibold text-cream-100/90'>
           Install Plugin
         </motion.div>
         <div className='h-1' />
@@ -226,7 +232,7 @@ function Subtitle() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.325, delay: 0.555 }}
-          className='text-cream-100/70 text-sm'>
+          className='text-sm text-cream-100/70'>
           Create & deploy a multiplayer game from scratch in under 5 minutes.
         </motion.div>
         <div className='h-4' />
@@ -235,25 +241,25 @@ function Subtitle() {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.325, delay: 0.63 }}>
-            <DownloadButton title="Unity" href="https://github.com/rivet-gg/plugin-unity" />
+            <DownloadButton title='Unity' href='https://github.com/rivet-gg/plugin-unity' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.325, delay: 0.705 }}>
-            <DownloadButton title="Godot" href="https://godotengine.org/asset-library/asset/1881" />
+            <DownloadButton title='Godot' href='https://godotengine.org/asset-library/asset/1881' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.325, delay: 0.78 }}>
-            <DownloadButton title="Unreal Engine" href="https://github.com/rivet-gg/plugin-unreal" />
+            <DownloadButton title='Unreal Engine' href='https://github.com/rivet-gg/plugin-unreal' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.325, delay: 0.855 }}>
-            <DownloadButton title="HTML5 & Other" href="/learn/html5/tutorials/crash-course" icon={faBook} />
+            <DownloadButton title='HTML5 & Other' href='/learn/html5/tutorials/crash-course' icon={faBook} />
           </motion.div>
         </div>
       </motion.div>
@@ -269,12 +275,12 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
   const buttonRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMouseMove = event => {
       if (buttonRef.current) {
         const rect = buttonRef.current.getBoundingClientRect();
         setMousePosition({
           x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
+          y: event.clientY - rect.top
         });
       }
     };
@@ -287,15 +293,16 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
   }, []);
 
   return (
-    <a 
+    <a
       ref={buttonRef}
-      href={href} 
-      {...linkProps} 
-      variant='primaryJuicy' 
+      href={href}
+      {...linkProps}
+      variant='primaryJuicy'
       className={clsx(
-        'w-48 h-11',
+        'h-11 w-48',
         'pl-2',
         'relative overflow-hidden',
+        'pointer-events-auto',
         // Base styles
         'inline-flex items-stretch justify-center',
         'rounded',
@@ -307,33 +314,31 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
         'hover:-translate-y-[2px] hover:shadow-[0_4px_10px_0_rgba(0,0,0,0.6)]',
         'active:opacity-75',
         // Hover
-        'hover:bg-charcole-800/50 hover:border-cream-100/20 hover:text-cream-50',
+        'hover:border-cream-100/20 hover:bg-charcole-800/50 hover:text-cream-50',
         // Selected
         'aria-selected:border-cream-100/30 aria-selected:text-cream-50',
         // Disabled
-        'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+        'disabled:border-cream-100 disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-cream-100',
         // Loading
-        'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
+        'aria-busy:translate-y-0 aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:hover:text-white'
       )}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className='flex-grow flex items-center justify-center'>{title}</div>
-      <div className='w-[2px] h-7 my-auto bg-cream-100/5' />
-      <div className={clsx(
-        'flex-0 w-11',
-        'flex items-center justify-center'
-      )}><FontAwesomeIcon icon={icon} /></div>
-      
+      onMouseLeave={() => setIsHovered(false)}>
+      <div className='flex flex-grow items-center justify-center'>{title}</div>
+      <div className='my-auto h-7 w-[2px] bg-cream-100/5' />
+      <div className={clsx('flex-0 w-11', 'flex items-center justify-center')}>
+        <FontAwesomeIcon icon={icon} />
+      </div>
+
       {/* Gloss effect */}
       <div
         className={clsx(
-          'absolute top-0 left-0 w-full h-full pointer-events-none',
+          'pointer-events-none absolute left-0 top-0 h-full w-full',
           'transition-opacity duration-300',
-          isHovered ? 'opacity-100' : 'opacity-50'
+          isHovered ? 'opacity-100' : 'opacity-90'
         )}
         style={{
-          background: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,231,235,0.1), transparent)`,
+          background: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,231,235,0.1), transparent)`
         }}
       />
     </a>
@@ -424,7 +429,6 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       {...props}>
-
       {isHovered ? (
         <>
           <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code{' '}
@@ -667,10 +671,14 @@ const GAME_GENRES = [
 
 function PoweringPlay() {
   return (
-    <div className={clsx('relative flex h-[60vh] md:h-[70vh] items-center justify-center', 'border-b-2 border-cream-100/10')}>
+    <div
+      className={clsx(
+        'relative flex h-[60vh] items-center justify-center md:h-[70vh]',
+        'border-b-2 border-cream-100/10'
+      )}>
       {/* Background earth */}
       <div className='absolute inset-0 -z-10 overflow-hidden bg-black'>
-        <Earth className='absolute top-0 left-0 h-full w-full object-cover object-top' />
+        <Earth className='absolute left-0 top-0 h-full w-full object-cover object-top' />
         {/* <div className='absolute inset-0 bg-gradient-to-b from-transparent from-80% to-black'></div> */}
         <div className='absolute inset-0 bg-gradient-to-t from-transparent from-80% to-charcole-950'></div>
       </div>

@@ -99,16 +99,16 @@ function updatePlayerCollisions(player: Player, game: GameState) {
     }
   }
 
-  for (const asteroid of asteroids(game)) {
-    const diffX = asteroid.posX - player.posX;
-    const diffY = asteroid.posY - player.posY;
-    const minDist = PLAYER_CONSTS.SIZE + asteroid.size;
+  // for (const asteroid of asteroids(game)) {
+  //   const diffX = asteroid.posX - player.posX;
+  //   const diffY = asteroid.posY - player.posY;
+  //   const minDist = PLAYER_CONSTS.SIZE + asteroid.size;
 
-    if (diffX ** 2 + diffY ** 2 < minDist ** 2) {
-      player.collisionInfo.didHitAsteroid = true;
-      break;
-    }
-  }
+  //   if (diffX ** 2 + diffY ** 2 < minDist ** 2) {
+  //     player.collisionInfo.didHitAsteroid = true;
+  //     break;
+  //   }
+  // }
   for (const otherPlayer of players(game)) {
     if (otherPlayer.id === player.id) continue;
     if (player.invincibilityTimeLeft > 0 || otherPlayer.invincibilityTimeLeft > 0) continue;

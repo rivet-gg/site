@@ -111,14 +111,14 @@ function updateAsteroidCollisions(asteroid: Asteroid, game: GameState) {
       break;
     }
   }
-  for (const player of players(game)) {
-    const colliding = withinRadius({ x: player.posX, y: player.posY }, pos, size + PLAYER_CONSTS.SIZE);
+  // for (const player of players(game)) {
+  //   const colliding = withinRadius({ x: player.posX, y: player.posY }, pos, size + PLAYER_CONSTS.SIZE);
 
-    if (colliding) {
-      asteroid.collisionInfo.didHitPlayer = true;
-      break;
-    }
-  }
+  //   if (colliding) {
+  //     asteroid.collisionInfo.didHitPlayer = true;
+  //     break;
+  //   }
+  // }
 }
 
 export function preUpdateAsteroid(asteroid: Asteroid, game: GameState, dt: number) {

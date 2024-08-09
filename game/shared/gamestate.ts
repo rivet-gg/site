@@ -20,11 +20,11 @@ import { preUpdateBullet, updateBullet } from './bullet';
 import { preUpdatePlayer, updatePlayer } from './player';
 import { updateParticles } from './particles';
 
-const DISPLAY_WIDTH = 792;
-const DISPLAY_HEIGHT = 352;
+const DISPLAY_WIDTH = 1440;
+const DISPLAY_HEIGHT = 730;
 
 // export const MAP_WIDTH = 3500;
-export const MAP_WIDTH = 2500;
+export const MAP_WIDTH = 3500;
 export const MAP_HEIGHT = Math.round(MAP_WIDTH / DISPLAY_WIDTH * DISPLAY_HEIGHT);
 
 export function updateGame(game: GameState, dt: number, thisPlayerId: string) {

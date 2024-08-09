@@ -133,20 +133,26 @@ export async function setup(client: Client) {
 }
 
 function createInputEventListener(client: Client) {
-  client.canvas.addEventListener('mousedown', async ev => {
+  document.addEventListener('mousedown', async ev => {
     if (client.shutdown) return;
     client.inputShoot = true;
-    ev.preventDefault();
+    if (ev.target === client.canvas) {
+      ev.preventDefault();
+    }
   });
-  client.canvas.addEventListener('mouseup', async ev => {
+  document.addEventListener('mouseup', async ev => {
     if (client.shutdown) return;
     client.inputShoot = false;
-    ev.preventDefault();
+    if (ev.target === client.canvas) {
+      ev.preventDefault();
+    }
   });
-  window.addEventListener('mousemove', async ev => {
+  document.addEventListener('mousemove', async ev => {
     if (client.shutdown) return;
     [client.worldPointer.x, client.worldPointer.y] = convertScreenToWorld(client, ev.clientX, ev.clientY);
-    ev.preventDefault();
+    if (ev.target === client.canvas) {
+      ev.preventDefault();
+    }
   });
 }
 
@@ -317,19 +323,19 @@ export function drawScreen(client: Client) {
   }
 
 
-  // Overlay gradient for title
-  let gradientW = 1000;
-  let gradientH = 300;
-  let gradientSize = 100;
-  ctx.save();
-  let gradient = ctx.createRadialGradient(gradientSize / 2, gradientSize / 2, 0, gradientSize / 2, gradientSize / 2, gradientSize / 2);
-  gradient.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
-  gradient.addColorStop(1, 'transparent');
-  ctx.fillStyle = gradient;
-  ctx.translate(client.canvas.width / 2 - gradientW / 2, client.canvas.height / 2 - gradientH / 2);
-  ctx.scale(gradientW / gradientSize, gradientH / gradientSize);
-  ctx.fillRect(0, 0, gradientSize, gradientSize);
-  ctx.restore();
+  // // Overlay gradient for title
+  // let gradientW = 1000;
+  // let gradientH = 1000;
+  // let gradientSize = 100;
+  // ctx.save();
+  // let gradient = ctx.createRadialGradient(gradientSize / 2, gradientSize / 2, 0, gradientSize / 2, gradientSize / 2, gradientSize / 2);
+  // gradient.addColorStop(0, 'rgba(255, 9, 9, 0.5)');
+  // gradient.addColorStop(1, 'rgba(9, 9, 9, 0.0)');
+  // ctx.fillStyle = gradient;
+  // ctx.translate(client.canvas.width / 2 - gradientW / 2, client.canvas.height / 2 - gradientH / 2);
+  // ctx.scale(gradientW / gradientSize, gradientH / gradientSize);
+  // ctx.fillRect(0, 0, gradientSize, gradientSize);
+  // ctx.restore();
 
   debug(ctx, client);
   ctx.restore();

@@ -46,7 +46,7 @@ export default function drawPlayer(ctx: CanvasRenderingContext2D, player: Player
   ctx.font = 'normal 2em "Silkscreen"';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  let score = player.score.asteroids + player.score.players * 10;
+  let score = player.score.asteroids + player.score.players * 25;
   ctx.fillText(score.toString(), 0, drawSize / 2 + 30);
 
   ctx.restore();

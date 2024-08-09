@@ -17,7 +17,7 @@ export default function drawAsteroid(ctx: CanvasRenderingContext2D, asteroid: As
   // Shape returns points on the asteroid in polar form.
   const shape = asteroidShape(asteroid);
 
-  ctx.strokeStyle = 'white';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
   ctx.lineWidth = 1.5 / screenScale;
 
   ctx.beginPath();
