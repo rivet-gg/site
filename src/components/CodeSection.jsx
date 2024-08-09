@@ -55,7 +55,7 @@ export default function CodeSection() {
 
       <ul className='text-cream-100 list-none mx-auto'>
         {[
-          'Create & deploy a multiplayer game from scratch in under 1 minute',
+          'Create & deploy a multiplayer game from scratch in under 5 minutes',
           <>Deploy existing multiplayer games using integrations with <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
           'One-click deploys for playtesting',
           'Includes tools for developing multiplayer games locally',

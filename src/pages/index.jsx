@@ -16,6 +16,8 @@ import LevelUpSection from '@/components/LevelUpSection';
 import grainDark from '@/images/effects/grain-dark.png';
 import RotatingText from '@/components/RotatingText';
 import {
+  faDown,
+  faArrowDown,
   faArrowRight,
   faBook,
   faLock,
@@ -63,23 +65,11 @@ export default function Index() {
   return (
     <div>
       <div className='relative isolate overflow-x-hidden'>
-        <Title />
-
-        {/* <div className='relative max-w-7xl mx-auto h-0 overflow-visible opacity-75'>
-          <Image
-            alt='This game is multiplayer!'
-            src={imgMultiplayerCallout}
-            className='absolute right-6 top-4 hidden sm:block'
-          />
-        </div> */}
-
-        <Subtitle />
-        {/* <div className='h-16'></div> */}
-
-        {/* <RainbowBar className='max-w-5xl mx-auto h-1' /> */}
-        {/* <RainbowBar className='w-full h-1' /> */}
-
-        <div className='h-32' />
+        <div className='relative'>
+          <Title />
+          <Subtitle />
+          <div className='h-32' />
+        </div>
 
         <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
           <div className='relative border-t-2 border-cream-100/10 py-16'>
@@ -153,18 +143,9 @@ function Title() {
         </div>
 
         {/* Multiplayer note */}
-        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-cream-100 font-semibold bg-charcole-950'> */}
-        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 border border-cream-100 px-2.5 py-1 text-xs text-charcole-950 font-bold bg-cream-100 uppercase'> */}
         <div className='pointer-events-none absolute bottom-2 right-2 z-20 flex select-none items-center justify-center px-2.5 py-1 text-xs font-bold uppercase text-cream-100/50 opacity-60'>
           <span>This game is multiplayer</span>
-          {/* <span className='hidden md:block'>This game is multiplayer</span>
-          <span className='block md:hidden'>Play game in a larger window</span> */}
         </div>
-
-        {/* <div className='absolute bottom-2 right-2 flex items-center justify-center z-20 px-2.5 py-1 text-md font-semibold text-green-400'>
-          <OnlineIndicator />
-          <span>8 Players Online</span>
-        </div> */}
       </div>
     </motion.div>
   );
@@ -183,13 +164,19 @@ function Subtitle() {
         )}>
         The Only Backend Your Game Needs
       </motion.h1>
+
+      <div className='h-3' />
+
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.27 }}
-        className='mt-4 text-center font-display text-3xl tracking-tight text-cream-100/80'>
-        Supports Godot, Unity, Unreal Engine, HTML5, and Custom Engines.
+        className='text-center font-display text-3xl text-cream-100/80'>
+        Game servers, networking, matchmaking, authentication,<br/>custom backend logic, and more.
       </motion.div>
+
+      <div className='h-3' />
+
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -198,33 +185,158 @@ function Subtitle() {
           'text-2xl',
           'italic text-orange-500',
           'text-center font-display tracking-tight text-cream-100/80',
-          'mt-3'
         )}>
         Open-Source & Self-Hostable.
       </motion.div>
+      
+      <div className='h-5' />
 
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.54 }}
-        className='pointer-events-auto mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-8'>
-        <Button variant='primaryJuicy' href='https://hub.rivet.gg'>
-          Get Started
-        </Button>
-        <Button variant='juicy' href='https://rivet.gg/learn'>
-          <FontAwesomeIcon icon={faBook} className='mr-2' />
-          Documentation
-        </Button>
+        className={clsx(
+          'flex items-center justify-center',
+          'gap-1 px-3 py-1',
+          'text-center text-xs sm:text-sm font-bold',
+          'text-cream-100',
+          'rounded-full border border-cream-100/20',
+          'opacity-70 hover:opacity-100',
+          'hover:bg-orange-500/10 hover:border-orange-500'
+        )}>
+        <GitHubStars />
       </motion.div>
+
+      <div className='h-16' />
 
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.675 }}
-        className='mt-6'>
-        <GitHubStars className='flex items-center justify-center gap-1 text-center text-xs font-bold text-cream-100/80 hover:text-orange-500 sm:text-sm' />
+        className='pointer-events-auto flex flex-col items-center justify-center'>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.325, delay: 0.48 }}
+          className='text-cream-100/90 text-md font-semibold'>
+          Install Plugin
+        </motion.div>
+        <div className='h-1' />
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.325, delay: 0.555 }}
+          className='text-cream-100/70 text-sm'>
+          Create & deploy a multiplayer game from scratch in under 5 minutes.
+        </motion.div>
+        <div className='h-4' />
+        <div className='flex flex-row items-center justify-center gap-4'>
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.325, delay: 0.63 }}>
+            <DownloadButton title="Unity" href="https://github.com/rivet-gg/plugin-unity" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.325, delay: 0.705 }}>
+            <DownloadButton title="Godot" href="https://godotengine.org/asset-library/asset/1881" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.325, delay: 0.78 }}>
+            <DownloadButton title="Unreal Engine" href="https://github.com/rivet-gg/plugin-unreal" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.325, delay: 0.855 }}>
+            <DownloadButton title="HTML5 & Other" href="/learn/html5/tutorials/crash-course" icon={faBook} />
+          </motion.div>
+        </div>
       </motion.div>
     </div>
+  );
+}
+
+function DownloadButton({ title, href, icon = faArrowDown }) {
+  const isExternalLink = href.startsWith('http') || href.startsWith('//');
+  const linkProps = isExternalLink ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+  const [isHovered, setIsHovered] = useState(false);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      if (buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        });
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <a 
+      ref={buttonRef}
+      href={href} 
+      {...linkProps} 
+      variant='primaryJuicy' 
+      className={clsx(
+        'w-48 h-11',
+        'pl-2',
+        'relative overflow-hidden',
+        // Base styles
+        'inline-flex items-stretch justify-center',
+        'rounded',
+        'text-sm font-bold',
+        'bg-charcole-900/30 text-cream-100',
+        'border-2 border-cream-100/5',
+        // Animation
+        'transition-[background,transform,border-color,color,box-shadow] duration-200 ease-out',
+        'hover:-translate-y-[2px] hover:shadow-[0_4px_10px_0_rgba(0,0,0,0.6)]',
+        'active:opacity-75',
+        // Hover
+        'hover:bg-charcole-800/50 hover:border-cream-100/20 hover:text-cream-50',
+        // Selected
+        'aria-selected:border-cream-100/30 aria-selected:text-cream-50',
+        // Disabled
+        'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+        // Loading
+        'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className='flex-grow flex items-center justify-center'>{title}</div>
+      <div className='w-[2px] h-7 my-auto bg-cream-100/5' />
+      <div className={clsx(
+        'flex-0 w-11',
+        'flex items-center justify-center'
+      )}><FontAwesomeIcon icon={icon} /></div>
+      
+      {/* Gloss effect */}
+      <div
+        className={clsx(
+          'absolute top-0 left-0 w-full h-full pointer-events-none',
+          'transition-opacity duration-300',
+          isHovered ? 'opacity-100' : 'opacity-50'
+        )}
+        style={{
+          background: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,231,235,0.1), transparent)`,
+        }}
+      />
+    </a>
   );
 }
 
@@ -312,6 +424,7 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       {...props}>
+
       {isHovered ? (
         <>
           <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code{' '}
@@ -327,31 +440,6 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
   );
 }
 
-// function GitHubStarsRaw({ repo = 'rivet-gg/rivet' }) {
-//   const [stars, setStars] = useState(0);
-//   const [isHovered, setIsHovered] = useState(false);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch(`https://api.github.com/repos/${repo}`);
-//         const data = await response.json();
-//         setStars(data.stargazers_count);
-//       } catch (err) {
-//         console.error('Failed to fetch stars', err);
-//       }
-//     };
-
-//     fetchData();
-//   }, [repo]);
-
-//   return (
-//     <>
-//       <FontAwesomeIcon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>}
-//     </>
-//   );
-// }
-
 function formatNumber(num) {
   if (num >= 1000) {
     return (num / 1000).toFixed(1) + 'k';
@@ -359,69 +447,6 @@ function formatNumber(num) {
     return num.toString();
   }
 }
-
-// function DemoSection() {
-//   return (
-//     <div className='mt-24 flex flex-col items-center justify-center bg-black'>
-//       {' '}
-//       {/* Added bg-black */}
-//       <br></br>
-//       <Demo />
-//       <br></br>
-//     </div>
-//   );
-// }
-// function Demo() {
-//   return (
-//     <div className='relative flex w-full justify-center bg-black'>
-//       <div className='flex max-w-7xl flex-col p-4 sm:flex-row'>
-//         {/* Text and Bullet Points */}
-//         <div className='p-4' style={{ maxWidth: '50%' }}>
-//           <h2 className='font-display text-xl font-bold tracking-tight text-cream-100 sm:text-7xl'>
-//             <div>Build</div>
-//             <div>Riveting</div>
-//             <div>Experiences</div>
-//           </h2>
-
-//           <RainbowBarAnimated className='relative mt-0 h-1 w-[75%]' />
-
-//           {/* Grid Container for Bullet Points */}
-//           <div className='mt-8 grid grid-cols-1 gap-4'>
-//             <div>
-//               <ul
-//                 className='list-outside list-disc space-y-6 font-bold text-cream-100'
-//                 style={{ paddingLeft: '1.25em' }}>
-//                 <li>Your whole multiplayer experience on one game development platform</li>
-//                 <li>Use any engine, networking framework, or language</li>
-//                 <li>{`We'll get you started on your first project or your major AAA global launch`}</li>
-//                 <li>
-//                   Join our open source community on the Discord, building the future for game developers
-//                 </li>
-//               </ul>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Image */}
-//         <div className='relative h-auto w-full overflow-hidden sm:h-full sm:flex-1'>
-//           <Image
-//             src={imgComputerFrame}
-//             alt='Rivet'
-//             className='h-auto w-full object-cover sm:h-full sm:w-full'
-//           />
-//           <div
-//             className='absolute left-0 top-0 h-full w-full'
-//             style={{
-//               backgroundImage: 'linear-gradient(0deg, transparent, #00000030 50%, transparent)',
-//               backgroundSize: '100% 20px',
-//               animation: 'moveVerticalLines 5s linear infinite',
-//               zIndex: 10
-//             }}></div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 const PHILOSOPHY_ITEMS = [
   { icon: faFileCertificate, title: 'Permissive License (Apache 2.0)' },
@@ -449,8 +474,6 @@ function Philosophy() {
           className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
 
         {/* Title */}
-        {/* <BigAssIcon icon={faCodeBranch} color='text-cream-100' /> */}
-
         <div className='mx-auto max-w-4xl'>
           <h2 className='font-display text-5xl font-bold tracking-tight text-cream-100'>
             Our commitment to open-source <FontAwesomeIcon icon={faCodeBranch} className='ml-3 text-4xl' />
@@ -460,7 +483,6 @@ function Philosophy() {
         {/* Details */}
         <div className='mt-8 flex max-w-2xl flex-col gap-4 text-center text-justify text-cream-100/80'>
           <p>
-            {/* <div className='float-left text-5xl mr-2'>E</div> */}
             Everyone who works at Rivet has shipped a multiplayer game. We{"'"}ve all experienced how much
             time & money is required to ship a game, and how much harder it is to maintain it.
           </p>
@@ -584,44 +606,6 @@ function paginate(page, dir, arr) {
   if (newPage < 0) return { index: arr.length - (-newPage % arr.length), dir };
   return { index: newPage % arr.length, dir };
 }
-
-// const PlayHoursCounter = () => {
-//   const [currentTime, setCurrentTime] = useState(Date.now());
-//   const [hasMounted, setHasMounted] = useState(false);
-
-//   const updateClock = () => {
-//     let time = (2400 / 60 / 60 / 1000) * (Date.now() - 1640995200000);
-//     setCurrentTime(Math.round(time));
-//   };
-
-//   useEffect(() => {
-//     setHasMounted(true);
-
-//     updateClock();
-
-//     const interval = setInterval(() => {
-//       updateClock();
-//     }, 100);
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   if (!hasMounted) {
-//     return null;
-//   }
-
-//   const formattedTime = currentTime.toLocaleString();
-//   const timeElements = formattedTime.split('').map((char, index) => {
-//     const spanClass = isDigit(char) ? 'inline-block w-[0.52em]' : 'inline-block';
-//     return (
-//       <span key={index} className={`${spanClass} inline-block text-right`}>
-//         {char}
-//       </span>
-//     );
-//   });
-
-//   return <span>{timeElements}</span>;
-// };
 
 const PlaySessionsCounter = () => {
   const [currentTime, setCurrentTime] = useState(Date.now());
