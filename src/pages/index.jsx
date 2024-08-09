@@ -16,7 +16,6 @@ import LevelUpSection from '@/components/LevelUpSection';
 import grainDark from '@/images/effects/grain-dark.png';
 import RotatingText from '@/components/RotatingText';
 import {
-  faDown,
   faArrowDown,
   faArrowRight,
   faBook,
@@ -26,7 +25,14 @@ import {
   faCodeBranch,
   faAlien8bit,
   faSkullCrossbones,
-  faSkull
+  faSkull,
+  faUsers,
+  faCode,
+  faShield,
+  faChartLine,
+  faAddressCard,
+  faChessKnight,
+  faBug
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
@@ -68,9 +74,9 @@ export default function Index() {
         <div className='pointer-events-none relative'>
           <GameBackground />
 
-          <div className='h-16' />
+          <div className='h-28' />
           <Title />
-          <div className='h-52' />
+          <div className='h-60' />
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
@@ -135,6 +141,67 @@ function GameBackground() {
 }
 
 function Title() {
+  // const subtitleContent = [
+  //   { subtle: "Build painlessly with " },
+  //   { feature: "Game Servers", href: "https://www.google.com", icon: faServer },
+  //   { subtle: " and " },
+  //   { feature: "Matchmaking", href: "https://www.google.com", icon: faChessKnight },
+  //   { subtle: "." },
+  //   { break: true },
+  //   { subtle: "Launch quickly using " },
+  //   { feature: "Authentication", href: "https://www.google.com", icon: faAddressCard },
+  //   { subtle: " and " },
+  //   { feature: "Backend Scripting", href: "https://www.google.com", icon: faCode },
+  //   { subtle: "." },
+  //   { break: true },
+  //   { subtle: "Scale effortlessly with " },
+  //   { feature: "DDoS Mitigation", href: "https://www.google.com", icon: faShield },
+  //   { subtle: " and " },
+  //   { feature: "Monitoring", href: "https://www.google.com", icon: faChartLine },
+  //   { subtle: "." }
+  // ];
+
+  // const subtitleContent = [
+  //   { subtle: "Build multiplayer painlessly with " },
+  //   { feature: "Game Servers", href: "https://www.google.com", icon: faServer },
+  //   { subtle: ", " },
+  //   { feature: "Matchmaking", href: "https://www.google.com", icon: faChessKnight },
+  //   { subtle: ", and " },
+  //   { feature: "Authentication", href: "https://www.google.com", icon: faAddressCard },
+  //   { subtle: "." },
+  //   { break: true },
+  //   { subtle: "Customize endlessly using " },
+  //   { feature: "Backend Scripting", href: "https://www.google.com", icon: faCode },
+  //   { subtle: "." },
+  //   { break: true },
+  //   { subtle: "Scale effortlessly with " },
+  //   { feature: "DDoS Mitigation", href: "https://www.google.com", icon: faShield },
+  //   { subtle: " and " },
+  //   { feature: "Monitoring", href: "https://www.google.com", icon: faChartLine },
+  //   { subtle: "." }
+  // ];
+
+  const subtitleContent = [
+    { subtle: "Build multiplayer painlessly with " },
+    { feature: "Game Servers", href: "/docs/dynamic-servers", icon: faServer },
+    { subtle: ", " },
+    { feature: "Matchmaking", href: "/docs/matchmaker", icon: faChessKnight },
+    { subtle: "," },
+    { subtle: " and " },
+    { break: true },
+    { feature: "Authentication", href: "https://opengb.dev/modules/auth/overview", target: "_blank", icon: faAddressCard },
+    { subtle: ". " },
+    { subtle: "Customize endlessly using " },
+    { feature: "Backend Scripting", href: "https://opengb.dev/docs/quickstart", target: "_blank", icon: faCode },
+    { subtle: "." },
+    { break: true },
+    { subtle: "Scale effortlessly with " },
+    { feature: "DDoS Mitigation", href: "/docs/dynamic-servers/concepts/game-guard#d-do-s-mitigation", icon: faShield },
+    { subtle: " and " },
+    { feature: "Monitoring", href: "/docs/dynamic-servers/concepts/monitoring", icon: faBug },
+    { subtle: "." }
+  ];
+
   return (
     <div className='flex w-full flex-col items-center justify-center px-2 text-center'>
       <div className='relative flex flex-col items-center justify-center'>
@@ -152,39 +219,83 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.135 }}
           className={clsx(
-            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100',
-            'gap-3 text-3xl sm:text-5xl md:text-6xl'
+            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100 text-justify',
+            'gap-3',
+            'text-3xl',
+            'sm:text-5xl',
+            'lg:text-6xl',
           )}>
           The Only Backend Your Game Needs
         </motion.h1>
 
-        <div className='h-3' />
+        <div className='h-6' />
 
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.27 }}
-          className='text-center font-display text-3xl text-cream-100/80'>
-          Game servers, networking, matchmaking, authentication,
-          <br />
-          custom backend logic, and more.
+          className={clsx(
+            'text-center font-display text-cream-100',
+            'text-xl',
+            'md:text-2xl',
+            'lg:text-3xl',
+          )}>
+          {subtitleContent.map((item, index) => {
+            if ('feature' in item) {
+              return (
+                <a
+                  key={index}
+                  href={item.href}
+                  className={clsx(
+                    'text-[#D6CFC4] font-bold pointer-events-auto',
+                    'underline decoration-transparent',
+                    'hover:decoration-orange-500 hover:text-orange-500',
+                    'transition-all duration-100'
+                  )}
+                >
+                  <FontAwesomeIcon
+                    icon={item.icon}
+                    className={clsx(
+                      'w-0 sm:w-auto',
+                      'text-base md:text-lg lg:text-xl',
+                      'sm:mr-1 sm:ml-1',
+                      'mb-0.5 lg:mb-0.75',
+                    )}
+                  />
+                  {' '}
+                  {item.feature}
+                </a>
+              );
+            } else if ('subtle' in item) {
+              return <span key={index} className='text-[#837E77]'>{item.subtle}</span>;
+            } else if ('break' in item) {
+              return (
+                <>
+                  <br key={index} className="hidden sm:block" />
+                  <span className="sm:hidden"> </span>
+                </>
+              );
+            }
+          })}
         </motion.div>
 
-        <div className='h-3' />
+        <div className='h-5' />
 
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.405 }}
           className={clsx(
-            'text-2xl',
             'italic text-orange-500',
-            'text-center font-display tracking-tight text-cream-100/80'
+            'text-center font-display tracking-tight',
+            'text-xl',
+            'sm:text-2xl',
+            'lg:text-3xl',
           )}>
           Open-Source & Self-Hostable.
         </motion.div>
 
-        <div className='h-5' />
+        <div className='h-6' />
 
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -204,7 +315,7 @@ function Title() {
         </motion.div>
       </div>
 
-      <div className='h-16' />
+      <div className='h-24' />
 
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -776,6 +887,6 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
   );
 }
 
-Index.description = 'Open-Source game infrastructure. Multiplayer game servers and modular backend.';
+Index.description = 'The Only Backend Your Game Needs. Open-source & Self-Hostable.';
 Index.prose = false;
 Index.fullWidth = true;

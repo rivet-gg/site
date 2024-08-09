@@ -21,7 +21,7 @@ import { preUpdatePlayer, updatePlayer } from './player';
 import { updateParticles } from './particles';
 
 const DISPLAY_WIDTH = 1440;
-const DISPLAY_HEIGHT = 730;
+const DISPLAY_HEIGHT = 906;
 
 // export const MAP_WIDTH = 3500;
 export const MAP_WIDTH = 3500;
