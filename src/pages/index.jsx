@@ -74,9 +74,9 @@ export default function Index() {
         <div className='pointer-events-none relative'>
           <GameBackground />
 
-          <div className='h-28' />
+          <div className='h-16 sm:h-28' />
           <Title />
-          <div className='h-60' />
+          <div className='h-32 sm:h-60' />
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
@@ -203,7 +203,7 @@ function Title() {
   ];
 
   return (
-    <div className='flex w-full flex-col items-center justify-center px-2 text-center'>
+    <div className='flex w-full flex-col items-center justify-center px-4 text-center'>
       <div className='relative flex flex-col items-center justify-center'>
         {/* BG gradient to cover the game */}
         <div
@@ -219,7 +219,7 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.135 }}
           className={clsx(
-            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100 text-justify',
+            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100 text-center',
             'gap-3',
             'text-3xl',
             'sm:text-5xl',
@@ -235,7 +235,7 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.27 }}
           className={clsx(
-            'text-center font-display text-cream-100',
+            'text-center font-display text-cream-100 text-justify sm:text-center',
             'text-xl',
             'md:text-2xl',
             'lg:text-3xl',
@@ -246,6 +246,7 @@ function Title() {
                 <a
                   key={index}
                   href={item.href}
+                  target={item.target}
                   className={clsx(
                     'text-[#D6CFC4] font-bold pointer-events-auto',
                     'underline decoration-transparent',
@@ -288,7 +289,7 @@ function Title() {
           className={clsx(
             'italic text-orange-500',
             'text-center font-display tracking-tight',
-            'text-xl',
+            'text-xl text-center',
             'sm:text-2xl',
             'lg:text-3xl',
           )}>
@@ -338,7 +339,9 @@ function Title() {
           className='text-md font-semibold text-cream-100/90'>
           Install Plugin
         </motion.div>
+
         <div className='h-1' />
+
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -346,8 +349,10 @@ function Title() {
           className='text-sm text-cream-100/70'>
           Create & deploy a multiplayer game from scratch in under 5 minutes.
         </motion.div>
+
         <div className='h-4' />
-        <div className='flex flex-row items-center justify-center gap-4'>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
