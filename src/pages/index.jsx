@@ -257,9 +257,8 @@ function Title() {
                   <FontAwesomeIcon
                     icon={item.icon}
                     className={clsx(
-                      'w-0 sm:w-auto',
                       'text-base md:text-lg lg:text-xl',
-                      'sm:mr-1 sm:ml-1',
+                      'mr-0.5 ml-0.5 sm:mr-1 sm:ml-1',
                       'mb-0.5 lg:mb-0.75',
                     )}
                   />
