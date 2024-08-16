@@ -1,10 +1,7 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TutorialVideo } from '@/components/TutorialVideo';
-import imgUpdateToken from './images/update_token.png';
-import imgRunningLocally from './images/running_locally.png';
-import imgBuildSettings from './images/build_settings.png';
-import imgBuildFolder from './images/build_folder.png';
-import imgCreatePublicToken from './images/create_public_token.png';
+import imgPluginDevelop from './images/plugin_develop.png';
+import imgPluginDeploy from './images/plugin_deploy.png';
 
 # Crash Course
 
@@ -25,64 +22,54 @@ import imgCreatePublicToken from './images/create_public_token.png';
 <WorkInProgress />
 
 
-This is configured to use UDP sockets with the [Tugboat](https://fish-networking.gitbook.io/docs/manual/components/transports/tugboat) transport. WebGL requires the [Bayou](https://fish-networking.gitbook.io/docs/manual/components/transports/bayou) transport, which is not included in this demo yet.
+This is configured to use UDP sockets with the
+[Tugboat](https://fish-networking.gitbook.io/docs/manual/components/transports/tugboat)
+transport. WebGL requires the
+[Bayou](https://fish-networking.gitbook.io/docs/manual/components/transports/bayou)
+transport, which is not included in this demo yet.
 
 ## Prerequisites
 
 - Unity 2020.3 + Linux Dedicated Server build module
-- [Rivet CLI](https://github.com/rivet-gg/cli)
+- Dedicated Server build module for your development platformg
 
 ## Getting started
 
-### Testing Locally
+### Installing the plugin
 
-Rivet's APIs are all available to test locally with fake data. This is useful for testing your game without having to
-deploy to Rivet.
+First, install the Rivet Plugin. There are
+[several ways](https://github.com/rivet-gg/plugin-unity?tab=readme-ov-file#-installation)
+to do this, but we'll do it with the Git URL through the Unity Package Manager.
 
-1. Run `rivet init`
-   - You will need to create a new game if you haven't already
-   - Select `unity` engine type
-   - Once complete, copy the token that looks like `dev_staging.XXXX` to your clipboard
-2. Paste this token under the API token
-   <Image src={imgUpdateToken} alt='Update token' />
-3. Click play in the editor and click _Find Lobby_
-   - You should see a lobby ID of `00000000-0000-0000-0000-000000000000` in the top left. This means you're testing against your local machine.
-   - If this causes an error, you may need to navigate to _File > Build Settings_ and switch to the _Windows, Mac, Linux_ platform
-   <Image src={imgRunningLocally} alt='Running locally' />
+1. Open the Package Manager
+2. Click the `+` button in the top left
+3. Select `Add package from git URL`
+4. Enter `https://github.com/rivet-gg/plugin-unity.git?path=Assets/Rivet`
+5. Click `Add`
 
-### Deploying to Rivet
+### Using the plugin
 
-**Deploying the server**
+To open the Rivet Plugin, click `Window > Rivet > Rivet`. This will open the
+plugin in a separate window. You can drag it to somewhere within the Unity
+editor for easier access.
 
-1. Click _File > Build Settings_
-2. Select _Dedicated Server_ from the list of platforms
-   - Click the _Switch Platform_ button if it's not selected already
-   - Validate _Target Platform_ is set to _Linux_
-   <Image src={imgBuildSettings} alt='Build settings' />
-3. Click _Build_
-4. Create a folder named `build/LinuxServer` and save with the name `LinuxServer`. Click _Save_.
-   - Validate that you see a file located at `build/LinuxServer/LinuxServer.x86_64`
-   <Image src={imgBuildFolder} alt='Build folder' />
-5. Run `rivet deploy -n prod` to deploy to production
-   - You can now see your game servers running in the Rivet dashboard. These will automatically scale up and down based on player demand.
+#### Sign in
 
-**Connecting to the server**
+The first thing you'll need to do in the plugin is sign in. Click the `Sign In`
+button and follow the instructions. This will bring up the Rivet hub so that you
+can select the game you want to connect the editor to.
 
-1. Open the [Rivet Hub](https://hub.rivet.gg)
-2. Navigate to _Your Game > API_
-3. Under _Production_, click _Create Public Token_ and click the copy button
-   <Image src={imgCreatePublicToken} alt='Create public token' />
-4. Paste this token under the _Rivet Token_ field on the _Rivet API_ game object. This token should look like `pub_prod.XXXX`.
-5. Click play
+#### Develop tab
 
-## Importing in to your own project
+Once you sign in, across the top of the plugin are several tabs. The `Develop`
+tab is where you'll be able to start a local Unity server for testing, and
+configure other settings.
 
-1. Install the following Unity assets
-   - FishNet
-   - Json.NET
-   - ParrelSync (optional, helps with testing multiple clients)
-2. Copy the following files
-   - `Assets/Scripts/RivetManager.cs` (provides API endpoints for Rivet and manages client/server state)
-   - `Assets/Scripts/RivetAuthenticator.cs` (integrates Rivet's authentication with FishNet,automatically created by `RivetManager`)
-3. Create a game object in your scene with the `RivetManager` component
-4. Call `_rivetManager.FindLobby(...)` to connect to a lobby (see `RivetUI.cs` for example)
+<Image src={imgPluginDevelop} alt='Develop tab' />
+
+#### Deploy tab
+
+The deploy tab is used to build a containerized version of your game server, and
+send it off to Rivet's cloud to run.
+
+<Image src={imgPluginDeploy} alt='Deploy tab' />
