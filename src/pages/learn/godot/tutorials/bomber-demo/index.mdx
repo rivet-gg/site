@@ -248,7 +248,8 @@ FROM ghcr.io/rivet-gg/godot-docker/godot:4.2.1 AS builder
 WORKDIR /app
 COPY . .
 RUN mkdir -p build/linux \
-    && godot -v --export-release "Linux/X11" ./build/linux/game.x86_64 --headless
+    && godot -v --export-release "Linux/X11" ./build/linux/game.x86_64 --headless \
+    && if [ ! -f "./build/linux/game.x86_64" ]; then echo "Executable not created properly" && exit 1; fi
 
 FROM ubuntu:22.04
 RUN apt update -y \
