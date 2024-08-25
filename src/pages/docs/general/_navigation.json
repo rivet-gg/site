@@ -5,26 +5,17 @@
     "groups": [
       {
         "title": "Overview",
-        "pages": ["libraries", "config"]
+        "pages": []
       },
       {
         "title": "Concepts",
         "pages": [
-          "concepts/cli-tips",
-          "concepts/handling-game-tokens",
-          "concepts/dev-tokens",
-          "concepts/tokenless-authentication-web",
-          "concepts/token-types",
           "concepts/authoritative-vs-p2p"
         ]
       },
       {
         "title": "FAQ",
         "pages": ["faq/who-is-rivet-built-for", "faq/who-is-rivet-not-built-for"]
-      },
-      {
-        "title": "Errors",
-        "template": { "errors": true }
       }
     ]
   }

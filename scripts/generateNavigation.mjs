@@ -132,7 +132,7 @@ async function buildRoute({ path, pages }) {
             href
           });
 
-          if (!href.startsWith('/docs') && !href.startsWith('/learn')) {
+          if (!href.startsWith('/docs')) {
             output.tableOfContents[href] = false;
           }
         }
@@ -147,12 +147,9 @@ async function buildRoute({ path, pages }) {
 
   // Tabs
   let pathSplit = path.split('/');
-  if (pathSplit[0] === 'docs') {
+  if (pathSplit[0] === 'docs' && pathSplit.length > 1) {
     output.tabsTitle = 'Documentation';
     output.tabs = docsTabs(pathSplit);
-  } else if (pathSplit[0] === 'learn' && pathSplit.length > 1) {
-    output.tabsTitle = 'Learn';
-    output.tabs = learnTabs(pathSplit);
   } else {
     output.tabs = null;
   }
@@ -165,96 +162,50 @@ function docsTabs(path) {
     {
       title: 'General',
       href: '/docs/general',
-      current: path[1] === 'general'
+      current: path[1] === 'general',
+      // styles: engineStyles.godot
     },
-    {
-      title: 'Dynamic Servers',
-      icon: 'compute',
-      href: '/docs/dynamic-servers',
-      current: path[1] === 'dynamic-servers'
-    },
-    {
-      title: 'Matchmaker',
-      icon: 'matchmaker',
-      href: '/docs/matchmaker',
-      current: path[1] === 'matchmaker',
-      status: 'stable'
-    },
-    {
-      title: 'CDN',
-      icon: 'cdn',
-      href: '/docs/cdn',
-      current: path[1] === 'cdn',
-      status: 'stable'
-    },
-    // {
-    //   title: 'KV',
-    //   icon: 'kv',
-    //   href: '/docs/kv',
-    //   current: path[1] === 'kv'
-    // },
-    // {
-    //   title: 'Identity',
-    //   icon: 'identity',
-    //   href: '/docs/identity',
-    //   current: path[1] === 'identity'
-    // },
-    // {
-    //   title: 'Chat',
-    //   icon: 'chat',
-    //   href: '/docs/chat',
-    //   current: path[1] === 'chat'
-    // },
-    // {
-    //   title: 'Groups',
-    //   icon: 'group',
-    //   href: '/docs/group',
-    //   current: path[1] === 'group'
-    // },
-    {
-      title: 'Cloud',
-      href: '/docs/cloud',
-      icon: 'cloud',
-      current: path[1] === 'cloud'
-    }
-  ];
-}
-
-function learnTabs(path) {
-  return [
     {
       title: 'Godot',
       // icon: 'godot',
-      href: '/learn/godot',
+      href: '/docs/godot',
       current: path[1] === 'godot',
       // styles: engineStyles.godot
     },
     {
       title: 'Unity',
-      href: '/learn/unity',
+      // icon: 'unity',
+      href: '/docs/unity',
       current: path[1] === 'unity',
       // styles: engineStyles.unity
     },
     {
-      title: 'Unreal Engine',
-      href: '/learn/unreal',
+      title: 'Unreal',
+      // icon: 'unreal',
+      href: '/docs/unreal',
       current: path[1] === 'unreal',
       // styles: engineStyles.unreal
     },
     {
       title: 'HTML5',
       // icon: 'html5',
-      href: '/learn/html5',
+      href: '/docs/html5',
       current: path[1] === 'html5',
       // styles: engineStyles.html5
     },
     {
       title: 'Custom',
-      // icon: 'docker',
-      href: '/learn/custom',
+      // icon: 'custom',
+      href: '/docs/custom',
       current: path[1] === 'custom',
       // styles: engineStyles.custom.text
-    }
+    },
+    {
+      title: 'Low-Level API',
+      href: '/docs/core',
+      current: path[1] === 'core',
+      // styles: engineStyles.godot
+    },
   ];
 }
 

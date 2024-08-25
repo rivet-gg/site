@@ -19,7 +19,14 @@ import {
   faNewspaper,
   faCloud,
   faChessKnight,
-  faServer
+  faServer,
+  faSquare,
+  faHexagon,
+  faCube,
+  faCircle,
+  faTriangle,
+  faRhombus,
+  faDiamond
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faGlobe, faFlask, faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
 import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -30,11 +37,11 @@ import { useNavigation } from '@/hooks/useNavigation';
 import { CreditsBanner } from '@/components/CreditsBanner';
 
 const ICONS = {
-  // Products
-  cdn: faGlobe,
-  compute: faServer,
-  matchmaker: faChessKnight,
-  cloud: faCloud
+  godot: faHexagon,
+  unity: faSquare,
+  unreal: faCircle,
+  html5: faRhombus,
+  custom: faDiamond,
 };
 
 function TopLevelNavItem({ href, target, initHref, icon, children }) {
@@ -188,9 +195,6 @@ export const Header = forwardRef(function Header({ className }, ref) {
             </Link>
 
             <div className='hidden items-center gap-1 lg:flex'>
-              <TopLevelNavItem href='/learn' icon={faHammer}>
-                Learn
-              </TopLevelNavItem>
               <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
                 Docs
               </TopLevelNavItem>
@@ -240,7 +244,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
             {/* Border */}
             <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
 
-            <nav className='flex h-full space-x-8'>
+            <nav className='flex h-full space-x-4'>
               {/* Title */}
               <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
                 {navigation.tabsTitle}

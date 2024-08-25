@@ -11,9 +11,8 @@ import { faDiscord, faGithub, faLinkedin, faTwitter, faYoutube } from '@fortawes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const footer = {
-  learn: [
-    { name: 'Learn', href: '/learn' },
-    { name: 'Documentation', href: '/docs/general' },
+  docs: [
+    { name: 'Documentation', href: '/docs' },
     { name: 'Modules', href: 'https://opengb.dev/modules', target: '_blank' }
   ],
   company: [
@@ -130,9 +129,9 @@ function SmallPrint() {
         {/* Links */}
         <div className='mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 xl:mt-0'>
           <div>
-            <div className='text-sm font-semibold leading-6 text-white'>Learn</div>
+            <div className='text-sm font-semibold leading-6 text-white'>Documentation</div>
             <ul role='list' className='mt-3 space-y-2'>
-              {footer.learn.map(item => (
+              {footer.docs.map(item => (
                 <li key={item.name}>
                   <Link
                     href={item.href}

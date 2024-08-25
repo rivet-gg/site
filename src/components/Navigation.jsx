@@ -96,9 +96,6 @@ export function Navigation({ navigation, ...props }) {
     <nav {...props}>
       <ul role='list'>
         {/* Header */}
-        <TopLevelNavItem href='/learn' icon={faHammer}>
-          Learn
-        </TopLevelNavItem>
         <TopLevelNavItem href='/docs/general' icon={faBooks}>
           Docs
         </TopLevelNavItem>

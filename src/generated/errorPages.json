@@ -1,414 +1,414 @@
 [
   {
     "title": "API Bad Body",
-    "href": "/docs/general/errors/api/bad-body"
+    "href": "/docs/core/errors/api/bad-body"
   },
   {
     "title": "API Bad Body",
-    "href": "/docs/general/errors/api/body-too-large"
+    "href": "/docs/core/errors/api/body-too-large"
   },
   {
     "title": "API Bad Content Length",
-    "href": "/docs/general/errors/api/bad-content-length"
+    "href": "/docs/core/errors/api/bad-content-length"
   },
   {
     "title": "API Bad Header",
-    "href": "/docs/general/errors/api/bad-header"
+    "href": "/docs/core/errors/api/bad-header"
   },
   {
     "title": "API Bad Headers",
-    "href": "/docs/general/errors/api/bad-headers"
+    "href": "/docs/core/errors/api/bad-headers"
   },
   {
     "title": "API Bad Query",
-    "href": "/docs/general/errors/api/bad-query"
+    "href": "/docs/core/errors/api/bad-query"
   },
   {
     "title": "API Bad Query Parameter",
-    "href": "/docs/general/errors/api/bad-query-parameter"
+    "href": "/docs/core/errors/api/bad-query-parameter"
   },
   {
     "title": "API CORS Header Not Allowed",
-    "href": "/docs/general/errors/api/cors/header-not-allowed"
+    "href": "/docs/core/errors/api/cors/header-not-allowed"
   },
   {
     "title": "API CORS Method Not Allowed",
-    "href": "/docs/general/errors/api/cors/method-not-allowed"
+    "href": "/docs/core/errors/api/cors/method-not-allowed"
   },
   {
     "title": "API CORS Origin Not Allowed",
-    "href": "/docs/general/errors/api/cors/origin-not-allowed"
+    "href": "/docs/core/errors/api/cors/origin-not-allowed"
   },
   {
     "title": "API Forbidden",
-    "href": "/docs/general/errors/api/forbidden"
+    "href": "/docs/core/errors/api/forbidden"
   },
   {
     "title": "API Invalid IP",
-    "href": "/docs/general/errors/api/invalid-ip"
+    "href": "/docs/core/errors/api/invalid-ip"
   },
   {
     "title": "API Method Not Allowed",
-    "href": "/docs/general/errors/api/method-not-allowed"
+    "href": "/docs/core/errors/api/method-not-allowed"
   },
   {
     "title": "API Missing Header",
-    "href": "/docs/general/errors/api/missing-header"
+    "href": "/docs/core/errors/api/missing-header"
   },
   {
     "title": "API Not Found",
-    "href": "/docs/general/errors/api/not-found"
+    "href": "/docs/core/errors/api/not-found"
   },
   {
     "title": "API Rate Limit",
-    "href": "/docs/general/errors/api/rate-limit"
+    "href": "/docs/core/errors/api/rate-limit"
   },
   {
     "title": "API Unauthorized",
-    "href": "/docs/general/errors/api/unauthorized"
+    "href": "/docs/core/errors/api/unauthorized"
   },
   {
     "title": "Captcha Failed",
-    "href": "/docs/general/errors/captcha/captcha-failed"
+    "href": "/docs/core/errors/captcha/captcha-failed"
   },
   {
     "title": "Captcha Invalid",
-    "href": "/docs/general/errors/captcha/captcha-invalid"
+    "href": "/docs/core/errors/captcha/captcha-invalid"
   },
   {
     "title": "Captcha Required",
-    "href": "/docs/general/errors/captcha/captcha-required"
+    "href": "/docs/core/errors/captcha/captcha-required"
   },
   {
     "title": "CDN Invalid Auth User Password",
-    "href": "/docs/general/errors/cdn/invalid-auth-user-password"
+    "href": "/docs/core/errors/cdn/invalid-auth-user-password"
   },
   {
     "title": "CDN Invalid Domain",
-    "href": "/docs/general/errors/cdn/invalid-domain"
+    "href": "/docs/core/errors/cdn/invalid-domain"
   },
   {
     "title": "CDN Too Many Auth Users",
-    "href": "/docs/general/errors/cdn/too-many-auth-users"
+    "href": "/docs/core/errors/cdn/too-many-auth-users"
   },
   {
     "title": "CDN Too Many Domains",
-    "href": "/docs/general/errors/cdn/too-many-domains"
+    "href": "/docs/core/errors/cdn/too-many-domains"
   },
   {
     "title": "Cloud Invalid Config",
-    "href": "/docs/general/errors/cloud/invalid-config"
+    "href": "/docs/core/errors/cloud/invalid-config"
   },
   {
     "title": "Device Link Already Complete",
-    "href": "/docs/general/errors/cloud/device-link-already-complete"
+    "href": "/docs/core/errors/cloud/device-link-already-complete"
   },
   {
     "title": "Entitlement Expired",
-    "href": "/docs/general/errors/claims/entitlement-expired"
+    "href": "/docs/core/errors/claims/entitlement-expired"
   },
   {
     "title": "Failed to consume group invite",
-    "href": "/docs/general/errors/group/failed-to-consume-invite"
+    "href": "/docs/core/errors/group/failed-to-consume-invite"
   },
   {
     "title": "Game Mode Not Found",
-    "href": "/docs/general/errors/mm/game-mode-not-found"
+    "href": "/docs/core/errors/mm/game-mode-not-found"
   },
   {
     "title": "Game Not Found",
-    "href": "/docs/general/errors/game/game-not-found"
+    "href": "/docs/core/errors/game/game-not-found"
   },
   {
     "title": "Generic Token Error",
-    "href": "/docs/general/errors/token/generic-error"
+    "href": "/docs/core/errors/token/generic-error"
   },
   {
     "title": "Glob Invalid",
-    "href": "/docs/general/errors/glob/invalid"
+    "href": "/docs/core/errors/glob/invalid"
   },
   {
     "title": "Group Already Member",
-    "href": "/docs/general/errors/group/already-member"
+    "href": "/docs/core/errors/group/already-member"
   },
   {
     "title": "Group cannot request join",
-    "href": "/docs/general/errors/group/cannot-request-join"
+    "href": "/docs/core/errors/group/cannot-request-join"
   },
   {
     "title": "Group Full",
-    "href": "/docs/general/errors/group/full"
+    "href": "/docs/core/errors/group/full"
   },
   {
     "title": "Group Insufficient Permissions",
-    "href": "/docs/general/errors/group/insufficient-permissions"
+    "href": "/docs/core/errors/group/insufficient-permissions"
   },
   {
     "title": "Group Invalid Developer Status",
-    "href": "/docs/general/errors/group/group-enterprise-restriction"
+    "href": "/docs/core/errors/group/group-enterprise-restriction"
   },
   {
     "title": "Group Invalid Developer Status",
-    "href": "/docs/general/errors/group/group-invalid-developer-status"
+    "href": "/docs/core/errors/group/group-invalid-developer-status"
   },
   {
     "title": "Group invite code already used",
-    "href": "/docs/general/errors/group/invite/code-already-used"
+    "href": "/docs/core/errors/group/invite/code-already-used"
   },
   {
     "title": "Group invite code expired",
-    "href": "/docs/general/errors/group/invite/code-expired"
+    "href": "/docs/core/errors/group/invite/code-expired"
   },
   {
     "title": "Group invite code invalid",
-    "href": "/docs/general/errors/group/invite/code-invalid"
+    "href": "/docs/core/errors/group/invite/code-invalid"
   },
   {
     "title": "Group invite code revoked",
-    "href": "/docs/general/errors/group/invite/code-revoked"
+    "href": "/docs/core/errors/group/invite/code-revoked"
   },
   {
     "title": "Group Join Request Already Exists",
-    "href": "/docs/general/errors/group/join-request-already-exists"
+    "href": "/docs/core/errors/group/join-request-already-exists"
   },
   {
     "title": "Group Member Banned",
-    "href": "/docs/general/errors/group/member-banned"
+    "href": "/docs/core/errors/group/member-banned"
   },
   {
     "title": "Group Not Developer Group",
-    "href": "/docs/general/errors/group/group-not-developer-group"
+    "href": "/docs/core/errors/group/group-not-developer-group"
   },
   {
     "title": "Group Not Found",
-    "href": "/docs/general/errors/group/not-found"
+    "href": "/docs/core/errors/group/not-found"
   },
   {
     "title": "Group Not Joinable",
-    "href": "/docs/general/errors/group/not-joinable"
+    "href": "/docs/core/errors/group/not-joinable"
   },
   {
     "title": "Group Not Member",
-    "href": "/docs/general/errors/group/not-member"
+    "href": "/docs/core/errors/group/not-member"
   },
   {
     "title": "Hostname Taken",
-    "href": "/docs/general/errors/cloud/hostname-taken"
+    "href": "/docs/core/errors/cloud/hostname-taken"
   },
   {
     "title": "Identity Not Admin",
-    "href": "/docs/general/errors/identity/not-admin"
+    "href": "/docs/core/errors/identity/not-admin"
   },
   {
     "title": "Identity Not Found",
-    "href": "/docs/general/errors/identity/not-found"
+    "href": "/docs/core/errors/identity/not-found"
   },
   {
     "title": "Identity Not Registered",
-    "href": "/docs/general/errors/identity/not-registered"
+    "href": "/docs/core/errors/identity/not-registered"
   },
   {
     "title": "KV Batch Too Large",
-    "href": "/docs/general/errors/kv/batch-too-large"
+    "href": "/docs/core/errors/kv/batch-too-large"
   },
   {
     "title": "KV Entries Missing",
-    "href": "/docs/general/errors/kv/entries-missing"
+    "href": "/docs/core/errors/kv/entries-missing"
   },
   {
     "title": "KV Key Validation Error",
-    "href": "/docs/general/errors/kv/key-validation-error"
+    "href": "/docs/core/errors/kv/key-validation-error"
   },
   {
     "title": "KV Keys Missing",
-    "href": "/docs/general/errors/kv/keys-missing"
+    "href": "/docs/core/errors/kv/keys-missing"
   },
   {
     "title": "KV Value Too Long",
-    "href": "/docs/general/errors/kv/value-too-long"
+    "href": "/docs/core/errors/kv/value-too-long"
   },
   {
     "title": "Matchmaker Auto Create Failed",
-    "href": "/docs/general/errors/mm/auto-create-failed"
+    "href": "/docs/core/errors/mm/auto-create-failed"
   },
   {
     "title": "Matchmaker Custom Lobbies Disabled",
-    "href": "/docs/general/errors/mm/custom-lobbies-disabled"
+    "href": "/docs/core/errors/mm/custom-lobbies-disabled"
   },
   {
     "title": "Matchmaker Custom Lobby Config Invalid",
-    "href": "/docs/general/errors/mm/custom-lobby-config-invalid"
+    "href": "/docs/core/errors/mm/custom-lobby-config-invalid"
   },
   {
     "title": "Matchmaker Custom Lobby Limit Reached",
-    "href": "/docs/general/errors/mm/custom-lobby-limit-reached"
+    "href": "/docs/core/errors/mm/custom-lobby-limit-reached"
   },
   {
     "title": "Matchmaker Dynamic Max Players Disabled",
-    "href": "/docs/general/errors/mm/dynamic-player-count-disabled"
+    "href": "/docs/core/errors/mm/dynamic-player-count-disabled"
   },
   {
     "title": "Matchmaker Dynamic Max Players Invalid",
-    "href": "/docs/general/errors/mm/dynamic-player-count-invalid"
+    "href": "/docs/core/errors/mm/dynamic-player-count-invalid"
   },
   {
     "title": "Matchmaker Find Disabled",
-    "href": "/docs/general/errors/mm/find-disabled"
+    "href": "/docs/core/errors/mm/find-disabled"
   },
   {
     "title": "Matchmaker Identity Required",
-    "href": "/docs/general/errors/mm/identity-required"
+    "href": "/docs/core/errors/mm/identity-required"
   },
   {
     "title": "Matchmaker Invalid Version Config",
-    "href": "/docs/general/errors/mm/invalid-version-config"
+    "href": "/docs/core/errors/mm/invalid-version-config"
   },
   {
     "title": "Matchmaker Join Disabled",
-    "href": "/docs/general/errors/mm/join-disabled"
+    "href": "/docs/core/errors/mm/join-disabled"
   },
   {
     "title": "Matchmaker Lobby Closed",
-    "href": "/docs/general/errors/mm/lobby-closed"
+    "href": "/docs/core/errors/mm/lobby-closed"
   },
   {
     "title": "Matchmaker Lobby Full",
-    "href": "/docs/general/errors/mm/lobby-full"
+    "href": "/docs/core/errors/mm/lobby-full"
   },
   {
     "title": "Matchmaker Lobby Not Found",
-    "href": "/docs/general/errors/mm/lobby-not-found"
+    "href": "/docs/core/errors/mm/lobby-not-found"
   },
   {
     "title": "Matchmaker Lobby Not Started",
-    "href": "/docs/general/errors/mm/lobby-not-started"
+    "href": "/docs/core/errors/mm/lobby-not-started"
   },
   {
     "title": "Matchmaker Lobby Stopped",
-    "href": "/docs/general/errors/mm/lobby-stopped"
+    "href": "/docs/core/errors/mm/lobby-stopped"
   },
   {
     "title": "Matchmaker No Available Lobbies",
-    "href": "/docs/general/errors/mm/no-available-lobbies"
+    "href": "/docs/core/errors/mm/no-available-lobbies"
   },
   {
     "title": "Matchmaker No Game Mode Provided",
-    "href": "/docs/general/errors/mm/no-game-mode-provided"
+    "href": "/docs/core/errors/mm/no-game-mode-provided"
   },
   {
     "title": "Matchmaker Player Already Connected",
-    "href": "/docs/general/errors/mm/player-already-connected"
+    "href": "/docs/core/errors/mm/player-already-connected"
   },
   {
     "title": "Matchmaker Player In Different Lobby",
-    "href": "/docs/general/errors/mm/player-in-different-lobby"
+    "href": "/docs/core/errors/mm/player-in-different-lobby"
   },
   {
     "title": "Matchmaker Player Registration Expired",
-    "href": "/docs/general/errors/mm/player-registration-expired"
+    "href": "/docs/core/errors/mm/player-registration-expired"
   },
   {
     "title": "Matchmaker Player Removed",
-    "href": "/docs/general/errors/mm/player-removed"
+    "href": "/docs/core/errors/mm/player-removed"
   },
   {
     "title": "Matchmaker Region Not Enabled For Game Mode",
-    "href": "/docs/general/errors/mm/region-not-enabled-for-game-mode"
+    "href": "/docs/core/errors/mm/region-not-enabled-for-game-mode"
   },
   {
     "title": "Matchmaker Region Not Found",
-    "href": "/docs/general/errors/mm/region-not-found"
+    "href": "/docs/core/errors/mm/region-not-found"
   },
   {
     "title": "Matchmaker Registration Required",
-    "href": "/docs/general/errors/mm/registration-required"
+    "href": "/docs/core/errors/mm/registration-required"
   },
   {
     "title": "Matchmaker Tag Name Too Long",
-    "href": "/docs/general/errors/mm/tag-name-too-long"
+    "href": "/docs/core/errors/mm/tag-name-too-long"
   },
   {
     "title": "Matchmaker Tag Too Long",
-    "href": "/docs/general/errors/mm/tag-too-long"
+    "href": "/docs/core/errors/mm/tag-too-long"
   },
   {
     "title": "Matchmaker Tags Disabled",
-    "href": "/docs/general/errors/mm/tags-disabled"
+    "href": "/docs/core/errors/mm/tags-disabled"
   },
   {
     "title": "Matchmaker Too Many Lobbies",
-    "href": "/docs/general/errors/mm/too-many-lobbies"
+    "href": "/docs/core/errors/mm/too-many-lobbies"
   },
   {
     "title": "Matchmaker Too Many Players From Source",
-    "href": "/docs/general/errors/mm/too-many-players-from-source"
+    "href": "/docs/core/errors/mm/too-many-players-from-source"
   },
   {
     "title": "Matchmaker Too Many Tags",
-    "href": "/docs/general/errors/mm/too-many-tags"
+    "href": "/docs/core/errors/mm/too-many-tags"
   },
   {
     "title": "Matchmaker Verification Failed",
-    "href": "/docs/general/errors/mm/verification-failed"
+    "href": "/docs/core/errors/mm/verification-failed"
   },
   {
     "title": "Matchmaker Verification Request Failed",
-    "href": "/docs/general/errors/mm/verification-request-failed"
+    "href": "/docs/core/errors/mm/verification-request-failed"
   },
   {
     "title": "Missing Entitlement",
-    "href": "/docs/general/errors/claims/missing-entitlement"
+    "href": "/docs/core/errors/claims/missing-entitlement"
   },
   {
     "title": "NSFW Content Detected in Upload",
-    "href": "/docs/general/errors/upload/nsfw-content-detected"
+    "href": "/docs/core/errors/upload/nsfw-content-detected"
   },
   {
     "title": "Refresh Token Not Found",
-    "href": "/docs/general/errors/token/refresh-not-found"
+    "href": "/docs/core/errors/token/refresh-not-found"
   },
   {
     "title": "Script Not Found",
-    "href": "/docs/general/errors/cli/script-not-found"
+    "href": "/docs/core/errors/cli/script-not-found"
   },
   {
     "title": "Token Exchange Failed",
-    "href": "/docs/general/errors/token/exchange-failed"
+    "href": "/docs/core/errors/token/exchange-failed"
   },
   {
     "title": "Token Expired",
-    "href": "/docs/general/errors/token/expired"
+    "href": "/docs/core/errors/token/expired"
   },
   {
     "title": "Token Invalid",
-    "href": "/docs/general/errors/token/invalid"
+    "href": "/docs/core/errors/token/invalid"
   },
   {
     "title": "Token Revoked",
-    "href": "/docs/general/errors/token/revoked"
+    "href": "/docs/core/errors/token/revoked"
   },
   {
     "title": "Too Many Pending Hostnames",
-    "href": "/docs/general/errors/cloud/too-many-pending-hostnames-for-group"
+    "href": "/docs/core/errors/cloud/too-many-pending-hostnames-for-group"
   },
   {
     "title": "Upload Invalid",
-    "href": "/docs/general/errors/upload/invalid"
+    "href": "/docs/core/errors/upload/invalid"
   },
   {
     "title": "Upload Too Large",
-    "href": "/docs/general/errors/upload/too-large"
+    "href": "/docs/core/errors/upload/too-large"
   },
   {
     "title": "UUID Invalid",
-    "href": "/docs/general/errors/uuid/invalid"
+    "href": "/docs/core/errors/uuid/invalid"
   },
   {
     "title": "Validation Error",
-    "href": "/docs/general/errors/validation/error"
+    "href": "/docs/core/errors/validation/error"
   },
   {
     "title": "Wrong Identity",
-    "href": "/docs/general/errors/identity/wrong-identity"
+    "href": "/docs/core/errors/identity/wrong-identity"
   }
 ]

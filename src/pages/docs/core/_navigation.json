@@ -1,0 +1,53 @@
+{
+  "title": "Low-Level API",
+  "feedback": true,
+  "sidebar": {
+    "groups": [
+      {
+        "title": "General",
+        "pages": ["libraries"]
+      },
+      {
+        "title": "Dynamic Servers",
+        "pages": [
+          "dynamic-servers/overview",
+          "dynamic-servers/architecture",
+          "dynamic-servers/available-regions",
+          "dynamic-servers/available-tiers",
+          "dynamic-servers/billing",
+          "dynamic-servers/crash-reporting",
+          "dynamic-servers/ddos",
+          "dynamic-servers/debugging-lobbies",
+          "dynamic-servers/docker-root-user",
+          "dynamic-servers/game-guard",
+          "dynamic-servers/graceful-exit",
+          "dynamic-servers/host-bridge-networking",
+          "dynamic-servers/instant-deploys",
+          "dynamic-servers/lifecycle",
+          "dynamic-servers/lobby-ready",
+          "dynamic-servers/logging-metrics",
+          "dynamic-servers/logging",
+          "dynamic-servers/managing-lobbies",
+          "dynamic-servers/monitoring",
+          "dynamic-servers/one-lobby-one-container",
+          "dynamic-servers/ports",
+          "dynamic-servers/protocols",
+          "dynamic-servers/resource-limits",
+          "dynamic-servers/ssl"
+        ]
+      },
+      {
+        "title": "Dynamic Serers API",
+        "template": { "api": "dynamic-servers" }
+      },
+      {
+        "title": "Cloud",
+        "template": { "api": "cloud" }
+      },
+      {
+        "title": "Errors",
+        "template": { "errors": true }
+      }
+    ]
+  }
+}
