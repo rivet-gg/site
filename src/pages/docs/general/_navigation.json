@@ -4,14 +4,12 @@
   "sidebar": {
     "groups": [
       {
-        "title": "Overview",
-        "pages": []
+        "title": "General",
+        "pages": ["libraries"]
       },
       {
         "title": "Concepts",
-        "pages": [
-          "concepts/authoritative-vs-p2p"
-        ]
+        "pages": ["concepts/authoritative-vs-p2p"]
       },
       {
         "title": "FAQ",

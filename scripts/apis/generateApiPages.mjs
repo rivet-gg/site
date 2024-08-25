@@ -13,12 +13,21 @@ function camelToKebab(input) {
 
 let PRODUCTS = {
   'dynamic-servers': {
-    path: '/games/{game_id}/environments/{environment_id}/servers',
+    roots: [
+      '/games/{game_id}/environments/{environment_id}/servers',
+      '/games/{game_id}/environments/{environment_id}/datacenters',
+      '/games/{game_id}/environments/{environment_id}/builds'
+    ],
     operationIdPrefix: 'servers',
     importantEndpoints: []
   },
+  'game-tokens': {
+    roots: ['/games/{game_id}/environments/{environment_id}/tokens'],
+    operationIdPrefix: 'games_environments_tokens',
+    importantEndpoints: []
+  },
   cloud: {
-    path: '/cloud',
+    roots: ['/cloud'],
     importantEndpoints: [
       'POST /cloud/games/{game_id}/versions',
       'PUT /cloud/games/{game_id}/namespaces/{namespace_id}/version',
@@ -48,9 +57,11 @@ export async function generateApiPages(spec) {
       // Find product config
       let productName;
       for (let product in PRODUCTS) {
-        if (pathName.startsWith(PRODUCTS[product].path)) {
-          productName = product;
-          break;
+        for (let root of PRODUCTS[product].roots) {
+          if (pathName.startsWith(root)) {
+            productName = product;
+            break;
+          }
         }
       }
       if (!productName) continue;

@@ -238,6 +238,30 @@
   "dynamic-servers": {
     "pages": [
       {
+        "href": "/docs/core/dynamic-servers/api/builds/list",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds get"
+      },
+      {
+        "href": "/docs/core/dynamic-servers/api/builds/prepare",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/prepare post"
+      },
+      {
+        "href": "/docs/core/dynamic-servers/api/builds/get",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id} get"
+      },
+      {
+        "href": "/docs/core/dynamic-servers/api/builds/complete",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/complete post"
+      },
+      {
+        "href": "/docs/core/dynamic-servers/api/builds/patch-tags",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/tags patch"
+      },
+      {
+        "href": "/docs/core/dynamic-servers/api/datacenters/list",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/datacenters get"
+      },
+      {
         "href": "/docs/core/dynamic-servers/api/list",
         "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers get"
       },
@@ -254,8 +278,16 @@
         "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id} get"
       },
       {
-        "href": "/docs/core/dynamic-servers/api/logs/get-server-logs",
+        "href": "/docs/core/dynamic-servers/api/logs/get",
         "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id}/logs get"
+      }
+    ]
+  },
+  "game-tokens": {
+    "pages": [
+      {
+        "href": "/docs/core/game-tokens/api/create-service-token",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/tokens/service post"
       }
     ]
   }

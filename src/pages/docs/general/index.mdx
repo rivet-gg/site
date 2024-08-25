@@ -1,15 +1,9 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
-import {
-  faBooks,
-  faChessKnight,
-  faServer,
-  faGlobe,
-  faDatabase
-} from '@fortawesome/sharp-solid-svg-icons';
+import { faBooks, faServer } from '@fortawesome/sharp-solid-svg-icons';
 
-# Documentation
+# Introduction
 
-Simple APIs for Dynamic Servers, matchmaking, CDN, and other features managed directly within an easy to use dashboard. Launch your multiplayer game on any platform with the tools you already use.
+Find documentation for our APIs, detailed concept rundowns, or get help with specific engine plugins.
 
 ## What does Rivet provide?
 
@@ -24,17 +18,7 @@ Simple APIs for Dynamic Servers, matchmaking, CDN, and other features managed di
 
 <ResourceGroup>
   <Resource title='Libraries' icon={faBooks} href='/docs/general/libraries' />
-  <Resource title='Matchmaker' icon={faChessKnight} href='/docs/matchmaker/index'>
-    Flexible matchmaker for placing players in lobbies with no wait times.
-  </Resource>
-  <Resource
-    title='Dynamic Servers'
-    icon={faServer}
-    href='/docs/dynamic-servers/index'
-  >
-    Auto-scaling game lobbies boot up to meet demand.
-  </Resource>
-  <Resource title='CDN' icon={faGlobe} href='/docs/cdn'>
-    Versioned CDN lets you host assets and webpages with a provided or custom domain and managed SSL.
+  <Resource title='Dynamic Servers' icon={faServer} href='/docs/core/dynamic-servers/overview'>
+    Auto-scaling game lobbies to meet demand.
   </Resource>
 </ResourceGroup>

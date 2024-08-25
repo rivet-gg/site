@@ -1,7 +1,7 @@
 
 import { CodeGroup, Code } from '@/components/Code';
 
-# logs.getServerLogs
+# logs.get
 
 
 
@@ -24,7 +24,7 @@ import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
 
 // Make request
-await RIVET.servers.logs.getServerLogs({
+await RIVET.servers.logs.get({
   // Add your request body here
 });
 ```
