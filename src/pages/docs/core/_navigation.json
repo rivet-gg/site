@@ -37,7 +37,7 @@
         ]
       },
       {
-        "title": "Dynamic Serers API",
+        "title": "Dynamic Servers API",
         "template": { "api": "dynamic-servers" }
       },
       {

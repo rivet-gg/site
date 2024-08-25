@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-import { jsonToMarkdown } from './jsonToMarkdown.mjs';
+import { jsonToHTML, parametersToHTML } from './convertJson.mjs';
 
-function apiPath(product) {
-  return `src/pages/docs/${product}/api`;
+function apiPath(productName) {
+  return `src/pages/docs/core/${productName}/api`;
 }
 
 function camelToKebab(input) {
@@ -12,33 +12,17 @@ function camelToKebab(input) {
 }
 
 let PRODUCTS = {
-  matchmaker: {
-    importantEndpoints: [
-      'POST /lobbies/find',
-      'POST /lobbies/join',
-      'POST /lobbies/ready',
-      'POST /players/connected',
-      'POST /players/disconnected'
-    ]
-  },
-  identity: {
-    importantEndpoints: ['POST /identities', 'POST /game-links', 'GET /events/live']
-  },
-  chat: {
+  'dynamic-servers': {
+    path: '/games/{game_id}/environments/{environment_id}/servers',
+    operationIdPrefix: 'servers',
     importantEndpoints: []
-  },
-  group: {
-    importantEndpoints: []
-  },
-  kv: {
-    isExperimental: true,
-    importantEndpoints: ['GET /entries', 'PUT /entries', 'DELETE /entries']
   },
   cloud: {
+    path: '/cloud',
     importantEndpoints: [
-      'POST /games/{game_id}/versions',
-      'PUT /games/{game_id}/namespaces/{namespace_id}/version',
-      'POST /games/{game_id}/namespaces'
+      'POST /cloud/games/{game_id}/versions',
+      'PUT /cloud/games/{game_id}/namespaces/{namespace_id}/version',
+      'POST /cloud/games/{game_id}/namespaces'
     ]
   }
 };
@@ -61,12 +45,19 @@ export async function generateApiPages(spec) {
 
       let fullUrl = apiBaseUrl + pathName;
 
-      // pathName = /product/.../...
-      let [__, product, ...relativePath] = pathName.split('/');
-      let productConfig = PRODUCTS[product];
-      if (!productConfig) continue;
+      // Find product config
+      let productName;
+      for (let product in PRODUCTS) {
+        if (pathName.startsWith(PRODUCTS[product].path)) {
+          productName = product;
+          break;
+        }
+      }
+      if (!productName) continue;
 
-      let indexableName = `${method.toUpperCase()} /${relativePath.join('/')}`;
+      let productConfig = PRODUCTS[productName];
+
+      let indexableName = `${method.toUpperCase()} ${pathName}`;
       let importantIndex = productConfig.importantEndpoints.indexOf(indexableName);
       let isImportant = importantIndex != -1;
 
@@ -74,7 +65,9 @@ export async function generateApiPages(spec) {
       let isExperimental = experimentalIndex != -1 || productConfig.isExperimental;
 
       // Remove product prefix from operation ID
-      let operationIdStripped = specPath.operationId.replace(`${product}_`, '');
+      let operationIdStripped = specPath.operationId
+        .replace(`ee_`, '')
+        .replace(`${productConfig.operationIdPrefix ?? productName}_`, '');
 
       // Generate title
       let title = operationIdStripped.replace(/_/g, '.');
@@ -133,61 +126,36 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
       // Request parameters
       if (specPath.parameters) {
         // Don't include the schema because it's not useful
-        file += `
-## Request Parameters
-
-`;
-        for (let parameter of specPath.parameters) {
-          file += `
-### \`${parameter.name}\`
-
-_${parameter.in == 'path' ? 'Path parameter' : 'Query parameter'}, ${
-            parameter.required ? 'required' : 'optional'
-          }_
-
-
-${parameter.description || parameter.schema.description || ''}
-
-`;
-        }
+        file += `## Request Parameters\n`;
+        file += parametersToHTML(specPath.parameters);
+        file += '\n';
       }
 
       // Request body
       if (hasRequestBody) {
-        if (specPath.requestBody?.content['application/json'].schema) {
-          file += `
-## Request Body
-
-${jsonToMarkdown(specPath.requestBody?.content['application/json'].schema)}
-
-`;
+        ('');
+        file += `## Request Body\n`;
+        let reqSchema = specPath.requestBody?.content['application/json'].schema;
+        if (reqSchema && Object.keys(reqSchema.properties).length > 0) {
+          file += jsonToHTML(reqSchema);
+          file += '\n';
         } else {
-          file += `
-## Request Body
-
-_Empty request body._
-`;
+          file += `_Empty request body._\n`;
         }
       }
 
       // Response body
-      if (specPath.responses['200']?.content['application/json']?.schema) {
-        file += `
-## Response Body
-
-${jsonToMarkdown(specPath.responses['200'].content['application/json'].schema)}
-
-`;
+      file += `## Response Body\n`;
+      let resSchema = specPath.responses['200']?.content['application/json']?.schema;
+      if (resSchema && Object.keys(resSchema.properties).length > 0) {
+        file += jsonToHTML(resSchema);
+        file += '\n';
       } else {
-        file += `
-## Response Body
-
-_Empty response body._
-`;
+        file += `_Empty response body._\n`;
       }
 
       let fileName = camelToKebab(operationIdStripped.replace(/\_/g, '/'));
-      let filePath = `${apiPath(product)}/${fileName}`;
+      let filePath = `${apiPath(productName)}/${fileName}`;
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
       // Sort by grouping similar endpoints together and move important endpoints first
@@ -196,17 +164,17 @@ _Empty response body._
       fs.writeFileSync(`${filePath}.mdx`, file);
 
       // Write config
-      apiPages[product] = apiPages[product] || { pages: [] };
-      apiPages[product].pages.push({
-        href: `/docs/${product}/api/${fileName}`,
+      apiPages[productName] = apiPages[productName] || { pages: [] };
+      apiPages[productName].pages.push({
+        href: `/docs/core/${productName}/api/${fileName}`,
         sortingKey
       });
     }
   }
 
   // Sort pages
-  for (let product in apiPages) {
-    apiPages[product].pages.sort((a, b) => {
+  for (let productName in apiPages) {
+    apiPages[productName].pages.sort((a, b) => {
       if (a.sortingKey < b.sortingKey) return -1;
       else if (a.sortingKey > b.sortingKey) return 1;
       else return 0;

@@ -33,6 +33,10 @@ module.exports = ({ theme }) => ({
         fontSize: theme('fontSize.base')[0],
         ...theme('fontSize.base')[1]
       },
+      '.description > p': {
+        marginTop: 0,
+        marginBottom: 0
+      },
 
       // Lists
       ol: {

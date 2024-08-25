@@ -162,50 +162,50 @@ function docsTabs(path) {
     {
       title: 'General',
       href: '/docs/general',
-      current: path[1] === 'general',
+      current: path[1] === 'general'
       // styles: engineStyles.godot
     },
     {
       title: 'Godot',
       // icon: 'godot',
       href: '/docs/godot',
-      current: path[1] === 'godot',
+      current: path[1] === 'godot'
       // styles: engineStyles.godot
     },
     {
       title: 'Unity',
       // icon: 'unity',
       href: '/docs/unity',
-      current: path[1] === 'unity',
+      current: path[1] === 'unity'
       // styles: engineStyles.unity
     },
     {
       title: 'Unreal',
       // icon: 'unreal',
       href: '/docs/unreal',
-      current: path[1] === 'unreal',
+      current: path[1] === 'unreal'
       // styles: engineStyles.unreal
     },
     {
       title: 'HTML5',
       // icon: 'html5',
       href: '/docs/html5',
-      current: path[1] === 'html5',
+      current: path[1] === 'html5'
       // styles: engineStyles.html5
     },
     {
       title: 'Custom',
       // icon: 'custom',
       href: '/docs/custom',
-      current: path[1] === 'custom',
+      current: path[1] === 'custom'
       // styles: engineStyles.custom.text
     },
     {
       title: 'Low-Level API',
       href: '/docs/core',
-      current: path[1] === 'core',
+      current: path[1] === 'core'
       // styles: engineStyles.godot
-    },
+    }
   ];
 }
 
