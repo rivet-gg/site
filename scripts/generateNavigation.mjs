@@ -1,7 +1,6 @@
 import { writeFile, readFile } from 'fs/promises';
 import { remark } from 'remark';
 import glob from 'fast-glob';
-import errorPages from '../src/generated/errorPages.json' assert { type: 'json' };
 import apiPages from '../src/generated/apiPages.json' assert { type: 'json' };
 import engineStyles from '../src/lib/engineStyles.json' assert { type: 'json' };
 import { slugifyWithCounter } from '@sindresorhus/slugify';
@@ -114,10 +113,7 @@ async function buildRoute({ path, pages }) {
       let outputGroup = { title: inputGroup.title, pages: [] };
       output.sidebar.groups.push(outputGroup);
 
-      if (inputGroup.template?.errors) {
-        // Errors
-        outputGroup.pages.push(...errorPages);
-      } else if (inputGroup.template?.api && apiPages[inputGroup.template.api]) {
+      if (inputGroup.template?.api && apiPages[inputGroup.template.api]) {
         // API
         for (let page of apiPages[inputGroup.template.api].pages) {
           outputGroup.pages.push({
@@ -156,6 +152,12 @@ async function buildRoute({ path, pages }) {
     output.tabs = null;
   }
 
+  output.pages = input.pages?.map(page => {
+    let href = `/${path}/${page}`;
+    let config = pages[href];
+    return { title: config.title, href };
+  });
+
   return output;
 }
 
@@ -163,49 +165,42 @@ function docsTabs(path) {
   return [
     {
       title: 'General',
-      href: '/docs/general',
-      current: path[1] === 'general'
+      href: '/docs/general'
       // styles: engineStyles.godot
     },
     {
       title: 'Godot',
       // icon: 'godot',
-      href: '/docs/godot',
-      current: path[1] === 'godot'
+      href: '/docs/godot'
       // styles: engineStyles.godot
     },
     {
       title: 'Unity',
       // icon: 'unity',
-      href: '/docs/unity',
-      current: path[1] === 'unity'
+      href: '/docs/unity'
       // styles: engineStyles.unity
     },
     {
       title: 'Unreal',
       // icon: 'unreal',
-      href: '/docs/unreal',
-      current: path[1] === 'unreal'
+      href: '/docs/unreal'
       // styles: engineStyles.unreal
     },
     {
       title: 'HTML5',
       // icon: 'html5',
-      href: '/docs/html5',
-      current: path[1] === 'html5'
+      href: '/docs/html5'
       // styles: engineStyles.html5
     },
     {
       title: 'Custom',
       // icon: 'custom',
-      href: '/docs/custom',
-      current: path[1] === 'custom'
+      href: '/docs/custom'
       // styles: engineStyles.custom.text
     },
     {
       title: 'Low-Level API',
-      href: '/docs/core',
-      current: path[1] === 'core'
+      href: '/docs/core'
       // styles: engineStyles.godot
     }
   ];

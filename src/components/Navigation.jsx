@@ -30,7 +30,10 @@ function useInitialValue(value, condition = true) {
 function TopLevelNavItem({ href, target, children }) {
   return (
     <li className='lg:hidden'>
-      <Link href={href} target={target} className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
+      <Link
+        href={href}
+        target={target}
+        className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
         {children}
       </Link>
     </li>
@@ -90,7 +93,10 @@ function NavigationGroup({ group, className }) {
 }
 
 export function Navigation({ navigation, ...props }) {
-  let overviewGroup = { title: '', pages: [{ title: 'Overview', href: navigation.prefix }] };
+  let overviewGroup = {
+    title: '',
+    pages: [{ title: 'Overview', href: navigation.prefix }, ...(navigation.pages ?? [])]
+  };
 
   return (
     <nav {...props}>

@@ -143,13 +143,22 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
 
+  let [bannerVisible, setBannerVisible] = useState(false);
+
+  useEffect(() => {
+    document.body.style.setProperty(
+      '--header-height',
+      navigation.tabs ? (bannerVisible ? '9rem' : '6.5rem') : bannerVisible ? '6rem' : '3.5rem'
+    );
+  }, [navigation.tabs, bannerVisible]);
+
   return (
     <>
       <motion.div
         ref={ref}
         className={clsx(
           className,
-          'pointer-events-auto fixed inset-x-0 top-0 z-50 flex flex-col transition',
+          'pointer-events-auto z-50 flex w-full flex-col transition',
           !isInsideMobileNavigation && 'backdrop-blur',
           isInsideMobileNavigation ? 'bg-charcole-950' : 'bg-charcole-950/[var(--bg-opacity-dark)]'
         )}
@@ -222,7 +231,7 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
             {/* Border */}
             <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
 
-            <nav className='flex h-full space-x-4'>
+            <nav className='relative flex h-full space-x-4'>
               {/* Title */}
               <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
                 {navigation.tabsTitle || tabsTitle}
@@ -234,13 +243,13 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
                   key={tab.title}
                   href={tab.href}
                   className={clsx(
-                    'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
+                    'flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
                     tab.current || pathname.startsWith(tab.href)
                       ? 'border-charcole-900 border-cream-50'
                       : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
                     tab.styles?.text ?? 'text-white'
                   )}
-                  aria-current={tab.current ? 'page' : undefined}>
+                  aria-current={pathname.startsWith(tab.href) ? 'page' : undefined}>
                   {tab.icon ? (
                     <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
                   ) : null}
