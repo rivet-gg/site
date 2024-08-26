@@ -8,20 +8,18 @@ export async function generateErrors() {
   let errorPages = [];
   fs.rmSync(errorsPath, { recursive: true, force: true });
 
-  processErrorDir(`${backendPath}/errors`, errorsPath, errorPages);
+  processErrorDir(`${backendPath}/errors`, errorPages);
 
-  function processErrorDir(inputPath, outputPath, pages) {
-    console.log(`Processing dir ${inputPath} -> ${outputPath}`);
-    fs.mkdirSync(outputPath, { recursive: true });
+  function processErrorDir(inputPath, pages) {
+    console.log(`Processing dir ${inputPath}`);
 
     for (const dirEntry of fs.readdirSync(inputPath)) {
       let inputPathEntry = `${inputPath}/${dirEntry}`;
-      let outputPathEntry = `${outputPath}/${dirEntry}`;
 
       let stat = fs.statSync(inputPathEntry);
 
       if (stat.isFile && dirEntry.endsWith('.md')) {
-        console.log(`Copying file ${inputPath} -> ${outputPath}`);
+        console.log(`Processing file ${inputPath}`);
 
         let errorDoc = fs.readFileSync(inputPathEntry, 'utf8');
 
@@ -39,18 +37,15 @@ export async function generateErrors() {
 
         // Strip error doc
         errorDoc = errorDoc.replace(/---.*---\s+#[^\n]+\s+/gs, '');
-        errorDoc = `# ${title}\n\n<Summary>{\`${name}\`}</Summary>\n\n${errorDoc}`;
-        fs.writeFileSync(outputPathEntry.replace('.md', '.mdx'), errorDoc);
+        errorDoc = errorDoc.replace(/<!--(.*?)-->/gs, '');
+        errorDoc = `## ${title}\n\n<Summary>{\`${name}\`}</Summary>\n\n${errorDoc}`;
 
         // Add to index of error pages if not deprecated
         if (!isDeprecated && !isExperimental) {
-          pages.push({
-            title,
-            href: outputPathEntry.replace('.md', '').substring('src/pages'.length)
-          });
+          pages.push({ title: title, doc: errorDoc });
         }
       } else if (stat.isDirectory) {
-        processErrorDir(inputPathEntry, outputPathEntry, pages);
+        processErrorDir(inputPathEntry, pages);
 
         // TODO: For nested pages
         // let subPages = [];
@@ -67,7 +62,12 @@ export async function generateErrors() {
     pages.sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  fs.writeFileSync('src/generated/errorPages.json', JSON.stringify(errorPages, null, 2));
+  fs.writeFileSync(
+    'src/pages/docs/core/errors.mdx',
+    `# Errors \n${errorPages.map(({ doc }) => doc).join('\n\n')}`
+  );
+
+  // fs.writeFileSync('src/generated/errorPages.json', JSON.stringify(errorPages, null, 2));
 }
 
 generateErrors();

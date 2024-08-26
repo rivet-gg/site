@@ -24,14 +24,14 @@ export function Layout({
       {/* Navigation */}
       <motion.header
         layoutScroll
-        className='contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex'>
+        className='contents lg:pointer-events-none lg:sticky lg:inset-0 lg:top-0 lg:z-40 lg:flex'>
         {/* Header */}
         <Header navigation={navigation} />
       </motion.header>
 
       {/* Body */}
       {/* <div className={clsx('relative', navigation.tabs ? 'pt-navigation' : 'pt-14')}> */}
-      <div className={clsx('relative pt-[var(--header-height)]')}>
+      <div className={clsx('relative')}>
         {(prose || inset) && isTopPage ? <HeroPattern /> : null}
 
         <div
