@@ -5,11 +5,11 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": ["concepts/resources"]
+        "pages": ["concepts/resources", "concepts/setup-walkthrough"]
       },
       {
         "title": "Tutorials",
-        "pages": ["tutorials/quickstart", "tutorials/bomber-demo", "tutorials/setup-walkthrough"]
+        "pages": ["tutorials/quickstart", "tutorials/bomber-demo"]
       }
     ]
   }
