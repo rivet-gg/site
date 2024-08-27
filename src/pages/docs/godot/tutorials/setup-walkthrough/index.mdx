@@ -1,0 +1,107 @@
+import Image from 'next/image';
+import { TutorialVideo } from '@/components/TutorialVideo';
+import { Tabs } from '@/components/Tabs';
+
+# Setup Walkthrough
+
+<WorkInProgress />
+
+## Step 1: Create Game & Backend Configs
+
+The plugin will automatically set up several config files that will get you
+hooked up to Rivet and OpenGB. These are the following:
+
+- `backend.json`: Configuration for how OpenGB should run
+- `backend.dev.json`: Override values from `backend.json`, useful for separating
+  your development and production environments
+
+<Tabs>
+  <article title='backend.json'>
+  ```json backend.json
+  {
+    "modules": {
+      "users": {},
+      "rate_limit": {},
+      "tokens": {},
+      "lobbies": {
+        "config": {
+          "lobbies": {
+            "regions": ["local"],
+            "backend": {
+              "localDevelopment": {
+                "tags": { "test": "5" },
+                "ports": {
+                  "game": { "protocol": "udp", "port": 7777 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rivet": {}
+    }
+  }
+  ```
+  </article>
+  <article title='backend.dev.json'>
+    ```json backend.dev.json
+    {
+      "extends": "backend.json",
+      "modules": {
+        "lobbies": {
+          "config": {
+            "lobbies": {
+              "regions": ["local"],
+              "backend": {
+                "localDevelopment": {
+                  "tags": { "test": "5" },
+                  "ports": {
+                    "game": { "protocol": "udp", "port": 7777 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ```
+  </article>
+</Tabs>
+
+## Step 2: Generated Backend SDK
+
+The Rivet plugin uses [Open Game Backend](https://opengb.dev/introduction)
+(OpenGB) to connect your game to Rivet.
+
+This works by automatically generating an API for each OpenGB module that is
+being used. You can see each of the default modules that are being added in the
+[base repo](https://github.com/rivet-gg/plugin-godot/blob/main/addons/rivet/resources/backend.json).
+
+## Step 3: Setup Multiplayer Scene
+
+This step copies an existing Godot scene into your project that already includes
+nodes to test out connecting to Rivet
+
+## Step 4: Test Multiplayer Locally
+
+Now that we have the scene set up, we can make sure that we can start a
+multiplayer game locally. For this, we'll use Godot's debug functionality to
+enable multiple game clients at once.
+
+## Step 5: Deploy To Server
+
+Finally, we can try deploying our game server to Rivet. This will use Docker to
+create a build of the server locally, and then upload it to Rivet so that it can
+be deployed globally.
+
+## Edit Backend Config
+
+You can learn more about the backend configuration in the [OpenGB
+documentation](https://opengb.dev/docs/project-config). Within the context of
+the Godot plugin, there are a few important items to note with OpenGB:
+
+- TODO
+
+## Configure Lobbies
+
