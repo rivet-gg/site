@@ -5,7 +5,11 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": ["concepts/resources", "concepts/setup-walkthrough"]
+        "pages": [
+          "concepts/resources",
+          "concepts/setup-walkthrough",
+          "concepts/opengb"
+        ]
       },
       {
         "title": "Tutorials",

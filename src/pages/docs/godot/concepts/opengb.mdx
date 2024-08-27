@@ -1,0 +1,46 @@
+# OpenGB
+
+Rivet and OpenGB work together under the hood of the Rivet Godot plugin. While
+developing your Godot game, OpenGB runs in the background, and you need to
+configure it before you start. But why is this?
+
+We built OpenGB to allow developers to think less about how their game is tied
+to servers, but also have more control over the process if they choose.
+
+OpenGB lets you combine **modules** ([docs](https://opengb.dev/docs/modules)) like
+[lobbies](https://opengb.dev/modules/lobbies/overview), [auth](https://opengb.dev/modules/auth_username_password/overview),
+or [matchmaker](https://opengb.dev/modules/matchmaker/overview) to control what
+your game's backend will do. The default `backend.json` that comes with the Godot
+plugin includes several modules, so let's see what they do:
+
+```json backend.json
+{
+  "modules": {
+    "users": {},
+    "rate_limit": {},
+    "tokens": {},
+    "lobbies": {
+      // ...
+    },
+    "rivet": {}
+  }
+}
+```
+
+The most important module that we use right when we start developing a game in
+Godot with Rivet is the `lobbies` module
+([docs](https://opengb.dev/modules/lobbies/overview)). This will allow Godot to
+get routed to a game server by asking the OpenGB `lobbies` module to find a
+server in the closest server region possible, and otherwise create one if it
+doesn't exist. Or rather, that's the default behaviour of the
+`lobbies` module, but it's easy to tweak if we had special conditions about the
+lobby we wanted to join. This is what makes OpenGB so powerful; you're not
+locked to how Rivet assumes your gameserver should work!
+
+Other than `lobbies`, there are several other modules, so let's step through
+them:
+
+- [users](https://opengb.dev/modules/users/overview):
+- [rate_limit](https://opengb.dev/modules/rate_limit/overview):
+- [tokens](https://opengb.dev/modules/tokens/overview):
+- [rivet](https://opengb.dev/modules/rivet/overview): 
