@@ -7,7 +7,8 @@
         "title": "Concepts",
         "pages": [
           "concepts/resources",
-          "concepts/opengb"
+          "concepts/opengb",
+          "concepts/backend_manager"
         ]
       },
       {
