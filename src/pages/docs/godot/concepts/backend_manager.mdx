@@ -1,0 +1,161 @@
+import imgBackendManagerScript from '../images/backend_manager/backend_multiplayer_manager_script.png';
+import imgFindLobbyDocs from '../images/backend_manager/find_lobby_docs.png';
+
+# BackendMultiplayerManager
+
+`BackendMultiplayerManager` is a class that does a lot of the heavy lifting in
+getting Godot multiplayer configured for your game. It can set up both `Enet` or
+`WebSocket` transports, and will configure authentication and security for the
+server you connect to. You'll extend this class in your project to hook into the
+setup process.
+
+## Setting up BackendMultiplayerManager in your project
+
+To use the `BackendMultiplayerManager` in your project, there are a few steps
+you'll need to follow. First, you'll need to create a script that extends
+`BackendMultiplayerManager`. In the example scene that comes with the plugin,
+it's added to the root node `Main`.
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgBackendManagerScript} alt='The Godot editor with a BackendMultiplayerManager script open' />
+</div>
+
+```gdscript
+extends BackendMultiplayerManager
+
+func _ready():
+	setup_multiplayer()
+```
+
+`BackendMultiplayerManager` has several signals that you can connect, so you'll
+likely want to extend your `_ready()` function to connect to these signals as needed:
+
+```gdscript
+func _ready():
+	setup_multiplayer()
+
+    # Client has successfully connected & authenticated to the server.
+    self.server_connected.connect(_on_server_connected)
+
+    # Client has disconnected from the server.
+	self.server_disconnected.connect(_on_server_disconnected)
+
+    # Client connected & authenticated to the server. Only called server-side.
+	self.client_connected.connect(_on_client_connected)
+
+    # Client disconnected from the server. Only called server-side.
+	self.client_disconnected.connect(_on_client_disconnected)
+```
+
+Now that we've finished initializing the `BackendMultiplayerManager`, we can
+start making calls to OpenGB modules. For example, to search for a
+lobby, we would want to use the [OpenGB lobbies
+module](https://opengb.dev/modules/lobbies/overview) to return an IP and port
+to connect to. We can call it like this:
+
+```gdscript
+var response = await Backend.lobbies.find_or_create({
+	"version": "default",
+	"regions": ["local"],
+	"tags": {},
+	"players": [{}],
+	"createConfig": {
+		"region": "atl",
+		"tags": {},
+		"maxPlayers": 32,
+		"maxPlayersDirect": 32,
+	}
+}).async()
+```
+
+<Note>
+  `Backend` is an singleton that the Rivet plugin auto-loads for you. It's
+  auto-generated, and includes all of the OpenGB modules you've added to your
+  project.
+</Note>
+
+This is a nice simple Godot function, but it's a bit unclear how we knew that we
+could find it at `Backend.lobbies.find_or_create`. To figure this out yourself,
+you can look at the [OpenGB lobbies
+documentation](https://opengb.dev/modules/lobbies/overview). From there, you can
+open the section "Scripts (Public)" on the sidebar, and navigate to the ["Find
+Or Create Lobby"](https://opengb.dev/modules/lobbies/scripts/find_or_create)
+section. This page will give you all of the information about that OpenGB
+script, as well as the rest of the module.
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgFindLobbyDocs} alt='Find lobby OpenGB docs' />
+</div>
+
+You can read the [OpenGB section](/docs/godot/concepts/opengb) for more information
+on how OpenGB integrates with the Godot plugin.
+
+## Switching transports
+
+By default, the `BackendMultiplayerManager` will use Godot's
+[`Enet`](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html)
+transport. This works well for many cases, but if you want to export your game
+to the web, you'd need to switch to using the
+[`WebRTC`](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html)
+or [`Web
+Sockets`](https://docs.godotengine.org/en/stable/classes/class_websocketpeer.html#class-websocketpeer)
+transport.
+
+Currently, it's very easy to switch to the WebSocket transport. You can do this
+during setup:
+
+```gdscript
+extends BackendMultiplayerManager
+
+func _ready():
+    transport = Transport.WEB_SOCKET
+	setup_multiplayer()
+```
+
+Right now, `WebRTC` isn't automatically configurable with the Rivet Godot plugin.
+
+## Available functions, signals, and variables
+
+Here's a quick list of what functions, signals, and variables from
+`BackendMultiplayerManager` that are exposed to you. As you can see, there's isn't a
+lot required to get setup. You'll get most of the functionality from the modules
+that you've configured to use in OpenGB.
+
+### Functions
+```gdscript
+## Sets up the authentication hooks on SceneMultiplayer.
+func setup_multiplayer():
+
+## Connect to a lobby returned from the backend.
+func connect_to_lobby(lobby, player):
+```
+
+### Signals
+```gdscript
+## Client has successfully connected & authenticated to the server.
+signal server_connected()
+
+## Client has disconnected from the server.
+signal server_disconnected()
+
+## Client connected & authenticated to the server. Only called server-side.
+signal client_connected(id: int)
+
+## Client disconnected from the server. Only called server-side.
+signal client_disconnected(id: int)
+```
+
+### Variables
+```gdscript
+## Transport to use for the multiplayer server.
+var transport = Transport.ENET
+var port_name = "game"
+
+## If running in server mode.
+##
+## Configured by adding `--server` flag to process.
+var is_server: bool
+
+## Peer connected to the server.
+var peer: MultiplayerPeer
+```

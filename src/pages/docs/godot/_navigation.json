@@ -8,6 +8,7 @@
         "pages": [
           "concepts/resources",
           "concepts/setup-walkthrough",
+          "concepts/backend_manager",
           "concepts/opengb"
         ]
       },
