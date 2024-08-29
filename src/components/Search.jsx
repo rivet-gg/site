@@ -22,6 +22,11 @@ function useAutocomplete() {
       shouldPanelOpen({ state }) {
         return state.query !== '';
       },
+      navigator: {
+        navigate({ itemUrl }) {
+          router.push(itemUrl);
+        }
+      },
       getSources({ query }) {
         return import('@/mdx/search.mjs').then(({ search }) => {
           return [
@@ -265,14 +270,9 @@ function SearchDialog({ open, setOpen, className }) {
   let { autocomplete, autocompleteState } = useAutocomplete();
 
   useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    function onRouteChange() {
-      setOpen(false);
-    }
-  }, [open, setOpen, pathname]);
+    setOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   useEffect(() => {
     if (open) {
