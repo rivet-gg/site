@@ -6,6 +6,7 @@ import apiPages from '../src/generated/apiPages.json' assert { type: 'json' };
 import engineStyles from '../src/lib/engineStyles.json' assert { type: 'json' };
 import { slugifyWithCounter } from '@sindresorhus/slugify';
 import { visit } from 'unist-util-visit';
+import { toString } from 'mdast-util-to-string';
 
 export async function generateNavigation() {
   // Process all pages
@@ -80,8 +81,8 @@ async function processPage({ path }) {
     if (node.depth >= 2 && node.depth <= 3) {
       let parent = node.depth === 2 ? headings : headings[headings.length - 1].children;
       parent.push({
-        title: node.children[0].value,
-        id: slugify(node.children[0].value),
+        title: toString(node),
+        id: slugify(toString(node)),
         children: []
       });
     }

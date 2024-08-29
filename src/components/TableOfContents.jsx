@@ -178,7 +178,7 @@ export function TableOfContents() {
           'pt-4 lg:top-navigation lg:max-h-tabs-content lg:pt-6': navigation.tabs,
           'lg:top-10 lg:max-h-content': !navigation.tabs
         },
-        'lg:max-w-aside w-full lg:pointer-events-auto lg:sticky lg:block lg:self-start lg:overflow-y-auto'
+        'w-full lg:pointer-events-auto lg:sticky lg:block lg:max-w-aside lg:self-start lg:overflow-y-auto'
       )}>
       <div className={clsx({ 'mt-9 md:mt-7': navigation.tabs, 'mt-8': !navigation.tabs }, 'relative')}>
         <motion.h2 layout='position' className='font-sans text-xs font-semibold text-white'>
