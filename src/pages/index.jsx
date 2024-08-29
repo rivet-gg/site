@@ -11,7 +11,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IncludedSection from '@/components/Included';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Game } from '@/components/Game';
+import { GameBackground } from '@/components/Game';
 import LevelUpSection from '@/components/LevelUpSection';
 import grainDark from '@/images/effects/grain-dark.png';
 import RotatingText from '@/components/RotatingText';
@@ -127,19 +127,6 @@ export default function Index() {
   );
 }
 
-function GameBackground() {
-  return (
-    <div className={clsx('absolute inset-0 -z-50')}>
-      <Game className='absolute inset-0' />
-
-      {/* Multiplayer note */}
-      <div className='pointer-events-none absolute bottom-2 right-2 z-20 flex select-none items-center justify-center px-2.5 py-1 text-xs font-bold uppercase text-cream-100/50 opacity-60'>
-        <span>This game is multiplayer</span>
-      </div>
-    </div>
-  );
-}
-
 function Title() {
   // const subtitleContent = [
   //   { subtle: "Build painlessly with " },
@@ -182,24 +169,38 @@ function Title() {
   // ];
 
   const subtitleContent = [
-    { subtle: "Build multiplayer painlessly with " },
-    { feature: "Game Servers", href: "/docs/dynamic-servers", icon: faServer },
-    { subtle: ", " },
-    { feature: "Matchmaking", href: "/docs/matchmaker", icon: faChessKnight },
-    { subtle: "," },
-    { subtle: " and " },
+    { subtle: 'Build multiplayer painlessly with ' },
+    { feature: 'Game Servers', href: '/docs/dynamic-servers', icon: faServer },
+    { subtle: ', ' },
+    { feature: 'Matchmaking', href: '/docs/matchmaker', icon: faChessKnight },
+    { subtle: ',' },
+    { subtle: ' and ' },
     { break: true },
-    { feature: "Authentication", href: "https://opengb.dev/modules/auth/overview", target: "_blank", icon: faAddressCard },
-    { subtle: ". " },
-    { subtle: "Customize endlessly using " },
-    { feature: "Backend Scripting", href: "https://opengb.dev/docs/quickstart", target: "_blank", icon: faCode },
-    { subtle: "." },
+    {
+      feature: 'Authentication',
+      href: 'https://opengb.dev/modules/auth/overview',
+      target: '_blank',
+      icon: faAddressCard
+    },
+    { subtle: '. ' },
+    { subtle: 'Customize endlessly using ' },
+    {
+      feature: 'Backend Scripting',
+      href: 'https://opengb.dev/docs/quickstart',
+      target: '_blank',
+      icon: faCode
+    },
+    { subtle: '.' },
     { break: true },
-    { subtle: "Scale effortlessly with " },
-    { feature: "DDoS Mitigation", href: "/docs/dynamic-servers/concepts/game-guard#d-do-s-mitigation", icon: faShield },
-    { subtle: " and " },
-    { feature: "Monitoring", href: "/docs/dynamic-servers/concepts/monitoring", icon: faBug },
-    { subtle: "." }
+    { subtle: 'Scale effortlessly with ' },
+    {
+      feature: 'DDoS Mitigation',
+      href: '/docs/dynamic-servers/concepts/game-guard#d-do-s-mitigation',
+      icon: faShield
+    },
+    { subtle: ' and ' },
+    { feature: 'Monitoring', href: '/docs/dynamic-servers/concepts/monitoring', icon: faBug },
+    { subtle: '.' }
   ];
 
   return (
@@ -219,11 +220,11 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.135 }}
           className={clsx(
-            'mb-2 mt-8 font-display font-extrabold tracking-tight text-cream-100 text-center',
+            'mb-2 mt-8 text-center font-display font-extrabold tracking-tight text-cream-100',
             'gap-3',
             'text-3xl',
             'sm:text-5xl',
-            'lg:text-6xl',
+            'lg:text-6xl'
           )}>
           The Only Backend Your Game Needs
         </motion.h1>
@@ -235,10 +236,10 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.27 }}
           className={clsx(
-            'text-center font-display text-cream-100 text-justify sm:text-center',
+            'text-center text-justify font-display text-cream-100 sm:text-center',
             'text-xl',
             'md:text-2xl',
-            'lg:text-3xl',
+            'lg:text-3xl'
           )}>
           {subtitleContent.map((item, index) => {
             if ('feature' in item) {
@@ -248,31 +249,33 @@ function Title() {
                   href={item.href}
                   target={item.target}
                   className={clsx(
-                    'text-[#D6CFC4] font-bold pointer-events-auto',
+                    'pointer-events-auto font-bold text-[#D6CFC4]',
                     'underline decoration-transparent',
-                    'hover:decoration-orange-500 hover:text-orange-500',
+                    'hover:text-orange-500 hover:decoration-orange-500',
                     'transition-all duration-100'
-                  )}
-                >
+                  )}>
                   <FontAwesomeIcon
                     icon={item.icon}
                     className={clsx(
                       'text-base md:text-lg lg:text-xl',
-                      'mr-0.5 ml-0.5 sm:mr-1 sm:ml-1',
-                      'mb-0.5 lg:mb-0.75',
+                      'ml-0.5 mr-0.5 sm:ml-1 sm:mr-1',
+                      'lg:mb-0.75 mb-0.5'
                     )}
-                  />
-                  {' '}
+                  />{' '}
                   {item.feature}
                 </a>
               );
             } else if ('subtle' in item) {
-              return <span key={index} className='text-[#837E77]'>{item.subtle}</span>;
+              return (
+                <span key={index} className='text-[#837E77]'>
+                  {item.subtle}
+                </span>
+              );
             } else if ('break' in item) {
               return (
                 <>
-                  <br key={index} className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
+                  <br key={index} className='hidden sm:block' />
+                  <span className='sm:hidden'> </span>
                 </>
               );
             }
@@ -288,9 +291,9 @@ function Title() {
           className={clsx(
             'italic text-orange-500',
             'text-center font-display tracking-tight',
-            'text-xl text-center',
+            'text-center text-xl',
             'sm:text-2xl',
-            'lg:text-3xl',
+            'lg:text-3xl'
           )}>
           Open-Source & Self-Hostable.
         </motion.div>
@@ -351,7 +354,7 @@ function Title() {
 
         <div className='h-4' />
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
+        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
