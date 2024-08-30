@@ -5,13 +5,11 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": [
-          "concepts/resources"
-        ]
+        "pages": ["concepts/resources"]
       },
       {
         "title": "Tutorials",
-        "pages": ["tutorials/crash-course", "tutorials/bomber-demo"]
+        "pages": ["tutorials/quickstart", "tutorials/bomber-demo", "tutorials/setup-walkthrough"]
       }
     ]
   }

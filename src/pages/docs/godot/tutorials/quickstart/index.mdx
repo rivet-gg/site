@@ -1,0 +1,190 @@
+import Image from 'next/image';
+import { Accordion } from '@/components/Accordion';
+import { Tabs } from '@/components/Tabs';
+import { TutorialVideo } from '@/components/TutorialVideo';
+
+import imgLogin from '../../images/plugin/login.png';
+import imgSetup from '../../images/plugin/setup.png';
+import imgDevelop from '../../images/plugin/develop.png';
+import imgDeploy from '../../images/plugin/deploy.png';
+
+import imgBackendLogs from './images/backend-logs.png';
+import imgGameServerLogs from './images/game-server-logs.png';
+import imgGodotWindow from './images/godot-window.png';
+import imgPluginSignin from './images/plugin-signin.png';
+import imgRunningGames from './images/running-games.png';
+
+# ⏱️ Quickstart
+
+This guide will walk you through creating and deploying a multiplayer game with
+Godot 4.2.
+
+If you are using Godot 4.1/4.0/3.x, please be aware that some details may be
+different.
+
+## Step 0: Create a new Godot project
+
+For this tutorial, [start a new Godot
+project](https://docs.godotengine.org/en/stable/getting_started/introduction/first_look_at_the_editor.html).
+
+## Step 1: Set up the Rivet Godot plugin
+
+The [Rivet Godot plugin](https://github.com/rivet-gg/plugin-godot) is can be
+installed from the Godot Asset Library, via `gd-plug`, or manually from the
+GitHub repo.
+
+<Tabs>
+  <article title='Godot Asset Library'>
+    Go to the Godot Asset Library, search for "Rivet", and install the plugin. Currently, you can only install the plugin from the Asset Library if you are using Godot 4.2.
+  </article>
+  <article title='gd-plug'>
+    Add this line to your `plug.gd`:
+    ```gdscript
+    plug("rivet/plugin-godot")
+    ```
+  </article>
+  <article title='Manual Installation'>
+    1. [Download the latest version](https://github.com/rivet-gg/plugin-godot/releases/latest)
+    2. Unpack the `addons/rivet` folder into your `/addons` folder within the Godot project
+    3. Enable this addon within the Godot settings `Project > Project Settings > Plugins`
+  </article>
+</Tabs>
+
+Once the plugin is open, sign in to link your game to Rivet.
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgPluginSignin} alt='Logging in via the Rivet Plugin' />
+</div>
+
+Next, follow the steps 1-3 in the "Setup" tab to setup a basic multiplayer game.
+
+<Note>
+  If you want to learn more about what these steps do, check out the [Setup Walkthrough](/docs/godot/tutorials/setup-walkthrough).
+</Note>
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgSetup} alt='A view of the setup tab of the Rivet Plugin' />
+</div>
+
+## Step 2: Testing Locally
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgGodotWindow} alt='A view of the Godot window' />
+</div>
+
+Now that we've done the 3 required setup steps, we can move on to testing locally.
+First, note that there are tabs that the Godot plugin added to the bottom of the
+Godot editor, where logs normally are. One is the "Backend" tab, which shows
+logs from the OpenGB backend.
+
+<Note>
+  The backend is running correctly once the line with `level=info msg="server started"` comes up.
+</Note>
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgBackendLogs} alt='A view of the backend logs' />
+</div>
+
+Going back to the setup panel, the next tab will bring you to the "Develop" tab.
+From here, first change the "Environment" to "Local" and then start a local
+Godot game server by clicking "Start" under the "Local Game Server" section.
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgDevelop} alt='A view of the develop tab of the Rivet Plugin' />
+</div>
+
+Now that the Godot server is running, we can look at the "Game Server" tab to
+see the logs from the game server. We can see if any issues came up from the
+Godot project, or connecting to the backend.
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgGameServerLogs} alt='A view of the game server logs' />
+</div>
+
+To recap this section, we've:
+
+- Started the OpenGB backend on our local machine
+- Set our environment to "Local" so that we can connect to the backend
+- Started a local Godot server
+- Seen the logs from the backend and game server to ensure everything is working
+
+The last step after all of that is to see the game connect! In Godot, click
+"Debug > Run Multiple Instances" and select "Run 2 Instances". Now, after you
+start the game, you should have two instances of the game running that can
+connect to your local lobby when you click "Find Lobby".
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgRunningGames} alt='Two instances of the game running' />
+</div>
+
+## Step 3: Deploying to Rivet
+
+From the "Deploy" tab, select "Staging" and click "Build & Deploy".
+
+<div className='flex flex-row justify-center'>
+  <Image src={imgDeploy} alt='A view of the deploy tab of the Rivet Plugin' />
+</div>
+
+## Step 4: Test your multiplayer game
+
+After deploying, go back to the "Develop" tab and see that the environment is set to the same environment you
+just deployed to (should be "Staging"). Press "Run Project" in the top right of the Godot editor. You are now
+connected over the internet through Rivet to your game!
+
+## Next steps
+
+Now that you've seen how to get a multiplayer game up and running, there are a
+few other things you might want to check out.
+
+### Editing the backend config
+
+For this quickstart, we used a default backend config that came with the plugin.
+You can learn more about what was added
+[here](/docs/godot/tutorials/setup-walkthrough#step-1-create-game-and-backend-configs).
+To read more about how this file can be configured, check out the [OpenGB
+backend documentation](https://opengb.dev/docs/project-config).
+
+### Configuring lobbies
+
+Lobbies are configured as part of the backend config. We can see the defualt
+lobby configuration below:
+
+```json backend.json
+{
+  "lobbies": {
+    "config": {
+      "lobbies": {
+        "regions": ["local"],
+        "backend": {
+          "localDevelopment": {
+            "tags": { "test": "5" },
+            "ports": {
+              "game": { "protocol": "udp", "port": 7777 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+We can look at the [OpenGB lobbies documentation](https://opengb.dev/modules/lobbies)
+to find out how to configure it futher:
+
+- The module's [default
+  configuration](https://opengb.dev/modules/lobbies/config#default-config)
+- All of the module's [configuration options](https://opengb.dev/modules/lobbies/config)
+- [Scripts we can call](https://opengb.dev/modules/lobbies/scripts/create) from
+  this module inside of Godot
+
+### Check out more backend modules
+
+Take a look at the other [backend modules](https://opengb.dev/introduction#multiplayer) that
+are available. On top of connecting to lobbies, OpenGB has many pre-built
+modules across many catagories, here are some:
+
+- [Friends](https://opengb.dev/modules/friends/overview)
+- [Leaderboards](https://opengb.dev/modules/leaderboards/overview)
+- [Currency](https://opengb.dev/modules/matchmaker/overview)
+- [Discord Activites](https://opengb.dev/modules/discord_activity/overview)
