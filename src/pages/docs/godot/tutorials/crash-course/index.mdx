@@ -130,3 +130,61 @@ From the "Deploy" tab, select "Staging" and click "Build & Deploy".
 After deploying, go back to the "Develop" tab and see that the environment is set to the same environment you
 just deployed to (should be "Staging"). Press "Run Project" in the top right of the Godot editor. You are now
 connected over the internet through Rivet to your game!
+
+## Next steps
+
+Now that you've seen how to get a multiplayer game up and running, there are a
+few other things you might want to check out.
+
+### Editing the backend config
+
+For this quickstart, we used a default backend config that came with the plugin.
+You can learn more about what was added
+[here](/docs/godot/tutorials/setup-walkthrough#step-1-create-game-and-backend-configs).
+To read more about how this file can be configured, check out the [OpenGB
+backend documentation](https://opengb.dev/docs/project-config).
+
+### Configuring lobbies
+
+Lobbies are configured as part of the backend config. We can see the defualt
+lobby configuration below:
+
+```json backend.json
+{
+  "lobbies": {
+    "config": {
+      "lobbies": {
+        "regions": ["local"],
+        "backend": {
+          "localDevelopment": {
+            "tags": { "test": "5" },
+            "ports": {
+              "game": { "protocol": "udp", "port": 7777 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+We can look at the [OpenGB lobbies documentation](https://opengb.dev/modules/lobbies)
+to find out how to configure it futher:
+
+- The module's [default
+  configuration](https://opengb.dev/modules/lobbies/config#default-config)
+- All of the module's [configuration options](https://opengb.dev/modules/lobbies/config)
+- [Scripts we can call](https://opengb.dev/modules/lobbies/scripts/create) from
+  this module inside of Godot
+
+### Check out more backend modules
+
+Take a look at the other [backend modules](https://opengb.dev/introduction#multiplayer) that
+are available. On top of connecting to lobbies, OpenGB has many pre-built
+modules across many catagories, here are some:
+
+- [Friends](https://opengb.dev/modules/friends/overview)
+- [Leaderboards](https://opengb.dev/modules/leaderboards/overview)
+- [Currency](https://opengb.dev/modules/matchmaker/overview)
+- [Discord Activites](https://opengb.dev/modules/discord_activity/overview)
