@@ -30,7 +30,7 @@ export function Game({ className, ...props }) {
   }, [isRunning, gameClient]);
 
   return (
-    <div className={clsx(className, 'flex items-center justify-center', 'pointer-events-auto')} {...props}>
+    <div className={clsx(className, 'flex items-start justify-center', 'pointer-events-auto')} {...props}>
       <canvas ref={canvasElement}></canvas>
     </div>
   );

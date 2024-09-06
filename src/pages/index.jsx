@@ -64,14 +64,32 @@ export default function Index({ modules }) {
   return (
     <div>
       <div className='relative isolate overflow-x-hidden'>
-        <div className='pointer-events-none relative'>
+        <div className='pointer-events-none relative px-6 before:contents'>
           <GameBackground />
 
-          <div className='h-16 sm:h-28' />
           <Title />
-          <div className='h-32 sm:h-60' />
-        </div>
 
+          <div className='absolute inset-0 bg-gradient-to-b from-transparent to-[#0f0f0f]'></div>
+          <div className='relative'>
+            <img src='' width={1280} height={720} className='mx-auto bg-red-50' />
+          </div>
+        </div>
+        <div className='bg-[#0f0f0f]'>
+          <div className='mx-auto flex max-w-7xl items-center justify-center gap-10 px-3 py-14 text-center'>
+            <button className='rounded-full border border-transparent px-4 py-2 text-cream-100/50 transition-colors hover:border-cream-100 hover:text-cream-100'>
+              Godot
+            </button>
+            <button className='rounded-full border border-transparent px-4 py-2 text-cream-100/50 transition-colors hover:border-cream-100 hover:text-cream-100'>
+              Unity
+            </button>
+            <button className='rounded-full border border-transparent px-4 py-2 text-cream-100/50 transition-colors hover:border-cream-100 hover:text-cream-100'>
+              Unreal Engine
+            </button>
+            <button className='rounded-full border border-transparent px-4 py-2 text-cream-100/50 transition-colors hover:border-cream-100 hover:text-cream-100'>
+              HTML5
+            </button>
+          </div>
+        </div>
         <motion.div initial={{ opacity: 0 }} animate={restOfPageControls} transition={{ duration: 0.325 }}>
           <div className='relative border-t-2 border-cream-100/10 py-16'>
             {/* Background */}
@@ -115,6 +133,19 @@ export default function Index({ modules }) {
 
           <LevelUpSection />
         </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function GameBackground() {
+  return (
+    <div className={clsx('absolute inset-0 -z-50')}>
+      <Game className='absolute inset-0' />
+
+      {/* Multiplayer note */}
+      <div className='pointer-events-none absolute right-2 top-2 z-20 flex select-none items-start justify-center bg-black px-2.5 py-1 text-xs font-bold uppercase text-cream-100/50 opacity-60'>
+        <span>This game is multiplayer</span>
       </div>
     </div>
   );
@@ -171,7 +202,7 @@ function Title() {
     { break: true },
     {
       feature: 'Authentication',
-      href: '/modules/auth/overview',
+      href: 'https://opengb.dev/modules/auth/overview',
       target: '_blank',
       icon: faAddressCard
     },
@@ -179,7 +210,7 @@ function Title() {
     { subtle: 'Customize endlessly using ' },
     {
       feature: 'Backend Scripting',
-      href: '/docs/modules/quickstart',
+      href: 'https://opengb.dev/docs/quickstart',
       target: '_blank',
       icon: faCode
     },
@@ -197,8 +228,8 @@ function Title() {
   ];
 
   return (
-    <div className='flex w-full flex-col items-center justify-center px-4 text-center'>
-      <div className='relative flex flex-col items-center justify-center'>
+    <div className='justify-centertext-left mx-auto flex w-full max-w-7xl flex-col items-start'>
+      <div className='relative flex flex-col items-start justify-center'>
         {/* BG gradient to cover the game */}
         <div
           className='pointer-events-none absolute inset-x-[-100px] inset-y-[-50px] -z-10'
@@ -213,7 +244,7 @@ function Title() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.135 }}
           className={clsx(
-            'mb-2 mt-8 text-center font-display font-extrabold tracking-tight text-cream-100',
+            'mb-2 mt-8 text-left font-display font-extrabold tracking-tight text-cream-100',
             'gap-3',
             'text-3xl',
             'sm:text-5xl',
@@ -222,14 +253,12 @@ function Title() {
           Open-Source Multiplayer Tooling
         </motion.h1>
 
-        <div className='h-6' />
-
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.325, delay: 0.27 }}
           className={clsx(
-            'text-center text-justify font-display text-cream-100 sm:text-center',
+            'my-6 text-left font-display text-cream-100',
             'text-xl',
             'md:text-2xl',
             'lg:text-3xl'
@@ -274,50 +303,13 @@ function Title() {
             }
           })}
         </motion.div>
-
-        <div className='h-5' />
-
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.325, delay: 0.405 }}
-          className={clsx(
-            'italic text-orange-500',
-            'text-center font-display tracking-tight',
-            'text-center text-xl',
-            'sm:text-2xl',
-            'lg:text-3xl'
-          )}>
-          Open-Source & Self-Hostable.
-        </motion.div>
-
-        <div className='h-6' />
-
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.325, delay: 0.54 }}
-          className={clsx(
-            'flex items-center justify-center',
-            'gap-1 px-3 py-1',
-            'text-center text-xs font-bold sm:text-sm',
-            'text-cream-100',
-            'rounded-full border border-cream-100/20',
-            'opacity-70 hover:opacity-100',
-            'hover:border-orange-500 hover:bg-orange-500/10',
-            'pointer-events-auto'
-          )}>
-          <GitHubStars />
-        </motion.div>
       </div>
-
-      <div className='h-24' />
 
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.675 }}
-        className='relative flex flex-col items-center justify-center'>
+        className='relative flex flex-col items-start justify-center'>
         {/* BG gradient to cover the game */}
         <div
           className='pointer-events-none absolute inset-x-[-100px] inset-y-[-50px] -z-10'
@@ -331,22 +323,9 @@ function Title() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.325, delay: 0.48 }}
-          className='text-md font-semibold text-cream-100/90'>
-          Install Plugin
+          className='my-4 font-display text-3xl font-semibold text-cream-100/90'>
+          Download Plugin
         </motion.div>
-
-        <div className='h-1' />
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.325, delay: 0.555 }}
-          className='text-sm text-cream-100/70'>
-          Create & deploy a multiplayer game from scratch in under 5 minutes.
-        </motion.div>
-
-        <div className='h-4' />
-
         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -373,6 +352,22 @@ function Title() {
             <DownloadButton title='HTML5 & Other' href='/learn/html5/tutorials/crash-course' icon={faBook} />
           </motion.div>
         </div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.325, delay: 0.54 }}
+        className={clsx(
+          'flex items-center justify-center',
+          'mb-10 mt-6 gap-1 px-3 py-1',
+          'text-center text-xs font-bold sm:text-sm',
+          'text-cream-100',
+          'rounded-full border border-cream-100/20',
+          'opacity-70 hover:opacity-100',
+          'hover:border-orange-500 hover:bg-orange-500/10',
+          'pointer-events-auto'
+        )}>
+        <GitHubStars />
       </motion.div>
     </div>
   );
