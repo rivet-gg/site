@@ -41,13 +41,13 @@ const ICONS = {
   unity: faSquare,
   unreal: faCircle,
   html5: faRhombus,
-  custom: faDiamond,
+  custom: faDiamond
 };
 
 function TopLevelNavItem({ href, target, initHref, icon, children }) {
   let pathname = usePathname();
 
-  let current = pathname.startsWith(href);
+  let current = pathname?.startsWith(href);
   return (
     <Link
       href={initHref ?? href}
@@ -134,36 +134,14 @@ const StatusBadge = ({ status }) => {
   }
 };
 
-export const Header = forwardRef(function Header({ className }, ref) {
+export const Header = forwardRef(function Header({ className, tabsTitle, tabs }, ref) {
   let { navigation } = useNavigation();
   let pathname = usePathname();
-  let { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
   let isInsideMobileNavigation = useIsInsideMobileNavigation();
 
   let { scrollY } = useScroll();
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
-
-  let [bannerVisible, setBannerVisible] = useState(false);
-  // useEffect(() => {
-  //   const handleBannerChange = () => {
-  //     setBannerVisible(localStorage.getItem('creditsBannerClosed') !== 'true');
-  //   };
-
-  //   handleBannerChange();
-
-  //   window.addEventListener('creditsBannerChange', handleBannerChange);
-  //   return () => window.removeEventListener('creditsBannerChange', handleBannerChange);
-  // }, [navigation.tabs]);
-
-  useEffect(() => {
-    document.body.style.setProperty(
-      '--header-height',
-      navigation.tabs
-        ? (bannerVisible ? '9rem' : '6.5rem')
-        : (bannerVisible ? '6rem' : '3.5rem')
-    );
-  }, [navigation.tabs, bannerVisible]);
 
   return (
     <>
@@ -239,7 +217,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
         </div>
 
         {/* Tabs */}
-        {navigation?.tabs && (
+        {(navigation?.tabs || tabs) && (
           <div className={'hide-scrollbar main-content-container h-12 w-full overflow-x-scroll px-6'}>
             {/* Border */}
             <div className='absolute inset-x-0 bottom-0 h-[2px] bg-cream-100/5'></div>
@@ -247,17 +225,17 @@ export const Header = forwardRef(function Header({ className }, ref) {
             <nav className='flex h-full space-x-4'>
               {/* Title */}
               <div className='text-md flex items-center font-display font-bold text-charcole-900 text-white'>
-                {navigation.tabsTitle}
+                {navigation.tabsTitle || tabsTitle}
               </div>
 
               {/* Tabs */}
-              {navigation.tabs.map(tab => (
+              {(navigation.tabs || tabs).map(tab => (
                 <Link
                   key={tab.title}
                   href={tab.href}
                   className={clsx(
                     'lh-full flex h-full shrink-0 items-center gap-1 whitespace-nowrap border-b-2 px-1 pt-1 text-sm font-semibold transition',
-                    tab.current
+                    tab.current || pathname.startsWith(tab.href)
                       ? 'border-charcole-900 border-cream-50'
                       : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
                     tab.styles?.text ?? 'text-white'
@@ -274,7 +252,6 @@ export const Header = forwardRef(function Header({ className }, ref) {
           </div>
         )}
       </motion.div>
-      {pathname != '/' ? <CreditsBanner /> : null}
     </>
   );
 });

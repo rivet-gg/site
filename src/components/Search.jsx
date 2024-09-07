@@ -28,22 +28,22 @@ function useAutocomplete() {
         }
       },
       getSources({ query }) {
-        return import('@/mdx/search.mjs').then(({ search }) => {
-          return [
-            {
-              sourceId: 'documentation',
-              getItems() {
-                return search(query, { limit: 5 });
-              },
-              getItemUrl({ item }) {
-                return item.url;
-              },
-              onSelect({ itemUrl }) {
-                router.push(itemUrl);
-              }
-            }
-          ];
-        });
+        // return import('@/mdx/search.mjs').then(({ search }) => {
+        //   return [
+        //     {
+        //       sourceId: 'documentation',
+        //       getItems() {
+        //         return search(query, { limit: 5 });
+        //       },
+        //       getItemUrl({ item }) {
+        //         return item.url;
+        //       },
+        //       onSelect({ itemUrl }) {
+        //         router.push(itemUrl);
+        //       }
+        //     }
+        //   ];
+        // });
       }
     })
   );
