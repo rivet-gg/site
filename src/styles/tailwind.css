@@ -12,6 +12,7 @@
 
     --bg-dark-grain: url('../images/effects/grain-dark.png');
     --bg-light-grain: url('../images/effects/grain-light.png');
+    --spacing-top-navigation: theme('spacing.docs-navigation');
   }
 
   [inert] ::-webkit-scrollbar {
