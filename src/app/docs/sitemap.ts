@@ -52,7 +52,38 @@ export const sitemap = [
   },
   {
     title: 'Unreal',
-    href: '/docs/unreal'
+    href: '/docs/unreal',
+    sidebar: [
+      { href: '/docs/unreal' },
+      {
+        title: 'Concepts',
+        pages: [
+          { href: '/docs/unreal/concepts/resources' },
+          { href: '/docs/unreal/concepts/build-engine-from-source' },
+          { href: '/docs/unreal/concepts/run-methods' },
+          { href: '/docs/unreal/concepts/useful-commands' }
+        ]
+      },
+      {
+        title: 'Troubleshooting',
+        pages: [
+          { href: '/docs/unreal/troubleshooting/chmod-error' },
+          { href: '/docs/unreal/troubleshooting/empty-level' },
+          { href: '/docs/unreal/troubleshooting/port-7777-already-taken' },
+          { href: '/docs/unreal/troubleshooting/standalone-wrong-map' }
+        ]
+      },
+      {
+        title: '⏱️ Crash Course',
+        pages: [
+          { href: '/docs/unreal/tutorials/crash-course' },
+          { href: '/docs/unreal/tutorials/crash-course/10-setup-project' },
+          { href: '/docs/unreal/tutorials/crash-course/20-setup-rivet' },
+          { href: '/docs/unreal/tutorials/crash-course/30-build-entry' },
+          { href: '/docs/unreal/tutorials/crash-course/40-deploy-rivet' }
+        ]
+      }
+    ]
   },
   {
     title: 'HTML5',
