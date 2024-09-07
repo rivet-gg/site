@@ -41,7 +41,14 @@ export const sitemap = [
   },
   {
     title: 'Unity',
-    href: '/docs/unity'
+    href: '/docs/unity',
+    sidebar: [
+      { href: '/docs/unity' },
+      {
+        title: 'Tutorials',
+        pages: [{ href: '/docs/unity/tutorials/fishnet/crash-course' }]
+      }
+    ]
   },
   {
     title: 'Unreal',
