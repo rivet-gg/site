@@ -18,7 +18,8 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {
-    scrollRestoration: true
+    scrollRestoration: true,
+    typedRoutes: true
   }
 };
 
