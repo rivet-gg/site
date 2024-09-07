@@ -87,7 +87,17 @@ export const sitemap = [
   },
   {
     title: 'HTML5',
-    href: '/docs/html5'
+    href: '/docs/html5',
+    sidebar: [
+      { href: '/docs/html5' },
+      {
+        title: 'Tutorials',
+        pages: [
+          { href: '/docs/html5/tutorials/crash-course' },
+          { href: '/docs/html5/tutorials/tanks-canvas-socketio' }
+        ]
+      }
+    ]
   },
   {
     title: 'Modules',
