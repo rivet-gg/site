@@ -1,0 +1,24 @@
+import { ResourceGroup, Resource } from '@/components/Resources';
+import { faBooks, faServer } from '@fortawesome/sharp-solid-svg-icons';
+
+# Introduction
+
+Find documentation for our APIs, detailed concept rundowns, or get help with specific engine plugins.
+
+## What does Rivet provide?
+
+- Everything is accessible from an easy to use [GUI, CLI, or API](/docs/general/gui-cli-api)
+- [Dynamic Servers](/docs/dynamic-servers/index) for auto-scaling game lobbies
+- [Flexible matchmaker](/docs/matchmaker/index) for placing players in lobbies with no wait times
+- [CDN](/docs/cdn) for hosting assets and webpages with a custom domain or provided rivet.game subdomain
+- [Game Guard](/docs/dynamic-servers/concepts/game-guard) for DDoS mitigation and managed WebSocket SSL & TCP+TLS termination
+- Streamlined DevOps for teams
+- Unified logging & monitoring & analytics
+- No downtime deploys with easy rollbacks
+
+<ResourceGroup>
+  <Resource title='Libraries' icon={faBooks} href='/docs/general/libraries' />
+  <Resource title='Dynamic Servers' icon={faServer} href='/docs/core/dynamic-servers/overview'>
+    Auto-scaling game lobbies to meet demand.
+  </Resource>
+</ResourceGroup>

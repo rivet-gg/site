@@ -1,31 +1,16 @@
-import { useRef } from 'react';
+'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
-import {
-  faBooks,
-  faCode,
-  faCoin,
-  faGraduationCap,
-  faHammer,
-  faNewspaper,
-  faUserGroup
-} from '@fortawesome/sharp-solid-svg-icons';
+import { motion } from 'framer-motion';
+import { faBooks, faCoin, faNewspaper } from '@fortawesome/sharp-solid-svg-icons';
 import routes from '@/generated/routes.json';
 
 import { Button } from '@/components/Button';
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation';
 import { Tag } from '@/components/Tag';
-import { remToPx } from '@/lib/remToPx';
 import { usePathname } from 'next/navigation';
 import { ActiveSectionMarker } from '@/components/TableOfContents';
 import { faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
-
-function useInitialValue(value, condition = true) {
-  let initialValue = useRef(value).current;
-  return condition ? initialValue : value;
-}
 
 function TopLevelNavItem({ href, target, children }) {
   return (
