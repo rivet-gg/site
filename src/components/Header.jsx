@@ -173,7 +173,7 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
             </Link>
 
             <div className='hidden items-center gap-1 lg:flex'>
-              <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
+              <TopLevelNavItem href='/docs' initHref='/docs' icon={faBooks}>
                 Docs
               </TopLevelNavItem>
               <TopLevelNavItem href='/modules' target='_blank' icon={faPuzzle}>

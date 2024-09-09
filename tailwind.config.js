@@ -68,7 +68,7 @@ module.exports = {
         15: '0.15'
       },
       spacing: {
-        'docs-navigation': '6.5rem'
+        'docs-navigation': 'var(--header-height, 6.5rem)'
       },
       backgroundImage: {
         'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',
