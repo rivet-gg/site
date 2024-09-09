@@ -1,0 +1,293 @@
+
+import { CodeGroup, Code } from '@/components/Code';
+
+# games.getGameById
+
+
+
+## Description
+
+Returns a game by its game id.
+
+
+## Code Examples
+
+<CodeGroup title='Request' tag='GET' label='https://api.rivet.gg/cloud/games/{game_id}'>
+
+```bash {{ "title": "cURL" }}
+curl -X GET 'https://api.rivet.gg/cloud/games/{game_id}'
+```
+
+```ts
+// Create Rivet client
+import { RivetClient } from '@rivet-gg/api';
+const RIVET = new RivetClient({ token: '[YOUR TOKEN HERE]' });
+
+// Make request
+await RIVET.cloud.games.getGameById({
+  // Add your request body here
+});
+```
+
+</CodeGroup>
+
+## Request Parameters
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">game\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> path parameter</code>
+</div>
+
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">watch\_index</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">optional</span> query parameter</code>
+</div>
+<div className="description pl-2">
+A query parameter denoting the requests watch index.
+</div>
+
+</div>
+
+## Response Body
+<div className="properties ">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">game</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> object</code>
+</div>
+<div className="description pl-2">
+A full game.
+</div>
+<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">available\_regions</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> array&lt;object&gt;</code>
+</div>
+<div className="description pl-2">
+A list of region summaries.
+</div>
+<div className="array-items ml-2 pl-2">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">available\_regions[*]</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">object</code>
+</div>
+<div className="description pl-2">
+A region summary.
+</div>
+<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">provider</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+The server provider of this region.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">provider\_display_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Represent a resource's readable display name.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">region\_display_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Represent a resource's readable display name.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">region\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">region\_name_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">banner\_url</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">string</code>
+</div>
+<div className="description pl-2">
+The URL of this game's banner image.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">create\_ts</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+RFC3339 timestamp
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">developer\_group_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">display\_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Represent a resource's readable display name.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">game\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">logo\_url</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">string</code>
+</div>
+<div className="description pl-2">
+The URL of this game's logo image.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">name\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">namespaces</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> array&lt;object&gt;</code>
+</div>
+<div className="description pl-2">
+A list of namespace summaries.
+</div>
+<div className="array-items ml-2 pl-2">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">namespaces[*]</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">object</code>
+</div>
+<div className="description pl-2">
+A namespace summary.
+</div>
+<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">create\_ts</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+RFC3339 timestamp
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">display\_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Represent a resource's readable display name.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">name\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+A human readable short identifier used to references resources. Different than a `rivet.common#Uuid` because this is intended to be human readable. Different than `rivet.common#DisplayName` because this should not include special characters and be short.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">namespace\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">version\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">total\_player_count</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> integer</code>
+</div>
+<div className="description pl-2">
+Unsigned 32 bit integer.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">versions</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> array&lt;object&gt;</code>
+</div>
+<div className="description pl-2">
+A list of version summaries.
+</div>
+<div className="array-items ml-2 pl-2">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">versions[*]</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">object</code>
+</div>
+<div className="description pl-2">
+A version summary.
+</div>
+<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">create\_ts</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+RFC3339 timestamp
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">display\_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Represent a resource's readable display name.
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">version\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">watch</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> object</code>
+</div>
+<div className="description pl-2">
+Provided by watchable endpoints used in blocking loops.
+</div>
+<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
+<div className="property ml-4">
+<div className="flex flex-row items-center my-2">
+<h2 className="text-lg font-bold text-cream-50 m-0">index</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
+</div>
+<div className="description pl-2">
+Index indicating the version of the data responded.
+Pass this to `WatchQuery` to block and wait for the next response.
+</div>
+</div>
+</div>
+</div>
+</div>
+

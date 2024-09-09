@@ -1,17 +1,22 @@
 import { Route } from "next";
 
-type SidebarTopLevelPage = { href: Route | URL };
-type SidebarSection = {
+type Href = string | Route | URL;
+type Page = { href: string };
+type PageWithTitle = { title: string; href: Href };
+type PageWithPages = { title: string; pages: Page[] };
+
+type SidebarTopLevelPage = Page;
+export type SidebarSection = {
   title: string;
   collapsible?: true;
-  pages: { href: Route | URL }[];
+  pages: (Page | PageWithTitle | PageWithPages)[];
 };
 
-type SidebarItem = SidebarTopLevelPage | SidebarSection;
+export type SidebarItem = SidebarTopLevelPage | SidebarSection;
 
 type SiteProduct = {
   title: string;
-  href: Route | URL;
+  href: Href;
   sidebar?: SidebarItem[];
 };
 
