@@ -2,7 +2,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { sitemap } from "@/app/docs/sitemap";
 import { DocsNavigation } from "@/components/DocsNavigation";
-import { TableOfContents } from "@/components/TableOfContents";
 
 export default function Layout({ children }) {
   return (

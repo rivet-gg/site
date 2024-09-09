@@ -1,27 +1,25 @@
 import { notFound } from "next/navigation";
 import { Code, CodeGroup } from "@/components/Code";
+import { Prose } from "@/components/Prose";
+import { generateModulesPageParams, safelyLoadModule } from "@/lib/module";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGit, faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
-export default async function ModulePage({ params, ...props }) {
-    const modules = await import(
-        `../../../../vendor/opengb-meta.json`
-    );
-
-    const mod = modules.categories.flatMap((category) => category.modules).find(
-        (module) => module.id === params.module,
-    );
+export default async function ModulePage({ params }) {
+    const mod = await safelyLoadModule(params.module);
 
     if (!mod) {
         return notFound();
     }
 
-    const { default: Docs } = await import(
-        `../_docs/${params.module}/README.mdx`
-    );
+    const { meta, Readme } = mod;
 
     return (
-        <div className="flex flex-row gap-4 pt-6 justify-between">
+        <div className="flex flex-row gap-4 justify-between">
             <div className="max-w-3xl">
-                <Docs />
+                <Prose>
+                    <Readme />
+                </Prose>
             </div>
             <div className="max-w-sm w-full text-white">
                 <h3 className=" -mb-3">
@@ -29,15 +27,27 @@ export default async function ModulePage({ params, ...props }) {
                 </h3>
                 <CodeGroup>
                     <Code>
-                        {`rivet module add ${mod.id}`}
+                        {`rivet module add ${params.module}`}
                     </Code>
                 </CodeGroup>
 
                 <h3 className=" text-base mb-3">Authors</h3>
-                <section>
-                    <ul className=" list-disc list-inside">
-                        <li>Nathan</li>
+                <section className="prose mb-3">
+                    <ul>
+                        {meta.authors.map((author) => (
+                            <li key={author}>
+                                <a href={`https://github.com/${author}`}>
+                                    {author}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
+                </section>
+
+                <section className="prose mb-3">
+                    <a href="https://github.com/rivet-gg/modules">
+                        <FontAwesomeIcon icon={faGitAlt} /> View Source Code
+                    </a>
                 </section>
             </div>
         </div>
@@ -45,12 +55,5 @@ export default async function ModulePage({ params, ...props }) {
 }
 
 export async function generateStaticParams() {
-    const modules = await import(
-        "../../../../vendor/opengb-meta.json"
-    );
-    return modules.categories.map((category) => {
-        return category.modules.map((module) => {
-            return { module: module.id };
-        });
-    }).flat();
+    return generateModulesPageParams();
 }

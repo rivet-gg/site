@@ -12,7 +12,7 @@ const withMDX = nextMDX(config);
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'],
   images: {
     // For static output
     unoptimized: true
