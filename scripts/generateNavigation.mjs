@@ -22,6 +22,7 @@ export async function generateNavigation() {
         .replace(/^pages\//, '')
         .replace(/^app\//, '')
         .replace(/\/page$/, '')
+        .replace('(technical)/', '')
         .replace('(posts)/', '');
 
     pages[href] = await processPage({ path: filename });
