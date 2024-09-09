@@ -10,7 +10,7 @@ import clsx from "clsx";
 import { LayoutGroup, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import OpenGBMeta from "../../../../vendor/opengb-meta.json";
+import OpenGBMeta from "../../../vendor/opengb-meta.json";
 import { ModuleCard } from "@/components/ModuleCard";
 import { Card } from "@/components/Card";
 
@@ -137,7 +137,7 @@ export default function ModulesPage() {
                 <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-3">
                   {category.modules.map((module) => (
                     <Link
-                      href={`/docs/modules/${module.id}`}
+                      href={`/modules/${module.id}`}
                       key={module.id}
                       className="h-full"
                     >

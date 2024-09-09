@@ -2,7 +2,7 @@ import fs from 'fs';
 
 let backendPath = '../rivet';
 
-let errorsPath = 'src/pages/docs/general/errors';
+let errorsPath = 'src/docs/general/errors';
 
 export async function generateErrors() {
   let errorPages = [];
@@ -62,10 +62,7 @@ export async function generateErrors() {
     pages.sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  fs.writeFileSync(
-    'src/pages/docs/core/errors.mdx',
-    `# Errors \n${errorPages.map(({ doc }) => doc).join('\n\n')}`
-  );
+  fs.writeFileSync('src/docs/core/errors.mdx', `# Errors \n${errorPages.map(({ doc }) => doc).join('\n\n')}`);
 
   // fs.writeFileSync('src/generated/errorPages.json', JSON.stringify(errorPages, null, 2));
 }

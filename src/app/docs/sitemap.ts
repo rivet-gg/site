@@ -1,5 +1,7 @@
 import { SidebarSection, Sitemap } from "@/lib/sitemap";
 
+import apiPages from "@/generated/apiPages.json" assert { type: "json" };
+
 const general = (prefix: string = "/docs"): SidebarSection => ({
   title: "General",
   collapsible: true,
@@ -55,18 +57,21 @@ const lowLevelApi = (prefix: string = "/docs"): SidebarSection => ({
     },
     {
       title: "Dynamic Servers API",
-      pages: [],
-      "template": { "api": "dynamic-servers" },
+      pages: apiPages["dynamic-servers"].pages.map(({ href }) => ({
+        href: href.replace("/docs", prefix),
+      })),
     },
     {
       title: "Tokens API",
-      pages: [],
-      "template": { "api": "game-tokens" },
+      pages: apiPages["game-tokens"].pages.map(({ href }) => ({
+        href: href.replace("/docs", prefix),
+      })),
     },
     {
       title: "Cloud API",
-      pages: [],
-      "template": { "api": "cloud" },
+      pages: apiPages.cloud.pages.map(({ href }) => ({
+        href: href.replace("/docs", prefix),
+      })),
     },
   ],
 });
