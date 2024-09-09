@@ -176,7 +176,7 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
               <TopLevelNavItem href='/docs' initHref='/docs/general' icon={faBooks}>
                 Docs
               </TopLevelNavItem>
-              <TopLevelNavItem href='https://opengb.dev/modules' target='_blank' icon={faPuzzle}>
+              <TopLevelNavItem href='/modules' target='_blank' icon={faPuzzle}>
                 Modules
               </TopLevelNavItem>
               <TopLevelNavItem href='/blog' icon={faNewspaper}>

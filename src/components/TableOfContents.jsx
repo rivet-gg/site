@@ -152,8 +152,11 @@ function Tree({ sections, isActive, depth = 0 }) {
   );
 }
 
-export function TableOfContents() {
-  let { navigation, tableOfContents } = useNavigation();
+export function TableOfContents({ tableOfContents: providedToc }) {
+  let { tableOfContents: navigationToc } = useNavigation();
+
+  let tableOfContents = providedToc ?? navigationToc;
+
   let currentSection = useCurrentSection(tableOfContents);
   let ref = useScrollToActiveLink(currentSection);
 

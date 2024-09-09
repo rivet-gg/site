@@ -77,7 +77,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'table-of-contents': '1fr 20rem',
-        'two-sidebars': '20rem 1fr 20rem',
+        'two-sidebars': 'minmax(0, 20rem) 50rem minmax(0, 20rem)',
         sidebar: '20rem 1fr'
       },
       scrollMargin: {

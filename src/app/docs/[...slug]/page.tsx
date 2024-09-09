@@ -9,6 +9,8 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 import { CORE_DIRECTORIES, ENGINES, getAliasedSlug } from "@/lib/sameAs";
+import { Prose } from "@/components/Prose";
+import { TableOfContents } from "@/components/TableOfContents";
 
 function createParamsForFile(file) {
     return {
@@ -35,8 +37,26 @@ export async function generateMetadata({ params: { slug } }) {
 }
 
 export default async function CatchAllCorePage({ params: { slug } }) {
-    const { default: Content } = await loadContent(slug);
-    return <Content />;
+    const { default: Content, tableOfContents } = await loadContent(slug);
+
+    return (
+        <>
+            <main className="mx-auto mt-8 w-full pb-8 max-w-3xl px-4 lg:px-8">
+                <Prose
+                    as="article"
+                    className="max-w-3xl"
+                    style={{
+                        "--header-height": "var(--spacing-top-navigation)",
+                    }}
+                >
+                    <Content />
+                </Prose>
+            </main>
+            <aside className="min-w-0 -order-1 mx-auto w-full max-w-3xl flex-shrink-0 pl-4 xl:order-none xl:mx-0 pb-4">
+                <TableOfContents tableOfContents={tableOfContents} />
+            </aside>
+        </>
+    );
 }
 
 export async function generateStaticParams() {
