@@ -1,15 +1,16 @@
-export default function ModuleScriptsPage() {
-    return "scripts";
+import { generateModulesPageParams, safelyLoadModule } from "@/lib/module";
+import { notFound } from "next/navigation";
+
+export default async function ModuleErrorsPage({ params }) {
+    const mod = await safelyLoadModule(params.module);
+
+    if (!mod) {
+        return notFound();
+    }
+
+    const { meta, Readme } = mod;
 }
 
 export async function generateStaticParams() {
-    const modules = await import(
-        "../../../../../../vendor/opengb-meta.json"
-    );
-
-    return modules.categories.map((category) => {
-        return category.modules.map((module) => {
-            return { module: module.id };
-        });
-    }).flat();
+    return generateModulesPageParams();
 }
