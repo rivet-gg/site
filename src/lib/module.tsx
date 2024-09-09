@@ -2,6 +2,14 @@ import { safeAwait } from "@/lib/safe";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+const DefaultReadme = () => {
+    return (
+        <div className="prose">
+            <p>This module does not have a README.</p>
+        </div>
+    );
+};
+
 export async function generateModulesPageParams() {
     const dir = path.join(process.cwd(), "../modules/modules");
 
@@ -16,7 +24,11 @@ export async function loadReadme(module) {
     try {
         return await import(`../../../modules/modules/${module}/README.mdx`);
     } catch {
-        return await import(`../../../modules/modules/${module}/README.md`);
+        try {
+            return await import(`../../../modules/modules/${module}/README.md`);
+        } catch {
+            return { default: DefaultReadme };
+        }
     }
 }
 

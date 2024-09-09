@@ -10,7 +10,7 @@ export default async function ModuleConfigPage({ params }) {
         return notFound();
     }
 
-    const { meta, Readme } = mod;
+    const { meta } = mod;
 
     return (
         <div className="max-w-3xl">
