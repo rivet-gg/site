@@ -39,7 +39,10 @@ export default function ModulesPage() {
         </p>
 
         <div className="mx-auto flex w-full max-w-lg items-center border border-transparent border-b-cream-100 px-2 transition-colors focus-within:border-cream-100">
-          <FontAwesomeIcon icon="magnifying-glass" className=" text-white/80" />
+          <FontAwesomeIcon
+            icon="magnifying-glass"
+            className="text-white/80 size-4"
+          />
           <input
             value={query}
             onChange={(e) => {

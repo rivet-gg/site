@@ -15,7 +15,9 @@ export default async function ModuleDependenciesPage({ params }) {
 
     return (
         <div className="max-w-3xl">
-            <h2 className="text-white font-display text-2xl">Dependencies</h2>
+            <h2 className="text-white font-display text-3xl mb-4">
+                Dependencies
+            </h2>
             <div className="prose">
                 <ul>
                     {dependencies.map((dep) => (

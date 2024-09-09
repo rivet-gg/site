@@ -14,7 +14,7 @@ export default async function ModuleConfigPage({ params }) {
 
     return (
         <div className="max-w-3xl">
-            <h2 className="text-white font-display text-2xl">Default Config</h2>
+            <h2 className="text-white font-display text-3xl">Default Config</h2>
             <CodeGroup>
                 <div>
                     <CodeBlock
