@@ -13,7 +13,6 @@ export default function Layout({ children }) {
     <div>
       <Header
         className="sticky top-0"
-        tabs={sitemap}
         tabsTitle="Documentation"
       />
       <div className="main-content-container flex min-h-[50vh] flex-col px-6">
