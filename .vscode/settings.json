@@ -1,9 +1,9 @@
 {
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "grammarly.selectors": [
-        {
-            "language": "mdx",
-            "scheme": "file"
-        }
-    ]
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "grammarly.selectors": [
+    {
+      "language": "mdx",
+      "scheme": "file"
+    }
+  ]
 }

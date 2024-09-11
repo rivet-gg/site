@@ -12,23 +12,26 @@ import imgVersionsRollback from '@/images/product/version-management.png';
 const PRODUCT_PAGES = [
   {
     name: 'Game Server Management',
-    description: 'Manage running servers, see players online, view logs, inspect crashes, and monitor performance.',
-    image: imgGameServerManagement,
+    description:
+      'Manage running servers, see players online, view logs, inspect crashes, and monitor performance.',
+    image: imgGameServerManagement
   },
   {
     name: 'Versions & Rollback',
     description: 'View version history & roll back instantly without re-deploying.',
-    image: imgVersionsRollback,
+    image: imgVersionsRollback
   },
   {
     name: 'Backend Editor',
-    description: 'Add, configure, & develop modules visually. No more confusing config files & reading extensive documentation.',
-    image: imgBackendEditor,
+    description:
+      'Add, configure, & develop modules visually. No more confusing config files & reading extensive documentation.',
+    image: imgBackendEditor
   },
   {
     name: 'Backend Logs',
-    description: 'Remove the guesswork from running your game with full visibility to everything happening on the backend.',
-    image: imgBackendLogs,
+    description:
+      'Remove the guesswork from running your game with full visibility to everything happening on the backend.',
+    image: imgBackendLogs
   }
 ];
 
@@ -87,7 +90,8 @@ function ProductPages({ page, onChangePage }) {
             } else if (swipe > swipeConfidenceThreshold) {
               onChangePage(paginate(page.index, -1, PRODUCT_PAGES));
             }
-          }}>
+          }}
+        >
           <ProductPageContents page={PRODUCT_PAGES[page.index]} scale={page.index === 3} />
         </motion.div>
       </AnimatePresence>
@@ -98,7 +102,7 @@ function ProductPages({ page, onChangePage }) {
 function ProductPageContents({ page, scale }) {
   return (
     <>
-      <p className='text-cream-100 text-center max-w-xl'>{page.description}</p>
+      <p className='max-w-xl text-center text-cream-100'>{page.description}</p>
       <div className='flex flex-grow items-center justify-center overflow-hidden'>
         <div className='flex h-full items-center justify-center'>
           <Image

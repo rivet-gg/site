@@ -67,7 +67,9 @@ export function setupListeners(connection: Connection, client: Client) {
 
   connection.socket.on('update', (data: Update) => handleUpdate(client, connection, data, performance.now()));
 
-  connection.socket.on('startLife', (data: StartLife) => handleStartLife(client, connection, data, performance.now()));
+  connection.socket.on('startLife', (data: StartLife) =>
+    handleStartLife(client, connection, data, performance.now())
+  );
 
   connection.socket.on('endLife', (data: EndLife) =>
     handleEndLife(client, connection, data, performance.now())

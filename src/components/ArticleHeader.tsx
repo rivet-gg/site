@@ -16,7 +16,8 @@ export function ArticleHeader({ title, date, author, images }: ArticleInfo) {
       {/* Date */}
       <time
         dateTime={formatTimestamp(date)}
-        className='order-first flex items-center text-base  text-charcole-500'>
+        className='order-first flex items-center text-base  text-charcole-500'
+      >
         <span className='h-4 w-0.5 rounded-full bg-cream-500' />
         <span className='ml-3'>{formatTimestamp(date)}</span>
       </time>

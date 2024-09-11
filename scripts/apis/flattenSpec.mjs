@@ -1,7 +1,7 @@
 /// Reads a schema and flattens $refs.
 export async function flattenOpenAPISpec(spec) {
   // Deep clone since we'll be modifying this directly
-  spec = JSON.parse(JSON.stringify(spec))
+  spec = JSON.parse(JSON.stringify(spec));
 
   let schemas = spec.components.schemas;
 

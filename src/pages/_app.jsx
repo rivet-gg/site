@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Providers>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
           {/* Add common metadata */}
           <meta property='og:image:type' content='image/png' />
@@ -70,7 +70,8 @@ export default function App({ Component, pageProps }) {
             inset={Component.inset ?? false}
             fullWidth={Component.fullWidth ?? false}
             isTopPage={isTopPage || Component.isTopPage}
-            {...pageProps}>
+            {...pageProps}
+          >
             <Component {...pageProps} />
           </Layout>
         </MDXProvider>

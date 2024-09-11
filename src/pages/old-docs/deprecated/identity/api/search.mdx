@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # search
 
-
-
 ## Description
 
 Fuzzy search for identities.
-
 
 ## Code Examples
 
@@ -31,33 +27,25 @@ await RIVET.identity.search({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `query`
 
 _Query parameter, required_
 
-
 The query to match identity display names and account numbers against.
-
 
 ### `anchor`
 
 _Query parameter, optional_
 
-
 How many identities to offset the search by.
-
 
 ### `limit`
 
 _Query parameter, optional_
 
-
 Amount of identities to return. Must be between 1 and 32 inclusive.
-
 
 ## Response Body
 
@@ -182,6 +170,3 @@ The current status of an identity. This helps players understand if another play
 ### `identities[*].presence.update_ts`
 
 `string` (required)
-
-
-

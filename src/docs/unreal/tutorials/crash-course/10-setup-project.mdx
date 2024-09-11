@@ -23,9 +23,9 @@ We need to authenticate with the GitHub Container Registry (GHCR) to be able to 
 1. Create a third-person template with the C++ version. We'll create a guide for using Blueprints instead of C++ soon.
 2. Set _Quality Preset_, _Starter Content_, and _Raytracing_ to anything.
 3. Click _Create_.
-	<Image src={imgCreateThirdPerson} alt='Third person create dialog' />
+   <Image src={imgCreateThirdPerson} alt='Third person create dialog' />
 4. Open the Visual Studio project by clicking _Tools > Open Visual Studio_.
-	<Image src={imgOpenVisualStudio} alt='Open visual studio' />
+   <Image src={imgOpenVisualStudio} alt='Open visual studio' />
 
 ## Add server target
 
@@ -40,13 +40,15 @@ using System.Collections.Generic;
 
 public class MyProjectServerTarget : TargetRules
 {
-	public MyProjectServerTarget(TargetInfo Target) : base(Target)
-	{
-		Type = TargetType.Server;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
-		ExtraModuleNames.Add("MyProject");
-	}
+public MyProjectServerTarget(TargetInfo Target) : base(Target)
+{
+Type = TargetType.Server;
+DefaultBuildSettings = BuildSettingsVersion.V2;
+IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
+ExtraModuleNames.Add("MyProject");
 }
+}
+
 ```
 </CodeGroup>
+```

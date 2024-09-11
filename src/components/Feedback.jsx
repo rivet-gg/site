@@ -46,7 +46,8 @@ export function Feedback() {
           as={Fragment}
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
-          leave='pointer-events-none duration-300'>
+          leave='pointer-events-none duration-300'
+        >
           <FeedbackForm onSubmit={onSubmit} />
         </Transition>
         <Transition
@@ -54,7 +55,8 @@ export function Feedback() {
           as={Fragment}
           enterFrom='opacity-0'
           enterTo='opacity-100'
-          enter='delay-150 duration-300'>
+          enter='delay-150 duration-300'
+        >
           <FeedbackThanks />
         </Transition>
       </div>
@@ -81,7 +83,8 @@ const FeedbackForm = forwardRef(function FeedbackForm({ onSubmit }, ref) {
       className={clsx(
         'absolute inset-0 flex items-center justify-center gap-4 md:justify-start',
         'mx-auto max-w-5xl'
-      )}>
+      )}
+    >
       {/* Left */}
       <p className='text-sm text-charcole-600 dark:text-cream-100'>Was this page helpful?</p>
       <div className='flex gap-2 font-bold'>
@@ -117,7 +120,8 @@ const FeedbackThanks = forwardRef(function FeedbackThanks(_props, ref) {
       className={clsx(
         'absolute inset-0 flex items-center justify-center gap-4 md:justify-start',
         'mx-auto max-w-5xl'
-      )}>
+      )}
+    >
       {/* Left */}
       <div className='mr-4 flex items-center bg-orange-50/50 py-1 pl-2 pr-3 text-sm text-orange-900 ring-1 ring-inset ring-orange-500/20 dark:bg-orange-500/5 dark:text-orange-200 dark:ring-orange-500/30'>
         <CheckIcon className='mr-3 h-5 w-5 flex-none fill-white' />

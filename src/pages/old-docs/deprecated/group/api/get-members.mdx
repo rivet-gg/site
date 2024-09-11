@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # getMembers
 
-
-
 ## Description
 
 Returns a group's members.
-
 
 ## Code Examples
 
@@ -31,41 +27,29 @@ await RIVET.group.getMembers({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `group_id`
 
 _Path parameter, required_
 
-
-
-
-
 ### `anchor`
 
 _Query parameter, optional_
 
-
 The pagination anchor. Set to the returned anchor of this endpoint to receive the next set of items.
-
 
 ### `count`
 
 _Query parameter, optional_
 
-
 Amount of members to return.
-
 
 ### `watch_index`
 
 _Query parameter, optional_
 
-
 A query parameter denoting the requests watch index.
-
 
 ## Response Body
 
@@ -211,6 +195,3 @@ Provided by watchable endpoints used in blocking loops.
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.
-
-
-

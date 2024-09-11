@@ -13,7 +13,8 @@ export default function OssFriends({ items }) {
         {items.map((friend, index) => (
           <div
             key={index}
-            className='flex flex-col overflow-hidden rounded-2xl bg-charcole-800 p-6 shadow-md outline outline-white/20'>
+            className='flex flex-col overflow-hidden rounded-2xl bg-charcole-800 p-6 shadow-md outline outline-white/20'
+          >
             <a href={friend.href} className='mb-2 font-display text-xl font-bold'>
               {friend.name}
             </a>

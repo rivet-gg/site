@@ -16,7 +16,6 @@ export const config = {
   }
 };
 
-
 January saw the release of Rivet's Open Beta! We also released a new Godot
 plugin, and work has been done on automatic server provisioning.
 
@@ -72,13 +71,13 @@ quickly be able to start a new virtual machine so that it can start running game
 servers.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <Image src={graph} alt="Graph" />
+  <Image src={graph} alt='Graph' />
 </div>
 
-| *In the image above, the purple line represents the required VM capacity based
+| _In the image above, the purple line represents the required VM capacity based
 on how much CPU (beige section) is being used. The pink line then represents
 changes in how many VMs are available. The green line represents the rate of
-change of CPUs required.*
+change of CPUs required._
 
 A key part of this work was decreasing the start time of a new virtual machine.
 If Rivet predicts a sudden increase in demand, it needs to be able to start a
@@ -100,4 +99,4 @@ reduce build times. We published our `rivet.yaml` schema to the
 [schemastore](https://www.schemastore.org/json/), making it easier for people to
 get hints when configuring their Rivet games.
 
-<ArticleSocials {...info}/>
+<ArticleSocials {...info} />

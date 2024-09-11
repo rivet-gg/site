@@ -9,7 +9,7 @@ export default function drawGameObjects(
   ctx: CanvasRenderingContext2D,
   game: GameState,
   selfId: string | undefined,
-  screenScale: number,
+  screenScale: number
 ): void {
   for (const asteroid of asteroids(game)) drawAsteroid(ctx, asteroid, screenScale);
   for (const bullet of bullets(game)) drawBullet(ctx, bullet, selfId, screenScale);

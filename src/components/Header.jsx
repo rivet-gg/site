@@ -57,7 +57,8 @@ function TopLevelNavItem({ href, target, initHref, icon, children }) {
           ? 'border-white/10 bg-white/5 text-white'
           : 'text-cream-100 hover:bg-white/5 hover:text-white',
         'border-1 flex items-center gap-2.5 border border-transparent px-3.5 py-1.5 transition'
-      )}>
+      )}
+    >
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
       <span className='font-display text-lg'>{children}</span>
     </Link>
@@ -79,7 +80,8 @@ function TopLevelNavPopover({ solutions, callsToAction, children }) {
         enterTo='opacity-100 translate-y-0'
         leave='transition ease-in duration-150'
         leaveFrom='opacity-100 translate-y-0'
-        leaveTo='opacity-0 translate-y-1'>
+        leaveTo='opacity-0 translate-y-1'
+      >
         <Popover.Panel className='absolute z-10 mt-5 flex w-screen max-w-max'>
           <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
             <div className='p-4'>{solutions}</div>
@@ -117,7 +119,8 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
     <Link
       key={title}
       href={href}
-      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'>
+      className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'
+    >
       <FontAwesomeIcon icon={icon} className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
       {title}
     </Link>
@@ -156,7 +159,8 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
         style={{
           '--bg-opacity-light': bgOpacityLight,
           '--bg-opacity-dark': bgOpacityDark
-        }}>
+        }}
+      >
         {/* Main header */}
         <div className='main-content-container flex h-14 w-full items-center justify-between gap-12 px-6 lg:z-30'>
           <div className='flex items-center gap-4'>
@@ -199,7 +203,8 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
                 className='flex items-center justify-center p-1 opacity-75 transition hover:opacity-100'
                 key={href}
                 href={href}
-                target='_blank'>
+                target='_blank'
+              >
                 <FontAwesomeIcon icon={icon} className='text-lg text-cream-100' />
               </Link>
             ))}
@@ -240,7 +245,8 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
                       : 'border-transparent opacity-80 hover:border-charcole-900 hover:border-white hover:opacity-100',
                     tab.styles?.text ?? 'text-white'
                   )}
-                  aria-current={pathname.startsWith(tab.href) ? 'page' : undefined}>
+                  aria-current={pathname.startsWith(tab.href) ? 'page' : undefined}
+                >
                   {tab.icon ? (
                     <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
                   ) : null}

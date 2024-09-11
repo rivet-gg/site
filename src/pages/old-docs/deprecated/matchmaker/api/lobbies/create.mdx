@@ -1,9 +1,6 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # lobbies.create
-
-
 
 ## Description
 
@@ -14,7 +11,6 @@ your game namespace, this endpoint does not require a token to authenticate. Oth
 [development namespace token](/docs/general/concepts/token-types#namespace-development) can be used
 for mock responses and a [public namespace token](/docs/general/concepts/token-types#namespace-public)
 can be used for general authentication.
-
 
 ## Code Examples
 
@@ -38,9 +34,7 @@ await RIVET.matchmaker.lobbies.create({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ## Request Body
 
@@ -97,9 +91,6 @@ Captcha configuration.
 ### `verification_data`
 
 `object`
-
-
-
 
 ## Response Body
 
@@ -184,6 +175,3 @@ Maximum port that can be connected to. Inclusive range.
 `integer` (required)
 
 Minimum port that can be connected to. Inclusive range.
-
-
-

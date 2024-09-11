@@ -1,9 +1,6 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # lobbies.list
-
-
 
 ## Description
 
@@ -14,7 +11,6 @@ your game namespace, this endpoint does not require a token to authenticate. Oth
 [development namespace token](/docs/general/concepts/token-types#namespace-development) can be used
 for mock responses and a [public namespace token](/docs/general/concepts/token-types#namespace-public)
 can be used for general authentication.
-
 
 ## Code Examples
 
@@ -37,17 +33,11 @@ await RIVET.matchmaker.lobbies.list({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `include_state`
 
 _Query parameter, optional_
-
-
-
-
 
 ## Response Body
 
@@ -142,6 +132,3 @@ Distance available in multiple units.
 `string` (required)
 
 A human readable short identifier used to references resources. Different than a `uuid` because this is intended to be human readable. Different than `DisplayName` because this should not include special characters and be short.
-
-
-

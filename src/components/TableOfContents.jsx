@@ -94,7 +94,8 @@ function NavLink({ id, isActive, isAnchorLink = false, children }) {
           'flex justify-between gap-2 py-1 pr-3 text-sm transition',
           isAnchorLink ? 'pl-7' : 'pl-4',
           isActive ? 'text-white' : 'text-charcole-400 hover:text-white'
-        )}>
+        )}
+      >
         <span className='truncate'>{children}</span>
       </Link>
     </>
@@ -179,7 +180,8 @@ export function TableOfContents({ tableOfContents: providedToc }) {
       className={clsx(
         'pt-4 lg:top-docs-navigation lg:max-h-tabs-content lg:pt-6',
         'w-full lg:pointer-events-auto lg:sticky lg:block lg:max-w-aside lg:self-start lg:overflow-y-auto'
-      )}>
+      )}
+    >
       <div className='relative'>
         <motion.h2 layout='position' className='font-sans text-xs font-semibold text-white'>
           On this page

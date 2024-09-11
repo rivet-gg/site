@@ -25,7 +25,7 @@ export function Tip({ children }) {
 
 export function Note({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 border border-violet-500/30 bg-violet-500/5 p-4 leading-6 text-violet-200 [--tw-prose-links:theme(colors.white)] [--tw-prose-links-hover:theme(colors.violet.300)]'>
+    <div className='my-6 flex gap-2.5 border border-violet-500/30 bg-violet-500/5 p-4 leading-6 text-violet-200 [--tw-prose-links-hover:theme(colors.violet.300)] [--tw-prose-links:theme(colors.white)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none fill-violet-200/20 stroke-violet-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>
@@ -34,7 +34,7 @@ export function Note({ children }) {
 
 export function Info({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 border  border-cyan-500/30 bg-cyan-500/5  p-4 leading-6 text-cyan-200 [--tw-prose-links:theme(colors.white)] [--tw-prose-links-hover:theme(colors.cyan.300)]'>
+    <div className='my-6 flex gap-2.5 border  border-cyan-500/30 bg-cyan-500/5  p-4 leading-6 text-cyan-200 [--tw-prose-links-hover:theme(colors.cyan.300)] [--tw-prose-links:theme(colors.white)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none  fill-cyan-200/20 stroke-cyan-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>
@@ -43,7 +43,7 @@ export function Info({ children }) {
 
 export function Warning({ children }) {
   return (
-    <div className='my-6 flex gap-2.5 border  border-amber-500/30 bg-amber-500/5  p-4 leading-6 text-amber-200 [--tw-prose-links:theme(colors.white)] [--tw-prose-links-hover:theme(colors.amber.300)]'>
+    <div className='my-6 flex gap-2.5 border  border-amber-500/30 bg-amber-500/5  p-4 leading-6 text-amber-200 [--tw-prose-links-hover:theme(colors.amber.300)] [--tw-prose-links:theme(colors.white)]'>
       <InfoIcon className='mt-1 h-4 w-4 flex-none  fill-amber-200/20 stroke-amber-200' />
       <div className='[&>:first-child]:mt-0 [&>:last-child]:mb-0'>{children}</div>
     </div>

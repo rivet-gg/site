@@ -24,7 +24,8 @@ export function Layout({
       {/* Navigation */}
       <motion.header
         layoutScroll
-        className='contents lg:pointer-events-none lg:sticky lg:inset-0 lg:top-0 lg:z-40 lg:flex'>
+        className='contents lg:pointer-events-none lg:sticky lg:inset-0 lg:top-0 lg:z-40 lg:flex'
+      >
         {/* Header */}
         <Header navigation={navigation} />
       </motion.header>
@@ -38,12 +39,14 @@ export function Layout({
           className={clsx(
             { 'w-full': prose || inset, 'main-content-container w-full px-6': prose },
             'flex w-full flex-col-reverse lg:flex-row'
-          )}>
+          )}
+        >
           {navigation.sidebar ? (
             <aside
               className={clsx(
-                `hidden w-full lg:pointer-events-auto lg:sticky lg:top-navigation lg:max-h-tabs-content lg:min-h-tabs-content lg:max-w-aside lg:self-start lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:pb-8 lg:pe-6 lg:pt-4 lg:dark:border-white/10 xl:block`
-              )}>
+                `lg:top-navigation hidden w-full lg:pointer-events-auto lg:sticky lg:max-h-tabs-content lg:min-h-tabs-content lg:max-w-aside lg:self-start lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:pb-8 lg:pe-6 lg:pt-4 lg:dark:border-white/10 xl:block`
+              )}
+            >
               <Navigation navigation={navigation} />
             </aside>
           ) : null}
@@ -55,7 +58,8 @@ export function Layout({
                 'lg:max-w-3xl': !fullWidth
               },
               'mx-auto mt-9 w-full flex-1'
-            )}>
+            )}
+          >
             {prose ? <Prose as='article'>{children}</Prose> : children}
 
             {navigation.feedback || navigation.sidebar ? (

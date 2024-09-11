@@ -26,8 +26,7 @@ const colorStyles = {
   },
   zinc: {
     small: 'text-cream-400 dark:text-charcole-500',
-    medium:
-      'ring-cream-200 text-charcole-500 dark:ring-charcole-500/20 bg-cream-200/10 dark:text-cream-400'
+    medium: 'ring-cream-200 text-charcole-500 dark:ring-charcole-500/20 bg-cream-200/10 dark:text-cream-400'
   }
 };
 

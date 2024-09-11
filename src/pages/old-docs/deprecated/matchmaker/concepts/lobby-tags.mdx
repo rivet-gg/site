@@ -4,14 +4,7 @@ Lobby tags are an optional property that can be passed to the [`lobbies.find`](/
 
 To enable tags, set [`taggable`](http://localhost:3000/docs/general/config#matchmaker-game-modes-game-mode-taggable) to true.
 
-<CodeGroup title='rivet.yaml'>
-```yaml
-matchmaker:
-  game_modes:
-    default:
-      taggable: true
-```
-</CodeGroup>
+<CodeGroup title='rivet.yaml'>```yaml matchmaker: game_modes: default: taggable: true ```</CodeGroup>
 
 When passed to [`lobbies.create`](/docs/matchmaker/api/lobbies/create), the newly created lobby will have the given tags. When passed to [`lobbies.find`](/docs/matchmaker/api/lobbies/find), the matchmaker will attempt to return a lobby with a **superset** of the given tags. If no lobby is found, a new lobby is created with the given tags.
 
@@ -23,12 +16,13 @@ const RIVET = new RivetClient({ token: addYourTokenHere });
 
 // Make request
 await RIVET.matchmaker.lobbies.find({
-  gameMode: 'default',
-  tags: {
-    map: "sandstorm",
-    difficulty: "hard"
-  }
+gameMode: 'default',
+tags: {
+map: "sandstorm",
+difficulty: "hard"
+}
 });
+
 ```
 </CodeGroup>
 
@@ -86,3 +80,4 @@ Here is what would happen with the following [`lobbies.find`](/docs/matchmaker/a
 ## Authentication
 
 It can be useful to allow/disallow certain tags from being used when creating or finding lobbies. This can be done via [custom external verification](/docs/matchmaker/guides/anti-botting#custom-external-verification).
+```

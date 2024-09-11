@@ -15,7 +15,8 @@ export default function Support() {
           title='Book a Demo'
           icon={faCalendar}
           href='https://calendly.com/d/zvq-v4z-84t/rivet-founders-15-minute'
-          target='_blank'>
+          target='_blank'
+        >
           Best for sales & partnership inquiries
         </Resource>
         <Resource title='Email' icon={faEnvelope} href='mailto:support@rivet.gg'>
@@ -25,7 +26,8 @@ export default function Support() {
           title='Status Page'
           icon={faHeartbeat}
           href='https://rivet-gg.betteruptime.com/'
-          target='_blank'></Resource>
+          target='_blank'
+        ></Resource>
       </div>
     </div>
   );

@@ -181,9 +181,7 @@
           "description": "Name of the Unreal module that holds the game code.\nThis is usually the value of `$.Modules[0].Name` in the file `MyProject.unproject`.\n_Configures Rivet CLI behavior. Has no effect on server behavior._"
         }
       },
-      "required": [
-        "game_module"
-      ]
+      "required": ["game_module"]
     },
     "CloudVersionEngineGodotConfig": {
       "type": "object",
@@ -215,11 +213,7 @@
           "description": "Multiple CDN version middleware."
         }
       },
-      "required": [
-        "glob",
-        "priority",
-        "middlewares"
-      ]
+      "required": ["glob", "priority", "middlewares"]
     },
     "CloudVersionMatchmakerGameMode": {
       "type": "object",
@@ -283,10 +277,7 @@
           "$ref": "#/definitions/CloudVersionMatchmakerCaptchaTurnstile"
         }
       },
-      "required": [
-        "requests_before_reverify",
-        "verification_ttl"
-      ]
+      "required": ["requests_before_reverify", "verification_ttl"]
     },
     "CloudVersionMatchmakerGameModeRegion": {
       "type": "object",
@@ -357,10 +348,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "min",
-        "max"
-      ]
+      "required": ["min", "max"]
     },
     "CloudVersionMatchmakerLobbyGroup": {
       "type": "object",
@@ -409,9 +397,7 @@
           "$ref": "#/definitions/DisplayName"
         }
       },
-      "required": [
-        "display_name"
-      ]
+      "required": ["display_name"]
     },
     "CloudVersionIdentityCustomAvatar": {
       "type": "object",
@@ -421,9 +407,7 @@
           "format": "uuid"
         }
       },
-      "required": [
-        "upload_id"
-      ]
+      "required": ["upload_id"]
     },
     "CloudVersionCdnMiddleware": {
       "type": "object",
@@ -432,9 +416,7 @@
           "$ref": "#/definitions/CloudVersionCdnMiddlewareKind"
         }
       },
-      "required": [
-        "kind"
-      ]
+      "required": ["kind"]
     },
     "CloudVersionMatchmakerGameModeActions": {
       "type": "object",
@@ -480,17 +462,11 @@
           "type": "string"
         }
       },
-      "required": [
-        "site_key",
-        "secret_key"
-      ]
+      "required": ["site_key", "secret_key"]
     },
     "CloudVersionMatchmakerNetworkMode": {
       "type": "string",
-      "enum": [
-        "bridge",
-        "host"
-      ],
+      "enum": ["bridge", "host"],
       "description": "Configures how the container's network is isolated from the host.\n`bridge` (default) networking isolates the container's network from the host & other containers.\n`host` networking removes isolation between the container and the host. Only available in Rivet Open Source & Enterprise.\nRead more about bridge vs host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking)."
     },
     "CloudVersionMatchmakerGameModeRuntimeDockerPort": {
@@ -541,10 +517,7 @@
           "$ref": "#/definitions/CloudVersionMatchmakerLobbyGroupIdleLobbiesConfig"
         }
       },
-      "required": [
-        "region_id",
-        "tier_name_id"
-      ]
+      "required": ["region_id", "tier_name_id"]
     },
     "CloudVersionMatchmakerLobbyGroupRuntime": {
       "type": "object",
@@ -582,9 +555,7 @@
           "$ref": "#/definitions/CloudVersionMatchmakerGameModeVerificationConfig"
         }
       },
-      "required": [
-        "enabled"
-      ]
+      "required": ["enabled"]
     },
     "CloudVersionMatchmakerGameModeJoinConfig": {
       "type": "object",
@@ -601,9 +572,7 @@
           "$ref": "#/definitions/CloudVersionMatchmakerGameModeVerificationConfig"
         }
       },
-      "required": [
-        "enabled"
-      ]
+      "required": ["enabled"]
     },
     "CloudVersionMatchmakerGameModeCreateConfig": {
       "type": "object",
@@ -632,18 +601,11 @@
           "description": "**Deprecated**"
         }
       },
-      "required": [
-        "enabled"
-      ]
+      "required": ["enabled"]
     },
     "CloudVersionMatchmakerCaptchaHcaptchaLevel": {
       "type": "string",
-      "enum": [
-        "easy",
-        "moderate",
-        "difficult",
-        "always_on"
-      ],
+      "enum": ["easy", "moderate", "difficult", "always_on"],
       "description": "**Deprecated**\nHow hard a captcha should be."
     },
     "CloudVersionMatchmakerPortRange": {
@@ -659,28 +621,16 @@
           "description": "Unsigned 32 bit integer."
         }
       },
-      "required": [
-        "min",
-        "max"
-      ]
+      "required": ["min", "max"]
     },
     "CloudVersionMatchmakerPortProtocol": {
       "type": "string",
-      "enum": [
-        "http",
-        "https",
-        "tcp",
-        "tcp_tls",
-        "udp"
-      ],
+      "enum": ["http", "https", "tcp", "tcp_tls", "udp"],
       "description": "Signifies the protocol of the port.\nNote that when proxying through GameGuard (via `ProxyKind`), the port number returned by `/find`, `/join`, and `/create` will not be the same as the port number configured in the config:\n\n- With HTTP, the port will always be 80. The hostname of the port correctly routes the incoming\n  connection to the correct port being used by the game server.\n- With HTTPS, the port will always be 443. The hostname of the port correctly routes the incoming\n  connection to the correct port being used by the game server.\n- Using TCP/UDP, the port will be a random number between 26000 and 31999. This gets automatically\n  routed to the correct port being used by the game server.\n\n### Related - cloud.version.matchmaker.GameModeRuntimeDockerPort - cloud.version.matchmaker.ProxyKind - /docs/dynamic-servers/concepts/game-guard - matchmaker.lobbies.find"
     },
     "CloudVersionMatchmakerProxyKind": {
       "type": "string",
-      "enum": [
-        "none",
-        "game_guard"
-      ],
+      "enum": ["none", "game_guard"],
       "description": "Range of ports that can be connected to.\n`game_guard` (default) proxies all traffic through [Game Guard](https://rivet.gg/docs/dynamic-servers/concepts/game-guard) to mitigate DDoS attacks and provide TLS termination.\n`none` sends traffic directly to the game server. If configured, `network_mode` must equal `host`. Read more about host networking [here](https://rivet.gg/docs/dynamic-servers/concepts/host-bridge-networking). Only available on Rivet Open Source & Enterprise.\n\n### Related - /docs/dynamic-servers/concepts/game-guard - cloud.version.matchmaker.PortProtocol"
     },
     "CloudVersionMatchmakerLobbyGroupIdleLobbiesConfig": {
@@ -696,10 +646,7 @@
           "description": "Unsigned 32 bit integer."
         }
       },
-      "required": [
-        "min_idle_lobbies",
-        "max_idle_lobbies"
-      ]
+      "required": ["min_idle_lobbies", "max_idle_lobbies"]
     },
     "CloudVersionMatchmakerLobbyGroupRuntimeDocker": {
       "type": "object",
@@ -731,11 +678,7 @@
           }
         }
       },
-      "required": [
-        "args",
-        "env_vars",
-        "ports"
-      ]
+      "required": ["args", "env_vars", "ports"]
     },
     "CloudVersionCdnCustomHeadersMiddleware": {
       "type": "object",
@@ -747,17 +690,11 @@
           }
         }
       },
-      "required": [
-        "headers"
-      ]
+      "required": ["headers"]
     },
     "CloudVersionMatchmakerGameModeIdentityRequirement": {
       "type": "string",
-      "enum": [
-        "none",
-        "guest",
-        "registered"
-      ],
+      "enum": ["none", "guest", "registered"],
       "description": "**Deprecated**\nThe registration requirement for a user when joining/finding/creating a lobby. \"None\" allows for connections without an identity."
     },
     "CloudVersionMatchmakerGameModeVerificationConfig": {
@@ -774,10 +711,7 @@
           }
         }
       },
-      "required": [
-        "url",
-        "headers"
-      ]
+      "required": ["url", "headers"]
     },
     "CloudVersionMatchmakerLobbyGroupRuntimeDockerEnvVar": {
       "type": "object",
@@ -790,10 +724,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "key",
-        "value"
-      ]
+      "required": ["key", "value"]
     },
     "CloudVersionMatchmakerLobbyGroupRuntimeDockerPort": {
       "type": "object",
@@ -814,10 +745,7 @@
           "$ref": "#/definitions/CloudVersionMatchmakerPortProtocol"
         }
       },
-      "required": [
-        "label",
-        "proxy_protocol"
-      ]
+      "required": ["label", "proxy_protocol"]
     },
     "CloudVersionCdnHeader": {
       "type": "object",
@@ -829,10 +757,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "name",
-        "value"
-      ]
+      "required": ["name", "value"]
     }
   }
 }
