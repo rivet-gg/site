@@ -66,7 +66,8 @@ export function AccordionGroup({ children }) {
   return (
     <div
       className='mb-3 mt-0 divide-y divide-inherit overflow-hidden rounded-xl border dark:border-charcole-800 [&>div>button]:rounded-none [&>div]:mb-0 [&>div]:rounded-none [&>div]:border-0'
-      role='list'>
+      role='list'
+    >
       {children}
     </div>
   );
@@ -80,7 +81,8 @@ function AccordionCover({ title, description, open, setOpen, icon, coverClass })
       onClick={() => setOpen(!open)}
       className={clsx('not-prose flex w-full flex-row content-center items-center', coverClass)}
       aria-controls={title + 'Children'}
-      aria-expanded={open}>
+      aria-expanded={open}
+    >
       <div className='mr-0.5'>
         <FontAwesomeIcon
           icon={open ? faCaretDown : faCaretRight}

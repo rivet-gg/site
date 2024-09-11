@@ -84,7 +84,8 @@ export default function Index() {
             {/* Background */}
             <div
               style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.4 }}
-              className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+              className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'
+            ></div>
             <div className='pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#090909] opacity-100'></div>
 
             <MainFeatures />
@@ -225,7 +226,8 @@ function Title() {
             'text-3xl',
             'sm:text-5xl',
             'lg:text-6xl'
-          )}>
+          )}
+        >
           The Only Backend Your Game Needs
         </motion.h1>
 
@@ -240,7 +242,8 @@ function Title() {
             'text-xl',
             'md:text-2xl',
             'lg:text-3xl'
-          )}>
+          )}
+        >
           {subtitleContent.map((item, index) => {
             if ('feature' in item) {
               return (
@@ -253,7 +256,8 @@ function Title() {
                     'underline decoration-transparent',
                     'hover:text-orange-500 hover:decoration-orange-500',
                     'transition-all duration-100'
-                  )}>
+                  )}
+                >
                   <FontAwesomeIcon
                     icon={item.icon}
                     className={clsx(
@@ -294,7 +298,8 @@ function Title() {
             'text-center text-xl',
             'sm:text-2xl',
             'lg:text-3xl'
-          )}>
+          )}
+        >
           Open-Source & Self-Hostable.
         </motion.div>
 
@@ -313,7 +318,8 @@ function Title() {
             'opacity-70 hover:opacity-100',
             'hover:border-orange-500 hover:bg-orange-500/10',
             'pointer-events-auto'
-          )}>
+          )}
+        >
           <GitHubStars />
         </motion.div>
       </div>
@@ -324,7 +330,8 @@ function Title() {
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.325, delay: 0.675 }}
-        className='relative flex flex-col items-center justify-center'>
+        className='relative flex flex-col items-center justify-center'
+      >
         {/* BG gradient to cover the game */}
         <div
           className='pointer-events-none absolute inset-x-[-100px] inset-y-[-50px] -z-10'
@@ -338,7 +345,8 @@ function Title() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.325, delay: 0.48 }}
-          className='text-md font-semibold text-cream-100/90'>
+          className='text-md font-semibold text-cream-100/90'
+        >
           Install Plugin
         </motion.div>
 
@@ -348,7 +356,8 @@ function Title() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.325, delay: 0.555 }}
-          className='text-sm text-cream-100/70'>
+          className='text-sm text-cream-100/70'
+        >
           Create & deploy a multiplayer game from scratch in under 5 minutes.
         </motion.div>
 
@@ -358,25 +367,29 @@ function Title() {
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.325, delay: 0.63 }}>
+            transition={{ duration: 0.325, delay: 0.63 }}
+          >
             <DownloadButton title='Unity' href='https://github.com/rivet-gg/plugin-unity' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.325, delay: 0.705 }}>
+            transition={{ duration: 0.325, delay: 0.705 }}
+          >
             <DownloadButton title='Godot' href='https://godotengine.org/asset-library/asset/1881' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.325, delay: 0.78 }}>
+            transition={{ duration: 0.325, delay: 0.78 }}
+          >
             <DownloadButton title='Unreal Engine' href='https://github.com/rivet-gg/plugin-unreal' />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.325, delay: 0.855 }}>
+            transition={{ duration: 0.325, delay: 0.855 }}
+          >
             <DownloadButton title='HTML5 & Other' href='/learn/html5/tutorials/crash-course' icon={faBook} />
           </motion.div>
         </div>
@@ -441,7 +454,8 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
         'aria-busy:translate-y-0 aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:hover:text-white'
       )}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className='flex flex-grow items-center justify-center'>{title}</div>
       <div className='my-auto h-7 w-[2px] bg-cream-100/5' />
       <div className={clsx('flex-0 w-11', 'flex items-center justify-center')}>
@@ -492,7 +506,8 @@ function AllModules() {
                 'opacity-0 group-hover/tooltip:opacity-100',
                 'scale-95 transform group-hover/tooltip:scale-100',
                 'pointer-events-none'
-              )}>
+              )}
+            >
               {x.config.description}
             </div>
           </div>
@@ -546,7 +561,8 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
       rel='noreferrer'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      {...props}>
+      {...props}
+    >
       {isHovered ? (
         <>
           <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code{' '}
@@ -589,11 +605,13 @@ function Philosophy() {
           'sm:px-16 sm:pb-14 sm:pt-16',
           'px-6 pb-6 pt-6',
           'rounded-md'
-        )}>
+        )}
+      >
         {/* BG */}
         <div
           style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
-          className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+          className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'
+        ></div>
 
         {/* Title */}
         <div className='mx-auto max-w-4xl'>
@@ -793,7 +811,8 @@ function PoweringPlay() {
       className={clsx(
         'relative flex h-[60vh] items-center justify-center md:h-[70vh]',
         'border-b-2 border-cream-100/10'
-      )}>
+      )}
+    >
       {/* Background earth */}
       <div className='absolute inset-0 -z-10 overflow-hidden bg-black'>
         <Earth className='absolute left-0 top-0 h-full w-full object-cover object-top' />
@@ -807,7 +826,8 @@ function PoweringPlay() {
           'text-center font-display tracking-tight text-cream-100',
           'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
           'drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]'
-        )}>
+        )}
+      >
         {/* Online indicator */}
         <div
           className={clsx(
@@ -819,7 +839,8 @@ function PoweringPlay() {
             'md:mb-0.75 md:mr-5 md:h-6 md:w-6',
             'lg:mb-1.5 lg:mr-6 lg:h-7 lg:w-7',
             'xl:mb-2 xl:mr-7 xl:h-8 xl:w-8'
-          )}></div>
+          )}
+        ></div>
         <span className='opacity-75'>Powering</span> <PlaySessionsCounter />{' '}
         <span className='opacity-75'>play sessions</span>
         <br className='sm:hidden' /> <span className='opacity-75'>for</span>{' '}
@@ -868,11 +889,13 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
         'flex flex-col gap-4',
         'rounded-md'
       )}
-      {...props}>
+      {...props}
+    >
       {/* BG */}
       <div
         style={{ backgroundImage: `url(${grainDark.src})`, opacity: 0.2 }}
-        className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'></div>
+        className='pointer-events-none absolute inset-0 -z-20 bg-repeat transition'
+      ></div>
 
       {/* Content */}
       <div className='font-display text-3xl font-bold tracking-tight text-cream-100'>{title}</div>
@@ -885,7 +908,8 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
           href={docsHref}
           target={docsHref.startsWith('http') ? '_blank' : undefined}
           rel={docsHref.startsWith('http') ? 'noreferrer' : undefined}
-          className='flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm'>
+          className='flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm'
+        >
           Documentation
           <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
         </a>

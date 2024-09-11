@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # games.avatars.listGameCustomAvatars
 
-
-
 ## Description
 
 Lists custom avatars for the given game.
-
 
 ## Code Examples
 
@@ -32,6 +28,7 @@ await RIVET.cloud.games.avatars.listGameCustomAvatars({
 </CodeGroup>
 
 ## Request Parameters
+
 <div className="property ml-4">
 <div className="flex flex-row items-center my-2">
 <h2 className="text-lg font-bold text-cream-50 m-0">game\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> path parameter</code>
@@ -40,71 +37,81 @@ await RIVET.cloud.games.avatars.listGameCustomAvatars({
 </div>
 
 ## Response Body
-<div className="properties ">
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">custom\_avatars</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> array&lt;object&gt;</code>
-</div>
-<div className="description pl-2">
-A list of custom avatar summaries.
-</div>
-<div className="array-items ml-2 pl-2">
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">custom\_avatars[*]</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">object</code>
-</div>
-<div className="description pl-2">
-A custom avatar summary.
-</div>
-<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">complete</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> boolean</code>
-</div>
-<div className="description pl-2">
-Whether or not this custom avatar has completely been uploaded.
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">content\_length</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> integer</code>
-</div>
-<div className="description pl-2">
-Unsigned 64 bit integer.
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">create\_ts</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
-</div>
-<div className="description pl-2">
-RFC3339 timestamp
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">display\_name</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
-</div>
-<div className="description pl-2">
-Represent a resource's readable display name.
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">upload\_id</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">url</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">string</code>
-</div>
-<div className="description pl-2">
-The URL of this custom avatar image. Only present if upload is complete.
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
+<div className='properties '>
+  <div className='property ml-4'>
+    <div className='my-2 flex flex-row items-center'>
+      <h2 className='m-0 text-lg font-bold text-cream-50'>custom\_avatars</h2>
+      <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+        <span className='font-normal text-cream-600'>required</span> array&lt;object&gt;
+      </code>
+    </div>
+    <div className='description pl-2'>A list of custom avatar summaries.</div>
+    <div className='array-items ml-2 pl-2'>
+      <div className='property ml-4'>
+        <div className='my-2 flex flex-row items-center'>
+          <h2 className='m-0 text-lg font-bold text-cream-50'>custom\_avatars[*]</h2>
+          <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>object</code>
+        </div>
+        <div className='description pl-2'>A custom avatar summary.</div>
+        <div className='properties ml-2 border-l-2 border-cream-700 pl-2'>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>complete</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+                <span className='font-normal text-cream-600'>required</span> boolean
+              </code>
+            </div>
+            <div className='description pl-2'>
+              Whether or not this custom avatar has completely been uploaded.
+            </div>
+          </div>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>content\_length</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+                <span className='font-normal text-cream-600'>required</span> integer
+              </code>
+            </div>
+            <div className='description pl-2'>Unsigned 64 bit integer.</div>
+          </div>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>create\_ts</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+                <span className='font-normal text-cream-600'>required</span> string
+              </code>
+            </div>
+            <div className='description pl-2'>RFC3339 timestamp</div>
+          </div>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>display\_name</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+                <span className='font-normal text-cream-600'>required</span> string
+              </code>
+            </div>
+            <div className='description pl-2'>Represent a resource's readable display name.</div>
+          </div>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>upload\_id</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>
+                <span className='font-normal text-cream-600'>required</span> string
+              </code>
+            </div>
+          </div>
+          <div className='property ml-4'>
+            <div className='my-2 flex flex-row items-center'>
+              <h2 className='m-0 text-lg font-bold text-cream-50'>url</h2>
+              <code className='m-0 ml-4 pb-0 pt-0.5 text-cream-500'>string</code>
+            </div>
+            <div className='description pl-2'>
+              The URL of this custom avatar image. Only present if upload is complete.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

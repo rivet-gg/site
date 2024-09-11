@@ -1,6 +1,11 @@
 import Bullet from '../../../shared/bullet';
 
-export default function drawBullet(ctx: CanvasRenderingContext2D, bullet: Bullet, thisPlayerId: string | undefined, screenScale: number) {
+export default function drawBullet(
+  ctx: CanvasRenderingContext2D,
+  bullet: Bullet,
+  thisPlayerId: string | undefined,
+  screenScale: number
+) {
   ctx.save();
   ctx.translate(bullet.posX, bullet.posY);
 

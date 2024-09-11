@@ -57,7 +57,6 @@ We will build a simple menu UI that will allow players to connect to a server. T
 
 This widget can now be used to connect a player to a server.
 
-
 ## Add the menu widget to the entry level
 
 1. Open the level Blueprint by clicking the Blueprint dropdown and then clicking _Open Level Blueprint_
@@ -74,7 +73,7 @@ Now that we have a new _Entry_ map for the UI, we need to make it the default ma
 2. Click on _Maps & Modes_ under _Projects_ in the sidebar
    - You can also search for "map" in the search bar
 3. Change _Game Default Map_ to _/Game/ThirdPerson/Maps/Entry_
-3. Change _Advanced > Server Default Map_ to _/Game/ThirdPerson/Maps/ThirdPersonMap_
+4. Change _Advanced > Server Default Map_ to _/Game/ThirdPerson/Maps/ThirdPersonMap_
 
 ## Set up play configuration for testing multiplayer
 
@@ -96,10 +95,9 @@ We will configure the play settings to test the game with Rivet locally in your 
    <Image src={imgNumberPlayers} alt='Change number of players' />
 
 <Tip>
-	Learn more about different ways to run your multiplayer game in Unreal Engine [here](/docs/unreal/concepts/run-methods).
+  Learn more about different ways to run your multiplayer game in Unreal Engine
+  [here](/docs/unreal/concepts/run-methods).
 </Tip>
-
-
 
 ## Test the game server locally
 
@@ -115,7 +113,7 @@ rivet unreal start-server
 
 1. Switch to the main editor
 2. Validate that the _Entry_ level is open
-3. Click _Play_ 
+3. Click _Play_
 4. Click _Connect_ in each of the game instances created
 5. You should be able to see each player running around in sync
 

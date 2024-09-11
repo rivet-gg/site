@@ -17,9 +17,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "plugins": [
       {
@@ -32,10 +30,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "src/components/Header.jsx", "src/components/Navigation.jsx"  ],
-  "exclude": [
-    "node_modules",
-    "game/server"
-  ]
+    ".next/types/**/*.ts",
+    "src/components/Header.jsx",
+    "src/components/Navigation.jsx"
+  ],
+  "exclude": ["node_modules", "game/server"]
 }

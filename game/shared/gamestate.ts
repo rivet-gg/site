@@ -25,7 +25,7 @@ const DISPLAY_HEIGHT = 906;
 
 // export const MAP_WIDTH = 3500;
 export const MAP_WIDTH = 3500;
-export const MAP_HEIGHT = Math.round(MAP_WIDTH / DISPLAY_WIDTH * DISPLAY_HEIGHT);
+export const MAP_HEIGHT = Math.round((MAP_WIDTH / DISPLAY_WIDTH) * DISPLAY_HEIGHT);
 
 export function updateGame(game: GameState, dt: number, thisPlayerId: string) {
   dt = Math.min(dt, 0.1);

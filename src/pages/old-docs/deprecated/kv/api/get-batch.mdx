@@ -1,4 +1,3 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # getBatch
@@ -8,7 +7,6 @@ import { CodeGroup, Code } from '@/components/Code';
 ## Description
 
 Gets multiple key-value entries by key(s).
-
 
 ## Code Examples
 
@@ -31,33 +29,21 @@ await RIVET.kv.getBatch({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `keys`
 
 _Query parameter, required_
 
-
-
-
-
 ### `watch_index`
 
 _Query parameter, optional_
 
-
 A query parameter denoting the requests watch index.
-
 
 ### `namespace_id`
 
 _Query parameter, optional_
-
-
-
-
 
 ## Response Body
 
@@ -99,6 +85,3 @@ Provided by watchable endpoints used in blocking loops.
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.
-
-
-

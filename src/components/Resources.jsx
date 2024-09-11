@@ -13,7 +13,8 @@ function ResourceIcon({ icon }) {
         'transition duration-300',
         'group-hover:ring-white-400 rounded-full bg-charcole-950/5 ring-1 ring-charcole-900/25 ring-white/15',
         ':bg-white/7.5 group-hover:bg-white-300/10'
-      )}>
+      )}
+    >
       <FontAwesomeIcon
         icon={icon}
         className='text-white-400 group-hover:text-white-400 h-5 w-5 transition duration-300'
@@ -72,7 +73,8 @@ export function ResourceGroup({ title = 'Resources', columns = 2, children }) {
           columns >= 2 && 'sm:grid-cols-2',
           columns == 3 && 'xl:grid-cols-3',
           columns == 4 && 'xl:grid-cols-4'
-        )}>
+        )}
+      >
         {clonedChildren}
       </div>
     </div>

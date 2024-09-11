@@ -1,7 +1,7 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TutorialVideo } from '@/components/TutorialVideo';
-import postRequest from "./previews/post-request.png";
-import deployment from "./previews/deployment.png";
+import postRequest from './previews/post-request.png';
+import deployment from './previews/deployment.png';
 
 # 💥 Tanks (Canvas, Socket.io)
 
@@ -21,9 +21,9 @@ import deployment from "./previews/deployment.png";
 
 The following guide will walk you through integrating and deploying a game with Rivet.
 
-{/* <TutorialVideo videoId='pBE7s-PK0j0' />
+{/\* <TutorialVideo videoId='pBE7s-PK0j0' />
 
---- */}
+--- \*/}
 
 ## Step 1: Setup project
 
@@ -61,27 +61,30 @@ you can copy and paste this config into your file:
   scripts:
     start: npm run start
 
-  # How the game lobbies run and how players connect to the game.
-  #
-  # https://docs.rivet.gg/matchmaker/introduction
-  matchmaker:
-    # How many players can join a specific lobby.
-    #
-    # Read more about matchmaking: https://docs.rivet.gg/matchmaker/concepts/finding-lobby
-    max_players: 32
+# How the game lobbies run and how players connect to the game.
+
+#
+
+# https://docs.rivet.gg/matchmaker/introduction
+
+matchmaker: # How many players can join a specific lobby. # # Read more about matchmaking: https://docs.rivet.gg/matchmaker/concepts/finding-lobby
+max_players: 32
 
     # The hardware to provide for lobbies.
     #
     # Available tiers: https://docs.rivet.gg/serverless-lobbies/concepts/available-tiers
     tier: basic-1d1
 
-  # Which regions the game should be available in.
-  #
-  # Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
-  matchmaker:
-    regions:
-      atl: {}
-      fra: {}
+# Which regions the game should be available in.
+
+#
+
+# Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
+
+matchmaker:
+regions:
+atl: {}
+fra: {}
 
     # Runtime configuration for the lobby's Docker container.
     docker:
@@ -105,13 +108,14 @@ you can copy and paste this config into your file:
     game_modes:
       default: {}
 
-  # How Rivet CDN should host your static assets on our CDN.
-  #
-  # https://docs.rivet.gg/cdn/introduction
-  cdn:
-    # Command to run before uploading the site to Rivet. This can be used to
-    # build any JavaScript bundles or generate assets.
-    build_command: npm install && npm run build:client:prod
+# How Rivet CDN should host your static assets on our CDN.
+
+#
+
+# https://docs.rivet.gg/cdn/introduction
+
+cdn: # Command to run before uploading the site to Rivet. This can be used to # build any JavaScript bundles or generate assets.
+build_command: npm install && npm run build:client:prod
 
     # The folder to upload to Rivet.
     #
@@ -119,10 +123,11 @@ you can copy and paste this config into your file:
     # this folder.
     build_output: ./dist/
 
-  kv: {}
+kv: {}
 
-  identity: {}
-  ```
+identity: {}
+
+````
 </CodeGroup>
 
 ## Step 2: Integrate Rivet Matchmaker
@@ -133,7 +138,7 @@ Run the following to install the library to interact with Rivet:
 
 ```bash
 npm i @rivet-gg/api --save
-```
+````
 
 ### Update the client
 
@@ -221,11 +226,11 @@ rivet deploy prod
 ```
 
 <Accordion title='What does this do?'>
-  - Builds & uploads your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index)
-  - Builds & uploads your site for [Rivet CDN](/docs/cdn)
-  - Creates a version on Rivet and deploys the version to the *Production* namespace
+  - Builds & uploads your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index) - Builds &
+  uploads your site for [Rivet CDN](/docs/cdn) - Creates a version on Rivet and deploys the version to the
+  *Production* namespace
 </Accordion>
 
 The CLI will print a link ending in `rivet.game`. Share the link with a friend to play your game on Rivet! 🎉
 
-<Image className="block ml-auto mr-auto" src={deployment} width={500} alt='Rivet Successful deployment' />
+<Image className='ml-auto mr-auto block' src={deployment} width={500} alt='Rivet Successful deployment' />

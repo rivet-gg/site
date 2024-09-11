@@ -22,7 +22,8 @@ export function LearnHome({ engineId, engineName, tutorials }) {
             title={x.title}
             href={`/learn/${engineId}/tutorials/${x.id}`}
             pattern={{ image: x.image }}
-            className='h-[400px]'>
+            className='h-[400px]'
+          >
             {x.details}
             <br />
             <FontAwesomeIcon icon={faStopwatch}></FontAwesomeIcon> {x.duration}

@@ -6,7 +6,7 @@ export default function drawParticles(
   ctx: CanvasRenderingContext2D,
   particleSet: ParticleSet,
   isSelf: boolean,
-  screenScale: number,
+  screenScale: number
 ) {
   for (const particle of particleSet.parts) {
     ctx.save();

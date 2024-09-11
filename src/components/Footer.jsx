@@ -64,7 +64,8 @@ function PageLink({ label, page, previous = false }) {
         href={page.href}
         aria-label={`${label}: ${page.title}`}
         variant='secondary'
-        arrow={previous ? 'left' : 'right'}>
+        arrow={previous ? 'left' : 'right'}
+      >
         {title}
       </Button>
     </>
@@ -136,7 +137,8 @@ function SmallPrint() {
                   <Link
                     href={item.href}
                     target={item.target}
-                    className='text-sm leading-4 text-gray-300 hover:text-white'>
+                    className='text-sm leading-4 text-gray-300 hover:text-white'
+                  >
                     {item.name}
                   </Link>
                 </li>
@@ -151,11 +153,13 @@ function SmallPrint() {
                   <Link
                     href={item.href}
                     target={item.newTab ? '_blank' : null}
-                    className={clsx('text-sm leading-4 text-gray-300 hover:text-white')}>
+                    className={clsx('text-sm leading-4 text-gray-300 hover:text-white')}
+                  >
                     <span
                       className={clsx(
                         item.highlight && 'text-violet-200 drop-shadow-[0_0_10px_rgba(221,214,254,0.5)]'
-                      )}>
+                      )}
+                    >
                       {item.name}
                     </span>
                     {item.badge && <span className='ml-2 rounded-full bg-violet-500 px-2'>{item.badge}</span>}

@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # validateProfile
 
-
-
 ## Description
 
 Validate contents of group profile. Use to provide immediate feedback on profile changes before committing them.
-
 
 ## Code Examples
 
@@ -32,9 +28,7 @@ await RIVET.group.validateProfile({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ## Request Body
 
@@ -56,9 +50,6 @@ Represent a resource's readable display name.
 
 The current publicity value for the given group.
 
-
-
-
 ## Response Body
 
 ### `errors`
@@ -72,6 +63,3 @@ A list of validation errors.
 `array<string>` (required)
 
 A list of strings denoting the origin of a validation error.
-
-
-

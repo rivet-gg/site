@@ -1,16 +1,7 @@
-import Player, {
-  PlayerInput,
-  canShootBullet,
-  shootBullet,
-} from '../shared/player';
+import Player, { PlayerInput, canShootBullet, shootBullet } from '../shared/player';
 import ClientGameState, { update } from './client-gamestate';
 import { MAP_WIDTH, MAP_HEIGHT } from '../shared/gamestate';
-import Connection, {
-  createConnection,
-  sendInput,
-  sendShoot,
-  setupListeners
-} from './connection';
+import Connection, { createConnection, sendInput, sendShoot, setupListeners } from './connection';
 import debug from './display/debug';
 import blackScreen from './display/black_screen';
 import game from './display/game';
@@ -29,13 +20,13 @@ export default interface Client {
   game: ClientGameState | null;
   id: string | null;
 
-  shutdown: boolean,
+  shutdown: boolean;
   screenSize: { w: number; h: number };
   screenScale: number;
   /// Position in the world where the pointer. This is used to determine where the player should move.
   worldPointer: { x: number; y: number };
-  inputShoot: boolean,
-  lastSendInputTs: number,
+  inputShoot: boolean;
+  lastSendInputTs: number;
   canvas: HTMLCanvasElement;
 }
 
@@ -60,7 +51,6 @@ export function initClient(canvas: HTMLCanvasElement): Client {
     id: null
   };
 
-
   // Draw loops
   drawLoop(client);
   createInputEventListener(client);
@@ -78,7 +68,7 @@ export function shutdownClient(client: Client) {
 }
 
 export function drawLoop(client: Client) {
-  if (client.shutdown) { 
+  if (client.shutdown) {
     console.log('Client shut down');
     return;
   }
@@ -106,7 +96,10 @@ export function drawLoop(client: Client) {
 
     if (client.game?.running && client.id) {
       if (client.game.clientGameState.players[client.id]) {
-        setPlayerInput(client, getPlayerInputForMouseLocation(client, client.worldPointer.x, client.worldPointer.y));
+        setPlayerInput(
+          client,
+          getPlayerInputForMouseLocation(client, client.worldPointer.x, client.worldPointer.y)
+        );
       }
 
       if (client.inputShoot) tryShoot(client);
@@ -321,7 +314,6 @@ export function drawScreen(client: Client) {
       // window.location.reload();
       break;
   }
-
 
   // // Overlay gradient for title
   // let gradientW = 1000;

@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # links.get
 
-
-
 ## Description
 
 Returns the current status of a linking process. Once `status` is `complete`, the identity's profile should be fetched again since they may have switched accounts.
-
 
 ## Code Examples
 
@@ -31,25 +27,15 @@ await RIVET.identity.links.get({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `identity_link_token`
 
 _Query parameter, required_
 
-
-
-
-
 ### `watch_index`
 
 _Query parameter, optional_
-
-
-
-
 
 ## Response Body
 
@@ -578,6 +564,3 @@ Provided by watchable endpoints used in blocking loops.
 
 Index indicating the version of the data responded.
 Pass this to `WatchQuery` to block and wait for the next response.
-
-
-

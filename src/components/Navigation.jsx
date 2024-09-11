@@ -18,7 +18,8 @@ function TopLevelNavItem({ href, target, children }) {
       <Link
         href={href}
         target={target}
-        className='block py-1 text-sm text-charcole-400 transition hover:text-white'>
+        className='block py-1 text-sm text-charcole-400 transition hover:text-white'
+      >
         {children}
       </Link>
     </li>
@@ -34,7 +35,8 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
         'flex justify-between gap-2 py-1 pr-3 text-sm transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
         active ? 'text-white' : 'text-charcole-400 hover:text-white'
-      )}>
+      )}
+    >
       <span className='truncate'>{children}</span>
       {tag && (
         <Tag variant='small' color='zinc'>

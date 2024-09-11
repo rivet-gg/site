@@ -1,9 +1,6 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # ⭐️ setup
-
-
 
 ## Description
 
@@ -14,7 +11,6 @@ Until the identity is linked with the Rivet Hub (see `PrepareGameLink`), this id
 This is intended to allow users to play the game without signing up while still having the benefits of having an account. When they are ready to save their account, they should be instructed to link their account (see `PrepareGameLink`).
 Storing Token
 `identity_token` should be stored in some form of persistent storage. The token should be read from storage and passed to `Setup` every time the client starts.
-
 
 ## Code Examples
 
@@ -38,9 +34,7 @@ await RIVET.identity.setup({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ## Request Body
 
@@ -49,9 +43,6 @@ await RIVET.identity.setup({
 `string`
 
 Documentation at https://jwt.io/
-
-
-
 
 ## Response Body
 
@@ -424,6 +415,3 @@ If this token is compromised, anyone with access to this token has control of th
 `string` (required)
 
 If this token is compromised, anyone with access to this token has control of the identity.
-
-
-

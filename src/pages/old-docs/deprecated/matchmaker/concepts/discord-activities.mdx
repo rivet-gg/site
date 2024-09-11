@@ -14,29 +14,31 @@ Integrate your Rivet game with [Discord Activities](https://discord.com/develope
          taggable: true
    ```
 2. Set up the Discord SDK ([docs](https://discord.com/developers/docs/activities/building-an-activity#step-3-installing-the-embedded-app-sdk)):
+
    ```js
    // Import the SDK
-   import { DiscordSDK } from "@discord/embedded-app-sdk";
+   import { DiscordSDK } from '@discord/embedded-app-sdk';
 
    // Instantiate the SDK
    const discordSdk = new DiscordSDK(process.env.DISCORD_CLIENT_ID);
 
    setupDiscordSdk().then(() => {
-   	console.log("Discord SDK is ready");
+     console.log('Discord SDK is ready');
    });
 
    async function setupDiscordSdk() {
-   	await discordSdk.ready();
+     await discordSdk.ready();
    }
    ```
+
 3. Update your Rivet matchmaking code to include tags:
    ```js
    const res = await RIVET.matchmaker.lobbies.find({
-   	// ...
-   	tags: {
-   		// Discord SDK set up in previous step
-   		instanceId: discordSdk.instanceId,
-   	},
+     // ...
+     tags: {
+       // Discord SDK set up in previous step
+       instanceId: discordSdk.instanceId
+     }
    });
    ```
 4. Set up route mapping
@@ -49,9 +51,10 @@ Integrate your Rivet game with [Discord Activities](https://discord.com/develope
    <Image src={imgDiscordUrlMappings} alt='Player connection lobby creation' />
 
    <Note>
-   	The URL used for the "Root Mapping" will be printed in the console when you deploy to Rivet
-   	via `rivet deploy`.
+     The URL used for the "Root Mapping" will be printed in the console when you deploy to Rivet via `rivet
+     deploy`.
    </Note>
+
 5. Run activity (read docs
    [here](https://discord.com/developers/docs/activities/building-an-activity#step-4-running-your-app-locally-in-discord))
 

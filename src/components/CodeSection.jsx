@@ -39,7 +39,7 @@ const ENGINE_PAGES = [
     name: 'Custom Engine',
     image: imgStepsCustom,
     learnUrl: '/learn/custom'
-  },
+  }
 ];
 
 export default function CodeSection() {
@@ -48,21 +48,26 @@ export default function CodeSection() {
   const changePage = i => setPage({ index: i, dir: i > page.index ? 1 : -1 });
 
   return (
-    <div className='flex flex-col items-center px-4 gap-8'>
+    <div className='flex flex-col items-center gap-8 px-4'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
         Seamlessly Built into Your Favorite Engine
       </h2>
 
-      <ul className='text-cream-100 list-none mx-auto'>
+      <ul className='mx-auto list-none text-cream-100'>
         {[
           'Create & deploy a multiplayer game from scratch in under 5 minutes',
-          <>Deploy existing multiplayer games using integrations with <Tooltip tip="Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication">networking libraries</Tooltip></>,
+          <>
+            Deploy existing multiplayer games using integrations with{' '}
+            <Tooltip tip='Godot high-level multiplayer, Unity NGO/Fish-Net, Unreal Engine replication'>
+              networking libraries
+            </Tooltip>
+          </>,
           'One-click deploys for playtesting',
           'Includes tools for developing multiplayer games locally',
-          'High quality SDKs & documentation',
+          'High quality SDKs & documentation'
         ].map((item, index) => (
-          <li key={index} className='flex items-start mb-2'>
-            <FontAwesomeIcon icon={faCheck} className='text-orange-400 mr-2 mt-1 flex-shrink-0' />
+          <li key={index} className='mb-2 flex items-start'>
+            <FontAwesomeIcon icon={faCheck} className='mr-2 mt-1 flex-shrink-0 text-orange-400' />
             <span className='flex-1'>{item}</span>
           </li>
         ))}
@@ -112,7 +117,8 @@ function EnginePages({ page, onChangePage }) {
             } else if (swipe > swipeConfidenceThreshold) {
               onChangePage(paginate(page.index, -1, ENGINE_PAGES));
             }
-          }}>
+          }}
+        >
           <EnginePageContents page={ENGINE_PAGES[page.index]} scale={page.index === 3} />
         </motion.div>
       </AnimatePresence>

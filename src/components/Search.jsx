@@ -136,25 +136,29 @@ function SearchResult({ result, resultIndex, autocomplete, collection, query }) 
       {...autocomplete.getItemProps({
         item: result,
         source: collection.source
-      })}>
+      })}
+    >
       <div
         id={`${id}-title`}
         aria-hidden='true'
-        className='text-sm font-medium text-charcole-900 group-aria-selected:text-violet-500 dark:text-white'>
+        className='text-sm font-medium text-charcole-900 group-aria-selected:text-violet-500 dark:text-white'
+      >
         <HighlightQuery text={result.title} query={query} />
       </div>
       {hierarchy.length > 0 && (
         <div
           id={`${id}-hierarchy`}
           aria-hidden='true'
-          className='mt-1 truncate whitespace-nowrap text-2xs text-charcole-500'>
+          className='mt-1 truncate whitespace-nowrap text-2xs text-charcole-500'
+        >
           {hierarchy.map((item, itemIndex, items) => (
             <Fragment key={itemIndex}>
               <HighlightQuery text={item} query={query} />
               <span
                 className={
                   itemIndex === items.length - 1 ? 'sr-only' : 'mx-2 text-cream-100 dark:text-charcole-700'
-                }>
+                }
+              >
                 /
               </span>
             </Fragment>
@@ -243,7 +247,8 @@ function SearchButton(props) {
       <button
         type='button'
         className='hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-charcole-500 ring-1 ring-charcole-900/10 transition hover:ring-charcole-900/20 dark:bg-white/5 dark:text-cream-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
-        {...props}>
+        {...props}
+      >
         <SearchIcon className='h-5 w-5 stroke-current' />
         Search...
         <kbd className='ml-auto text-2xs text-cream-400 dark:text-charcole-500'>
@@ -255,7 +260,8 @@ function SearchButton(props) {
         type='button'
         className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
         aria-label='Search...'
-        {...props}>
+        {...props}
+      >
         <SearchIcon className='h-5 w-5 stroke-charcole-900 dark:stroke-white' />
       </button>
     </>
@@ -303,7 +309,8 @@ function SearchDialog({ open, setOpen, className }) {
           enterTo='opacity-100'
           leave='ease-in duration-200'
           leaveFrom='opacity-100'
-          leaveTo='opacity-0'>
+          leaveTo='opacity-0'
+        >
           <div className='fixed inset-0 bg-cream-400/25 backdrop-blur-sm dark:bg-black/40' />
         </Transition.Child>
 
@@ -315,14 +322,16 @@ function SearchDialog({ open, setOpen, className }) {
             enterTo='opacity-100 scale-100'
             leave='ease-in duration-200'
             leaveFrom='opacity-100 scale-100'
-            leaveTo='opacity-0 scale-95'>
+            leaveTo='opacity-0 scale-95'
+          >
             <Dialog.Panel className='mx-auto overflow-hidden rounded-lg bg-cream-50 shadow-xl ring-1 ring-charcole-900/7.5 dark:bg-charcole-950 dark:ring-charcole-800 sm:max-w-xl'>
               <div {...autocomplete.getRootProps({})}>
                 <form
                   ref={formRef}
                   {...autocomplete.getFormProps({
                     inputElement: inputRef.current
-                  })}>
+                  })}
+                >
                   <SearchInput
                     ref={inputRef}
                     autocomplete={autocomplete}
@@ -332,7 +341,8 @@ function SearchDialog({ open, setOpen, className }) {
                   <div
                     ref={panelRef}
                     className='border-t border-cream-200 bg-white empty:hidden dark:border-cream-100/5 dark:bg-white/2.5'
-                    {...autocomplete.getPanelProps({})}>
+                    {...autocomplete.getPanelProps({})}
+                  >
                     {autocompleteState.isOpen && (
                       <SearchResults
                         autocomplete={autocomplete}
@@ -395,7 +405,8 @@ export function Search() {
           'border-b-2 border-cream-100'
         )}
         // className='hidden h-10 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-charcole-500 ring-1 ring-charcole-900/10 transition hover:ring-charcole-900/20 dark:bg-white/5 dark:text-cream-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none'
-        {...buttonProps}>
+        {...buttonProps}
+      >
         <SearchIcon className='h-5 w-5 stroke-current' />
         Search...
         <kbd className='ml-auto text-2xs text-cream-400 dark:text-charcole-500'>
@@ -417,7 +428,8 @@ export function MobileSearch() {
         type='button'
         className='flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-charcole-950/5 dark:hover:bg-cream-100/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none'
         aria-label='Search...'
-        {...buttonProps}>
+        {...buttonProps}
+      >
         <SearchIcon className='h-5 w-5 stroke-charcole-900 dark:stroke-cream-100' />
       </button>
       <SearchDialog className='lg:hidden' {...dialogProps} />

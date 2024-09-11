@@ -11,7 +11,7 @@ const RotatingText = ({ texts, interval = 1400 }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+      setIndex(prevIndex => (prevIndex + 1) % texts.length);
     }, interval);
 
     return () => clearInterval(timer);
@@ -31,9 +31,9 @@ const RotatingText = ({ texts, interval = 1400 }) => {
     <>
       <motion.span
         ref={containerRef}
-        style={{ 
-          display: 'inline-block', 
-          position: 'relative', 
+        style={{
+          display: 'inline-block',
+          position: 'relative',
           overflow: 'visible',
           height: height ? `${height}px` : 'auto',
           verticalAlign: 'bottom'
@@ -41,7 +41,7 @@ const RotatingText = ({ texts, interval = 1400 }) => {
         animate={{ width }}
         transition={{ duration: 0.6 }}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode='wait'>
           <motion.span
             ref={textRef}
             key={index}
@@ -55,11 +55,11 @@ const RotatingText = ({ texts, interval = 1400 }) => {
           </motion.span>
         </AnimatePresence>
       </motion.span>
-      <span 
-        ref={measureRef} 
-        style={{ 
-          visibility: 'hidden', 
-          position: 'absolute', 
+      <span
+        ref={measureRef}
+        style={{
+          visibility: 'hidden',
+          position: 'absolute',
           whiteSpace: 'nowrap',
           pointerEvents: 'none'
         }}

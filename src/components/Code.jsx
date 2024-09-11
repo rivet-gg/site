@@ -67,13 +67,15 @@ function CopyButton({ code }) {
         window.navigator.clipboard.writeText(code).then(() => {
           setCopyCount(count => count + 1);
         });
-      }}>
+      }}
+    >
       <span
         aria-hidden={copied}
         className={clsx(
           'pointer-events-none flex items-center gap-0.5 text-cream-400 transition duration-300',
           copied && '-translate-y-1.5 opacity-0'
-        )}>
+        )}
+      >
         <ClipboardIcon className='h-5 w-5 fill-charcole-500/20 stroke-charcole-500 transition-colors group-hover/button:stroke-cream-400' />
         Copy
       </span>
@@ -82,7 +84,8 @@ function CopyButton({ code }) {
         className={clsx(
           'pointer-events-none absolute inset-0 flex items-center justify-center text-violet-400 transition duration-300',
           !copied && 'translate-y-1.5 opacity-0'
-        )}>
+        )}
+      >
         Copied!
       </span>
     </button>
@@ -140,7 +143,8 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
                 childIndex === selectedIndex
                   ? 'border-violet-500 text-violet-400'
                   : 'border-transparent text-cream-400 hover:text-cream-100'
-              )}>
+              )}
+            >
               {getPanelTitle(child.props)}
             </Tab>
           ))}
@@ -242,7 +246,8 @@ export function CodeGroup({ children, title, ...props }) {
     <CodeGroupContext.Provider value={true}>
       <Container
         {...containerProps}
-        className='not-prose my-6 overflow-hidden rounded-2xl bg-charcole-950 shadow-md dark:ring-1 dark:ring-white/10'>
+        className='not-prose my-6 overflow-hidden rounded-2xl bg-charcole-950 shadow-md dark:ring-1 dark:ring-white/10'
+      >
         <CodeGroupHeader title={title} {...headerProps}>
           {children}
         </CodeGroupHeader>

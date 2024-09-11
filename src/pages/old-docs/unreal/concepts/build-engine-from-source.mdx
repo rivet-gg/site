@@ -1,15 +1,16 @@
-import srcLinuxServerPlatform from "../tutorials/crash-course/images/linux-server-platform-config.png";
+import srcLinuxServerPlatform from '../tutorials/crash-course/images/linux-server-platform-config.png';
 
 # Build Unreal Engine from source
 
 <Warning>
    **You probably don't need this**
 
-   Rivet provides an automated process for building Unreal dedicated servers without building the engine from source.
+Rivet provides an automated process for building Unreal dedicated servers without building the engine from source.
 
-   If you're not using Rivet, you traditionally need to build Unreal Engine from source to build a dedicated server.
+If you're not using Rivet, you traditionally need to build Unreal Engine from source to build a dedicated server.
 
-   This is only needed if you're using an Unreal Engine fork or need access to functionality that Rivet does not provide.
+This is only needed if you're using an Unreal Engine fork or need access to functionality that Rivet does not provide.
+
 </Warning>
 
 This guide will walk you through building Unreal Engine from source in order to build Linux dedicated server packages.
@@ -68,7 +69,7 @@ TODO: Look at other demos like [this](https://www.youtube.com/watch?v=wGq-XK8mff
 Once you have Unreal Engine built from source, open your project and package it for Linux.
 
 1. Select _Platforms > Linux > Debug_
-	- If deploying to production, select _Release_ instead. We use _Debug_ here so we can catch any crashes while testing.
+   - If deploying to production, select _Release_ instead. We use _Debug_ here so we can catch any crashes while testing.
 2. Select _Platform > Linux > MyProjectServer_
 3. Validate the config looks like this:
    <Image src={srcLinuxServerPlatform} alt='Linux server paltform config' />
@@ -76,5 +77,6 @@ Once you have Unreal Engine built from source, open your project and package it 
 5. Package the project to _MyProject/Binaries/Linux/Server_. **This path is important since the Dockerfile we provide relies on it.**
 
 <Tip>
-	If the Linux option does not show up or gives you errors, you may have installed the wrong version of the Linux toolchain. Go back to Step 1 then restart Unreal Engine.
+  If the Linux option does not show up or gives you errors, you may have installed the wrong version of the
+  Linux toolchain. Go back to Step 1 then restart Unreal Engine.
 </Tip>

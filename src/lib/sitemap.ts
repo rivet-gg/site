@@ -1,4 +1,4 @@
-import { Route } from "next";
+import { Route } from 'next';
 
 type Href = string | Route | URL;
 type Page = { href: string };

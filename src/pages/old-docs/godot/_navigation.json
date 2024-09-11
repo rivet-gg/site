@@ -5,9 +5,7 @@
     "groups": [
       {
         "title": "Concepts",
-        "pages": [
-          "concepts/resources"
-        ]
+        "pages": ["concepts/resources"]
       },
       {
         "title": "Tutorials",

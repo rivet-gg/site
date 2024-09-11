@@ -1,14 +1,10 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # invites.createInvite
 
-
-
 ## Description
 
 Creates a group invite. Can be shared with other identities to let them join this group.
-
 
 ## Code Examples
 
@@ -32,17 +28,11 @@ await RIVET.group.invites.createInvite({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `group_id`
 
 _Path parameter, required_
-
-
-
-
 
 ## Request Body
 
@@ -58,9 +48,6 @@ How long until the group invite expires (in milliseconds).
 
 How many times the group invite can be used.
 
-
-
-
 ## Response Body
 
 ### `code`
@@ -68,6 +55,3 @@ How many times the group invite can be used.
 `string` (required)
 
 The code that will be passed to `rivet.api.group#ConsumeInvite` to join a group.
-
-
-

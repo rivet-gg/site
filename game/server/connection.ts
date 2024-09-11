@@ -29,7 +29,7 @@ interface StateData {
 export default interface Connection {
   lifetime: LifetimeData;
   stateful: StateData;
-  deathTs: number,
+  deathTs: number;
 }
 
 export function createConnection(
@@ -60,7 +60,7 @@ export function createConnection(
   const connection: Connection = {
     lifetime: lifetimeData,
     stateful: statefulData,
-    deathTs: 0,
+    deathTs: 0
   };
 
   if (!playerToken || Array.isArray(playerToken)) {
@@ -194,7 +194,6 @@ export function checkForRespawn(connection: Connection) {
 
   if (Date.now() - connection.deathTs > 1000) {
     respawn(connection);
-
   }
 }
 
@@ -254,6 +253,6 @@ function respawn(connection: Connection) {
   connection.lifetime.socket.emit('startLife', {
     timestamp: Date.now(),
     playerId,
-    state: game,
+    state: game
   });
 }

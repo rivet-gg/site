@@ -54,9 +54,10 @@ function GameEngine({ engine, long } = { long: false }) {
       pattern={{ color: engineStyles[engine.id].patternColor }}
       className={clsx(
         'group relative flex items-center justify-center',
-        'w-[200px] h-[100px] md:w-[350px] md:h-[175px]',
+        'h-[100px] w-[200px] md:h-[175px] md:w-[350px]',
         long ? 'col-span-2' : 'col-span-1'
-      )}>
+      )}
+    >
       <span
         className={clsx(
           clsx(
@@ -65,7 +66,8 @@ function GameEngine({ engine, long } = { long: false }) {
             'text-white',
             'drop-shadow-[0_0_10px_rgba(24,24,27,0.5)]'
           )
-        )}>
+        )}
+      >
         {engine.name}
       </span>
     </PatternButton>

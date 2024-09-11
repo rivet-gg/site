@@ -88,7 +88,8 @@ export default async function BlogPage() {
           <Button icon={faRss} href='/rss/feed.xml'>
             RSS Feed
           </Button>
-        }>
+        }
+      >
         <div className='mb-8 mt-16 grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-3'>
           {articles.map(article => (
             <Article key={article.slug} {...article.info} slug={article.slug} />

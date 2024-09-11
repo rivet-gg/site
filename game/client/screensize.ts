@@ -16,13 +16,16 @@ export function resizeClient(client: Client) {
 
   let canvasParent = client.canvas.parentElement;
   if (!canvasParent) {
-    console.warn("No canvas parent");
+    console.warn('No canvas parent');
     return;
   }
   const parentRect = canvasParent.getBoundingClientRect();
 
   // Fit canvas witin parent with map size's ratio
-  const scale = Math.min(parentRect.width * getPixelScalar() / MAP_WIDTH, parentRect.height * getPixelScalar() / MAP_HEIGHT);
+  const scale = Math.min(
+    (parentRect.width * getPixelScalar()) / MAP_WIDTH,
+    (parentRect.height * getPixelScalar()) / MAP_HEIGHT
+  );
   const canvasWidth = Math.floor(MAP_WIDTH * scale);
   const canvasHeight = Math.floor(MAP_HEIGHT * scale);
 

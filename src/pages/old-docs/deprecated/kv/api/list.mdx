@@ -1,4 +1,3 @@
-
 import { CodeGroup, Code } from '@/components/Code';
 
 # list
@@ -8,7 +7,6 @@ import { CodeGroup, Code } from '@/components/Code';
 ## Description
 
 Lists all keys in a directory.
-
 
 ## Code Examples
 
@@ -31,25 +29,15 @@ await RIVET.kv.list({
 
 </CodeGroup>
 
-
 ## Request Parameters
-
 
 ### `directory`
 
 _Query parameter, required_
 
-
-
-
-
 ### `namespace_id`
 
 _Query parameter, required_
-
-
-
-
 
 ## Response Body
 
@@ -78,6 +66,3 @@ This format is not enforced by Rivet, but the tools built around Rivet KV work b
 A JSON object stored in the KV database.
 A `null` value indicates the entry is deleted.
 Maximum length of 262,144 bytes when encoded.
-
-
-

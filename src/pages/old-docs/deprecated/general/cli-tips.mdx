@@ -26,7 +26,7 @@ For example, with this `rivet.yaml`:
 
 ```yaml
 scripts:
- server: npm start
+  server: npm start
 ```
 
 Run `rivet run server` to start the server.
@@ -59,9 +59,9 @@ For example, if you have a `rivet.yaml` file like:
 
 ```yaml
 matchmaker:
- max_players: 32
- tier: basic-1d2
- # ..etc..
+  max_players: 32
+  tier: basic-1d2
+  # ..etc..
 ```
 
 You can create a file called `rivet.prod.yaml` to override properties for the `prod` namespace. For example, to override the `tier` property:
@@ -74,7 +74,6 @@ matchmaker:
 ### Validate a config
 
 Use the `rivet config validate` command to validate a version config before deploying it. This is useful for catching errors before deploying.
-
 
 ### YAML, JSON, and TOML support
 
@@ -91,7 +90,6 @@ To unlink a game, use the `rivet unlink` command. This allows you to run `rivet 
 To generate a GitHub Actions deploy workflow that parallelizes building Docker images & CDN sites, use the `rivet ci generate github` command.
 
 ## Deploying
-
 
 ### Deploy with config overrides
 
@@ -162,7 +160,6 @@ Deploying 2024.02 (5)
 # ...
 ```
 
-
 ## CDN
 
 ### Build command environment variables
@@ -211,7 +208,7 @@ Deploying 2024.02 (5)
 
 ### Create Rivet tokens
 
-Rivet tokens can be created via the CLI using the `rivet token create <type>` command. These tokens get cached in the project config so they can be used in scripts on the fly.  See `rivet token create --help` for more information.
+Rivet tokens can be created via the CLI using the `rivet token create <type>` command. These tokens get cached in the project config so they can be used in scripts on the fly. See `rivet token create --help` for more information.
 
 ## Options
 

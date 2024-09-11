@@ -31,7 +31,11 @@ export default function LevelUpSection() {
               <FontAwesomeIcon icon={faRocketLaunch} className='mr-2' />
               Get Started
             </Button>
-            <Button variant='blackJuicy' href='https://calendly.com/nicholas_kissel/rivet-demo' target='_blank'>
+            <Button
+              variant='blackJuicy'
+              href='https://calendly.com/nicholas_kissel/rivet-demo'
+              target='_blank'
+            >
               <FontAwesomeIcon icon={faPhone} className='mr-2' />
               Request a Demo
             </Button>

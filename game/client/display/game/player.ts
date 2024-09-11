@@ -6,7 +6,12 @@ function isInvisibleBecauseInvincible(player: Player) {
   return player.invincibilityTimeLeft % INVINCIBILITY_BLINK_SPEED > INVINCIBILITY_BLINK_SPEED / 2;
 }
 
-export default function drawPlayer(ctx: CanvasRenderingContext2D, player: Player, playerIsSelf: boolean, screenScale: number) {
+export default function drawPlayer(
+  ctx: CanvasRenderingContext2D,
+  player: Player,
+  playerIsSelf: boolean,
+  screenScale: number
+) {
   const { posX, posY, angle } = player;
   const drawSize = PLAYER_CONSTS.SIZE * 1.25;
 
