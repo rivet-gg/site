@@ -24,7 +24,15 @@ _redirects        https://developers.cloudflare.com/pages/platform/redirects/
 
 ## Developing
 
-To get started with this template, first install the npm dependencies:
+1. To get started make sure that you have [Modules](https://github.com/rivet-gg/modules) repository cloned in the parent folder under `modules` directory
+
+```
+  .
+  |> modules (https://github.com/rivet-gg/modules)
+  |> site (this repository)
+```
+
+then install the npm dependencies:
 
 ```bash
 yarn install
@@ -46,4 +54,3 @@ To deploy the game, run `cd game && rivet deploy -n prod` then pass a public tok
 ## License
 
 This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
-

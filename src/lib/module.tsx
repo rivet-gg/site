@@ -22,10 +22,13 @@ export async function generateModulesPageParams() {
 
 export async function loadReadme(module) {
     try {
-        return await import(`../../../modules/modules/${module}/README.mdx`);
+        return (await import(`../../../modules/modules/${module}/README.mdx`))
+            .default;
     } catch {
         try {
-            return await import(`../../../modules/modules/${module}/README.md`);
+            return (await import(
+                `../../../modules/modules/${module}/README.md`
+            )).default;
         } catch {
             return { default: DefaultReadme };
         }
@@ -36,7 +39,23 @@ export async function loadModule(module) {
     return await Promise.all([
         import(`../../../modules/modules/${module}/module.json`),
         loadReadme(module),
+        loadModuleMeta(module),
     ]);
+}
+
+export async function loadModulesOpenAPI() {
+    return await import(
+        `../../../modules/tests/basic/.opengb/openapi.json`
+    );
+}
+
+export async function loadModulesMeta() {
+    return await import(`../../../modules/tests/basic/.opengb/meta.json`);
+}
+
+export async function loadModuleMeta(module) {
+    const meta = await loadModulesMeta();
+    return meta.modules[module];
 }
 
 export async function safelyLoadModule(module) {
@@ -46,5 +65,7 @@ export async function safelyLoadModule(module) {
         return null;
     }
 
-    return { meta: result[0].default, Readme: result[1].default };
+    const [meta, Readme, globalMeta] = result;
+
+    return { meta, Readme, configSchema: globalMeta.userConfigSchema };
 }
