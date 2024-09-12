@@ -226,7 +226,7 @@ function Title() {
             'sm:text-5xl',
             'lg:text-6xl'
           )}>
-          The Only Backend Your Game Needs
+          Open-Source Multiplayer Tooling
         </motion.h1>
 
         <div className='h-6' />
@@ -894,6 +894,6 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
   );
 }
 
-Index.description = 'The Only Backend Your Game Needs. Open-source & Self-Hostable.';
+Index.description = 'Open-Source Multiplayer Tooling. A Single Tool to Manage Your Game Servers & Backend.';
 Index.prose = false;
 Index.fullWidth = true;

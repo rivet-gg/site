@@ -40,7 +40,7 @@ export default function ProductSection() {
   return (
     <div className='flex flex-col items-center gap-16 px-4'>
       <h2 className='text-center font-display text-5xl font-extrabold tracking-tight text-cream-100 sm:text-5xl'>
-        Single Tool to Manage Your Game Servers & Backend
+        A Single Platform to Manage Your Game Servers & Backend
       </h2>
 
       <div className='flex w-full flex-col items-stretch gap-6'>

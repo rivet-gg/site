@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rivet.gg',
-    title: 'Rivet - The Only Backend Your Game Needs',
+    title: 'Rivet - Open-Source Multiplayer Tooling',
     siteName: 'Rivet',
-    description: 'Open-Source game infrastructure. Multiplayer game servers and modular backend.',
+    description: 'A unified platform to manage your game servers & backend.',
     images: [
       {
         url: 'https://rivet.gg/promo/og.png',
