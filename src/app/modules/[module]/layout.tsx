@@ -15,6 +15,7 @@ export default async function ModuleLayout({ children, params }) {
     const actors = Object.keys(meta.actors || {});
     const scripts = Object.keys(meta.scripts || {});
     const dependencies = Object.keys(meta.dependencies || {});
+    const errors = Object.keys(meta.errors || {});
 
     return (
         <div>
@@ -48,7 +49,7 @@ export default async function ModuleLayout({ children, params }) {
                     className="pr-4"
                     href={`/modules/${params.module}/errors`}
                 >
-                    Errors
+                    Errors {errors.length > 0 ? <>({errors.length})</> : ""}
                 </Link>
                 <Link
                     className="pr-4"
