@@ -30,9 +30,10 @@ export async function generateNavigation() {
 
   // Process all routes
   let routes = [];
-  let navigationFilenames = await glob(['**/_navigation.json'], {
-    cwd: 'src/pages'
-  });
+  // let navigationFilenames = await glob(['**/_navigation.json'], {
+  //   cwd: 'src/pages'
+  // });
+  let navigationFilenames = [];
   for (let filename of navigationFilenames) {
     let path = filename.replace(/\/_navigation\.json$/, '');
     routes.push(await buildRoute({ path, pages }));
