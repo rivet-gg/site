@@ -45,8 +45,17 @@ export default async function ModulePage({ params }) {
                 </section>
 
                 <section className="prose mb-3">
-                    <a href="https://github.com/rivet-gg/modules">
-                        <FontAwesomeIcon icon={faGitAlt} /> View Source Code
+                    <a
+                        href={`https://github.com/rivet-gg/modules/tree/main/modules/${params.module}`}
+                        target="_blank"
+                        className="flex items-center gap-1"
+                        rel="noopener noreferrer"
+                    >
+                        <FontAwesomeIcon
+                            icon={faGitAlt}
+                            className="max-h-4 inline-block"
+                        />{" "}
+                        View Source Code
                     </a>
                 </section>
             </div>
