@@ -3,13 +3,14 @@ import routes from '@/generated/routes.json';
 import { SidebarItem, SidebarSection } from '@/lib/sitemap';
 import { getAliasedHref } from '@/lib/sameAs';
 import { sitemap } from '@/sitemap';
-import { ActiveSectionMarker } from '@/components/TableOfContents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/sharp-solid-svg-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { Fragment, PropsWithChildren, ReactNode, useState } from 'react';
+import { cn } from '@rivet-gg/components';
+import { Header as RivetHeader } from '@rivet-gg/components/header';
 
 interface TreeItemProps {
   item: SidebarItem;
@@ -22,9 +23,9 @@ function TreeItem({ item }: TreeItemProps) {
 
   if ('title' in item && 'pages' in item) {
     return (
-      <div className='group group-has-[.group]:pl-2'>
-        <span className='font-sans text-xs font-semibold text-white'>{item.title}</span>
-        <Tree pages={item.pages} className='has-[.group]:border-l has-[.group]:border-white/10' />
+      <div className='my-4'>
+        <p className='mb-1 px-2 py-1 text-sm font-semibold'>{item.title}</p>
+        <Tree pages={item.pages} />
       </div>
     );
   }
@@ -39,7 +40,7 @@ interface TreeProps {
 
 export function Tree({ pages, className }: TreeProps) {
   return (
-    <ul role='list' className={className}>
+    <ul role='list' className={cn(className)}>
       {pages.map((item, index) => (
         <li key={index} className='relative'>
           <TreeItem item={item} />
@@ -49,16 +50,22 @@ export function Tree({ pages, className }: TreeProps) {
   );
 }
 
-export function NavLink({ href, children }) {
+export function NavLink({
+  href,
+  children,
+  className
+}: PropsWithChildren<{ href: string; children: ReactNode; className?: string }>) {
   const pathname = usePathname() || '';
   const isCurrent = pathname === href;
   return (
     <>
-      {isCurrent ? <ActiveSectionMarker prefix='fafa' /> : null}
       <Link
         href={href}
         aria-current={isCurrent ? 'page' : undefined}
-        className='flex justify-between gap-2 py-1 pl-3 text-sm text-charcole-400 transition hover:text-white aria-current-page:text-white'>
+        className={cn(
+          'text-muted-foreground aria-current-page:text-foreground group flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm hover:underline',
+          className
+        )}>
         <span className='truncate'>{children}</span>
       </Link>
     </>
@@ -72,20 +79,20 @@ interface AnimatedTreeItemProps {
 export function AnimatedTreeItem({ item }: AnimatedTreeItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className='group w-full group-has-[.group]:pl-2 '>
+    <div>
       <button
-        className='flex w-full appearance-none justify-between font-sans text-xs font-semibold text-white'
+        className='mb-1 flex w-full appearance-none items-center gap-4 px-2 py-1 text-sm font-semibold'
         onClick={() => setIsOpen(open => !open)}>
         {item.title}
         <motion.span
           initial={{ rotateZ: '-90deg' }}
           animate={{ rotateZ: isOpen ? 0 : '-90deg' }}
-          className='-ml-1.5 mr-2 inline-block'>
-          <FontAwesomeIcon icon={faChevronDown} />
+          className='-ml-1.5 mr-2 inline-block w-3.5'>
+          <FontAwesomeIcon icon={faChevronDown} className='size-auto' />
         </motion.span>
       </button>
       <motion.div
-        className='overflow-hidden'
+        className='overflow-hidden pl-1'
         initial={false}
         variants={{
           open: { height: 'auto', opacity: 1 },
@@ -97,7 +104,7 @@ export function AnimatedTreeItem({ item }: AnimatedTreeItemProps) {
           height: !isOpen ? { delay: 0.3 } : {},
           duration: 0.3
         }}>
-        <Tree pages={item.pages} className='has-[.group]:border-l has-[.group]:border-white/10' />
+        <Tree pages={item.pages} />
       </motion.div>
     </div>
   );
@@ -113,6 +120,59 @@ export function DocsNavigation() {
   return (
     <div className='sticky top-docs-navigation pr-4 text-white xl:max-h-tabs-content xl:overflow-y-auto xl:pb-4 xl:pt-8'>
       <Tree pages={currentPage.sidebar} />
+    </div>
+  );
+}
+
+const ENGINE_NAV_ITEM = {
+  godot: (
+    <RivetHeader.NavItem asChild>
+      <Link href='/docs/godot'>Godot</Link>
+    </RivetHeader.NavItem>
+  ),
+  unity: (
+    <RivetHeader.NavItem asChild>
+      <Link href='/docs/unity'>Unity</Link>
+    </RivetHeader.NavItem>
+  ),
+  unreal: (
+    <RivetHeader.NavItem asChild>
+      <Link href='/docs/unreal'>Unreal</Link>
+    </RivetHeader.NavItem>
+  ),
+  html5: (
+    <RivetHeader.NavItem asChild>
+      <Link href='/docs/html5'>HTML5</Link>
+    </RivetHeader.NavItem>
+  ),
+  custom: (
+    <RivetHeader.NavItem asChild>
+      <Link href='/docs/custom'>Custom</Link>
+    </RivetHeader.NavItem>
+  )
+};
+
+export function DocsMobileNavigation() {
+  const pathname = usePathname() || '';
+
+  const currentPage = sitemap.find(page => pathname.startsWith(page.href));
+
+  if (!currentPage || !currentPage.sidebar) {
+    return <>{Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => value)}</>;
+  }
+
+  return (
+    <div className='flex flex-col gap-6'>
+      {Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => {
+        if (currentPage.href.includes(key)) {
+          return (
+            <div key={key}>
+              {value} <Tree pages={currentPage.sidebar} className='mt-2' />
+            </div>
+          );
+        }
+        return <Fragment key={key}>{value}</Fragment>;
+      })}
     </div>
   );
 }

@@ -10,8 +10,8 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import { CORE_DIRECTORIES, ENGINES, getAliasedSlug } from '@/lib/sameAs';
 import { Prose } from '@/components/Prose';
-import { TableOfContents } from '@/components/TableOfContents';
 import { Metadata } from 'next';
+import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
 function createParamsForFile(file) {
   return {
@@ -49,13 +49,13 @@ export default async function CatchAllCorePage({ params: { slug } }) {
 
   return (
     <>
-      <main className='mx-auto mt-8 w-full max-w-prose px-4 pb-8 lg:px-8'>
+      <main className='mx-auto mt-8 w-full max-w-prose px-8 pb-8'>
         <Prose as='article'>
           <Content />
         </Prose>
       </main>
       <aside className='-order-1 mx-auto w-full min-w-0 max-w-3xl flex-shrink-0 pb-4 pl-4 xl:order-none xl:mx-0'>
-        <TableOfContents tableOfContents={tableOfContents} />
+        <DocsTableOfContents tableOfContents={tableOfContents} />
       </aside>
     </>
   );

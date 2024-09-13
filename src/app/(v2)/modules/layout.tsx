@@ -1,11 +1,10 @@
-import { Toaster } from '@rivet-gg/components';
+import { Header } from '@/components/v2/Header';
 
 export default function Layout({ children }) {
   return (
-    <main className=' mx-auto max-w-6xl'>
-      {children}
-
-      <Toaster />
-    </main>
+    <>
+      <Header active='modules' />
+      <main className='mx-auto max-w-6xl'>{children}</main>
+    </>
   );
 }

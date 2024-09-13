@@ -5,26 +5,12 @@ module.exports = {
   content: ['./src/**/*.{ts,tsx,jsx,js,mdx,md}', './node_modules/@rivet-gg/components/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        docs: 'minmax(0, 20rem) 65ch minmax(0, 20rem)'
+      },
       typography: {
         DEFAULT: {
           css: {
-            '--tw-prose-body': 'hsl(var(--foreground))',
-            '--tw-prose-headings': 'hsl(var(--foreground))',
-            '--tw-prose-lead': 'hsl(var(--foreground))',
-            '--tw-prose-links': 'hsl(var(--foreground))',
-            '--tw-prose-bold': 'hsl(var(--foreground))',
-            '--tw-prose-counters': 'hsl(var(--foreground))',
-            '--tw-prose-bullets': 'hsl(var(--foreground))',
-            '--tw-prose-hr': 'hsl(var(--border))',
-            '--tw-prose-quotes': 'hsl(var(--foreground))',
-            '--tw-prose-quote-borders': 'hsl(var(--border))',
-            '--tw-prose-captions': 'hsl(var(--foreground))',
-            '--tw-prose-code': 'hsl(var(--foreground))',
-            '--tw-prose-pre-code': 'hsl(var(--foreground))',
-            '--tw-prose-pre-bg': 'hsl(var(--foreground))',
-            '--tw-prose-th-borders': 'hsl(var(--border))',
-            '--tw-prose-td-borders': 'hsl(var(--border))',
-
             '--tw-prose-invert-body': 'hsl(var(--foreground))',
             '--tw-prose-invert-headings': 'hsl(var(--foreground))',
             '--tw-prose-invert-lead': 'hsl(var(--foreground))',

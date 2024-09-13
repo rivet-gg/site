@@ -1,7 +1,7 @@
-import { TableOfContents } from '@/components/TableOfContents';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rivet-gg/components';
+import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
 export default async function ModuleErrorsPage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -50,7 +50,7 @@ export default async function ModuleErrorsPage({ params }) {
         </Card>
       </div>
       <div className='w-full max-w-sm'>
-        <TableOfContents tableOfContents={errorHeaders} />
+        <DocsTableOfContents tableOfContents={errorHeaders} />
       </div>
     </div>
   );

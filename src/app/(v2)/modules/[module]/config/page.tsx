@@ -2,9 +2,9 @@ import { Card, CardHeader, CardTitle, CardContent } from '@rivet-gg/components';
 import { CodeGroup } from '@/components/Code';
 import { CodeBlock } from '@/components/CodeBlock';
 import { SchemaPreview } from '@/components/SchemaPreview';
-import { TableOfContents } from '@/components/TableOfContents';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import { notFound } from 'next/navigation';
+import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
 export default async function ModuleConfigPage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -48,7 +48,7 @@ export default async function ModuleConfigPage({ params }) {
         </Card>
       </div>
       <div className='w-full max-w-sm'>
-        <TableOfContents
+        <DocsTableOfContents
           tableOfContents={[
             {
               id: 'config',

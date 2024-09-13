@@ -1,24 +1,42 @@
-import { Header } from '@/components/Header';
+import { Header } from '@/components/v2/Header';
 import { Footer } from '@/components/Footer';
 import { sitemap } from '@/sitemap';
-import { DocsNavigation } from '@/components/DocsNavigation';
+import { DocsMobileNavigation, DocsNavigation } from '@/components/DocsNavigation';
+import { ModulePageLink } from '@/components/ModulePageLink';
+import Link from 'next/link';
+
+function Subnav() {
+  return (
+    <div className='-mx-8 -mb-[9px] hidden min-h-10 items-center px-8 empty:hidden md:flex'>
+      <ModulePageLink href='/docs/godot'>Godot</ModulePageLink>
+      <ModulePageLink href='/docs/unity'>Unity</ModulePageLink>
+      <ModulePageLink href='/docs/unreal'>Unreal</ModulePageLink>
+      <ModulePageLink href='/docs/html5'>HTML5</ModulePageLink>
+      <ModulePageLink href='/docs/custom'>Custom</ModulePageLink>
+    </div>
+  );
+}
+
+function MobileBreadcrumbs() {
+  return (
+    <>
+      <DocsMobileNavigation />
+    </>
+  );
+}
 
 export default function Layout({ children }) {
   return (
-    <div>
-      <Header
-        // @ts-ignore
-        className='sticky top-0'
-        tabs={sitemap}
-        tabsTitle='Documentation'
-      />
-      <div className='main-content-container flex min-h-[50vh] max-w-full flex-col px-6 xl:grid xl:grid-cols-two-sidebars'>
-        <aside className='hidden min-w-0 flex-shrink-0 border-r  border-cream-100/10 xl:block'>
-          <DocsNavigation />
-        </aside>
-        {children}
+    <>
+      <Header active='docs' subnav={<Subnav />} mobileBreadcrumbs={<MobileBreadcrumbs />} />
+      <div className='flex w-full'>
+        <div className='xl:grid-cols-docs mx-auto flex flex-col xl:grid xl:px-6'>
+          <aside className='hidden xl:block'>
+            <DocsNavigation />
+          </aside>
+          {children}
+        </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }

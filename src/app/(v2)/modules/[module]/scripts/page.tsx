@@ -1,10 +1,10 @@
 import { Card, CardTitle, CardHeader, CardContent, Button, CardDescription } from '@rivet-gg/components';
-import { TableOfContents } from '@/components/TableOfContents';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
+import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
 function ScriptPage({ id, script, mod }) {
   return (
@@ -104,7 +104,7 @@ export default async function ModuleScriptsPage({ params }) {
       </div>
 
       <div className='hidden w-full max-w-sm xl:block'>
-        <TableOfContents tableOfContents={toc} />
+        <DocsTableOfContents tableOfContents={toc} />
       </div>
     </div>
   );

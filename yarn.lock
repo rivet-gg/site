@@ -1010,7 +1010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-dialog@npm:^1.1.1":
+"@radix-ui/react-dialog@npm:^1.0.5":
   version: 1.1.1
   resolution: "@radix-ui/react-dialog@npm:1.1.1"
   dependencies:
@@ -2026,7 +2026,7 @@ __metadata:
 
 "@rivet-gg/components@https://github.com/rivet-gg/hub#workspace=@rivet-gg/components&head=09-12-refactor_modify_components_to_be_usable_with_next":
   version: 1.0.0
-  resolution: "@rivet-gg/components@https://github.com/rivet-gg/hub.git#workspace=%40rivet-gg%2Fcomponents&commit=991d9e29475c05072fc153ac79f0cd16fc8799cf"
+  resolution: "@rivet-gg/components@https://github.com/rivet-gg/hub.git#workspace=%40rivet-gg%2Fcomponents&commit=ae33f6c7264178e2d26d66a80e581f7d16cf0f47"
   dependencies:
     "@codemirror/lang-javascript": "npm:^6.2.2"
     "@codemirror/lang-json": "npm:^6.0.1"
@@ -2041,7 +2041,7 @@ __metadata:
     "@radix-ui/react-accordion": "npm:^1.1.2"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-checkbox": "npm:^1.1.1"
-    "@radix-ui/react-dialog": "npm:^1.1.1"
+    "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-dropdown-menu": "npm:^2.0.6"
     "@radix-ui/react-label": "npm:^2.0.2"
     "@radix-ui/react-popover": "npm:^1.0.7"
@@ -2080,7 +2080,7 @@ __metadata:
     tailwind-merge: "npm:^2.2.2"
     tailwindcss-animate: "npm:^1.0.7"
     zod: "npm:^3.23.8"
-  checksum: 10/8694819dfb49d417fb7d695dc1d13bfa9af505cb75b31363ff0494878ccff49ce8d3097bfd61f5b3e3c49517fc6aa86ed291f390ebdbaec8e70d2a6c17b8da3b
+  checksum: 10/9257373b4d6cc8ff4e5cbb96bdedddc13bfbc0be46ab197bdb3cc7c1830f539eb516fd8d405e26fa472f5ba5bda7fbfc6a8dcf077fd72c788b65a2a56f9322bd
   languageName: node
   linkType: hard
 
