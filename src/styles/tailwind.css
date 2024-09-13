@@ -1,3 +1,5 @@
+@config "../../tailwind.config.js";
+
 @layer base {
   :root {
     --shiki-color-text: theme('colors.white');
@@ -13,6 +15,8 @@
     --bg-dark-grain: url('../images/effects/grain-dark.png');
     --bg-light-grain: url('../images/effects/grain-light.png');
     --spacing-top-navigation: theme('spacing.docs-navigation');
+
+    @apply bg-charcole-950 antialiased;
   }
 
   [inert] ::-webkit-scrollbar {

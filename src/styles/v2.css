@@ -1,0 +1,18 @@
+@config "../../tailwind.v2.config.js";
+@import '@rivet-gg/components/theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground min-h-screen;
+  }
+  #root {
+    @apply min-h-screen;
+  }
+}

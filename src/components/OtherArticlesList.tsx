@@ -14,7 +14,7 @@ export const OtherArticlesList = async ({ currentSlug }: OtherArticlesListProps)
 
   const richArticlesEntries: [string, ArticleInfo][] = await Promise.all(
     Object.entries(articles).map(async ([path, page]) => {
-      const post = await import(`../app/blog/(posts)/${path.replace('/blog/', '')}/page.mdx`);
+      const post = await import(`../app/(legacy)/blog/(posts)/${path.replace('/blog/', '')}/page.mdx`);
       return [path, { ...page, ...post.info } as ArticleInfo];
     })
   );

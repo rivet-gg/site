@@ -8,7 +8,12 @@ async function importArticle(articleFilename) {
     throw new Error(`Unexpected filename: ${articleFilename}`);
   }
 
-  let { default: component, config, metadata, info } = await import(`../app/blog/(posts)/${articleFilename}`);
+  let {
+    default: component,
+    config,
+    metadata,
+    info
+  } = await import(`../app/(legacy)/blog/(posts)/${articleFilename}`);
 
   return {
     component,
@@ -21,7 +26,7 @@ async function importArticle(articleFilename) {
 
 export async function getAllArticles() {
   let articleFilenames = await glob(['*/page.mdx'], {
-    cwd: path.join(process.cwd(), 'src/app/blog/(posts)')
+    cwd: path.join(process.cwd(), 'src/app/(legacy)/blog/(posts)')
   });
 
   let articles = await Promise.all(articleFilenames.map(importArticle));

@@ -1,11 +1,11 @@
-import { ActiveLink } from '@/components/ActiveLink';
-import { ModuleIcon } from '@/components/ModuleIcon';
+import { ModuleIcon } from '@rivet-gg/components';
 import { ModulePageLink } from '@/components/ModulePageLink';
 import { safelyLoadModule } from '@/lib/module';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/sharp-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { TooltipProvider } from '@rivet-gg/components';
 
 export default async function ModuleLayout({ children, params }) {
   const mod = await safelyLoadModule(params.module);
@@ -22,12 +22,21 @@ export default async function ModuleLayout({ children, params }) {
 
   return (
     <div>
-      <Link href='/modules' className='mb-4 flex items-center gap-2 text-white/50'>
-        <FontAwesomeIcon icon={faArrowLeft} className='size-4' />
-        Back to Modules
-      </Link>
-      <h1 className='mb-4 flex items-center text-5xl text-white'>
-        <ModuleIcon icon={meta.config.icon} className='mr-4 block max-h-12 text-orange-400' />
+      <ul className='text-muted-foreground my-4 flex items-center gap-2 text-xs'>
+        <li>
+          <Link href='/modules'>Modules</Link>
+        </li>
+        <li className='h-2.5'>
+          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+        </li>
+        <li>{meta.category.name}</li>
+        <li className='h-2.5'>
+          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+        </li>
+        <li className='text-foreground'>{meta.config.name}</li>
+      </ul>
+      <h1 className='mb-4 flex items-center text-5xl font-bold text-white'>
+        <ModuleIcon icon={meta.config.icon} className='text-primary mr-4 block max-h-12' />
         {meta.config.name}
       </h1>
       <div className='flex gap-0.5 border-b border-cream-100/10 text-white'>
@@ -45,7 +54,9 @@ export default async function ModuleLayout({ children, params }) {
           Dependencies {dependencies.length > 0 ? <>({dependencies.length})</> : ''}
         </ModulePageLink>
       </div>
-      <div className='pt-6'>{children}</div>
+      <div className='py-6'>
+        <TooltipProvider>{children}</TooltipProvider>
+      </div>
     </div>
   );
 }

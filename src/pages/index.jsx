@@ -34,7 +34,7 @@ import {
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
-import { loadModulesMeta } from '@/lib/module';
+import { loadModulesMeta } from '@rivet-gg/components';
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';

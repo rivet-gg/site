@@ -1,5 +1,5 @@
 import { ModulesStore } from '@/components/ModulesStore';
-import { loadModuleCategories } from '@/lib/module';
+import { loadModuleCategories } from '@rivet-gg/components';
 
 export default async function ModulesPage() {
   const categories = await loadModuleCategories();

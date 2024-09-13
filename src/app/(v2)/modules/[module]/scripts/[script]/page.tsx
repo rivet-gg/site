@@ -9,9 +9,10 @@ import {
   unityModule,
   unrealModule
 } from '@/lib/codeTemplates';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rivet-gg/components';
 import { generateModuleSciprtsPageParams, safelyLoadModule } from '@/lib/module';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/sharp-solid-svg-icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -31,25 +32,46 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
 
   return (
     <>
-      <Link className='mb-4 flex items-center gap-2 text-white/50' href={`/modules/${module}/scripts`}>
-        <FontAwesomeIcon icon={faArrowLeft} className='size-4' /> Back to Scripts
-      </Link>
+      <ul className='text-muted-foreground mb-4 flex items-center gap-2 text-xs'>
+        <li>
+          <Link href={`/modules/${meta.name}`}>{meta.config.name}</Link>
+        </li>
+        <li className='h-2.5'>
+          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+        </li>
+        <li>
+          <Link href={`/modules/${meta.name}/scripts`}>Scripts</Link>
+        </li>
+        <li className='h-2.5'>
+          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+        </li>
+        <li className='text-foreground'>{scriptMeta.config.name}</li>
+      </ul>
       <div className='flex flex-row justify-between gap-4'>
-        <div className='w-full max-w-3xl'>
-          <h2 className='font-display text-3xl text-white'>{scriptMeta.config.name}</h2>
-          <p className='mb-6 text-white'>{scriptMeta.config.description}</p>
+        <div className=' flex w-full  max-w-prose flex-col gap-6'>
+          <Card>
+            <CardHeader>
+              <CardTitle>{scriptMeta.config.name}</CardTitle>
+              <CardDescription>{scriptMeta.config.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className='mb-6 rounded-md border px-4 pb-3'>
+                <h3 className='bg-card relative -top-4 mb-0 inline-block text-xl font-bold'>Request</h3>
+                <SchemaPreview
+                  schema={scriptMeta.requestSchema}
+                  empty={<p className='my-4 text-white'>Script does not accept any arguments.</p>}
+                />
+              </div>
+              <div className='rounded-md border px-4 pb-3'>
+                <h3 className='bg-card relative -top-4 mb-0 inline-block text-xl font-bold'>Response</h3>
 
-          <h3 className='mb-2 font-display text-2xl text-white'>Request</h3>
-          <SchemaPreview
-            schema={scriptMeta.requestSchema}
-            empty={<p className='my-4 text-white'>Script does not accept any arguments.</p>}
-          />
-
-          <h3 className='mb-2 mt-4 font-display text-2xl text-white'>Response</h3>
-          <SchemaPreview
-            schema={scriptMeta.responseSchema}
-            empty={<p className='my-4 text-white'>Script does not return any data.</p>}
-          />
+                <SchemaPreview
+                  schema={scriptMeta.responseSchema}
+                  empty={<p className='my-4 text-white'>Script does not return any data.</p>}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
         <div className='w-full max-w-xl'>
           <CodeGroup title='Install this module'>

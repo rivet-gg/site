@@ -12,6 +12,7 @@ const withMDX = nextMDX(config);
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
+  transpilePackages: ['@rivet-gg/components'],
   typescript: {
     ignoreBuildErrors: true
   },

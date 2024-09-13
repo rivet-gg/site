@@ -10,7 +10,7 @@ import { toString } from 'mdast-util-to-string';
 export async function generateNavigation() {
   // Process all pages
   let pages = {};
-  let mdxFileNames = await glob(['app/blog/**/*.mdx', 'docs/**/*.mdx'], {
+  let mdxFileNames = await glob(['app/(legacy)/blog/**/*.mdx', 'docs/**/*.mdx'], {
     cwd: 'src'
   });
   for (let filename of mdxFileNames) {
@@ -23,7 +23,8 @@ export async function generateNavigation() {
         .replace(/^app\//, '')
         .replace(/\/page$/, '')
         .replace('(technical)/', '')
-        .replace('(posts)/', '');
+        .replace('(posts)/', '')
+        .replace('(legacy)/', '');
 
     pages[href] = await processPage({ path: filename });
   }

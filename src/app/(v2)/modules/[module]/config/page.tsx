@@ -1,3 +1,4 @@
+import { Card, CardHeader, CardTitle, CardContent } from '@rivet-gg/components';
 import { CodeGroup } from '@/components/Code';
 import { CodeBlock } from '@/components/CodeBlock';
 import { SchemaPreview } from '@/components/SchemaPreview';
@@ -16,26 +17,35 @@ export default async function ModuleConfigPage({ params }) {
 
   return (
     <div className='flex flex-row justify-between gap-4'>
-      <div className='prose w-full max-w-3xl'>
-        <h2 id='config' className='mb-4 font-display text-3xl text-white'>
-          Config
-        </h2>
-        <SchemaPreview
-          schema={meta.userConfigSchema}
-          empty={<p>This module does not define a user config.</p>}
-        />
-        <h2 id='default-config' className='-mb-3 mt-4 font-display text-3xl text-white'>
-          Default Config
-        </h2>
-        {meta.config.defaultConfig ? (
-          <CodeGroup>
-            <div>
-              <CodeBlock lang='json' code={JSON.stringify(meta.config.defaultConfig, null, 2)} />
-            </div>
-          </CodeGroup>
-        ) : (
-          <p className='mt-6'>This module does not have a default config.</p>
-        )}
+      <div className=' flex w-full  max-w-prose flex-col gap-6'>
+        <Card>
+          <CardHeader>
+            <CardTitle>Config</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <SchemaPreview
+              schema={meta.userConfigSchema}
+              empty={<p>This module does not define a user config.</p>}
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Default Config</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {meta.config.defaultConfig ? (
+              <CodeGroup>
+                <div>
+                  <CodeBlock lang='json' code={JSON.stringify(meta.config.defaultConfig, null, 2)} />
+                </div>
+              </CodeGroup>
+            ) : (
+              <p>This module does not have a default config.</p>
+            )}
+          </CardContent>
+        </Card>
       </div>
       <div className='w-full max-w-sm'>
         <TableOfContents

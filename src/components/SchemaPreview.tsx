@@ -1,4 +1,5 @@
 import { Foldable } from '@/components/FoldableSchema';
+import { Badge, cn } from '@rivet-gg/components';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
@@ -91,7 +92,7 @@ function getPropertyTypeLabel(schema: Schema) {
 type PropertyTypeLabelProps = Schema;
 
 function PropertyTypeLabel(props: PropertyTypeLabelProps) {
-  return <span className='text-xs text-charcole-700'>{getPropertyTypeLabel(props)}</span>;
+  return <Badge variant='outline'>{getPropertyTypeLabel(props)}</Badge>;
 }
 
 type PropertyLabelProps = Schema & {
@@ -101,13 +102,13 @@ type PropertyLabelProps = Schema & {
 
 function PropertyLabel({ parent, name, ...rest }: PropertyLabelProps) {
   return (
-    <p className='flex items-center gap-1'>
-      <code className='leading-none'>
+    <div className='flex items-center gap-1'>
+      <code className='text-foreground/90 leading-none'>
         {parent ? <>{parent}.</> : null}
-        <span className='font-bold'>{name}</span>
+        <span className='text-foreground font-bold'>{name}</span>
       </code>
       <PropertyTypeLabel {...rest} />
-    </p>
+    </div>
   );
 }
 
@@ -118,7 +119,7 @@ interface ObjectSchemaProps {
 }
 function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
   return (
-    <ul className={clsx('rounded-md border border-charcole-900 px-4 py-2 text-white', className)}>
+    <ul className={cn({ 'rounded-md border px-4 py-4': !!parent }, 'space-y-4', className)}>
       {Object.keys(schema.properties).map(key => {
         let property = schema.properties[key];
         property = property.type === 'nullable' ? property.item : property;
@@ -128,10 +129,10 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
 
         if (property.type === 'union') {
           return (
-            <li key={key} className='my-4'>
+            <li key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               <Foldable title='Show possible variants' closeTitle='Hide possible variants'>
-                <ul className=' my-4 rounded-md'>
+                <ul className='space-y-4 rounded-md'>
                   {property.items.map((item, index) => (
                     <li key={index} className='my-4'>
                       <SchemaPreview schema={item} parent={newParent} />
@@ -146,7 +147,7 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
         if (property.type === 'object') {
           const isEmpty = Object.keys(property.properties).length === 0;
           return (
-            <li key={key} className='my-4'>
+            <li key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               {!isEmpty ? (
                 <Foldable>
@@ -159,7 +160,7 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
 
         if (property.type === 'record' && property.elementType.type === 'object') {
           return (
-            <li key={key} className='my-4'>
+            <li key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               <Foldable>
                 <SchemaPreview schema={property.elementType} parent={newParent} />
@@ -169,13 +170,14 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
         }
 
         if (property.type === 'array') {
-          const isEmptyObject =
+          const isObject = property.item.type === 'object';
+          const isEmpty =
             property.item.type === 'object' && Object.keys(property.item.properties).length === 0;
 
           return (
-            <li key={key} className='my-4'>
+            <li key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
-              {!isEmptyObject ? (
+              {isObject && !isEmpty ? (
                 <Foldable>
                   <SchemaPreview schema={property.item} parent={newParent} />
                 </Foldable>
@@ -185,7 +187,7 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
         }
 
         return (
-          <li key={key} className='my-4'>
+          <li key={key}>
             <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
             <SchemaPreview schema={property} parent={newParent} />
           </li>
