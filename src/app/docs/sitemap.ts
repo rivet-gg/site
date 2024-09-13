@@ -26,7 +26,18 @@ export const sitemap = [
   },
   {
     title: 'Godot',
-    href: '/docs/godot'
+    href: '/docs/godot',
+    sidebar: [
+      { href: '/docs/godot' },
+      {
+        title: 'Concepts',
+        pages: [{ href: '/docs/godot/concepts/resources' }]
+      },
+      {
+        title: 'Tutorials',
+        pages: [{ href: '/docs/godot/tutorials/crash-course' }, { href: '/docs/godot/tutorials/bomber-demo' }]
+      }
+    ]
   },
   {
     title: 'Unity',

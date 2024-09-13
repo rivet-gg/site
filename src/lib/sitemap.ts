@@ -8,7 +8,7 @@ type SidebarItem = SidebarTopLevelPage | SidebarSection;
 type SiteProduct = {
   title: string;
   href: Route | URL;
-  sidebar: SidebarItem[];
+  sidebar?: SidebarItem[];
 };
 
 export type Sitemap = SiteProduct[];
