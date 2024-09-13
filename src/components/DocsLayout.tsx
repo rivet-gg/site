@@ -10,7 +10,10 @@ interface DocsLayoutProps {
 export const DocsLayout = ({ children }: DocsLayoutProps) => {
   return (
     <>
-      <Prose as='article' className='max-w-3xl'>
+      <Prose
+        as='article'
+        className='max-w-3xl'
+        style={{ '--header-height': 'var(--spacing-top-navigation)' }}>
         {children}
       </Prose>
     </>
