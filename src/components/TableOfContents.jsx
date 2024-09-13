@@ -174,13 +174,10 @@ export function TableOfContents() {
     <div
       ref={ref}
       className={clsx(
-        {
-          'pt-4 lg:top-navigation lg:max-h-tabs-content lg:pt-6': navigation.tabs,
-          'lg:top-10 lg:max-h-content': !navigation.tabs
-        },
+        'pt-4 lg:top-docs-navigation lg:max-h-tabs-content lg:pt-6',
         'w-full lg:pointer-events-auto lg:sticky lg:block lg:max-w-aside lg:self-start lg:overflow-y-auto'
       )}>
-      <div className={clsx({ 'mt-9 md:mt-7': navigation.tabs, 'mt-8': !navigation.tabs }, 'relative')}>
+      <div className='relative'>
         <motion.h2 layout='position' className='font-sans text-xs font-semibold text-white'>
           On this page
         </motion.h2>

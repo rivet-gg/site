@@ -1,9 +1,9 @@
 import { toJs } from 'estree-util-to-js';
 import { fromJs } from 'esast-util-from-js';
 
-function recmaModifyPostLayout() {
+function modifyMdxLayout(path, component) {
   return (tree, file) => {
-    if (!file.history?.[0]?.includes('(posts)')) {
+    if (!file.history?.[0]?.includes(path)) {
       return tree;
     }
     // find a function declaration that defines MDXContent
@@ -52,7 +52,7 @@ function recmaModifyPostLayout() {
     ).body[0];
 
     tree.body = [
-      ...fromJs(`import {ArticleLayout as __Layout } from "@/components/ArticleLayout"`, {
+      ...fromJs(`import {${component} as __Layout } from "@/components/${component}"`, {
         module: true
       }).body,
       ...tree.body
@@ -60,4 +60,12 @@ function recmaModifyPostLayout() {
   };
 }
 
-export const recmaPlugins = [recmaModifyPostLayout];
+function recmaModifyPostLayout() {
+  return modifyMdxLayout('(posts)', 'ArticleLayout');
+}
+
+function recmaModifyDocsLayout() {
+  return modifyMdxLayout('docs', 'DocsLayout');
+}
+
+export const recmaPlugins = [recmaModifyPostLayout, recmaModifyDocsLayout];

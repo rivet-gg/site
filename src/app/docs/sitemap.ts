@@ -5,15 +5,21 @@ export const sitemap = [
     title: 'General',
     href: '/docs/general',
     sidebar: [
-      { title: 'Introduction', href: '/docs/general' },
-      { title: 'General', pages: [{ title: 'Libraries', href: '/docs/general/libraries' }] },
+      { href: '/docs/general' },
+      { title: 'General', pages: [{ href: '/docs/general/libraries' }] },
       {
         title: 'Concepts',
         pages: [
           {
-            title: 'Authoritative vs peer-to-peer networking',
             href: '/docs/general/concepts/authoritative-vs-p2p'
           }
+        ]
+      },
+      {
+        title: 'FAQ',
+        pages: [
+          { href: '/docs/general/faq/who-is-rivet-built-for' },
+          { href: '/docs/general/faq/who-is-rivet-not-built-for' }
         ]
       }
     ]

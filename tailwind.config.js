@@ -10,7 +10,16 @@ module.exports = {
       display: ['Perfectly Nineties', 'ui-sans-serif', 'system-ui'],
       pixel: ['Silkscreen', 'ui-sans-serif', 'system-ui'],
       psychotic: ['Gloria Hallelujah', 'Open Sans', 'ui-sans-serif', 'system-ui'],
-      mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace'
+      ]
     },
     fontSize: {
       '3xs': ['0.5rem', { lineHeight: '1.25rem' }],
@@ -31,6 +40,9 @@ module.exports = {
     },
     typography: require('./typography'),
     extend: {
+      aria: {
+        'current-page': "current='page'"
+      },
       colors: require('./colors'),
       maxHeight: {
         'tabs-content': 'calc(100vh - 6.5rem)',
@@ -56,7 +68,7 @@ module.exports = {
         15: '0.15'
       },
       spacing: {
-        navigation: '6.5rem'
+        'docs-navigation': '6.5rem'
       },
       backgroundImage: {
         'rainbow-gradient': 'linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red)',

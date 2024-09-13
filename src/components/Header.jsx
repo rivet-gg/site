@@ -143,15 +143,6 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
 
-  let [bannerVisible, setBannerVisible] = useState(false);
-
-  useEffect(() => {
-    document.body.style.setProperty(
-      '--header-height',
-      navigation.tabs ? (bannerVisible ? '9rem' : '6.5rem') : bannerVisible ? '6rem' : '3.5rem'
-    );
-  }, [navigation.tabs, bannerVisible]);
-
   return (
     <>
       <motion.div
