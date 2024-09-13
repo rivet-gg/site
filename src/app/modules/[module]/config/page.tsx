@@ -1,15 +1,32 @@
-export default function ModuleScriptsPage() {
-    return "scripts";
+import { CodeGroup } from "@/components/Code";
+import { CodeBlock } from "@/components/CodeBlock";
+import { generateModulesPageParams, safelyLoadModule } from "@/lib/module";
+import { notFound } from "next/navigation";
+
+export default async function ModuleConfigPage({ params }) {
+    const mod = await safelyLoadModule(params.module);
+
+    if (!mod) {
+        return notFound();
+    }
+
+    const { meta, Readme } = mod;
+
+    return (
+        <div className="max-w-3xl">
+            <h2 className="text-white font-display text-2xl">Default Config</h2>
+            <CodeGroup>
+                <div>
+                    <CodeBlock
+                        lang="json"
+                        code={JSON.stringify(meta.defaultConfig, null, 2)}
+                    />
+                </div>
+            </CodeGroup>
+        </div>
+    );
 }
 
 export async function generateStaticParams() {
-    const modules = await import(
-        "../../../../../../vendor/opengb-meta.json"
-    );
-
-    return modules.categories.map((category) => {
-        return category.modules.map((module) => {
-            return { module: module.id };
-        });
-    }).flat();
+    return generateModulesPageParams();
 }

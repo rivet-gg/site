@@ -63,7 +63,8 @@ function rehypeShiki() {
           'powershell',
           'ts',
           'typescript',
-          'yaml'
+          'yaml',
+          'http'
         ]
       });
     }

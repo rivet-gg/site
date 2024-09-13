@@ -1,56 +1,68 @@
 import { ModuleIcon } from "@/components/ModuleIcon";
+import { safelyLoadModule } from "@/lib/module";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function ModuleLayout({ children, params }) {
-    const modules = await import(
-        `../../../../vendor/opengb-meta.json`
-    );
-
-    const mod = modules.categories.flatMap((category) => category.modules).find(
-        (module) => module.id === params.module,
-    );
+    const mod = await safelyLoadModule(params.module);
 
     if (!mod) {
         return notFound();
     }
 
+    const { meta } = mod;
+
+    const actors = Object.keys(meta.actors || {});
+    const scripts = Object.keys(meta.scripts || {});
+    const dependencies = Object.keys(meta.dependencies || {});
+
     return (
         <div>
             <h1 className="text-white text-5xl mb-4">
-                <ModuleIcon icon={mod.icon} className="mr-4 text-orange-400" />
-                {mod.name}
+                <ModuleIcon icon={meta.icon} className="mr-4 text-orange-400" />
+                {meta.name}
             </h1>
             <div className="text-white border-b border-cream-100/10 py-3">
-                <Link className="pr-4" href={`/modules/${mod.id}`}>
+                <Link className="pr-4" href={`/modules/${params.module}`}>
                     Overview
                 </Link>
                 <Link
                     className="pr-4"
-                    href={`/docs/modules/${mod.id}/config`}
+                    href={`/modules/${params.module}/config`}
                 >
                     Config
                 </Link>
                 <Link
                     className="pr-4"
-                    href={`/docs/modules/${mod.id}/scripts`}
+                    href={`/modules/${params.module}/scripts`}
                 >
-                    Scripts
+                    Scripts {scripts.length > 0 ? <>({scripts.length})</> : ""}
                 </Link>
                 <Link
                     className="pr-4"
-                    href={`/docs/modules/${mod.id}/errors`}
+                    href={`/modules/${params.module}/actors`}
+                >
+                    Actors {actors.length > 0 ? <>({actors.length})</> : ""}
+                </Link>
+                <Link
+                    className="pr-4"
+                    href={`/modules/${params.module}/errors`}
                 >
                     Errors
                 </Link>
                 <Link
                     className="pr-4"
-                    href={`/docs/modules/${mod.id}/dependencies`}
+                    href={`/modules/${params.module}/dependencies`}
                 >
-                    Dependencies
+                    Dependencies{" "}
+                    {dependencies.length > 0
+                        ? <>({dependencies.length})</>
+                        : ""}
                 </Link>
             </div>
-            {children}
+            <div className="pt-6">
+                {children}
+            </div>
         </div>
     );
 }
