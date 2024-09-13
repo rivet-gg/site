@@ -3,6 +3,7 @@
   "feedback": true,
   "sidebar": {
     "groups": [
+      { "title": "General", "pages": ["errors"] },
       {
         "title": "Dynamic Servers",
         "pages": [
@@ -42,10 +43,6 @@
       {
         "title": "Cloud API",
         "template": { "api": "cloud" }
-      },
-      {
-        "title": "Errors",
-        "template": { "errors": true }
       }
     ]
   }
