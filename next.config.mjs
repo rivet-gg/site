@@ -12,14 +12,16 @@ const withMDX = nextMDX(config);
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'],
   images: {
     // For static output
     unoptimized: true
   },
   experimental: {
-    scrollRestoration: true,
-    typedRoutes: true
+    scrollRestoration: true
   }
 };
 

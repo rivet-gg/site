@@ -26,18 +26,15 @@ import {
   faAlien8bit,
   faSkullCrossbones,
   faSkull,
-  faUsers,
   faCode,
   faShield,
-  faChartLine,
   faAddressCard,
   faChessKnight,
   faBug
 } from '@fortawesome/sharp-solid-svg-icons';
 import { faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
 import { Ferris } from '../components/icons/Ferris';
-
-import opengbMeta from '@/generated/meta.json' assert { type: 'json' };
+import { loadModulesMeta } from '@/lib/module';
 
 // TODO: This probably balloons sizes
 import * as allFas from '@fortawesome/sharp-solid-svg-icons';
@@ -53,11 +50,7 @@ function kebabToUpperCamel(str) {
     .join('');
 }
 
-const ALL_MODULES = Object.entries(opengbMeta.modules).sort((a, b) =>
-  (a[1].config.name ?? '').localeCompare(b[1].config.name)
-);
-
-export default function Index() {
+export default function Index({ modules }) {
   const restOfPageControls = useAnimation();
 
   useEffect(() => {
@@ -91,7 +84,7 @@ export default function Index() {
 
             <div className='h-44' />
 
-            <AllModules />
+            <AllModules modules={modules} />
           </div>
 
           <PoweringPlay />
@@ -463,14 +456,14 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
   );
 }
 
-function AllModules() {
+function AllModules({ modules }) {
   return (
     <div className='mx-auto px-4'>
       <h2 className='text-center font-display text-4xl font-bold tracking-tight text-cream-100 sm:text-5xl'>
         ...and so much more
       </h2>
       <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
-        {ALL_MODULES.map(([key, x]) => (
+        {modules.map(([key, x]) => (
           <div key={key} className='group/tooltip relative inline'>
             <Button variant='juicySubtle' href={`https://opengb.dev/modules/${key}/overview`} target='_blank'>
               {x.config.icon && <FontAwesomeIcon icon={allFas[`fa${kebabToUpperCamel(x.config.icon)}`]} />}
@@ -897,3 +890,14 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
 Index.description = 'Open-Source Multiplayer Tooling. A Single Tool to Manage Your Game Servers & Backend.';
 Index.prose = false;
 Index.fullWidth = true;
+
+export async function getStaticProps() {
+  const meta = await loadModulesMeta();
+  return {
+    props: {
+      modules: Object.entries(meta.modules).sort((a, b) =>
+        (a[1].config.name ?? '').localeCompare(b[1].config.name)
+      )
+    }
+  };
+}

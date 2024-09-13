@@ -2021,6 +2021,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dedent@npm:^1.5.3":
+  version: 1.5.3
+  resolution: "dedent@npm:1.5.3"
+  peerDependencies:
+    babel-plugin-macros: ^3.1.0
+  peerDependenciesMeta:
+    babel-plugin-macros:
+      optional: true
+  checksum: 045b595557b2a8ea2eb9b0b4623d764e9a87326486fe2b61191b4342ed93dc01245644d8a09f3108a50c0ee7965f1eedd92e4a3a503ed89ea8e810566ea27f9a
+  languageName: node
+  linkType: hard
+
 "deep-extend@npm:^0.6.0":
   version: 0.6.0
   resolution: "deep-extend@npm:0.6.0"
@@ -6366,6 +6378,7 @@ __metadata:
     clsx: ^1.2.0
     csv-parser: ^3.0.0
     date-fns: ^3.6.0
+    dedent: ^1.5.3
     esast-util-from-js: ^2.0.1
     eslint: 8.26.0
     eslint-config-next: 13.0.2

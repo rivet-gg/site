@@ -15,6 +15,8 @@ export * from '@/components/callouts';
 export { ArticleHeader } from '@/components/ArticleHeader';
 export { ArticleSocials } from '@/components/ArticleSocials';
 
+export { Steps, Step } from '@/components/Steps';
+
 export const a = Link;
 
 export const Image = props => <NextImage {...props} />;
@@ -329,3 +331,5 @@ export function UnfamiliarWithDockerfiles() {
 export const ExperimentalFeature = () => {
   return <Warning>This feature is experimental and may change in the future.</Warning>;
 };
+
+export { Warning, Note, Info, Tip };

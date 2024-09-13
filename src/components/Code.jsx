@@ -108,6 +108,9 @@ function CodePanelHeader({ tag, label }) {
 }
 
 function CodePanel({ tag, label, code, children }) {
+  if (!children) {
+    return null;
+  }
   let child = Children.only(children);
 
   return (
@@ -133,17 +136,19 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
       {title && <h3 className='mr-auto pt-3 font-sans text-xs font-semibold text-white'>{title}</h3>}
       {hasTabs && (
         <Tab.List className='-mb-px flex gap-4 text-xs font-medium'>
-          {Children.map(children, (child, childIndex) => (
-            <Tab
-              className={clsx(
-                'border-b py-3 transition focus:[&:not(:focus-visible)]:outline-none',
-                childIndex === selectedIndex
-                  ? 'border-violet-500 text-violet-400'
-                  : 'border-transparent text-cream-400 hover:text-cream-100'
-              )}>
-              {getPanelTitle(child.props)}
-            </Tab>
-          ))}
+          {Children.map(children, (child, childIndex) => {
+            return (
+              <Tab
+                className={clsx(
+                  'border-b py-3 transition focus:[&:not(:focus-visible)]:outline-none',
+                  childIndex === selectedIndex
+                    ? 'border-violet-500 text-violet-400'
+                    : 'border-transparent text-cream-400 hover:text-cream-100'
+                )}>
+                {getPanelTitle(child.props)}
+              </Tab>
+            );
+          })}
         </Tab.List>
       )}
     </div>
@@ -250,6 +255,10 @@ export function CodeGroup({ children, title, ...props }) {
       </Container>
     </CodeGroupContext.Provider>
   );
+}
+
+export function EphermeralTab({ children, ...props }) {
+  return <>{children}</>;
 }
 
 export function Code({ children, ...props }) {

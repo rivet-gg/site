@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build && cp _redirects out/_redirects",
+    "build": "./scripts/buildcf.sh",
     "start": "next dev",
     "lint": "next lint",
     "format": "prettier --write ."
@@ -38,6 +38,7 @@
     "clsx": "^1.2.0",
     "csv-parser": "^3.0.0",
     "date-fns": "^3.6.0",
+    "dedent": "^1.5.3",
     "esast-util-from-js": "^2.0.1",
     "estree-util-to-js": "^2.0.0",
     "fast-glob": "^3.2.12",
