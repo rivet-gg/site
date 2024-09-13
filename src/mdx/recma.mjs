@@ -64,8 +64,4 @@ function recmaModifyPostLayout() {
   return modifyMdxLayout('(posts)', 'ArticleLayout');
 }
 
-function recmaModifyDocsLayout() {
-  return modifyMdxLayout('docs', 'DocsLayout');
-}
-
-export const recmaPlugins = [recmaModifyPostLayout, recmaModifyDocsLayout];
+export const recmaPlugins = [recmaModifyPostLayout];

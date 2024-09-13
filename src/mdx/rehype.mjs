@@ -102,6 +102,38 @@ function rehypeSlugify() {
   };
 }
 
+function rehypeTableOfContents() {
+  return tree => {
+    // Headings
+    let slugify = slugifyWithCounter();
+    let headings = [];
+    // find all headings, remove the first one (the title)
+    visit(tree, 'element', node => {
+      if (node.tagName === 'h2' || node.tagName === 'h3') {
+        let parent = node.tagName === 'h2' ? headings : headings[headings.length - 1].children;
+        parent.push({
+          title: toString(node),
+          id: slugify(toString(node)),
+          children: []
+        });
+      }
+    });
+
+    let code = `export const tableOfContents = ${JSON.stringify(headings, null, 2)};`;
+
+    tree.children.push({
+      type: 'mdxjsEsm',
+      value: code,
+      data: {
+        estree: acorn.parse(code, {
+          sourceType: 'module',
+          ecmaVersion: 'latest'
+        })
+      }
+    });
+  };
+}
+
 function rehypeAddCustomCode() {
   return tree => {
     let exports = [
@@ -133,5 +165,6 @@ export const rehypePlugins = [
   rehypeShiki,
   rehypeSlugify,
   rehypeMdxTitle,
-  rehypeAddCustomCode
+  rehypeAddCustomCode,
+  rehypeTableOfContents
 ];

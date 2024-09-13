@@ -132,7 +132,7 @@ export function DocsNavigation() {
   if (!currentPage || !currentPage.sidebar) return null;
 
   return (
-    <div className="sticky top-docs-navigation text-white xl:pt-8 xl:pb-4">
+    <div className="sticky top-docs-navigation pr-4 text-white xl:pt-8 xl:pb-4 xl:max-h-tabs-content xl:overflow-y-auto">
       <Tree pages={currentPage.sidebar} />
     </div>
   );

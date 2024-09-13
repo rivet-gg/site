@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 export default async function ModuleLayout({ children, params }) {
     const modules = await import(
-        `../../../../../vendor/opengb-meta.json`
+        `../../../../vendor/opengb-meta.json`
     );
 
     const mod = modules.categories.flatMap((category) => category.modules).find(
@@ -22,7 +22,7 @@ export default async function ModuleLayout({ children, params }) {
                 {mod.name}
             </h1>
             <div className="text-white border-b border-cream-100/10 py-3">
-                <Link className="pr-4" href={`/docs/modules/${mod.id}`}>
+                <Link className="pr-4" href={`/modules/${mod.id}`}>
                     Overview
                 </Link>
                 <Link
