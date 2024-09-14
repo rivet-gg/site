@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { jsonToHTML } from './convertJson.mjs';
+import { convertJsonSchemaToSchema } from './convertJson.mjs';
 
 export async function generateRivetSchemaPage(spec) {
   let file = '# rivet.yaml Specification\n\n';
@@ -11,7 +11,9 @@ export async function generateRivetSchemaPage(spec) {
   file +=
     '## Namespacing\n\nRivet configs can override properties by naming them `rivet.{namespace}.yaml`. For example, you can configure your generic config in `rivet.yaml` and override the properties for production in `rivet.prod.yaml`.\n\n';
 
-  file += jsonToHTML(spec.components.schemas['CloudVersionConfig']);
+  file += `<SchemaPreview schema={${JSON.stringify(
+    convertJsonSchemaToSchema(spec.components.schemas['CloudVersionConfig'])
+  )}}/>`;
 
-  fs.writeFileSync('src/pages/docs/general/config.mdx', file);
+  fs.writeFileSync('src/docs/general/config.mdx', file);
 }

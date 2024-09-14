@@ -127,20 +127,6 @@ const lowLevelApi = (prefix: string = "/docs"): SidebarSection => ({
       ],
     },
     {
-      title: "Dynamic Servers API",
-      collapsible: true,
-      pages: apiPages["dynamic-servers"].pages.map(({ href }) => ({
-        href: href.replace("/docs", prefix),
-      })),
-    },
-    {
-      title: "Tokens API",
-      collapsible: true,
-      pages: apiPages["game-tokens"].pages.map(({ href }) => ({
-        href: href.replace("/docs", prefix),
-      })),
-    },
-    {
       title: "Cloud API",
       collapsible: true,
       pages: apiPages.cloud.pages.map(({ href }) => ({

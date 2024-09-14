@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-import { jsonToHTML, parametersToHTML } from './convertJson.mjs';
+import { convertJsonSchemaToSchema, parametersToHTML } from './convertJson.mjs';
 
 function apiPath(productName) {
-  return `src/pages/docs/core/${productName}/api`;
+  return `src/docs/core/${productName}/api`;
 }
 
 function camelToKebab(input) {
@@ -146,7 +146,7 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
         file += `## Request Body\n`;
         let reqSchema = specPath.requestBody?.content['application/json'].schema;
         if (reqSchema && Object.keys(reqSchema.properties).length > 0) {
-          file += jsonToHTML(reqSchema);
+          file += `<SchemaPreview schema={${JSON.stringify(convertJsonSchemaToSchema(reqSchema))}}/>`;
           file += '\n';
         } else {
           file += `_Empty request body._\n`;
@@ -157,7 +157,7 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
       file += `## Response Body\n`;
       let resSchema = specPath.responses['200']?.content['application/json']?.schema;
       if (resSchema && Object.keys(resSchema.properties).length > 0) {
-        file += jsonToHTML(resSchema);
+        file += `<SchemaPreview schema={${JSON.stringify(convertJsonSchemaToSchema(resSchema))}}/>`;
         file += '\n';
       } else {
         file += `_Empty response body._\n`;

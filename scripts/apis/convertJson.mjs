@@ -161,3 +161,79 @@ export function parametersToHTML(parameters) {
 
   return parameterHTML;
 }
+
+export function convertJsonSchemaToSchema(schema) {
+  if (schema?.type === 'object') {
+    const properties = Object.fromEntries(
+      Object.entries(schema.properties || {}).map(([key, value]) => [key, convertJsonSchemaToSchema(value)])
+    );
+
+    if (schema.additionalProperties) {
+      return {
+        type: 'union',
+        description: schema.description,
+        items: [
+          {
+            type: 'object',
+            description: schema.description,
+            properties: properties
+          },
+          convertJsonSchemaToSchema(schema.additionalProperties)
+        ]
+      };
+    }
+
+    return {
+      type: 'object',
+      description: schema.description,
+      properties: properties
+    };
+  }
+
+  if (schema?.type === 'array') {
+    // console.log(schema);
+    return {
+      type: 'array',
+      description: schema.description,
+      item: convertJsonSchemaToSchema(schema.items)
+    };
+  }
+
+  if (schema?.type === 'string') {
+    return {
+      type: 'string',
+      description: schema.description
+    };
+  }
+
+  if (schema?.type === 'integer') {
+    return {
+      type: 'number',
+      description: schema.description
+    };
+  }
+
+  if (schema?.type === 'number') {
+    return {
+      type: 'number',
+      description: schema.description
+    };
+  }
+
+  if (schema?.type === 'boolean') {
+    return {
+      type: 'boolean',
+      description: schema.description
+    };
+  }
+
+  if (!schema) {
+    return {
+      type: 'any'
+    };
+  }
+  console.log('!!!!!!Unknown schema type:', schema);
+  return {
+    type: 'any'
+  };
+}
