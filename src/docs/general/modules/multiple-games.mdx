@@ -8,16 +8,16 @@ It's common for studios to have multiple games and want to share backend data ac
 
 If we have a `leaderboard` module and we want to run multiple instances of it for the games `foo` and `bar`, we can use module aliases to create multiple instances of the module.
 
-```json
+```json {{"file": "rivet.json"}}
 {
 	"modules": {
-    // Users module is shared across all games
+    	// Users module is shared across all games
 		"users": {},
-    // Leaderboard for game `food`
+    	// Leaderboard for game `food`
 		"foo_leaderboard": {
 			"module": "leaderboard"
 		},
-    // Leaderboard for game `bar`
+    	// Leaderboard for game `bar`
 		"bar_leaderboard": {
 			"module": "leaderboard"
 		}
@@ -29,6 +29,6 @@ This will create an isolated database for each game's leaderboard.
 
 To get the scores from the `foo` leaderboard, we can use the `foo_leaderboard` module:
 
-```js
+```ts
 const fooScores = await ctx.modules.fooLeaderboard.getScores();
 ```

@@ -138,7 +138,7 @@ We're going to create a `submit_score` script that will:
 
     			This will create a new file `modules/my_leaderboard/scripts/submit_score.ts`:
 
-    			```typescript
+    			```typescript {{"file": "modules/my_leaderboard/scripts/submit_score.ts"}}
     			import { ScriptContext } from "../module.gen.ts";
 
     			export interface Request {}
@@ -146,8 +146,8 @@ We're going to create a `submit_score` script that will:
     			export interface Response {}
 
     			export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
-    			// TODO: Implement code for my_leaderboard/submit_score
-    			throw new Error("Unimplemented");
+					// TODO: Implement code for my_leaderboard/submit_score
+					throw new Error("Unimplemented");
     			}
     			```
 
@@ -180,7 +180,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Add dependencies & make public">
     	Update the `modules/my_leaderboard/module.json` file to look like this:
 
-    	```json modules/my_leaderboard/module.json
+    	```json {{"file": "modules/my_leaderboard/module.json"}}
 		{
 			"dependencies": {
 				"users": {},
@@ -205,7 +205,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Update request & response">
     	Open `modules/my_leaderboard/scripts/submit_score.ts` and update `Request` and `Response` to look like this:
 
-    	```typescript modules/my_leaderboard/scripts/submit_score.ts
+    	```typescript {{"file": "modules/my_leaderboard/scripts/submit_score.ts"}}
     	export interface Request {
     		userToken: string;
     		score: number;
@@ -223,7 +223,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Throttle requests">
     	At the top the `run` function in `modules/my_leaderboard/scripts/submit_score.ts` file, add code to throttle requests:
 
-    	```typescript models/my_leaderboard/scripts/submit_score.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/submit_score.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		await ctx.modules.rateLimit.throttlePublic({ requests: 1, period: 15 });
     		// ...
@@ -237,7 +237,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Validate user token">
     	Then authenticate the user:
 
-    	```typescript models/my_leaderboard/scripts/submit_score.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/submit_score.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		const validate = await ctx.modules.users.authenticateUser({ userToken: req.userToken });
@@ -252,7 +252,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Insert score">
     	Then insert the score in to the database:
 
-    	```typescript models/my_leaderboard/scripts/submit_score.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/submit_score.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		await ctx.db.scores.create({
@@ -274,7 +274,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Query rank">
     	Finally, query the score's rank:
 
-    	```typescript models/my_leaderboard/scripts/submit_score.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/submit_score.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		const rank = await ctx.db.scores.count({
@@ -299,7 +299,7 @@ We're going to create a `submit_score` script that will:
 </Steps>
 
 <Accordion title="Full submit_score.ts source code">
-	```typescript models/my_leaderboard/scripts/submit_score.ts
+	```typescript {{"file": "models/my_leaderboard/scripts/submit_score.ts"}}
 	import { ScriptContext } from "../module.gen.ts";
 
     export interface Request {
@@ -361,7 +361,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Make public">
     	Open `modules/my_leaderboard/module.json` and update the `get_top_scores` script to be public:
 
-    	```json modules/my_leaderboard/module.json
+    	```json {{"file": "modules/my_leaderboard/module.json"}}
 		{
 			"scripts": {
 				"get_top_scores": null
@@ -373,7 +373,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Update request & response">
     	Open `modules/my_leaderboard/scripts/get_top_scores.ts` and update `Request` and `Response` to look like this:
 
-    	```typescript modules/my_leaderboard/scripts/get_top_scores.ts
+    	```typescript {{"file": "modules/my_leaderboard/scripts/get_top_scores.ts"}}
     	export interface Request {
     		count: number;
     	}
@@ -396,7 +396,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Throttle requests">
     	At the top the `run` function in `modules/my_leaderboard/scripts/get_top_scores.ts` file, add code to throttle the requests:
 
-    	```typescript models/my_leaderboard/scripts/get_top_scores.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/get_top_scores.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		await ctx.modules.rateLimit.throttlePublic({});
     		// ...
@@ -406,7 +406,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Query scores">
     	Then query the top scores:
 
-    	```typescript models/my_leaderboard/scripts/get_top_scores.ts
+    	```typescript {{"file: "models/my_leaderboard/scripts/get_top_scores.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		const rows = await ctx.db.scores.findMany({
@@ -427,7 +427,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Convert rows">
     	Finally, convert the database rows in to `Score` objects:
 
-    	```typescript models/my_leaderboard/scripts/get_top_scores.ts
+    	```typescript {{"file": "models/my_leaderboard/scripts/get_top_scores.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		const scores = [];
@@ -454,7 +454,7 @@ We're going to create a `submit_score` script that will:
 
 <Accordion title="Full get_top_scores.ts source code">
 
-    ```typescript models/my_leaderboard/scripts/get_top_scores.ts
+    ```typescript {{"file": "models/my_leaderboard/scripts/get_top_scores.ts"}}
     import {  ScriptContext } from "../module.gen.ts";
 
     export interface Request {
@@ -518,7 +518,7 @@ We're going to create a `submit_score` script that will:
 
     	You will be prompted to apply your schema changes to the database. Name the migration _init_ (this name doesn't matter):
 
-    	```
+    	```text {{"title": "Terminal Output"}}
     	Migrate Database develop (my_leaderboard)
     	Prisma schema loaded from schema.prisma
     	Datasource "db": PostgreSQL database "my_leaderboard", schema "public" at "host.docker.internal:5432"
@@ -555,7 +555,7 @@ Tests are helpful for validating your module works as expected before running in
 
     	Update `modules/my_leaderboard/tests/e2e.ts` to look like this:
 
-    	```typescript modules/my_leaderboard/tests/e2e.ts
+    	```typescript {{"file": "modules/my_leaderboard/tests/e2e.ts"}}
     	import { test, TestContext } from "../module.gen.ts";
     	import { assertEquals } from "https://deno.land/std@0.220.0/assert/mod.ts";
     	import { faker } from "https://deno.land/x/deno_faker@v1.0.3/mod.ts";
@@ -598,7 +598,7 @@ Tests are helpful for validating your module works as expected before running in
 
     	You should see this output once complete:
 
-    	```
+    	```text {{"title": "Terminal Output"}}
     	...test logs...
     	----- output end -----
     	e2e ... ok (269ms)
