@@ -3,12 +3,8 @@
 import { ActiveLink } from '@/components/ActiveLink';
 import { Tree } from '@/components/DocsNavigation';
 import { sitemap } from '@/sitemap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBooks, faPuzzle, faNewspaper, faCoin } from '@fortawesome/sharp-solid-svg-icons';
 import { Header as RivetHeader } from '@rivet-gg/components/header';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment } from 'react';
 
 function CoreNavigation() {}
 
@@ -47,42 +43,30 @@ export function DocsMobileNavigation() {
   return (
     <>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/docs'>
-          <FontAwesomeIcon icon={faBooks} />
-          Docs
-        </ActiveLink>
+        <ActiveLink href='/docs'>Docs</ActiveLink>
       </RivetHeader.NavItem>
       {Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => {
         if (currentPage?.href.includes(key)) {
           return (
-            <div key={key} className='ml-6'>
+            <div key={key} className='ml-2'>
               {value} <Tree pages={currentPage.sidebar} className='mt-2' />
             </div>
           );
         }
         return (
-          <div key={key} className='ml-6'>
+          <div key={key} className='ml-2'>
             {value}
           </div>
         );
       })}
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/modules'>
-          <FontAwesomeIcon icon={faPuzzle} />
-          Modules
-        </ActiveLink>
+        <ActiveLink href='/modules'>Modules</ActiveLink>
       </RivetHeader.NavItem>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/blog'>
-          <FontAwesomeIcon icon={faNewspaper} />
-          Blog
-        </ActiveLink>
+        <ActiveLink href='/blog'>Blog</ActiveLink>
       </RivetHeader.NavItem>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/pricing'>
-          <FontAwesomeIcon icon={faCoin} />
-          Pricing
-        </ActiveLink>
+        <ActiveLink href='/pricing'>Pricing</ActiveLink>
       </RivetHeader.NavItem>
     </>
   );
