@@ -171,7 +171,7 @@ function Title() {
     { break: true },
     {
       feature: 'Authentication',
-      href: 'https://opengb.dev/modules/auth/overview',
+      href: '/modules/auth/overview',
       target: '_blank',
       icon: faAddressCard
     },
@@ -179,7 +179,7 @@ function Title() {
     { subtle: 'Customize endlessly using ' },
     {
       feature: 'Backend Scripting',
-      href: 'https://opengb.dev/docs/quickstart',
+      href: '/docs/modules/quickstart',
       target: '_blank',
       icon: faCode
     },
@@ -465,7 +465,7 @@ function AllModules({ modules }) {
       <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
         {modules.map(([key, x]) => (
           <div key={key} className='group/tooltip relative inline'>
-            <Button variant='juicySubtle' href={`https://opengb.dev/modules/${key}/overview`} target='_blank'>
+            <Button variant='juicySubtle' href={`/modules/${key}/overview`} target='_blank'>
               {x.config.icon && <FontAwesomeIcon icon={allFas[`fa${kebabToUpperCamel(x.config.icon)}`]} />}
               {x.config.name}
             </Button>
@@ -492,11 +492,11 @@ function AllModules({ modules }) {
         ))}
       </div>
       <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
-        <Button variant='juicy' href='https://opengb.dev/build/overview' target='_blank'>
+        <Button variant='juicy' href='/docs/modules/build/overview' target='_blank'>
           <FontAwesomeIcon icon={faPlus} />
           Build Your Own Modules
         </Button>
-        <Button variant='juicy' href='https://github.com/rivet-gg/opengb-modules' target='_blank'>
+        <Button variant='juicy' href='https://github.com/rivet-gg/modules' target='_blank'>
           <FontAwesomeIcon icon={faGears} />
           Modify Existing Modules
         </Button>
@@ -832,7 +832,7 @@ function AdaptableSection() {
         <AdaptableFeature
           title='Custom modules without server hassels'
           description='Write backend modules with TypeScript, Postgres, and real-time actors. Auto-generate SDKs for your module to use in engine. Reuse modules across multiple games with registries.'
-          docsHref='https://opengb.dev/docs/build/overview'
+          docsHref='/docs/modules/build/overview'
         />
         <AdaptableFeature
           title='Access to low-level APIs'
@@ -846,7 +846,7 @@ function AdaptableSection() {
         <AdaptableFeature
           title='Integrated with existing tools'
           description='Works with your favorite tools & existing backends. Integrate Rivet incrementally without having to rewrite anything.'
-          docsHref='https://opengb.dev/integrations/overview'
+          docsHref='/modules'
         />
       </div>
     </div>

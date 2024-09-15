@@ -1,10 +1,10 @@
 # Actors
 
-Actors are a fundamental concept in OpenGB, providing a way to encapsulate state and behavior within a module. They are designed to handle concurrent requests and maintain their own internal state.
+Actors are a core concept in Rivet modules, providing a way to encapsulate state and behavior within a module. They are designed to handle concurrent requests and maintain their own internal state.
 
 ## What is an Actor?
 
-An actor in OpenGB is a standalone unit that can receive requests, process them, and maintain its own state. Actors are created on-demand and can be accessed via a unique identifier. Each actor runs in isolation, meaning it does not share state with other actors or parts of the system.
+An actor is a standalone unit that can receive requests, process them, and maintain its own state. Actors are created on-demand and can be accessed via a unique identifier. Each actor runs in isolation, meaning it does not share state with other actors or parts of the system.
 
 ### Example Uses of Actors
 
@@ -18,14 +18,14 @@ Actors are particularly useful in game development scenarios, such as:
 
 ## Creating an Actor
 
-To create an actor in OpenGB:
+To create an actor:
 
 1. Create a new TypeScript file in your module's directory with a name representing your actor.
 
 2. Define your actor class by extending the `ActorBase` class:
 
 ```typescript
-import { ActorBase } from "@opengb/runtime";
+import { ActorBase } from "./module.gen.ts";
 
 export class MyActor extends ActorBase<MyActorInput, MyActorState> {
   // Actor implementation
@@ -47,7 +47,7 @@ export class MyActor extends ActorBase<MyActorInput, MyActorState> {
 When an actor is created, it receives an input object and an initialization function is called. The input object is used to provide initial data to the actor, while the `initialize` function is responsible for setting up the actor's initial state.
 
 ```typescript
-import { ActorBase, ActorContext } from "@opengb/runtime";
+import { ActorBase, ActorContext } from "./module.gen.ts";
 
 interface MyActorInput {
   // Input properties
@@ -83,13 +83,11 @@ export class MyActor extends ActorBase<MyActorInput, MyActorState> {
 }
 ```
 
-Here are some additional sections to add to the OpenGB Actors documentation:
-
 ### Structuring State
 
 #### Optimize State for Persistence
 
-When designing your actor's state, think of it as a JSON file that will be persisted to disk. Keep in mind that the format of the state may change over time as your application evolves.
+When designing your actor's state, think of it as a JSON file that will be persisted to disk. Keep in mind that the format of the state may change over time as your module evolves.
 
 Instead of reading from and writing to the state directly, it's recommended to create getter and setter methods that encapsulate the state manipulation logic. This allows you to handle state changes in a controlled manner and adapt to format changes more easily.
 
@@ -168,28 +166,12 @@ export class MyActor extends ActorBase<MyActorInput, MyActorState> {
 
 Here's the updated section on "Calling RPC Functions From Scripts" with subheaders for the different ways to call RPC functions:
 
-### Calling RPC Functions From Scripts
-
-To call an actor's RPC function, you need to obtain an instance of the `ActorProxy` class, which provides methods to interact with the actor.
-
-```typescript
-import { ActorProxy } from "@opengb/runtime";
-
-const actorProxy = new ActorProxy(
-  runtime,
-  driver,
-  "my_module",
-  "my_actor",
-  trace
-);
-```
-
 #### Call an RPC Function
 
 Use the `call` method to invoke an RPC function on an existing actor instance.
 
 ```typescript
-const response = await actorProxy.call<MyRpcRequest, MyRpcResponse>(
+const response = await ctx.actor.myActor.call<MyRpcRequest, MyRpcResponse>(
   "actor_instance_id",
   "myRpcFunction",
   request
@@ -201,9 +183,7 @@ const response = await actorProxy.call<MyRpcRequest, MyRpcResponse>(
 Use the `create` method to create a new actor instance, and then use the `call` method to invoke an RPC function on the newly created instance.
 
 ```typescript
-await actorProxy.create<MyActorInput>("actor_instance_id", input);
-
-const response = await actorProxy.call<MyRpcRequest, MyRpcResponse>(
+const response = await ctx.actors.myActor.call<MyRpcRequest, MyRpcResponse>(
   "actor_instance_id",
   "myRpcFunction",
   request
@@ -215,7 +195,7 @@ const response = await actorProxy.call<MyRpcRequest, MyRpcResponse>(
 Use the `getOrCreateAndCall` method to either get an existing actor instance or create a new one if it doesn't exist, and then invoke an RPC function on the instance.
 
 ```typescript
-const response = await actorProxy.getOrCreateAndCall<MyActorInput, MyRpcRequest, MyRpcResponse>(
+const response = await ctx.actors.myActor.getOrCreateAndCall<MyActorInput, MyRpcRequest, MyRpcResponse>(
   "actor_instance_id",
   input,
   "myRpcFunction",
@@ -228,7 +208,7 @@ const response = await actorProxy.getOrCreateAndCall<MyActorInput, MyRpcRequest,
 Use the `exists` method to check if an actor instance exists.
 
 ```typescript
-const actorExists = await actorProxy.exists("actor_instance_id");
+const actorExists = await ctx.actors.myActor.exists("actor_instance_id");
 ```
 
 #### Destroy an Actor Instance
@@ -236,10 +216,8 @@ const actorExists = await actorProxy.exists("actor_instance_id");
 Use the `destroy` method to destroy an actor instance.
 
 ```typescript
-await actorProxy.destroy("actor_instance_id");
+await ctx.actors.myActor.destroy("actor_instance_id");
 ```
-
-These are the different ways to interact with actors and call their RPC functions using the `ActorProxy` class in OpenGB. Choose the appropriate method based on your specific use case and requirements.
 
 ## Storage
 
@@ -258,11 +236,9 @@ await this.storage.set("my_key", "my_value");
 const value = await this.storage.get("my_key");
 ```
 
-Here are some new sections to add to the OpenGB Actors documentation:
-
 ### When to Use Actors for Storage
 
-When deciding how to store data in your OpenGB application, you have a few options: using actor state, using a database, or a hybrid approach. Here are some guidelines on when to use each:
+When deciding how to store data in your Rivet module, you have a few options: using actor state, using a database, or a hybrid approach. Here are some guidelines on when to use each:
 
 #### Actor State
 
@@ -308,7 +284,7 @@ When working with actors and storage, consider the following best practices:
 
 5. **Test thoroughly**: Write comprehensive tests to verify the correctness of your actor storage implementation. Test various scenarios, including concurrent access, failure cases, and data consistency.
 
-By carefully considering your storage requirements and following best practices, you can design an efficient and reliable storage architecture for your OpenGB application using actors, databases, or a combination of both.
+By carefully considering your storage requirements and following best practices, you can design an efficient and reliable storage architecture for your Rivet modules using actors, databases, or a combination of both.
 
 ## Schedule
 
@@ -341,7 +317,7 @@ Actors should not perform CPU-intensive tasks that block execution for long peri
 
 To optimize performance, aim to perform as little work as possible within the actor itself. Expensive operations like database queries or heavy computations should be done in the request handlers or scripts before sending a message to the actor.
 
-Scripts can scale horizontally, while actors can become a performance bottleneck if misused. By offloading work to the request handlers, you can ensure better scalability and responsiveness of your application.
+Scripts can scale horizontally, while actors can become a performance bottleneck if misused. By offloading work to the request handlers, you can ensure better scalability and responsiveness of your module.
 
 #### In-Memory Indexes for Complex State
 
@@ -387,17 +363,17 @@ function getActorInstanceName(key: string): string {
 
 // In your request handler
 const actorInstanceName = getActorInstanceName(key);
-const response = await actorProxy.call(actorInstanceName, "someMethod", request);
+const response = await ctx.actors.myActor.call(actorInstanceName, "someMethod", request);
 ```
 
 By distributing the load across multiple actor instances, you can achieve better performance and scalability in handling high-traffic scenarios.
 
-These additional sections provide guidance on structuring actor state, handling state migrations, and optimizing actor performance. By following these best practices, you can build robust and efficient actors in your OpenGB application.
+These additional sections provide guidance on structuring actor state, handling state migrations, and optimizing actor performance. By following these best practices, you can build robust and efficient actors in your Rivet module.
 
 ## Advanced
 
 ### Storage Alias
-Here's an updated section on Storage Alias in the OpenGB Actors documentation:
+Here's an updated section on Storage Alias in the Rivet Actors documentation:
 
 ### Storage Alias
 
@@ -421,4 +397,4 @@ To use Storage Alias:
 
 **IMPORTANT**: Changing the `storageAlias` will effectively unlink all data stored for this actor. If you change it back to the old value, the data will be restored.
 
-When an actor is initialized, OpenGB uses the `storageAlias` (if provided) instead of the actor's current name to determine the storage key. This ensures that the actor's data remains associated with the same storage key even if the actor's name is changed.
+When an actor is initialized, Rivet uses the `storageAlias` (if provided) instead of the actor's current name to determine the storage key. This ensures that the actor's data remains associated with the same storage key even if the actor's name is changed.

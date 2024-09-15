@@ -37,18 +37,11 @@ const usingModules = (prefix: string = "/docs"): SidebarSection => ({
       pages: [
         { href: `${prefix}/general/modules/cli` },
         { href: `${prefix}/general/modules/registries`, icon: "share-nodes" },
-        { href: `${prefix}/general/modules/self-hosting`, icon: "server" },
-        {
-          href: `${prefix}/general/modules/multiple-games`,
-          icon: "object-intersect",
-        },
-        {
-          href: `${prefix}/general/modules/environment-variables`,
-          icon: "leaf",
-        },
-      ],
-    },
-  ],
+        { href: `${prefix}/general/modules/multiple-games`, icon: "object-intersect" },
+        { href: `${prefix}/general/modules/environment-variables`, icon: "leaf" }
+      ]
+    }
+  ]
 });
 
 const developingModules = (prefix: string = "/docs"): SidebarSection => ({

@@ -6,7 +6,7 @@ Registries are used to manage collections of modules & share modules across back
 
 Most mature game studios have registries configured like this inside of their game's repo:
 
-```json backend.json
+```json rivet.json
 {
 	"registries": {
     // Modules shared across multiple games
@@ -43,15 +43,12 @@ The registry named `default` is special. Any modules without a specified registr
 
 The default config for the `default` registry is:
 
-```json backend.json
+```json rivet.json
 {
 	"registries": {
 		"default": {
-			"git": {
-				"url": {
-					"https": "https://github.com/rivet-gg/opengb-modules.git",
-					"ssh": "git@github.com:rivet-gg/opengb-modules.git"
-				},
+			"github": {
+        "repository": "rivet-gg/modules",
 				"directory": "./modules",
 				"rev": "foobar"
 			}
@@ -60,15 +57,15 @@ The default config for the `default` registry is:
 }
 ```
 
-You can override this in your `backend.json` file.
+You can override this in your `rivet.json` file.
 
 ### `local`
 
-The registry named `local` is special. All commands with `opengb create` will create a module in the `local` registry.
+The registry named `local` is special. All commands with `rivet create` will create a module in the `local` registry.
 
 Most projects specify a default registry like:
 
-```json backend.json
+```json rivet.json
 {
 	"registries": {
 		"local": {
@@ -92,7 +89,7 @@ If a module is stored locally but shared across multiple backends, set `isExtern
 
 Example:
 
-```json backend.json
+```json rivet.json
 {
 	"registries": {
 		"local": {
@@ -112,12 +109,29 @@ Git registries represent a git repository holding modules. This is useful for sh
 
 This uses the native Git CLI to fetch modules, so you can use private Git registries that your computer has access to.
 
-```json backend.json
+```json rivet.json
 {
 	"registries": {
 		"shared": {
 			"git": {
 				"url": "https://github.com/my-studio/my-registry.git",
+				"directory": "./modules"
+			}
+		}
+	}
+}
+```
+
+### `github`
+
+GitHub registries are a convenience alias of the `git` registry.
+
+```json rivet.json
+{
+	"registries": {
+		"shared": {
+			"github": {
+				"repository": "my-studio/my-registry",
 				"directory": "./modules"
 			}
 		}

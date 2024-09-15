@@ -52,14 +52,14 @@ export default function MainFeatures() {
         title='Accounts, Friends, & Presence'
         description={<>Display friends online & facilitate playing together. Authenticate with email, username, or <Tooltip tip='Google, Twitch, Discord, and more'>social</Tooltip>.</>}
         buttons={[
-          { name: 'Documentation', href: 'https://opengb.dev/modules/auth/overview', target: '_blank' }
+          { name: 'Documentation', href: '/modules/auth/overview', target: '_blank' }
         ]}
       />
       <MainFeatureColumn
         icon={faPuzzle}
         title='100% Modular & Scriptable'
-        description={<>Pick and choose modules to use. Easily write server-side scripts & real-time actors. <Tooltip tip='Powered by Postgres'>Database</Tooltip> included for free. Powered by <a href='https://opengb.dev' target='_blank' rel='noreferrer' className='text-orange-400 hover:text-orange-300'>Open Game Backend</a>.</>}
-        buttons={[{ name: 'Documentation', href: 'https://opengb.dev/docs/quickstart', target: '_blank' }]}
+        description={<>Pick and choose modules to use. Easily write server-side scripts & real-time actors. <Tooltip tip='Powered by Postgres'>Database</Tooltip> included for free.</>}
+        buttons={[{ name: 'Documentation', href: '/docs/modules/quickstart', target: '_blank' }]}
       />
     </div>
   );

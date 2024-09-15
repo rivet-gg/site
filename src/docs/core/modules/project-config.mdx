@@ -37,12 +37,12 @@ Configs are merged with:
 
 ### Example
 
-This example will override the `lobbies` config with a development config in `backend.dev.json`.
+This example will override the `lobbies` config with a development config in `rivet.dev.json`.
 
 <CodeGroup>
-```json backend.dev.json
+```json rivet.dev.json
 {
-	"extends": "backend.json",
+	"extends": "rivet.json",
 	"modules": {
 		"lobbies": {
 			"config": {
@@ -63,7 +63,7 @@ This example will override the `lobbies` config with a development config in `ba
 }
 ```
 
-```json backend.json
+```json rivet.json
 {
 	"modules": {
 		"users": {},

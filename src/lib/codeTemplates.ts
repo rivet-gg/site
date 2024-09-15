@@ -9,7 +9,7 @@ export const backendModule = ({ module, script }) =>
 
 export const frontendModule = ({ module, script }) =>
     dedent`
-        import { Backend } from "opengb-sdk";
+        import { Backend } from "rivet-sdk";
         const backend = new Backend({ endpoint: "http://localhost:6420" });
         const data = await backend.${module}.${script}({
             // Request body
@@ -28,14 +28,15 @@ export const godotModule = ({ module, script }) =>
 
 export const unityModule = ({ module, script }) =>
     dedent`
-        using OpenGB;
+        using Rivet;
 
         public class MyScript : MonoBehaviour
         {
             async void Start()
             {
-                var backend = new Backend("http://localhost:6420");
-                var data = await backend.${module}.${script}({
+                var config = new Configuration();
+                var client = new BackendClient(config.BackendEndpoint);
+                var data = await client.${module}.${script}({
                     // Request body
                 });
             }

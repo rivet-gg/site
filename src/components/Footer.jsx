@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const footer = {
   docs: [
     { name: 'Documentation', href: '/docs' },
-    { name: 'Modules', href: 'https://opengb.dev/modules', target: '_blank' }
+    { name: 'Modules', href: '/modules', target: '_blank' }
   ],
   company: [
     // { name: 'We\'re hiring!', href: 'https://rivet-gg.notion.site/Job-Board-eed66f2eab2b4d7ea3e21ccd63b22efe?pvs=4', newTab: true, highlight: true, badge: '1' },

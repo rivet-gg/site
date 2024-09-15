@@ -1,28 +1,76 @@
 # Quickstart
 
-Before getting started, [read about how OpenGB works](/introduction#how-opengb-works).
-
 <Steps>
-    <Step title="Install Open Game Backend">
+    <Step title="Install Rivet CLI">
         <Tabs>
-            <Tab title="Install From GitHub (recommended)">
-                1. [Install Git](https://git-scm.com/downloads)
-                2. [Install Deno](https://docs.deno.com/runtime/manual/getting_started/installation)
-                3. Install Open Game Backend:
+            <Tab title="macOS & Linux & WSL">
+                **Install latest version**
 
-                <Version />
-                
+                ```sh
+                curl -fsSL https://raw.githubusercontent.com/rivet-gg/cli/main/install/unix.sh | sh
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```sh
+                export RIVET_CLI_VERSION="v1.0.0"
+                curl -fsSL https://raw.githubusercontent.com/rivet-gg/cli/${RIVET_CLI_VERSION}/install/unix.sh | sh
+                ```
+
+                _The `export` keyword is important. The variable `RIVET_CLI_VERSION` needs to be accessible inside the install script._
             </Tab>
-            <Tab title="Build From Source">
-                1. [Install Git](https://git-scm.com/downloads)
-                2. [Install Deno](https://docs.deno.com/runtime/manual/getting_started/installation)
-                3: Clone & Build Open Game Backend
+            <Tab title="Windows (cmd)">
+                **Install latest version**
 
-                    ``` sh
-                    git clone https://github.com/rivet-gg/opengb.git
-                    cd opengb
-                    deno task cli:install
-                    ```
+                ```ps1
+                powershell -Command "iwr https://raw.githubusercontent.com/rivet-gg/cli/main/install/windows.ps1 -useb | iex"
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```sh
+                powershell -Command "$env:RIVET_CLI_VERSION='v1.0.0'; iwr https://raw.githubusercontent.com/rivet-gg/cli/$env:RIVET_CLI_VERSION/install/windows.ps1 -useb | iex"
+                ```
+            </Tab>
+            <Tab title="Windows (PowerShell)">
+                **Install latest version**
+
+                ```
+                iwr https://raw.githubusercontent.com/rivet-gg/cli/main/install/windows.ps1 -useb | iex
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```ps1
+                $env:RIVET_CLI_VERSION='v1.0.0'
+                iwr https://raw.githubusercontent.com/rivet-gg/cli/$env:RIVET_CLI_VERSION/install/windows.ps1 -useb | iex
+                ```
+            </Tab>
+            <Tab title="Build From Source (`cargo install`)">
+                1. [Install Git](https://git-scm.com/downloads)
+                2. [Install Rust](https://rustup.sh)
+                3: Install Rivet
+
+                    ```sh
+                    cargo install --git=https://github.com/rivet-gg/toolchain rivet-cli
+                    ````
+            </Tab>
+            <Tab title="Build From Source (`cargo build`)">
+                1. [Install Git](https://git-scm.com/downloads)
+                2. [Install Rust](https://rustup.sh)
+                3: Install Rivet
+
+                    ```sh
+                    git clone https://github.com/rivet-gg/toolchain
+                    cd packages/cli
+                    cargo build
+                    ````
             </Tab>
         </Tabs>
     </Step>
@@ -30,19 +78,19 @@ Before getting started, [read about how OpenGB works](/introduction#how-opengb-w
         Create a new project by running the following command:
 
         ```sh
-        opengb init
+        rivet init
         ```
 
-        This creates a `backend.json` config file. See the project configuration [here](/docs/project-config).
+        This creates a `rivet.json` config file. See the project configuration [here](/docs/project-config).
     </Step>
     <Step title="Add modules">
         The default project comes with a set of modules preinstalled. For example, install the `friends` module by running the following command:
 
         ```sh
-        opengb module add friends
+        rivet module add friends
         ```
 
-        This adds the `friends` module to the `backend.json` file. You can also install modules manually by adding them to this config.
+        This adds the `friends` module to the `rivet.json` file. You can also install modules manually by adding them to this config.
 
         See a list of available modules [here](/modules).
     </Step>
@@ -50,41 +98,20 @@ Before getting started, [read about how OpenGB works](/introduction#how-opengb-w
         The development server is great for testing your scripts locally. This will build & run your backend locally & hot reload when you make changes to the configuration.
 
         ```sh
-        opengb dev
+        rivet dev
         ```
-    </Step>
-    <Step title="Generate SDK (optional)">
-        Open Game Backend will generate an SDK with type-safe methods to call your scripts.
-        
-        Replace `<output>` with the path where you want to generate the SDK. Replace `<target>` with the target language.
-
-        ```sh
-        opengb sdk generate --output <output> <target>
-        ```
-
-        See the [SDK docs](/docs/sdk) for instructions on how to use the generated SDK.
-
-        <Info>
-            Godot, Unity, Unreal, and Rust SDKs coming soon.
-        </Info>
     </Step>
     <Step title="Deploy server (optional)">
         Install the [Rivet CLI](https://github.com/rivet-gg/cli), then run the following:
 
         ```sh
-        rivet init
         rivet deploy prod
         ```
-
-        See self-hosting instructions [here](/docs/self-hosting).
     </Step>
     <Step title="Next steps">
         <CardGroup>
             <Card title="See available modules ->" href="/modules/overview" />
-            <Card title="Learn about registries ->" href="/docs/registries" />
-            <Card title="Learn about the CLI ->" href="/docs/cli" />
-            <Card title="Write your own module ->" href="/docs/build/quickstart" />
+            <Card title="Write your own module ->" href="/docs/modules/build/quickstart" />
         </CardGroup>
     </Step>
-
 </Steps>

@@ -1,24 +1,31 @@
 # SDK Generation
 
-Open Game Backend generates a unique SDK for your backend with type-safe methods to call your scripts.
+Rivet generates a unique SDK for your modules with type-safe methods to call your scripts automatically. This SDK configuration can be found in the `sdk` portion of your `rivet.json`. 
 
 ## Setup
 
-<Note>Godot, Unity, Unreal, and Rust SDKs coming soon.</Note>
+### Godot
+
+The Rivet plugin automatically configures SDK generation for you. The SDK is automatically available to you on the `Rivet` singleton.
+
+The backend endpoint is automatically populated for you.
+
+### Unity
+
+The Rivet plugin automatically configures SDK generation for you.
+
+The SDK an be access using the `Rivet.RivetClient` object:
+
+```csharp
+var config = new Configuration();
+var client = new BackendClient(config.BackendEndpoint);
+```
+
+The backend endpoint is automatically populated for you.
 
 ### JavaScript & TypeScript
 
 <Steps>
-    <Step title="Generating SDK">
-
-        Replace `<output>` with the path where you want to generate the SDK.
-
-        ```sh
-        opengb sdk generate --output <output> typescript
-        ```
-
-    </Step>
-
     <Step title="Install SDK">
         Replace `./path/to/sdk` with the path to the generated SDK.
 
@@ -39,12 +46,12 @@ Open Game Backend generates a unique SDK for your backend with type-safe methods
     <Step title="Initiate SDK">
 
         ```typescript
-        import { BackendApi } from "opengb-sdk";
-        const backend = new BackendApi({});
+        import { Rivet } from "rivet-sdk";
+        const rivet = new Rivet({});
         ```
 
         <Warning>
-            The default SDK connects to `http://localhost:8080` by default (where `opengb dev` runs). See [#255](https://github.com/rivet-gg/opengb/issues/255).
+            The SDK connects to `http://localhost:6420` by default. This can be configured by passing `endpoint` to the constructor.
         </Warning>
 
     </Step>
@@ -59,3 +66,4 @@ Open Game Backend generates a unique SDK for your backend with type-safe methods
     </Step>
 
 </Steps>
+

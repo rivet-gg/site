@@ -1,6 +1,6 @@
 # Overview
 
-Open Game Backend is built from the ground up to enable as many game developers as possible to write backend code & modify existing modules.
+Rivet is built from the ground up to enable as many game developers as possible to write backend code & modify existing modules.
 
 ## Components
 
@@ -19,7 +19,7 @@ Modules have access to the following core components:
 - `scripts/`
     - `*.ts` Script to run on the backend. [Documentation](/docs/build/scripts)
 - `db/` _(optional)_ Database-related files. [Documentation](/docs/build/database)
-    - `schema.prisma` Database schema.
-    - `migrations/` Database migrations auto-generated from `schema.prisma`. This directory should not be manually modified unless you know what you are doing.
+    - `schema.ts` Database schema.
+    - `migrations/` Database migrations auto-generated from `schema.ts`. This directory should not be manually modified unless you know what you are doing.
 - `config.ts` _(optional)_ Defines user-provided config schema. [Documentation](/docs/build/user-config)
 - `public.ts` _(optional)_ Exports shared functions & types across modules. [Documentation](/docs/build/public)

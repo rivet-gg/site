@@ -3,7 +3,7 @@
 ## Start development server
 
 ```
-opengb dev
+rivet dev
 ```
 
 This will automatically restart when files change.
@@ -16,19 +16,19 @@ This will automatically restart when files change.
 ## Run tests
 
 ```
-opengb test
+rivet test
 ```
 
 To automatically rerun tests when files change, run:
 
 ```
-opengb test --watch
+rivet test --watch
 ```
 
 To test a specific file:
 
 ```
-opengb test foo
+rivet test foo
 ```
 
 ## Creating modules & scripts
@@ -36,30 +36,20 @@ opengb test foo
 Create module:
 
 ```
-opengb create module foo
+rivet create module foo
 ```
 
 Create script:
 
 ```
-opengb create script foo bar
+rivet create script foo bar
 ```
-
-## Generate SDKs
-
-```
-opengb sdk generate --output <output> <target>
-```
-
-## OpenAPI & Postman/Insomnia/Paw
-
-Explore the APIs by opening `.opengb/openapi.json` in Postman/Insomnia/Paw.
 
 ## Help
 
 All commands are documented in the CLI:
 
 ```
-opengb --help
-opengb create --help
+rivet --help
+rivet create --help
 ```
