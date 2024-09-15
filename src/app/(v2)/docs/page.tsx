@@ -17,7 +17,7 @@ export default function DocsPage() {
     <div className='col-span-3 flex min-h-screen w-full flex-col items-center justify-center px-8 py-10'>
       <H1 className='text-center'>Choose your engine</H1>
 
-      <div className='my-8 flex flex-wrap gap-4'>
+      <div className='my-8 grid grid-cols-2 flex-wrap gap-4 text-center lg:grid-cols-4'>
         <EngineCard href='/docs/godot'>Godot</EngineCard>
         <EngineCard href='/docs/unity'>Unity</EngineCard>
         <EngineCard href='/docs/unreal'>Unreal Engine</EngineCard>
@@ -25,7 +25,10 @@ export default function DocsPage() {
       </div>
 
       <Link href='/docs/custom'>
-        <Text>You can also integrate Rivet into your own custom engine, read more about it here.</Text>
+        <Text>
+          You can also integrate Rivet into your own custom engine,{' '}
+          <span className='underline'>read more about it here.</span>
+        </Text>
       </Link>
     </div>
   );
