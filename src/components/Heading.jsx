@@ -59,7 +59,7 @@ export function Heading({ level = 2, children, id, tag, label, anchor = true, ..
       <Component
         ref={ref}
         id={anchor ? id : undefined}
-        className={tag || label ? 'mt-2 scroll-mt-32' : 'scroll-mt-header-offset'}
+        className={tag || label ? 'mt-2 scroll-mt-32' : 'scroll-mt-header scroll-mt-header-offset'}
         {...props}>
         {anchor ? (
           <Anchor id={id} inView={inView}>

@@ -18,7 +18,7 @@ export default async function ModuleConfigPage({ params }) {
   return (
     <div className='flex flex-row justify-between gap-4'>
       <div className='flex w-full  max-w-prose flex-col gap-6'>
-        <Card>
+        <Card id='config' className='scroll-mt-header'>
           <CardHeader>
             <CardTitle>Config</CardTitle>
           </CardHeader>
@@ -30,7 +30,7 @@ export default async function ModuleConfigPage({ params }) {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card id='default-config' className='scroll-mt-header'>
           <CardHeader>
             <CardTitle>Default Config</CardTitle>
           </CardHeader>

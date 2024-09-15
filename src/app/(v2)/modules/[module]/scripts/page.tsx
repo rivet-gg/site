@@ -12,7 +12,7 @@ function ScriptPage({ id, script, mod }) {
       key={id}
       id={id}
       href={`/modules/${mod}/scripts/${id}`}
-      className='hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center justify-between rounded-md border p-4 no-underline transition-colors'>
+      className='scroll-mt-header hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center justify-between rounded-md border p-4 no-underline transition-colors'>
       <div>
         <h3 className='flex flex-col lg:block'>
           {script.config.name}

@@ -149,7 +149,11 @@ function Tree({ sections, isActive, depth = 0 }) {
   );
 }
 
-export function DocsTableOfContents({ tableOfContents: providedToc }) {
+interface DocsTableOfContentsProps {
+  tableOfContents: any;
+  className?: string;
+}
+export function DocsTableOfContents({ tableOfContents: providedToc, className }: DocsTableOfContentsProps) {
   let tableOfContents = providedToc;
 
   let currentSection = useCurrentSection(tableOfContents);
@@ -171,8 +175,9 @@ export function DocsTableOfContents({ tableOfContents: providedToc }) {
   return (
     <div
       ref={ref}
-      className={clsx(
-        'pt-4 lg:top-docs-navigation lg:max-h-tabs-content lg:pt-6',
+      className={cn(
+        className,
+        'lg:top-header pt-4 lg:pt-6',
         'w-full lg:pointer-events-auto lg:sticky lg:block lg:max-w-aside lg:self-start lg:overflow-y-auto'
       )}>
       <div className='relative'>

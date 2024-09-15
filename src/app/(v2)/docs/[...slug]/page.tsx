@@ -65,7 +65,7 @@ export default async function CatchAllCorePage({ params: { slug } }) {
         </Prose>
       </main>
       <aside className='-order-1 mx-auto w-full min-w-0 max-w-3xl flex-shrink-0 pb-4 pl-4 md:order-none xl:mx-0'>
-        <DocsTableOfContents tableOfContents={tableOfContents} />
+        <DocsTableOfContents className='lg:max-h-content' tableOfContents={tableOfContents} />
       </aside>
     </>
   );

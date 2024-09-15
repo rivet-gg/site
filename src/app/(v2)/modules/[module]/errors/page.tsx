@@ -35,7 +35,8 @@ export default async function ModuleErrorsPage({ params }) {
               errors.map(([id, error]) => (
                 <div
                   key={id}
-                  className='items-center justify-between rounded-md border p-4 no-underline transition-colors'>
+                  id={id}
+                  className='scroll-mt-header items-center justify-between rounded-md border p-4 no-underline transition-colors'>
                   <h3 className='flex flex-col lg:block'>
                     {error.name}
                     <code className='break-all text-xs  lg:ml-2'>{id}</code>

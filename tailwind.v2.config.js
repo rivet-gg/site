@@ -29,6 +29,15 @@ module.exports = {
             '--tw-prose-invert-td-borders': 'hsl(var(--border))'
           }
         }
+      },
+      spacing: {
+        header: 'var(--header-height, 3.5rem)'
+      },
+      scrollMargin: {
+        header: 'calc(var(--header-height, 3.5rem) + 1rem)'
+      },
+      maxHeight: {
+        content: 'calc(100vh - var(--header-height, 3.5rem))'
       }
     }
   },

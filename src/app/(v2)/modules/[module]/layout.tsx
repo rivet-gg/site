@@ -1,10 +1,11 @@
-import { ModuleIcon, Badge } from '@rivet-gg/components';
+import { ModuleIcon, Badge, Button } from '@rivet-gg/components';
 import { ModulePageLink } from '@/components/ModulePageLink';
 import { safelyLoadModule } from '@/lib/module';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { faGitAlt } from '@fortawesome/free-brands-svg-icons';
 
 export default async function ModuleLayout({ children, params }) {
   const mod = await safelyLoadModule(params.module);
@@ -21,19 +22,34 @@ export default async function ModuleLayout({ children, params }) {
 
   return (
     <div>
-      <ul className='text-muted-foreground my-4 flex flex-wrap items-center gap-2 text-xs'>
-        <li>
-          <Link href='/modules'>Modules</Link>
-        </li>
-        <li className='h-2.5'>
-          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
-        </li>
-        <li>{meta.category.name}</li>
-        <li className='h-2.5'>
-          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
-        </li>
-        <li className='text-foreground'>{meta.config.name}</li>
-      </ul>
+      <div className='flex flex-row justify-between'>
+        <ul className='text-muted-foreground my-4 flex flex-wrap items-center gap-2 text-xs'>
+          <li>
+            <Link href='/modules'>Modules</Link>
+          </li>
+          <li className='h-2.5'>
+            <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+          </li>
+          <li>{meta.category.name}</li>
+          <li className='h-2.5'>
+            <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+          </li>
+          <li className='text-foreground'>{meta.config.name}</li>
+        </ul>
+
+        <Button
+          asChild
+          variant='ghost'
+          className='w-auto self-end'
+          startIcon={<FontAwesomeIcon icon={faGitAlt} />}>
+          <a
+            href={`https://github.com/rivet-gg/modules/tree/main/modules/${params.module}`}
+            target='_blank'
+            rel='noopener noreferrer'>
+            View Source Code
+          </a>
+        </Button>
+      </div>
       <h1 className='mb-4 flex items-center text-3xl font-bold lg:text-5xl'>
         <ModuleIcon icon={meta.config.icon} className='text-primary mr-4 block max-h-12' />
         {meta.config.name}

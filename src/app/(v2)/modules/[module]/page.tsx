@@ -15,6 +15,7 @@ import {
   Button
 } from '@rivet-gg/components';
 import { ModuleScripts } from '@/components/ModuleScripts';
+import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
 export default async function ModulePage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -23,7 +24,7 @@ export default async function ModulePage({ params }) {
     return notFound();
   }
 
-  const { meta, Readme } = mod;
+  const { meta, Readme, readmeToc } = mod;
 
   return (
     <div className='flex flex-col justify-between gap-4 lg:flex-row'>
@@ -76,18 +77,7 @@ export default async function ModulePage({ params }) {
           </CardContent>
         </Card>
 
-        <Button
-          asChild
-          variant='ghost'
-          className='w-auto self-end'
-          startIcon={<FontAwesomeIcon icon={faGitAlt} />}>
-          <a
-            href={`https://github.com/rivet-gg/modules/tree/main/modules/${params.module}`}
-            target='_blank'
-            rel='noopener noreferrer'>
-            View Source Code
-          </a>
-        </Button>
+        <DocsTableOfContents tableOfContents={readmeToc} />
       </div>
     </div>
   );

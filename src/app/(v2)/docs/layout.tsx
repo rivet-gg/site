@@ -1,5 +1,6 @@
 import { Header } from '@/components/v2/Header';
 import { ModulePageLink } from '@/components/ModulePageLink';
+import { CSSProperties } from 'react';
 
 function Subnav() {
   return (
@@ -18,7 +19,11 @@ export default function Layout({ children }) {
     <>
       <Header active='docs' subnav={<Subnav />} />
       <div className='flex w-full'>
-        <div className='md:grid-cols-docs mx-auto flex flex-col md:grid md:px-6'>{children}</div>
+        <div
+          className='md:grid-cols-docs mx-auto flex flex-col md:grid md:px-6'
+          style={{ '--header-height': '6.5rem' } as CSSProperties}>
+          {children}
+        </div>
       </div>
     </>
   );

@@ -32,12 +32,12 @@ export async function generateModuleSciprtsPageParams() {
 
 export async function loadReadme(module) {
   try {
-    return (await import(`../../../modules/modules/${module}/README.mdx`)).default;
+    return await import(`../../../modules/modules/${module}/README.mdx`);
   } catch {
     try {
-      return (await import(`../../../modules/modules/${module}/README.md`)).default;
+      return await import(`../../../modules/modules/${module}/README.md`);
     } catch {
-      return DefaultReadme;
+      return { deafult: DefaultReadme, tableOfContents: [] };
     }
   }
 }
@@ -53,9 +53,9 @@ export async function safelyLoadModule(module) {
     return null;
   }
 
-  const [Readme, meta] = result;
+  const [{ default: Readme, tableOfContents: readmeToc }, meta] = result;
 
-  return { meta, Readme };
+  return { meta, Readme, readmeToc };
 }
 
 export async function safelyLoadModuleMeta(module) {
