@@ -52,19 +52,15 @@ export default async function ModulePage({ params }) {
             <CardTitle>Authors</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className='flex'>
+            <ul>
               {meta.config.authors.map(author => (
-                <li key={author} className='-mr-4'>
-                  <a href={`https://github.com/${author}`}>
-                    <WithTooltip
-                      content={author}
-                      trigger={
-                        <Avatar>
-                          <AvatarFallback>{author[0]}</AvatarFallback>
-                          <AvatarImage src={`https://github.com/${author}.png`} alt={author} />
-                        </Avatar>
-                      }
-                    />
+                <li key={author} className='mb-2'>
+                  <a href={`https://github.com/${author}`} className='flex items-center gap-2'>
+                    <Avatar>
+                      <AvatarFallback>{author[0]}</AvatarFallback>
+                      <AvatarImage src={`https://github.com/${author}.png`} alt={author} />
+                    </Avatar>
+                    {author}
                   </a>
                 </li>
               ))}
