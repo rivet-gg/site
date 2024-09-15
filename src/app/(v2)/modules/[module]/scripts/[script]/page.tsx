@@ -73,16 +73,13 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
             </CardContent>
           </Card>
         </div>
-        <div className='prose-invert w-full max-w-xl'>
+        <div className='prose-invert w-full min-w-0 max-w-xl'>
           <Card>
             <CardHeader>
               <CardTitle>Usage</CardTitle>
-              <CardDescription>
-                <p>
-                  To use this script, you need to install the module first. Once you have the module
-                  installed, you can use this script in your backend code, frontend code, or your favorite
-                  game engine.
-                </p>
+              <CardDescription asChild>
+                To use this script, you need to install the module first. Once you have the module installed,
+                you can use this script in your backend code, frontend code, or your favorite game engine.
               </CardDescription>
             </CardHeader>
             <CardContent>

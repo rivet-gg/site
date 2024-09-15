@@ -97,10 +97,8 @@ export const pre = ({ children, file, language, title, isInGroup }: PreProps) =>
               <FontAwesomeIcon icon={faFile} className='block' />
               <span>{file}</span>
             </>
-          ) : (
-            <Badge variant='outline'>
-              {isInGroup ? languageNames[language] : title || languageNames[language]}
-            </Badge>
+          ) : isInGroup ? null : (
+            <Badge variant='outline'>{title || languageNames[language]}</Badge>
           )}
         </div>
         <WithTooltip
