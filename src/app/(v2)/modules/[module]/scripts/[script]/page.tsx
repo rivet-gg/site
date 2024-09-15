@@ -32,8 +32,8 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
 
   return (
     <>
-      <ul className='text-muted-foreground mb-4 flex items-center gap-2 text-xs'>
-        <li>
+      <ul className='text-muted-foreground mb-4 flex flex-wrap items-center gap-2 text-xs'>
+        <li className=''>
           <Link href={`/modules/${meta.name}`}>{meta.config.name}</Link>
         </li>
         <li className='h-2.5'>
@@ -47,8 +47,8 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
         </li>
         <li className='text-foreground'>{scriptMeta.config.name}</li>
       </ul>
-      <div className='flex flex-row justify-between gap-4'>
-        <div className=' flex w-full  max-w-prose flex-col gap-6'>
+      <div className='flex flex-col justify-between gap-4 lg:flex-row'>
+        <div className='flex w-full  max-w-prose flex-col gap-6'>
           <Card>
             <CardHeader>
               <CardTitle>{scriptMeta.config.name}</CardTitle>

@@ -17,7 +17,7 @@ export default async function ModuleConfigPage({ params }) {
 
   return (
     <div className='flex flex-row justify-between gap-4'>
-      <div className=' flex w-full  max-w-prose flex-col gap-6'>
+      <div className='flex w-full  max-w-prose flex-col gap-6'>
         <Card>
           <CardHeader>
             <CardTitle>Config</CardTitle>
@@ -47,7 +47,7 @@ export default async function ModuleConfigPage({ params }) {
           </CardContent>
         </Card>
       </div>
-      <div className='w-full max-w-sm'>
+      <div className='hidden w-full max-w-sm lg:block'>
         <DocsTableOfContents
           tableOfContents={[
             {

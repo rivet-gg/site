@@ -36,9 +36,9 @@ export default async function ModuleErrorsPage({ params }) {
                 <div
                   key={id}
                   className='items-center justify-between rounded-md border p-4 no-underline transition-colors'>
-                  <h3>
+                  <h3 className='flex flex-col lg:block'>
                     {error.name}
-                    <code className='ml-2'>{id}</code>
+                    <code className='break-all text-xs  lg:ml-2'>{id}</code>
                   </h3>
                   <p className='text-muted-foreground'>{error.description}</p>
                 </div>
@@ -49,7 +49,7 @@ export default async function ModuleErrorsPage({ params }) {
           </CardContent>
         </Card>
       </div>
-      <div className='w-full max-w-sm'>
+      <div className='hidden w-full max-w-sm lg:block'>
         <DocsTableOfContents tableOfContents={errorHeaders} />
       </div>
     </div>

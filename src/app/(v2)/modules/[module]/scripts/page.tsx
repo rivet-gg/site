@@ -14,15 +14,17 @@ function ScriptPage({ id, script, mod }) {
       href={`/modules/${mod}/scripts/${id}`}
       className='hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center justify-between rounded-md border p-4 no-underline transition-colors'>
       <div>
-        <h3>
+        <h3 className='flex flex-col lg:block'>
           {script.config.name}
-          <code className='ml-2'>{id}</code>
+          <code className='break-all text-xs lg:ml-2'>{id}</code>
         </h3>
         <p className='text-muted-foreground'>{script.config.description}</p>
       </div>
-      <Button variant='icon'>
-        <FontAwesomeIcon icon={faChevronRight} />
-      </Button>
+      <div className='hidden lg:block'>
+        <Button variant='icon'>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </Button>
+      </div>
     </Link>
   );
 }
@@ -103,7 +105,7 @@ export default async function ModuleScriptsPage({ params }) {
         </Card>
       </div>
 
-      <div className='hidden w-full max-w-sm xl:block'>
+      <div className='hidden w-full max-w-sm lg:block'>
         <DocsTableOfContents tableOfContents={toc} />
       </div>
     </div>

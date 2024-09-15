@@ -2026,7 +2026,7 @@ __metadata:
 
 "@rivet-gg/components@https://github.com/rivet-gg/hub#workspace=@rivet-gg/components&head=09-12-refactor_modify_components_to_be_usable_with_next":
   version: 1.0.0
-  resolution: "@rivet-gg/components@https://github.com/rivet-gg/hub.git#workspace=%40rivet-gg%2Fcomponents&commit=1214e7670d5fb74633685ce6d385b6a0b43861fb"
+  resolution: "@rivet-gg/components@https://github.com/rivet-gg/hub.git#workspace=%40rivet-gg%2Fcomponents&commit=a23ce1f4208e706ceea600cd61d551b6cdcbb5db"
   dependencies:
     "@codemirror/lang-javascript": "npm:^6.2.2"
     "@codemirror/lang-json": "npm:^6.0.1"
@@ -2080,7 +2080,7 @@ __metadata:
     tailwind-merge: "npm:^2.2.2"
     tailwindcss-animate: "npm:^1.0.7"
     zod: "npm:^3.23.8"
-  checksum: 10/d3fcb4baa1dd8edc710e76a2bf848f163e985efaf3ba48fc3121a519d11eafbc7f82c2d77ccc1a39861f6f8349e0e2fd52ffce684cbfcf0aa8050b3c439b9d8d
+  checksum: 10/fdbd33946a389d2ee23ee313cac39e25fa236d9b0276509d7db549feb0bc3b05c973ef546c7fc8ffbde85b6b1d39f4846bafa30e2c5a235c851feacaaacd1662
   languageName: node
   linkType: hard
 

@@ -26,11 +26,11 @@ export default async function ModuleDependenciesPage({ params }) {
         </CardHeader>
         <CardContent>
           {dependencies.length > 0 ? (
-            <ul className='grid grid-cols-2 gap-4'>
+            <ul className='flex gap-4 lg:grid lg:grid-cols-2'>
               {dependencies.map(dep => (
-                <li key={dep.name}>
-                  <Link href={`/modules/${dep.name}`}>
-                    <ModuleCard {...dep.config} />
+                <li key={dep.name} className='max-w-full'>
+                  <Link href={`/modules/${dep.name}`} className='w-full'>
+                    <ModuleCard {...dep.config} className='w-full min-w-0' />
                   </Link>
                 </li>
               ))}

@@ -6,6 +6,7 @@ import { faBooks, faNewspaper, faPuzzle } from '@fortawesome/pro-solid-svg-icons
 import { faCoin } from '@fortawesome/pro-regular-svg-icons';
 import { Header as RivetHeader } from '@rivet-gg/components/header';
 import { ReactNode } from 'react';
+import { DocsMobileNavigation } from '@/components/DocsMobileNavigation';
 
 interface HeaderProps {
   active: 'docs' | 'modules' | 'blog' | 'pricing';
@@ -13,7 +14,7 @@ interface HeaderProps {
   mobileBreadcrumbs?: ReactNode;
 }
 
-export function Header({ active, subnav, mobileBreadcrumbs }: HeaderProps) {
+export function Header({ active, subnav }: HeaderProps) {
   return (
     <RivetHeader
       logo={
@@ -22,12 +23,12 @@ export function Header({ active, subnav, mobileBreadcrumbs }: HeaderProps) {
         </Link>
       }
       subnav={subnav}
-      mobileBreadcrumbs={mobileBreadcrumbs}
       support={
         <RivetHeader.NavItem asChild>
           <Link href='/support'>Support</Link>
         </RivetHeader.NavItem>
       }
+      mobileBreadcrumbs={<DocsMobileNavigation />}
       breadcrumbs={
         <div className='flex items-center gap-5'>
           <RivetHeader.NavItem asChild className='flex items-center gap-1 py-2'>

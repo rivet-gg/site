@@ -4,7 +4,7 @@ import { loadModulesMeta } from '@rivet-gg/components';
 
 function DefaultReadme() {
   return (
-    <div className='prose'>
+    <div>
       <p>This module does not have a README.</p>
     </div>
   );

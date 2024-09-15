@@ -27,8 +27,8 @@ export default async function ModulePage({ params }) {
   const { meta, Readme } = mod;
 
   return (
-    <div className='flex flex-row justify-between gap-4'>
-      <div className=' max-w-prose'>
+    <div className='flex flex-col justify-between gap-4 lg:flex-row'>
+      <div className='max-w-prose'>
         <Card>
           <CardContent className='p-6'>
             <Prose>
@@ -37,7 +37,7 @@ export default async function ModulePage({ params }) {
           </CardContent>
         </Card>
       </div>
-      <div className='flex w-full max-w-sm flex-col gap-4 text-white'>
+      <div className='flex w-full max-w-sm flex-col gap-4'>
         <Card>
           <CardHeader>
             <CardTitle>Install the module</CardTitle>

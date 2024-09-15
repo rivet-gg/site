@@ -1,6 +1,5 @@
 import { Header } from '@/components/v2/Header';
 import { ModulePageLink } from '@/components/ModulePageLink';
-import { DocsMobileNavigation } from '@/components/DocsMobileNavigation';
 
 function Subnav() {
   return (
@@ -14,18 +13,10 @@ function Subnav() {
   );
 }
 
-function MobileBreadcrumbs() {
-  return (
-    <>
-      <DocsMobileNavigation />
-    </>
-  );
-}
-
 export default function Layout({ children }) {
   return (
     <>
-      <Header active='docs' subnav={<Subnav />} mobileBreadcrumbs={<MobileBreadcrumbs />} />
+      <Header active='docs' subnav={<Subnav />} />
       <div className='flex w-full'>
         <div className='xl:grid-cols-docs mx-auto flex flex-col xl:grid xl:px-6'>{children}</div>
       </div>

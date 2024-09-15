@@ -21,7 +21,7 @@ export default async function ModuleLayout({ children, params }) {
 
   return (
     <div>
-      <ul className='text-muted-foreground my-4 flex items-center gap-2 text-xs'>
+      <ul className='text-muted-foreground my-4 flex flex-wrap items-center gap-2 text-xs'>
         <li>
           <Link href='/modules'>Modules</Link>
         </li>
@@ -34,11 +34,11 @@ export default async function ModuleLayout({ children, params }) {
         </li>
         <li className='text-foreground'>{meta.config.name}</li>
       </ul>
-      <h1 className='mb-4 flex items-center text-5xl font-bold text-white'>
+      <h1 className='mb-4 flex items-center text-3xl font-bold lg:text-5xl'>
         <ModuleIcon icon={meta.config.icon} className='text-primary mr-4 block max-h-12' />
         {meta.config.name}
       </h1>
-      <div className='flex gap-0.5 border-b border-cream-100/10 text-white'>
+      <div className='flex gap-0.5 overflow-x-auto border-b'>
         <ModulePageLink href={`/modules/${params.module}`} strict>
           Overview
         </ModulePageLink>
