@@ -96,7 +96,7 @@ function getPropertyTypeLabel(schema: Schema) {
 type PropertyTypeLabelProps = Schema;
 
 function PropertyTypeLabel(props: PropertyTypeLabelProps) {
-  return <Badge variant='outline'>{getPropertyTypeLabel(props)}</Badge>;
+  return <div className='text-xs opacity-20'>{getPropertyTypeLabel(props)}</div>;
 }
 
 type PropertyLabelProps = Schema & {
@@ -107,17 +107,21 @@ type PropertyLabelProps = Schema & {
 function PropertyLabel({ parent, name, ...rest }: PropertyLabelProps) {
   return (
     <>
-      <div className='flex items-center gap-1'>
-        <code className='text-foreground/90 leading-none'>
+      <div className='flex items-center gap-1 px-4'>
+        <code className='text-foreground/90'>
           {parent ? <>{parent}.</> : null}
           <span className='text-foreground font-bold'>{name}</span>
         </code>
         <PropertyTypeLabel {...rest} />
       </div>
 
-      <p className='text-muted-foreground text-sm'>{rest.description}</p>
+      <p className='text-muted-foreground px-4 text-sm'>{rest.description}</p>
     </>
   );
+}
+
+function ObjectSchemaItem({ children }) {
+  return <li className='border-b pb-4 last:border-none last:pb-0'>{children}</li>;
 }
 
 interface ObjectSchemaProps {
@@ -127,7 +131,7 @@ interface ObjectSchemaProps {
 }
 function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
   return (
-    <ul className={cn({ 'rounded-md border px-4 py-4': !!parent }, 'space-y-4', className)}>
+    <ul className={cn({ 'rounded-md border py-4': !!parent }, 'space-y-4', className)}>
       {Object.keys(schema.properties).map(key => {
         let property = schema.properties[key];
         property = property.type === 'nullable' ? property.item : property;
@@ -137,32 +141,37 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
 
         if (property.type === 'union') {
           return (
-            <li key={key}>
+            <ObjectSchemaItem key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
-              <Foldable title='Show possible variants' closeTitle='Hide possible variants'>
-                <ul className='space-y-4 rounded-md'>
-                  {property.items.map((item, index) => (
-                    <li key={index} className='my-4'>
-                      <SchemaPreview schema={item} parent={newParent} />
-                    </li>
-                  ))}
-                </ul>
-              </Foldable>
-            </li>
+
+              <div className='px-4'>
+                <Foldable title='Show possible variants' closeTitle='Hide possible variants'>
+                  <ul className='space-y-4 rounded-md'>
+                    {property.items.map((item, index) => (
+                      <li key={index} className='my-4'>
+                        <SchemaPreview schema={item} parent={newParent} />
+                      </li>
+                    ))}
+                  </ul>
+                </Foldable>
+              </div>
+            </ObjectSchemaItem>
           );
         }
 
         if (property.type === 'object') {
           const isEmpty = Object.keys(property.properties).length === 0;
           return (
-            <li key={key}>
+            <ObjectSchemaItem key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               {!isEmpty ? (
-                <Foldable>
-                  <SchemaPreview schema={property} parent={newParent} />
-                </Foldable>
+                <div className='px-4'>
+                  <Foldable>
+                    <SchemaPreview schema={property} parent={newParent} />
+                  </Foldable>
+                </div>
               ) : null}
-            </li>
+            </ObjectSchemaItem>
           );
         }
 
@@ -171,14 +180,16 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
             property.elementType.type === 'object' &&
             Object.keys(property.elementType.properties).length === 0;
           return (
-            <li key={key}>
+            <ObjectSchemaItem key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               {!isEmpty ? (
-                <Foldable>
-                  <SchemaPreview schema={property.elementType} parent={newParent} />
-                </Foldable>
+                <div className='px-4'>
+                  <Foldable>
+                    <SchemaPreview schema={property.elementType} parent={newParent} />
+                  </Foldable>
+                </div>
               ) : null}
-            </li>
+            </ObjectSchemaItem>
           );
         }
 
@@ -188,22 +199,24 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
             property.item.type === 'object' && Object.keys(property.item.properties).length === 0;
 
           return (
-            <li key={key}>
+            <ObjectSchemaItem key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
               {isObject && !isEmpty ? (
-                <Foldable>
-                  <SchemaPreview schema={property.item} parent={newParent} />
-                </Foldable>
+                <div className='px-4'>
+                  <Foldable>
+                    <SchemaPreview schema={property.item} parent={newParent} />
+                  </Foldable>
+                </div>
               ) : null}
-            </li>
+            </ObjectSchemaItem>
           );
         }
 
         return (
-          <li key={key}>
+          <ObjectSchemaItem key={key}>
             <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
             <SchemaPreview schema={property} parent={newParent} />
-          </li>
+          </ObjectSchemaItem>
         );
       })}
     </ul>

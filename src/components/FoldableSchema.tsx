@@ -12,7 +12,7 @@ export function Foldable({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button variant='outline' size='xs' onClick={() => setIsOpen(open => !open)}>
+      <Button variant='outline' size='sm' onClick={() => setIsOpen(open => !open)}>
         {isOpen ? closeTitle : title}
       </Button>
       <motion.div
