@@ -1,6 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 
+import { Toaster, TooltipProvider } from '@rivet-gg/components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export const metadata: Metadata = {
@@ -46,7 +47,10 @@ export default function Layout({ children }) {
 
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </head>
-      <body className='dark'>{children}</body>
+      <body className='dark'>
+        <TooltipProvider>{children}</TooltipProvider>
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -5,6 +5,7 @@ import * as shiki from 'shiki';
 import { toString } from 'mdast-util-to-string';
 import * as acorn from 'acorn';
 import { slugifyWithCounter } from '@sindresorhus/slugify';
+import { transformerNotationFocus } from '@shikijs/transformers';
 
 function rehypeParseCodeBlocks() {
   return tree => {
@@ -14,7 +15,6 @@ function rehypeParseCodeBlocks() {
         if (node.properties.className) {
           parentNode.properties.language = node.properties.className[0]?.replace(/^language-/, '');
         }
-
         // Parse annotations
         if (parentNode.properties?.annotation) {
           try {
@@ -81,11 +81,7 @@ function rehypeShiki() {
           textNode.value = highlighter.codeToHtml(textNode.value, {
             lang: node.properties.language,
             theme: cssVariableTheme,
-            elements: {
-              pre: ({ children }) => children,
-              code: ({ children }) => children,
-              line: ({ children }) => `<span>${children}</span>`
-            }
+            transformers: [transformerNotationFocus()]
           });
         }
       }

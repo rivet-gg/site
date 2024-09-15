@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { TooltipProvider } from '@rivet-gg/components';
 
 export default async function ModuleLayout({ children, params }) {
   const mod = await safelyLoadModule(params.module);
@@ -54,9 +53,7 @@ export default async function ModuleLayout({ children, params }) {
           Dependencies {dependencies.length > 0 ? <>({dependencies.length})</> : ''}
         </ModulePageLink>
       </div>
-      <div className='py-6'>
-        <TooltipProvider>{children}</TooltipProvider>
-      </div>
+      <div className='py-6'>{children}</div>
     </div>
   );
 }

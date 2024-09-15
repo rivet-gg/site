@@ -10,7 +10,10 @@ export const backendModule = ({ module, script }) =>
 export const frontendModule = ({ module, script }) =>
     dedent`
         import { Backend } from "rivet-sdk";
-        const backend = new Backend({ endpoint: "http://localhost:6420" });
+        
+        const backend = new Backend({ 
+            endpoint: "http://localhost:6420"
+        });
         const data = await backend.${module}.${script}({
             // Request body
         });

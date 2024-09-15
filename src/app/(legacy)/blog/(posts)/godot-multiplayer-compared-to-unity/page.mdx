@@ -114,9 +114,7 @@ By default, Godot's synchronization only supports synchronizing primitives (`flo
 
 To manually synchronize your own complex types, it's possible to use a getter/setter to encode a [`PackedByteArray`](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html), like this:
 
-<CodeGroup title='custom_sync_type.gd'>
-
-```gdscript
+```gdscript {{"file": "custom_sync_type.gd"}}
 # Node state
 var weapon: int = 0
 var ammo: int = 100
@@ -139,8 +137,6 @@ var sync_state:
     weapon = value.decode_u8(4)
     ammo = value.decode_u8(5)
 ```
-
-</CodeGroup>
 
 You'll likely find yourself writing repetitive encoding & decoding code if building a game with complex data types (e.g. board games, strategy games).
 

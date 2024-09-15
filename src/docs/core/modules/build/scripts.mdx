@@ -30,7 +30,7 @@ Similarly, Rivet validates the response data returned by your script against the
 
 Here's an example of defining request and response types in a script:
 
-```typescript modules/lobbies/scripts/find.ts
+```typescript {{ "file": "modules/lobbies/scripts/find.ts" }}
 export interface Request {
   version: string;
   regions?: string[];
@@ -51,17 +51,20 @@ Rivet scripts can be marked as either public or internal in the `module.json` fi
 
 Here's an example of defining public and internal scripts in `module.json`:
 
-```json modules/lobbies/module.json
-"scripts": {
-  "create": {
-    "name": "Create Lobby",
-    "description": "Creates a new lobby on-demand.",
-    "public": true
-  },
-  "force_gc": {
-    "name": "Force Garbage Collection",
-    "description": "Rarely used. Forces the matchmaker to purge lobbies & players.",
-    "public": false
+```json {{ "file": "modules/lobbies/module.json" }}
+{
+  "scripts": {
+    "create": {// [!code focus]
+      "name": "Create Lobby",// [!code focus]
+      "description": "Creates a new lobby on-demand.",// [!code focus]
+      "public": true// [!code focus]
+    },// [!code focus]
+    
+    "force_gc": {// [!code focus]
+      "name": "Force Garbage Collection",// [!code focus]
+      "description": "Rarely used. Forces the matchmaker to purge lobbies & players.",// [!code focus]
+      "public": false// [!code focus]
+    }// [!code focus]
   }
 }
 ```
@@ -82,24 +85,30 @@ Here are some examples of how the generated SDK endpoints look for the `findOrCr
 
 <CodeGroup>
 
-```typescript TypeScript
+```typescript {{ "title": "TypeScript" }}
 import { Rivet } from "rivet-sdk";
+
 const rivet = new Rivet();
 const data = await rivet.lobbies.findOrCreate({
   // Request body  
 });
 ```
 
-```gdscript Godot
+```gdscript {{ "title": "Godot" }}
 var data = Rivet.lobbies.find_or_create({
   # Request body
 })  
 ```
 
-```csharp Unity
+```csharp {{ "title": "Unity" }}
 var config = new Configuration();
 var client = new RivetClient(config.BackendEndpoint);
-await client.Lobbies.FindOrCreate(new Rivet.Model.Lobbies.FindOrCreateRequest(
+
+await client.Lobbies.FindOrCreate(
+  new Rivet.Model.Lobbies.FindOrCreateRequest(
+    // Request body
+  )
+);
 ```
 </CodeGroup>
 
@@ -123,7 +132,7 @@ The `ScriptContext` object is passed to every script function and provides acces
 
 Here's an example of using the `ScriptContext` to call another module and access the database:
 
-```typescript modules/users/scripts/fetch.ts
+```typescript {{ "file": "modules/users/scripts/fetch.ts" }}
 export async function run(
   ctx: ScriptContext,
   req: Request,
@@ -173,7 +182,7 @@ In addition to using the auto-generated SDK endpoints, you can also call your mo
 
 To call a script via REST, make a POST request to the following URL:
 
-```
+```http
 https://<your-backend-url>/modules/<module-name>/scripts/<script-name>/call
 ```
 

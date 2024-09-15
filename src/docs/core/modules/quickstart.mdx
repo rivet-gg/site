@@ -32,14 +32,14 @@
 
                 We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
 
-                ```sh
+                ```ps1
                 powershell -Command "$env:RIVET_CLI_VERSION='v1.0.0'; iwr https://raw.githubusercontent.com/rivet-gg/cli/$env:RIVET_CLI_VERSION/install/windows.ps1 -useb | iex"
                 ```
             </Tab>
             <Tab title="Windows (PowerShell)">
                 **Install latest version**
 
-                ```
+                ```ps1
                 iwr https://raw.githubusercontent.com/rivet-gg/cli/main/install/windows.ps1 -useb | iex
                 ```
 
@@ -110,8 +110,8 @@
     </Step>
     <Step title="Next steps">
         <CardGroup>
-            <Card title="See available modules ->" href="/modules/overview" />
-            <Card title="Write your own module ->" href="/docs/modules/build/quickstart" />
+            <Card title="See available modules" href="/modules/overview" />
+            <Card title="Write your own module" href="/docs/modules/build/quickstart" />
         </CardGroup>
     </Step>
 </Steps>

@@ -29,6 +29,7 @@
     "@next/third-parties": "latest",
     "@rivet-gg/api": "^0.0.1-rc19",
     "@rivet-gg/components": "https://github.com/rivet-gg/hub#workspace=@rivet-gg/components&head=09-12-refactor_modify_components_to_be_usable_with_next",
+    "@shikijs/transformers": "^1.17.6",
     "@sindresorhus/slugify": "^2.1.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
@@ -41,6 +42,7 @@
     "date-fns": "^3.6.0",
     "dedent": "^1.5.3",
     "esast-util-from-js": "^2.0.1",
+    "escape-html": "^1.0.3",
     "estree-util-to-js": "^2.0.0",
     "fast-glob": "^3.2.12",
     "feed": "^4.2.2",
@@ -79,6 +81,7 @@
     "zustand": "^4.3.2"
   },
   "devDependencies": {
+    "@types/escape-html": "^1",
     "axios": "^1.5.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",

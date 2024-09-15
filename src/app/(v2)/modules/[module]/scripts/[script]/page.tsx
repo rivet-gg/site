@@ -1,4 +1,4 @@
-import { CodeGroup, EphermeralTab } from '@/components/Code';
+import { Code, CodeGroup } from '@/components/v2/Code';
 import { CodeBlock } from '@/components/CodeBlock';
 import { SchemaPreview } from '@/components/SchemaPreview';
 import {
@@ -9,7 +9,7 @@ import {
   unityModule,
   unrealModule
 } from '@/lib/codeTemplates';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rivet-gg/components';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CopyArea } from '@rivet-gg/components';
 import { generateModuleSciprtsPageParams, safelyLoadModule } from '@/lib/module';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -73,32 +73,44 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
             </CardContent>
           </Card>
         </div>
-        <div className='w-full max-w-xl'>
-          <CodeGroup title='Install this module'>
-            <div>
-              <CodeBlock lang='bash' code={`rivet module add ${module}`} />
-            </div>
-          </CodeGroup>
-          <CodeGroup title='Use this module'>
-            <EphermeralTab title='Backend Script'>
-              <CodeBlock lang='ts' code={backendModule({ module, script })} />
-            </EphermeralTab>
-            <EphermeralTab title='JavaScript'>
-              <CodeBlock lang='ts' code={frontendModule({ module, script })} />
-            </EphermeralTab>
-            <EphermeralTab title='Godot'>
-              <CodeBlock lang='gdscript' code={godotModule({ module, script })} />
-            </EphermeralTab>
-            <EphermeralTab title='Unity'>
-              <CodeBlock lang='c#' code={unityModule({ module, script })} />
-            </EphermeralTab>
-            <EphermeralTab title='Unreal Engine'>
-              <CodeBlock lang='c++' code={unrealModule({ module, script })} />
-            </EphermeralTab>
-            <EphermeralTab title='cUrl'>
-              <CodeBlock lang='bash' code={bashModule({ module, script })} />
-            </EphermeralTab>
-          </CodeGroup>
+        <div className='prose-invert w-full max-w-xl'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Usage</CardTitle>
+              <CardDescription>
+                <p>
+                  To use this script, you need to install the module first. Once you have the module
+                  installed, you can use this script in your backend code, frontend code, or your favorite
+                  game engine.
+                </p>
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <h3 className='mb-1 font-semibold'>1. Install the module</h3>
+              <CopyArea value={`rivet module add ${module}`} />
+              <h3 className='mb-1 mt-4 font-semibold'>2. Use this script</h3>
+              <CodeGroup className='my-0'>
+                <Code title='Backend Script' language='typescript'>
+                  <CodeBlock lang='ts' code={backendModule({ module, script })} />
+                </Code>
+                <Code title='JavaScript' language='js'>
+                  <CodeBlock lang='ts' code={frontendModule({ module, script })} />
+                </Code>
+                <Code title='Godot' language='gdscript'>
+                  <CodeBlock lang='gdscript' code={godotModule({ module, script })} />
+                </Code>
+                <Code title='Unity' language='csharp'>
+                  <CodeBlock lang='c#' code={unityModule({ module, script })} />
+                </Code>
+                <Code title='Unreal Engine' language='cpp'>
+                  <CodeBlock lang='c++' code={unrealModule({ module, script })} />
+                </Code>
+                <Code title='cUrl' language='bash'>
+                  <CodeBlock lang='bash' code={bashModule({ module, script })} />
+                </Code>
+              </CodeGroup>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>

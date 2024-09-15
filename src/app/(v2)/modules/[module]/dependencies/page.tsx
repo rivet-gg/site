@@ -1,6 +1,6 @@
-import { LinkModuleCard } from '@/components/LinkModuleCard';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rivet-gg/components';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, ModuleCard } from '@rivet-gg/components';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 export default async function ModuleDependenciesPage({ params }) {
@@ -29,7 +29,9 @@ export default async function ModuleDependenciesPage({ params }) {
             <ul className='grid grid-cols-2 gap-4'>
               {dependencies.map(dep => (
                 <li key={dep.name}>
-                  <LinkModuleCard {...dep.config} />
+                  <Link href={`/modules/${dep.name}`}>
+                    <ModuleCard {...dep.config} />
+                  </Link>
                 </li>
               ))}
             </ul>

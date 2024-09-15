@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import clsx from 'clsx';
 import { Heading } from '@/components/Heading';
-import { Tip, Info, Note, Warning } from '@/components/callouts';
 import { Accordion } from '@/components/Accordion';
+import { safelyLoadModuleMeta } from '@/lib/module';
 import NextImage from 'next/image';
+import { faExclamationTriangle, faInfoCircle, faLightbulbOn } from '@fortawesome/pro-solid-svg-icons';
 
 export { ButtonGroup, Button } from '@/components/Button';
-export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
 export { ResourceGroup, Resource } from '@/components/Resources';
 export { Snippet } from '@/components/Snippet';
 export { Summary } from '@/components/Summary';
@@ -15,10 +14,20 @@ export * from '@/components/callouts';
 export { ArticleHeader } from '@/components/ArticleHeader';
 export { ArticleSocials } from '@/components/ArticleSocials';
 import { CodeBlock } from '@/components/CodeBlock';
-import { CtaCard } from '@rivet-gg/components';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  CtaCard,
+  Badge,
+  ModuleCard as RivetModuleCard
+} from '@rivet-gg/components';
 
 export * from '@/components/Tabs';
 export { Steps, Step } from '@/components/Steps';
+import { SchemaPreview as Schema } from '@/components/SchemaPreview';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+export * from '@/components/v2/Code';
 
 export const a = Link;
 
@@ -54,7 +63,7 @@ export function Tooltip({ tip, children }) {
 }
 
 export function ComingSoon() {
-  return <Info>🚧 This documentation page is coming soon 🚧</Info>;
+  return <Note>Documentation coming very soon!</Note>;
 }
 
 export function Outdated() {
@@ -290,8 +299,6 @@ export const ExperimentalFeature = () => {
   return <Warning>This feature is experimental and may change in the future.</Warning>;
 };
 
-export { Warning, Note, Info, Tip };
-
 export const Version = () => {
   const version = '0.1.5';
   return (
@@ -314,4 +321,75 @@ export const Card = ({ title, href }) => {
 
 export const CardGroup = ({ children }) => {
   return <div className='not-prose grid grid-cols-2 gap-4'>{children}</div>;
+};
+
+export const SchemaPreview = ({ schema }) => {
+  return (
+    <div className='not-prose rounded-md border p-4'>
+      <Schema schema={schema} />
+    </div>
+  );
+};
+
+export const Warning = ({ title = 'Heads up!', children }) => {
+  return (
+    <Alert variant='warning' className='my-4'>
+      <AlertTitle className='flex items-center'>
+        <FontAwesomeIcon icon={faExclamationTriangle} className='text-warning mr-2' />
+        {title}
+      </AlertTitle>
+      <AlertDescription className='prose-invert prose'>{children}</AlertDescription>
+    </Alert>
+  );
+};
+
+export const Tip = ({ title = 'Might be useful!', children }) => {
+  return (
+    <Alert className='my-4'>
+      <AlertTitle className='flex items-center'>
+        <FontAwesomeIcon icon={faLightbulbOn} className='text-primary mr-2' />
+        {title}
+      </AlertTitle>
+      <AlertDescription className='prose-invert prose'>{children}</AlertDescription>
+    </Alert>
+  );
+};
+
+export const Info = ({ title = 'Heads up!', children }) => {
+  return (
+    <Alert className='my-4'>
+      <AlertTitle className='flex items-center'>
+        <FontAwesomeIcon icon={faInfoCircle} className='mr-2' />
+        {title}
+      </AlertTitle>
+      <AlertDescription className='prose-invert prose'>{children}</AlertDescription>
+    </Alert>
+  );
+};
+
+export const Note = ({ children }) => {
+  return (
+    <Alert variant='info' className='my-4'>
+      <AlertTitle className='prose-invert flex items-center [&_p]:first-of-type:my-0'>
+        <FontAwesomeIcon icon={faInfoCircle} className='mr-2' />
+        {children}
+      </AlertTitle>
+    </Alert>
+  );
+};
+
+export const Tags = ({ tags }) => {
+  return (
+    <div className='flex flex-wrap gap-1'>
+      {tags.map(tag => (
+        <Badge key={tag}>{tag}</Badge>
+      ))}
+    </div>
+  );
+};
+
+export const ModuleCard = async ({ module }) => {
+  const meta = await safelyLoadModuleMeta(module);
+
+  return <RivetModuleCard className='w-full' {...meta.config} />;
 };

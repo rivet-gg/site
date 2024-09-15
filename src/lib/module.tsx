@@ -57,3 +57,13 @@ export async function safelyLoadModule(module) {
 
   return { meta, Readme };
 }
+
+export async function safelyLoadModuleMeta(module) {
+  const [error, result] = await safeAwait(loadModuleMeta(module));
+
+  if (error) {
+    return null;
+  }
+
+  return result;
+}

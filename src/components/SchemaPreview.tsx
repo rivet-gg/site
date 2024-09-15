@@ -3,6 +3,8 @@ import { Badge, cn } from '@rivet-gg/components';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
+type CommonSchema = { description?: string };
+
 type ObjectSchema = { type: 'object'; properties: Record<string, Schema> };
 type ArraySchema = { type: 'array'; item: Schema };
 type UnionSchema = { type: 'union'; items: Schema[] };
@@ -18,7 +20,7 @@ type AnySchema = { type: 'any' };
 type DateSchema = { type: 'date' };
 type NeverSchema = { type: 'never' };
 
-type Schema =
+type Schema = (
   | ObjectSchema
   | ArraySchema
   | UnionSchema
@@ -32,7 +34,9 @@ type Schema =
   | BooleanSchema
   | AnySchema
   | DateSchema
-  | NeverSchema;
+  | NeverSchema
+) &
+  CommonSchema;
 
 function getPropertyTypeLabel(schema: Schema) {
   if (schema.type === 'array') {
@@ -102,13 +106,17 @@ type PropertyLabelProps = Schema & {
 
 function PropertyLabel({ parent, name, ...rest }: PropertyLabelProps) {
   return (
-    <div className='flex items-center gap-1'>
-      <code className='text-foreground/90 leading-none'>
-        {parent ? <>{parent}.</> : null}
-        <span className='text-foreground font-bold'>{name}</span>
-      </code>
-      <PropertyTypeLabel {...rest} />
-    </div>
+    <>
+      <div className='flex items-center gap-1'>
+        <code className='text-foreground/90 leading-none'>
+          {parent ? <>{parent}.</> : null}
+          <span className='text-foreground font-bold'>{name}</span>
+        </code>
+        <PropertyTypeLabel {...rest} />
+      </div>
+
+      <p className='text-muted-foreground text-sm'>{rest.description}</p>
+    </>
   );
 }
 
@@ -159,12 +167,17 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
         }
 
         if (property.type === 'record' && property.elementType.type === 'object') {
+          const isEmpty =
+            property.elementType.type === 'object' &&
+            Object.keys(property.elementType.properties).length === 0;
           return (
             <li key={key}>
               <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
-              <Foldable>
-                <SchemaPreview schema={property.elementType} parent={newParent} />
-              </Foldable>
+              {!isEmpty ? (
+                <Foldable>
+                  <SchemaPreview schema={property.elementType} parent={newParent} />
+                </Foldable>
+              ) : null}
             </li>
           );
         }
