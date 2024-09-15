@@ -86,7 +86,7 @@ export function NavLink({
 
 export function DocsNavigation({ sidebar }: { sidebar: SidebarItem[] }) {
   return (
-    <div className='sticky top-docs-navigation pr-4 text-white xl:max-h-tabs-content xl:overflow-y-auto xl:pb-4 xl:pt-8'>
+    <div className='sticky top-docs-navigation pr-4 text-white md:max-h-tabs-content md:overflow-y-auto md:pb-4 md:pt-8'>
       <Tree pages={sidebar} />
     </div>
   );

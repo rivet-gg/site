@@ -18,7 +18,7 @@ export default function Layout({ children }) {
     <>
       <Header active='docs' subnav={<Subnav />} />
       <div className='flex w-full'>
-        <div className='xl:grid-cols-docs mx-auto flex flex-col xl:grid xl:px-6'>{children}</div>
+        <div className='md:grid-cols-docs mx-auto flex flex-col md:grid md:px-6'>{children}</div>
       </div>
     </>
   );

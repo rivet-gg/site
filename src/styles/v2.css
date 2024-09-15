@@ -33,8 +33,12 @@
   @apply break-all;
 }
 
-.shiki.has-focused .line.focused {
-  @apply bg-accent/50 -mx-1 inline-block px-1;
+.shiki.has-focused .line:not(.focused) {
+  @apply opacity-40 transition-opacity;
+}
+
+.shiki.has-focused:hover .line {
+  @apply opacity-100;
 }
 
 @layer utilities {

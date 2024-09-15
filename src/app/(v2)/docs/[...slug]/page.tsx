@@ -56,7 +56,7 @@ export default async function CatchAllCorePage({ params: { slug } }) {
 
   return (
     <>
-      <aside className='hidden xl:block'>
+      <aside className='hidden md:block'>
         {map?.sidebar ? <DocsNavigation sidebar={map.sidebar} /> : null}
       </aside>
       <main className='mx-auto mt-8 w-full max-w-prose px-8 pb-8'>
@@ -64,7 +64,7 @@ export default async function CatchAllCorePage({ params: { slug } }) {
           <Content />
         </Prose>
       </main>
-      <aside className='-order-1 mx-auto w-full min-w-0 max-w-3xl flex-shrink-0 pb-4 pl-4 xl:order-none xl:mx-0'>
+      <aside className='-order-1 mx-auto w-full min-w-0 max-w-3xl flex-shrink-0 pb-4 pl-4 md:order-none xl:mx-0'>
         <DocsTableOfContents tableOfContents={tableOfContents} />
       </aside>
     </>
