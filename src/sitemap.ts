@@ -72,7 +72,7 @@ const developingModules = (prefix: string = "/docs"): SidebarSection => ({
       title: "Core Modules",
       collapsible: true,
       pages: [
-        { href: `${prefix}/modules/build/core-modules` },
+        { href: `${prefix}/general/modules/build/core-modules` },
         { href: `/modules/tokens`, title: "Tokens" },
         { href: `/modules/rate-limit`, title: "Rate Limit" },
         { href: `/modules/uploads`, title: "Uploads" },

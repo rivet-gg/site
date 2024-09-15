@@ -23,11 +23,8 @@ function TreeItem({ item }: TreeItemProps) {
 
   if ('title' in item && 'pages' in item) {
     return (
-      <div className='my-4'>
-        <p className='mb-1 px-2 py-1 text-sm font-semibold'>
-          {item.icon ? <FontAwesomeIcon icon={item.icon} className='mr-2 size-3.5' /> : null}
-          {item.title}
-        </p>
+      <div>
+        <p className='mt-2 px-2 py-1 text-sm font-semibold'>{item.title}</p>
         <Tree pages={item.pages} />
       </div>
     );
@@ -89,7 +86,7 @@ export function AnimatedTreeItem({ item }: AnimatedTreeItemProps) {
   return (
     <div>
       <button
-        className='mb-1 flex w-full appearance-none items-center gap-4 px-2 py-1 text-sm font-semibold'
+        className='mt-2 flex w-full appearance-none items-center gap-4 px-2 py-1 text-sm font-semibold'
         onClick={() => setIsOpen(open => !open)}>
         {item.title}
         <motion.span
