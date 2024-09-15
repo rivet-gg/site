@@ -64,7 +64,8 @@ function rehypeShiki() {
           'ts',
           'typescript',
           'yaml',
-          'http'
+          'http',
+          'prisma'
         ]
       });
     }
