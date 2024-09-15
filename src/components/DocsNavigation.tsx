@@ -91,33 +91,3 @@ export function DocsNavigation({ sidebar }: { sidebar: SidebarItem[] }) {
     </div>
   );
 }
-
-function findActiveItem(pages: SidebarItem[] = [], href: string) {
-  for (const page of pages) {
-    if ('href' in page && page.href === href) {
-      return page;
-    }
-    if ('pages' in page) {
-      const found = findActiveItem(page.pages, href);
-      if (found) {
-        return found;
-      }
-    }
-  }
-
-  return null;
-}
-
-export function markActiveCollapsibleItem(pages: SidebarItem[] = [], href: string) {
-  for (const page of pages) {
-    if ('collapsible' in page && page.collapsible) {
-      const found = findActiveItem(page.pages, href);
-      if (found) {
-        page.initiallyOpen = true;
-      }
-    }
-    if ('pages' in page) {
-      markActiveCollapsibleItem(page.pages, href);
-    }
-  }
-}

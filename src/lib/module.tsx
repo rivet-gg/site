@@ -37,7 +37,7 @@ export async function loadReadme(module) {
     try {
       return await import(`../../../modules/modules/${module}/README.md`);
     } catch {
-      return { deafult: DefaultReadme, tableOfContents: [] };
+      return { default: DefaultReadme, tableOfContents: [] };
     }
   }
 }

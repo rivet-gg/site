@@ -16,7 +16,6 @@ type SidebarTopLevelPage = Page;
 export type SidebarSection = {
   title: string;
   collapsible?: true;
-  initiallyOpen?: boolean;
   pages: (Page | PageWithTitle | PageWithPages)[];
 };
 

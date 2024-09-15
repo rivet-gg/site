@@ -52,8 +52,6 @@ export default async function CatchAllCorePage({ params: { slug } }) {
 
   const map = sitemap.find(({ href }) => href === `/docs/${slug[0]}`);
 
-  markActiveCollapsibleItem(map?.sidebar ?? [], `/docs/${slug.join('/')}`);
-
   return (
     <>
       <aside className='hidden md:block'>

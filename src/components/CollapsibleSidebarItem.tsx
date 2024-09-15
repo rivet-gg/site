@@ -1,10 +1,11 @@
 'use client';
 
-import { SidebarSection } from '@/lib/sitemap';
+import { SidebarItem, SidebarSection } from '@/lib/sitemap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { ReactNode, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface CollapsibleSidebarItemProps {
   item: SidebarSection;
@@ -12,17 +13,20 @@ interface CollapsibleSidebarItemProps {
 }
 
 export function CollapsibleSidebarItem({ item, children }: CollapsibleSidebarItemProps) {
-  const [isOpen, setIsOpen] = useState(item.initiallyOpen ?? false);
+  const pathname = usePathname() || '';
+  const isCurrent = findActiveItem(item.pages, pathname) !== null;
+  const [isOpen, setIsOpen] = useState(() => isCurrent);
   return (
     <div>
       <button
-        className='mt-2 flex w-full appearance-none items-center gap-4 px-2 py-1 text-sm font-semibold'
+        className='text-muted-foreground data-[active]:text-foreground flex w-full appearance-none items-center gap-4 px-2 py-1 text-sm transition-colors'
+        data-active={isCurrent ? true : undefined}
         onClick={() => setIsOpen(open => !open)}>
         {item.title}
         <motion.span
           initial={{ rotateZ: '-90deg' }}
           animate={{ rotateZ: isOpen ? 0 : '-90deg' }}
-          className='-ml-1.5 mr-2 inline-block w-3.5'>
+          className='-ml-2 mr-2 inline-block w-2.5'>
           <FontAwesomeIcon icon={faChevronDown} className='size-auto' />
         </motion.span>
       </button>
@@ -43,4 +47,20 @@ export function CollapsibleSidebarItem({ item, children }: CollapsibleSidebarIte
       </motion.div>
     </div>
   );
+}
+
+function findActiveItem(pages: SidebarItem[] = [], href: string) {
+  for (const page of pages) {
+    if ('href' in page && page.href === href) {
+      return page;
+    }
+    if ('pages' in page) {
+      const found = findActiveItem(page.pages, href);
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return null;
 }

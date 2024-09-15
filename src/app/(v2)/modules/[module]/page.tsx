@@ -28,7 +28,7 @@ export default async function ModulePage({ params }) {
 
   return (
     <div className='flex flex-col justify-between gap-4 lg:flex-row'>
-      <div className='max-w-prose'>
+      <div className='w-full max-w-prose'>
         <Card>
           <CardContent className='p-6'>
             <Prose>

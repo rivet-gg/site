@@ -1,6 +1,5 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { HeroPattern } from '@/components/HeroPattern';
 import { faRocket, faBooks, faStopwatch } from '@fortawesome/sharp-solid-svg-icons';
 
 export function LearnHome({ engineId, engineName, tutorials }) {
@@ -17,12 +16,7 @@ export function LearnHome({ engineId, engineName, tutorials }) {
 
       <ResourceGroup title='Tutorials' columns={2}>
         {tutorials.map(x => (
-          <Resource
-            key={x.id}
-            title={x.title}
-            href={`/learn/${engineId}/tutorials/${x.id}`}
-            pattern={{ image: x.image }}
-            className='h-[400px]'>
+          <Resource key={x.id} title={x.title} href={`/learn/${engineId}/tutorials/${x.id}`}>
             {x.details}
             <br />
             <FontAwesomeIcon icon={faStopwatch}></FontAwesomeIcon> {x.duration}
