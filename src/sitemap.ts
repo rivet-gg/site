@@ -136,7 +136,7 @@ export const sitemap = [
         ],
       },
       {
-        title: "⏱️ Crash Course",
+        title: "Crash Course",
         pages: [
           { href: "/docs/unreal/tutorials/crash-course" },
           { href: "/docs/unreal/tutorials/crash-course/10-setup-project" },
