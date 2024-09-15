@@ -1,9 +1,6 @@
 import { Header } from '@/components/v2/Header';
-import { Footer } from '@/components/Footer';
-import { sitemap } from '@/sitemap';
-import { DocsMobileNavigation, DocsNavigation } from '@/components/DocsNavigation';
 import { ModulePageLink } from '@/components/ModulePageLink';
-import Link from 'next/link';
+import { DocsMobileNavigation } from '@/components/DocsMobileNavigation';
 
 function Subnav() {
   return (
@@ -30,12 +27,7 @@ export default function Layout({ children }) {
     <>
       <Header active='docs' subnav={<Subnav />} mobileBreadcrumbs={<MobileBreadcrumbs />} />
       <div className='flex w-full'>
-        <div className='xl:grid-cols-docs mx-auto flex flex-col xl:grid xl:px-6'>
-          <aside className='hidden xl:block'>
-            <DocsNavigation />
-          </aside>
-          {children}
-        </div>
+        <div className='xl:grid-cols-docs mx-auto flex flex-col xl:grid xl:px-6'>{children}</div>
       </div>
     </>
   );

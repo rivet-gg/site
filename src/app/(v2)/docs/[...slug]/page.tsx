@@ -8,10 +8,13 @@
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import { CORE_DIRECTORIES, ENGINES, getAliasedSlug } from '@/lib/sameAs';
+import { CORE_DIRECTORIES, ENGINES, getAliasedHref, getAliasedSlug } from '@/lib/sameAs';
 import { Prose } from '@/components/Prose';
 import { Metadata } from 'next';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
+import { DocsNavigation, markActiveCollapsibleItem } from '@/components/DocsNavigation';
+import { sitemap } from '@/sitemap';
+import { SidebarItem, SidebarSection } from '@/lib/sitemap';
 
 function createParamsForFile(file) {
   return {
@@ -47,8 +50,15 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
 export default async function CatchAllCorePage({ params: { slug } }) {
   const { default: Content, tableOfContents } = await loadContent(slug);
 
+  const map = sitemap.find(({ href }) => href === `/docs/${slug[0]}`);
+
+  markActiveCollapsibleItem(map?.sidebar ?? [], `/docs/${slug.join('/')}`);
+
   return (
     <>
+      <aside className='hidden xl:block'>
+        {map?.sidebar ? <DocsNavigation sidebar={map.sidebar} /> : null}
+      </aside>
       <main className='mx-auto mt-8 w-full max-w-prose px-8 pb-8'>
         <Prose as='article'>
           <Content />

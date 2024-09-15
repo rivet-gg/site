@@ -14,10 +14,10 @@ function EngineCard({ children, href }: PropsWithChildren<{ href: string }>) {
 
 export default function DocsPage() {
   return (
-    <div className='flex min-h-screen w-full flex-col items-center justify-center py-10'>
+    <div className='col-span-3 flex min-h-screen w-full flex-col items-center justify-center px-8 py-10'>
       <H1 className='text-center'>Choose your engine</H1>
 
-      <div className='my-8 flex gap-4'>
+      <div className='my-8 flex flex-wrap gap-4'>
         <EngineCard href='/docs/godot'>Godot</EngineCard>
         <EngineCard href='/docs/unity'>Unity</EngineCard>
         <EngineCard href='/docs/unreal'>Unreal Engine</EngineCard>
