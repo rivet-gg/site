@@ -2,24 +2,80 @@ import { SidebarSection, Sitemap } from "@/lib/sitemap";
 
 import apiPages from "@/generated/apiPages.json" assert { type: "json" };
 
+const common = (prefix: string = "/docs"): SidebarSection => ([
+  general(prefix),
+  usingModules(prefix),
+  developingModules(prefix),
+  lowLevelApi(prefix),
+]);
+
 const general = (prefix: string = "/docs"): SidebarSection => ({
   title: "General",
   collapsible: true,
   pages: [
     { title: "Introduction", href: `${prefix}/general` },
-    { title: "Libraries", href: `${prefix}/general/libraries` },
     {
       title: "Concepts",
       pages: [{ href: `${prefix}/general/concepts/authoritative-vs-p2p` }],
     },
-    {
-      title: "FAQ",
-      pages: [
-        { href: `${prefix}/general/faq/who-is-rivet-built-for` },
-        { href: `${prefix}/general/faq/who-is-rivet-not-built-for` },
-      ],
-    },
   ],
+});
+
+const usingModules = (prefix: string = "/docs"): SidebarSection => ({
+  title: "Modules",
+  pages: [
+    { href: `${prefix}/modules/quickstart`, icon: "rocket" },
+    { href: `${prefix}/modules/project-config`, icon: "square-sliders" },
+    { href: `${prefix}/modules/modules`, icon: "puzzle" },
+    { href: `${prefix}/modules/sdk`, icon: "code" },
+    {
+      title: "Advanced",
+      collapsible: true,
+      pages: [
+        { href: `${prefix}/modules/cli` },
+        { href: `${prefix}/modules/registries`, icon: "share-nodes" },
+        { href: `${prefix}/modules/self-hosting`, icon: "server" },
+        { href: `${prefix}/modules/multiple-games`, icon: "object-intersect" },
+        { href: `${prefix}/modules/environment-variables`, icon: "leaf" }
+      ]
+    }
+  ]
+});
+
+const developingModules = (prefix: string = "/docs"): SidebarSection => ({
+  title: "Developing Modules",
+  pages: [
+    { href: `${prefix}/modules/build/overview`, icon: "square-info" },
+    { href: `${prefix}/modules/build/quickstart`, icon: "screwdriver-wrench" },
+    { href: `${prefix}/modules/build/module-config`, icon: "square-sliders" },
+    { href: `${prefix}/modules/build/scripts`, icon: "file-code" },
+    { href: `${prefix}/modules/build/database`, icon: "database" },
+    { href: `${prefix}/modules/build/actors`, icon: "bolt" },
+    { href: `${prefix}/modules/build/user-config`, icon: "paint-roller" },
+    { href: `${prefix}/modules/build/errors`, icon: "triangle-exclamation" },
+    { href: `${prefix}/modules/build/publish`, icon: "truck-fast" },
+    {
+      title: "Core Modules",
+      collapsible: true,
+      pages: [
+        { href: `${prefix}/modules/build/core-modules` },
+        { redirect: `/modules/tokens` },
+        { redirect: `/modules//rate-limit` },
+        { redirect: `/modules/uploads` },
+        { redirect: `/modules/analytics` }
+      ]
+    },
+    {
+      title: "Advanced",
+      collapsible: true,
+      pages: [
+        { href: `${prefix}/modules/build/conventions` },
+        { href: `${prefix}/modules/build/ide` },
+        { href: `${prefix}/modules/build/public` },
+        { href: `${prefix}/modules/build/logging` }
+      ]
+    }
+  ]
 });
 
 const lowLevelApi = (prefix: string = "/docs"): SidebarSection => ({
@@ -95,8 +151,7 @@ export const sitemap = [
           },
         ],
       },
-      general("/docs/godot"),
-      lowLevelApi("/docs/godot"),
+      ...common("/docs/godot"),
     ],
   },
   {
@@ -108,8 +163,7 @@ export const sitemap = [
         title: "Tutorials",
         pages: [{ href: "/docs/unity/tutorials/fishnet/crash-course" }],
       },
-      general("/docs/unity"),
-      lowLevelApi("/docs/unity"),
+      ...common("/docs/godot"),
     ],
   },
   {
@@ -145,8 +199,7 @@ export const sitemap = [
           { href: "/docs/unreal/tutorials/crash-course/40-deploy-rivet" },
         ],
       },
-      general("/docs/unreal"),
-      lowLevelApi("/docs/unreal"),
+      ...common("/docs/godot"),
     ],
   },
   {
@@ -161,12 +214,7 @@ export const sitemap = [
           { href: "/docs/html5/tutorials/tanks-canvas-socketio" },
         ],
       },
-      general("/docs/html5"),
-      lowLevelApi("/docs/html5"),
+      ...common("/docs/godot"),
     ],
-  },
-  {
-    title: "Modules",
-    href: "/docs/modules",
   },
 ] satisfies Sitemap;
