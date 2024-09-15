@@ -1,4 +1,4 @@
-import { ModuleIcon } from '@rivet-gg/components';
+import { ModuleIcon, Badge } from '@rivet-gg/components';
 import { ModulePageLink } from '@/components/ModulePageLink';
 import { safelyLoadModule } from '@/lib/module';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,7 +16,7 @@ export default async function ModuleLayout({ children, params }) {
   const { meta } = mod;
 
   const scripts = Object.keys(meta.scripts || {});
-  const dependencies = Object.keys(meta.dependencies || {});
+  const dependencies = Object.keys(meta.config.dependencies || {});
   const errors = Object.keys(meta.config.errors || {});
 
   return (
@@ -44,13 +44,28 @@ export default async function ModuleLayout({ children, params }) {
         </ModulePageLink>
         <ModulePageLink href={`/modules/${params.module}/config`}>Config</ModulePageLink>
         <ModulePageLink href={`/modules/${params.module}/scripts`}>
-          Scripts {scripts.length > 0 ? <>({scripts.length})</> : ''}
+          Scripts
+          {scripts.length > 0 ? (
+            <Badge className='ml-2' variant='secondary'>
+              {scripts.length}
+            </Badge>
+          ) : null}
         </ModulePageLink>
         <ModulePageLink href={`/modules/${params.module}/errors`}>
-          Errors {errors.length > 0 ? <>({errors.length})</> : ''}
+          Errors
+          {errors.length > 0 ? (
+            <Badge className='ml-2' variant='secondary'>
+              {errors.length}
+            </Badge>
+          ) : null}
         </ModulePageLink>
         <ModulePageLink href={`/modules/${params.module}/dependencies`}>
-          Dependencies {dependencies.length > 0 ? <>({dependencies.length})</> : ''}
+          Dependencies
+          {dependencies.length > 0 ? (
+            <Badge className='ml-2' variant='secondary'>
+              {dependencies.length}
+            </Badge>
+          ) : null}
         </ModulePageLink>
       </div>
       <div className='py-6'>{children}</div>
