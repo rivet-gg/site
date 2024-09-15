@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import { Code, CodeGroup } from '@/components/Code';
 import { Prose } from '@/components/Prose';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,9 +12,9 @@ import {
   CardTitle,
   Card,
   CopyArea,
-  WithTooltip,
   Button
 } from '@rivet-gg/components';
+import { ModuleScripts } from '@/components/ModuleScripts';
 
 export default async function ModulePage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -65,6 +64,15 @@ export default async function ModulePage({ params }) {
                 </li>
               ))}
             </ul>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Scripts</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ModuleScripts moduleId={meta.name} scripts={meta.scripts} />
           </CardContent>
         </Card>
 
