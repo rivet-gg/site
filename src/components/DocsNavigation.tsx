@@ -24,13 +24,21 @@ function TreeItem({ item }: TreeItemProps) {
   if ('title' in item && 'pages' in item) {
     return (
       <div className='my-4'>
-        <p className='mb-1 px-2 py-1 text-sm font-semibold'>{item.title}</p>
+        <p className='mb-1 px-2 py-1 text-sm font-semibold'>
+          {item.icon ? <FontAwesomeIcon icon={item.icon} className='mr-2 size-3.5' /> : null}
+          {item.title}
+        </p>
         <Tree pages={item.pages} />
       </div>
     );
   }
 
-  return <NavLink href={item.href}>{routes.pages[getAliasedHref(item.href)]?.title}</NavLink>;
+  return (
+    <NavLink href={item.href}>
+      {item.icon ? <FontAwesomeIcon icon={item.icon} className='mr-2 size-3.5' /> : null}
+      {item.title ?? routes.pages[getAliasedHref(item.href)]?.title}
+    </NavLink>
+  );
 }
 
 interface TreeProps {
@@ -158,7 +166,11 @@ export function DocsMobileNavigation() {
   const currentPage = sitemap.find(page => pathname.startsWith(page.href));
 
   if (!currentPage || !currentPage.sidebar) {
-    return <>{Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => value)}</>;
+    return (
+      <div className='flex flex-col gap-6'>
+        {Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => value)}
+      </div>
+    );
   }
 
   return (

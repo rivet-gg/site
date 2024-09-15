@@ -30,7 +30,7 @@ Similarly, OpenGB validates the response data returned by your script against th
 
 Here's an example of defining request and response types in a script:
 
-```typescript:opengb-modules/modules/lobbies/scripts/find.ts
+```typescript opengb-modules/modules/lobbies/scripts/find.ts
 export interface Request {
   version: string;
   regions?: string[];
@@ -51,7 +51,7 @@ OpenGB scripts can be marked as either public or internal in the `module.json` f
 
 Here's an example of defining public and internal scripts in `module.json`:
 
-```json:opengb-modules/modules/lobbies/module.json
+```json opengb-modules/modules/lobbies/module.json
 "scripts": {
   "create": {
     "name": "Create Lobby",
@@ -121,7 +121,7 @@ The `ScriptContext` object is passed to every script function and provides acces
 
 Here's an example of using the `ScriptContext` to call another module and access the database:
 
-```typescript:opengb-modules/modules/users/scripts/fetch.ts
+```typescript opengb-modules/modules/users/scripts/fetch.ts
 export async function run(
   ctx: ScriptContext,
   req: Request,

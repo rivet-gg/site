@@ -14,7 +14,10 @@ export { Accordion, AccordionGroup } from '@/components/Accordion';
 export * from '@/components/callouts';
 export { ArticleHeader } from '@/components/ArticleHeader';
 export { ArticleSocials } from '@/components/ArticleSocials';
+import { CodeBlock } from '@/components/CodeBlock';
+import { CtaCard } from '@rivet-gg/components';
 
+export * from '@/components/Tabs';
 export { Steps, Step } from '@/components/Steps';
 
 export const a = Link;
@@ -288,3 +291,27 @@ export const ExperimentalFeature = () => {
 };
 
 export { Warning, Note, Info, Tip };
+
+export const Version = () => {
+  const version = '0.1.5';
+  return (
+    <CodeBlock
+      lang='bash'
+      code={`deno install -n opengb -fgA https://raw.githubusercontent.com/rivet-gg/opengb/v${version}/src/cli/main.ts`}
+    />
+  );
+};
+
+export const Card = ({ title, href }) => {
+  if (href) {
+    return (
+      <Link href={href} className='h-full'>
+        <CtaCard className='h-full' title={title} />
+      </Link>
+    );
+  }
+};
+
+export const CardGroup = ({ children }) => {
+  return <div className='not-prose grid grid-cols-2 gap-4'>{children}</div>;
+};

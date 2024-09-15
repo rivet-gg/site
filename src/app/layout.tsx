@@ -1,6 +1,8 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://rivet.gg'),
   twitter: {

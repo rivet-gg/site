@@ -1,9 +1,15 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Route } from "next";
 
 type Href = string | Route | URL;
-type Page = { href: string };
-type PageWithTitle = { title: string; href: Href };
-type PageWithPages = { title: string; pages: Page[] };
+type Page = { title?: string; href: string; icon?: IconProp };
+type PageWithTitle = { title: string; href: Href; icon?: IconProp };
+type PageWithPages = {
+  title: string;
+  pages: Page[];
+  collapsible?: true;
+  icon?: IconProp;
+};
 
 type SidebarTopLevelPage = Page;
 export type SidebarSection = {
