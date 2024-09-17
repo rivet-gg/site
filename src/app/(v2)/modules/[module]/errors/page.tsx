@@ -2,6 +2,7 @@ import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rivet-gg/components';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
+import { Markdown } from '@/components/Markdown';
 
 export default async function ModuleErrorsPage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -41,7 +42,9 @@ export default async function ModuleErrorsPage({ params }) {
                     {error.name}
                     <code className='break-all text-xs  lg:ml-2'>{id}</code>
                   </h3>
-                  <p className='text-muted-foreground'>{error.description}</p>
+                  <div className='text-muted-foreground'>
+                    <Markdown>{error.description}</Markdown>
+                  </div>
                 </div>
               ))
             ) : (

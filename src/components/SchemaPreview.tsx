@@ -1,6 +1,6 @@
 import { Foldable } from '@/components/FoldableSchema';
-import { Badge, cn } from '@rivet-gg/components';
-import clsx from 'clsx';
+import { Markdown } from '@/components/Markdown';
+import { cn } from '@rivet-gg/components';
 import { ReactNode } from 'react';
 
 type CommonSchema = { description?: string };
@@ -12,6 +12,7 @@ type LiteralSchema = { type: 'literal'; value: any };
 type OptionalSchema = { type: 'optional'; value: Schema };
 type NullableSchema = { type: 'nullable'; item: Schema };
 type RecordSchema = { type: 'record'; elementType: Schema };
+type IntersectionSchema = { type: 'intersection'; left: Schema; right: Schema };
 type UnknownSchema = { type: 'unknown' };
 type StringSchema = { type: 'string' };
 type NumberSchema = { type: 'number' };
@@ -35,6 +36,7 @@ type Schema = (
   | AnySchema
   | DateSchema
   | NeverSchema
+  | IntersectionSchema
 ) &
   CommonSchema;
 
@@ -90,6 +92,10 @@ function getPropertyTypeLabel(schema: Schema) {
   if (schema.type === 'date') {
     return 'date';
   }
+
+  if (schema.type === 'intersection') {
+    return `combination of ${getPropertyTypeLabel(schema.left)} and ${getPropertyTypeLabel(schema.right)}`;
+  }
   console.log('Unknown schema type', schema);
 }
 
@@ -115,13 +121,19 @@ function PropertyLabel({ parent, name, ...rest }: PropertyLabelProps) {
         <PropertyTypeLabel {...rest} />
       </div>
 
-      <p className='text-muted-foreground px-4 text-sm'>{rest.description}</p>
+      <div className='text-muted-foreground px-4 text-sm'>
+        <Markdown>{rest.description || ''}</Markdown>
+      </div>
     </>
   );
 }
 
 function ObjectSchemaItem({ children }) {
-  return <li className='border-b pb-4 last:border-none last:pb-0'>{children}</li>;
+  return (
+    <li className='min-w-0 overflow-auto whitespace-pre border-b pb-4 last:border-none last:pb-0'>
+      {children}
+    </li>
+  );
 }
 
 interface ObjectSchemaProps {
@@ -159,6 +171,25 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
           );
         }
 
+        if (property.type === 'intersection') {
+          const objectSchema = property.left.type === 'object' ? property.left : property.right;
+          const isObject = objectSchema.type === 'object';
+          const isEmpty = isObject && Object.keys(objectSchema.properties).length === 0;
+
+          return (
+            <ObjectSchemaItem key={key}>
+              <PropertyLabel parent={parent} name={key} {...schema.properties[key]} />
+              {!isEmpty ? (
+                <div className='px-4'>
+                  <Foldable>
+                    <SchemaPreview schema={objectSchema} parent={newParent} />
+                  </Foldable>
+                </div>
+              ) : null}
+            </ObjectSchemaItem>
+          );
+        }
+
         if (property.type === 'object') {
           const isEmpty = Object.keys(property.properties).length === 0;
           return (
@@ -174,7 +205,6 @@ function ObjectSchema({ schema, parent, className }: ObjectSchemaProps) {
             </ObjectSchemaItem>
           );
         }
-
         if (property.type === 'record' && property.elementType.type === 'object') {
           const isEmpty =
             property.elementType.type === 'object' &&

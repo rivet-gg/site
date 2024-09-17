@@ -4,6 +4,8 @@ import { GameBackground } from '@/components/Game';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Button';
+import '@/styles/tailwind.css';
+import '@/styles/fonts.css';
 
 function PageNotFound() {
   return (
