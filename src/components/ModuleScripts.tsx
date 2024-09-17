@@ -1,18 +1,13 @@
-'use client';
 import { Markdown } from '@/components/Markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
-import { useState } from 'react';
+import Link from 'next/link';
 
 export function ModuleScripts({ moduleId, scripts }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const allScripts = Object.values(scripts);
-
-  const scriptsList = isExpanded ? allScripts : allScripts.slice(0, 5);
-
+  const allScripts = Object.values<any>(scripts);
   return (
     <ul>
-      {scriptsList.map(script => (
+      {allScripts.slice(0, 5).map(script => (
         <li key={script.name} className='mb-2 rounded-md border p-4'>
           <a
             href={`/modules/${moduleId}/scripts/${script.name}`}
@@ -27,10 +22,10 @@ export function ModuleScripts({ moduleId, scripts }) {
           </a>
         </li>
       ))}
-      {!isExpanded ? (
-        <button className='cursor-pointer appearance-none underline' onClick={() => setIsExpanded(true)}>
+      {allScripts.length > 5 ? (
+        <Link className='cursor-pointer appearance-none underline' href={`/modules/${moduleId}`}>
           Show more
-        </button>
+        </Link>
       ) : null}
     </ul>
   );
