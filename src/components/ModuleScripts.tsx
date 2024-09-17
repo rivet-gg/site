@@ -1,4 +1,5 @@
 'use client';
+import { Markdown } from '@/components/Markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
 import { useState } from 'react';
@@ -18,7 +19,9 @@ export function ModuleScripts({ moduleId, scripts }) {
             className='flex flex-row items-center justify-between'>
             <div className='flex flex-col'>
               {script.config.name}
-              <p className='text-muted-foreground text-sm'>{script.config.description}</p>
+              <div className='text-muted-foreground text-sm'>
+                <Markdown>{script.config.description}</Markdown>
+              </div>
             </div>
             <FontAwesomeIcon icon={faChevronRight} />
           </a>

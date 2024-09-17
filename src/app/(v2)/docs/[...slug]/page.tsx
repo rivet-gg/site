@@ -8,13 +8,12 @@
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import { CORE_DIRECTORIES, ENGINES, getAliasedHref, getAliasedSlug } from '@/lib/sameAs';
+import { CORE_DIRECTORIES, ENGINES, getAliasedSlug } from '@/lib/sameAs';
 import { Prose } from '@/components/Prose';
 import { Metadata } from 'next';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
-import { DocsNavigation, markActiveCollapsibleItem } from '@/components/DocsNavigation';
+import { DocsNavigation } from '@/components/DocsNavigation';
 import { sitemap } from '@/sitemap';
-import { SidebarItem, SidebarSection } from '@/lib/sitemap';
 
 function createParamsForFile(file) {
   return {

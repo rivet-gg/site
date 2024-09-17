@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Prose } from '@/components/Prose';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGitAlt } from '@fortawesome/free-brands-svg-icons';
 import {
   Avatar,
   AvatarFallback,
@@ -11,8 +9,7 @@ import {
   CardHeader,
   CardTitle,
   Card,
-  CopyArea,
-  Button
+  CopyArea
 } from '@rivet-gg/components';
 import { ModuleScripts } from '@/components/ModuleScripts';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';

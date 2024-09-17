@@ -1,6 +1,5 @@
 import { safeAwait } from '@/lib/safe';
-import { loadModuleMeta } from '@rivet-gg/components';
-import { loadModulesMeta } from '@rivet-gg/components';
+import { loadModuleMeta, loadModulesMeta } from '@rivet-gg/components';
 
 function DefaultReadme() {
   return (

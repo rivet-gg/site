@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
+import { Markdown } from '@/components/Markdown';
 
 function ScriptPage({ id, script, mod }) {
   return (
@@ -18,7 +19,9 @@ function ScriptPage({ id, script, mod }) {
           {script.config.name}
           <code className='break-all text-xs lg:ml-2'>{id}</code>
         </h3>
-        <p className='text-muted-foreground'>{script.config.description}</p>
+        <div className='text-muted-foreground'>
+          <Markdown>{script.config.description}</Markdown>
+        </div>
       </div>
       <div className='hidden lg:block'>
         <Button variant='icon'>
