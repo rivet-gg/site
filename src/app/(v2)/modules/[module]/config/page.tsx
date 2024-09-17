@@ -1,10 +1,10 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@rivet-gg/components';
-import { CodeGroup } from '@/components/Code';
-import { CodeBlock } from '@/components/CodeBlock';
 import { SchemaPreview } from '@/components/SchemaPreview';
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import { notFound } from 'next/navigation';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
+import { Code } from '@/components/mdx';
+import { CodeBlock } from '@/components/CodeBlock';
 
 export default async function ModuleConfigPage({ params }) {
   const mod = await safelyLoadModule(params.module);
@@ -36,11 +36,9 @@ export default async function ModuleConfigPage({ params }) {
           </CardHeader>
           <CardContent>
             {meta.config.defaultConfig ? (
-              <CodeGroup>
-                <div>
-                  <CodeBlock lang='json' code={JSON.stringify(meta.config.defaultConfig, null, 2)} />
-                </div>
-              </CodeGroup>
+              <Code language='json'>
+                <CodeBlock lang='json' code={JSON.stringify(meta.config.defaultConfig, null, 2)} />
+              </Code>
             ) : (
               <p>This module does not have a default config.</p>
             )}
