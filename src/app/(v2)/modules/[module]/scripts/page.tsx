@@ -2,8 +2,7 @@ import { Card, CardTitle, CardHeader, CardContent, Button, CardDescription } fro
 import { generateModulesPageParams, safelyLoadModule } from '@/lib/module';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
+import { Icon, faChevronRight } from '@rivet-gg/icons';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 import { Markdown } from '@/components/Markdown';
 
@@ -25,7 +24,7 @@ function ScriptPage({ id, script, mod }) {
       </div>
       <div className='hidden lg:block'>
         <Button variant='icon'>
-          <FontAwesomeIcon icon={faChevronRight} />
+          <Icon icon={faChevronRight} />
         </Button>
       </div>
     </Link>

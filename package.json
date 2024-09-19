@@ -17,10 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/pro-regular-svg-icons": "^6.5.2",
-    "@fortawesome/pro-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@fortawesome/sharp-solid-svg-icons": "^6.6.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/loader": "^2.1.5",
@@ -28,7 +25,8 @@
     "@next/mdx": "^14.0.1",
     "@next/third-parties": "latest",
     "@rivet-gg/api": "^0.0.1-rc19",
-    "@rivet-gg/components": "https://github.com/rivet-gg/hub#workspace=@rivet-gg/components&head=09-12-refactor_modify_components_to_be_usable_with_next",
+    "@rivet-gg/components": "https://github.com/rivet-gg/hub#workspace=@rivet-gg/components&head=09-18-icons_pack",
+    "@rivet-gg/icons": "*",
     "@shikijs/transformers": "^1.17.6",
     "@sindresorhus/slugify": "^2.1.1",
     "@tailwindcss/forms": "^0.5.3",
@@ -92,5 +90,8 @@
     "typescript": "^5.1.6",
     "yaml": "^2.3.1"
   },
-  "packageManager": "yarn@4.2.2"
+  "packageManager": "yarn@4.2.2",
+  "resolutions": {
+    "@rivet-gg/icons": "https://github.com/rivet-gg/hub#workspace=@rivet-gg/icons&head=09-18-icons_pack"
+  }
 }

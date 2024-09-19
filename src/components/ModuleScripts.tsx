@@ -1,6 +1,5 @@
 import { Markdown } from '@/components/Markdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
+import { faChevronRight, Icon } from '@rivet-gg/icons';
 import Link from 'next/link';
 
 export function ModuleScripts({ moduleId, scripts }) {
@@ -18,7 +17,7 @@ export function ModuleScripts({ moduleId, scripts }) {
                 <Markdown>{script.config.description}</Markdown>
               </div>
             </div>
-            <FontAwesomeIcon icon={faChevronRight} />
+            <Icon icon={faChevronRight} />
           </a>
         </li>
       ))}

@@ -1,7 +1,7 @@
 import { HeroPattern } from '@/components/HeroPattern';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { Button } from '@/components/Button';
-import { faRss } from '@fortawesome/sharp-solid-svg-icons';
+import { faRss } from '@rivet-gg/icons';
 import { getAllArticles } from '@/lib/getAllArticles';
 import { formatTimestamp } from '@/lib/formatDate';
 import Link from 'next/link';

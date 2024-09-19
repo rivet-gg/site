@@ -1,11 +1,9 @@
 import { ModuleIcon, Badge, Button } from '@rivet-gg/components';
 import { ModulePageLink } from '@/components/ModulePageLink';
 import { safelyLoadModule } from '@/lib/module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/sharp-solid-svg-icons';
+import { Icon, faGitAlt, faChevronRight } from '@rivet-gg/icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { faGitAlt } from '@fortawesome/free-brands-svg-icons';
 
 export default async function ModuleLayout({ children, params }) {
   const mod = await safelyLoadModule(params.module);
@@ -28,20 +26,16 @@ export default async function ModuleLayout({ children, params }) {
             <Link href='/modules'>Modules</Link>
           </li>
           <li className='h-2.5'>
-            <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+            <Icon className='block h-full w-auto' icon={faChevronRight} />
           </li>
           <li>{meta.category.name}</li>
           <li className='h-2.5'>
-            <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+            <Icon className='block h-full w-auto' icon={faChevronRight} />
           </li>
           <li className='text-foreground'>{meta.config.name}</li>
         </ul>
 
-        <Button
-          asChild
-          variant='ghost'
-          className='w-auto self-end'
-          startIcon={<FontAwesomeIcon icon={faGitAlt} />}>
+        <Button asChild variant='ghost' className='w-auto self-end' startIcon={<Icon icon={faGitAlt} />}>
           <a
             href={`https://github.com/rivet-gg/modules/tree/main/modules/${params.module}`}
             target='_blank'

@@ -1,5 +1,5 @@
 'use client';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -9,32 +9,22 @@ import { Popover, Transition } from '@headlessui/react';
 
 import { Button } from '@/components/Button';
 import { MobileNavigation, useIsInsideMobileNavigation } from '@/components/MobileNavigation';
-import { useMobileNavigationStore } from '@/components/MobileNavigation';
 import { MobileSearch, Search } from '@/components/Search';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBooks,
-  faCoin,
-  faHammer,
-  faNewspaper,
-  faCloud,
-  faChessKnight,
-  faServer,
+  Icon,
   faSquare,
   faHexagon,
-  faCube,
   faCircle,
-  faTriangle,
   faRhombus,
-  faDiamond
-} from '@fortawesome/sharp-solid-svg-icons';
-import { faGlobe, faFlask, faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
-import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
+  faDiamond,
+  faGithub,
+  faDiscord,
+  faFlask
+} from '@rivet-gg/icons';
 import { usePathname } from 'next/navigation';
 import imgLogoText from '@/images/rivet-logos/icon-text-cream.svg';
 import imgLogo from '@/images/rivet-logos/icon-cream.svg';
 import { useNavigation } from '@/hooks/useNavigation';
-import { CreditsBanner } from '@/components/CreditsBanner';
 
 const ICONS = {
   godot: faHexagon,
@@ -58,7 +48,7 @@ function TopLevelNavItem({ href, target, initHref, icon, children }) {
           : 'text-cream-100 hover:bg-white/5 hover:text-white',
         'border-1 flex items-center gap-2.5 border border-transparent px-3.5 py-1.5 transition'
       )}>
-      {icon ? <FontAwesomeIcon icon={icon} /> : null}
+      {icon ? <Icon icon={icon} /> : null}
       <span className='font-display text-lg'>{children}</span>
     </Link>
   );
@@ -95,11 +85,7 @@ function TopLevelNavPopoverSolution({ icon, href, title, description }) {
   return (
     <div key={title} className='group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50'>
       <div className='mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
-        <FontAwesomeIcon
-          icon={icon}
-          className='h-6 w-6 text-gray-600 group-hover:text-violet-600'
-          aria-hidden='true'
-        />
+        <Icon icon={icon} className='h-6 w-6 text-gray-600 group-hover:text-violet-600' aria-hidden='true' />
       </div>
       <div>
         <Link href={href} className='font-semibold text-gray-900'>
@@ -118,7 +104,7 @@ function TopLevelNavPopoverCallToAction({ icon, href, title }) {
       key={title}
       href={href}
       className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100'>
-      <FontAwesomeIcon icon={icon} className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
+      <Icon icon={icon} className='h-5 w-5 flex-none text-gray-400' aria-hidden='true' />
       {title}
     </Link>
   );
@@ -128,7 +114,7 @@ const StatusBadge = ({ status }) => {
   if (status === 'experimental') {
     return (
       <span className='text-2xs text-amber-500'>
-        <FontAwesomeIcon icon={faFlask} />
+        <Icon icon={faFlask} />
       </span>
     );
   }
@@ -192,7 +178,7 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
                 key={href}
                 href={href}
                 target='_blank'>
-                <FontAwesomeIcon icon={icon} className='text-lg text-cream-100' />
+                <Icon icon={icon} className='text-lg text-cream-100' />
               </Link>
             ))}
             {/* </div> */}
@@ -234,7 +220,7 @@ export const Header = forwardRef(function Header({ className, tabsTitle, tabs },
                   )}
                   aria-current={pathname.startsWith(tab.href) ? 'page' : undefined}>
                   {tab.icon ? (
-                    <FontAwesomeIcon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
+                    <Icon icon={ICONS[tab.icon]} className='mx-1 h-3.5 w-3.5' alt='Tab icon' />
                   ) : null}
                   <span>{tab.title}</span>
                   <StatusBadge status={tab.status} />

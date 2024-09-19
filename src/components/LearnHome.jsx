@@ -1,6 +1,5 @@
 import { ResourceGroup, Resource } from '@/components/Resources';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket, faBooks, faStopwatch } from '@fortawesome/sharp-solid-svg-icons';
+import { Icon, faRocket, faBooks, faStopwatch } from '@rivet-gg/icons';
 
 export function LearnHome({ engineId, engineName, tutorials }) {
   return (
@@ -19,7 +18,7 @@ export function LearnHome({ engineId, engineName, tutorials }) {
           <Resource key={x.id} title={x.title} href={`/learn/${engineId}/tutorials/${x.id}`}>
             {x.details}
             <br />
-            <FontAwesomeIcon icon={faStopwatch}></FontAwesomeIcon> {x.duration}
+            <Icon icon={faStopwatch} /> {x.duration}
           </Resource>
         ))}
       </ResourceGroup>

@@ -5,8 +5,7 @@ import { Header as RivetHeader } from '@rivet-gg/components/header';
 import { Button } from '@rivet-gg/components';
 import { ReactNode } from 'react';
 import { DocsMobileNavigation } from '@/components/DocsMobileNavigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faGithub, Icon } from '@rivet-gg/icons';
 
 interface HeaderProps {
   active: 'docs' | 'modules' | 'blog' | 'pricing';
@@ -40,12 +39,12 @@ export function Header({ active, subnav }: HeaderProps) {
         <>
           <RivetHeader.NavItem asChild className='-m-2 p-2'>
             <Link href='/discord'>
-              <FontAwesomeIcon icon={faDiscord} />
+              <Icon icon={faDiscord} />
             </Link>
           </RivetHeader.NavItem>
           <RivetHeader.NavItem asChild className='p-2'>
             <Link href='/support'>
-              <FontAwesomeIcon icon={faGithub} />
+              <Icon icon={faGithub} />
             </Link>
           </RivetHeader.NavItem>
           <Button variant='outline' asChild>

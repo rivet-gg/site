@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { faBooks, faCoin, faNewspaper } from '@fortawesome/sharp-solid-svg-icons';
+import { faBooks, faCoin, faNewspaper } from '@rivet-gg/icons';
 import routes from '@/generated/routes.json';
 
 import { Button } from '@/components/Button';
@@ -10,7 +10,7 @@ import { useIsInsideMobileNavigation } from '@/components/MobileNavigation';
 import { Tag } from '@/components/Tag';
 import { usePathname } from 'next/navigation';
 import { ActiveSectionMarker } from '@/components/TableOfContents';
-import { faPuzzle } from '@fortawesome/sharp-solid-svg-icons';
+import { faPuzzle } from '@rivet-gg/icons';
 
 function TopLevelNavItem({ href, target, children }) {
   return (

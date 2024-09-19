@@ -1,6 +1,5 @@
-import { faCalendar, faEnvelope, faHeart, faHeartbeat } from '@fortawesome/sharp-solid-svg-icons';
+import { faCalendar, faEnvelope, faDiscord, faHeartbeat } from '@rivet-gg/icons';
 import { Resource } from '@/components/Resources';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 
 export default function Support() {
   return (

@@ -1,13 +1,9 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useInView } from 'framer-motion';
 import { Button } from '@rivet-gg/components';
 
 import { Tag } from '@/components/Tag';
-import { remToPx } from '@/lib/remToPx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/pro-solid-svg-icons';
+import { Icon, faLink } from '@rivet-gg/icons';
 
 function Eyebrow({ tag, label }) {
   if (!tag && !label) {
@@ -31,7 +27,7 @@ function Anchor({ id, children }) {
       variant='outline'
       asChild>
       <Link href={`#${id}`}>
-        <FontAwesomeIcon icon={faLink} />
+        <Icon icon={faLink} />
       </Link>
     </Button>
   );

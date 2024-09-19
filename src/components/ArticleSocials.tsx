@@ -1,7 +1,5 @@
 'use client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRss, faRssSquare } from '@fortawesome/sharp-solid-svg-icons';
-import { faXTwitter, faHackerNews, faReddit } from '@fortawesome/free-brands-svg-icons';
+import { Icon, faRssSquare, faXTwitter, faHackerNews, faReddit } from '@rivet-gg/icons';
 import { usePathname } from 'next/navigation';
 import { getSiteUrl } from '@/lib/siteUrl';
 import { ArticleInfo } from '@/lib/articles/metadata';
@@ -36,7 +34,7 @@ export function ArticleSocials({ title, ...props }: ArticleInfo) {
 function SocialIcon({ url, icon }) {
   return (
     <a href={url} target='_blank' rel='noreferrer' className='text-orange-400 hover:text-cream-100'>
-      <FontAwesomeIcon icon={icon} size='xl' />
+      <Icon icon={icon} size='xl' />
     </a>
   );
 }
