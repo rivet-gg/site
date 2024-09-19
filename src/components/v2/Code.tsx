@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faFile } from '@fortawesome/sharp-solid-svg-icons';
+import { faCopy, faFile, Icon } from '@rivet-gg/icons';
 import {
   Button,
   Tabs,
@@ -11,7 +10,7 @@ import {
   ScrollArea,
   cn
 } from '@rivet-gg/components';
-import { Children, ReactElement, ReactNode, cloneElement } from 'react';
+import { Children, ReactElement, cloneElement } from 'react';
 import escapeHTML from 'escape-html';
 import { CopyCodeTrigger } from '@/components/v2/CopyCodeButton';
 
@@ -94,7 +93,7 @@ export const pre = ({ children, file, language, title, isInGroup }: PreProps) =>
         <div className='text-muted-foreground flex items-center gap-1'>
           {file ? (
             <>
-              <FontAwesomeIcon icon={faFile} className='block' />
+              <Icon icon={faFile} className='block' />
               <span>{file}</span>
             </>
           ) : isInGroup ? null : (
@@ -105,7 +104,7 @@ export const pre = ({ children, file, language, title, isInGroup }: PreProps) =>
           trigger={
             <CopyCodeTrigger>
               <Button size='icon-sm' variant='ghost'>
-                <FontAwesomeIcon icon={faCopy} />
+                <Icon icon={faCopy} />
               </Button>
             </CopyCodeTrigger>
           }

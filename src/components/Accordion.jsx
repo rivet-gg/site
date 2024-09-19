@@ -1,8 +1,7 @@
 'use client';
-import { faCaretDown, faCaretRight } from '@fortawesome/sharp-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon, faCaretDown, faCaretRight } from '@rivet-gg/icons';
 import { clsx } from 'clsx';
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 
 function getAccordionStyleFromVariant(variant) {
   if (variant === 'minimalist') {
@@ -82,7 +81,7 @@ function AccordionCover({ title, description, open, setOpen, icon, coverClass })
       aria-controls={title + 'Children'}
       aria-expanded={open}>
       <div className='mr-0.5'>
-        <FontAwesomeIcon
+        <Icon
           icon={open ? faCaretDown : faCaretRight}
           className='h-3 w-3 text-charcole-800 opacity-75 dark:text-cream-100'
         />

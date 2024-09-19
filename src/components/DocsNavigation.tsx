@@ -1,20 +1,13 @@
 import routes from '@/generated/routes.json';
 import { SidebarItem } from '@/lib/sitemap';
 import { getAliasedHref } from '@/lib/sameAs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@rivet-gg/icons';
 import { PropsWithChildren, ReactNode } from 'react';
 import { cn } from '@rivet-gg/components';
 import { CollapsibleSidebarItem } from '@/components/CollapsibleSidebarItem';
 import { ActiveLink } from '@/components/ActiveLink';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fas } from '@fortawesome/pro-solid-svg-icons';
-import { type IconPack, library } from '@fortawesome/fontawesome-svg-core';
 
-const fasFab: IconPack = Object.fromEntries(
-  Object.entries(fab).map(([iconName, icon]) => [iconName, { ...icon, prefix: 'fas' }])
-);
-
-library.add(fasFab, fas);
+// library.add(iconPack);
 
 interface TreeItemProps {
   item: SidebarItem;
@@ -33,7 +26,7 @@ function TreeItem({ item }: TreeItemProps) {
     return (
       <div>
         <p className='mt-2 px-2 py-1 text-sm font-semibold'>
-          {item.icon ? <FontAwesomeIcon icon={item.icon} className='mr-2 size-3.5' /> : null}
+          {item.icon ? <Icon icon={item.icon} className='mr-2 size-3.5' /> : null}
           <span className='truncate'> {item.title}</span>
         </p>
         <Tree pages={item.pages} />
@@ -43,7 +36,7 @@ function TreeItem({ item }: TreeItemProps) {
 
   return (
     <NavLink href={item.href}>
-      {item.icon ? <FontAwesomeIcon icon={item.icon} className='mr-2 size-3.5' /> : null}
+      {item.icon ? <Icon icon={item.icon} className='mr-2 size-3.5' /> : null}
       <span className='truncate'>{item.title ?? routes.pages[getAliasedHref(item.href)]?.title}</span>
     </NavLink>
   );

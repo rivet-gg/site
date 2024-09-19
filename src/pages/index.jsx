@@ -8,9 +8,7 @@ import Earth from '@/components/Earth';
 import { Button } from '@/components/Button';
 import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IncludedSection from '@/components/Included';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { GameBackground } from '@/components/Game';
 import LevelUpSection from '@/components/LevelUpSection';
 import grainDark from '@/images/effects/grain-dark.png';
@@ -30,14 +28,19 @@ import {
   faShield,
   faAddressCard,
   faChessKnight,
-  faBug
-} from '@fortawesome/sharp-solid-svg-icons';
-import { faPlus, faGears } from '@fortawesome/sharp-solid-svg-icons';
+  faBug,
+  faPlus,
+  faGears,
+  iconPack,
+  faGithub,
+  Icon
+} from '@rivet-gg/icons';
 import { Ferris } from '../components/icons/Ferris';
 import { loadModulesMeta } from '@rivet-gg/components';
 
-// TODO: This probably balloons sizes
-import * as allFas from '@fortawesome/sharp-solid-svg-icons';
+// https://github.com/FortAwesome/Font-Awesome/issues/19348
+const { library } = require('@fortawesome/fontawesome-svg-core');
+library.add(iconPack);
 
 function camelToKebab(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -247,7 +250,7 @@ function Title() {
                     'hover:text-orange-500 hover:decoration-orange-500',
                     'transition-all duration-100'
                   )}>
-                  <FontAwesomeIcon
+                  <Icon
                     icon={item.icon}
                     className={clsx(
                       'text-base md:text-lg lg:text-xl',
@@ -438,7 +441,7 @@ function DownloadButton({ title, href, icon = faArrowDown }) {
       <div className='flex flex-grow items-center justify-center'>{title}</div>
       <div className='my-auto h-7 w-[2px] bg-cream-100/5' />
       <div className={clsx('flex-0 w-11', 'flex items-center justify-center')}>
-        <FontAwesomeIcon icon={icon} />
+        <Icon icon={icon} />
       </div>
 
       {/* Gloss effect */}
@@ -466,7 +469,7 @@ function AllModules({ modules }) {
         {modules.map(([key, x]) => (
           <div key={key} className='group/tooltip relative inline'>
             <Button variant='juicySubtle' href={`/modules/${key}/overview`} target='_blank'>
-              {x.config.icon && <FontAwesomeIcon icon={allFas[`fa${kebabToUpperCamel(x.config.icon)}`]} />}
+              {x.config.icon && <Icon icon={x.config.icon} />}
               {x.config.name}
             </Button>
             <div
@@ -493,11 +496,11 @@ function AllModules({ modules }) {
       </div>
       <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
         <Button variant='juicy' href='/docs/modules/build/overview' target='_blank'>
-          <FontAwesomeIcon icon={faPlus} />
+          <Icon icon={faPlus} />
           Build Your Own Modules
         </Button>
         <Button variant='juicy' href='https://github.com/rivet-gg/modules' target='_blank'>
-          <FontAwesomeIcon icon={faGears} />
+          <Icon icon={faGears} />
           Modify Existing Modules
         </Button>
       </div>
@@ -542,13 +545,13 @@ function GitHubStars({ repo = 'rivet-gg/rivet', ...props }) {
       {...props}>
       {isHovered ? (
         <>
-          <FontAwesomeIcon icon={faSkullCrossbones} /> Pirate our source code{' '}
-          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          <Icon icon={faSkullCrossbones} /> Pirate our source code{' '}
+          <Icon icon={faArrowRight} className='h-6 w-6' />
         </>
       ) : (
         <>
-          <FontAwesomeIcon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>}{' '}
-          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          <Icon icon={faGithub} /> {stars ? <>{formatNumber(stars)} stars</> : <>GitHub</>}{' '}
+          <Icon icon={faArrowRight} className='h-6 w-6' />
         </>
       )}
     </a>
@@ -591,7 +594,7 @@ function Philosophy() {
         {/* Title */}
         <div className='mx-auto max-w-4xl'>
           <h2 className='font-display text-5xl font-bold tracking-tight text-cream-100'>
-            Our commitment to open-source <FontAwesomeIcon icon={faCodeBranch} className='ml-3 text-4xl' />
+            Our commitment to open-source <Icon icon={faCodeBranch} className='ml-3 text-4xl' />
           </h2>
         </div>
 
@@ -613,7 +616,7 @@ function Philosophy() {
           {PHILOSOPHY_ITEMS.map((item, i) => (
             <div key={i} className='flex flex-row items-center gap-3 font-semibold text-cream-100'>
               <div className='flex h-9 w-9 items-center justify-center rounded-lg bg-white/[4%] outline outline-1 outline-white/[8%]'>
-                {item.icon && <FontAwesomeIcon icon={item.icon} className='w-4' />}
+                {item.icon && <Icon icon={item.icon} className='w-4' />}
                 {item.iconEl && item.iconEl}
               </div>
               <span className={item.classes ?? ''}>{item.title}</span>
@@ -642,7 +645,7 @@ function EngineGrid() {
           {/* Grid Item 2 */}
           <div className='flex flex-col justify-center border border-white p-4'>
             <h3 className='font-display text-purple-800 sm:text-7xl'>
-              <FontAwesomeIcon icon={faAlien8bit} />
+              <Icon icon={faAlien8bit} />
             </h3>
           </div>
 
@@ -654,7 +657,7 @@ function EngineGrid() {
           {/* Grid Item 4 */}
           <div className='flex flex-col justify-center border border-white p-4'>
             <h3 className='font-display text-purple-800 sm:text-7xl'>
-              <FontAwesomeIcon icon={faAlien8bit} />
+              <Icon icon={faAlien8bit} />
             </h3>
           </div>
 
@@ -666,7 +669,7 @@ function EngineGrid() {
           {/* Grid Item 6 */}
           <div className='flex flex-col justify-center border border-white p-4'>
             <h3 className='font-display text-purple-800 sm:text-7xl'>
-              <FontAwesomeIcon icon={faAlien8bit} />
+              <Icon icon={faAlien8bit} />
             </h3>
           </div>
 
@@ -880,7 +883,7 @@ function AdaptableFeature({ title, description, docsHref, ...props }) {
           rel={docsHref.startsWith('http') ? 'noreferrer' : undefined}
           className='flex items-center gap-1 text-xs font-bold text-orange-400 hover:text-orange-300 sm:text-sm'>
           Documentation
-          <FontAwesomeIcon icon={faArrowRight} className='h-6 w-6' />
+          <Icon icon={faArrowRight} className='h-6 w-6' />
         </a>
       )}
     </div>

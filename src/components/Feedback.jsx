@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/components/Button';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@rivet-gg/icons';
 import { RainbowBar } from '@/components/RainbowBar';
 
 export function Feedback() {

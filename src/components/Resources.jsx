@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Heading } from '@/components/Heading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@rivet-gg/icons';
 
 import { Button, cn } from '@rivet-gg/components';
 
@@ -25,7 +25,7 @@ export function Resource({ children, ...props }) {
       href={props.href}
       key={props.href}
       {...props}
-      startIcon={<FontAwesomeIcon icon={props.icon} />}>
+      startIcon={<Icon icon={props.icon} />}>
       <span className='pt-4 font-bold'>{titleSegments}</span>
       {children && (
         <div className='text-muted-foreground mt-2 min-w-0 text-wrap text-sm leading-5'>{children}</div>

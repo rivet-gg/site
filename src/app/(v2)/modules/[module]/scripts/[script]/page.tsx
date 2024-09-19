@@ -11,8 +11,7 @@ import {
 } from '@/lib/codeTemplates';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CopyArea } from '@rivet-gg/components';
 import { generateModuleSciprtsPageParams, safelyLoadModule } from '@/lib/module';
-import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, Icon } from '@rivet-gg/icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -37,13 +36,13 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
           <Link href={`/modules/${meta.name}`}>{meta.config.name}</Link>
         </li>
         <li className='h-2.5'>
-          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+          <Icon className='block h-full w-auto' icon={faChevronRight} />
         </li>
         <li>
           <Link href={`/modules/${meta.name}/scripts`}>Scripts</Link>
         </li>
         <li className='h-2.5'>
-          <FontAwesomeIcon className='block h-full w-auto' icon={faChevronRight} />
+          <Icon className='block h-full w-auto' icon={faChevronRight} />
         </li>
         <li className='text-foreground'>{scriptMeta.config.name}</li>
       </ul>

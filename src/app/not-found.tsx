@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBlockQuestion } from '@fortawesome/sharp-solid-svg-icons';
+import { Icon, faBlockQuestion } from '@rivet-gg/icons';
 import { GameBackground } from '@/components/Game';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -16,7 +15,7 @@ function PageNotFound() {
           <GameBackground />
           <div className='transition-opacity'>
             <h1 className='mb-3 flex items-center justify-center text-3xl text-white'>
-              <FontAwesomeIcon className='mr-2 size-10' icon={faBlockQuestion} /> Not Found
+              <Icon className='mr-2 size-10' icon={faBlockQuestion} /> Not Found
             </h1>
             <Button href='/' variant='secondary'>
               Home

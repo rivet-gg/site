@@ -1,8 +1,7 @@
 'use client';
 
 import { SidebarItem, SidebarSection } from '@/lib/sitemap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronDown, Icon } from '@rivet-gg/icons';
 import { motion } from 'framer-motion';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -24,15 +23,19 @@ export function CollapsibleSidebarItem({ item, children }: CollapsibleSidebarIte
         onClick={() => setIsOpen(open => !open)}>
         {item.title}
         <motion.span
-          initial={{ rotateZ: '-90deg' }}
-          animate={{ rotateZ: isOpen ? 0 : '-90deg' }}
+          variants={{
+            open: { rotateZ: 0 },
+            closed: { rotateZ: '-90deg' }
+          }}
+          initial={isCurrent ? 'open' : 'closed'}
+          animate={isOpen ? 'open' : 'closed'}
           className='-ml-2 mr-2 inline-block w-2.5'>
-          <FontAwesomeIcon icon={faChevronDown} className='size-auto' />
+          <Icon icon={faChevronDown} className='size-auto' />
         </motion.span>
       </button>
       <motion.div
         className='overflow-hidden pl-1'
-        initial={item.initiallyOpen ? 'open' : 'closed'}
+        initial={isCurrent ? 'open' : 'closed'}
         variants={{
           open: { height: 'auto', opacity: 1 },
           closed: { height: 0, opacity: 0 }

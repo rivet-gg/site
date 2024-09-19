@@ -7,8 +7,7 @@ import clsx from 'clsx';
 import routes from '@/generated/routes.json';
 
 import imgLogo from '@/images/rivet-logos/icon-cream.svg';
-import { faDiscord, faGithub, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon, faDiscord, faGithub, faLinkedin, faTwitter, faYoutube } from '@rivet-gg/icons';
 
 const footer = {
   docs: [
@@ -120,7 +119,7 @@ function SmallPrint() {
             {footer.social.map(item => (
               <Link key={item.name} href={item.href} className='text-xl text-gray-500 hover:text-gray-400'>
                 <span className='sr-only'>{item.name}</span>
-                <FontAwesomeIcon icon={item.icon} aria-hidden='true' />
+                <Icon icon={item.icon} aria-hidden='true' />
               </Link>
             ))}
           </div>

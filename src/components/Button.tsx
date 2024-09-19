@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@rivet-gg/icons';
 
 function ArrowIcon(props) {
   return (
@@ -18,7 +18,7 @@ function ArrowIcon(props) {
 const commonAnimationClasses = [
   'transition-[background,transform,border-color,color,box-shadow] duration-200 ease-out',
   'hover:-translate-y-[2px] hover:shadow-[0_4px_10px_0_rgba(0,0,0,0.6)]',
-  'active:opacity-75',
+  'active:opacity-75'
 ];
 
 const variantClasses = {
@@ -30,7 +30,7 @@ const variantClasses = {
       'text-sm font-semibold',
       'bg-cream-100 text-charcole-950',
       // Hover
-      'hover:bg-cream-50 hover:text-charcole-950',
+      'hover:bg-cream-50 hover:text-charcole-950'
     ),
     highlight: ''
   },
@@ -43,7 +43,7 @@ const variantClasses = {
       'bg-transparent text-cream-100',
       'border-2 border-cream-100',
       // Hover
-      'hover:bg-cream-100 hover:text-charcole-950',
+      'hover:bg-cream-100 hover:text-charcole-950'
     ),
     highlight: ''
   },
@@ -51,7 +51,7 @@ const variantClasses = {
     base: clsx(
       'text-sm text-orange-300',
       // Hover
-      'hover:text-orange-500',
+      'hover:text-orange-500'
     ),
     highlight: ''
   },
@@ -59,7 +59,7 @@ const variantClasses = {
     base: clsx(
       'text-sm text-charcole-400',
       // Hover
-      'hover:text-charcole-300',
+      'hover:text-charcole-300'
     ),
     highlight: ''
   },
@@ -73,13 +73,13 @@ const variantClasses = {
       'border-2 border-cream-100/5',
       ...commonAnimationClasses,
       // Hover
-      'hover:bg-charcole-800/50 hover:border-cream-100/20 hover:text-cream-50',
+      'hover:border-cream-100/20 hover:bg-charcole-800/50 hover:text-cream-50',
       // Selected
       'aria-selected:border-cream-100/30 aria-selected:text-cream-50',
       // Disabled
-      'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      'disabled:border-cream-100 disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-cream-100',
       // Loading
-      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
+      'aria-busy:translate-y-0 aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:hover:text-white'
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
@@ -97,14 +97,14 @@ const variantClasses = {
       "before:absolute before:inset-0 before:-z-10 before:opacity-0 before:transition-all before:content-['']",
       "after:absolute after:inset-0 after:-z-10 after:opacity-100 after:transition-all after:content-['']",
       // Hover
-      'hover:bg-cream-100/10 hover:border-cream-100/20',
+      'hover:border-cream-100/20 hover:bg-cream-100/10',
       // Selected
       'aria-selected:border-cream-100/30 aria-selected:text-cream-100 aria-selected:before:border-cream-100/30',
       // Disabled
-      'disabled:opacity-60 disabled:border-cream-100 disabled:hover:bg-transparent disabled:hover:text-cream-100',
+      'disabled:border-cream-100 disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-cream-100',
       'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
       // Loading
-      'aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
+      'aria-busy:translate-y-0 aria-busy:border-neutral-300 aria-busy:hover:bg-transparent aria-busy:hover:text-white'
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
@@ -133,7 +133,7 @@ const variantClasses = {
       'disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-cream-100',
       'disabled:hover:before:opacity-0 disabled:hover:after:opacity-100',
       // Loading
-      'aria-busy:hover:bg-transparent aria-busy:translate-y-0 aria-busy:hover:text-white',
+      'aria-busy:translate-y-0 aria-busy:hover:bg-transparent aria-busy:hover:text-white'
     ]),
     normal: 'text-cream-100',
     highlight: 'text-charcole-950'
@@ -147,7 +147,7 @@ const variantClasses = {
       'bg-transparent text-black',
       'border-2 border-black',
       // Hover
-      'hover:bg-black hover:text-cream-100',
+      'hover:bg-black hover:text-cream-100'
     ),
     highlight: ''
   }
@@ -209,7 +209,7 @@ export function Button({
 
   return (
     <Component aria-selected={highlight} className={className} {...props}>
-      {icon ? <FontAwesomeIcon icon={icon} className='-ml-1 h-5 w-5' /> : null}
+      {icon ? <Icon icon={icon} className='-ml-1 h-5 w-5' /> : null}
       {arrow === 'left' && arrowIcon}
       {children}
       {arrow === 'right' && arrowIcon}

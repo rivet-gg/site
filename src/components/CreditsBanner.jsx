@@ -1,7 +1,4 @@
 'use client';
-import { faArrowRight, faX } from '@fortawesome/pro-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 export const CreditsBanner = () => {
