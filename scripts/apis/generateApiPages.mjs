@@ -175,7 +175,7 @@ await RIVET.${specPath.operationId.replace(/_/g, '.')}({
       // Write config
       apiPages[productName] = apiPages[productName] || { pages: [] };
       apiPages[productName].pages.push({
-        href: `/docs/core/${productName}/api/${fileName}`,
+        href: `/docs/general/${productName}/api/${fileName}`,
         sortingKey
       });
     }

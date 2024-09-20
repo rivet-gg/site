@@ -41,11 +41,11 @@ issuing a player token. Ensure this player token is valid before letting a playe
 Disconnect sockets immediately if [matchmaker.players.connected](/docs/matchmaker/api/players/connected)
 returns an error. Specifically:
 
-- [MATCHMAKER_PLAYER_ALREADY_CONNECTED](/docs/core/errors/mm/player-already-connected)
-- [MATCHMAKER_PLAYER_REGISTRATION_EXPIRED](/docs/core/errors/mm/player-registration-expired)
-- [MATCHMAKER_PLAYER_REMOVED](/docs/core/errors/mm/player-removed)
-- [MATCHMAKER_PLAYER_IN_DIFFERENT_LOBBY](/docs/core/errors/mm/player-in-different-lobby)
-- [TOKEN_INVALID](/docs/core/errors/token/invalid)
+- [MATCHMAKER_PLAYER_ALREADY_CONNECTED](/docs/general/errors/mm/player-already-connected)
+- [MATCHMAKER_PLAYER_REGISTRATION_EXPIRED](/docs/general/errors/mm/player-registration-expired)
+- [MATCHMAKER_PLAYER_REMOVED](/docs/general/errors/mm/player-removed)
+- [MATCHMAKER_PLAYER_IN_DIFFERENT_LOBBY](/docs/general/errors/mm/player-in-different-lobby)
+- [TOKEN_INVALID](/docs/general/errors/token/invalid)
 
 Additionally, don't accept any packets from the client until [matchmaker.players.connected](/docs/matchmaker/api/players/connected) has succeeded.
 

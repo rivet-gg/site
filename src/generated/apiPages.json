@@ -2,320 +2,292 @@
   "cloud": {
     "pages": [
       {
-        "href": "/docs/core/cloud/api/games/namespaces/create-game-namespace",
+        "href": "/docs/general/cloud/api/games/namespaces/create-game-namespace",
         "sortingKey": "0 /cloud/games/{game_id}/namespaces post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/update-game-namespace-version",
+        "href": "/docs/general/cloud/api/games/namespaces/update-game-namespace-version",
         "sortingKey": "0 /cloud/games/{game_id}/namespaces/{namespace_id}/version put"
       },
       {
-        "href": "/docs/core/cloud/api/games/versions/create-game-version",
+        "href": "/docs/general/cloud/api/games/versions/create-game-version",
         "sortingKey": "0 /cloud/games/{game_id}/versions post"
       },
       {
-        "href": "/docs/core/cloud/api/auth/inspect",
+        "href": "/docs/general/cloud/api/auth/inspect",
         "sortingKey": "999 -1 /cloud/auth/inspect get"
       },
       {
-        "href": "/docs/core/cloud/api/backend/projects/list",
-        "sortingKey": "999 -1 /cloud/backend/projects get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/create",
-        "sortingKey": "999 -1 /cloud/backend/projects post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/validate",
-        "sortingKey": "999 -1 /cloud/backend/projects/validate post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/get",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id} get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/list",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/create",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/validate",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/validate post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/delete",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id} delete"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/get",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id} get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/get-config",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/config get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/update-config",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/config post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/get-db-url",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/db get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/deploy",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/deploy post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/prepare-deploy",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/deploy/prepare post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/get-events",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/events get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/provision-database",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/provision-database post"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/get-variables",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/variables get"
-      },
-      {
-        "href": "/docs/core/cloud/api/backend/projects/envs/update-variables",
-        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/variables patch"
-      },
-      {
-        "href": "/docs/core/cloud/api/bootstrap",
+        "href": "/docs/general/cloud/api/bootstrap",
         "sortingKey": "999 -1 /cloud/bootstrap get"
       },
       {
-        "href": "/docs/core/cloud/api/devices/links/get",
+        "href": "/docs/general/cloud/api/devices/links/get",
         "sortingKey": "999 -1 /cloud/devices/links get"
       },
       {
-        "href": "/docs/core/cloud/api/devices/links/prepare",
+        "href": "/docs/general/cloud/api/devices/links/prepare",
         "sortingKey": "999 -1 /cloud/devices/links post"
       },
       {
-        "href": "/docs/core/cloud/api/devices/links/complete",
+        "href": "/docs/general/cloud/api/devices/links/complete",
         "sortingKey": "999 -1 /cloud/devices/links/complete post"
       },
       {
-        "href": "/docs/core/cloud/api/games/get-games",
+        "href": "/docs/general/cloud/api/games/get-games",
         "sortingKey": "999 -1 /cloud/games get"
       },
       {
-        "href": "/docs/core/cloud/api/games/create-game",
+        "href": "/docs/general/cloud/api/games/create-game",
         "sortingKey": "999 -1 /cloud/games post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/analytics/get-analytics",
+        "href": "/docs/general/cloud/api/games/namespaces/analytics/get-analytics",
         "sortingKey": "999 -1 /cloud/games/namespaces/analytics get"
       },
       {
-        "href": "/docs/core/cloud/api/games/validate-game",
+        "href": "/docs/general/cloud/api/games/validate-game",
         "sortingKey": "999 -1 /cloud/games/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/games/get-game-by-id",
+        "href": "/docs/general/cloud/api/games/get-game-by-id",
         "sortingKey": "999 -1 /cloud/games/{game_id} get"
       },
       {
-        "href": "/docs/core/cloud/api/games/avatars/complete-custom-avatar-upload",
+        "href": "/docs/general/cloud/api/games/avatars/complete-custom-avatar-upload",
         "sortingKey": "999 -1 /cloud/games/{game_id}/avatar-upload/{upload_id}/complete post"
       },
       {
-        "href": "/docs/core/cloud/api/games/avatars/list-game-custom-avatars",
+        "href": "/docs/general/cloud/api/games/avatars/list-game-custom-avatars",
         "sortingKey": "999 -1 /cloud/games/{game_id}/avatars get"
       },
       {
-        "href": "/docs/core/cloud/api/games/game-banner-upload-prepare",
+        "href": "/docs/general/cloud/api/games/game-banner-upload-prepare",
         "sortingKey": "999 -1 /cloud/games/{game_id}/banner-upload/prepare post"
       },
       {
-        "href": "/docs/core/cloud/api/games/game-banner-upload-complete",
+        "href": "/docs/general/cloud/api/games/game-banner-upload-complete",
         "sortingKey": "999 -1 /cloud/games/{game_id}/banner-upload/{upload_id}/complete post"
       },
       {
-        "href": "/docs/core/cloud/api/games/billing/get",
+        "href": "/docs/general/cloud/api/games/billing/get",
         "sortingKey": "999 -1 /cloud/games/{game_id}/billing get"
       },
       {
-        "href": "/docs/core/cloud/api/games/billing/update-plan",
+        "href": "/docs/general/cloud/api/games/billing/update-plan",
         "sortingKey": "999 -1 /cloud/games/{game_id}/billing/plan put"
       },
       {
-        "href": "/docs/core/cloud/api/games/builds/list-game-builds",
+        "href": "/docs/general/cloud/api/games/builds/list-game-builds",
         "sortingKey": "999 -1 /cloud/games/{game_id}/builds get"
       },
       {
-        "href": "/docs/core/cloud/api/games/builds/create-game-build",
+        "href": "/docs/general/cloud/api/games/builds/create-game-build",
         "sortingKey": "999 -1 /cloud/games/{game_id}/builds post"
       },
       {
-        "href": "/docs/core/cloud/api/games/cdn/list-game-cdn-sites",
+        "href": "/docs/general/cloud/api/games/cdn/list-game-cdn-sites",
         "sortingKey": "999 -1 /cloud/games/{game_id}/cdn/sites get"
       },
       {
-        "href": "/docs/core/cloud/api/games/cdn/create-game-cdn-site",
+        "href": "/docs/general/cloud/api/games/cdn/create-game-cdn-site",
         "sortingKey": "999 -1 /cloud/games/{game_id}/cdn/sites post"
       },
       {
-        "href": "/docs/core/cloud/api/games/game-logo-upload-prepare",
+        "href": "/docs/general/cloud/api/games/game-logo-upload-prepare",
         "sortingKey": "999 -1 /cloud/games/{game_id}/logo-upload/prepare post"
       },
       {
-        "href": "/docs/core/cloud/api/games/game-logo-upload-complete",
+        "href": "/docs/general/cloud/api/games/game-logo-upload-complete",
         "sortingKey": "999 -1 /cloud/games/{game_id}/logo-upload/{upload_id}/complete post"
       },
       {
-        "href": "/docs/core/cloud/api/games/matchmaker/export-matchmaker-lobby-history",
+        "href": "/docs/general/cloud/api/games/matchmaker/export-matchmaker-lobby-history",
         "sortingKey": "999 -1 /cloud/games/{game_id}/matchmaker/lobbies/export-history post"
       },
       {
-        "href": "/docs/core/cloud/api/games/matchmaker/delete-matchmaker-lobby",
+        "href": "/docs/general/cloud/api/games/matchmaker/delete-matchmaker-lobby",
         "sortingKey": "999 -1 /cloud/games/{game_id}/matchmaker/lobbies/{lobby_id} delete"
       },
       {
-        "href": "/docs/core/cloud/api/games/matchmaker/get-lobby-logs",
+        "href": "/docs/general/cloud/api/games/matchmaker/get-lobby-logs",
         "sortingKey": "999 -1 /cloud/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs get"
       },
       {
-        "href": "/docs/core/cloud/api/games/matchmaker/export-lobby-logs",
+        "href": "/docs/general/cloud/api/games/matchmaker/export-lobby-logs",
         "sortingKey": "999 -1 /cloud/games/{game_id}/matchmaker/lobbies/{lobby_id}/logs/export post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/validate-game-namespace",
+        "href": "/docs/general/cloud/api/games/namespaces/validate-game-namespace",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/get-game-namespace-by-id",
+        "href": "/docs/general/cloud/api/games/namespaces/get-game-namespace-by-id",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id} get"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/analytics/get-analytics-matchmaker-live",
+        "href": "/docs/general/cloud/api/games/namespaces/analytics/get-analytics-matchmaker-live",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/analytics/matchmaker/live get"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/update-namespace-cdn-auth-user",
+        "href": "/docs/general/cloud/api/games/namespaces/update-namespace-cdn-auth-user",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/auth-user post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/remove-namespace-cdn-auth-user",
+        "href": "/docs/general/cloud/api/games/namespaces/remove-namespace-cdn-auth-user",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/auth-user/{user} delete"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/set-namespace-cdn-auth-type",
+        "href": "/docs/general/cloud/api/games/namespaces/set-namespace-cdn-auth-type",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/cdn-auth put"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/toggle-namespace-domain-public-auth",
+        "href": "/docs/general/cloud/api/games/namespaces/toggle-namespace-domain-public-auth",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/domain-public-auth put"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/add-namespace-domain",
+        "href": "/docs/general/cloud/api/games/namespaces/add-namespace-domain",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/domains post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/remove-namespace-domain",
+        "href": "/docs/general/cloud/api/games/namespaces/remove-namespace-domain",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/domains/{domain} delete"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/logs/list-namespace-lobbies",
+        "href": "/docs/general/cloud/api/games/namespaces/logs/list-namespace-lobbies",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/logs/lobbies get"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/logs/get-namespace-lobby",
+        "href": "/docs/general/cloud/api/games/namespaces/logs/get-namespace-lobby",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/logs/lobbies/{lobby_id} get"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/update-game-namespace-matchmaker-config",
+        "href": "/docs/general/cloud/api/games/namespaces/update-game-namespace-matchmaker-config",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/mm-config post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/validate-game-namespace-matchmaker-config",
+        "href": "/docs/general/cloud/api/games/namespaces/validate-game-namespace-matchmaker-config",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/mm-config/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/create-game-namespace-token-development",
+        "href": "/docs/general/cloud/api/games/namespaces/create-game-namespace-token-development",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/tokens/development post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/validate-game-namespace-token-development",
+        "href": "/docs/general/cloud/api/games/namespaces/validate-game-namespace-token-development",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/tokens/development/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/create-game-namespace-token-public",
+        "href": "/docs/general/cloud/api/games/namespaces/create-game-namespace-token-public",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/tokens/public post"
       },
       {
-        "href": "/docs/core/cloud/api/games/namespaces/-get-game-namespace-version-history-list",
+        "href": "/docs/general/cloud/api/games/namespaces/-get-game-namespace-version-history-list",
         "sortingKey": "999 -1 /cloud/games/{game_id}/namespaces/{namespace_id}/version-history get"
       },
       {
-        "href": "/docs/core/cloud/api/games/avatars/prepare-custom-avatar-upload",
+        "href": "/docs/general/cloud/api/games/avatars/prepare-custom-avatar-upload",
         "sortingKey": "999 -1 /cloud/games/{game_id}/prepare post"
       },
       {
-        "href": "/docs/core/cloud/api/games/projects/get",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/project get"
-      },
-      {
-        "href": "/docs/core/cloud/api/games/projects/link",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/project-link post"
-      },
-      {
-        "href": "/docs/core/cloud/api/games/tokens/create-cloud-token",
+        "href": "/docs/general/cloud/api/games/tokens/create-cloud-token",
         "sortingKey": "999 -1 /cloud/games/{game_id}/tokens/cloud post"
       },
       {
-        "href": "/docs/core/cloud/api/games/tokens/create-service-token",
-        "sortingKey": "999 -1 /cloud/games/{game_id}/tokens/service post"
-      },
-      {
-        "href": "/docs/core/cloud/api/games/versions/reserve-version-name",
+        "href": "/docs/general/cloud/api/games/versions/reserve-version-name",
         "sortingKey": "999 -1 /cloud/games/{game_id}/versions/reserve-name post"
       },
       {
-        "href": "/docs/core/cloud/api/games/versions/validate-game-version",
+        "href": "/docs/general/cloud/api/games/versions/validate-game-version",
         "sortingKey": "999 -1 /cloud/games/{game_id}/versions/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/games/versions/get-game-version-by-id",
+        "href": "/docs/general/cloud/api/games/versions/get-game-version-by-id",
         "sortingKey": "999 -1 /cloud/games/{game_id}/versions/{version_id} get"
       },
       {
-        "href": "/docs/core/cloud/api/groups/validate",
+        "href": "/docs/general/cloud/api/groups/validate",
         "sortingKey": "999 -1 /cloud/groups/validate post"
       },
       {
-        "href": "/docs/core/cloud/api/groups/billing/get",
+        "href": "/docs/general/cloud/api/groups/billing/get",
         "sortingKey": "999 -1 /cloud/groups/{group_id}/billing get"
       },
       {
-        "href": "/docs/core/cloud/api/groups/billing/create-stripe-portal-session",
+        "href": "/docs/general/cloud/api/groups/billing/create-stripe-portal-session",
         "sortingKey": "999 -1 /cloud/groups/{group_id}/billing/stripe-portal-session post"
       },
       {
-        "href": "/docs/core/cloud/api/groups/billing/get-usage",
+        "href": "/docs/general/cloud/api/groups/billing/get-usage",
         "sortingKey": "999 -1 /cloud/groups/{group_id}/billing/usage get"
       },
       {
-        "href": "/docs/core/cloud/api/logs/get-ray-perf-logs",
+        "href": "/docs/general/cloud/api/logs/get-ray-perf-logs",
         "sortingKey": "999 -1 /cloud/rays/{ray_id}/perf get"
       },
       {
-        "href": "/docs/core/cloud/api/tiers/get-region-tiers",
+        "href": "/docs/general/cloud/api/tiers/get-region-tiers",
         "sortingKey": "999 -1 /cloud/region-tiers get"
       },
       {
-        "href": "/docs/core/cloud/api/uploads/complete-upload",
+        "href": "/docs/general/cloud/api/uploads/complete-upload",
         "sortingKey": "999 -1 /cloud/uploads/{upload_id}/complete post"
+      }
+    ]
+  },
+  "dynamic-servers": {
+    "pages": [
+      {
+        "href": "/docs/general/dynamic-servers/api/builds/list",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds get"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/builds/prepare",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/prepare post"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/builds/get",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id} get"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/builds/complete",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/complete post"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/builds/patch-tags",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/tags patch"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/datacenters/list",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/datacenters get"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/list",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers get"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/create",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers post"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/destroy",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id} delete"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/get",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id} get"
+      },
+      {
+        "href": "/docs/general/dynamic-servers/api/logs/get",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id}/logs get"
+      }
+    ]
+  },
+  "game-tokens": {
+    "pages": [
+      {
+        "href": "/docs/general/game-tokens/api/create-service-token",
+        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/tokens/service post"
       }
     ]
   }
