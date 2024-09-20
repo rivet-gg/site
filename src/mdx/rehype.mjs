@@ -25,6 +25,7 @@ function rehypeParseCodeBlocks() {
               parentNode.properties[key] = annotations[key];
             }
           } catch (e) {
+            console.error(parentNode.properties.annotation);
             console.error('invalid annotations in code block', e);
           }
         }
