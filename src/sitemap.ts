@@ -224,7 +224,7 @@ export const sitemap = [
   {
     title: 'Custom',
     href: '/docs/custom',
-    ...common('/docs/custom')
+    sidebar: [{ href: '/docs/custom' }, ...common('/docs/custom')]
   },
   {
     title: 'Core',

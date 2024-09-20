@@ -373,7 +373,7 @@ function Title() {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.325, delay: 0.855 }}>
-            <DownloadButton title='HTML5 & Other' href='/learn/html5/tutorials/crash-course' icon={faBook} />
+            <DownloadButton title='HTML5 & Other' href='/docs/html5/tutorials/crash-course' icon={faBook} />
           </motion.div>
         </div>
       </motion.div>

@@ -15,29 +15,29 @@ const ENGINE_PAGES = [
   {
     name: 'Godot',
     image: imgStepsGodot,
-    learnUrl: '/learn/godot'
+    learnUrl: '/docs/godot'
   },
   {
     name: 'Unity',
     image: imgStepsUnity,
-    learnUrl: '/learn/unity',
+    learnUrl: '/docs/unity',
     preview: true
   },
   {
     name: 'Unreal',
     image: imgStepsUnreal,
-    learnUrl: '/learn/unreal',
+    learnUrl: '/docs/unreal',
     preview: true
   },
   {
     name: 'HTML5',
     image: imgStepsHtml5,
-    learnUrl: '/learn/html5'
+    learnUrl: '/docs/html5'
   },
   {
     name: 'Custom Engine',
     image: imgStepsCustom,
-    learnUrl: '/learn/custom'
+    learnUrl: '/docs/custom'
   }
 ];
 

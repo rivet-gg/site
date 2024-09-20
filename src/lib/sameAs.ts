@@ -1,6 +1,6 @@
 export const CORE_DIRECTORIES = ['general'];
 
-export const ENGINES = ['godot', 'unity', 'unreal', 'html5'];
+export const ENGINES = ['godot', 'unity', 'unreal', 'html5', 'custom'];
 
 export function getAliasedSlug(slug: string[]) {
   if (ENGINES.includes(slug[0]) && CORE_DIRECTORIES.includes(slug[1])) {

@@ -62,7 +62,10 @@ export async function generateErrors() {
     pages.sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  fs.writeFileSync('src/docs/core/errors.mdx', `# Errors \n${errorPages.map(({ doc }) => doc).join('\n\n')}`);
+  fs.writeFileSync(
+    'src/docs/general/errors.mdx',
+    `# Errors \n${errorPages.map(({ doc }) => doc).join('\n\n')}`
+  );
 
   // fs.writeFileSync('src/generated/errorPages.json', JSON.stringify(errorPages, null, 2));
 }
