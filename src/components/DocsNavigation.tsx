@@ -1,13 +1,14 @@
 import routes from '@/generated/routes.json';
 import { SidebarItem } from '@/lib/sitemap';
 import { getAliasedHref } from '@/lib/sameAs';
-import { Icon } from '@rivet-gg/icons';
+import { Icon, iconPack } from '@rivet-gg/icons';
 import { PropsWithChildren, ReactNode } from 'react';
 import { cn } from '@rivet-gg/components';
 import { CollapsibleSidebarItem } from '@/components/CollapsibleSidebarItem';
 import { ActiveLink } from '@/components/ActiveLink';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
-// library.add(iconPack);
+library.add(iconPack);
 
 interface TreeItemProps {
   item: SidebarItem;
