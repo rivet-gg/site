@@ -1,7 +1,7 @@
 import { faGithub } from '@rivet-gg/icons';
 import { TutorialVideo } from '@/components/TutorialVideo';
-import postRequest from "./previews/post-request.png";
-import deployment from "./previews/deployment.png";
+import postRequest from './previews/post-request.png';
+import deployment from './previews/deployment.png';
 
 # 💥 Tanks (Canvas, Socket.io)
 
@@ -20,10 +20,6 @@ import deployment from "./previews/deployment.png";
 | [TypeScript](https://www.typescriptlang.org/) | [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) | [Socket.io](https://socket.io/) |
 
 The following guide will walk you through integrating and deploying a game with Rivet.
-
-{/* <TutorialVideo videoId='pBE7s-PK0j0' />
-
---- */}
 
 ## Step 1: Setup project
 
@@ -56,72 +52,72 @@ rivet init --html5
 You can configure your game's Rivet config in the created `rivet.yaml` file. For the purposes of this demo,
 you can copy and paste this config into your file:
 
-  ```yaml {{"file": "rivet.yaml"}}
-  scripts:
-    start: npm run start
+```yaml {{"file": "rivet.yaml"}}
+scripts:
+  start: npm run start
 
-  # How the game lobbies run and how players connect to the game.
+# How the game lobbies run and how players connect to the game.
+#
+# https://docs.rivet.gg/matchmaker/introduction
+matchmaker:
+  # How many players can join a specific lobby.
   #
-  # https://docs.rivet.gg/matchmaker/introduction
-  matchmaker:
-    # How many players can join a specific lobby.
-    #
-    # Read more about matchmaking: https://docs.rivet.gg/matchmaker/concepts/finding-lobby
-    max_players: 32
+  # Read more about matchmaking: https://docs.rivet.gg/matchmaker/concepts/finding-lobby
+  max_players: 32
 
-    # The hardware to provide for lobbies.
-    #
-    # Available tiers: https://docs.rivet.gg/serverless-lobbies/concepts/available-tiers
-    tier: basic-1d1
-
-  # Which regions the game should be available in.
+  # The hardware to provide for lobbies.
   #
-  # Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
-  matchmaker:
-    regions:
-      atl: {}
-      fra: {}
+  # Available tiers: https://docs.rivet.gg/serverless-lobbies/concepts/available-tiers
+  tier: basic-1d1
 
-    # Runtime configuration for the lobby's Docker container.
-    docker:
-      # If you're unfamiliar with Docker, here's how to write your own
-      # Dockerfile:
-      # https://docker-curriculum.com/#dockerfile
-      dockerfile: Dockerfile
+# Which regions the game should be available in.
+#
+# Available regions: https://docs.rivet.gg/serverless-lobbies/concepts/available-regions
+matchmaker:
+  regions:
+    atl: {}
+    fra: {}
 
-      # Which ports to allow players to connect to. Multiple ports can be defined
-      # with different protocols.
-      #
-      # How ports work: https://docs.rivet.gg/serverless-lobbies/concepts/ports
-      ports:
-        default:
-          port: 3000
+  # Runtime configuration for the lobby's Docker container.
+  docker:
+    # If you're unfamiliar with Docker, here's how to write your own
+    # Dockerfile:
+    # https://docker-curriculum.com/#dockerfile
+    dockerfile: Dockerfile
 
-    # What game modes are available.
+    # Which ports to allow players to connect to. Multiple ports can be defined
+    # with different protocols.
     #
-    # Properties like `max_players`, `tier`, `dockerfile`, `regions`, and more can
-    # be overridden for specific game modes.
-    game_modes:
-      default: {}
+    # How ports work: https://docs.rivet.gg/serverless-lobbies/concepts/ports
+    ports:
+      default:
+        port: 3000
 
-  # How Rivet CDN should host your static assets on our CDN.
+  # What game modes are available.
   #
-  # https://docs.rivet.gg/cdn/introduction
-  cdn:
-    # Command to run before uploading the site to Rivet. This can be used to
-    # build any JavaScript bundles or generate assets.
-    build_command: npm install && npm run build:client:prod
+  # Properties like `max_players`, `tier`, `dockerfile`, `regions`, and more can
+  # be overridden for specific game modes.
+  game_modes:
+    default: {}
 
-    # The folder to upload to Rivet.
-    #
-    # If you're hosting a website, ensure that `index.html` is in the root of
-    # this folder.
-    build_output: ./dist/
+# How Rivet CDN should host your static assets on our CDN.
+#
+# https://docs.rivet.gg/cdn/introduction
+cdn:
+  # Command to run before uploading the site to Rivet. This can be used to
+  # build any JavaScript bundles or generate assets.
+  build_command: npm install && npm run build:client:prod
 
-  kv: {}
+  # The folder to upload to Rivet.
+  #
+  # If you're hosting a website, ensure that `index.html` is in the root of
+  # this folder.
+  build_output: ./dist/
 
-  identity: {}
-  ```
+kv: {}
+
+identity: {}
+```
 
 ## Step 2: Integrate Rivet Matchmaker
 
@@ -137,7 +133,7 @@ npm i @rivet-gg/api --save
 
 Add the following to the top of `client/Client.ts`:
 
-```typescript client/Client.ts
+```typescript {{ "file": "client/Client.ts" }}
 import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 ```
@@ -146,7 +142,7 @@ const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 
 Find the `connect` function in `client/Client.ts` and replace it with the following:
 
-```typescript client/Client.ts
+```typescript {{ "file": "client/Client.ts" }}
 async function connect(client: Client) {
   // Find a lobby to connect to on Rivet
   let res = await RIVET.matchmaker.lobbies.find({ gameModes: ['default'] });
@@ -163,7 +159,7 @@ async function connect(client: Client) {
 
 Add the following to the top of `server/index.ts`:
 
-```typescript server/index.ts
+```typescript {{ "file": "server/index.ts" }}
 import { RivetClient } from '@rivet-gg/api';
 const RIVET = new RivetClient({ token: process.env.RIVET_TOKEN });
 
@@ -175,7 +171,7 @@ RIVET.matchmaker.lobbies.ready();
 
 Find the `setupConnection` function in `server/index.ts` and replace it with the following:
 
-```typescript server/index.ts
+```typescript {{ "file": "server/index.ts" }}
 async function setupConnection(socket: Socket) {
   // Read the token passed to the socket query
   let playerToken = socket.handshake.query.token as string;
@@ -219,11 +215,11 @@ rivet deploy prod
 ```
 
 <Accordion title='What does this do?'>
-  - Builds & uploads your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index)
-  - Builds & uploads your site for [Rivet CDN](/docs/cdn)
-  - Creates a version on Rivet and deploys the version to the *Production* namespace
+  - Builds & uploads your Docker image for [Rivet Dynamic Servers](/docs/dynamic-servers/index) - Builds &
+  uploads your site for [Rivet CDN](/docs/cdn) - Creates a version on Rivet and deploys the version to the
+  *Production* namespace
 </Accordion>
 
 The CLI will print a link ending in `rivet.game`. Share the link with a friend to play your game on Rivet! 🎉
 
-<Image className="block ml-auto mr-auto" src={deployment} width={500} alt='Rivet Successful deployment' />
+<Image className='ml-auto mr-auto block' src={deployment} width={500} alt='Rivet Successful deployment' />

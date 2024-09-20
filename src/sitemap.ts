@@ -1,104 +1,104 @@
-import { SidebarSection, Sitemap } from "@/lib/sitemap";
+import { SidebarSection, Sitemap } from '@/lib/sitemap';
 
-import apiPages from "@/generated/apiPages.json" assert { type: "json" };
+import apiPages from '@/generated/apiPages.json' assert { type: 'json' };
 
-const common = (prefix: string = "/docs"): SidebarSection[] => [
+const common = (prefix: string = '/docs'): SidebarSection[] => [
   general(prefix),
   usingModules(prefix),
   developingModules(prefix),
-  lowLevelApi(prefix),
+  lowLevelApi(prefix)
 ];
 
-const general = (prefix: string = "/docs"): SidebarSection => ({
-  title: "General",
+const general = (prefix: string = '/docs'): SidebarSection => ({
+  title: 'General',
   collapsible: true,
   pages: [
-    { title: "Introduction", href: `${prefix}/general` },
+    { title: 'Introduction', href: `${prefix}/general` },
     {
-      title: "Concepts",
-      pages: [{ href: `${prefix}/general/concepts/authoritative-vs-p2p` }],
-    },
-  ],
+      title: 'Concepts',
+      pages: [{ href: `${prefix}/general/concepts/authoritative-vs-p2p` }]
+    }
+  ]
 });
 
-const usingModules = (prefix: string = "/docs"): SidebarSection => ({
-  title: "Modules",
+const usingModules = (prefix: string = '/docs'): SidebarSection => ({
+  title: 'Modules',
   pages: [
-    { href: `${prefix}/general/modules/quickstart`, icon: "rocket" },
+    { href: `${prefix}/general/modules/quickstart`, icon: 'rocket' },
     {
       href: `${prefix}/general/modules/project-config`,
-      icon: "square-sliders",
+      icon: 'square-sliders'
     },
-    { href: `${prefix}/general/modules/modules`, icon: "puzzle" },
-    { href: `${prefix}/general/modules/sdk`, icon: "code" },
+    { href: `${prefix}/general/modules/modules`, icon: 'puzzle' },
+    { href: `${prefix}/general/modules/sdk`, icon: 'code' },
     {
-      title: "Advanced",
+      title: 'Advanced',
       collapsible: true,
       pages: [
         { href: `${prefix}/general/modules/cli` },
-        { href: `${prefix}/general/modules/registries`, icon: "share-nodes" },
-        { href: `${prefix}/general/modules/multiple-games`, icon: "object-intersect" },
-        { href: `${prefix}/general/modules/environment-variables`, icon: "leaf" }
+        { href: `${prefix}/general/modules/registries`, icon: 'share-nodes' },
+        { href: `${prefix}/general/modules/multiple-games`, icon: 'object-intersect' },
+        { href: `${prefix}/general/modules/environment-variables`, icon: 'leaf' }
       ]
     }
   ]
 });
 
-const developingModules = (prefix: string = "/docs"): SidebarSection => ({
-  title: "Developing Modules",
+const developingModules = (prefix: string = '/docs'): SidebarSection => ({
+  title: 'Developing Modules',
   pages: [
-    { href: `${prefix}/general/modules/build/overview`, icon: "square-info" },
+    { href: `${prefix}/general/modules/build/overview`, icon: 'square-info' },
     {
       href: `${prefix}/general/modules/build/quickstart`,
-      icon: "screwdriver-wrench",
+      icon: 'screwdriver-wrench'
     },
     {
       href: `${prefix}/general/modules/build/module-config`,
-      icon: "square-sliders",
+      icon: 'square-sliders'
     },
-    { href: `${prefix}/general/modules/build/scripts`, icon: "file-code" },
-    { href: `${prefix}/general/modules/build/database`, icon: "database" },
-    { href: `${prefix}/general/modules/build/actors`, icon: "bolt" },
+    { href: `${prefix}/general/modules/build/scripts`, icon: 'file-code' },
+    { href: `${prefix}/general/modules/build/database`, icon: 'database' },
+    { href: `${prefix}/general/modules/build/actors`, icon: 'bolt' },
     {
       href: `${prefix}/general/modules/build/user-config`,
-      icon: "paint-roller",
+      icon: 'paint-roller'
     },
     {
       href: `${prefix}/general/modules/build/errors`,
-      icon: "triangle-exclamation",
+      icon: 'triangle-exclamation'
     },
-    { href: `${prefix}/general/modules/build/publish`, icon: "truck-fast" },
+    { href: `${prefix}/general/modules/build/publish`, icon: 'truck-fast' },
     {
-      title: "Core Modules",
+      title: 'Core Modules',
       collapsible: true,
       pages: [
         { href: `${prefix}/general/modules/build/general-modules` },
-        { href: `/modules/tokens`, title: "Tokens" },
-        { href: `/modules/rate-limit`, title: "Rate Limit" },
-        { href: `/modules/uploads`, title: "Uploads" },
-        { href: `/modules/analytics`, title: "Analytics" },
-      ],
+        { href: `/modules/tokens`, title: 'Tokens' },
+        { href: `/modules/rate-limit`, title: 'Rate Limit' },
+        { href: `/modules/uploads`, title: 'Uploads' },
+        { href: `/modules/analytics`, title: 'Analytics' }
+      ]
     },
     {
-      title: "Advanced",
+      title: 'Advanced',
       collapsible: true,
       pages: [
         { href: `${prefix}/general/modules/build/conventions` },
         { href: `${prefix}/general/modules/build/ide` },
         { href: `${prefix}/general/modules/build/public` },
-        { href: `${prefix}/general/modules/build/logging` },
-      ],
-    },
-  ],
+        { href: `${prefix}/general/modules/build/logging` }
+      ]
+    }
+  ]
 });
 
-const lowLevelApi = (prefix: string = "/docs"): SidebarSection => ({
-  title: "Low-Level API",
+const lowLevelApi = (prefix: string = '/docs'): SidebarSection => ({
+  title: 'Low-Level API',
   collapsible: true,
   pages: [
-    {  href: `${prefix}/general/errors` },
+    { href: `${prefix}/general/errors` },
     {
-      title: "Dynamic Servers",
+      title: 'Dynamic Servers',
       collapsible: true,
       pages: [
         { href: `${prefix}/general/dynamic-servers/overview` },
@@ -123,107 +123,112 @@ const lowLevelApi = (prefix: string = "/docs"): SidebarSection => ({
         { href: `${prefix}/general/dynamic-servers/ports` },
         { href: `${prefix}/general/dynamic-servers/protocols` },
         { href: `${prefix}/general/dynamic-servers/resource-limits` },
-        { href: `${prefix}/general/dynamic-servers/ssl` },
-      ],
+        { href: `${prefix}/general/dynamic-servers/ssl` }
+      ]
     },
     {
-      title: "Cloud API",
+      title: 'Cloud API',
       collapsible: true,
       pages: apiPages.cloud.pages.map(({ href }) => ({
-        href: href.replace("/docs", prefix),
-      })),
-    },
-  ],
+        href: href.replace('/docs', prefix)
+      }))
+    }
+  ]
 });
 
 export const sitemap = [
   {
-    title: "Godot",
-    href: "/docs/godot",
+    title: 'Godot',
+    href: '/docs/godot',
     sidebar: [
-      { href: "/docs/godot" },
+      { href: '/docs/godot' },
       {
-        title: "Concepts",
-        pages: [{ href: "/docs/godot/concepts/resources" }],
+        title: 'Concepts',
+        pages: [{ href: '/docs/godot/concepts/resources' }]
       },
       {
-        title: "Tutorials",
+        title: 'Tutorials',
         pages: [
-          { href: "/docs/godot/tutorials/crash-course" },
+          { href: '/docs/godot/tutorials/crash-course' },
           {
-            href: "/docs/godot/tutorials/bomber-demo",
-          },
-        ],
+            href: '/docs/godot/tutorials/bomber-demo'
+          }
+        ]
       },
-      ...common("/docs/godot"),
-    ],
+      ...common('/docs/godot')
+    ]
   },
   {
-    title: "Unity",
-    href: "/docs/unity",
+    title: 'Unity',
+    href: '/docs/unity',
     sidebar: [
-      { href: "/docs/unity" },
+      { href: '/docs/unity' },
       {
-        title: "Tutorials",
-        pages: [{ href: "/docs/unity/tutorials/fishnet/crash-course" }],
+        title: 'Tutorials',
+        pages: [{ href: '/docs/unity/tutorials/fishnet/crash-course' }]
       },
-      ...common("/docs/godot"),
-    ],
+      ...common('/docs/unity')
+    ]
   },
   {
-    title: "Unreal",
-    href: "/docs/unreal",
+    title: 'Unreal',
+    href: '/docs/unreal',
     sidebar: [
-      { href: "/docs/unreal" },
+      { href: '/docs/unreal' },
       {
-        title: "Concepts",
+        title: 'Concepts',
         pages: [
-          { href: "/docs/unreal/concepts/resources" },
-          { href: "/docs/unreal/concepts/build-engine-from-source" },
-          { href: "/docs/unreal/concepts/run-methods" },
-          { href: "/docs/unreal/concepts/useful-commands" },
-        ],
+          { href: '/docs/unreal/concepts/resources' },
+          { href: '/docs/unreal/concepts/build-engine-from-source' },
+          { href: '/docs/unreal/concepts/run-methods' },
+          { href: '/docs/unreal/concepts/useful-commands' }
+        ]
       },
       {
-        title: "Troubleshooting",
+        title: 'Troubleshooting',
         pages: [
-          { href: "/docs/unreal/troubleshooting/chmod-error" },
-          { href: "/docs/unreal/troubleshooting/empty-level" },
-          { href: "/docs/unreal/troubleshooting/port-7777-already-taken" },
-          { href: "/docs/unreal/troubleshooting/standalone-wrong-map" },
-        ],
+          { href: '/docs/unreal/troubleshooting/chmod-error' },
+          { href: '/docs/unreal/troubleshooting/empty-level' },
+          { href: '/docs/unreal/troubleshooting/port-7777-already-taken' },
+          { href: '/docs/unreal/troubleshooting/standalone-wrong-map' }
+        ]
       },
       {
-        title: "Crash Course",
+        title: 'Crash Course',
         pages: [
-          { href: "/docs/unreal/tutorials/crash-course" },
-          { href: "/docs/unreal/tutorials/crash-course/10-setup-project" },
-          { href: "/docs/unreal/tutorials/crash-course/20-setup-rivet" },
-          { href: "/docs/unreal/tutorials/crash-course/30-build-entry" },
-          { href: "/docs/unreal/tutorials/crash-course/40-deploy-rivet" },
-        ],
+          { href: '/docs/unreal/tutorials/crash-course' },
+          { href: '/docs/unreal/tutorials/crash-course/10-setup-project' },
+          { href: '/docs/unreal/tutorials/crash-course/20-setup-rivet' },
+          { href: '/docs/unreal/tutorials/crash-course/30-build-entry' },
+          { href: '/docs/unreal/tutorials/crash-course/40-deploy-rivet' }
+        ]
       },
-      ...common("/docs/godot"),
-    ],
+      ...common('/docs/unreal')
+    ]
   },
   {
-    title: "HTML5",
-    href: "/docs/html5",
+    title: 'HTML5',
+    href: '/docs/html5',
     sidebar: [
-      { href: "/docs/html5" },
+      { href: '/docs/html5' },
       {
-        title: "Tutorials",
+        title: 'Tutorials',
         pages: [
-          { href: "/docs/html5/tutorials/crash-course" },
-          { href: "/docs/html5/tutorials/tanks-canvas-socketio" },
-        ],
+          { href: '/docs/html5/tutorials/crash-course' },
+          { href: '/docs/html5/tutorials/tanks-canvas-socketio' }
+        ]
       },
-      ...common("/docs/godot"),
-    ],
+      ...common('/docs/html5')
+    ]
   },
   {
-    title: "Core",
-    href: "/docs/general",
-    sidebar: common("/docs")
+    title: 'Custom',
+    href: '/docs/custom',
+    ...common('/docs/custom')
+  },
+  {
+    title: 'Core',
+    href: '/docs/general',
+    sidebar: common('/docs')
   }
 ] satisfies Sitemap;

@@ -14,7 +14,7 @@ Godot 4.2.
 
 If you are using Godot 4.1/4.0/3.x, please be aware that some details may be different.
 
-<TutorialVideo videoId="akJ6FP_DYNo" />
+<TutorialVideo videoId='akJ6FP_DYNo' />
 
 ## Overview
 
@@ -73,7 +73,7 @@ Rivet by signing in. You can find the Rivet plugin in the same area as the
 We need to create a new file to configure how our game will be run on the Rivet
 Cloud. Copy the following to `rivet.json`:
 
-```json rivet.json
+```json {{ "file": "rivet.json" }}
 {
   "engine": {
     "godot": null
@@ -114,7 +114,7 @@ handle part of the multiplayer setup before our code does. We also need to call
 </Accordion>
 
 {/* prettier-ignore */}
-```gdscript gamestate.gd
+```gdscript {{ "file": "gamestate.gd" }}
 func _ready():
 	RivetHelper.start_server.connect(start_server)
 	RivetHelper.setup_multiplayer()
@@ -130,7 +130,7 @@ see logs that are about Rivet, and not about your game when you're looking in
 the hub.
 
 {/* prettier-ignore */}
-```gdscript gamestate.gd
+```gdscript {{ "file": "gamestate.gd" }}
 func start_server():
 	print("Starting server on %s" % DEFAULT_PORT)
 
@@ -180,7 +180,7 @@ trying to continue. However, this might not be the best choice for your game.
 </Accordion>
 
 {/* prettier-ignore */}
-```gdscript gamestate.gd
+```gdscript {{ "file": "gamestate.gd" }}
 func join_game(new_player_name):
 	print("Joining game as %s" % new_player_name)
 	player_name = new_player_name
@@ -209,7 +209,7 @@ after the game is started. This makes sense for this game, since we don't want
 players to be able to join a game that has already started. However, other games
 might want to leave the lobby open so that players can join mid-game.
 
-```gdscript gamestate.gd
+```gdscript {{ "file": "gamestate.gd"}}
 @rpc("any_peer")
 func begin_game():
 	if !multiplayer.is_server():
@@ -243,7 +243,7 @@ Add the following to `Dockerfile`:
 
 <UnfamiliarWithDockerfiles />
 
-```docker Dockerfile
+```docker {{ "file": "Dockerfile" }}
 FROM ghcr.io/rivet-gg/godot-docker/godot:4.2.1 AS builder
 WORKDIR /app
 COPY . .

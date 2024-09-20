@@ -12,7 +12,7 @@ Godot 4.2.
 
 If you are using Godot 4.1/4.0/3.x, please be aware that some details may be different.
 
-<TutorialVideo videoId="akJ6FP_DYNo" />
+<TutorialVideo videoId='akJ6FP_DYNo' />
 
 ## Overview
 
@@ -81,7 +81,7 @@ func join_game(new_player_name):
 
 Copy the following to `rivet.json`:
 
-```json rivet.json
+```json {{ "file": "rivet.json" }}
 {
   "engine": {
     "godot": null
@@ -111,7 +111,7 @@ documentation](https://rivet.gg/docs/general/config).
 
 Write the following `Dockerfile`
 
-```docker Dockerfile
+```docker {{ "file": "Dockerfile" }}
 FROM ghcr.io/rivet-gg/godot-docker/godot:4.2 AS builder
 WORKDIR /app
 COPY . .

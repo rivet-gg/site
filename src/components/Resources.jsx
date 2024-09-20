@@ -4,6 +4,7 @@ import { Heading } from '@/components/Heading';
 import { Icon } from '@rivet-gg/icons';
 
 import { Button, cn } from '@rivet-gg/components';
+import Link from 'next/link';
 
 export function Resource({ children, ...props }) {
   // Adds line break opportunities after periods
@@ -23,13 +24,15 @@ export function Resource({ children, ...props }) {
       variant='outline'
       className='not-prose flex h-auto flex-col items-start pb-4 pt-8 text-left'
       href={props.href}
-      key={props.href}
       {...props}
-      startIcon={<Icon icon={props.icon} />}>
-      <span className='pt-4 font-bold'>{titleSegments}</span>
-      {children && (
-        <div className='text-muted-foreground mt-2 min-w-0 text-wrap text-sm leading-5'>{children}</div>
-      )}
+      startIcon={<Icon icon={props.icon} />}
+      asChild>
+      <Link>
+        <span className='pt-4 font-bold'>{titleSegments}</span>
+        {children && (
+          <div className='text-muted-foreground mt-2 min-w-0 text-wrap text-sm leading-5'>{children}</div>
+        )}
+      </Link>
     </Button>
   );
 }

@@ -32,9 +32,8 @@ Run the following command:
 rivet init
 ```
 
-<Accordion title="What did this do?">
-  This will create a `rivet.json` file in your directory with some default
-  settings.
+<Accordion title='What did this do?'>
+  This will create a `rivet.json` file in your directory with some default settings.
 </Accordion>
 
 ---
@@ -47,15 +46,12 @@ In the same terminal, run:
 rivet create module my_leaderboard
 ```
 
-<Tip>
-  See documentation on the `module.json` config [here](/docs/build/module-config).
-</Tip>
+<Tip>See documentation on the `module.json` config [here](/docs/build/module-config).</Tip>
 
-<Accordion title="What did this do?">
-  This will create a directory `modules/my_leaderboard` and updated
-  `rivet.json` to include the module. The important files we'll look at are
-  `modules/my_leaderboard/db/schema.prisma`, `modules/my_leaderboard/scripts/`,
-  and `modules/my_leaderboard/tests/`.
+<Accordion title='What did this do?'>
+  This will create a directory `modules/my_leaderboard` and updated `rivet.json` to include the module. The
+  important files we'll look at are `modules/my_leaderboard/db/schema.prisma`,
+  `modules/my_leaderboard/scripts/`, and `modules/my_leaderboard/tests/`.
 </Accordion>
 
 ---
@@ -64,7 +60,7 @@ rivet create module my_leaderboard
 
 Edit your `modules/my_leaderboard/db/schema.prisma` file to look like this:
 
-```prisma modules/my_leaderboard/db/schema.prisma
+```prisma {{"file": "modules/my_leaderboard/db/schema.prisma"}}
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
@@ -103,15 +99,15 @@ model Scores {
 </Accordion>
 
 <Tip>
-  For more information about wwriting database schemas, see [Prisma's
-  documentation on data
+  For more information about wwriting database schemas, see [Prisma's documentation on data
   modelling](https://www.prisma.io/docs/orm/prisma-schema/data-model).
 </Tip>
 
 <Info>
   Modules are powered by [PostgreSQL](https://www.postgresql.org/).
 
-  Learn about why we chose PostgreSQL [here](/docs/engine/design/postgres).
+Learn about why we chose PostgreSQL [here](/docs/engine/design/postgres).
+
 </Info>
 
 ---
@@ -146,8 +142,8 @@ We're going to create a `submit_score` script that will:
     			export interface Response {}
 
     			export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
-					// TODO: Implement code for my_leaderboard/submit_score
-					throw new Error("Unimplemented");
+    				// TODO: Implement code for my_leaderboard/submit_score
+    				throw new Error("Unimplemented");
     			}
     			```
 
@@ -181,17 +177,17 @@ We're going to create a `submit_score` script that will:
     	Update the `modules/my_leaderboard/module.json` file to look like this:
 
     	```json {{"file": "modules/my_leaderboard/module.json"}}
-		{
-			"dependencies": {
-				"users": {},
-				"rate_limit": {}
-			},
-			"scripts": {
-				"submit_score": null
-			},
-			"public": true,
-			"errors": {}
-		}
+    	{
+    		"dependencies": {
+    			"users": {},
+    			"rate_limit": {}
+    		},
+    		"scripts": {
+    			"submit_score": null
+    		},
+    		"public": true,
+    		"errors": {}
+    	}
     	```
 
     	<Accordion title="What did this do?">
@@ -342,8 +338,8 @@ We're going to create a `submit_score` script that will:
 </Accordion>
 
 <Tip>
-  For more information about querying databases, see [Prisma's documentation on
-  querying data](https://www.prisma.io/docs/orm/prisma-client/queries).
+  For more information about querying databases, see [Prisma's documentation on querying
+  data](https://www.prisma.io/docs/orm/prisma-client/queries).
 </Tip>
 
 ---
@@ -362,12 +358,12 @@ We're going to create a `submit_score` script that will:
     	Open `modules/my_leaderboard/module.json` and update the `get_top_scores` script to be public:
 
     	```json {{"file": "modules/my_leaderboard/module.json"}}
-		{
-			"scripts": {
-				"get_top_scores": null
-			},
-			"public": true
-		}
+    	{
+    		"scripts": {
+    			"get_top_scores": null
+    		},
+    		"public": true
+    	}
     	```
     </Step>
     <Step title="Update request & response">
@@ -406,7 +402,7 @@ We're going to create a `submit_score` script that will:
     <Step title="Query scores">
     	Then query the top scores:
 
-    	```typescript {{"file: "models/my_leaderboard/scripts/get_top_scores.ts"}}
+    	```typescript {{"file": "models/my_leaderboard/scripts/get_top_scores.ts"}}
     	export async function run(ctx: ScriptContext, req: Request): Promise<Response> {
     		// ...
     		const rows = await ctx.db.scores.findMany({

@@ -4,7 +4,7 @@ import path from 'path';
 import { convertJsonSchemaToSchema, parametersToHTML } from './convertJson.mjs';
 
 function apiPath(productName) {
-  return `src/docs/core/${productName}/api`;
+  return `src/docs/general/${productName}/api`;
 }
 
 function camelToKebab(input) {
