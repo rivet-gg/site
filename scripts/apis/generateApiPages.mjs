@@ -91,8 +91,6 @@ export async function generateApiPages(spec) {
       let hasRequestBody = specPath.requestBody?.content['application/json']?.schema;
 
       let file = `
-import { CodeGroup, Code } from '@/components/Code';
-
 # ${title}
 
 ${isExperimental ? '<ExperimentalFeature />' : ''}

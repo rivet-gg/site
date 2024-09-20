@@ -18,6 +18,78 @@
         "sortingKey": "999 -1 /cloud/auth/inspect get"
       },
       {
+        "href": "/docs/core/cloud/api/backend/projects/list",
+        "sortingKey": "999 -1 /cloud/backend/projects get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/create",
+        "sortingKey": "999 -1 /cloud/backend/projects post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/validate",
+        "sortingKey": "999 -1 /cloud/backend/projects/validate post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/get",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id} get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/list",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/create",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/validate",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/validate post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/delete",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id} delete"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/get",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id} get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/get-config",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/config get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/update-config",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/config post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/get-db-url",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/db get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/deploy",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/deploy post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/prepare-deploy",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/deploy/prepare post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/get-events",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/events get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/provision-database",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/provision-database post"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/get-variables",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/variables get"
+      },
+      {
+        "href": "/docs/core/cloud/api/backend/projects/envs/update-variables",
+        "sortingKey": "999 -1 /cloud/backend/projects/{project_id}/environments/{environment_id}/variables patch"
+      },
+      {
         "href": "/docs/core/cloud/api/bootstrap",
         "sortingKey": "999 -1 /cloud/bootstrap get"
       },
@@ -190,8 +262,20 @@
         "sortingKey": "999 -1 /cloud/games/{game_id}/prepare post"
       },
       {
+        "href": "/docs/core/cloud/api/games/projects/get",
+        "sortingKey": "999 -1 /cloud/games/{game_id}/project get"
+      },
+      {
+        "href": "/docs/core/cloud/api/games/projects/link",
+        "sortingKey": "999 -1 /cloud/games/{game_id}/project-link post"
+      },
+      {
         "href": "/docs/core/cloud/api/games/tokens/create-cloud-token",
         "sortingKey": "999 -1 /cloud/games/{game_id}/tokens/cloud post"
+      },
+      {
+        "href": "/docs/core/cloud/api/games/tokens/create-service-token",
+        "sortingKey": "999 -1 /cloud/games/{game_id}/tokens/service post"
       },
       {
         "href": "/docs/core/cloud/api/games/versions/reserve-version-name",
@@ -232,62 +316,6 @@
       {
         "href": "/docs/core/cloud/api/uploads/complete-upload",
         "sortingKey": "999 -1 /cloud/uploads/{upload_id}/complete post"
-      }
-    ]
-  },
-  "dynamic-servers": {
-    "pages": [
-      {
-        "href": "/docs/core/dynamic-servers/api/builds/list",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds get"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/builds/prepare",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/prepare post"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/builds/get",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id} get"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/builds/complete",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/complete post"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/builds/patch-tags",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/builds/{build_id}/tags patch"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/datacenters/list",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/datacenters get"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/list",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers get"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/create",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers post"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/destroy",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id} delete"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/get",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id} get"
-      },
-      {
-        "href": "/docs/core/dynamic-servers/api/logs/get",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/servers/{server_id}/logs get"
-      }
-    ]
-  },
-  "game-tokens": {
-    "pages": [
-      {
-        "href": "/docs/core/game-tokens/api/create-service-token",
-        "sortingKey": "999 -1 /games/{game_id}/environments/{environment_id}/tokens/service post"
       }
     ]
   }
