@@ -1,6 +1,4 @@
 
-import { CodeGroup, Code } from '@/components/Code';
-
 # devices.links.get
 
 
@@ -46,30 +44,4 @@ await RIVET.cloud.devices.links.get({
 </div>
 
 ## Response Body
-<div className="properties ">
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">cloud\_token</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500">string</code>
-</div>
-</div>
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">watch</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> object</code>
-</div>
-<div className="description pl-2">
-Provided by watchable endpoints used in blocking loops.
-</div>
-<div className="properties ml-2 pl-2 border-l-2 border-cream-700">
-<div className="property ml-4">
-<div className="flex flex-row items-center my-2">
-<h2 className="text-lg font-bold text-cream-50 m-0">index</h2><code className="m-0 ml-4 pb-0 pt-0.5 text-cream-500"><span className="font-normal text-cream-600">required</span> string</code>
-</div>
-<div className="description pl-2">
-Index indicating the version of the data responded.
-Pass this to `WatchQuery` to block and wait for the next response.
-</div>
-</div>
-</div>
-</div>
-</div>
-
+<SchemaPreview schema={{"type":"object","properties":{"cloud_token":{"type":"string"},"watch":{"type":"object","description":"Provided by watchable endpoints used in blocking loops.","properties":{"index":{"type":"string","description":"Index indicating the version of the data responded.\nPass this to `WatchQuery` to block and wait for the next response."}}}}}}/>
