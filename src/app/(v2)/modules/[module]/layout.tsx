@@ -32,7 +32,7 @@ export default async function ModuleLayout({ children, params }) {
           <li className='h-2.5'>
             <Icon className='block h-full w-auto' icon={faChevronRight} />
           </li>
-          <li className='text-foreground'>{meta.config.name}</li>
+          <li className='text-foreground font-semibold'>{meta.config.name}</li>
         </ul>
 
         <Button asChild variant='ghost' className='w-auto self-end' startIcon={<Icon icon={faGitAlt} />}>

@@ -6,7 +6,8 @@
     "build": "./scripts/buildcf.sh",
     "start": "next dev",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "create-article": "vite-node scripts/generateArticle.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "workspaces": [
@@ -20,6 +21,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.18",
+    "@inquirer/prompts": "^6.0.1",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^14.0.1",
@@ -88,6 +90,7 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "typescript": "^5.1.6",
+    "vite-node": "^2.1.1",
     "yaml": "^2.3.1"
   },
   "packageManager": "yarn@4.2.2",
