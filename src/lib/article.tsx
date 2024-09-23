@@ -101,7 +101,7 @@ export async function loadArticle(slug: string) {
     slug,
     ...article,
     published: new Date(article.published),
-    category,
+    category: { ...category, id: article.category },
     Content,
     author,
     image

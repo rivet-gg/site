@@ -63,7 +63,7 @@ export function DocsMobileNavigation() {
         <ActiveLink href='/modules'>Modules</ActiveLink>
       </RivetHeader.NavItem>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/blog'>Blog</ActiveLink>
+        <ActiveLink href='/changelog'>Changelog</ActiveLink>
       </RivetHeader.NavItem>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
         <ActiveLink href='/pricing'>Pricing</ActiveLink>
