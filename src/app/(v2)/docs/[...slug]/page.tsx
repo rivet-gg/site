@@ -8,7 +8,7 @@
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import { CORE_DIRECTORIES, ENGINES, getAliasedSlug } from '@/lib/sameAs';
+import { CORE_DIRECTORIES, ENGINES, ENGINE_LABEL_MAP, getAliasedSlug } from '@/lib/sameAs';
 import { Prose } from '@/components/Prose';
 import { Metadata } from 'next';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
@@ -31,12 +31,13 @@ async function loadContent(slug: string[]) {
 }
 
 export async function generateMetadata({ params: { slug } }): Promise<Metadata> {
-  const { title } = await loadContent(slug);
+  const { title, description } = await loadContent(slug);
 
   const isEngine = ENGINES.includes(slug[0]);
   const isCore = CORE_DIRECTORIES.includes(slug[1]);
   return {
-    title: title,
+    title: `${title} - ${ENGINE_LABEL_MAP[slug[0]]} - Rivet Docs`,
+    description,
     alternates:
       isEngine && isCore
         ? {

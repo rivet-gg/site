@@ -1,6 +1,14 @@
-export const CORE_DIRECTORIES = ['general'];
+export const CORE_DIRECTORIES = ["general"];
 
-export const ENGINES = ['godot', 'unity', 'unreal', 'html5', 'custom'];
+export const ENGINES = ["godot", "unity", "unreal", "html5", "custom"];
+
+export const ENGINE_LABEL_MAP = {
+  godot: "Godot",
+  unity: "Unity",
+  unreal: "Unreal",
+  html5: "HTML5",
+  custom: "Custom",
+};
 
 export function getAliasedSlug(slug: string[]) {
   if (ENGINES.includes(slug[0]) && CORE_DIRECTORIES.includes(slug[1])) {
@@ -10,7 +18,7 @@ export function getAliasedSlug(slug: string[]) {
 }
 
 export function getAliasedHref(href: string) {
-  const [_, __, ...slug] = href.split('/');
+  const [_, __, ...slug] = href.split("/");
   const aliasedSlug = getAliasedSlug(slug);
-  return '/docs/' + aliasedSlug.join('/');
+  return "/docs/" + aliasedSlug.join("/");
 }

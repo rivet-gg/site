@@ -14,6 +14,19 @@ import {
 import { ModuleScripts } from '@/components/ModuleScripts';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 
+export const generateMetadata = async ({ params }) => {
+  const mod = await safelyLoadModule(params.module);
+
+  if (!mod) {
+    return notFound();
+  }
+
+  return {
+    title: `${mod.meta.config.name} - Backend Module - Rivet`,
+    description: mod.meta.config.description
+  };
+};
+
 export default async function ModulePage({ params }) {
   const mod = await safelyLoadModule(params.module);
 
