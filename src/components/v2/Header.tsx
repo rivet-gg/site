@@ -66,8 +66,8 @@ export function Header({ active, subnav }: HeaderProps) {
             </Link>
           </RivetHeader.NavItem>
           <RivetHeader.NavItem asChild className='flex items-center gap-1'>
-            <Link href='/blog' aria-current={active === 'blog' ? 'page' : undefined}>
-              Blog
+            <Link href='/changelog' aria-current={active === 'blog' ? 'page' : undefined}>
+              Changelog
             </Link>
           </RivetHeader.NavItem>
           <RivetHeader.NavItem asChild className='flex items-center gap-1'>

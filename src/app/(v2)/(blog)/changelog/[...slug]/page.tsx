@@ -10,9 +10,7 @@ import { ArticleSocials } from '@/components/ArticleSocials';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params: { slug } }): Promise<Metadata> {
-  const { description, title, tableOfContents, author, published, tags, category, image } = await loadArticle(
-    slug.join('/')
-  );
+  const { description, title, author, published, tags, category, image } = await loadArticle(slug.join('/'));
 
   return {
     title,
@@ -48,12 +46,8 @@ export default async function BlogPage({ params: { slug } }) {
     <>
       <ul className='text-muted-foreground my-4 flex flex-wrap items-center gap-2 text-xs'>
         <li>
-          <Link href='/blog'>Blog</Link>
+          <Link href='/changelog'>Changelog</Link>
         </li>
-        <li className='h-2.5'>
-          <Icon className='block h-full w-auto' icon={faChevronRight} />
-        </li>
-        <li>{category.name}</li>
         <li className='h-2.5'>
           <Icon className='block h-full w-auto' icon={faChevronRight} />
         </li>
@@ -77,7 +71,7 @@ export default async function BlogPage({ params: { slug } }) {
               <Icon icon={faCalendarDay} />
               <time className='text-sm'>{formatTimestamp(published)}</time>
             </div>
-            <p className='mb-2 hidden text-sm font-semibold lg:block'>Other articles</p>
+            <p className='mb-2 hidden text-sm font-semibold lg:block'>Other entries</p>
             <OtherArticles slug={slug[0]} />
           </div>
         </aside>
@@ -101,9 +95,11 @@ export function generateStaticParams() {
 async function OtherArticles({ slug }) {
   const articles = await loadArticles();
 
+  const entries = articles.filter(article => article.category.id === 'changelog');
+
   return (
     <ul className='text-muted-foreground hidden list-disc pl-5 text-sm lg:block'>
-      {articles
+      {entries
         .filter(article => article.slug !== slug)
         .sort((a, b) => b.published - a.published)
         .slice(0, 3)

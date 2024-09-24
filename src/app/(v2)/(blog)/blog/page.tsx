@@ -55,6 +55,9 @@ function Article({ title, description, slug, published, author, image, category 
 
 export default async function BlogPage() {
   const articles = await loadArticles();
+
+  const posts = articles.filter(article => article.category.id !== 'changelog');
+
   return (
     <>
       <div className='mt-8 flex w-full items-center justify-between'>
@@ -63,8 +66,18 @@ export default async function BlogPage() {
           <Link href='/rss/feed.xml'>RSS Feed</Link>
         </Button>
       </div>
-      <div className='mb-8 mt-16 grid grid-cols-1 gap-8 md:grid-cols-3'>
-        {articles
+      <div className='mb-8 mt-4 flex items-center justify-start'>
+        <div className='bg-card rounded-md border'>
+          <Button variant='secondary' asChild>
+            <Link href='/blog'>All Posts</Link>
+          </Button>
+          <Button variant='ghost' asChild>
+            <Link href='/changelog'>Changelog</Link>
+          </Button>
+        </div>
+      </div>
+      <div className='mb-8 mt-8 grid grid-cols-1 gap-8 md:grid-cols-3'>
+        {posts
           .sort((a, b) => b.published - a.published)
           .map(article => (
             <Article key={article.slug} {...article} />
