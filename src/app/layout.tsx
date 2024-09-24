@@ -4,8 +4,12 @@ import { Metadata } from 'next';
 import { Toaster, TooltipProvider } from '@rivet-gg/components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
+let metadataBase: URL | null = null;
+if (process.env.METADATA_BASE) metadataBase = new URL(process.env.METADATA_BASE);
+else if (process.env.CF_PAGES_URL) metadataBase = new URL(process.env.CF_PAGES_URL);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.METADATA_BASE || process.env.CF_PAGES_URL || '/'),
+  metadataBase,
   title: 'Rivet - Open-Source Multiplayer Tooling',
   description: 'A unified platform to manage your game servers & backend.',
   twitter: {
