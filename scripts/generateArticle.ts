@@ -39,7 +39,7 @@ async function run() {
     })),
   });
 
-  const slug = [date, title.replace(/\s+/g, "-").toLowerCase()].join("-");
+  const slug = [date, title.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()].join("-");
 
   await fs.mkdir(path.join(BASE_PATH, slug), {
     recursive: true,
