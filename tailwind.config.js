@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,mjs,ts,tsx,jsx,mdx,json}'],
+  content: ['./src/**/*.{js,mjs,ts,tsx,jsx,mdx,json}', './node_modules/@rivet-gg/components/**/*.{ts,tsx}'],
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -88,6 +88,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
+    require('tailwindcss-animate'),
     plugin(function ({ addBase, theme }) {
       addBase({
         h1: { fontFamily: theme('fontFamily.display') }
