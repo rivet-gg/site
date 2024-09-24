@@ -6,6 +6,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rivet.gg'),
+  title: 'Rivet - Open-Source Multiplayer Tooling',
+  description: 'A unified platform to manage your game servers & backend.',
   twitter: {
     site: '@rivetgg',
     card: 'summary_large_image'
@@ -14,9 +16,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rivet.gg',
-    title: 'Rivet - Open-Source Multiplayer Tooling',
     siteName: 'Rivet',
-    description: 'A unified platform to manage your game servers & backend.',
     images: [
       {
         url: 'https://rivet.gg/promo/og.png',

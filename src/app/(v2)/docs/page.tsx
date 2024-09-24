@@ -2,6 +2,11 @@ import { H1, Text } from '@rivet-gg/components';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
+export const metadata = {
+  title: 'Docs - Rivet',
+  description: "Build your game's backend with open-source modules."
+};
+
 function EngineCard({ children, href }: PropsWithChildren<{ href: string }>) {
   return (
     <Link
