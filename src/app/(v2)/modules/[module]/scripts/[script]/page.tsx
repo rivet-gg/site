@@ -44,7 +44,7 @@ export default async function ModuleScriptPage({ params: { module, script } }) {
         <li className='h-2.5'>
           <Icon className='block h-full w-auto' icon={faChevronRight} />
         </li>
-        <li className='text-foreground'>{scriptMeta.config.name}</li>
+        <li className='text-foreground font-semibold'>{scriptMeta.config.name}</li>
       </ul>
       <div className='flex flex-col justify-between gap-4 lg:flex-row'>
         <div className='flex w-full  max-w-prose flex-col gap-6'>

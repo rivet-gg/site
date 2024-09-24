@@ -181,7 +181,7 @@ export function DocsTableOfContents({ tableOfContents: providedToc, className }:
         'w-full lg:pointer-events-auto lg:sticky lg:block lg:max-w-aside lg:self-start lg:overflow-y-auto'
       )}>
       <div className='relative'>
-        <motion.h2 layout='position' className='mb-1 px-2 py-1 text-sm'>
+        <motion.h2 layout='position' className='mb-1 px-2 py-1 text-sm font-semibold'>
           On this page
         </motion.h2>
 

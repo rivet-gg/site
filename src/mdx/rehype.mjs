@@ -101,6 +101,28 @@ function rehypeSlugify() {
   };
 }
 
+function rehypeDescription() {
+  return tree => {
+    let description = '';
+    visit(tree, 'element', node => {
+      if (node.tagName === 'p' && !description) {
+        description = toString(node);
+      }
+    });
+
+    tree.children.unshift({
+      type: 'mdxjsEsm',
+      value: `export const description = ${JSON.stringify(description)};`,
+      data: {
+        estree: acorn.parse(`export const description = ${JSON.stringify(description)};`, {
+          sourceType: 'module',
+          ecmaVersion: 'latest'
+        })
+      }
+    });
+  };
+}
+
 function rehypeTableOfContents() {
   return tree => {
     // Headings
@@ -133,37 +155,12 @@ function rehypeTableOfContents() {
   };
 }
 
-function rehypeAddCustomCode() {
-  return tree => {
-    let exports = [
-      `import {convertConfigToMetadata,convertConfigToInfo} from "@/lib/articles/metadata";
-      let metadataConfig = typeof config === 'undefined' || Object.getPrototypeOf(config) !== Object.prototype ? undefined : config;
-      export const metadata = convertConfigToMetadata(metadataConfig);
-      export const info = convertConfigToInfo(metadataConfig, import.meta.url);
-      `
-    ];
-
-    let code = exports.join('\n');
-
-    tree.children.push({
-      type: 'mdxjsEsm',
-      value: code,
-      data: {
-        estree: acorn.parse(code, {
-          sourceType: 'module',
-          ecmaVersion: 'latest'
-        })
-      }
-    });
-  };
-}
-
 export const rehypePlugins = [
   mdxAnnotations.rehype,
   rehypeParseCodeBlocks,
   rehypeShiki,
   rehypeSlugify,
   rehypeMdxTitle,
-  rehypeAddCustomCode,
-  rehypeTableOfContents
+  rehypeTableOfContents,
+  rehypeDescription
 ];
