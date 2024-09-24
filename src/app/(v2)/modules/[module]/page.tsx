@@ -13,8 +13,9 @@ import {
 } from '@rivet-gg/components';
 import { ModuleScripts } from '@/components/ModuleScripts';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
+import { Metadata } from 'next';
 
-export const generateMetadata = async ({ params }) => {
+export const generateMetadata = async ({ params }): Promise<Metadata> => {
   const mod = await safelyLoadModule(params.module);
 
   if (!mod) {
@@ -23,7 +24,17 @@ export const generateMetadata = async ({ params }) => {
 
   return {
     title: `${mod.meta.config.name} - Backend Module - Rivet`,
-    description: mod.meta.config.description
+    description: mod.meta.config.description,
+    openGraph: {
+      images: [
+        {
+          url: `/modules/${mod.meta.name}/opengraph-image.png`,
+          width: 1200,
+          height: 630,
+          alt: mod.meta.config.name
+        }
+      ]
+    }
   };
 };
 

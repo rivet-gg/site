@@ -5,7 +5,7 @@ import { Toaster, TooltipProvider } from '@rivet-gg/components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rivet.gg'),
+  metadataBase: new URL(process.env.METADATA_BASE || process.env.CF_PAGES_URL || '/'),
   title: 'Rivet - Open-Source Multiplayer Tooling',
   description: 'A unified platform to manage your game servers & backend.',
   twitter: {
