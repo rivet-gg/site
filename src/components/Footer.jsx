@@ -6,7 +6,7 @@ import { Button } from '@/components/Button';
 import clsx from 'clsx';
 import routes from '@/generated/routes.json';
 
-import imgLogo from '@/images/rivet-logos/icon-cream.svg';
+import imgLogo from '@/images/rivet-logos/icon-white.svg';
 import { Icon, faDiscord, faGithub, faLinkedin, faTwitter, faYoutube } from '@rivet-gg/icons';
 
 const footer = {
@@ -109,7 +109,7 @@ function SmallPrint() {
         {/* Brands & links */}
         <div className='space-y-8'>
           {/* Logo */}
-          <Image className='h-7 w-7' src={imgLogo} alt='Rivet' />
+          <Image className='size-12' src={imgLogo} alt='Rivet' />
           <p className='text-sm leading-6 text-gray-300'>
             Open-source multiplayer infrastructure. Easy, flexible, and affordable.
           </p>
@@ -179,7 +179,7 @@ function SmallPrint() {
       </div>
 
       {/* Trademarks */}
-      <div className='mt-6 space-y-3 text-2xs italic leading-4 text-gray-300/60 md:mt-12'>
+      <div className='mt-6 space-y-3 text-xs italic text-white/60 md:mt-12'>
         {/* Copied from https://unity.com/legal/branding-trademarks#:~:text=Use%20current%2C%20official%2C%20unmodified%20Unity%20Logos.&text=The%20Unity%20Logos%20may%20not,and%20consistent%20use%20is%20required. */}
         {`This website is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity Trademark(s) are trademark(s) or registered trademark(s) of Unity Technologies or its affiliates in the U.S. and elsewhere.`}
         &nbsp;|&nbsp;
@@ -205,7 +205,7 @@ function SmallPrint() {
 
       {/* Footer */}
       <div className='mt-4 border-t border-white/10 pt-4 text-center md:mt-8'>
-        <p className='text-xs leading-5 text-gray-400'>
+        <p className='text-xs leading-5 text-white'>
           &copy; {new Date().getFullYear()} Rivet Gaming, Inc. All rights reserved.
         </p>
       </div>
