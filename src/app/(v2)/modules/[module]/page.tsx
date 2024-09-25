@@ -48,13 +48,13 @@ export default async function ModulePage({ params }) {
   const { meta, Readme, readmeToc } = mod;
 
   return (
-    <div className='flex flex-col justify-between gap-4 lg:flex-row'>
-      <div className='w-full max-w-prose'>
+    <div className='flex flex-col justify-between gap-4  lg:flex-row'>
+      <div className='order-2 w-full max-w-prose lg:order-1'>
         <Prose>
           <Readme />
         </Prose>
       </div>
-      <div className='flex w-full max-w-sm flex-col gap-4'>
+      <div className='order-1 flex w-full flex-col gap-4 lg:order-2 lg:max-w-sm'>
         <Card>
           <CardHeader>
             <CardTitle>Install the module</CardTitle>
