@@ -20,7 +20,9 @@ import {
   AlertTitle,
   CtaCard,
   Badge,
-  ModuleCard as RivetModuleCard
+  WithTooltip,
+  ModuleCard as RivetModuleCard,
+  Slot
 } from '@rivet-gg/components';
 
 export * from '@/components/Tabs';
@@ -50,14 +52,14 @@ export const table = function Table(props) {
 
 export function Tooltip({ tip, children }) {
   return (
-    <span className='group/tooltip relative z-10 inline'>
-      <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
-        {children}
-      </span>
-      <span className='absolute bottom-full left-1/2 z-40 mb-0.5 hidden w-max max-w-[16rem] -translate-x-1/2 border border-cream-100 bg-charcole-950 px-1.5 py-1 pb-1 text-center text-xs leading-tight text-cream-100 opacity-100 group-hover/tooltip:flex'>
-        {tip}
-      </span>
-    </span>
+    <WithTooltip
+      content={tip}
+      trigger={
+        <span className='underline decoration-cream-400 decoration-dotted decoration-2 underline-offset-4 dark:decoration-charcole-500'>
+          {children}
+        </span>
+      }
+    />
   );
 }
 
@@ -366,13 +368,14 @@ export const Info = ({ title = 'Heads up!', children }) => {
   );
 };
 
-export const Note = ({ children }) => {
+export const Note = ({ title = 'Note', children }) => {
   return (
     <Alert variant='info' className='my-4'>
       <AlertTitle className='prose-invert flex items-center [&_p]:first-of-type:my-0'>
         <Icon icon={faInfoCircle} className='mr-2' />
-        {children}
+        {title}
       </AlertTitle>
+      <AlertDescription className='prose-invert prose'>{children}</AlertDescription>
     </Alert>
   );
 };

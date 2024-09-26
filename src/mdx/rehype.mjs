@@ -46,30 +46,28 @@ let highlighter;
 
 function rehypeShiki() {
   return async tree => {
-    if (highlighter == undefined) {
-      highlighter = await shiki.getHighlighter({
-        theme: cssVariableTheme,
-        langs: [
-          'bash',
-          'batch',
-          'cpp',
-          'csharp',
-          'docker',
-          'gdscript',
-          'html',
-          'ini',
-          'js',
-          'json',
-          'json',
-          'powershell',
-          'ts',
-          'typescript',
-          'yaml',
-          'http',
-          'prisma'
-        ]
-      });
-    }
+    highlighter ??= await shiki.getSingletonHighlighter({
+      theme: cssVariableTheme,
+      langs: [
+        'bash',
+        'batch',
+        'cpp',
+        'csharp',
+        'docker',
+        'gdscript',
+        'html',
+        'ini',
+        'js',
+        'json',
+        'json',
+        'powershell',
+        'ts',
+        'typescript',
+        'yaml',
+        'http',
+        'prisma'
+      ]
+    });
 
     visit(tree, 'element', node => {
       if (node.tagName === 'pre' && node.children[0]?.tagName === 'code') {

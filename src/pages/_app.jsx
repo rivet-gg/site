@@ -14,6 +14,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
+import { TooltipProvider } from '@rivet-gg/components';
+
 import { getSiteUrl } from '../lib/siteUrl';
 import { usePathname } from 'next/navigation';
 import { useNavigation } from '@/hooks/useNavigation';
@@ -35,7 +37,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Providers>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
           {/* Add common metadata */}
           <meta property='og:image:type' content='image/png' />
@@ -63,16 +65,18 @@ export default function App({ Component, pageProps }) {
           )}
         </Head>
         <MDXProvider components={mdxComponents}>
-          <Layout
-            navigation={navigation}
-            tableOfContents={tableOfContents}
-            prose={Component.prose ?? true}
-            inset={Component.inset ?? false}
-            fullWidth={Component.fullWidth ?? false}
-            isTopPage={isTopPage || Component.isTopPage}
-            {...pageProps}>
-            <Component {...pageProps} />
-          </Layout>
+          <TooltipProvider>
+            <Layout
+              navigation={navigation}
+              tableOfContents={tableOfContents}
+              prose={Component.prose ?? true}
+              inset={Component.inset ?? false}
+              fullWidth={Component.fullWidth ?? false}
+              isTopPage={isTopPage || Component.isTopPage}
+              {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </TooltipProvider>
         </MDXProvider>
       </Providers>
     </>
