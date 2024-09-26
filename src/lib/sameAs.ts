@@ -8,6 +8,7 @@ export const ENGINE_LABEL_MAP = {
   unreal: "Unreal",
   html5: "HTML5",
   custom: "Custom",
+  default: "General",
 };
 
 export function getAliasedSlug(slug: string[]) {

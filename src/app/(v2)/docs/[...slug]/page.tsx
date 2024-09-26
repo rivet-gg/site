@@ -36,7 +36,7 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
   const isEngine = ENGINES.includes(slug[0]);
   const isCore = CORE_DIRECTORIES.includes(slug[1]);
   return {
-    title: `${title} - ${ENGINE_LABEL_MAP[slug[0]]} - Rivet Docs`,
+    title: `${title} - ${ENGINE_LABEL_MAP[slug[0]] || ENGINE_LABEL_MAP.default} - Rivet Docs`,
     description,
     alternates:
       isEngine && isCore
