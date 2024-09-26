@@ -7,7 +7,8 @@
     "start": "next dev",
     "lint": "next lint",
     "format": "prettier --write .",
-    "create-article": "vite-node scripts/generateArticle.ts"
+    "create-article": "vite-node scripts/generateArticle.ts",
+    "generate-favicon": "npx cli-real-favicon generate scripts/faviconConfig.json faviconData.json public/icons"
   },
   "browserslist": "defaults, not ie <= 11",
   "workspaces": [
