@@ -15,6 +15,24 @@ export async function GET() {
             description: entry.description,
             slug: entry.slug,
             published: entry.published,
+            authors: [{
+                ...entry.author,
+                avatar: {
+                    url: entry.author.avatar.src,
+                    height: entry.author.avatar.height,
+                    width: entry.author.avatar.width,
+                },
+            }],
+            section: entry.category.name,
+            tags: entry.tags,
+            images: [
+                {
+                    url: entry.image.src,
+                    width: entry.image.width,
+                    height: entry.image.height,
+                    alt: entry.image.alt,
+                },
+            ],
         }));
 
     return NextResponse.json(response);
