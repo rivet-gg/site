@@ -23,7 +23,7 @@ export function Header({ active, subnav }: HeaderProps) {
       }
       subnav={subnav}
       support={
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 font-v2 subpixel-antialiased'>
           <RivetHeader.NavItem asChild>
             <Link href='https://hub.rivet.gg'>Sign In</Link>
           </RivetHeader.NavItem>
@@ -47,14 +47,14 @@ export function Header({ active, subnav }: HeaderProps) {
               <Icon icon={faGithub} />
             </Link>
           </RivetHeader.NavItem>
-          <Button variant='outline' asChild>
+          <Button variant='outline' asChild className='font-v2 text-foreground subpixel-antialiased'>
             <Link href='https://hub.rivet.gg'>Sign In</Link>
           </Button>
         </>
       }
       mobileBreadcrumbs={<DocsMobileNavigation />}
       breadcrumbs={
-        <div className='flex items-center gap-5'>
+        <div className='flex items-center gap-5 font-v2 subpixel-antialiased'>
           <RivetHeader.NavItem asChild className='flex items-center gap-1 py-2'>
             <Link href='/docs' aria-current={active === 'docs' ? 'page' : undefined}>
               Docs

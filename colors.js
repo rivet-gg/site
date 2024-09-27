@@ -1,3 +1,5 @@
+// const { default: rivet } = require();
+
 // See https://tailwindcss.com/docs/customizing-colors#generating-colors
 // Generate colors at https://uicolors.app/create
 module.exports = ({ theme }) => ({
@@ -140,8 +142,47 @@ module.exports = ({ theme }) => ({
     900: '#44476b',
     950: '#28293e'
   },
-  // Tooltip colors, used by the new design.
-  popover: 'theme("colors.charcole.950")',
-  'popover-foreground': 'theme("colors.cream.100")',
-  border: 'theme("colors.cream.100")'
+
+  // copied from '@rivet-gg/components/tailwind-base'.theme.extend.colors
+  border: 'hsl(var(--border))',
+  input: 'hsl(var(--input))',
+  ring: 'hsl(var(--ring))',
+  background: {
+    DEFAULT: 'hsl(var(--background))',
+    main: 'hsl(var(--background-main))'
+  },
+  foreground: 'hsl(var(--foreground))',
+  primary: {
+    DEFAULT: 'hsl(var(--primary))',
+    foreground: 'hsl(var(--primary-foreground))'
+  },
+  secondary: {
+    DEFAULT: 'hsl(var(--secondary))',
+    foreground: 'hsl(var(--secondary-foreground))'
+  },
+  destructive: {
+    DEFAULT: 'hsl(var(--destructive))',
+    foreground: 'hsl(var(--destructive-foreground))'
+  },
+  warning: {
+    DEFAULT: 'hsl(var(--warning))',
+    foreground: 'hsl(var(--warning-foreground))'
+  },
+  muted: {
+    DEFAULT: 'hsl(var(--muted))',
+    foreground: 'hsl(var(--muted-foreground))',
+    destructive: 'hsl(var(--muted-destructive))'
+  },
+  accent: {
+    DEFAULT: 'hsl(var(--accent))',
+    foreground: 'hsl(var(--accent-foreground))'
+  },
+  popover: {
+    DEFAULT: 'hsl(var(--popover))',
+    foreground: 'hsl(var(--popover-foreground))'
+  },
+  card: {
+    DEFAULT: 'hsl(var(--card))',
+    foreground: 'hsl(var(--card-foreground))'
+  }
 });

@@ -19,6 +19,15 @@ module.exports = {
         'Liberation Mono',
         'Courier New',
         'monospace'
+      ],
+      v2: [
+        'ui-sans-serif',
+        'system-ui',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji'
       ]
     },
     fontSize: {

@@ -69,6 +69,7 @@ export default function App({ Component, pageProps }) {
             <Layout
               navigation={navigation}
               tableOfContents={tableOfContents}
+              pathname={pathname}
               prose={Component.prose ?? true}
               inset={Component.inset ?? false}
               fullWidth={Component.fullWidth ?? false}

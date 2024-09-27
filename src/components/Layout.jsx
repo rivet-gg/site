@@ -2,12 +2,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import { Footer, PageNextPrevious } from '@/components/Footer';
-import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
 import { TableOfContents } from '@/components/TableOfContents';
 import { Prose } from '@/components/Prose';
 import { HeroPattern } from '@/components/HeroPattern';
 import { Feedback } from '@/components/Feedback';
+import { Header } from '@/components/v2/Header';
 
 export function Layout({
   navigation,
@@ -17,17 +17,13 @@ export function Layout({
   prose,
   inset,
   children,
-  sections = []
+  sections = [],
+  pathname
 }) {
+  console.log(pathname);
   return (
     <div>
-      {/* Navigation */}
-      <motion.header
-        layoutScroll
-        className='contents lg:pointer-events-none lg:sticky lg:inset-0 lg:top-0 lg:z-40 lg:flex'>
-        {/* Header */}
-        <Header navigation={navigation} />
-      </motion.header>
+      <Header active={pathname === '/pricing' ? 'pricing' : ''} />
 
       {/* Body */}
       {/* <div className={clsx('relative', navigation.tabs ? 'pt-navigation' : 'pt-14')}> */}
@@ -42,7 +38,7 @@ export function Layout({
           {navigation.sidebar ? (
             <aside
               className={clsx(
-                `hidden w-full lg:pointer-events-auto lg:sticky lg:top-navigation lg:max-h-tabs-content lg:min-h-tabs-content lg:max-w-aside lg:self-start lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:pb-8 lg:pe-6 lg:pt-4 lg:dark:border-white/10 xl:block`
+                `lg:top-navigation hidden w-full lg:pointer-events-auto lg:sticky lg:max-h-tabs-content lg:min-h-tabs-content lg:max-w-aside lg:self-start lg:overflow-y-auto lg:border-r lg:border-charcole-900/10 lg:pb-8 lg:pe-6 lg:pt-4 lg:dark:border-white/10 xl:block`
               )}>
               <Navigation navigation={navigation} />
             </aside>
