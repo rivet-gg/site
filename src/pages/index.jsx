@@ -166,15 +166,15 @@ function Title() {
 
   const subtitleContent = [
     { subtle: 'Build multiplayer painlessly with ' },
-    { feature: 'Game Servers', href: '/docs/dynamic-servers', icon: faServer },
+    { feature: 'Game Servers', href: '/modules', icon: faServer },
     { subtle: ', ' },
-    { feature: 'Matchmaking', href: '/docs/matchmaker', icon: faChessKnight },
+    { feature: 'Matchmaking', href: '/modules', icon: faChessKnight },
     { subtle: ',' },
     { subtle: ' and ' },
     { break: true },
     {
       feature: 'Authentication',
-      href: '/modules/auth/overview',
+      href: '/modules',
       target: '_blank',
       icon: faAddressCard
     },
@@ -182,7 +182,7 @@ function Title() {
     { subtle: 'Customize endlessly using ' },
     {
       feature: 'Backend Scripting',
-      href: '/docs/modules/quickstart',
+      href: '/modules',
       target: '_blank',
       icon: faCode
     },
@@ -191,11 +191,11 @@ function Title() {
     { subtle: 'Scale effortlessly with ' },
     {
       feature: 'DDoS Mitigation',
-      href: '/docs/dynamic-servers/concepts/game-guard#d-do-s-mitigation',
+      href: '/modules',
       icon: faShield
     },
     { subtle: ' and ' },
-    { feature: 'Monitoring', href: '/docs/dynamic-servers/concepts/monitoring', icon: faBug },
+    { feature: 'Monitoring', href: '/modules', icon: faBug },
     { subtle: '.' }
   ];
 
@@ -468,7 +468,7 @@ function AllModules({ modules }) {
       <div className='mx-auto mt-12 flex max-w-4xl flex-row flex-wrap justify-center gap-4'>
         {modules.map(([key, x]) => (
           <div key={key} className='group/tooltip relative inline'>
-            <Button variant='juicySubtle' href={`/modules/${key}/overview`} target='_blank'>
+            <Button variant='juicySubtle' href={`/modules`} target='_blank'>
               {x.config.icon && <Icon icon={x.config.icon} />}
               {x.config.name}
             </Button>
