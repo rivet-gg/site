@@ -13,7 +13,7 @@ import { Prose } from '@/components/Prose';
 import { Metadata } from 'next';
 import { DocsTableOfContents } from '@/components/DocsTableOfContents';
 import { DocsNavigation } from '@/components/DocsNavigation';
-import { sitemap } from '@/sitemap';
+import { sitemap } from '@/sitemap/mod';
 
 function createParamsForFile(file) {
   return {
