@@ -215,6 +215,7 @@ export const sitemap = [
         title: 'Tutorials',
         pages: [
           { href: '/docs/html5/tutorials/crash-course' },
+          { href: '/docs/html5/tutorials/quickstart' },
           { href: '/docs/html5/tutorials/tanks-canvas-socketio' }
         ]
       },
