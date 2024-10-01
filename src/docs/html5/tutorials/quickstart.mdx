@@ -1,88 +1,91 @@
-# Quickstart
+# Multiplayer Quickstart
 
-<Steps>
-    <Step title="Install Rivet CLI">
-        <Tabs>
-            <Tab title="Build From Source (`cargo install`)">
-                1. [Install Git](https://git-scm.com/downloads)
-                2. [Install Rust](https://rustup.sh)
-                3: Install Rivet
+## Step 1: Install Rivet CLI
 
-                    ```sh
-                    cargo install --git=https://github.com/rivet-gg/toolchain rivet-cli
-                    ````
-            </Tab>
-            <Tab title="Build From Source (`cargo build`)">
-                1. [Install Git](https://git-scm.com/downloads)
-                2. [Install Rust](https://rustup.sh)
-                3: Install Rivet
+<Tabs>
+    <Tab title="Build From Source (`cargo install`)">
+        1. [Install Git](https://git-scm.com/downloads)
+        2. [Install Rust](https://rustup.sh)
+        3: Install Rivet
 
-                    ```sh
-                    git clone https://github.com/rivet-gg/toolchain
-                    cd packages/cli
-                    cargo build
-                    ````
-            </Tab>
-             <Tab title="macOS & Linux & WSL">
-                **Install latest version**
+            ```sh
+            cargo install --git=https://github.com/rivet-gg/toolchain rivet-cli
+            ```
+    </Tab>
+    <Tab title="Build From Source (`cargo build`)">
+        1. [Install Git](https://git-scm.com/downloads)
+        2. [Install Rust](https://rustup.sh)
+        3: Install Rivet
 
-                Coming soon!
-            </Tab>
-            <Tab title="Windows (cmd)">
-                **Install latest version**
+            ```sh
+            git clone https://github.com/rivet-gg/toolchain
+            cd packages/cli
+            cargo build
+            ```
+    </Tab>
+     <Tab title="macOS & Linux & WSL">
+        **Install latest version**
 
-               Coming soon!
-            </Tab>
-            <Tab title="Windows (PowerShell)">
-                **Install latest version**
+        Coming soon!
+    </Tab>
+    <Tab title="Windows (cmd)">
+        **Install latest version**
 
-                Coming soon!
-            </Tab>
-        </Tabs>
-    </Step>
-    <Step title="Download example project">
-        Download the example project [here](/TODO/releases/).
-    </Step>
-    <Step title="Modules">
-       The example project comes with preconfigured config files `rivet.json` and `rivet.dev.json`.
+       Coming soon!
+    </Tab>
+    <Tab title="Windows (PowerShell)">
+        **Install latest version**
 
-       - **`rivet.json`**
+        Coming soon!
+    </Tab>
+</Tabs>
 
-           All configuration regarding [modules](/docs/html5/general/modules/quickstart) goes in this file.
-       - `rivet.dev.json`
+## Step 2: Download example project
 
-           This file is used to override properties from `rivet.json` for local development.
-    </Step>
-    <Step title="Server">
-       The example project's backend server exists in the `game_server` folder.
-       
-       - The `game_server.Dockerfile` dockerfile copies this folder and builds a Docker image from it.
-       - This image is uploaded to Rivet allow running game servers remotely anywhere in the world.
-    </Step>
-    <Step title="Run locally">
-        This will build & run your backend locally & hot reload when you make changes to the configuration.
+Download the example project [here](/TODO/releases/).
 
-        ```sh
-        ./scripts/run_local.sh
-        ```
+## Step 3: Modules
 
-        1. Navigate to http://localhost:8080/ to view the running example.
-        2. Choose `Find or Create Lobby` to connect to the backend.
-    </Step>
-    <Step title="Deploy">
-        Deploy the example to Rivet:
+The example project comes with preconfigured config files `rivet.json` and `rivet.dev.json`.
 
-        ```sh
-        ./scripts/deploy.sh
-        ```
+- **`rivet.json`**
 
-        Then, start the client locally via:
+    All configuration regarding [modules](/docs/html5/general/modules/quickstart) goes in this file.
+- `rivet.dev.json`
 
-        ```sh
-        ./scripts/run_remote.sh
-        ```
+    This file is used to override properties from `rivet.json` for local development.
 
-        1. Navigate to http://localhost:8080/ to view the running example.
-        2. Choose `Find or Create Lobby` to connect to the backend through Rivet.
-    </Step>
-</Steps>
+## Step 4: Server
+
+The example project's backend server exists in the `game_server` folder.
+
+- The `game_server.Dockerfile` dockerfile copies this folder and builds a Docker image from it.
+- This image is uploaded to Rivet allow running game servers remotely anywhere in the world.
+
+## Step 5: Run locally
+
+This will build & run your backend locally & hot reload when you make changes to the configuration.
+
+```sh
+./scripts/run_local.sh
+```
+
+1. Navigate to http://localhost:8080/ to view the running example.
+2. Choose `Find or Create Lobby` to connect to the backend.
+
+## Step 6: Deploy
+
+Deploy the example to Rivet:
+
+```sh
+./scripts/deploy.sh
+```
+
+Then, start the client locally via:
+
+```sh
+./scripts/run_remote.sh
+```
+
+1. Navigate to http://localhost:8080/ to view the running example.
+2. Choose `Find or Create Lobby` to connect to the backend through Rivet.

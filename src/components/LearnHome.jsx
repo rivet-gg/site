@@ -4,14 +4,14 @@ import { Icon, faRocket, faBooks, faStopwatch } from '@rivet-gg/icons';
 export function LearnHome({ engineId, engineName, tutorials }) {
   return (
     <>
-      <ResourceGroup title={null} columns={2}>
+      {/*<ResourceGroup title={null} columns={2}>
         <Resource title='Crash Course' icon={faRocket} href={`/docs/${engineId}/tutorials/crash-course`}>
           {`Speedrun integrating Rivet in to your ${engineName} game.`}
         </Resource>
         <Resource title='API Documentation' icon={faBooks} href='/docs/matchmaker'>
           {`Already know what you're doing? Jump straight to the docs.`}
         </Resource>
-      </ResourceGroup>
+      </ResourceGroup>*/}
 
       <ResourceGroup title='Tutorials' columns={2}>
         {tutorials.map(x => (

@@ -2,7 +2,7 @@
 
 import { ActiveLink } from '@/components/ActiveLink';
 import { Tree } from '@/components/DocsNavigation';
-import { sitemap } from '@/sitemap';
+import { sitemap } from '@/sitemap/mod';
 import { Header as RivetHeader } from '@rivet-gg/components/header';
 import { usePathname } from 'next/navigation';
 
