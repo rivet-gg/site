@@ -46,3 +46,121 @@ You can also manually add the module to your `rivet.json` file manually, like th
 ## Registries
 
 Modules come from registries. Rivet provides a default registry with all of the modules available on this website. You can specify or host your own registries easily. Read more [here](/docs/registries).
+
+# Quickstart
+
+<Steps>
+    <Step title="Install Rivet CLI">
+        <Tabs>
+            <Tab title="macOS & Linux & WSL">
+                **Install latest version**
+
+                ```sh
+                curl -fsSL https://raw.githubusercontent.com/rivet-gg/cli/main/install/unix.sh | sh
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```sh
+                export RIVET_CLI_VERSION="v1.0.0"
+                curl -fsSL https://raw.githubusercontent.com/rivet-gg/cli/${RIVET_CLI_VERSION}/install/unix.sh | sh
+                ```
+
+                _The `export` keyword is important. The variable `RIVET_CLI_VERSION` needs to be accessible inside the install script._
+            </Tab>
+            <Tab title="Windows (cmd)">
+                **Install latest version**
+
+                ```ps1
+                powershell -Command "iwr https://raw.githubusercontent.com/rivet-gg/cli/main/install/windows.ps1 -useb | iex"
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```ps1
+                powershell -Command "$env:RIVET_CLI_VERSION='v1.0.0'; iwr https://raw.githubusercontent.com/rivet-gg/cli/$env:RIVET_CLI_VERSION/install/windows.ps1 -useb | iex"
+                ```
+            </Tab>
+            <Tab title="Windows (PowerShell)">
+                **Install latest version**
+
+                ```ps1
+                iwr https://raw.githubusercontent.com/rivet-gg/cli/main/install/windows.ps1 -useb | iex
+                ```
+
+                **Install specific version**
+
+                We recommend specifying the CLI version in CI environments. This also allows you to install prerelease versions of the CLI.
+
+                ```ps1
+                $env:RIVET_CLI_VERSION='v1.0.0'
+                iwr https://raw.githubusercontent.com/rivet-gg/cli/$env:RIVET_CLI_VERSION/install/windows.ps1 -useb | iex
+                ```
+            </Tab>
+            <Tab title="Build From Source (`cargo install`)">
+                1. [Install Git](https://git-scm.com/downloads)
+                2. [Install Rust](https://rustup.sh)
+                3: Install Rivet
+
+                    ```sh
+                    cargo install --git=https://github.com/rivet-gg/toolchain rivet-cli
+                    ````
+            </Tab>
+            <Tab title="Build From Source (`cargo build`)">
+                1. [Install Git](https://git-scm.com/downloads)
+                2. [Install Rust](https://rustup.sh)
+                3: Install Rivet
+
+                    ```sh
+                    git clone https://github.com/rivet-gg/toolchain
+                    cd packages/cli
+                    cargo build
+                    ````
+            </Tab>
+        </Tabs>
+    </Step>
+    <Step title="Create project">
+        Create a new project by running the following command:
+
+        ```sh
+        rivet init
+        ```
+
+        This creates a `rivet.json` config file. See the project configuration [here](/docs/project-config).
+    </Step>
+    <Step title="Add modules">
+        The default project comes with a set of modules preinstalled. For example, install the `friends` module by running the following command:
+
+        ```sh
+        rivet module add friends
+        ```
+
+        This adds the `friends` module to the `rivet.json` file. You can also install modules manually by adding them to this config.
+
+        See a list of available modules [here](/modules).
+    </Step>
+    <Step title="Run development server">
+        The development server is great for testing your scripts locally. This will build & run your backend locally & hot reload when you make changes to the configuration.
+
+        ```sh
+        rivet dev
+        ```
+    </Step>
+    <Step title="Deploy server (optional)">
+        Install the [Rivet CLI](https://github.com/rivet-gg/cli), then run the following:
+
+        ```sh
+        rivet deploy prod
+        ```
+    </Step>
+    <Step title="Next steps">
+        <CardGroup>
+            <Card title="See available modules" href="/modules/overview" />
+            <Card title="Write your own module" href="/docs/modules/build/quickstart" />
+        </CardGroup>
+    </Step>
+</Steps>

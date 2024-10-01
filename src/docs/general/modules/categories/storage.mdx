@@ -1,0 +1,47 @@
+# Storage
+
+Rivet provides two ways of storing persistent data:
+
+- **Database** Store data that need to be queried in flexible ways (most common)
+- **Game Saves** Game saves allow you to save game state
+- **Uploads** Store large blobs of data
+
+## Database
+
+Rivet Database is used for storing frequently used data. This data can be queried in multiple ways depending on how you need to access the data.
+
+Use the Rivet Database by writing schema & script for inserting/fetching data to ensure security & performance of your data.
+
+Get starting using the Rivet Database [here](/docs/general/modules/build/database).
+
+## Game Saves
+
+Game saves allow you to save game state, similar to how writing to a file system would work if saving games locally.
+
+Game saves can be used for use cases like open-world games, sandboxes, co-op progressions, and more.
+
+Refer to the module documentation below for more information.
+
+<CardGroup>
+
+<a href="/modules/game_saves">
+    <ModuleCard module="game_saves"/>
+</a>
+
+</CardGroup>
+
+
+## Uploads
+
+Uploads enables you to store large blobs of data, such as images, game recordings, and more.
+
+Refer to the module documentation below for more information.
+
+<CardGroup>
+
+<a href="/modules/uploads">
+    <ModuleCard module="uploads"/>
+</a>
+
+</CardGroup>
+

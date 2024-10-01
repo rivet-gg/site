@@ -7,10 +7,18 @@ export const sitemap = [
     href: '/docs/godot',
     sidebar: [
       { href: '/docs/godot', icon: 'square-info' },
-      { href: '/docs/godot/tutorials/quickstart', icon: 'rocket'  },
       {
-        title: 'Concepts',
-        pages: [{ href: '/docs/godot/concepts/resources' }]
+        title: 'Multiplayer',
+        pages: [
+          { href: '/docs/godot/tutorials/quickstart', icon: 'rocket'  },
+          {
+            title: 'Concepts',
+            collapsible: true,
+            pages: [
+              { href: '/docs/godot/concepts/resources' }
+            ]
+          }
+        ]
       },
       ...common('/docs/godot')
     ]
@@ -20,7 +28,12 @@ export const sitemap = [
     href: '/docs/unity',
     sidebar: [
       { href: '/docs/unity', icon: 'square-info'  },
-      { href: '/docs/unity/tutorials/quickstart-fishnet', icon: 'rocket' },
+      {
+        title: 'Multiplayer',
+        pages: [
+          { href: '/docs/unity/tutorials/quickstart-fishnet', icon: 'rocket' },
+        ]
+      },
       ...common('/docs/unity')
     ]
   },
@@ -29,12 +42,20 @@ export const sitemap = [
     href: '/docs/unreal',
     sidebar: [
       { href: '/docs/unreal', icon: 'square-info'  },
-      { href: '/docs/unreal/tutorials/quickstart', icon: 'rocket'  },
       {
-        title: 'Concepts',
+        title: 'Multiplayer',
         pages: [
-          // { href: '/docs/unreal/concepts/run-methods' },
-          { href: '/docs/unreal/concepts/resources' },
+          { href: '/docs/unreal/tutorials/quickstart', icon: 'rocket'  },
+          {
+            title: 'Concepts',
+            collapsible: true,
+            pages: [
+              // { href: '/docs/unreal/concepts/run-methods' },
+              { href: '/docs/unreal/concepts/resources' },
+              { href: '/docs/unreal/concepts/build-engine-from-source' },
+              { href: '/docs/unreal/concepts/useful-commands' },
+            ]
+          },
           {
             title: 'Troubleshooting',
             collapsible: true,
@@ -45,14 +66,6 @@ export const sitemap = [
               { href: '/docs/unreal/troubleshooting/standalone-wrong-map' }
             ]
           },
-          {
-            title: 'Advanced',
-            collapsible: true,
-            pages: [
-              { href: '/docs/unreal/concepts/build-engine-from-source' },
-              { href: '/docs/unreal/concepts/useful-commands' },
-            ]
-          }
         ]
       },
       ...common('/docs/unreal')
@@ -63,7 +76,12 @@ export const sitemap = [
     href: '/docs/html5',
     sidebar: [
       { href: '/docs/html5', icon: 'square-info'  },
-      { href: '/docs/html5/tutorials/quickstart', icon: 'rocket'  },
+      {
+        title: 'Multiplayer',
+        pages: [
+          { href: '/docs/html5/tutorials/quickstart', icon: 'rocket'  },
+        ]
+      },
       ...common('/docs/html5')
     ]
   },

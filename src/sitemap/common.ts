@@ -6,6 +6,7 @@ import apiPages from '@/generated/apiPages.json' assert { type: 'json' };
 export const common = (prefix: string = '/docs'): SidebarSection[] => [
   usingModules(prefix),
   developingModules(prefix),
+  platforms(prefix),
   advanced(prefix)
 ];
 
@@ -13,20 +14,20 @@ const usingModules = (prefix: string = '/docs'): SidebarSection => ({
   title: 'Rivet Modules',
   pages: [
     { href: `${prefix}/general/modules`, icon: 'puzzle' },
-    { href: `${prefix}/general/modules/quickstart`, icon: 'rocket' },
-    { href: `${prefix}/general/modules/sdk`, icon: 'code' },
-    {
-      title: 'Reference',
-      collapsible: true,
-      pages: [
-        { href: `${prefix}/general/modules/project-config` },
-        { href: `${prefix}/general/modules/cli` },
-      ]
-    },
+    { href: `${prefix}/general/modules/categories/matchmaking`, icon: 'chess' },
+    // { href: `${prefix}/general/modules/categories/parties`, icon: 'party-horn' },
+    { href: `${prefix}/general/modules/categories/authentication`, icon: 'key' },
+    { href: `${prefix}/general/modules/categories/social`, icon: 'share-nodes' },
+    // { href: `${prefix}/general/modules/categories/competitive`, icon: 'ranking-star' },
+    // { href: `${prefix}/general/modules/categories/economy`, icon: 'coin-front' },
+    { href: `${prefix}/general/modules/categories/storage`, icon: 'floppy-disk' },
     {
       title: 'Advanced',
       collapsible: true,
       pages: [
+        { href: `${prefix}/general/modules/project-config`, icon: 'square-sliders' },
+        { href: `${prefix}/general/modules/cli`, icon: 'terminal' },
+        { href: `${prefix}/general/modules/sdk`, icon: 'code' },
         { href: `${prefix}/general/modules/registries`, icon: 'share-nodes' },
         { href: `${prefix}/general/modules/multiple-games`, icon: 'object-intersect' },
         { href: `${prefix}/general/modules/environment-variables`, icon: 'leaf' }
@@ -42,50 +43,35 @@ const developingModules = (prefix: string = '/docs'): SidebarSection => ({
       href: `${prefix}/general/modules/build`,
       icon: 'screwdriver-wrench'
     },
-    {
-      href: `${prefix}/general/modules/build/quickstart`,
-      icon: 'rocket'
-    },
     { href: `${prefix}/general/modules/build/scripts`, icon: 'file-code' },
     { href: `${prefix}/general/modules/build/database`, icon: 'database' },
     { href: `${prefix}/general/modules/build/actors`, icon: 'bolt' },
+    // TODO:
     // {
     //   href: `${prefix}/general/modules/build/user-config`,
     //   icon: 'paint-roller'
     // },
-    {
-      title: 'Core Modules',
-      collapsible: true,
-      pages: [
-        { href: `${prefix}/general/modules/build/general-modules` },
-        { href: `/modules/tokens`, title: 'Tokens' },
-        { href: `/modules/rate-limit`, title: 'Rate Limit' },
-        { href: `/modules/uploads`, title: 'Uploads' },
-        { href: `/modules/analytics`, title: 'Analytics' }
-      ]
-    },
-    {
-      title: 'Reference',
-      collapsible: true,
-      pages: [
-        { href: `${prefix}/general/modules/build/module-config` },
-        { href: `${prefix}/general/modules/build/conventions` },
-      ]
-    },
+    { href: `${prefix}/general/modules/build/utility-modules`, icon: 'toolbox' },
     {
       title: 'Advanced',
       collapsible: true,
       pages: [
-        { href: `${prefix}/general/modules/build/publish`, icon: 'truck-fast' },
-        {
-          href: `${prefix}/general/modules/build/errors`,
-          icon: 'triangle-exclamation'
-        },
+        { href: `${prefix}/general/modules/build/conventions` },
+        { href: `${prefix}/general/modules/build/module-config` },
+        { href: `${prefix}/general/modules/build/publish` },
+        { href: `${prefix}/general/modules/build/errors` },
         { href: `${prefix}/general/modules/build/ide` },
         { href: `${prefix}/general/modules/build/public` },
         { href: `${prefix}/general/modules/build/logging` },
       ]
     }
+  ]
+});
+
+const platforms = (prefix: string = '/docs'): SidebarSection => ({
+  title: "Platforms",
+  pages: [
+    { href: `${prefix}/general/platforms/discord`, icon: 'discord' },
   ]
 });
 
