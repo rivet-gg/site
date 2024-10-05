@@ -1,0 +1,62 @@
+import image from './banner.jpg';
+import graph from './graph.png';
+
+export const config = {
+  author: 'forest-anderson',
+  title: 'February 2024 Monthly Update',
+  date: '2024-03-01',
+  description: `Open beta, Godot plugin, server provisioning.`,
+  category: 'monthly-update',
+  tags: ['monthly-update', 'godot', 'servers', 'open-beta'],
+  images: {
+    hero: {
+      image,
+      alt: 'Hero'
+    }
+  }
+};
+
+<ArticleHeader {...info} />
+
+## Bolt Namespace and Secret Management
+
+In February, we added a way to store Bolt namespace configs and secrets inside
+1password so that it's easier to share your cluster configuration with your
+team. This only matters for Rivet Enterprise and Rivet Open Source, since Rivet
+Cloud users don't need to touch the cluster themselves.
+
+Internally at Rivet, this has allowed us to share the access to our production
+clusters much more efficiently to our on-call team members. The main problem we
+ran into before was if a secret was added, or changed, it was difficult to
+propagate knowledge of that to each other. Now, Bolt will automatically check
+for any changes that others have made to the configs!
+
+## CLI Tips
+
+We added a documentation page about tips for Rivet's command line interface
+(CLI) (https://rivet.gg/docs/general/concepts/cli-tips). It includes lots of
+detail about the functionality of the CLI:
+
+- Navigating to the Rivet Hub from the CLI.
+- `rivet run` and `rivet exec` to run scripts and commands in an environment with your tokens automatically configured.
+- Making deployments of your game.
+- Details about Docker, the Rivet CDN, and Continuous Integration with Rivet.
+
+## Developing from an iPad
+
+Rivet can now be developed on an iPad using GitHub Codespaces! The significance
+of this is a bit nuanced; previously, developing Rivet required a VM with Debian
+11 that would exclusively be used for Rivet's cluster. However, we recently
+released a Devcontainer
+(https://code.visualstudio.com/docs/devcontainers/containers) that can run the
+entire cluster. This still requires 32GB of ram on the host system (for the time
+being), since the cluster uses quite a few resources, and Rust compilation +
+Rust Analzyer take lots of ram.
+
+However, GitHub Codespaces allows you to easily run Devcontainers on their
+servers, which should lower the startup time significantly. Note however, GitHub
+Codespaces cost $0.72 an hour for the lowest tier that Rivet can work on. If you
+have your own machine with at least 32GB of ram and Docker installed, then you
+can use it to develop on!
+
+<ArticleSocials {...info}/>
