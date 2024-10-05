@@ -1,0 +1,102 @@
+import { Tip, Note } from '@/components/callouts';
+import { CodeGroup } from '@/components/Code';
+import image from './opengraph-image.png';
+import imgGodotSyncWatch from './godot-sync-watch.png';
+
+export const config = {
+  author: 'forest-anderson',
+  date: '2024-04-10',
+  title: `Is Godot 4's Multiplayer a Worthy Alternative to Unity?`,
+  description: `Comparing Unity's high-level multiplayer API with Unity's Fish-Net framework.`,
+  category: 'technical',
+  keywords: ['unity', 'godot', 'multiplayer', 'fish-net', 'replication'],
+  images: {
+    hero: {
+      image,
+      alt: 'hero'
+    }
+  }
+};
+
+In game development, we often want to create social or multiplayer experiences
+that are just out of reach of what we actually want to develop. Have you ever
+put out a jam game that could have used a simple leaderboard, or shipped a game
+that needed user accounts? I have, and often my solution would be a simple
+Python web server that I'd leave running locally on my computer with ngrok for a
+day or two, or hosting an overly-complex Django project to track my users. I'm
+not the only developer on my team that has done hacky solutions like this
+before; so we decided to create an ecosystem that would handle this. We named it
+Open Game Backend.
+
+OpenGB makes this process much simpler. There are two sides to the project;
+creating the logic for the module, and running the module in production. These
+are both very important, since we want to make sure we're not doing more work
+than we need to get this part of our game shipped, and we don't want to worry
+about maintaining it once it's running.
+
+## Modules
+
+Let's dive into what makes up a "module". At its core, an OpenGB module consists
+of some Typescript Deno code, and it has access to a database. Past that, OpenGB
+modules can also rely on other modules to do tasks if needed.
+
+- A scripting environment
+- A database
+- Access to other modules
+- Deno
+
+## Hosting
+
+Next, let's look at how to get these running. In a world of easy deployments
+like with Vercel or Heroku, OpenGB needs to have a
+first-class experience to getting a module running. On this front, there are a
+few things that we don't want to get wrong:
+
+- Leaving projects running if they aren't being used
+- Make deployments painless
+- Adding enough constraints that it's easy to develop a module, but not
+  impossible to add functionality you need
+- Smaller databases don't have enough functionality, and hosting bigger
+  databases is expensive
+
+We chose to use Deno as the runtime for OpenGB. This allows modules to run 
+
+We have some solutions for each of these. First, if your module isn't in use,
+then it doesn't need to be sitting around running on a computer and burning your
+money. We opted to deploy modules to Cloudflare Workers
+(https://developers.cloudflare.com/workers/) to only run your code when a
+request is coming in. Since OpenGB modules are created with Deno, it's super
+easy to compile the code to run in a worker.
+
+Next, when you update a module, it needs to be deployed with a single command.
+
+## switching from our existing solutions
+
+## cool properties
+
+Let's take a look at a problem that can be easy to solve while using OpenGB.
+With multiplayer games, rate limiting can often be an important thing to making
+sure your servers aren't getting hit too often. If we think about the problem,
+it can be broken down into a few steps:
+
+1. Defining the number of requests allowed in a certain amount of time
+2. Storing usage in a datastore
+3. Declining access if a client exceeds the rate
+
+After we map out the logic that should be done, implementation should be super
+close to this idea without a lot of extra bloat. This module is already created
+in the OpenGB docs (https://opengb.dev/modules/rate_limit/overview), so let's
+look at how it's implemented:
+
+## limits
+
+{/* Now that we've seen some basic examples, is the sky the limit with OpenGB? Well,
+yes and no. There is a lot that you can do, but there certainly is also problems
+that are better solved by writing a full web service yourself <examples>.  */}
+
+# Internal complaints
+
+- on opengb docs, can't easily hop over to source code for a module
+    - oh, it's the small “source” button
+
+<ArticleSocials {...info}/>
