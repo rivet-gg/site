@@ -1,5 +1,5 @@
-import { SidebarSection, Sitemap } from '@/lib/sitemap';
-import { common } from '@/sitemap/common';
+import { Sitemap } from '@/lib/sitemap';
+import { advanced, common, developingModules, platforms, usingModules } from '@/sitemap/common';
 
 export const sitemap = [
   {
@@ -10,13 +10,11 @@ export const sitemap = [
       {
         title: 'Multiplayer',
         pages: [
-          { href: '/docs/godot/tutorials/quickstart', icon: 'rocket'  },
+          { href: '/docs/godot/tutorials/quickstart', icon: 'rocket' },
           {
             title: 'Concepts',
             collapsible: true,
-            pages: [
-              { href: '/docs/godot/concepts/resources' }
-            ]
+            pages: [{ href: '/docs/godot/concepts/resources' }]
           }
         ]
       },
@@ -27,12 +25,10 @@ export const sitemap = [
     title: 'Unity',
     href: '/docs/unity',
     sidebar: [
-      { href: '/docs/unity', icon: 'square-info'  },
+      { href: '/docs/unity', icon: 'square-info' },
       {
         title: 'Multiplayer',
-        pages: [
-          { href: '/docs/unity/tutorials/quickstart-fishnet', icon: 'rocket' },
-        ]
+        pages: [{ href: '/docs/unity/tutorials/quickstart-fishnet', icon: 'rocket' }]
       },
       ...common('/docs/unity')
     ]
@@ -41,11 +37,11 @@ export const sitemap = [
     title: 'Unreal',
     href: '/docs/unreal',
     sidebar: [
-      { href: '/docs/unreal', icon: 'square-info'  },
+      { href: '/docs/unreal', icon: 'square-info' },
       {
         title: 'Multiplayer',
         pages: [
-          { href: '/docs/unreal/tutorials/quickstart', icon: 'rocket'  },
+          { href: '/docs/unreal/tutorials/quickstart', icon: 'rocket' },
           {
             title: 'Concepts',
             collapsible: true,
@@ -53,7 +49,7 @@ export const sitemap = [
               // { href: '/docs/unreal/concepts/run-methods' },
               { href: '/docs/unreal/concepts/resources' },
               { href: '/docs/unreal/concepts/build-engine-from-source' },
-              { href: '/docs/unreal/concepts/useful-commands' },
+              { href: '/docs/unreal/concepts/useful-commands' }
             ]
           },
           {
@@ -65,7 +61,7 @@ export const sitemap = [
               { href: '/docs/unreal/troubleshooting/port-7777-already-taken' },
               { href: '/docs/unreal/troubleshooting/standalone-wrong-map' }
             ]
-          },
+          }
         ]
       },
       ...common('/docs/unreal')
@@ -75,12 +71,10 @@ export const sitemap = [
     title: 'HTML5',
     href: '/docs/html5',
     sidebar: [
-      { href: '/docs/html5', icon: 'square-info'  },
+      { href: '/docs/html5', icon: 'square-info' },
       {
         title: 'Multiplayer',
-        pages: [
-          { href: '/docs/html5/tutorials/quickstart', icon: 'rocket'  },
-        ]
+        pages: [{ href: '/docs/html5/tutorials/quickstart', icon: 'rocket' }]
       },
       ...common('/docs/html5')
     ]
@@ -88,14 +82,21 @@ export const sitemap = [
   {
     title: 'Custom',
     href: '/docs/custom',
-    sidebar: [
-      { href: '/docs/custom', icon: 'square-info'  },
-      ...common('/docs/custom')
-    ]
+    sidebar: [{ href: '/docs/custom', icon: 'square-info' }, ...common('/docs/custom')]
   },
   {
     title: 'Core',
     href: '/docs/general',
-    sidebar: common('/docs')
+    sidebar: [{ href: '/docs/general', icon: 'square-info' }, ...common('/docs/general')]
+  },
+  {
+    title: 'Rivet Modules',
+    href: '/docs/modules',
+    sidebar: [
+      ...usingModules('/docs').pages,
+      developingModules('/docs'),
+      platforms('/docs/modules'),
+      advanced('/docs/modules')
+    ]
   }
 ] satisfies Sitemap;

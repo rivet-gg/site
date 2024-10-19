@@ -88,5 +88,17 @@ export async function generateStaticParams() {
     );
   }
 
+  staticParams.push(
+    ...coreResources
+      .filter(file => file.startsWith('modules'))
+      .map(file => createParamsForFile(`general/${file}`))
+  );
+
+  staticParams.push(
+    ...coreResources
+      .filter(file => file.startsWith('general'))
+      .map(file => createParamsForFile(`modules/${file}`))
+  );
+
   return staticParams;
 }
