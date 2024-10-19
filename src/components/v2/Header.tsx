@@ -56,7 +56,7 @@ export function Header({ active, subnav }: HeaderProps) {
       breadcrumbs={
         <div className='flex items-center gap-5 font-v2 subpixel-antialiased'>
           <RivetHeader.NavItem asChild className='flex items-center gap-1 py-2'>
-            <Link href='/docs' aria-current={active === 'docs' ? 'page' : undefined}>
+            <Link href='/docs/start' aria-current={active === 'docs' ? 'page' : undefined}>
               Docs
             </Link>
           </RivetHeader.NavItem>

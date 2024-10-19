@@ -43,7 +43,7 @@ export function DocsMobileNavigation() {
   return (
     <>
       <RivetHeader.NavItem asChild className='flex items-center gap-1.5'>
-        <ActiveLink href='/docs'>Docs</ActiveLink>
+        <ActiveLink href='/docs/start'>Docs</ActiveLink>
       </RivetHeader.NavItem>
       {Object.entries(ENGINE_NAV_ITEM).map(([key, value]) => {
         if (currentPage?.href.includes(key)) {
