@@ -1,0 +1,442 @@
+import imgServers from "./images/servers.png";
+
+# Quickstart (NodeJS)
+
+This will walk you through integrating Rivet in to an existing project.
+
+This guide assumes that you're using WebSockets. If you're using something else for networking, the process will be almost identical.
+
+If you're starting from scratch, see our example project [here](/docs/html5/tutorials/example-nodejs).
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+- [Git](https://git-scm.com/downloads)
+- [NodeJS](https://nodejs.org/en)
+
+## Step 1: Install Rivet CLI
+
+<Tabs>
+    <Tab title="Download (Windows, x86)">
+        ```sh
+        curl -L https://releases.rivet.gg/toolchain/v2.0.0-rc.5/windows_x86_64/rivet.exe.zip -o rivet.exe.zip
+        unzip rivet.exe.zip
+        ```
+
+        Add the directory containing rivet.exe to your PATH environment variable.
+    </Tab>
+    <Tab title="Download (macOS, Apple Silicon)">
+        ```sh
+        curl -L https://releases.rivet.gg/toolchain/v2.0.0-rc.5/macos_arm64/rivet.zip -o rivet.zip
+        unzip rivet.zip
+        chmod +x rivet
+        sudo mv rivet /usr/local/bin/
+        ```
+    </Tab>
+    <Tab title="Download (macOS, Intel)">
+        ```sh
+        curl -L https://releases.rivet.gg/toolchain/v2.0.0-rc.5/macos_x86_64/rivet.zip -o rivet.zip
+        unzip rivet.zip
+        chmod +x rivet
+        sudo mv rivet /usr/local/bin/
+        ```
+    </Tab>
+    <Tab title="Download (Linux, x86)">
+        ```sh
+        curl -L https://releases.rivet.gg/toolchain/v2.0.0-rc.5/linux_x86_64/rivet.zip -o rivet.zip
+        unzip rivet.zip
+        chmod +x rivet
+        sudo mv rivet /usr/local/bin/
+        ```
+    </Tab>
+    <Tab title="Build From Source (cargo install)">
+        1. [Install Rust](https://rustup.sh)
+        2. Install Rivet
+
+            ```sh
+            cargo install --git=https://github.com/rivet-gg/toolchain rivet-cli
+            ```
+    </Tab>
+    <Tab title="Build From Source (cargo build)">
+        1. [Install Rust](https://rustup.sh)
+        2. Install Rivet
+
+            ```sh
+            git clone https://github.com/rivet-gg/toolchain.git
+            cd packages/cli
+            cargo build
+            ```
+    </Tab>
+</Tabs>
+
+## Step 2: Setup Rivet Project
+
+First, we need to create the config files to tell Rivet how to run your games.
+
+### Create config files
+
+Create the following files in the root of your project:
+
+<CodeGroup>
+```json {{ "file": "rivet.json", "title": "rivet.json" }}
+{
+	"sdks": [{"output": "rivet-sdk", "target": "typescript"}],
+	"runtime": {
+		"cors": {
+			"origins": ["http://127.0.0.1:8080", "http://localhost:8080"]
+		}
+	},
+	"modules": {
+		"rate_limit": {},
+		"tokens": {},
+		"lobbies": {
+			"config": {
+				"lobbies": {
+					"regions": ["atl", "fra"],
+					"backend": {
+						"server": {
+							"ports": {
+								"game": {
+									"protocol": "https",
+									"internalPort": 7777
+								}
+							},
+							"resources": {
+								"cpu": 1000,
+								"memory": 1000
+							}
+						}
+					}
+				}
+			}
+		},
+		"rivet": {}
+	}
+}
+```
+
+```json {{ "file": "rivet.dev.json", "title": "rivet.dev.json" }}
+{
+	"extends": "./rivet.json",
+	"modules": {
+		"lobbies": {
+			"config": {
+				"lobbies": {
+					"regions": ["local"],
+					"backend": {
+						"localDevelopment": {
+							"tags": {},
+							"ports": {
+								"game": {"protocol": "http", "port": 7777}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+```
+</CodeGroup>
+
+<Note>
+  This configuration file assumes that your game server runs on port `7777`. If it doesn't, update the port in both `rivet.json` and `rivet.dev.json`.
+</Note>
+
+<Tip>Documentation for the project config is available [here](/modules/project-config).</Tip>
+
+### Run Rivet server locally
+
+Open the project folder in your terminal and run:
+
+```bash
+rivet dev --config rivet.dev.json
+````
+
+This will start local instance of the Rivet server on your machine. Leave this server running in the background for the following steps.
+
+<Tip>
+  Running Rivet locally is completely optional, but it enables faster iteration of testing your Rivet configuration changes.
+
+  You'll need to start this server in the background any time you want to test locally in the future.
+</Tip>
+
+### Setup SDK
+
+
+The `rivet dev` command automatically generates an SDK for Rivet to the folder `rivet-sdk`.
+
+Open the folder `rivet-sdk` in your terminal and run:
+
+```bash
+npm install
+````
+
+## Step 3: Integrate your client
+
+### Install `rivet-sdk`
+
+Run the following in your client folder:
+
+```bash
+npm install /path/to/rivet-sdk
+```
+
+Replace `/path/to/rivet-sdk` to the path to the SDK relative to your client. For example, if it's in the parent folder, use `../rivet-sdk`.
+
+### Add code
+
+At the top of your file, add:
+
+```typescript {{ "file": "client/index.ts" }}
+const ENDPOINT = "http://localhost:6420";  // You'll change this after deploying your server to Rivet.
+const VERSION = "default";  // You'll change this after deploying your server.
+const rivet = new Rivet({ endpoint: ENDPOINT });
+````
+
+Where you open a connection to your server, add:
+
+```typescript {{ "file": "client/index.ts" }}
+import { Rivet } from "rivet-sdk";
+
+// Listing regions is optional. Most games integrate some sort of region selector.
+const regions = await rivet.lobbies.listRegions({});
+
+// Choose the first provided region. You can customize this as needed
+const defaultRegion = regions.regions[0].slug;
+
+// Find a lobby
+let findResponse = await rivet.lobbies.findOrCreate({
+  // Attempt to find a lobby with these parameters
+  version: VERSION,
+  regions: [defaultRegion],
+  tags: { gameMode: "ffa" },  // Tags can be any object you want (`gameMode` is an example)
+  players: [{}],  // This creates 1 player (the empty object is the player's config)
+
+  // If a lobby doesn't exist, automatically create one with this config.
+  //
+  // You can customize security around lobby creation in your `rivet.json`.
+  createConfig: {
+    region: defaultRegion,
+    tags: { gameMode: "ffa" },
+    maxPlayers: 8,  // Number of players allowed to join via `rivet.lobbies.find`
+    maxPlayersDirect: 8,  // Number of players allowed to join directly via `rivet.lobbies.join`
+  },
+});
+
+// Build connection address
+let protocol: string;
+let hostname: string;
+let port: number;
+if (lobby.backend.server) {
+  // Connecting to live server
+  protocol = lobby.backend.server.ports["game"].protocol;
+  hostname = lobby.backend.server.ports["game"].publicHostname;
+  port = lobby.backend.server.ports["game"].publicPort;
+} else if (lobby.backend.localDevelopment) {
+  // Connecting to local development server
+  protocol = "http";
+  hostname = lobby.backend.localDevelopment.ports["game"].hostname;
+  port = lobby.backend.localDevelopment.ports["game"].port;
+} else {
+  throw new Error("unknown backend");
+}
+
+// Connect to server (this can be whatever networking library you're already using).
+//
+// `token` is used to securely authorize players with the matchmaker. This
+// helps prevent botting attacks. You'll use this in the next step.
+const ws = new WebSocket(
+  `${protocol}://${hostname}:${port}?token=${players[0].token}`,
+);
+```
+
+<Tip>For a working example of a game client, see [here](https://github.com/rivet-gg/toolchain/blob/598d2e51f85a7365e2121e4481bbf626475cefe7/examples/html5-node/packages/client/src/index.ts).</Tip>
+
+### Test client
+
+You should now be able to connect to your local game server using the Rivet SDK.
+
+## Step 4: Integrate server
+
+### Install `rivet-sdk`
+
+Run the following in your server folder:
+
+```bash
+npm install /path/to/rivet-sdk
+```
+
+Replace `/path/to/rivet-sdk` to the path to the SDK relative to your server. For example, if it's in the parent folder, use `../rivet-sdk`.
+
+### Add code
+
+```typescript {{ "file": "server/index.ts" }}
+// Used to authenticate the lobby with the Rivet API.
+//
+// These environment variables are automatically populated by Rivet. You don't
+// need to do anything.
+const LOBBY_ID = process.env.LOBBY_ID ?? "00000000-0000-0000-0000-000000000000"; 
+const LOBBY_TOKEN = process.env.LOBBY_TOKEN;
+
+const rivet = new Rivet();
+
+// Start server (this can be whatever networking library you're already using).
+const wss = new WebSocketServer({ port: parseInt(process.env.PORT!) || 7777 });
+
+wss.on("connection", async (ws: WebSocket, req: any) => {
+  // Parse token provided in the last step
+  const searchParams = new URL(req.url!, `ws://${req.headers.host}`).searchParams;
+  const playerToken = searchParams.get("token");
+
+  // Notify Rivet that a player disconnected
+  ws.on("close", async () => {
+    rivet.lobbies.setPlayerDisconnected({
+      lobbyId: LOBBY_ID,
+      lobbyToken: LOBBY_TOKEN,
+      playerTokens: [playerToken],
+      client: ws,
+    })
+    .then(() => console.log('Player disconnected'))
+    .catch(err => console.warn("Failed to disconnect player", err));
+  });
+
+  // Notify Rivet that a player connected
+  //
+  // If the token is invalid, this function will throw an error. Abort the
+  // connection if this happens.
+  try {
+    await rivet.lobbies.setPlayerConnected({
+      lobbyId: LOBBY_ID,
+      lobbyToken: LOBBY_TOKEN,
+      playerTokens: [playerToken],
+    });
+    console.log('Player connected');
+  } catch (err) {
+    console.warn("Failed to connect player", err);
+    ws.close();
+    return;
+  }
+
+  // ...etc...
+});
+
+// Notify Rivet that the server can start accepting players
+//
+// Do expensive startup operations (e.g. loading maps) before calling this function.
+rivet.lobbies.setLobbyReady({ lobbyId: LOBBY_ID, lobbyToken: LOBBY_TOKEN })
+  .then(() => console.log("Lobby ready"))
+```
+
+<Tip>For a working example of a game server, see [here](https://github.com/rivet-gg/toolchain/blob/598d2e51f85a7365e2121e4481bbf626475cefe7/examples/html5-node/packages/game-server/src/index.ts).</Tip>
+
+### Test server
+
+Start your server. You should see a log: `Lobby ready`
+
+Now run your client and attempt to connect to the server. You should see a log: `Player connected`
+
+## Step 5: Deploy
+
+### Write Dockerfile
+
+Create a `game_server.Dockerfile` that will be used to run your game server.
+
+Every project requires a different Dockerfile. This is an example NodeJS Dockerfile:
+
+```dockerfile {{ "file": "game_server.Dockerfile" }}
+FROM node:20-alpine
+RUN adduser -D server
+WORKDIR /app
+
+COPY . .
+WORKDIR /app/packages/game-server
+RUN npm install --frozen-lockfile && npm run build
+
+RUN chown -R server:server /app
+USER server
+EXPOSE 7777
+
+CMD ["node", "dist/index.js"]
+````
+
+You'll build & deploy this Dockerfile in a moment.
+
+<Note>Make sure to add a `.dockerignore` to prevent including files in your server. We recommend adding any large game assets to your `.dockerignore`.</Note>
+
+<Tip>For a working example of a game server, see [here](https://github.com/rivet-gg/toolchain/blob/598d2e51f85a7365e2121e4481bbf626475cefe7/examples/html5-node/game_server.Dockerfile).</Tip>
+
+### Login
+
+Open your project's folder in a terminal and login to Rivet with:
+
+```bash
+rivet login
+````
+
+### Deploy
+
+In the same folder, deploy your server to Rivet with:
+
+```bash
+rivet deploy prod
+````
+
+<Note>You won't see a server created immediately on Rivet. Servers are created on-demand when `rivet.lobbies.findOrCreate` is called.</Note>
+
+### Connect to deployed version
+
+To connect to the deployed version:
+
+1. Get the backend endpoint:
+
+    ```sh
+    rivet backend get-endpoint prod
+    ```
+
+    Copy this value to the `const ENDPOINT = "..."` that we wrote earlier.
+
+2. Get the current game version:
+
+    ```sh
+    rivet backend get-current-version prod
+    ```
+
+    Copy this value to the `const VERSION = "..."` that we wrote earlier.
+
+3. Run your client and attempt to connect to your server.
+
+    If this doesn't work, see the next step on how to get logs from your server.
+
+<Note>You'll need to update your version when deploying a new server. Your endpoint will not change.</Note>
+
+<Note>Change your endpoint to `http://localhost:6420` when switching to testing locally.</Note>
+
+### Monitor deployed servers
+
+Open the [Rivet Hub](https://hub.rivet.gg) and open your game's environment. You'll see your server active under the _Servers_ tab.
+
+<Image src={imgServers}/>
+
+### Deploying your client
+
+Deploy your client to a CDN of your choice. If you don't already have a CDN, we recommend trying S3, Vercel, or Cloudflare Pages.
+
+Once deployed, add your client's URl to the `runtime.cors` property in `rivet.json`. For example:
+
+```json {{ "file": "rivet.json" }}
+{
+	// ...
+	"runtime": {
+		"cors": {
+			"origins": ["https://my-app.vercel.app"]
+		},
+	},
+	// ...
+}
+```
+
+### Next steps
+
+Check out available modules & documentation [here](/modules).
