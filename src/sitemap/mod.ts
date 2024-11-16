@@ -74,7 +74,10 @@ export const sitemap = [
       { href: '/docs/html5', icon: 'square-info' },
       {
         title: 'Multiplayer',
-        pages: [{ href: '/docs/html5/tutorials/quickstart', icon: 'rocket' }]
+        pages: [
+          { href: '/docs/html5/tutorials/quickstart-nodejs', icon: 'rocket' },
+          { href: '/docs/html5/tutorials/example-nodejs', icon: 'image' },
+        ]
       },
       ...common('/docs/html5')
     ]
